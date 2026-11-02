@@ -1,0 +1,50 @@
+---
+import '@/index.css'
+import HeaderIsland from '@/islands/HeaderIsland'
+import { StaticFooter } from '@/islands/StaticPages'
+import { renderHeadTags, type PageSeo } from '@/lib/seo'
+
+interface Props {
+  seo: PageSeo
+  /** The page's own URL with its locale prefix, e.g. "/es/red-screen/". */
+  url: string
+}
+
+const { seo, url } = Astro.props
+const htmlLang = seo.lang === 'pt-br' ? 'pt-BR' : seo.lang
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <Fragment set:html={renderHeadTags(seo)} />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/apple-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script is:inline>
+      // Apply the saved theme (or the system one) before first paint, so dark mode never flashes white.
+      (function () {
+        try {
+          var saved = localStorage.getItem('whitescreen_theme')
+          var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+          if (dark) {
+            document.documentElement.classList.add('dark')
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1b1d22')
+          }
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div class="flex min-h-screen flex-col bg-background text-foreground">
+      <HeaderIsland url={url} client:load />
+      <main id="main-content" class="flex-1">
+        <slot />
+      </main>
+      <StaticFooter url={url} />
+    </div>
+  </body>
+</html>

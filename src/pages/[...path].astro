@@ -1,0 +1,65 @@
+---
+/**
+ * Every page in every language. Interactive pages hydrate as React islands; reading-only pages
+ * (about, legal, glossary terms) are plain HTML with no page JavaScript.
+ */
+import Base from '@/layouts/Base.astro'
+import HomeIsland from '@/islands/HomeIsland'
+import ColorIsland from '@/islands/ColorIsland'
+import ToolIsland from '@/islands/ToolIsland'
+import ToolsIsland from '@/islands/ToolsIsland'
+import ContactIsland from '@/islands/ContactIsland'
+import FeedbackIsland from '@/islands/FeedbackIsland'
+import GuidesIsland from '@/islands/GuidesIsland'
+import GuideIsland from '@/islands/GuideIsland'
+import BackgroundsIsland from '@/islands/BackgroundsIsland'
+import BackgroundIsland from '@/islands/BackgroundIsland'
+import ProblemsIsland from '@/islands/ProblemsIsland'
+import ProblemIsland from '@/islands/ProblemIsland'
+import GlossaryIsland from '@/islands/GlossaryIsland'
+import { StaticPage } from '@/islands/StaticPages'
+import { getAliasRoutes, getAllRoutes, getPageSeo } from '@/lib/seo'
+import { SUPPORTED_LOCALES, getLocalizedPath, type LanguageCode } from '@/lib/locale-routing'
+import { resolvePage } from '@/lib/routes'
+
+export function getStaticPaths() {
+  return SUPPORTED_LOCALES.flatMap((lang) =>
+    [...getAllRoutes(), ...getAliasRoutes()].map((route) => {
+      const url = getLocalizedPath(route, lang)
+      return { params: { path: url.replace(/^\/+|\/+$/g, '') || undefined }, props: { route, lang, url } }
+    }),
+  )
+}
+
+interface Props {
+  route: string
+  lang: LanguageCode
+  url: string
+}
+
+const { route, lang, url } = Astro.props
+const seo = getPageSeo(route, '', lang)
+const page = resolvePage(route)
+const slug = 'slug' in page ? page.slug : ''
+---
+
+<Base seo={seo} url={url}>
+  {page.kind === 'home' && <HomeIsland url={url} client:load />}
+  {page.kind === 'color' && <ColorIsland url={url} colorId={page.colorId} client:load />}
+  {page.kind === 'tool' && <ToolIsland url={url} slug={slug} client:load />}
+  {page.kind === 'contact' && <ContactIsland url={url} client:load />}
+  {page.kind === 'feedback' && <FeedbackIsland url={url} client:load />}
+  {page.kind === 'backgrounds' && <BackgroundsIsland url={url} client:load />}
+  {page.kind === 'background' && <BackgroundIsland url={url} slug={slug} client:load />}
+  {page.kind === 'tools' && <ToolsIsland url={url} client:idle />}
+  {page.kind === 'guides' && <GuidesIsland url={url} client:idle />}
+  {page.kind === 'guide' && <GuideIsland url={url} slug={slug} client:idle />}
+  {page.kind === 'problems' && <ProblemsIsland url={url} client:idle />}
+  {page.kind === 'problem' && <ProblemIsland url={url} slug={slug} client:idle />}
+  {page.kind === 'glossary' && <GlossaryIsland url={url} client:idle />}
+  {
+    (page.kind === 'about' || page.kind === 'privacy' || page.kind === 'terms' || page.kind === 'disclaimer' || page.kind === 'term' || page.kind === 'notFound') && (
+      <StaticPage url={url} kind={page.kind} slug={slug} />
+    )
+  }
+</Base>

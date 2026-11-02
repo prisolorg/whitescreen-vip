@@ -1101,8 +1101,9 @@ function getInitialLang(): LanguageCode {
 }
 
 export function I18nProvider({ children, initialUrl }: { children: React.ReactNode; initialUrl?: string }) {
+  // Islands get the URL their page was built for, so server and client start in the same language.
   const [language, setLanguageState] = useState<LanguageCode>(() =>
-    typeof window === 'undefined' && initialUrl ? extractLocaleAndPath(initialUrl).lang : getInitialLang(),
+    initialUrl !== undefined ? extractLocaleAndPath(initialUrl).lang : getInitialLang(),
   )
 
   const currentInfo = LANGUAGES.find((l) => l.code === language) ?? LANGUAGES[0]
@@ -1143,9 +1144,8 @@ export function I18nProvider({ children, initialUrl }: { children: React.ReactNo
       if (typeof window !== 'undefined') {
         const { cleanPath, lang: currentUrlLang } = extractLocaleAndPath(window.location.pathname)
         if (currentUrlLang !== newLang) {
-          const targetPath = getLocalizedPath(cleanPath, newLang)
-          window.history.pushState({}, '', targetPath)
-          window.dispatchEvent(new Event('app-navigation'))
+          // Every language version is its own page, so load it (keeping any query and hash).
+          window.location.assign(getLocalizedPath(cleanPath, newLang) + window.location.search + window.location.hash)
         }
       }
     },

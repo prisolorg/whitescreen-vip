@@ -4,7 +4,9 @@
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
     "module": "ESNext",
-    "types": ["vite/client"],
+    "types": [
+      "vite/client"
+    ],
     "lib": [
       "ES2022",
       "DOM",
@@ -17,12 +19,25 @@
     "allowJs": true,
     "jsx": "react-jsx",
     "paths": {
-      "@/*": ["./src/*"],
-      "next/link": ["./src/lib/next-shim.tsx"],
-      "next/navigation": ["./src/lib/next-shim.tsx"]
+      "@/*": [
+        "./src/*"
+      ],
+      "next/link": [
+        "./src/lib/next-shim.tsx"
+      ],
+      "next/navigation": [
+        "./src/lib/next-shim.tsx"
+      ]
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
   },
-  "exclude": ["dist"]
+  "exclude": [
+    "dist"
+  ],
+  "include": [
+    ".astro/types.d.ts",
+    "src",
+    "astro.config.ts"
+  ]
 }

@@ -34,15 +34,18 @@ function localizeInternalHref(href: string): string {
   return getLocalizedPath(href, extractLocaleAndPath(window.location.pathname).lang)
 }
 
-/** `initialUrl` is only for server rendering; in the browser the current location wins. */
+/**
+ * Each Astro island gets the URL its page was built for as `initialUrl`. The first render uses it on
+ * both server and client so hydration matches; the real location (e.g. a ?query) syncs after mount.
+ */
 export function RouterProvider({ children, initialUrl }: { children: React.ReactNode; initialUrl?: string }) {
   const [pathname, setPathname] = useState<string>(
-    typeof window !== 'undefined' ? window.location.pathname : (initialUrl ?? '/').split('?')[0]
+    initialUrl !== undefined ? initialUrl.split('?')[0] : typeof window !== 'undefined' ? window.location.pathname : '/'
   )
   const [search, setSearch] = useState<string>(
-    typeof window !== 'undefined'
-      ? window.location.search
-      : initialUrl?.includes('?') ? `?${initialUrl.split('?')[1]}` : ''
+    initialUrl !== undefined
+      ? initialUrl.includes('?') ? `?${initialUrl.split('?')[1]}` : ''
+      : typeof window !== 'undefined' ? window.location.search : ''
   )
 
   useEffect(() => {
@@ -51,6 +54,7 @@ export function RouterProvider({ children, initialUrl }: { children: React.React
       setSearch(window.location.search)
     }
 
+    handleLocationChange()
     window.addEventListener('popstate', handleLocationChange)
     window.addEventListener('app-navigation', handleLocationChange)
 
@@ -62,41 +66,31 @@ export function RouterProvider({ children, initialUrl }: { children: React.React
 
   const { lang: activeLang, cleanPath } = extractLocaleAndPath(pathname)
 
-  const push = useCallback((href: string, options?: { scroll?: boolean }) => {
+  // The site is a multi-page (Astro) site: going to another page is a normal page load. Only a
+  // change of query on the same page (e.g. a ?category filter) updates in place.
+  const navigate = useCallback((href: string, mode: 'push' | 'replace', options?: { scroll?: boolean }) => {
     if (typeof window === 'undefined') return
     if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
       window.location.href = href
       return
     }
-
-    // Keep the visitor's language: internal paths get the current locale prefix.
     href = localizeInternalHref(href)
-    const hash = href.split('#')[1]
-    window.history.pushState({}, '', href)
+    const target = new URL(href, window.location.href)
+    if (target.pathname !== window.location.pathname) {
+      if (mode === 'replace') window.location.replace(target.href)
+      else window.location.assign(target.href)
+      return
+    }
+    window.history[mode === 'replace' ? 'replaceState' : 'pushState']({}, '', target.href)
     setPathname(window.location.pathname)
     setSearch(window.location.search)
     window.dispatchEvent(new Event('app-navigation'))
-
-    if (hash) {
-      setTimeout(() => {
-        const el = document.getElementById(hash)
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
-      }, 50)
-    } else if (options?.scroll !== false) {
-      window.scrollTo(0, 0)
-    }
+    if (target.hash) document.getElementById(target.hash.slice(1))?.scrollIntoView({ behavior: 'smooth' })
+    else if (options?.scroll !== false) window.scrollTo(0, 0)
   }, [])
 
-  const replace = useCallback((href: string, options?: { scroll?: boolean }) => {
-    if (typeof window === 'undefined') return
-    window.history.replaceState({}, '', localizeInternalHref(href))
-    setPathname(window.location.pathname)
-    setSearch(window.location.search)
-    window.dispatchEvent(new Event('app-navigation'))
-    if (options?.scroll !== false) {
-      window.scrollTo(0, 0)
-    }
-  }, [])
+  const push = useCallback((href: string, options?: { scroll?: boolean }) => navigate(href, 'push', options), [navigate])
+  const replace = useCallback((href: string, options?: { scroll?: boolean }) => navigate(href, 'replace', options), [navigate])
 
   const back = useCallback(() => {
     if (typeof window !== 'undefined') window.history.back()
@@ -144,9 +138,8 @@ export function useCleanPath(): string {
 
 export function useSearchParams(): URLSearchParams {
   const ctx = useContext(RouterContext)
-  const [params, setParams] = useState<URLSearchParams>(
-    new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '')
-  )
+  // Start from the router's search (the build-time URL) so hydration matches; the effect below syncs.
+  const [params, setParams] = useState<URLSearchParams>(new URLSearchParams(ctx.search))
 
   useEffect(() => {
     setParams(new URLSearchParams(typeof window !== 'undefined' ? window.location.search : ''))
