@@ -55,7 +55,8 @@ const THUMBS: Record<string, string> = {
   'fake-windows-xp-boot': '#000',
   'fake-chrome-os-update': '#202124',
   'fake-ubuntu-update': '#300a24',
-  'fake-zoom-call': '#1c1c1c',
+  'fake-zoom-meeting': '#1c1c1c',
+  'fake-teams-meeting': '#292a4a',
   'fake-slack-huddle': '#3f0e40',
 }
 

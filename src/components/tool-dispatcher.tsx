@@ -71,8 +71,8 @@ const FakeScreens = lazy(() => import('@/components/tools/fake-screens').then(m 
     if (slug === 'fake-chrome-os-update') return <m.FakeUpdateScreen os="chrome" />
     if (slug === 'fake-ubuntu-update') return <m.FakeUpdateScreen os="ubuntu" />
     if (slug === 'fake-video-call') return <m.FakeCallScreen appType="generic" />
-    if (slug === 'fake-zoom-call') return <m.FakeCallScreen appType="zoom" />
-    if (slug === 'fake-teams-call') return <m.FakeCallScreen appType="teams" />
+    if (slug === 'fake-zoom-meeting') return <m.FakeCallScreen appType="zoom" />
+    if (slug === 'fake-teams-meeting') return <m.FakeCallScreen appType="teams" />
     if (slug === 'fake-slack-huddle') return <m.FakeCallScreen appType="slack" />
     return null
   }

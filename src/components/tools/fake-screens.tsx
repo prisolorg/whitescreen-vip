@@ -281,6 +281,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
   const [isHandRaised, setIsHandRaised] = useState(false)
   const [activeSpeaker, setActiveSpeaker] = useState(0)
 
+  const [elapsed, setElapsed] = useState(0)
   const videoRef = useRef<HTMLVideoElement>(null)
   const streamRef = useRef<MediaStream | null>(null)
 
@@ -317,9 +318,19 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
     }
   }, [isVideoOn])
 
+  // Meeting timer shown in the Teams-style top bar. Starts at 00:00 so prerendered HTML matches.
+  useEffect(() => {
+    const id = window.setInterval(() => setElapsed((value) => value + 1), 1000)
+    return () => window.clearInterval(id)
+  }, [])
+  const clock = `${String(Math.floor(elapsed / 60)).padStart(2, '0')}:${String(elapsed % 60).padStart(2, '0')}`
+  const initials = (name: string) => name.split(' ').map((part) => part[0]).join('')
+
   return (
     <ToolStage
-      label="Fake video call"
+      label={appType === 'teams' ? 'Fake Teams meeting' : appType === 'zoom' ? 'Fake Zoom meeting' : 'Fake video call'}
+      reserveHeadingSpace
+      className={appType === 'teams' ? 'bg-[#1f1f1f]' : 'bg-neutral-950'}
       tone="dark"
       badge="Simulation"
       controls={
@@ -338,151 +349,262 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
         </ControlRow>
       }
     >
-      <div className="flex size-full flex-col bg-neutral-950 text-white select-none">
-        {/* Top Header */}
-        <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5 text-xs text-neutral-300">
-          <div className="flex items-center gap-2 font-medium">
-            <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="truncate max-w-[200px] sm:max-w-md">{meetingTitle}</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="rounded bg-white/10 px-2 py-0.5 font-mono text-[11px]">REC</span>
-            <span>{CALL_PARTICIPANTS.length + 1} participants</span>
-          </div>
-        </div>
-
-        {/* Participants Grid */}
-        <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-2.5 p-3 overflow-hidden">
-          {/* User Self Tile */}
-          <div
-            className={cn(
-              'relative flex flex-col items-center justify-center rounded-xl bg-neutral-900 border overflow-hidden',
-              activeSpeaker === 0 ? 'border-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.3)]' : 'border-white/10',
-            )}
-          >
-            {isVideoOn ? (
-              <video
-                ref={videoRef}
-                autoPlay
-                playsInline
-                muted
-                className="size-full object-cover scale-x-[-1]"
-              />
-            ) : (
-              <div className="size-16 sm:size-20 rounded-full bg-primary flex items-center justify-center text-xl sm:text-2xl font-bold text-white shadow-lg">
-                YOU
-              </div>
-            )}
-            <div className="absolute bottom-2 left-2 flex items-center gap-1.5 rounded bg-black/60 px-2 py-1 text-xs backdrop-blur">
-              {isMuted ? <MicOff className="size-3 text-red-400" /> : <Mic className="size-3 text-emerald-400" />}
-              <span>You {isHandRaised && '✋'}</span>
+      {appType === 'teams' ? (
+        <div className="flex size-full flex-col bg-[#1f1f1f] text-white select-none">
+          {/* Top bar: timer and title on the left, meeting controls and Leave on the right */}
+          <div className="flex items-center justify-between gap-2 border-b border-white/10 bg-[#292929] px-3 py-2">
+            <div className="flex min-w-0 items-center gap-2.5 text-sm">
+              <span className="font-mono text-xs tabular-nums text-neutral-300">{clock}</span>
+              <span className="truncate font-semibold">{meetingTitle}</span>
+            </div>
+            <div className="flex shrink-0 items-center gap-0.5 text-neutral-200">
+              <button type="button" className="hidden flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10 sm:flex">
+                <MessageSquare className="size-[18px]" aria-hidden="true" />
+                Chat
+              </button>
+              <button type="button" className="hidden flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10 sm:flex">
+                <Users className="size-[18px]" aria-hidden="true" />
+                People
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsHandRaised((value) => !value)}
+                aria-pressed={isHandRaised}
+                className={cn('flex flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10', isHandRaised && 'text-[#9ea2ff]')}
+              >
+                <Hand className="size-[18px]" aria-hidden="true" />
+                Raise
+              </button>
+              <button type="button" className="hidden flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10 md:flex">
+                <Smile className="size-[18px]" aria-hidden="true" />
+                React
+              </button>
+              <span aria-hidden="true" className="mx-1 h-7 w-px bg-white/15" />
+              <button
+                type="button"
+                onClick={() => setIsVideoOn((value) => !value)}
+                aria-pressed={isVideoOn}
+                className="flex flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10"
+              >
+                {isVideoOn ? <VideoIcon className="size-[18px]" aria-hidden="true" /> : <VideoOff className="size-[18px]" aria-hidden="true" />}
+                Camera
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsMuted((value) => !value)}
+                aria-pressed={isMuted}
+                className={cn('flex flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10', isMuted && 'text-red-300')}
+              >
+                {isMuted ? <MicOff className="size-[18px]" aria-hidden="true" /> : <Mic className="size-[18px]" aria-hidden="true" />}
+                Mic
+              </button>
+              <button type="button" className="hidden flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10 sm:flex">
+                <Share2 className="size-[18px]" aria-hidden="true" />
+                Share
+              </button>
+              <button
+                type="button"
+                onClick={() => alert('Prank meeting simulation ended.')}
+                className="ml-1.5 flex items-center gap-1.5 rounded-md bg-[#c4314b] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#a72940]"
+              >
+                <PhoneOff className="size-4" aria-hidden="true" />
+                Leave
+              </button>
             </div>
           </div>
 
-          {/* Other simulated participants */}
-          {CALL_PARTICIPANTS.map((participant, index) => {
-            const isSpeaking = activeSpeaker === index + 1
-            return (
-              <div
-                key={participant.name}
-                className={cn(
-                  'relative flex flex-col items-center justify-center rounded-xl bg-neutral-900 border transition-all duration-300',
-                  isSpeaking
-                    ? 'border-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.3)]'
-                    : 'border-white/10',
-                )}
-              >
+          {/* Participant tiles */}
+          <div className="grid flex-1 grid-cols-2 gap-2 overflow-hidden p-2.5 pb-8 sm:grid-cols-3 max-sm:[&>*:nth-child(n+5)]:hidden">
+            <div
+              className={cn(
+                'relative flex items-center justify-center overflow-hidden rounded-md bg-[#2d2d2d]',
+                activeSpeaker === 0 && 'ring-2 ring-[#7f85f5]',
+              )}
+            >
+              {isVideoOn ? (
+                <video ref={videoRef} autoPlay playsInline muted className="size-full scale-x-[-1] object-cover" />
+              ) : (
+                <div className="flex size-9 items-center justify-center rounded-full bg-[#5b5fc7] text-sm font-semibold sm:size-20 sm:text-2xl">You</div>
+              )}
+              <span className="absolute bottom-1.5 left-2 flex items-center gap-1 text-xs font-medium">
+                {isMuted && <MicOff className="size-3 text-red-300" aria-hidden="true" />}
+                You {isHandRaised && '✋'}
+              </span>
+            </div>
+            {CALL_PARTICIPANTS.map((participant, index) => {
+              const isSpeaking = activeSpeaker === index + 1
+              return (
                 <div
+                  key={participant.name}
                   className={cn(
-                    'size-16 sm:size-20 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold text-white shadow-lg transition-transform',
-                    participant.color,
-                    isSpeaking && 'scale-105 ring-4 ring-emerald-400/50',
+                    'relative flex items-center justify-center rounded-md bg-[#2d2d2d] transition-shadow',
+                    isSpeaking && 'ring-2 ring-[#7f85f5]',
                   )}
                 >
-                  {participant.name
-                    .split(' ')
-                    .map((n) => n[0])
-                    .join('')}
+                  <div
+                    className={cn(
+                      'flex size-9 items-center justify-center rounded-full text-sm font-semibold sm:size-20 sm:text-2xl',
+                      participant.color,
+                    )}
+                  >
+                    {initials(participant.name)}
+                  </div>
+                  <span className="absolute bottom-1.5 left-2 flex items-center gap-1 text-xs font-medium">
+                    {!isSpeaking && <MicOff className="size-3 text-neutral-400" aria-hidden="true" />}
+                    {participant.name}
+                  </span>
                 </div>
-                <div className="absolute bottom-2 left-2 flex items-center gap-1.5 rounded bg-black/60 px-2 py-1 text-xs backdrop-blur">
-                  {isSpeaking ? (
-                    <Mic className="size-3 text-emerald-400" />
-                  ) : (
-                    <MicOff className="size-3 text-neutral-400" />
-                  )}
-                  <span>{participant.name}</span>
+              )
+            })}
+          </div>
+        </div>
+      ) : (
+        <div className="flex size-full flex-col bg-neutral-950 text-white select-none">
+          {/* Top Header */}
+          <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5 text-xs text-neutral-300">
+            <div className="flex items-center gap-2 font-medium">
+              <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="truncate max-w-[200px] sm:max-w-md">{meetingTitle}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="rounded bg-white/10 px-2 py-0.5 font-mono text-[11px]">REC</span>
+              <span className="hidden sm:inline">{CALL_PARTICIPANTS.length + 1} participants</span>
+            </div>
+          </div>
+  
+          {/* Participants Grid */}
+          <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-2.5 p-3 overflow-hidden max-sm:[&>*:nth-child(n+5)]:hidden">
+            {/* User Self Tile */}
+            <div
+              className={cn(
+                'relative flex flex-col items-center justify-center rounded-xl bg-neutral-900 border overflow-hidden',
+                activeSpeaker === 0 ? 'border-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.3)]' : 'border-white/10',
+              )}
+            >
+              {isVideoOn ? (
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  playsInline
+                  muted
+                  className="size-full object-cover scale-x-[-1]"
+                />
+              ) : (
+                <div className="max-sm:hidden size-9 sm:size-20 rounded-full bg-primary flex items-center justify-center text-sm sm:text-2xl font-bold text-white shadow-lg">
+                  YOU
                 </div>
+              )}
+              <div className="absolute bottom-2 left-2 flex items-center gap-1.5 rounded bg-black/60 px-2 py-1 text-xs backdrop-blur">
+                {isMuted ? <MicOff className="size-3 text-red-400" /> : <Mic className="size-3 text-emerald-400" />}
+                <span>You {isHandRaised && '✋'}</span>
               </div>
-            )
-          })}
+            </div>
+  
+            {/* Other simulated participants */}
+            {CALL_PARTICIPANTS.map((participant, index) => {
+              const isSpeaking = activeSpeaker === index + 1
+              return (
+                <div
+                  key={participant.name}
+                  className={cn(
+                    'relative flex flex-col items-center justify-center rounded-xl bg-neutral-900 border transition-all duration-300',
+                    isSpeaking
+                      ? 'border-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.3)]'
+                      : 'border-white/10',
+                  )}
+                >
+                  <div
+                    className={cn(
+                      'max-sm:hidden size-9 sm:size-20 rounded-full flex items-center justify-center text-sm sm:text-2xl font-bold text-white shadow-lg transition-transform',
+                      participant.color,
+                      isSpeaking && 'scale-105 ring-4 ring-emerald-400/50',
+                    )}
+                  >
+                    {participant.name
+                      .split(' ')
+                      .map((n) => n[0])
+                      .join('')}
+                  </div>
+                  <div className="absolute bottom-2 left-2 flex items-center gap-1.5 rounded bg-black/60 px-2 py-1 text-xs backdrop-blur">
+                    {isSpeaking ? (
+                      <Mic className="size-3 text-emerald-400" />
+                    ) : (
+                      <MicOff className="size-3 text-neutral-400" />
+                    )}
+                    <span>{participant.name}</span>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+  
+          {/* Bottom Call Controls Toolbar */}
+          <div className="flex items-center justify-center gap-1 sm:gap-4 border-t border-white/10 bg-neutral-900/90 py-2 px-2 sm:py-3 sm:px-4 backdrop-blur">
+            <button
+              type="button"
+              onClick={() => setIsMuted((m) => !m)}
+              className={cn(
+                'flex flex-col items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors',
+                isMuted ? 'text-red-400 bg-red-500/10' : 'hover:bg-white/10 text-neutral-200',
+              )}
+            >
+              {isMuted ? <MicOff className="size-5" /> : <Mic className="size-5" />}
+              <span className="max-sm:sr-only">{isMuted ? 'Unmute' : 'Mute'}</span>
+            </button>
+  
+            <button
+              type="button"
+              onClick={() => setIsVideoOn((v) => !v)}
+              className={cn(
+                'flex flex-col items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors',
+                !isVideoOn ? 'text-neutral-400 hover:bg-white/10' : 'text-emerald-400 bg-emerald-500/10',
+              )}
+            >
+              {isVideoOn ? <VideoIcon className="size-5" /> : <VideoOff className="size-5" />}
+              <span className="max-sm:sr-only">{isVideoOn ? 'Stop Video' : 'Start Video'}</span>
+            </button>
+  
+            <button
+              type="button"
+              onClick={() => setIsHandRaised((h) => !h)}
+              className={cn(
+                'flex flex-col items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors',
+                isHandRaised ? 'text-yellow-400 bg-yellow-500/10' : 'hover:bg-white/10 text-neutral-200',
+              )}
+            >
+              <Hand className="size-5" />
+              <span className="max-sm:sr-only">Raise Hand</span>
+            </button>
+  
+            <button
+              type="button"
+              className="flex flex-col items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium text-neutral-200 hover:bg-white/10 transition-colors"
+            >
+              <Share2 className="size-5" />
+              <span className="max-sm:sr-only">Share</span>
+            </button>
+  
+            <button
+              type="button"
+              className="flex flex-col items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium text-neutral-200 hover:bg-white/10 transition-colors"
+            >
+              <MessageSquare className="size-5" />
+              <span className="max-sm:sr-only">Chat</span>
+            </button>
+  
+            <div className="h-6 w-px bg-white/20 mx-1" />
+  
+            <button
+              type="button"
+              onClick={() => alert('Prank call simulation ended.')}
+              className="flex items-center gap-1.5 rounded-lg bg-red-600 hover:bg-red-700 px-4 py-2 text-xs font-semibold text-white shadow transition-colors"
+            >
+              <PhoneOff className="size-4" />
+              <span>Leave</span>
+            </button>
+          </div>
         </div>
-
-        {/* Bottom Call Controls Toolbar */}
-        <div className="flex items-center justify-center gap-2 sm:gap-4 border-t border-white/10 bg-neutral-900/90 py-3 px-4 backdrop-blur">
-          <button
-            type="button"
-            onClick={() => setIsMuted((m) => !m)}
-            className={cn(
-              'flex flex-col items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors',
-              isMuted ? 'text-red-400 bg-red-500/10' : 'hover:bg-white/10 text-neutral-200',
-            )}
-          >
-            {isMuted ? <MicOff className="size-5" /> : <Mic className="size-5" />}
-            <span>{isMuted ? 'Unmute' : 'Mute'}</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setIsVideoOn((v) => !v)}
-            className={cn(
-              'flex flex-col items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors',
-              !isVideoOn ? 'text-neutral-400 hover:bg-white/10' : 'text-emerald-400 bg-emerald-500/10',
-            )}
-          >
-            {isVideoOn ? <VideoIcon className="size-5" /> : <VideoOff className="size-5" />}
-            <span>{isVideoOn ? 'Stop Video' : 'Start Video'}</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setIsHandRaised((h) => !h)}
-            className={cn(
-              'flex flex-col items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors',
-              isHandRaised ? 'text-yellow-400 bg-yellow-500/10' : 'hover:bg-white/10 text-neutral-200',
-            )}
-          >
-            <Hand className="size-5" />
-            <span>Raise Hand</span>
-          </button>
-
-          <button
-            type="button"
-            className="flex flex-col items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium text-neutral-200 hover:bg-white/10 transition-colors"
-          >
-            <Share2 className="size-5" />
-            <span>Share</span>
-          </button>
-
-          <button
-            type="button"
-            className="flex flex-col items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium text-neutral-200 hover:bg-white/10 transition-colors"
-          >
-            <MessageSquare className="size-5" />
-            <span>Chat</span>
-          </button>
-
-          <div className="h-6 w-px bg-white/20 mx-1" />
-
-          <button
-            type="button"
-            onClick={() => alert('Prank call simulation ended.')}
-            className="flex items-center gap-1.5 rounded-lg bg-red-600 hover:bg-red-700 px-4 py-2 text-xs font-semibold text-white shadow transition-colors"
-          >
-            <PhoneOff className="size-4" />
-            <span>Leave</span>
-          </button>
-        </div>
-      </div>
+      )}
     </ToolStage>
   )
 }

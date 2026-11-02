@@ -44,11 +44,18 @@ function updateContent({ name, brand, intro, extraFaq }: UpdateOptions): ToolCon
   }
 }
 
-type CallOptions = { app: string; brand: string; intro: string }
+type CallOptions = {
+  app: string
+  brand: string
+  intro: string
+  /** Full page title; defaults to "Fake <app> Call Screen – Video Call Simulation". */
+  title?: string
+  extraFaq?: ToolFaq
+}
 
-function callContent({ app, brand, intro }: CallOptions): ToolContent {
+function callContent({ app, brand, intro, title, extraFaq }: CallOptions): ToolContent {
   return {
-    title: `Fake ${app} Call Screen – Video Call Simulation`,
+    title: title ?? `Fake ${app} Call Screen – Video Call Simulation`,
     intro,
     steps: [
       'Edit the meeting title and participant names.',
@@ -71,6 +78,7 @@ function callContent({ app, brand, intro }: CallOptions): ToolContent {
           'Only if you turn on the camera preview. The video stays on your device and is never recorded or uploaded. The microphone is never used.',
       },
       EXIT_FAQ,
+      ...(extraFaq ? [extraFaq] : []),
     ],
   }
 }
@@ -179,17 +187,29 @@ export const fakeScreenContent: Record<string, ToolContent> = {
     intro:
       'A generic, brand-free video call screen with a participant grid, call timer and control bar. Useful for props, mockups and harmless jokes.',
   }),
-  'fake-zoom-call': callContent({
-    app: 'Zoom-Style',
+  'fake-zoom-meeting': callContent({
+    app: 'Zoom Meeting',
     brand: 'Zoom Video Communications',
+    title: 'Fake Zoom Meeting Screen – Zoom-Style Meeting Simulation',
     intro:
-      'A Zoom-style meeting screen with a dark gallery view, participant tiles and a bottom toolbar. An independent simulation for props and jokes.',
+      'A Zoom-style meeting screen with a dark gallery view, participant tiles, an active-speaker outline and a bottom toolbar. An independent simulation for film props, mockups and harmless jokes. For a Teams-style layout, open the [Fake Teams Meeting Screen](/fake-teams-meeting).',
+    extraFaq: {
+      question: 'How is it different from the Teams meeting screen?',
+      answer:
+        'This one follows the Zoom-style layout: a gallery of tiles with the meeting controls along the bottom. The Fake Teams Meeting Screen puts the controls and a red Leave button in a top bar with a running meeting timer.',
+    },
   }),
-  'fake-teams-call': callContent({
-    app: 'Teams-Style',
+  'fake-teams-meeting': callContent({
+    app: 'Teams Meeting',
     brand: 'Microsoft',
+    title: 'Fake Teams Meeting Screen – Teams-Style Meeting Simulation',
     intro:
-      'A Teams-style meeting screen with a dark stage, participant tiles and a top control bar. An independent simulation for props and jokes.',
+      'A Teams-style meeting screen with a dark stage, participant tiles with name labels, a top control bar with a red Leave button and a running meeting timer. An independent simulation for film props, mockups and harmless jokes. For a Zoom-style gallery, open the [Fake Zoom Meeting Screen](/fake-zoom-meeting).',
+    extraFaq: {
+      question: 'Can I change the meeting name?',
+      answer:
+        'Yes. Type a new name in the Meeting Title box below the screen. It appears in the top bar straight away, and nothing is saved or sent anywhere.',
+    },
   }),
   'fake-slack-huddle': callContent({
     app: 'Slack-Style Huddle',

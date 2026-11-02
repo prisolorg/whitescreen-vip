@@ -351,7 +351,7 @@ export const TOOLS: readonly Tool[] = [
       'Turn a spare screen into a soft key light for video calls, with warm-to-cool tones and a ring mode.',
     icon: Lightbulb,
     keywords: ['zoom lighting', 'ring light', 'video call light', 'webcam light', 'fill light'],
-    related: ['bright-white-screen', 'white-screen', 'fake-zoom-call', 'pink-screen'],
+    related: ['bright-white-screen', 'white-screen', 'fake-zoom-meeting', 'pink-screen'],
   },
   {
     slug: 'visual-noise',
@@ -540,14 +540,24 @@ export const TOOLS: readonly Tool[] = [
     related: ['hacker-typer', 'matrix-screensaver', 'fake-chrome-os-update', 'fake-windows-10-update'],
   },
   {
-    slug: 'fake-zoom-call',
-    name: 'Fake Zoom Call',
+    slug: 'fake-zoom-meeting',
+    name: 'Fake Zoom Meeting Screen',
     category: 'fake-screens',
     description:
       'A gallery-view meeting simulation in a dark theme with a toolbar, timer, webcam preview and active-speaker outline.',
     icon: Users,
-    keywords: ['fake zoom call', 'zoom meeting', 'gallery view', 'film prop', 'call simulation'],
-    related: ['fake-slack-huddle', 'zoom-lighting', 'fake-windows-11-update', 'countdown-timer'],
+    keywords: ['fake zoom meeting', 'fake zoom call', 'zoom meeting screen', 'gallery view', 'film prop', 'meeting simulation'],
+    related: ['fake-teams-meeting', 'fake-slack-huddle', 'zoom-lighting', 'countdown-timer'],
+  },
+  {
+    slug: 'fake-teams-meeting',
+    name: 'Fake Teams Meeting Screen',
+    category: 'fake-screens',
+    description:
+      'A Teams-style meeting simulation with a dark stage, participant tiles, a top control bar with a Leave button and a running meeting timer.',
+    icon: Users,
+    keywords: ['fake teams meeting', 'fake teams call', 'teams meeting screen', 'microsoft teams', 'film prop', 'meeting simulation'],
+    related: ['fake-zoom-meeting', 'fake-slack-huddle', 'zoom-lighting', 'countdown-timer'],
   },
   {
     slug: 'fake-slack-huddle',
@@ -557,7 +567,7 @@ export const TOOLS: readonly Tool[] = [
       'A compact audio huddle simulation with Slack-styled avatars, live speaking rings and an active huddle timer.',
     icon: MessagesSquare,
     keywords: ['fake slack huddle', 'huddle', 'audio call', 'film prop', 'call simulation'],
-    related: ['fake-zoom-call', 'zoom-lighting', 'countdown-timer', 'stopwatch'],
+    related: ['fake-zoom-meeting', 'fake-teams-meeting', 'zoom-lighting', 'countdown-timer'],
   },
 ]
 
@@ -577,7 +587,9 @@ export const COLOR_TOOL_SLUGS = TOOLS.filter((tool) => tool.swatch).map((tool) =
 export function getTool(slug: string) {
   // Graceful alias for pruned tools
   if (slug === 'white-screen-image') return getTool('white-screen')
-  if (slug === 'fake-teams-call' || slug === 'fake-video-call') return getTool('fake-zoom-call')
+  // Earlier slugs for the meeting screens.
+  if (slug === 'fake-zoom-call' || slug === 'fake-video-call') return getTool('fake-zoom-meeting')
+  if (slug === 'fake-teams-call') return getTool('fake-teams-meeting')
 
   const tool = TOOLS.find((item) => item.slug === slug)
   if (!tool) throw new Error(`Unknown tool slug: ${slug}`)

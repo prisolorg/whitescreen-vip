@@ -24,6 +24,11 @@ type ToolStageProps = {
   /** Disable the F shortcut when a tool uses the keyboard for its own input. */
   disableShortcut?: boolean
   onStageClick?: (event: React.MouseEvent<HTMLDivElement>) => void
+  /**
+   * For tools with their own top bar (meeting screens): keep a band at the top of the stage for the
+   * page title so it never covers the tool. The band disappears in fullscreen.
+   */
+  reserveHeadingSpace?: boolean
   children: ReactNode | ((state: StageState) => ReactNode)
 }
 
@@ -36,6 +41,7 @@ export function ToolStage({
   badge,
   disableShortcut,
   onStageClick,
+  reserveHeadingSpace,
   children,
 }: ToolStageProps) {
   const { t } = useTranslation()
@@ -95,12 +101,22 @@ export function ToolStage({
             className,
           )}
         >
-          {typeof children === 'function' ? children({ isFullscreen, exit: exitStage }) : children}
+          {reserveHeadingSpace && heading && !isFullscreen ? (
+            <div className="size-full pt-20 sm:pt-24">
+              {typeof children === 'function' ? children({ isFullscreen, exit: exitStage }) : children}
+            </div>
+          ) : typeof children === 'function' ? (
+            children({ isFullscreen, exit: exitStage })
+          ) : (
+            children
+          )}
 
           {badge && (
             <span
               className={cn(
-                'pointer-events-none absolute bottom-2 left-2 z-20 rounded px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider ring-1 opacity-70',
+                'pointer-events-none absolute z-20 rounded px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider ring-1 opacity-70',
+                // With a reserved title band the badge sits in it, clear of the tool's own controls.
+                reserveHeadingSpace && heading && !isFullscreen ? 'right-14 top-5' : 'bottom-2 left-2',
                 chipClass,
               )}
             >
@@ -137,7 +153,9 @@ export function ToolStage({
         </div>
 
         {/* Same title placement as the color screens; it sits outside the stage so fullscreen stays clean. */}
-        {heading && !isFullscreen && <StageTitle title={heading.title} intro={heading.intro} tone={tone} scrim />}
+        {heading && !isFullscreen && (
+          <StageTitle title={heading.title} intro={reserveHeadingSpace ? undefined : heading.intro} tone={tone} scrim={!reserveHeadingSpace} />
+        )}
       </div>
 
       <StageDock onFullscreen={toggle}>{controls}</StageDock>

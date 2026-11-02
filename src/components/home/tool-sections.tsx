@@ -33,7 +33,8 @@ const OTHER_TOOL_SLUGS = [
   'fake-windows-10-update',
   'fake-windows-11-update',
   'fake-mac-update',
-  'fake-zoom-call',
+  'fake-zoom-meeting',
+  'fake-teams-meeting',
 ]
 
 export function ToolSections() {
