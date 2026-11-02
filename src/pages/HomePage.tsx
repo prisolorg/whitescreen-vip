@@ -6,6 +6,7 @@ import { HowToUse } from '@/components/home/how-to-use'
 import { Faq } from '@/components/home/faq'
 import { ToolSections } from '@/components/home/tool-sections'
 import { ColorScreenLinks } from '@/components/color-screen-links'
+import { TryNextGallery } from '@/components/try-next-gallery'
 import { JsonLd } from '@/components/json-ld'
 import { absoluteUrl } from '@/lib/site'
 import { getHomeContent } from '@/lib/home-content'
@@ -48,6 +49,9 @@ export function HomePage() {
       <JsonLd data={webApplicationSchema} />
       <JsonLd data={faqSchema} />
       <HomeTool />
+      <div className="mx-auto max-w-5xl px-3 pb-10 sm:px-6">
+        <TryNextGallery currentSlug="white-screen" />
+      </div>
       {isEnglish ? (
         <HomeSections />
       ) : (

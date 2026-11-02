@@ -2,8 +2,8 @@ import type { ReactNode } from 'react'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { FaqList } from '@/components/faq-list'
 import { JsonLd } from '@/components/json-ld'
-import { ToolGrid } from '@/components/tool-card'
-import { getTool, getToolsByCategory, toolPath } from '@/lib/tools'
+import { TryNextGallery, TryNextStrip } from '@/components/try-next-gallery'
+import { getTool, toolPath } from '@/lib/tools'
 import { getCategory } from '@/lib/tool-categories'
 import { getToolContent } from '@/lib/tool-content'
 import { absoluteUrl, siteConfig } from '@/lib/site'
@@ -31,14 +31,6 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
   const content = getToolContent(slug)
   const category = getCategory(tool.category)
   const localizedCat = getLocalizedCategory(category, language)
-  // Aliased slugs can resolve to the current tool or a duplicate, so dedupe by resolved slug.
-  const related = tool.related
-    .map(getTool)
-    .filter((item, index, list) => item.slug !== slug && list.findIndex((other) => other.slug === item.slug) === index)
-  const relatedSlugs = new Set(related.map((item) => item.slug))
-  const more = getToolsByCategory(tool.category)
-    .filter((item) => item.slug !== slug && !relatedSlugs.has(item.slug))
-    .slice(0, 4)
 
   const appSchema = {
     '@context': 'https://schema.org',
@@ -71,7 +63,7 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
       <JsonLd data={appSchema} />
       <JsonLd data={faqSchema} />
 
-      <section aria-labelledby="tool-heading" className="pb-10 pt-6 sm:pt-8">
+      <section aria-labelledby="tool-heading" className="pb-10 pt-4 sm:pt-6">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Breadcrumbs
             items={[
@@ -80,15 +72,18 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
               { label: localizedTool.name, href: toolPath(slug) },
             ]}
           />
-          <div className="mb-6 mt-5 max-w-3xl">
-            <h1 id="tool-heading" className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+          <div className="mb-4 mt-3 max-w-3xl">
+            <h1 id="tool-heading" className="text-balance text-2xl font-bold tracking-tight sm:text-4xl">
               {localizedTool.name}
             </h1>
-            <p className="mt-3 text-pretty leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="mt-2 line-clamp-2 text-pretty leading-relaxed text-muted-foreground sm:line-clamp-none">
               {language === 'en' ? content.intro : localizedTool.description}
             </p>
           </div>
+          {/* Next steps stay visible above the fold, before the tool itself. */}
+          <TryNextStrip currentSlug={slug} className="mb-4" />
           {children}
+          <TryNextGallery currentSlug={slug} className="mt-8" />
         </div>
       </section>
 
@@ -135,14 +130,6 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
         </div>
       </section>
 
-      <section aria-labelledby="related-heading" className="border-t py-14">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 id="related-heading" className="mb-6 text-2xl font-semibold tracking-tight">
-            {t('relatedTools', 'Related tools')}
-          </h2>
-          <ToolGrid tools={[...related, ...more].slice(0, 8)} />
-        </div>
-      </section>
     </>
   )
 }

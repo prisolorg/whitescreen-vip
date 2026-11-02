@@ -1,7 +1,6 @@
 'use client'
 
 import React, { lazy, Suspense } from 'react'
-import { ScreenTool } from '@/components/screen-tool/screen-tool'
 
 // Lazy load tool packages to optimize initial mobile bundle size
 const ScreenTests = lazy(() => import('@/components/tools/screen-tests').then(m => ({
@@ -92,20 +91,6 @@ function ToolLoadingFallback() {
 }
 
 export function renderToolComponent(slug: string): React.ReactNode {
-  // Solid color screens (immediate, zero bundle delay)
-  if (slug === 'white-screen') return <ScreenTool initialColorId="white" />
-  if (slug === 'black-screen') return <ScreenTool initialColorId="black" />
-  if (slug === 'red-screen') return <ScreenTool initialColorId="red" />
-  if (slug === 'green-screen') return <ScreenTool initialColorId="green" />
-  if (slug === 'blue-screen') return <ScreenTool initialColorId="blue" />
-  if (slug === 'yellow-screen') return <ScreenTool initialColorId="yellow" />
-  if (slug === 'orange-screen') return <ScreenTool initialColorId="orange" />
-  if (slug === 'pink-screen') return <ScreenTool initialColorId="pink" />
-  if (slug === 'purple-screen') return <ScreenTool initialColorId="purple" />
-  if (slug === 'cyan-screen') return <ScreenTool initialColorId="cyan" />
-  if (slug === 'magenta-screen') return <ScreenTool initialColorId="magenta" />
-  if (slug === 'gray-screen') return <ScreenTool initialColorId="gray" />
-
   // Screen tests
   if (['dead-pixel-test', 'screen-uniformity-test', 'monitor-test', 'oled-gray-test', 'oled-burn-in-test', 'screen-color-test'].includes(slug)) {
     return (

@@ -32,9 +32,11 @@ export type ResolutionControlsProps = {
   activeName: string
   uploadedImageUrl?: string | null
   className?: string
+  /** Just a size picker and a download button, for the floating dock. */
+  compact?: boolean
 }
 
-export function ResolutionControls({ activeHex, activeName, uploadedImageUrl, className }: ResolutionControlsProps) {
+export function ResolutionControls({ activeHex, activeName, uploadedImageUrl, className, compact }: ResolutionControlsProps) {
   const { t } = useTranslation()
   const [width, setWidth] = useState<number>(1920)
   const [height, setHeight] = useState<number>(1080)
@@ -163,6 +165,59 @@ export function ResolutionControls({ activeHex, activeName, uploadedImageUrl, cl
   }
 
   const megapixels = ((width * height) / 1000000).toFixed(1)
+
+  if (compact) {
+    return (
+      <div className={cn('flex items-center gap-2', className)}>
+        <label htmlFor="dock-size" className="sr-only">
+          {t('resolution', 'Resolution & Download')}
+        </label>
+        <select
+          id="dock-size"
+          value={activePreset?.id ?? ''}
+          onChange={(e) => {
+            const preset = RESOLUTION_PRESETS.find((p) => p.id === e.target.value)
+            if (preset) handlePresetSelect(preset)
+          }}
+          className="h-10 rounded-xl border bg-background px-2.5 text-sm font-semibold outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          {RESOLUTION_PRESETS.map((preset) => (
+            <option key={preset.id} value={preset.id}>
+              {preset.shortLabel} · PNG
+            </option>
+          ))}
+        </select>
+        <button
+          type="button"
+          onClick={handleDownload}
+          disabled={isDownloading}
+          title={errorMsg ?? undefined}
+          className={cn(
+            'inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-xl px-4 text-sm font-semibold text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-60 lg:flex-none',
+            downloadSuccess ? 'bg-emerald-600' : errorMsg ? 'bg-destructive' : 'bg-blue-600 hover:bg-blue-700',
+          )}
+        >
+          {isDownloading ? (
+            <RefreshCw className="size-4 animate-spin" aria-hidden="true" />
+          ) : downloadSuccess ? (
+            <Check className="size-4" aria-hidden="true" />
+          ) : (
+            <Download className="size-4" aria-hidden="true" />
+          )}
+          <span>
+            {downloadSuccess
+              ? t('downloaded', 'Downloaded!')
+              : t('downloadFormat', 'Download {format}').replace('{format}', 'PNG')}
+          </span>
+        </button>
+        {errorMsg && (
+          <span role="alert" className="sr-only">
+            {errorMsg}
+          </span>
+        )}
+      </div>
+    )
+  }
 
   return (
     <div
