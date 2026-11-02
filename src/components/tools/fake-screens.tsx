@@ -16,6 +16,12 @@ import {
   AlertTriangle,
   Play,
   Pause,
+  ShieldCheck,
+  LayoutGrid,
+  ChevronUp,
+  Circle,
+  ArrowUp,
+  MoreHorizontal,
 } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
 import { ControlRow, Slider, Toggle, TextInput, ActionButton } from '@/components/tool-kit/controls'
@@ -330,7 +336,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
     <ToolStage
       label={appType === 'teams' ? 'Fake Teams meeting' : appType === 'zoom' ? 'Fake Zoom meeting' : 'Fake video call'}
       reserveHeadingSpace
-      className={appType === 'teams' ? 'bg-[#1f1f1f]' : 'bg-neutral-950'}
+      className={appType === 'teams' ? 'bg-[#1f1f1f]' : appType === 'zoom' ? 'bg-black' : 'bg-neutral-950'}
       tone="dark"
       badge="Simulation"
       controls={
@@ -456,6 +462,136 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                 </div>
               )
             })}
+          </div>
+        </div>
+      ) : appType === 'zoom' ? (
+        // Zoom-style gallery view: black stage, names instead of avatars when the camera is off,
+        // a green active-speaker border and Zoom's toolbar layout with a red End button.
+        <div className="flex size-full flex-col bg-black text-white select-none">
+          <div className="flex items-center justify-between gap-2 px-3 py-1.5 text-[12px] text-neutral-300">
+            <div className="flex min-w-0 items-center gap-2">
+              <ShieldCheck className="size-4 shrink-0 text-[#23d160]" aria-hidden="true" />
+              <span className="flex items-center gap-1.5 rounded bg-white/10 px-1.5 py-0.5 text-[11px] text-white">
+                <span className="size-2 rounded-full bg-[#e02828]" />
+                Recording…
+              </span>
+            </div>
+            <span className="hidden min-w-0 truncate text-[12px] font-medium text-neutral-200 sm:block">{meetingTitle}</span>
+            <span className="flex shrink-0 items-center gap-1.5 rounded px-2 py-0.5 text-[12px] text-neutral-200">
+              <LayoutGrid className="size-3.5" aria-hidden="true" />
+              View
+            </span>
+          </div>
+
+          <div className="grid flex-1 grid-cols-2 gap-1 overflow-hidden px-1 pb-1 sm:grid-cols-3 max-sm:[&>*:nth-child(n+5)]:hidden">
+            <div
+              className={cn(
+                'relative flex items-center justify-center overflow-hidden rounded-[4px] bg-[#232323]',
+                activeSpeaker === 0 && 'outline outline-2 -outline-offset-2 outline-[#23d160]',
+              )}
+            >
+              {isVideoOn ? (
+                <video ref={videoRef} autoPlay playsInline muted className="size-full scale-x-[-1] object-cover" />
+              ) : (
+                <span className="px-2 text-center text-sm font-medium sm:text-2xl">You</span>
+              )}
+              <span className="absolute bottom-1 left-1 flex items-center gap-1 rounded-sm bg-black/55 px-1.5 py-0.5 text-[11px]">
+                {isMuted && <MicOff className="size-3 text-[#e02828]" aria-hidden="true" />}
+                You {isHandRaised && '✋'}
+              </span>
+            </div>
+            {CALL_PARTICIPANTS.map((participant, index) => {
+              const isSpeaking = activeSpeaker === index + 1
+              return (
+                <div
+                  key={participant.name}
+                  className={cn(
+                    'relative flex items-center justify-center rounded-[4px] bg-[#232323]',
+                    isSpeaking && 'outline outline-2 -outline-offset-2 outline-[#23d160]',
+                  )}
+                >
+                  <span className="px-2 text-center text-sm font-medium sm:text-2xl">{participant.name}</span>
+                  <span className="absolute bottom-1 left-1 flex items-center gap-1 rounded-sm bg-black/55 px-1.5 py-0.5 text-[11px]">
+                    {!isSpeaking && <MicOff className="size-3 text-[#e02828]" aria-hidden="true" />}
+                    {participant.name}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+
+          <div className="flex items-center justify-between gap-1 bg-[#1a1a1a] px-2 py-1.5 text-[11px] text-neutral-200 sm:px-3">
+            <div className="flex items-center">
+              <button
+                type="button"
+                onClick={() => setIsMuted((value) => !value)}
+                aria-pressed={isMuted}
+                className="flex flex-col items-center gap-0.5 rounded px-2 py-1 hover:bg-white/10 sm:px-3"
+              >
+                <span className="flex items-center">
+                  {isMuted ? <MicOff className="size-5 text-[#e02828]" aria-hidden="true" /> : <Mic className="size-5" aria-hidden="true" />}
+                  <ChevronUp className="ml-0.5 size-3 text-neutral-400" aria-hidden="true" />
+                </span>
+                <span className="max-sm:sr-only">{isMuted ? 'Unmute' : 'Mute'}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsVideoOn((value) => !value)}
+                aria-pressed={isVideoOn}
+                className="flex flex-col items-center gap-0.5 rounded px-2 py-1 hover:bg-white/10 sm:px-3"
+              >
+                <span className="flex items-center">
+                  {isVideoOn ? <VideoIcon className="size-5" aria-hidden="true" /> : <VideoOff className="size-5 text-[#e02828]" aria-hidden="true" />}
+                  <ChevronUp className="ml-0.5 size-3 text-neutral-400" aria-hidden="true" />
+                </span>
+                <span className="max-sm:sr-only">{isVideoOn ? 'Stop Video' : 'Start Video'}</span>
+              </button>
+            </div>
+
+            <div className="flex items-center">
+              <button type="button" className="flex flex-col items-center gap-0.5 rounded px-2 py-1 hover:bg-white/10 sm:px-3">
+                <span className="relative">
+                  <Users className="size-5" aria-hidden="true" />
+                  <span className="absolute -right-2.5 -top-1 text-[10px] font-semibold">{CALL_PARTICIPANTS.length + 1}</span>
+                </span>
+                <span className="max-sm:sr-only">Participants</span>
+              </button>
+              <button type="button" className="hidden flex-col items-center gap-0.5 rounded px-2 py-1 hover:bg-white/10 sm:flex sm:px-3">
+                <MessageSquare className="size-5" aria-hidden="true" />
+                Chat
+              </button>
+              <button type="button" className="flex flex-col items-center gap-0.5 rounded px-2 py-1 hover:bg-white/10 sm:px-3">
+                <span className="flex size-5 items-center justify-center rounded-[5px] bg-[#23d160]">
+                  <ArrowUp className="size-3.5 text-black" strokeWidth={3} aria-hidden="true" />
+                </span>
+                <span className="max-sm:sr-only">Share Screen</span>
+              </button>
+              <button type="button" className="hidden flex-col items-center gap-0.5 rounded px-2 py-1 hover:bg-white/10 md:flex md:px-3">
+                <Circle className="size-5" aria-hidden="true" />
+                Record
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsHandRaised((value) => !value)}
+                aria-pressed={isHandRaised}
+                className="hidden flex-col items-center gap-0.5 rounded px-2 py-1 hover:bg-white/10 sm:flex sm:px-3"
+              >
+                <Smile className={cn('size-5', isHandRaised && 'text-yellow-300')} aria-hidden="true" />
+                Reactions
+              </button>
+              <button type="button" className="hidden flex-col items-center gap-0.5 rounded px-2 py-1 hover:bg-white/10 md:flex md:px-3">
+                <MoreHorizontal className="size-5" aria-hidden="true" />
+                More
+              </button>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => alert('Prank meeting simulation ended.')}
+              className="rounded-md bg-[#e02828] px-4 py-1.5 text-[13px] font-semibold text-white hover:bg-[#c81f1f]"
+            >
+              End
+            </button>
           </div>
         </div>
       ) : (
