@@ -37,3 +37,11 @@ export const PROBLEM_NAV_LINKS: readonly { slug: string; shortLabel: string }[] 
   { slug: 'color-banding', shortLabel: 'Color Banding' },
   { slug: 'yellow-tint-on-screen', shortLabel: 'Yellow Tint' },
 ]
+
+export const GLOSSARY_NAV_LINKS: readonly { slug: string; shortLabel: string }[] = [
+  { slug: 'refresh-rate', shortLabel: 'Refresh rate' },
+  { slug: 'oled-vs-lcd', shortLabel: 'OLED vs LCD' },
+  { slug: 'hdr', shortLabel: 'HDR' },
+  { slug: 'resolution', shortLabel: 'Resolution' },
+  { slug: 'chroma-key', shortLabel: 'Chroma key' },
+]

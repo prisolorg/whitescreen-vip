@@ -46,6 +46,8 @@ type ToolSearchProps = {
   className?: string
   onNavigate?: () => void
   autoFocus?: boolean
+  /** Focus this box with ⌘K / Ctrl+K and show the hint. Use on one search box per page. */
+  shortcut?: boolean
 }
 
 export function ToolSearch({
@@ -54,12 +56,26 @@ export function ToolSearch({
   className,
   onNavigate,
   autoFocus,
+  shortcut,
 }: ToolSearchProps) {
   const { t, language } = useTranslation()
   const router = useRouter()
   const listId = useId()
   const inputId = useId()
   const [query, setQuery] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (!shortcut) return
+    const handleKey = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault()
+        inputRef.current?.focus()
+      }
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [shortcut])
   const [isOpen, setIsOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -121,6 +137,7 @@ export function ToolSearch({
           aria-hidden="true"
         />
         <input
+          ref={inputRef}
           id={inputId}
           type="search"
           role="combobox"
@@ -145,8 +162,14 @@ export function ToolSearch({
           className={cn(
             'w-full rounded-xl border bg-background pr-10 shadow-sm outline-none transition-shadow placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-search-cancel-button]:hidden',
             size === 'large' ? 'h-14 pl-11 text-base' : 'h-10 pl-10 text-sm',
+            shortcut && 'bg-muted/50 pr-14',
           )}
         />
+        {shortcut && !query && (
+          <kbd className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 rounded-md border bg-background px-1.5 py-0.5 font-sans text-[11px] font-semibold text-muted-foreground">
+            ⌘K
+          </kbd>
+        )}
         {query && (
           <button
             type="button"
