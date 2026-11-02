@@ -552,7 +552,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
         title: 'Gamer Battlestation Wallpaper',
         description: 'Matches RGB mechanical keyboards, ambient lightstrips, and gaming PC aesthetics with 4K clarity.',
         linkText: 'Matrix Code Screensaver',
-        linkHref: '/matrix-screen',
+        linkHref: '/matrix-screensaver',
       },
       {
         title: 'Mini-LED Blooming Evaluation',
@@ -570,7 +570,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
       { label: 'Ghosting Diagnostic Guide', href: '/screen-problems/ghosting', description: 'Identify response time blur and overdrive overshoot.' },
       { label: 'Screen Flickering Guide', href: '/screen-problems/screen-flickering', description: 'Fix refresh rate stutter and backlight strobing.' },
       { label: 'True Black Background', href: '/backgrounds/black-background', description: 'Zero emission black for infinite OLED contrast.' },
-      { label: 'Matrix Screen Tool', href: '/matrix-screen', description: 'Digital rain terminal simulation.' },
+      { label: 'Matrix Screen Tool', href: '/matrix-screensaver', description: 'Digital rain terminal simulation.' },
     ],
     authoritativeLink: {
       title: 'Blur Busters: LCD Motion Blur & Overdrive Overshoot Guide',
@@ -1363,7 +1363,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
         title: 'Developer Battlestation Decor',
         description: 'Brings classic hacker cinema aesthetic to your development workstation.',
         linkText: 'Interactive Matrix Screensaver',
-        linkHref: '/matrix-screen',
+        linkHref: '/matrix-screensaver',
       },
     ],
     selectionAdvice: {
@@ -1372,7 +1372,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
       alternativeConsiderations: 'For a solid calm green, choose Forest Background.',
     },
     contextualLinks: [
-      { label: 'Matrix Screen Tool', href: '/matrix-screen', description: 'Interactive live falling code simulation.' },
+      { label: 'Matrix Screen Tool', href: '/matrix-screensaver', description: 'Interactive live falling code simulation.' },
       { label: 'Neon Background', href: '/backgrounds/neon-background', description: 'Cyberpunk neon glow.' },
     ],
     faqs: [
@@ -1382,7 +1382,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
       },
     ],
     relatedTools: [
-      { name: 'Matrix Screen', path: '/matrix-screen', description: 'Live animated digital rain.' },
+      { name: 'Matrix Screen', path: '/matrix-screensaver', description: 'Live animated digital rain.' },
       { name: 'Static Screen', path: '/static-screen', description: 'TV static effect.' },
     ],
   },

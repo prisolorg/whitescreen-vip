@@ -62,6 +62,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     toolCategories: "Tool categories",
     tryNext: "Try next",
     stageHint: "F fullscreen · ← → change color",
+    metaTail: "Free, no sign-up, works in any browser.",
 
     footerAbout: 'WhiteScreen.vip is an independent online screen utility that helps users display solid colors, test monitors for pixel defects and uniformity, inspect hardware display issues, and create high-resolution downloadable backgrounds in lossless PNG.',
     allRightsReserved: 'All rights reserved.',
@@ -136,6 +137,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     toolCategories: "Categorías de herramientas",
     tryNext: "Prueba también",
     stageHint: "F pantalla completa · ← → cambiar color",
+    metaTail: "Gratis, sin registro y en cualquier navegador.",
 
     footerAbout: 'WhiteScreen.vip es una utilidad online independiente que te ayuda a mostrar colores sólidos, probar monitores en busca de defectos de píxeles y uniformidad, revisar problemas de pantalla y crear fondos descargables en alta resolución en PNG sin pérdida.',
     allRightsReserved: 'Todos los derechos reservados.',
@@ -210,6 +212,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     toolCategories: "Categorias de ferramentas",
     tryNext: "Experimente também",
     stageHint: "F tela cheia · ← → trocar cor",
+    metaTail: "Grátis, sem cadastro e em qualquer navegador.",
 
     footerAbout: 'WhiteScreen.vip é uma ferramenta online independente que ajuda você a exibir cores sólidas, testar monitores para defeitos de pixel e uniformidade, verificar problemas de tela e criar fundos para download em alta resolução em PNG sem perdas.',
     allRightsReserved: 'Todos os direitos reservados.',
@@ -284,6 +287,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     toolCategories: "Tool-Kategorien",
     tryNext: "Als Nächstes",
     stageHint: "F Vollbild · ← → Farbe wechseln",
+    metaTail: "Kostenlos, ohne Anmeldung, in jedem Browser.",
 
     footerAbout: 'WhiteScreen.vip ist ein unabhängiges Online-Bildschirmtool, mit dem du Volltonfarben anzeigen, Monitore auf Pixelfehler und Gleichmäßigkeit testen, Anzeigeprobleme prüfen und hochauflösende Hintergründe als verlustfreie PNG herunterladen kannst.',
     allRightsReserved: 'Alle Rechte vorbehalten.',
@@ -358,6 +362,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     toolCategories: "Catégories d'outils",
     tryNext: "À essayer aussi",
     stageHint: "F plein écran · ← → changer de couleur",
+    metaTail: "Gratuit, sans inscription, dans tout navigateur.",
 
     footerAbout: "WhiteScreen.vip est un utilitaire en ligne indépendant qui vous aide à afficher des couleurs unies, tester vos écrans (pixels défectueux, uniformité), examiner les problèmes d'affichage et créer des fonds haute résolution à télécharger en PNG sans perte.",
     allRightsReserved: 'Tous droits réservés.',
@@ -432,6 +437,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     toolCategories: "Categorie di strumenti",
     tryNext: "Prova anche",
     stageHint: "F schermo intero · ← → cambia colore",
+    metaTail: "Gratis, senza registrazione, in ogni browser.",
 
     footerAbout: 'WhiteScreen.vip è uno strumento online indipendente che ti aiuta a mostrare colori a tinta unita, testare i monitor per difetti dei pixel e uniformità, controllare problemi di visualizzazione e creare sfondi ad alta risoluzione da scaricare in PNG senza perdita.',
     allRightsReserved: 'Tutti i diritti riservati.',
@@ -506,6 +512,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     toolCategories: "Toolcategorieën",
     tryNext: "Probeer ook",
     stageHint: "F volledig scherm · ← → kleur wisselen",
+    metaTail: "Gratis, zonder account, in elke browser.",
 
     footerAbout: 'WhiteScreen.vip is een onafhankelijke online schermtool waarmee je effen kleuren toont, monitoren test op pixelfouten en gelijkmatigheid, weergaveproblemen onderzoekt en achtergronden in hoge resolutie downloadt als verliesvrije PNG.',
     allRightsReserved: 'Alle rechten voorbehouden.',
@@ -580,6 +587,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     toolCategories: "Kategori alat",
     tryNext: "Coba juga",
     stageHint: "F layar penuh · ← → ganti warna",
+    metaTail: "Gratis, tanpa daftar, di browser apa pun.",
 
     footerAbout: 'WhiteScreen.vip adalah alat layar online independen yang membantu Anda menampilkan warna solid, menguji monitor untuk cacat piksel dan keseragaman, memeriksa masalah tampilan, dan membuat latar belakang resolusi tinggi dalam PNG lossless.',
     allRightsReserved: 'Hak cipta dilindungi.',
@@ -654,6 +662,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     toolCategories: "Araç kategorileri",
     tryNext: "Bunu da deneyin",
     stageHint: "F tam ekran · ← → renk değiştir",
+    metaTail: "Ücretsiz, kayıt gerekmez, her tarayıcıda çalışır.",
 
     footerAbout: 'WhiteScreen.vip; düz renkler göstermenize, monitörleri piksel hataları ve tekdüzelik için test etmenize, ekran sorunlarını incelemenize ve kayıpsız PNG formatında yüksek çözünürlüklü arka planlar indirmenize yardımcı olan bağımsız bir çevrimiçi araçtır.',
     allRightsReserved: 'Tüm hakları saklıdır.',

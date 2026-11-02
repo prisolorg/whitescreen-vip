@@ -1100,8 +1100,10 @@ function getInitialLang(): LanguageCode {
   return 'en'
 }
 
-export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<LanguageCode>(getInitialLang)
+export function I18nProvider({ children, initialUrl }: { children: React.ReactNode; initialUrl?: string }) {
+  const [language, setLanguageState] = useState<LanguageCode>(() =>
+    typeof window === 'undefined' && initialUrl ? extractLocaleAndPath(initialUrl).lang : getInitialLang(),
+  )
 
   const currentInfo = LANGUAGES.find((l) => l.code === language) ?? LANGUAGES[0]
 

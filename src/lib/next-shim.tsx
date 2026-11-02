@@ -34,12 +34,15 @@ function localizeInternalHref(href: string): string {
   return getLocalizedPath(href, extractLocaleAndPath(window.location.pathname).lang)
 }
 
-export function RouterProvider({ children }: { children: React.ReactNode }) {
+/** `initialUrl` is only for server rendering; in the browser the current location wins. */
+export function RouterProvider({ children, initialUrl }: { children: React.ReactNode; initialUrl?: string }) {
   const [pathname, setPathname] = useState<string>(
-    typeof window !== 'undefined' ? window.location.pathname : '/'
+    typeof window !== 'undefined' ? window.location.pathname : (initialUrl ?? '/').split('?')[0]
   )
   const [search, setSearch] = useState<string>(
-    typeof window !== 'undefined' ? window.location.search : ''
+    typeof window !== 'undefined'
+      ? window.location.search
+      : initialUrl?.includes('?') ? `?${initialUrl.split('?')[1]}` : ''
   )
 
   useEffect(() => {

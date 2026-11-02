@@ -151,7 +151,7 @@ export function ToolsPage() {
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <a
-            href="/guides/how-to-use-white-screen-for-monitor-cleaning"
+            href="/guides/clean-laptop-screen"
             className="group rounded-xl border bg-card p-4 transition-all hover:border-primary/40 hover:shadow-xs"
           >
             <span className="text-[11px] font-semibold text-primary uppercase">Cleaning & Maintenance</span>
@@ -164,7 +164,7 @@ export function ToolsPage() {
           </a>
 
           <a
-            href="/guides/how-to-test-monitor-dead-pixels"
+            href="/guides/dead-pixel-test"
             className="group rounded-xl border bg-card p-4 transition-all hover:border-primary/40 hover:shadow-xs"
           >
             <span className="text-[11px] font-semibold text-primary uppercase">Display Diagnostics</span>
@@ -177,7 +177,7 @@ export function ToolsPage() {
           </a>
 
           <a
-            href="/guides/test-monitor-colors-and-uniformity"
+            href="/guides/screen-color-test"
             className="group rounded-xl border bg-card p-4 transition-all hover:border-primary/40 hover:shadow-xs"
           >
             <span className="text-[11px] font-semibold text-primary uppercase">Display Calibration</span>

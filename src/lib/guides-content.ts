@@ -698,7 +698,7 @@ export const GUIDES: readonly GuideArticle[] = [
 /**
  * Slugs alias map for backward compatibility and canonical mapping.
  */
-const SLUG_ALIASES: Record<string, string> = {
+export const GUIDE_SLUG_ALIASES: Record<string, string> = {
   // Aliases for 1: Dead Pixel Test
   'how-to-test-monitor-dead-pixels': 'dead-pixel-test',
   'spot-stuck-pixels-vs-dead-pixels': 'dead-pixel-test',
@@ -718,6 +718,6 @@ export function getGuideBySlug(slug: string): GuideArticle | undefined {
     .replace(/^guides\//, '')
     .replace(/\/+$/, '')
 
-  const targetSlug = SLUG_ALIASES[normalized] || normalized
+  const targetSlug = GUIDE_SLUG_ALIASES[normalized] || normalized
   return GUIDES.find((g) => g.slug === targetSlug)
 }

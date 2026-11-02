@@ -3,15 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <!--seo:start-->
     <title>White Screen Online – Free Fullscreen White Screen Tool</title>
     <meta name="description" content="Open a free fullscreen white screen online. Switch colors, test your display, adjust brightness, and download white screen PNG images." />
     <meta property="og:title" content="White Screen Online – Free Fullscreen White Screen Tool" />
     <meta property="og:description" content="Open a free fullscreen white screen online. Switch colors, test your display, adjust brightness, and download white screen PNG images." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+    <!--seo:end-->
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" type="image/svg+xml" href="/icon.svg" />
     <link rel="apple-touch-icon" href="/apple-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <style>
       /* Critical pre-render CSS to achieve instant FCP & LCP (< 250ms) */
       *, *::before, *::after { box-sizing: border-box; }
@@ -27,7 +30,7 @@
     </style>
   </head>
   <body>
-    <div id="root">
+    <div id="root"><!--app:start-->
       <!-- Instant pre-rendered shell for 99+ mobile PageSpeed FCP and LCP -->
       <div class="initial-header" aria-hidden="true">
         <div class="initial-logo">
@@ -48,7 +51,7 @@
           </div>
         </div>
       </div>
-    </div>
+    <!--app:end--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

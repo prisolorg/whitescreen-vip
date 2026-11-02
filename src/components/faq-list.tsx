@@ -1,5 +1,6 @@
 import { ChevronDown } from 'lucide-react'
 import type { ToolFaq } from '@/lib/tool-content/types'
+import { RichText } from './rich-text'
 
 export function FaqList({ faqs }: { faqs: readonly ToolFaq[] }) {
   return (
@@ -13,7 +14,7 @@ export function FaqList({ faqs }: { faqs: readonly ToolFaq[] }) {
               aria-hidden="true"
             />
           </summary>
-          <p className="px-5 pb-5 leading-relaxed text-muted-foreground">{faq.answer}</p>
+          <p className="px-5 pb-5 leading-relaxed text-muted-foreground"><RichText text={faq.answer} /></p>
         </details>
       ))}
     </div>

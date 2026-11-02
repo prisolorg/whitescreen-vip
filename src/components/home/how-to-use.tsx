@@ -30,11 +30,11 @@ export function HowToUse() {
       <div className="mt-8 rounded-xl border bg-card p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs sm:text-sm">
         <p className="text-muted-foreground">
           Looking for detailed step-by-step instructions? Read our in-depth tutorials on{' '}
-          <a href="/guides/how-to-use-white-screen-for-monitor-cleaning" className="font-semibold text-primary hover:underline">
+          <a href="/guides/clean-laptop-screen" className="font-semibold text-primary hover:underline">
             monitor cleaning
           </a>{' '}
           and{' '}
-          <a href="/guides/how-to-test-monitor-dead-pixels" className="font-semibold text-primary hover:underline">
+          <a href="/guides/dead-pixel-test" className="font-semibold text-primary hover:underline">
             dead pixel diagnostics
           </a>.
         </p>

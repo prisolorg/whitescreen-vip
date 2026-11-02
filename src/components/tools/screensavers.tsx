@@ -114,21 +114,24 @@ export function FlipClockScreensaver() {
   const [showSeconds, setShowSeconds] = useState(true)
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
 
-  const date = now ?? new Date()
-  let hours = date.getHours()
+  // `now` is null until mounted, so prerendered HTML shows placeholders rather than the build time.
+  let hours = now?.getHours() ?? 0
   const isPm = hours >= 12
   if (!is24Hour) {
     hours = hours % 12 || 12
   }
-  const hStr = String(hours).padStart(2, '0')
-  const mStr = String(date.getMinutes()).padStart(2, '0')
-  const sStr = String(date.getSeconds()).padStart(2, '0')
+  const pad = (value: number) => (now ? String(value).padStart(2, '0') : '--')
+  const hStr = pad(hours)
+  const mStr = pad(now?.getMinutes() ?? 0)
+  const sStr = pad(now?.getSeconds() ?? 0)
 
-  const dateStr = date.toLocaleDateString(undefined, {
-    weekday: 'long',
-    month: 'short',
-    day: 'numeric',
-  })
+  const dateStr = now
+    ? now.toLocaleDateString(undefined, {
+        weekday: 'long',
+        month: 'short',
+        day: 'numeric',
+      })
+    : ''
 
   return (
     <ToolStage
