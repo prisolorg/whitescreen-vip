@@ -12,12 +12,26 @@
     <meta name="twitter:card" content="summary_large_image" />
     <!--seo:end-->
     <meta name="theme-color" content="#ffffff" />
+    <script>
+      // Apply the saved theme (or the system one) before first paint, so dark mode never flashes white.
+      (function () {
+        try {
+          var saved = localStorage.getItem('whitescreen_theme');
+          var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) {
+            document.documentElement.classList.add('dark');
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1b1d22');
+          }
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/icon.svg" />
     <link rel="apple-touch-icon" href="/apple-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <style>
       /* Critical pre-render CSS to achieve instant FCP & LCP (< 250ms) */
       *, *::before, *::after { box-sizing: border-box; }
+      .dark body { background: #1b1d22; color: #eef0f3; }
       body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #ffffff; color: #1f2937; -webkit-font-smoothing: antialiased; }
       .initial-header { height: 64px; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; max-width: 1280px; margin: 0 auto; }
       .initial-logo { font-weight: 700; font-size: 18px; color: #111827; text-decoration: none; display: flex; align-items: center; gap: 8px; }

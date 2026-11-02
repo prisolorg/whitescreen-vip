@@ -10,7 +10,6 @@ import { getCategory, type ToolCategoryId } from '@/lib/tool-categories'
 import { useTranslation } from '@/lib/i18n'
 import { getLocalizedCategory, getLocalizedTool } from '@/lib/tool-translations'
 import { ToolSearch } from './tool-search'
-import { LanguageSelector } from './language-selector'
 import { ToolThumb } from './try-next-gallery'
 import { GLOSSARY_NAV_LINKS, HEADER_GUIDES, PROBLEM_NAV_LINKS } from '@/lib/nav-links'
 
@@ -255,7 +254,7 @@ export function MobileNav() {
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
         className={cn(
-          'inline-flex size-11 items-center justify-center rounded-xl text-foreground transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2',
+          'inline-flex size-9 items-center justify-center rounded-xl text-foreground transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 sm:size-10',
           isOpen && 'bg-accent',
         )}
         aria-label={isOpen ? t('closeMenu', 'Close menu') : t('menu', 'Menu')}
@@ -321,13 +320,12 @@ export function MobileNav() {
             </Link>
           </nav>
 
-          <div className="flex items-center justify-between gap-3 border-t px-4 py-3">
+          <div className="flex items-center gap-3 border-t px-4 py-3">
             <div className="flex min-w-0 flex-wrap gap-x-4 gap-y-1 whitespace-nowrap text-sm text-muted-foreground">
               <Link href="/about" onClick={close} className="hover:text-foreground">{t('about', 'About')}</Link>
               <Link href="/feedback" onClick={close} className="hover:text-foreground">{t('feedback', 'Feedback')}</Link>
               <Link href="/contact" onClick={close} className="hover:text-foreground">{t('contact', 'Contact')}</Link>
             </div>
-            <LanguageSelector className="[&_[role=listbox]]:bottom-full [&_[role=listbox]]:top-auto [&_[role=listbox]]:mb-1.5" />
           </div>
         </div>
       )}
@@ -349,7 +347,7 @@ export function HeaderSearchButton() {
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
         className={cn(
-          'inline-flex size-11 items-center justify-center rounded-xl text-foreground transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2',
+          'inline-flex size-9 items-center justify-center rounded-xl text-foreground transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 sm:size-10',
           isOpen && 'bg-accent',
         )}
         aria-label={isOpen ? t('closeSearch', 'Close search') : t('searchTools', 'Search tools')}

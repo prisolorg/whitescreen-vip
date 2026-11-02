@@ -5,7 +5,7 @@ import { Globe, Check, ChevronDown } from 'lucide-react'
 import { LANGUAGES, type LanguageCode, useTranslation } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
 
-export function LanguageSelector({ className }: { className?: string }) {
+export function LanguageSelector({ className, compact }: { className?: string; compact?: boolean }) {
   const { language, setLanguage, languageInfo, t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -49,7 +49,7 @@ export function LanguageSelector({ className }: { className?: string }) {
         <Globe className="size-3.5 sm:size-4 shrink-0 text-foreground/80" aria-hidden="true" />
         <span className="font-semibold">{languageInfo.displayCode}</span>
         <ChevronDown
-          className={cn('size-3 text-foreground/70 transition-transform', isOpen && 'rotate-180')}
+          className={cn('size-3 text-foreground/70 transition-transform', isOpen && 'rotate-180', compact && 'hidden')}
           aria-hidden="true"
         />
       </button>

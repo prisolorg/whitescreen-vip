@@ -74,6 +74,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     navAllGuides: "All guides →",
     navFullGlossary: "Full glossary →",
     searchShort: "Search tools…",
+    toggleTheme: "Switch between light and dark mode",
 
     footerAbout: 'WhiteScreen.vip is an independent online screen utility that helps users display solid colors, test monitors for pixel defects and uniformity, inspect hardware display issues, and create high-resolution downloadable backgrounds in lossless PNG.',
     allRightsReserved: 'All rights reserved.',
@@ -160,6 +161,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     navAllGuides: "Todas las guías →",
     navFullGlossary: "Glosario completo →",
     searchShort: "Buscar herramientas…",
+    toggleTheme: "Cambiar entre modo claro y oscuro",
 
     footerAbout: 'WhiteScreen.vip es una utilidad online independiente que te ayuda a mostrar colores sólidos, probar monitores en busca de defectos de píxeles y uniformidad, revisar problemas de pantalla y crear fondos descargables en alta resolución en PNG sin pérdida.',
     allRightsReserved: 'Todos los derechos reservados.',
@@ -246,6 +248,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     navAllGuides: "Todos os guias →",
     navFullGlossary: "Glossário completo →",
     searchShort: "Buscar ferramentas…",
+    toggleTheme: "Alternar entre modo claro e escuro",
 
     footerAbout: 'WhiteScreen.vip é uma ferramenta online independente que ajuda você a exibir cores sólidas, testar monitores para defeitos de pixel e uniformidade, verificar problemas de tela e criar fundos para download em alta resolução em PNG sem perdas.',
     allRightsReserved: 'Todos os direitos reservados.',
@@ -332,6 +335,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     navAllGuides: "Alle Ratgeber →",
     navFullGlossary: "Ganzes Glossar →",
     searchShort: "Tools suchen…",
+    toggleTheme: "Zwischen hellem und dunklem Modus wechseln",
 
     footerAbout: 'WhiteScreen.vip ist ein unabhängiges Online-Bildschirmtool, mit dem du Volltonfarben anzeigen, Monitore auf Pixelfehler und Gleichmäßigkeit testen, Anzeigeprobleme prüfen und hochauflösende Hintergründe als verlustfreie PNG herunterladen kannst.',
     allRightsReserved: 'Alle Rechte vorbehalten.',
@@ -418,6 +422,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     navAllGuides: "Tous les guides →",
     navFullGlossary: "Glossaire complet →",
     searchShort: "Rechercher un outil…",
+    toggleTheme: "Basculer entre mode clair et sombre",
 
     footerAbout: "WhiteScreen.vip est un utilitaire en ligne indépendant qui vous aide à afficher des couleurs unies, tester vos écrans (pixels défectueux, uniformité), examiner les problèmes d'affichage et créer des fonds haute résolution à télécharger en PNG sans perte.",
     allRightsReserved: 'Tous droits réservés.',
@@ -504,6 +509,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     navAllGuides: "Tutte le guide →",
     navFullGlossary: "Glossario completo →",
     searchShort: "Cerca strumenti…",
+    toggleTheme: "Passa tra modalità chiara e scura",
 
     footerAbout: 'WhiteScreen.vip è uno strumento online indipendente che ti aiuta a mostrare colori a tinta unita, testare i monitor per difetti dei pixel e uniformità, controllare problemi di visualizzazione e creare sfondi ad alta risoluzione da scaricare in PNG senza perdita.',
     allRightsReserved: 'Tutti i diritti riservati.',
@@ -590,6 +596,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     navAllGuides: "Alle gidsen →",
     navFullGlossary: "Volledige woordenlijst →",
     searchShort: "Tools zoeken…",
+    toggleTheme: "Wisselen tussen lichte en donkere modus",
 
     footerAbout: 'WhiteScreen.vip is een onafhankelijke online schermtool waarmee je effen kleuren toont, monitoren test op pixelfouten en gelijkmatigheid, weergaveproblemen onderzoekt en achtergronden in hoge resolutie downloadt als verliesvrije PNG.',
     allRightsReserved: 'Alle rechten voorbehouden.',
@@ -676,6 +683,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     navAllGuides: "Semua panduan →",
     navFullGlossary: "Glosarium lengkap →",
     searchShort: "Cari alat…",
+    toggleTheme: "Beralih antara mode terang dan gelap",
 
     footerAbout: 'WhiteScreen.vip adalah alat layar online independen yang membantu Anda menampilkan warna solid, menguji monitor untuk cacat piksel dan keseragaman, memeriksa masalah tampilan, dan membuat latar belakang resolusi tinggi dalam PNG lossless.',
     allRightsReserved: 'Hak cipta dilindungi.',
@@ -762,6 +770,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     navAllGuides: "Tüm rehberler →",
     navFullGlossary: "Sözlüğün tamamı →",
     searchShort: "Araç ara…",
+    toggleTheme: "Açık ve koyu mod arasında geçiş yap",
 
     footerAbout: 'WhiteScreen.vip; düz renkler göstermenize, monitörleri piksel hataları ve tekdüzelik için test etmenize, ekran sorunlarını incelemenize ve kayıpsız PNG formatında yüksek çözünürlüklü arka planlar indirmenize yardımcı olan bağımsız bir çevrimiçi araçtır.',
     allRightsReserved: 'Tüm hakları saklıdır.',
