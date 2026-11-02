@@ -1,0 +1,883 @@
+'use client'
+
+import { useCallback, useEffect, useRef, useState } from 'react'
+import {
+  Maximize,
+  Minimize,
+  X,
+  Download,
+  Check,
+  Sliders,
+  Sparkles,
+  AlertCircle,
+  RefreshCw,
+  Image as ImageIcon,
+  Trash2,
+  ChevronDown,
+} from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { SCREEN_COLORS, isLightColor } from '@/lib/screen-colors'
+import { CustomColorPicker } from '@/components/screen-tool/custom-color-picker'
+
+type FullscreenDocument = Document & {
+  webkitFullscreenElement?: Element | null
+  webkitExitFullscreen?: () => Promise<void> | void
+}
+
+type FullscreenElement = HTMLElement & {
+  webkitRequestFullscreen?: () => Promise<void> | void
+}
+
+function getFullscreenElement() {
+  const doc = document as FullscreenDocument
+  return doc.fullscreenElement ?? doc.webkitFullscreenElement ?? null
+}
+
+export type ResolutionPreset = {
+  id: string
+  label: string
+  shortLabel: string
+  width: number
+  height: number
+  description: string
+}
+
+export const RESOLUTION_PRESETS: readonly ResolutionPreset[] = [
+  { id: '480p', label: '480p SD', shortLabel: '480p', width: 854, height: 480, description: '854 × 480 (16:9 SD)' },
+  { id: '720p', label: '720p HD', shortLabel: '720p', width: 1280, height: 720, description: '1280 × 720 (16:9 HD)' },
+  { id: '1080p', label: '1080p FHD', shortLabel: '1080p', width: 1920, height: 1080, description: '1920 × 1080 (Full HD)' },
+  { id: '1440p', label: '1440p QHD', shortLabel: '1440p', width: 2560, height: 1440, description: '2560 × 1440 (Quad HD)' },
+  { id: '2k', label: '2K DCI', shortLabel: '2K', width: 2048, height: 1080, description: '2048 × 1080 (Cinema 2K)' },
+  { id: '4k', label: '4K UHD', shortLabel: '4K', width: 3840, height: 2160, description: '3840 × 2160 (Ultra HD)' },
+  { id: '8k', label: '8K UHD', shortLabel: '8K', width: 7680, height: 4320, description: '7680 × 4320 (8K Ultra HD)' },
+]
+
+export const MIN_DIM = 1
+export const MAX_DIM = 8192
+
+function kelvinToRgb(kelvin: number): { r: number; g: number; b: number; css: string } {
+  const temp = kelvin / 100
+  let r: number, g: number, b: number
+
+  if (temp <= 66) {
+    r = 255
+    g = 99.4708025861 * Math.log(temp) - 161.1195681661
+    b = temp <= 19 ? 0 : 138.5177312231 * Math.log(temp - 10) - 305.0447927307
+  } else {
+    r = 329.698727446 * Math.pow(temp - 60, -0.1332047592)
+    g = 288.1221695283 * Math.pow(temp - 60, -0.0755148492)
+    b = 255
+  }
+
+  const clamp = (v: number) => Math.round(Math.min(255, Math.max(0, v)))
+  const cr = clamp(r)
+  const cg = clamp(g)
+  const cb = clamp(b)
+  return { r: cr, g: cg, b: cb, css: `rgb(${cr}, ${cg}, ${cb})` }
+}
+
+export function HomeTool() {
+  const [selectedId, setSelectedId] = useState<string>('white')
+  const [customHex, setCustomHex] = useState<string>('#FFFFFF')
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null)
+
+  // Fullscreen state
+  const [isNativeFullscreen, setIsNativeFullscreen] = useState(false)
+  const [isFallbackFullscreen, setIsFallbackFullscreen] = useState(false)
+  const [isHintVisible, setIsHintVisible] = useState(false)
+
+  // Display Settings: Software Brightness & Color Temperature
+  const [showSettings, setShowSettings] = useState(false)
+  const [brightness, setBrightness] = useState<number>(100)
+  const [kelvin, setKelvin] = useState<number>(6500) // 6500K is neutral D65 daylight
+  const [applySettingsToExport, setApplySettingsToExport] = useState(false)
+
+  // Resolution & Download Controls
+  const [showDownloadPanel, setShowDownloadPanel] = useState(false)
+  const [width, setWidth] = useState<number>(1920)
+  const [height, setHeight] = useState<number>(1080)
+  const [format, setFormat] = useState<'png' | 'jpeg'>('png')
+  const [isDownloading, setIsDownloading] = useState(false)
+  const [downloadSuccess, setDownloadSuccess] = useState(false)
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
+
+  const screenRef = useRef<HTMLDivElement>(null)
+  const hintTimerRef = useRef<number | undefined>(undefined)
+  const wakeLockRef = useRef<WakeLockSentinel | null>(null)
+
+  const isFullscreen = isNativeFullscreen || isFallbackFullscreen
+  const preset = SCREEN_COLORS.find((color) => color.id === selectedId)
+  const activeHex = preset ? preset.hex : customHex
+  const activeName = uploadedImage ? 'Image' : preset ? preset.name : 'Custom'
+  const isLight = uploadedImage ? false : isLightColor(activeHex)
+
+  // Color temperature RGB
+  const tempRgb = kelvinToRgb(kelvin)
+  const isNeutralTemp = kelvin === 6500
+
+  // Active resolution preset if matching exactly
+  const activePreset = RESOLUTION_PRESETS.find((p) => p.width === width && p.height === height)
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      if (uploadedImage) URL.revokeObjectURL(uploadedImage)
+      const url = URL.createObjectURL(file)
+      setUploadedImage(url)
+    }
+  }
+
+  const clearImage = () => {
+    if (uploadedImage) {
+      URL.revokeObjectURL(uploadedImage)
+      setUploadedImage(null)
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      if (uploadedImage) URL.revokeObjectURL(uploadedImage)
+    }
+  }, [uploadedImage])
+
+  const revealHint = useCallback(() => {
+    setIsHintVisible(true)
+    window.clearTimeout(hintTimerRef.current)
+    hintTimerRef.current = window.setTimeout(() => setIsHintVisible(false), 2500)
+  }, [])
+
+  const enterFullscreen = useCallback(async () => {
+    const element = screenRef.current as FullscreenElement | null
+    if (!element) return
+    try {
+      if (element.requestFullscreen) {
+        await element.requestFullscreen({ navigationUI: 'hide' })
+      } else if (element.webkitRequestFullscreen) {
+        await element.webkitRequestFullscreen()
+      } else {
+        setIsFallbackFullscreen(true)
+      }
+    } catch {
+      setIsFallbackFullscreen(true)
+    }
+    revealHint()
+  }, [revealHint])
+
+  const exitFullscreen = useCallback(async () => {
+    setIsFallbackFullscreen(false)
+    const doc = document as FullscreenDocument
+    if (!getFullscreenElement()) return
+    try {
+      if (doc.exitFullscreen) await doc.exitFullscreen()
+      else await doc.webkitExitFullscreen?.()
+    } catch {
+      // Browser already exited
+    }
+  }, [])
+
+  const toggleFullscreen = useCallback(() => {
+    if (isFullscreen) void exitFullscreen()
+    else void enterFullscreen()
+  }, [isFullscreen, enterFullscreen, exitFullscreen])
+
+  // Cycle through colors
+  const cycleColor = useCallback(
+    (direction: 1 | -1) => {
+      clearImage()
+      const index = SCREEN_COLORS.findIndex((color) => color.id === selectedId)
+      const nextIndex =
+        index === -1 ? 0 : (index + direction + SCREEN_COLORS.length) % SCREEN_COLORS.length
+      setSelectedId(SCREEN_COLORS[nextIndex].id)
+    },
+    [selectedId],
+  )
+
+  useEffect(() => {
+    const handleChange = () => {
+      setIsNativeFullscreen(getFullscreenElement() === screenRef.current)
+    }
+    document.addEventListener('fullscreenchange', handleChange)
+    document.addEventListener('webkitfullscreenchange', handleChange)
+    return () => {
+      document.removeEventListener('fullscreenchange', handleChange)
+      document.removeEventListener('webkitfullscreenchange', handleChange)
+    }
+  }, [])
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null
+      if (target?.closest('input, textarea, select, [contenteditable="true"]')) return
+      if (event.metaKey || event.ctrlKey || event.altKey) return
+
+      const key = event.key
+      if (key === 'f' || key === 'F') {
+        event.preventDefault()
+        toggleFullscreen()
+      } else if (key === 'Escape' && isFallbackFullscreen) {
+        setIsFallbackFullscreen(false)
+      } else if (key === 'ArrowRight' || key === 'ArrowDown') {
+        if (!isFullscreen && key === 'ArrowDown') return
+        event.preventDefault()
+        cycleColor(1)
+        if (isFullscreen) revealHint()
+      } else if (key === 'ArrowLeft' || key === 'ArrowUp') {
+        if (!isFullscreen && key === 'ArrowUp') return
+        event.preventDefault()
+        cycleColor(-1)
+        if (isFullscreen) revealHint()
+      } else if (/^[1-9]$/.test(key)) {
+        const num = Number(key) - 1
+        if (num < SCREEN_COLORS.length) {
+          clearImage()
+          setSelectedId(SCREEN_COLORS[num].id)
+          if (isFullscreen) revealHint()
+        }
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [toggleFullscreen, cycleColor, revealHint, isFullscreen, isFallbackFullscreen])
+
+  // Screen WakeLock during fullscreen
+  useEffect(() => {
+    if (!isFullscreen || !('wakeLock' in navigator)) return
+    let cancelled = false
+    navigator.wakeLock
+      .request('screen')
+      .then((sentinel) => {
+        if (cancelled) void sentinel.release()
+        else wakeLockRef.current = sentinel
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+      void wakeLockRef.current?.release()
+      wakeLockRef.current = null
+    }
+  }, [isFullscreen])
+
+  // Handle fallback fullscreen body overflow
+  useEffect(() => {
+    if (!isFallbackFullscreen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [isFallbackFullscreen])
+
+  // Image Generation & Download logic
+  const handleDownload = () => {
+    if (isDownloading) return
+
+    const validW = Math.min(MAX_DIM, Math.max(MIN_DIM, width || 1920))
+    const validH = Math.min(MAX_DIM, Math.max(MIN_DIM, height || 1080))
+
+    if (validW <= 0 || validH <= 0) {
+      setErrorMsg('Please specify dimensions between 1 and 8192 px.')
+      return
+    }
+
+    setIsDownloading(true)
+    setErrorMsg(null)
+
+    const processCanvasBlob = (canvas: HTMLCanvasElement) => {
+      const mimeType = format === 'png' ? 'image/png' : 'image/jpeg'
+      const ext = format === 'png' ? 'png' : 'jpg'
+      const prefix = selectedId === 'white' && !uploadedImage ? 'white-screen' : `${activeName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-screen`
+      const filename = `${prefix}-${validW}x${validH}.${ext}`
+
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) {
+            setErrorMsg('Memory error: Could not allocate image blob. Try smaller dimensions.')
+            setIsDownloading(false)
+            return
+          }
+          const blobUrl = URL.createObjectURL(blob)
+          const link = document.createElement('a')
+          link.href = blobUrl
+          link.download = filename
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+
+          setTimeout(() => URL.revokeObjectURL(blobUrl), 1500)
+          setIsDownloading(false)
+          setDownloadSuccess(true)
+          setTimeout(() => setDownloadSuccess(false), 2500)
+        },
+        mimeType,
+        0.95,
+      )
+    }
+
+    try {
+      const canvas = document.createElement('canvas')
+      canvas.width = validW
+      canvas.height = validH
+      const ctx = canvas.getContext('2d')
+      if (!ctx) throw new Error('Canvas not supported')
+
+      if (uploadedImage) {
+        const img = new Image()
+        img.crossOrigin = 'anonymous'
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, validW, validH)
+          processCanvasBlob(canvas)
+        }
+        img.onerror = () => {
+          ctx.fillStyle = activeHex
+          ctx.fillRect(0, 0, validW, validH)
+          processCanvasBlob(canvas)
+        }
+        img.src = uploadedImage
+      } else {
+        // Base fill color
+        let fillHex = activeHex
+
+        // If user wants temperature or brightness baked in
+        if (applySettingsToExport) {
+          if (brightness < 100) {
+            ctx.filter = `brightness(${brightness}%)`
+          }
+          if (!isNeutralTemp && selectedId === 'white') {
+            fillHex = tempRgb.css
+          }
+        }
+
+        ctx.fillStyle = fillHex
+        ctx.fillRect(0, 0, validW, validH)
+        processCanvasBlob(canvas)
+      }
+    } catch {
+      setErrorMsg('Image generation error. For 8K on mobile, try 4K or 1080p.')
+      setIsDownloading(false)
+    }
+  }
+
+  const overlayTextClass = isLight ? 'text-neutral-900' : 'text-white'
+  const overlayChipClass = isLight
+    ? 'bg-black/5 ring-black/10 text-neutral-900 hover:bg-black/10'
+    : 'bg-white/10 ring-white/20 text-white hover:bg-white/20'
+
+  // Dynamic filter style for brightness simulation & color temperature
+  const filterStyle: React.CSSProperties = {
+    backgroundColor: uploadedImage ? '#000000' : isNeutralTemp || selectedId !== 'white' ? activeHex : tempRgb.css,
+    filter: brightness < 100 ? `brightness(${brightness / 100})` : undefined,
+  }
+
+  return (
+    <section aria-labelledby="main-heading" className="w-full pt-3 pb-8 sm:pt-4 sm:pb-10">
+      <div className="mx-auto max-w-5xl px-3 sm:px-6">
+        {/* Compact, No-Wasted-Space Heading */}
+        <div className="text-center mb-3 sm:mb-4">
+          <h1
+            id="main-heading"
+            className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground"
+          >
+            White Screen Online
+          </h1>
+          <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
+            Open a fullscreen white screen, switch colors, and download white screen images for free.
+          </p>
+        </div>
+
+        {/* Screen Tool Card Container */}
+        <div className="rounded-2xl border border-border bg-card p-2.5 sm:p-4 shadow-sm">
+          {/* Main White Screen Preview Area */}
+          <div
+            ref={screenRef}
+            role="region"
+            aria-label={uploadedImage ? 'Custom image preview' : `${activeName} screen preview`}
+            onMouseMove={isFullscreen ? revealHint : undefined}
+            onTouchStart={isFullscreen ? revealHint : undefined}
+            onDoubleClick={isFullscreen ? () => void exitFullscreen() : undefined}
+            style={filterStyle}
+            className={cn(
+              'relative flex items-center justify-center overflow-hidden transition-colors duration-150',
+              isFullscreen
+                ? 'h-full w-full'
+                : 'h-[40vh] sm:h-[46vh] lg:h-[420px] min-h-[250px] max-h-[520px] w-full rounded-xl border border-border/80',
+              isFallbackFullscreen && 'fixed inset-0 z-[100] h-dvh rounded-none border-0',
+              isFullscreen && !isHintVisible && 'cursor-none',
+            )}
+          >
+            {/* Render uploaded image if any */}
+            {uploadedImage && (
+              <img
+                src={uploadedImage}
+                alt="Uploaded screen preview"
+                className="absolute inset-0 size-full object-contain pointer-events-none select-none"
+              />
+            )}
+
+            {isFullscreen ? (
+              <div
+                aria-live="polite"
+                className={cn(
+                  'pointer-events-none absolute inset-x-0 top-4 flex justify-center px-4 transition-opacity duration-300',
+                  isHintVisible ? 'opacity-100' : 'opacity-0',
+                )}
+              >
+                <div
+                  className={cn(
+                    'pointer-events-auto flex items-center gap-3 rounded-full py-1.5 pl-4 pr-1.5 text-sm ring-1 backdrop-blur shadow-md',
+                    overlayChipClass,
+                  )}
+                >
+                  <span className="text-xs sm:text-sm">
+                    Press Esc or double-click to exit · ← → to cycle color
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => void exitFullscreen()}
+                    className={cn(
+                      'inline-flex size-8 items-center justify-center rounded-full ring-1',
+                      overlayChipClass,
+                    )}
+                    aria-label="Exit fullscreen"
+                  >
+                    <X className="size-4" aria-hidden="true" />
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <>
+                {/* Center "Open fullscreen" Button */}
+                <button
+                  type="button"
+                  onClick={() => void enterFullscreen()}
+                  className={cn(
+                    'inline-flex items-center gap-2 rounded-full px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold transition-all shadow-md focus-visible:outline-2 focus-visible:outline-offset-2',
+                    isLight
+                      ? 'bg-neutral-900 text-white hover:bg-neutral-800 ring-1 ring-black/20'
+                      : 'bg-white text-neutral-900 hover:bg-neutral-100 ring-1 ring-white/30',
+                  )}
+                >
+                  <Maximize className="size-4" aria-hidden="true" />
+                  <span>Open fullscreen</span>
+                </button>
+
+                {/* Subtitle tag */}
+                <span
+                  className={cn(
+                    'absolute bottom-2.5 left-3 font-mono text-[11px] opacity-75 backdrop-blur-xs px-2 py-0.5 rounded select-none',
+                    overlayTextClass,
+                  )}
+                >
+                  {uploadedImage ? 'Custom Image' : `${activeName} · ${activeHex}`}
+                  {brightness < 100 ? ` (${brightness}%)` : ''}
+                </span>
+              </>
+            )}
+          </div>
+
+          {/* Controls Bar Immediately Above or Below the Preview */}
+          <div className="pt-3 space-y-3">
+            {/* Color Palette (12 Major Colors + Custom) */}
+            <div>
+              <div className="flex items-center justify-between pb-1.5 px-0.5">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Screen Colors
+                </span>
+                <span className="text-[11px] text-muted-foreground hidden sm:inline">
+                  Click any swatch to change screen
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                {SCREEN_COLORS.map((color, index) => {
+                  const isSelected = selectedId === color.id && !uploadedImage
+                  return (
+                    <button
+                      key={color.id}
+                      type="button"
+                      onClick={() => {
+                        clearImage()
+                        setSelectedId(color.id)
+                      }}
+                      title={`${color.name} Screen (${index + 1})`}
+                      aria-label={`${color.name} Screen`}
+                      aria-pressed={isSelected}
+                      className={cn(
+                        'group flex h-8 sm:h-9 items-center gap-1.5 rounded-lg border bg-background pl-1.5 pr-2.5 text-xs font-medium transition-all shadow-2xs hover:bg-accent shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2',
+                        isSelected &&
+                          'border-primary bg-primary/10 text-primary font-semibold ring-1 ring-primary/40',
+                      )}
+                    >
+                      <span
+                        className="flex size-4 sm:size-5 items-center justify-center rounded-md ring-1 ring-black/15 shrink-0"
+                        style={{ backgroundColor: color.hex }}
+                      >
+                        {isSelected && (
+                          <Check
+                            className={cn(
+                              'size-3',
+                              isLightColor(color.hex) ? 'text-black' : 'text-white',
+                            )}
+                            aria-hidden="true"
+                          />
+                        )}
+                      </span>
+                      <span className="truncate">{color.name}</span>
+                    </button>
+                  )
+                })}
+
+                {/* Custom Color Picker */}
+                <CustomColorPicker
+                  value={customHex}
+                  isSelected={!preset && !uploadedImage}
+                  onChange={(hex) => {
+                    clearImage()
+                    setCustomHex(hex)
+                    setSelectedId('custom')
+                  }}
+                  onSelect={() => {
+                    clearImage()
+                    setSelectedId('custom')
+                  }}
+                />
+
+                {/* Optional Image Upload */}
+                <label className="inline-flex h-8 sm:h-9 items-center gap-1.5 rounded-lg border bg-background px-2.5 text-xs font-medium transition-colors hover:bg-accent cursor-pointer shadow-2xs">
+                  <ImageIcon className="size-3.5 text-muted-foreground" aria-hidden="true" />
+                  <span>{uploadedImage ? 'Change Image' : 'Image'}</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="sr-only"
+                    onChange={handleImageUpload}
+                  />
+                </label>
+
+                {uploadedImage && (
+                  <button
+                    type="button"
+                    onClick={clearImage}
+                    className="inline-flex h-8 sm:h-9 items-center gap-1 rounded-lg border border-destructive/30 bg-destructive/10 px-2 text-xs font-medium text-destructive hover:bg-destructive/20"
+                    title="Remove Image"
+                  >
+                    <Trash2 className="size-3.5" aria-hidden="true" />
+                    <span className="text-[11px]">Clear</span>
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Action Bar: Fullscreen + Download Button + Settings Toggle */}
+            <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-border/60">
+              <div className="flex flex-wrap items-center gap-2">
+                {/* Primary Download White Screen Button */}
+                <button
+                  type="button"
+                  onClick={handleDownload}
+                  disabled={isDownloading}
+                  className={cn(
+                    'inline-flex h-9 sm:h-10 items-center justify-center gap-2 rounded-xl px-4 sm:px-5 text-xs sm:text-sm font-semibold transition-all shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer',
+                    downloadSuccess
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-primary text-primary-foreground hover:bg-primary/90',
+                  )}
+                >
+                  {isDownloading ? (
+                    <>
+                      <RefreshCw className="size-4 animate-spin" aria-hidden="true" />
+                      <span>Generating PNG...</span>
+                    </>
+                  ) : downloadSuccess ? (
+                    <>
+                      <Check className="size-4" aria-hidden="true" />
+                      <span>Downloaded!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Download className="size-4" aria-hidden="true" />
+                      <span>
+                        {selectedId === 'white' && !uploadedImage
+                          ? 'Download White Screen'
+                          : `Download ${activeName} Screen`}
+                      </span>
+                    </>
+                  )}
+                </button>
+
+                {/* Resolution Preset Pill / Popover Toggle */}
+                <button
+                  type="button"
+                  onClick={() => setShowDownloadPanel((prev) => !prev)}
+                  className="inline-flex h-9 sm:h-10 items-center gap-1.5 rounded-xl border border-border bg-background px-3 text-xs sm:text-sm font-medium hover:bg-accent transition-colors shadow-2xs"
+                  aria-expanded={showDownloadPanel}
+                >
+                  <span className="font-semibold text-foreground">
+                    {activePreset ? activePreset.label : `${width}×${height}px`}
+                  </span>
+                  <ChevronDown
+                    className={cn(
+                      'size-3.5 text-muted-foreground transition-transform duration-200',
+                      showDownloadPanel && 'rotate-180',
+                    )}
+                    aria-hidden="true"
+                  />
+                </button>
+
+                {/* Open Fullscreen Button */}
+                <button
+                  type="button"
+                  onClick={() => void enterFullscreen()}
+                  className="inline-flex h-9 sm:h-10 items-center gap-1.5 rounded-xl border border-border bg-background px-3 sm:px-4 text-xs sm:text-sm font-medium hover:bg-accent transition-colors shadow-2xs"
+                >
+                  <Maximize className="size-3.5" aria-hidden="true" />
+                  <span>Fullscreen</span>
+                </button>
+              </div>
+
+              {/* Advanced Settings Toggle (Brightness & Temperature) */}
+              <button
+                type="button"
+                onClick={() => setShowSettings((prev) => !prev)}
+                className={cn(
+                  'inline-flex h-9 sm:h-10 items-center gap-1.5 rounded-xl border px-3 text-xs font-medium transition-colors shadow-2xs',
+                  showSettings
+                    ? 'border-primary/50 bg-accent text-foreground font-semibold'
+                    : 'border-border bg-background text-muted-foreground hover:text-foreground hover:bg-accent',
+                )}
+                aria-expanded={showSettings}
+              >
+                <Sliders className="size-3.5" aria-hidden="true" />
+                <span>Brightness & Tone</span>
+                {brightness < 100 && (
+                  <span className="rounded-full bg-primary/10 px-1.5 py-0.2 text-[10px] font-bold text-primary">
+                    {brightness}%
+                  </span>
+                )}
+              </button>
+            </div>
+
+            {/* Collapsible Resolution & Download Customization Panel */}
+            {showDownloadPanel && (
+              <div className="rounded-xl border border-border/80 bg-muted/30 p-3.5 text-xs animate-in fade-in-50 zoom-in-95 space-y-3">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-1.5 font-semibold text-foreground">
+                    <Sparkles className="size-3.5 text-primary" aria-hidden="true" />
+                    <span>Resolution Presets</span>
+                  </div>
+                  <span className="text-[11px] font-mono text-muted-foreground">
+                    {width} × {height} px ({((width * height) / 1000000).toFixed(1)} MP)
+                  </span>
+                </div>
+
+                {/* Preset Buttons */}
+                <div className="flex flex-wrap gap-1.5">
+                  {RESOLUTION_PRESETS.map((p) => {
+                    const isSelected = activePreset?.id === p.id
+                    return (
+                      <button
+                        key={p.id}
+                        type="button"
+                        onClick={() => {
+                          setWidth(p.width)
+                          setHeight(p.height)
+                          setErrorMsg(null)
+                        }}
+                        className={cn(
+                          'h-7 sm:h-8 rounded-lg border px-2.5 text-xs font-medium transition-colors',
+                          isSelected
+                            ? 'border-primary bg-primary text-primary-foreground shadow-2xs'
+                            : 'border-border bg-background hover:bg-muted text-foreground',
+                        )}
+                      >
+                        {p.label}
+                      </button>
+                    )
+                  })}
+                </div>
+
+                {/* Custom Dimensions & Format */}
+                <div className="flex flex-wrap items-end gap-3 pt-2 border-t border-border/50">
+                  <div className="flex items-center gap-1.5">
+                    <div className="flex flex-col gap-0.5">
+                      <label htmlFor="custom-w" className="text-[10px] font-medium text-muted-foreground">
+                        Width (px)
+                      </label>
+                      <input
+                        id="custom-w"
+                        type="number"
+                        min={MIN_DIM}
+                        max={MAX_DIM}
+                        value={width || ''}
+                        onChange={(e) => {
+                          setErrorMsg(null)
+                          setWidth(Math.min(MAX_DIM, Math.max(0, parseInt(e.target.value, 10) || 0)))
+                        }}
+                        className="h-8 w-20 rounded-md border bg-background px-2 font-mono text-xs outline-none focus-visible:ring-1 focus-visible:ring-primary"
+                      />
+                    </div>
+                    <span className="pt-3 text-muted-foreground">×</span>
+                    <div className="flex flex-col gap-0.5">
+                      <label htmlFor="custom-h" className="text-[10px] font-medium text-muted-foreground">
+                        Height (px)
+                      </label>
+                      <input
+                        id="custom-h"
+                        type="number"
+                        min={MIN_DIM}
+                        max={MAX_DIM}
+                        value={height || ''}
+                        onChange={(e) => {
+                          setErrorMsg(null)
+                          setHeight(Math.min(MAX_DIM, Math.max(0, parseInt(e.target.value, 10) || 0)))
+                        }}
+                        className="h-8 w-20 rounded-md border bg-background px-2 font-mono text-xs outline-none focus-visible:ring-1 focus-primary"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Format */}
+                  <div className="flex flex-col gap-0.5">
+                    <label htmlFor="custom-fmt" className="text-[10px] font-medium text-muted-foreground">
+                      Format
+                    </label>
+                    <select
+                      id="custom-fmt"
+                      value={format}
+                      onChange={(e) => setFormat(e.target.value as 'png' | 'jpeg')}
+                      className="h-8 rounded-md border bg-background px-2 font-mono text-xs outline-none focus-visible:ring-1 focus-visible:ring-primary"
+                    >
+                      <option value="png">PNG (lossless)</option>
+                      <option value="jpeg">JPG</option>
+                    </select>
+                  </div>
+
+                  {/* Immediate Download in Panel */}
+                  <button
+                    type="button"
+                    onClick={handleDownload}
+                    disabled={isDownloading}
+                    className="h-8 inline-flex items-center gap-1.5 rounded-md bg-primary px-3 text-xs font-semibold text-primary-foreground hover:bg-primary/90 transition-colors shadow-2xs"
+                  >
+                    <Download className="size-3.5" aria-hidden="true" />
+                    <span>Download PNG</span>
+                  </button>
+                </div>
+
+                {errorMsg && (
+                  <div className="flex items-center gap-1.5 text-xs text-destructive pt-1">
+                    <AlertCircle className="size-3.5" />
+                    <span>{errorMsg}</span>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Collapsible Software Brightness & Temperature Settings */}
+            {showSettings && (
+              <div className="rounded-xl border border-border/80 bg-muted/20 p-3.5 text-xs animate-in fade-in-50 zoom-in-95 space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-1 border-b border-border/50">
+                  <span className="font-semibold text-foreground">
+                    Software Display Adjustments
+                  </span>
+                  <span className="text-[11px] text-muted-foreground">
+                    Software simulation: does not alter physical monitor hardware controls.
+                  </span>
+                </div>
+
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {/* Brightness Slider */}
+                  <div className="space-y-1.5">
+                    <div className="flex justify-between font-medium">
+                      <span>Brightness (Luminance)</span>
+                      <span className="font-mono text-muted-foreground">{brightness}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min={10}
+                      max={100}
+                      step={1}
+                      value={brightness}
+                      onChange={(e) => setBrightness(Number(e.target.value))}
+                      className="w-full accent-primary cursor-pointer"
+                    />
+                    <div className="flex justify-between text-[10px] text-muted-foreground">
+                      <span>10% (Dim)</span>
+                      <span>50%</span>
+                      <span>100% (Full)</span>
+                    </div>
+                  </div>
+
+                  {/* Color Temperature (Kelvin) */}
+                  <div className="space-y-1.5">
+                    <div className="flex justify-between font-medium">
+                      <span>White Tone (Temperature)</span>
+                      <span className="font-mono text-muted-foreground">{kelvin}K</span>
+                    </div>
+                    <div className="flex gap-1.5">
+                      {[
+                        { label: 'Warm', value: 3000 },
+                        { label: 'Neutral (D65)', value: 6500 },
+                        { label: 'Cool', value: 9000 },
+                      ].map((preset) => (
+                        <button
+                          key={preset.value}
+                          type="button"
+                          onClick={() => setKelvin(preset.value)}
+                          className={cn(
+                            'flex-1 h-7 rounded-md border text-[11px] font-medium transition-colors',
+                            kelvin === preset.value
+                              ? 'border-primary bg-primary/10 text-primary font-bold'
+                              : 'border-border bg-background text-muted-foreground hover:text-foreground',
+                          )}
+                        >
+                          {preset.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Option to apply adjustments to download */}
+                <div className="flex items-center justify-between pt-1 text-[11px] text-muted-foreground">
+                  <label className="flex items-center gap-1.5 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={applySettingsToExport}
+                      onChange={(e) => setApplySettingsToExport(e.target.checked)}
+                      className="rounded accent-primary"
+                    />
+                    <span>Apply software brightness and color temperature to downloaded PNG</span>
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setBrightness(100)
+                      setKelvin(6500)
+                    }}
+                    className="text-primary hover:underline font-medium"
+                  >
+                    Reset Defaults
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Minimal Keyboard Shortcuts Footer */}
+          <div className="pt-2.5 px-0.5 flex flex-wrap items-center justify-between gap-2 text-[11px] text-muted-foreground border-t border-border/40 mt-3">
+            <div className="flex items-center gap-1.5">
+              <span className="font-semibold text-foreground/80">Shortcuts:</span>
+              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">F</kbd> fullscreen</span>
+              <span>·</span>
+              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">1</kbd>–<kbd className="rounded border bg-muted px-1 py-0.2 font-mono">9</kbd> pick color</span>
+              <span>·</span>
+              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">←</kbd><kbd className="rounded border bg-muted px-1 py-0.2 font-mono ml-0.5">→</kbd> cycle</span>
+              <span>·</span>
+              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">Esc</kbd> exit</span>
+            </div>
+            <div className="font-mono text-[10px]">100% Free · Client-Side</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
