@@ -170,7 +170,7 @@ export function HomeSections() {
       title: 'Cannot Download a White Screen Image',
       description:
         'Check whether your browser blocked the download. Verify the selected dimensions and ensure your device has enough available memory.',
-      linkHref: '/white-screen-image',
+      linkHref: '/white-screen',
       linkLabel: 'Open image tool →',
     },
     {

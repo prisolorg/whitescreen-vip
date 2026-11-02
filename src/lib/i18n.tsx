@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react'
 import { extractLocaleAndPath, getLocalizedPath, type LanguageCode } from './locale-routing'
+import { UI_TRANSLATIONS } from './ui-translations'
 
 export type { LanguageCode }
 
@@ -26,7 +27,7 @@ export const LANGUAGES: readonly LanguageInfo[] = [
   { code: 'tr', displayCode: 'TR', name: 'Turkish', nativeName: 'Türkçe', formattedLabel: 'TR — Türkçe', dir: 'ltr' },
 ]
 
-export const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
+const BASE_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
   en: {
     home: 'Home',
     whiteScreen: 'White Screen',
@@ -1055,6 +1056,13 @@ export const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     simulationsDisclaimer: 'Simülasyonlar yalnızca eğlence amaçlıdır ve gösterilen hiçbir markayla bağlantılı değildir.',
   },
 }
+
+export const TRANSLATIONS = Object.fromEntries(
+  Object.entries(BASE_TRANSLATIONS).map(([lang, dict]) => [
+    lang,
+    { ...UI_TRANSLATIONS[lang as LanguageCode], ...dict },
+  ]),
+) as Record<LanguageCode, Record<string, string>>
 
 interface I18nContextType {
   language: LanguageCode

@@ -29,6 +29,11 @@ const RouterContext = createContext<RouterContextType>({
   refresh: () => {},
 })
 
+function localizeInternalHref(href: string): string {
+  if (!href.startsWith('/') || href.startsWith('//')) return href
+  return getLocalizedPath(href, extractLocaleAndPath(window.location.pathname).lang)
+}
+
 export function RouterProvider({ children }: { children: React.ReactNode }) {
   const [pathname, setPathname] = useState<string>(
     typeof window !== 'undefined' ? window.location.pathname : '/'
@@ -61,7 +66,9 @@ export function RouterProvider({ children }: { children: React.ReactNode }) {
       return
     }
 
-    const [path, hash] = href.split('#')
+    // Keep the visitor's language: internal paths get the current locale prefix.
+    href = localizeInternalHref(href)
+    const hash = href.split('#')[1]
     window.history.pushState({}, '', href)
     setPathname(window.location.pathname)
     setSearch(window.location.search)
@@ -79,7 +86,7 @@ export function RouterProvider({ children }: { children: React.ReactNode }) {
 
   const replace = useCallback((href: string, options?: { scroll?: boolean }) => {
     if (typeof window === 'undefined') return
-    window.history.replaceState({}, '', href)
+    window.history.replaceState({}, '', localizeInternalHref(href))
     setPathname(window.location.pathname)
     setSearch(window.location.search)
     window.dispatchEvent(new Event('app-navigation'))

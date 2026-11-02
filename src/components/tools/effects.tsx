@@ -268,11 +268,13 @@ export function NoiseScreen({ color }: { color: NoiseColor }) {
     <ToolStage
       label={theme.label}
       style={{
-        background:
+        // Longhand properties only: mixing the `background` shorthand with `backgroundSize` breaks on toggle.
+        backgroundColor: visual === 'dark' ? '#000' : theme.colors[0],
+        backgroundImage:
           visual === 'dark'
-            ? '#000'
-            : `radial-gradient(circle at 30% 30%, ${theme.colors[1]}, transparent 60%), radial-gradient(circle at 70% 70%, ${theme.colors[1]}aa, transparent 55%), ${theme.colors[0]}`,
-        backgroundSize: visual === 'dark' ? undefined : '200% 200%',
+            ? 'none'
+            : `radial-gradient(circle at 30% 30%, ${theme.colors[1]}, transparent 60%), radial-gradient(circle at 70% 70%, ${theme.colors[1]}aa, transparent 55%)`,
+        backgroundSize: '200% 200%',
         animation: visual === 'waves' && noise.isPlaying && !reducedMotion ? 'noise-drift 18s ease-in-out infinite alternate' : undefined,
       }}
       controls={

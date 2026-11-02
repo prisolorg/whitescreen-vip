@@ -47,7 +47,13 @@ export function ScreenTool({ initialColorId = 'white' }: ScreenToolProps) {
   const isFullscreen = isNativeFullscreen || isFallbackFullscreen
   const preset = SCREEN_COLORS.find((color) => color.id === selectedId)
   const activeHex = preset ? preset.hex : customHex
+  // English name feeds the download file name; the localized label is for display.
   const activeName = uploadedImage ? 'Image' : (preset ? preset.name : 'Custom')
+  const activeLabel = uploadedImage
+    ? t('uploadImage', 'Image')
+    : preset
+      ? t(preset.id, preset.name)
+      : t('custom', 'Custom')
   const isLight = uploadedImage ? false : isLightColor(activeHex)
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,6 +63,8 @@ export function ScreenTool({ initialColorId = 'white' }: ScreenToolProps) {
       const url = URL.createObjectURL(file)
       setUploadedImage(url)
     }
+    // Reset so choosing the same file again still fires onChange.
+    e.target.value = ''
   }
 
   const clearImage = () => {
@@ -215,7 +223,7 @@ export function ScreenTool({ initialColorId = 'white' }: ScreenToolProps) {
       <div
         ref={screenRef}
         role="region"
-        aria-label={uploadedImage ? 'Custom image preview' : `${activeName} screen preview`}
+        aria-label={t('screenPreview', '{color} screen preview').replace('{color}', activeLabel)}
         onMouseMove={isFullscreen ? revealHint : undefined}
         onTouchStart={isFullscreen ? revealHint : undefined}
         onDoubleClick={isFullscreen ? () => void exitFullscreen() : undefined}
@@ -289,7 +297,7 @@ export function ScreenTool({ initialColorId = 'white' }: ScreenToolProps) {
                 overlayTextClass,
               )}
             >
-              {uploadedImage ? t('uploadedImage', 'Uploaded Image') : `${activeName} · ${activeHex}`}
+              {uploadedImage ? t('uploadedImage', 'Uploaded Image') : `${activeLabel} · ${activeHex}`}
             </p>
           </>
         )}

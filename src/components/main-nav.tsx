@@ -267,14 +267,14 @@ export function DesktopNav() {
             >
               <div className="flex items-center justify-between mb-1.5 px-2 py-1">
                 <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                  Collections
+                  {t('collections', 'Collections')}
                 </span>
                 <Link
                   href="/backgrounds"
                   onClick={close}
                   className="text-xs font-semibold text-primary hover:underline"
                 >
-                  All Backgrounds →
+                  {t('allBackgrounds', 'All Backgrounds →')}
                 </Link>
               </div>
               <ul className="flex flex-col gap-0.5">
@@ -319,14 +319,14 @@ export function DesktopNav() {
             >
               <div className="flex items-center justify-between mb-2 px-1">
                 <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                  Troubleshooting Guides
+                  {t('troubleshootingGuides', 'Troubleshooting Guides')}
                 </span>
                 <Link
                   href="/screen-problems"
                   onClick={close}
                   className="text-xs font-semibold text-primary hover:underline"
                 >
-                  View All Problems →
+                  {t('viewAllProblems', 'View All Problems →')}
                 </Link>
               </div>
               <ul className="grid grid-cols-2 gap-0.5">
@@ -575,7 +575,7 @@ export function MobileNav() {
                         onClick={close}
                         className="flex items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold text-primary transition-colors hover:bg-accent"
                       >
-                        <span>All Backgrounds</span>
+                        <span>{t('allBackgrounds', 'All Backgrounds →').replace(' →', '')}</span>
                         <span className="text-xs">→</span>
                       </Link>
                     </li>
@@ -621,7 +621,7 @@ export function MobileNav() {
                         onClick={close}
                         className="flex items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold text-primary transition-colors hover:bg-accent"
                       >
-                        <span>View All Screen Problems</span>
+                        <span>{t('viewAllProblems', 'View All Problems →').replace(' →', '')}</span>
                         <span className="text-xs">→</span>
                       </Link>
                     </li>

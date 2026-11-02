@@ -31,9 +31,13 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
   const content = getToolContent(slug)
   const category = getCategory(tool.category)
   const localizedCat = getLocalizedCategory(category, language)
-  const related = tool.related.map(getTool)
+  // Aliased slugs can resolve to the current tool or a duplicate, so dedupe by resolved slug.
+  const related = tool.related
+    .map(getTool)
+    .filter((item, index, list) => item.slug !== slug && list.findIndex((other) => other.slug === item.slug) === index)
+  const relatedSlugs = new Set(related.map((item) => item.slug))
   const more = getToolsByCategory(tool.category)
-    .filter((item) => item.slug !== slug && !tool.related.includes(item.slug))
+    .filter((item) => item.slug !== slug && !relatedSlugs.has(item.slug))
     .slice(0, 4)
 
   const appSchema = {
@@ -81,7 +85,7 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
               {localizedTool.name}
             </h1>
             <p className="mt-3 text-pretty leading-relaxed text-muted-foreground sm:text-lg">
-              {content.intro}
+              {language === 'en' ? content.intro : localizedTool.description}
             </p>
           </div>
           {children}

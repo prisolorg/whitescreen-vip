@@ -18,6 +18,7 @@ import {
 import { cn } from '@/lib/utils'
 import { SCREEN_COLORS, isLightColor } from '@/lib/screen-colors'
 import { CustomColorPicker } from '@/components/screen-tool/custom-color-picker'
+import { useTranslation } from '@/lib/i18n'
 
 type FullscreenDocument = Document & {
   webkitFullscreenElement?: Element | null
@@ -77,6 +78,7 @@ function kelvinToRgb(kelvin: number): { r: number; g: number; b: number; css: st
 }
 
 export function HomeTool() {
+  const { t } = useTranslation()
   const [selectedId, setSelectedId] = useState<string>('white')
   const [customHex, setCustomHex] = useState<string>('#FFFFFF')
   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
@@ -108,7 +110,14 @@ export function HomeTool() {
   const isFullscreen = isNativeFullscreen || isFallbackFullscreen
   const preset = SCREEN_COLORS.find((color) => color.id === selectedId)
   const activeHex = preset ? preset.hex : customHex
-  const activeName = uploadedImage ? 'Image' : preset ? preset.name : 'Custom'
+  const activeName = uploadedImage
+    ? t('uploadImage', 'Image')
+    : preset
+      ? t(preset.id, preset.name)
+      : t('custom', 'Custom')
+  // File names stay ASCII/English regardless of UI language.
+  const fileSlug = uploadedImage ? 'image' : preset ? preset.id : 'custom'
+  const formatLabel = format === 'png' ? 'PNG' : 'JPG'
   const isLight = uploadedImage ? false : isLightColor(activeHex)
 
   // Color temperature RGB
@@ -125,6 +134,8 @@ export function HomeTool() {
       const url = URL.createObjectURL(file)
       setUploadedImage(url)
     }
+    // Reset so choosing the same file again still fires onChange.
+    e.target.value = ''
   }
 
   const clearImage = () => {
@@ -275,7 +286,7 @@ export function HomeTool() {
     const validH = Math.min(MAX_DIM, Math.max(MIN_DIM, height || 1080))
 
     if (validW <= 0 || validH <= 0) {
-      setErrorMsg('Please specify dimensions between 1 and 8192 px.')
+      setErrorMsg(t('errDimensions', 'Please specify dimensions between 1 and 8192 px.'))
       return
     }
 
@@ -285,13 +296,13 @@ export function HomeTool() {
     const processCanvasBlob = (canvas: HTMLCanvasElement) => {
       const mimeType = format === 'png' ? 'image/png' : 'image/jpeg'
       const ext = format === 'png' ? 'png' : 'jpg'
-      const prefix = selectedId === 'white' && !uploadedImage ? 'white-screen' : `${activeName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-screen`
+      const prefix = `${fileSlug}-screen`
       const filename = `${prefix}-${validW}x${validH}.${ext}`
 
       canvas.toBlob(
         (blob) => {
           if (!blob) {
-            setErrorMsg('Memory error: Could not allocate image blob. Try smaller dimensions.')
+            setErrorMsg(t('errMemory', 'Memory error: could not create the image. Try smaller dimensions.'))
             setIsDownloading(false)
             return
           }
@@ -324,7 +335,13 @@ export function HomeTool() {
         const img = new Image()
         img.crossOrigin = 'anonymous'
         img.onload = () => {
-          ctx.drawImage(img, 0, 0, validW, validH)
+          // Match the preview (object-contain on black) instead of stretching the image.
+          const scale = Math.min(validW / img.naturalWidth, validH / img.naturalHeight)
+          const drawW = img.naturalWidth * scale
+          const drawH = img.naturalHeight * scale
+          ctx.fillStyle = '#000000'
+          ctx.fillRect(0, 0, validW, validH)
+          ctx.drawImage(img, (validW - drawW) / 2, (validH - drawH) / 2, drawW, drawH)
           processCanvasBlob(canvas)
         }
         img.onerror = () => {
@@ -335,24 +352,29 @@ export function HomeTool() {
         img.src = uploadedImage
       } else {
         // Base fill color
-        let fillHex = activeHex
+        let fillColor = activeHex
 
-        // If user wants temperature or brightness baked in
+        // If user wants temperature or brightness baked in. Scale the RGB values directly,
+        // because CanvasRenderingContext2D.filter is not supported in Safari.
         if (applySettingsToExport) {
-          if (brightness < 100) {
-            ctx.filter = `brightness(${brightness}%)`
-          }
-          if (!isNeutralTemp && selectedId === 'white') {
-            fillHex = tempRgb.css
-          }
+          const base =
+            !isNeutralTemp && selectedId === 'white'
+              ? tempRgb
+              : {
+                  r: parseInt(activeHex.slice(1, 3), 16),
+                  g: parseInt(activeHex.slice(3, 5), 16),
+                  b: parseInt(activeHex.slice(5, 7), 16),
+                }
+          const k = brightness / 100
+          fillColor = `rgb(${Math.round(base.r * k)}, ${Math.round(base.g * k)}, ${Math.round(base.b * k)})`
         }
 
-        ctx.fillStyle = fillHex
+        ctx.fillStyle = fillColor
         ctx.fillRect(0, 0, validW, validH)
         processCanvasBlob(canvas)
       }
     } catch {
-      setErrorMsg('Image generation error. For 8K on mobile, try 4K or 1080p.')
+      setErrorMsg(t('errGeneration', 'Image generation error. For 8K on mobile, try 4K or 1080p.'))
       setIsDownloading(false)
     }
   }
@@ -377,10 +399,10 @@ export function HomeTool() {
             id="main-heading"
             className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground"
           >
-            White Screen Online
+            {t('homeTitle', 'White Screen Online')}
           </h1>
           <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
-            Open a fullscreen white screen, switch colors, and download white screen images for free.
+            {t('homeSubtitle', 'Open a fullscreen white screen, switch colors, and download white screen images for free.')}
           </p>
         </div>
 
@@ -390,7 +412,7 @@ export function HomeTool() {
           <div
             ref={screenRef}
             role="region"
-            aria-label={uploadedImage ? 'Custom image preview' : `${activeName} screen preview`}
+            aria-label={t('screenPreview', '{color} screen preview').replace('{color}', activeName)}
             onMouseMove={isFullscreen ? revealHint : undefined}
             onTouchStart={isFullscreen ? revealHint : undefined}
             onDoubleClick={isFullscreen ? () => void exitFullscreen() : undefined}
@@ -408,7 +430,7 @@ export function HomeTool() {
             {uploadedImage && (
               <img
                 src={uploadedImage}
-                alt="Uploaded screen preview"
+                alt={t('uploadedImage', 'Uploaded Image')}
                 className="absolute inset-0 size-full object-contain pointer-events-none select-none"
               />
             )}
@@ -428,7 +450,7 @@ export function HomeTool() {
                   )}
                 >
                   <span className="text-xs sm:text-sm">
-                    Press Esc or double-click to exit · ← → to cycle color
+                    {t('exitHintCycle', 'Press Esc or double-click to exit · ← → to cycle color')}
                   </span>
                   <button
                     type="button"
@@ -437,7 +459,7 @@ export function HomeTool() {
                       'inline-flex size-8 items-center justify-center rounded-full ring-1',
                       overlayChipClass,
                     )}
-                    aria-label="Exit fullscreen"
+                    aria-label={t('exitFullscreen', 'Exit fullscreen')}
                   >
                     <X className="size-4" aria-hidden="true" />
                   </button>
@@ -457,7 +479,7 @@ export function HomeTool() {
                   )}
                 >
                   <Maximize className="size-4" aria-hidden="true" />
-                  <span>Open fullscreen</span>
+                  <span>{t('openFullscreen', 'Open fullscreen')}</span>
                 </button>
 
                 {/* Subtitle tag */}
@@ -467,7 +489,7 @@ export function HomeTool() {
                     overlayTextClass,
                   )}
                 >
-                  {uploadedImage ? 'Custom Image' : `${activeName} · ${activeHex}`}
+                  {uploadedImage ? t('customImage', 'Custom Image') : `${activeName} · ${activeHex}`}
                   {brightness < 100 ? ` (${brightness}%)` : ''}
                 </span>
               </>
@@ -480,10 +502,10 @@ export function HomeTool() {
             <div>
               <div className="flex items-center justify-between pb-1.5 px-0.5">
                 <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  Screen Colors
+                  {t('screenColors', 'Screen Colors')}
                 </span>
                 <span className="text-[11px] text-muted-foreground hidden sm:inline">
-                  Click any swatch to change screen
+                  {t('clickSwatch', 'Click any swatch to change screen')}
                 </span>
               </div>
               <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
@@ -497,8 +519,8 @@ export function HomeTool() {
                         clearImage()
                         setSelectedId(color.id)
                       }}
-                      title={`${color.name} Screen (${index + 1})`}
-                      aria-label={`${color.name} Screen`}
+                      title={`${t(color.id, color.name)} (${index + 1})`}
+                      aria-label={t(color.id, color.name)}
                       aria-pressed={isSelected}
                       className={cn(
                         'group flex h-8 sm:h-9 items-center gap-1.5 rounded-lg border bg-background pl-1.5 pr-2.5 text-xs font-medium transition-all shadow-2xs hover:bg-accent shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2',
@@ -520,7 +542,7 @@ export function HomeTool() {
                           />
                         )}
                       </span>
-                      <span className="truncate">{color.name}</span>
+                      <span className="truncate">{t(color.id, color.name)}</span>
                     </button>
                   )
                 })}
@@ -543,7 +565,7 @@ export function HomeTool() {
                 {/* Optional Image Upload */}
                 <label className="inline-flex h-8 sm:h-9 items-center gap-1.5 rounded-lg border bg-background px-2.5 text-xs font-medium transition-colors hover:bg-accent cursor-pointer shadow-2xs">
                   <ImageIcon className="size-3.5 text-muted-foreground" aria-hidden="true" />
-                  <span>{uploadedImage ? 'Change Image' : 'Image'}</span>
+                  <span>{uploadedImage ? t('changeImage', 'Change Image') : t('uploadImage', 'Image')}</span>
                   <input
                     type="file"
                     accept="image/*"
@@ -557,10 +579,10 @@ export function HomeTool() {
                     type="button"
                     onClick={clearImage}
                     className="inline-flex h-8 sm:h-9 items-center gap-1 rounded-lg border border-destructive/30 bg-destructive/10 px-2 text-xs font-medium text-destructive hover:bg-destructive/20"
-                    title="Remove Image"
+                    title={t('removeImage', 'Remove image')}
                   >
                     <Trash2 className="size-3.5" aria-hidden="true" />
-                    <span className="text-[11px]">Clear</span>
+                    <span className="text-[11px]">{t('clear', 'Clear')}</span>
                   </button>
                 )}
               </div>
@@ -584,20 +606,18 @@ export function HomeTool() {
                   {isDownloading ? (
                     <>
                       <RefreshCw className="size-4 animate-spin" aria-hidden="true" />
-                      <span>Generating PNG...</span>
+                      <span>{t('generatingFormat', 'Generating {format}...').replace('{format}', formatLabel)}</span>
                     </>
                   ) : downloadSuccess ? (
                     <>
                       <Check className="size-4" aria-hidden="true" />
-                      <span>Downloaded!</span>
+                      <span>{t('downloaded', 'Downloaded!')}</span>
                     </>
                   ) : (
                     <>
                       <Download className="size-4" aria-hidden="true" />
                       <span>
-                        {selectedId === 'white' && !uploadedImage
-                          ? 'Download White Screen'
-                          : `Download ${activeName} Screen`}
+                        {t('downloadColorScreen', 'Download {color} Screen').replace('{color}', activeName)}
                       </span>
                     </>
                   )}
@@ -629,7 +649,7 @@ export function HomeTool() {
                   className="inline-flex h-9 sm:h-10 items-center gap-1.5 rounded-xl border border-border bg-background px-3 sm:px-4 text-xs sm:text-sm font-medium hover:bg-accent transition-colors shadow-2xs"
                 >
                   <Maximize className="size-3.5" aria-hidden="true" />
-                  <span>Fullscreen</span>
+                  <span>{t('fullscreen', 'Fullscreen')}</span>
                 </button>
               </div>
 
@@ -646,7 +666,7 @@ export function HomeTool() {
                 aria-expanded={showSettings}
               >
                 <Sliders className="size-3.5" aria-hidden="true" />
-                <span>Brightness & Tone</span>
+                <span>{t('brightnessTone', 'Brightness & Tone')}</span>
                 {brightness < 100 && (
                   <span className="rounded-full bg-primary/10 px-1.5 py-0.2 text-[10px] font-bold text-primary">
                     {brightness}%
@@ -661,7 +681,7 @@ export function HomeTool() {
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-1.5 font-semibold text-foreground">
                     <Sparkles className="size-3.5 text-primary" aria-hidden="true" />
-                    <span>Resolution Presets</span>
+                    <span>{t('resolutionPresets', 'Resolution Presets')}</span>
                   </div>
                   <span className="text-[11px] font-mono text-muted-foreground">
                     {width} × {height} px ({((width * height) / 1000000).toFixed(1)} MP)
@@ -699,7 +719,7 @@ export function HomeTool() {
                   <div className="flex items-center gap-1.5">
                     <div className="flex flex-col gap-0.5">
                       <label htmlFor="custom-w" className="text-[10px] font-medium text-muted-foreground">
-                        Width (px)
+                        {t('width', 'Width (px)')}
                       </label>
                       <input
                         id="custom-w"
@@ -717,7 +737,7 @@ export function HomeTool() {
                     <span className="pt-3 text-muted-foreground">×</span>
                     <div className="flex flex-col gap-0.5">
                       <label htmlFor="custom-h" className="text-[10px] font-medium text-muted-foreground">
-                        Height (px)
+                        {t('height', 'Height (px)')}
                       </label>
                       <input
                         id="custom-h"
@@ -729,7 +749,7 @@ export function HomeTool() {
                           setErrorMsg(null)
                           setHeight(Math.min(MAX_DIM, Math.max(0, parseInt(e.target.value, 10) || 0)))
                         }}
-                        className="h-8 w-20 rounded-md border bg-background px-2 font-mono text-xs outline-none focus-visible:ring-1 focus-primary"
+                        className="h-8 w-20 rounded-md border bg-background px-2 font-mono text-xs outline-none focus-visible:ring-1 focus-visible:ring-primary"
                       />
                     </div>
                   </div>
@@ -737,7 +757,7 @@ export function HomeTool() {
                   {/* Format */}
                   <div className="flex flex-col gap-0.5">
                     <label htmlFor="custom-fmt" className="text-[10px] font-medium text-muted-foreground">
-                      Format
+                      {t('format', 'Format')}
                     </label>
                     <select
                       id="custom-fmt"
@@ -745,7 +765,7 @@ export function HomeTool() {
                       onChange={(e) => setFormat(e.target.value as 'png' | 'jpeg')}
                       className="h-8 rounded-md border bg-background px-2 font-mono text-xs outline-none focus-visible:ring-1 focus-visible:ring-primary"
                     >
-                      <option value="png">PNG (lossless)</option>
+                      <option value="png">{t('pngLossless', 'PNG (lossless)')}</option>
                       <option value="jpeg">JPG</option>
                     </select>
                   </div>
@@ -758,7 +778,7 @@ export function HomeTool() {
                     className="h-8 inline-flex items-center gap-1.5 rounded-md bg-primary px-3 text-xs font-semibold text-primary-foreground hover:bg-primary/90 transition-colors shadow-2xs"
                   >
                     <Download className="size-3.5" aria-hidden="true" />
-                    <span>Download PNG</span>
+                    <span>{t('downloadFormat', 'Download {format}').replace('{format}', formatLabel)}</span>
                   </button>
                 </div>
 
@@ -776,10 +796,10 @@ export function HomeTool() {
               <div className="rounded-xl border border-border/80 bg-muted/20 p-3.5 text-xs animate-in fade-in-50 zoom-in-95 space-y-3">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-1 border-b border-border/50">
                   <span className="font-semibold text-foreground">
-                    Software Display Adjustments
+                    {t('softwareAdjustments', 'Software Display Adjustments')}
                   </span>
                   <span className="text-[11px] text-muted-foreground">
-                    Software simulation: does not alter physical monitor hardware controls.
+                    {t('softwareAdjustmentsNote', 'Software simulation: does not alter physical monitor hardware controls.')}
                   </span>
                 </div>
 
@@ -787,7 +807,7 @@ export function HomeTool() {
                   {/* Brightness Slider */}
                   <div className="space-y-1.5">
                     <div className="flex justify-between font-medium">
-                      <span>Brightness (Luminance)</span>
+                      <span>{t('brightnessLuminance', 'Brightness (Luminance)')}</span>
                       <span className="font-mono text-muted-foreground">{brightness}%</span>
                     </div>
                     <input
@@ -800,23 +820,23 @@ export function HomeTool() {
                       className="w-full accent-primary cursor-pointer"
                     />
                     <div className="flex justify-between text-[10px] text-muted-foreground">
-                      <span>10% (Dim)</span>
+                      <span>{t('dimLabel', '10% (Dim)')}</span>
                       <span>50%</span>
-                      <span>100% (Full)</span>
+                      <span>{t('fullLabel', '100% (Full)')}</span>
                     </div>
                   </div>
 
                   {/* Color Temperature (Kelvin) */}
                   <div className="space-y-1.5">
                     <div className="flex justify-between font-medium">
-                      <span>White Tone (Temperature)</span>
+                      <span>{t('whiteTone', 'White Tone (Temperature)')}</span>
                       <span className="font-mono text-muted-foreground">{kelvin}K</span>
                     </div>
                     <div className="flex gap-1.5">
                       {[
-                        { label: 'Warm', value: 3000 },
-                        { label: 'Neutral (D65)', value: 6500 },
-                        { label: 'Cool', value: 9000 },
+                        { label: t('warm', 'Warm'), value: 3000 },
+                        { label: t('neutralD65', 'Neutral (D65)'), value: 6500 },
+                        { label: t('cool', 'Cool'), value: 9000 },
                       ].map((preset) => (
                         <button
                           key={preset.value}
@@ -845,7 +865,7 @@ export function HomeTool() {
                       onChange={(e) => setApplySettingsToExport(e.target.checked)}
                       className="rounded accent-primary"
                     />
-                    <span>Apply software brightness and color temperature to downloaded PNG</span>
+                    <span>{t('applyToExport', 'Apply software brightness and color temperature to the downloaded image')}</span>
                   </label>
                   <button
                     type="button"
@@ -855,7 +875,7 @@ export function HomeTool() {
                     }}
                     className="text-primary hover:underline font-medium"
                   >
-                    Reset Defaults
+                    {t('resetDefaults', 'Reset Defaults')}
                   </button>
                 </div>
               </div>
@@ -865,16 +885,16 @@ export function HomeTool() {
           {/* Minimal Keyboard Shortcuts Footer */}
           <div className="pt-2.5 px-0.5 flex flex-wrap items-center justify-between gap-2 text-[11px] text-muted-foreground border-t border-border/40 mt-3">
             <div className="flex items-center gap-1.5">
-              <span className="font-semibold text-foreground/80">Shortcuts:</span>
-              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">F</kbd> fullscreen</span>
+              <span className="font-semibold text-foreground/80">{t('shortcuts', 'Shortcuts')}:</span>
+              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">F</kbd> {t('shortcutF', 'fullscreen')}</span>
               <span>·</span>
-              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">1</kbd>–<kbd className="rounded border bg-muted px-1 py-0.2 font-mono">9</kbd> pick color</span>
+              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">1</kbd>–<kbd className="rounded border bg-muted px-1 py-0.2 font-mono">9</kbd> {t('shortcutNumbers', 'pick color')}</span>
               <span>·</span>
-              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">←</kbd><kbd className="rounded border bg-muted px-1 py-0.2 font-mono ml-0.5">→</kbd> cycle</span>
+              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">←</kbd><kbd className="rounded border bg-muted px-1 py-0.2 font-mono ml-0.5">→</kbd> {t('shortcutArrows', 'cycle')}</span>
               <span>·</span>
-              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">Esc</kbd> exit</span>
+              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">Esc</kbd> {t('shortcutEsc', 'exit')}</span>
             </div>
-            <div className="font-mono text-[10px]">100% Free · Client-Side</div>
+            <div className="font-mono text-[10px]">{t('freeClientSide', '100% Free · Client-Side')}</div>
           </div>
         </div>
       </div>

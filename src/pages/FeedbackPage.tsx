@@ -5,6 +5,7 @@ import { Star, CheckCircle, Send } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n'
 import { FEEDBACK_TRANSLATIONS } from '@/lib/content-pages-translations'
+import { siteConfig } from '@/lib/site'
 
 export function FeedbackPage() {
   const { language } = useTranslation()
@@ -20,6 +21,10 @@ export function FeedbackPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!message.trim()) return
+    // There is no backend, so hand the feedback to the visitor's mail app instead of dropping it.
+    const lines = [`Rating: ${rating}/5`, `Category: ${selectedCategory}`, '', message.trim()]
+    if (email.trim()) lines.push('', `Reply to: ${email.trim()}`)
+    window.location.href = `mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent(`WhiteScreen.vip feedback (${selectedCategory})`)}&body=${encodeURIComponent(lines.join('\n'))}`
     setIsSubmitted(true)
   }
 

@@ -40,7 +40,7 @@ export function CustomColorPicker({ value, isSelected, onChange, onSelect }: Cus
       )}
     >
       <label htmlFor={pickerId} className="relative size-5 sm:size-6 cursor-pointer shrink-0">
-        <span className="sr-only">{t('customColor', 'Choose a custom color')}</span>
+        <span className="sr-only">{t('chooseCustomColor', 'Choose a custom color')}</span>
         <span
           className="absolute inset-0 rounded-md ring-1 ring-black/10"
           style={{ backgroundColor: value }}
@@ -56,7 +56,7 @@ export function CustomColorPicker({ value, isSelected, onChange, onSelect }: Cus
         />
       </label>
       <label htmlFor={hexId} className="sr-only">
-        {t('customColor', 'Custom color hex code')}
+        {t('customColorHex', 'Custom color hex code')}
       </label>
       <input
         id={hexId}

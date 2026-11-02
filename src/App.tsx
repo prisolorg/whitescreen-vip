@@ -9,7 +9,7 @@ import { ColorPage } from '@/pages/ColorPage'
 import { getColorBySlug } from '@/lib/screen-colors'
 import { getColorPageContent } from '@/lib/color-pages'
 import { TOOLS } from '@/lib/tools'
-import { getLocalizedTool } from '@/lib/tool-translations'
+import { getLocalizedTool, TOOL_TRANSLATIONS } from '@/lib/tool-translations'
 import { siteConfig } from '@/lib/site'
 import {
   ABOUT_TRANSLATIONS,
@@ -57,7 +57,7 @@ function PageLoading() {
 }
 
 function AppContent() {
-  const { cleanPath } = useRouter()
+  const { cleanPath, search } = useRouter()
   const { language, t } = useTranslation()
 
   // Dynamic SEO, title, and hreflang metadata
@@ -66,9 +66,11 @@ function AppContent() {
     let pageDescription = ''
 
     if (cleanPath === '/') {
-      pageTitle = 'White Screen Online – Free Fullscreen White Screen Tool'
-      pageDescription =
-        'Open a free fullscreen white screen online. Switch colors, test your display, adjust brightness, and download white screen PNG images.'
+      pageTitle = t('homeMetaTitle', 'White Screen Online – Free Fullscreen White Screen Tool')
+      pageDescription = t(
+        'homeMetaDesc',
+        'Open a free fullscreen white screen online. Switch colors, test your display, adjust brightness, and download white screen PNG images.',
+      )
     } else if (cleanPath === '/tools') {
       pageTitle = `${t('allTools', 'All Tools')} | WhiteScreen.vip`
       pageDescription = t(
@@ -191,13 +193,16 @@ function AppContent() {
       const color = getColorBySlug(slug)
       if (color) {
         const cContent = getColorPageContent(color.id, language)
-        pageTitle = `${color.name} Screen – Free Fullscreen ${color.name} Screen Tool | WhiteScreen.vip`
+        const colorName =
+          TOOL_TRANSLATIONS[language]?.[`${color.id}-screen`]?.name ??
+          `${t(color.id, color.name)} ${t('colorScreenSuffix', 'Screen')}`
+        pageTitle = `${t('colorMetaTitle', '{name} – Free Fullscreen {name} Tool').replaceAll('{name}', colorName)} | WhiteScreen.vip`
         pageDescription = cContent.description
       } else {
         const rawTool = TOOLS.find((item) => item.slug === slug)
         if (rawTool) {
           const locTool = getLocalizedTool(rawTool, language)
-          pageTitle = `${locTool.name} – Free Online Screen Tool | WhiteScreen.vip`
+          pageTitle = `${t('toolMetaTitle', '{name} – Free Online Screen Tool').replace('{name}', locTool.name)} | WhiteScreen.vip`
           pageDescription = locTool.description
         } else {
           const c = NOT_FOUND_TRANSLATIONS[language] || NOT_FOUND_TRANSLATIONS.en
@@ -256,7 +261,7 @@ function AppContent() {
       document.head.appendChild(xDefaultLink)
     }
     xDefaultLink.href = `${baseUrl}${getLocalizedPath(cleanPath, 'en')}`
-  }, [cleanPath, language, t])
+  }, [cleanPath, search, language, t])
 
   let pageContent: React.ReactNode
 

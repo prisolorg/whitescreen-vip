@@ -455,7 +455,7 @@ export const GLOSSARY_ITEMS: readonly GlossaryItem[] = [
       },
       {
         name: 'White Screen Image Generator',
-        path: '/white-screen-image',
+        path: '/white-screen',
         description: 'Generate and download solid color test backgrounds in exact 1080p, 1440p, 4K, or 8K resolution.',
       },
       {

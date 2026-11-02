@@ -13,7 +13,7 @@ export function ColorSwatches({ selectedId, onSelect }: ColorSwatchesProps) {
   const { t } = useTranslation()
 
   return (
-    <nav aria-label="Screen color" className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+    <nav aria-label={t('screenColors', 'Screen Colors')} className="flex flex-wrap items-center gap-1.5 sm:gap-2">
       {SCREEN_COLORS.map((color, index) => {
         const isSelected = color.id === selectedId
         const localizedName = t(color.id, color.name)
@@ -25,7 +25,7 @@ export function ColorSwatches({ selectedId, onSelect }: ColorSwatchesProps) {
             onClick={() => onSelect(color.id)}
             aria-current={isSelected ? 'page' : undefined}
             aria-keyshortcuts={String(index + 1)}
-            title={`${localizedName} screen (${index + 1})`}
+            title={`${localizedName} (${index + 1})`}
             className={cn(
               'group flex h-8 sm:h-9 items-center gap-1.5 sm:gap-2 rounded-lg border bg-background pl-1.5 pr-2.5 sm:pr-3 text-xs sm:text-sm transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 shadow-xs shrink-0',
               isSelected && 'border-foreground/40 bg-accent font-semibold ring-1 ring-foreground/20',

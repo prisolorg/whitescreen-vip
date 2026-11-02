@@ -19,6 +19,9 @@ export function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!message.trim() || !email.trim()) return
+    // There is no backend, so hand the message to the visitor's mail app instead of dropping it.
+    const body = `${message.trim()}\n\n— ${name.trim() || email.trim()} <${email.trim()}>`
+    window.location.href = `mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent(subject.trim() || 'WhiteScreen.vip contact')}&body=${encodeURIComponent(body)}`
     setIsSent(true)
   }
 

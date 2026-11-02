@@ -62,9 +62,7 @@ export function SiteFooter() {
             <Logo />
           </div>
           <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-            WhiteScreen.vip is an independent online screen utility that helps users display solid
-            colors, test monitors for pixel defects and uniformity, inspect hardware display issues,
-            and create high-resolution downloadable backgrounds in lossless PNG.
+            {t('footerAbout', 'WhiteScreen.vip is an independent online screen utility.')}
           </p>
         </div>
 
@@ -73,7 +71,7 @@ export function SiteFooter() {
           {/* Group 1: Screen Tests */}
           <div>
             <h2 className="mb-3 text-xs sm:text-sm font-semibold tracking-wide uppercase text-foreground">
-              Screen Tests
+              {t('screenTests', 'Screen Tests')}
             </h2>
             <ul className="flex flex-col gap-2 text-xs sm:text-sm">
               {screenTestLinks.map((item) => (
@@ -92,7 +90,7 @@ export function SiteFooter() {
           {/* Group 2: Backgrounds */}
           <div>
             <h2 className="mb-3 text-xs sm:text-sm font-semibold tracking-wide uppercase text-foreground">
-              Backgrounds
+              {t('backgrounds', 'Backgrounds')}
             </h2>
             <ul className="flex flex-col gap-2 text-xs sm:text-sm">
               {backgroundLinks.map((item) => (
@@ -111,7 +109,7 @@ export function SiteFooter() {
           {/* Group 3: Screen Problems */}
           <div>
             <h2 className="mb-3 text-xs sm:text-sm font-semibold tracking-wide uppercase text-foreground">
-              Screen Problems
+              {t('screenProblems', 'Screen Problems')}
             </h2>
             <ul className="flex flex-col gap-2 text-xs sm:text-sm">
               {screenProblemLinks.map((item) => (
@@ -130,7 +128,7 @@ export function SiteFooter() {
           {/* Group 4: Glossary */}
           <div>
             <h2 className="mb-3 text-xs sm:text-sm font-semibold tracking-wide uppercase text-foreground">
-              Glossary
+              {t('glossary', 'Glossary')}
             </h2>
             <ul className="flex flex-col gap-2 text-xs sm:text-sm">
               {glossaryLinks.map((item) => (
@@ -149,7 +147,7 @@ export function SiteFooter() {
           {/* Group 5: About Us */}
           <div>
             <h2 className="mb-3 text-xs sm:text-sm font-semibold tracking-wide uppercase text-foreground">
-              About Us
+              {t('aboutUs', 'About Us')}
             </h2>
             <ul className="flex flex-col gap-2 text-xs sm:text-sm">
               {aboutUsLinks.map((item) => (
@@ -168,7 +166,7 @@ export function SiteFooter() {
           {/* Group 6: Legal */}
           <div>
             <h2 className="mb-3 text-xs sm:text-sm font-semibold tracking-wide uppercase text-foreground">
-              Legal
+              {t('legal', 'Legal')}
             </h2>
             <ul className="flex flex-col gap-2 text-xs sm:text-sm">
               {legalLinks.map((item) => (
@@ -190,10 +188,10 @@ export function SiteFooter() {
       <div className="border-t border-border/70 bg-muted/20">
         <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 text-xs text-muted-foreground leading-relaxed">
           <p className="font-semibold text-foreground/90 mb-1.5">
-            © 2026 WhiteScreen.vip. All rights reserved.
+            © {new Date().getFullYear()} WhiteScreen.vip. {t('allRightsReserved', 'All rights reserved.')}
           </p>
           <p>
-            WhiteScreen.vip is an independent online utility and is not affiliated with, endorsed by, or sponsored by any display manufacturer, device manufacturer, or internet service provider. Brand names and trademarks belong to their respective owners. Our visual screen tests are for general informational purposes and do not replace professional hardware diagnostics.
+            {t('footerDisclaimer', 'WhiteScreen.vip is an independent online utility.')}
           </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useMemo, useRef, useState } from 'react'
+import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Search, X } from 'lucide-react'
@@ -8,19 +8,22 @@ import { cn } from '@/lib/utils'
 import { TOOLS, toolPath, type Tool } from '@/lib/tools'
 import { getCategory } from '@/lib/tool-categories'
 import { ToolIcon } from './tool-card'
-import { useTranslation } from '@/lib/i18n'
+import { useTranslation, type LanguageCode } from '@/lib/i18n'
 import { getLocalizedCategory, getLocalizedTool } from '@/lib/tool-translations'
 
 const MAX_RESULTS = 8
 
-export function searchTools(query: string): Tool[] {
-  const terms = query.toLowerCase().trim().split(/\s+/).filter(Boolean)
+export function searchTools(query: string, language: LanguageCode = 'en'): Tool[] {
+  const terms = query.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean)
   if (terms.length === 0) return []
   const scored = TOOLS.map((tool) => {
-    const name = tool.name.toLowerCase()
-    const category = getCategory(tool.category).name.toLowerCase()
-    const keywords = tool.keywords.join(' ').toLowerCase()
-    const description = tool.description.toLowerCase()
+    // Match both the English and the localized text so searches work in every language.
+    const localized = getLocalizedTool(tool, language)
+    const localizedCategory = getLocalizedCategory(getCategory(tool.category), language)
+    const name = `${localized.name} ${tool.name}`.toLocaleLowerCase()
+    const category = `${localizedCategory.name} ${getCategory(tool.category).name}`.toLocaleLowerCase()
+    const keywords = tool.keywords.join(' ').toLocaleLowerCase()
+    const description = `${localized.description} ${tool.description}`.toLocaleLowerCase()
     let score = 0
     for (const term of terms) {
       if (name.includes(term)) score += name.startsWith(term) ? 6 : 4
@@ -61,12 +64,22 @@ export function ToolSearch({
   const [activeIndex, setActiveIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
 
+  // Close the results panel when the user clicks or taps outside the search box.
+  useEffect(() => {
+    if (!isOpen) return
+    const handlePointer = (event: PointerEvent) => {
+      if (!containerRef.current?.contains(event.target as Node)) setIsOpen(false)
+    }
+    document.addEventListener('pointerdown', handlePointer)
+    return () => document.removeEventListener('pointerdown', handlePointer)
+  }, [isOpen])
+
   const resolvedPlaceholder = placeholder ?? t('searchTools', 'Search tools, e.g. "dead pixel"')
 
   const results = useMemo(() => {
     if (!query.trim()) return []
-    return searchTools(query).slice(0, MAX_RESULTS)
-  }, [query])
+    return searchTools(query, language).slice(0, MAX_RESULTS)
+  }, [query, language])
 
   const showPanel = isOpen && query.trim().length > 0
 

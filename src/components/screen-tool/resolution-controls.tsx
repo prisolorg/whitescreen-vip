@@ -79,7 +79,7 @@ export function ResolutionControls({ activeHex, activeName, uploadedImageUrl, cl
     const validHeight = Math.min(MAX_DIMENSION, Math.max(MIN_DIMENSION, height || 1080))
 
     if (validWidth <= 0 || validHeight <= 0) {
-      setErrorMsg('Please specify dimensions between 1 and 8192 px.')
+      setErrorMsg(t('errDimensions', 'Please specify dimensions between 1 and 8192 px.'))
       return
     }
 
@@ -97,7 +97,7 @@ export function ResolutionControls({ activeHex, activeName, uploadedImageUrl, cl
       canvas.toBlob(
         (blob) => {
           if (!blob) {
-            setErrorMsg('Failed to create image blob.')
+            setErrorMsg(t('errMemory', 'Memory error: could not create the image. Try smaller dimensions.'))
             setIsDownloading(false)
             return
           }
@@ -135,7 +135,13 @@ export function ResolutionControls({ activeHex, activeName, uploadedImageUrl, cl
         const img = new Image()
         img.crossOrigin = 'anonymous'
         img.onload = () => {
-          ctx.drawImage(img, 0, 0, validWidth, validHeight)
+          // Match the preview (object-contain on black) instead of stretching the image.
+          const scale = Math.min(validWidth / img.naturalWidth, validHeight / img.naturalHeight)
+          const drawW = img.naturalWidth * scale
+          const drawH = img.naturalHeight * scale
+          ctx.fillStyle = '#000000'
+          ctx.fillRect(0, 0, validWidth, validHeight)
+          ctx.drawImage(img, (validWidth - drawW) / 2, (validHeight - drawH) / 2, drawW, drawH)
           processBlob(canvas)
         }
         img.onerror = () => {
@@ -151,7 +157,7 @@ export function ResolutionControls({ activeHex, activeName, uploadedImageUrl, cl
         processBlob(canvas)
       }
     } catch {
-      setErrorMsg('Error generating image. Try smaller dimensions.')
+      setErrorMsg(t('errGeneration', 'Image generation error. For 8K on mobile, try 4K or 1080p.'))
       setIsDownloading(false)
     }
   }
@@ -246,7 +252,7 @@ export function ResolutionControls({ activeHex, activeName, uploadedImageUrl, cl
           {/* Format Selector */}
           <div className="flex flex-col gap-1">
             <label htmlFor="res-format" className="text-[11px] font-medium text-muted-foreground">
-              Format
+              {t('format', 'Format')}
             </label>
             <select
               id="res-format"
@@ -254,7 +260,7 @@ export function ResolutionControls({ activeHex, activeName, uploadedImageUrl, cl
               onChange={(e) => setFormat(e.target.value as 'png' | 'jpeg')}
               className="h-9 rounded-lg border bg-background px-2 font-mono text-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <option value="png">PNG (lossless)</option>
+              <option value="png">{t('pngLossless', 'PNG (lossless)')}</option>
               <option value="jpeg">JPG</option>
             </select>
           </div>

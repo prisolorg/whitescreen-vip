@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: 'WhiteScreen.vip',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://whitescreen.vip',
+  url: (import.meta.env.VITE_SITE_URL as string | undefined) ?? 'https://whitescreen.vip',
   title: 'WhiteScreen.vip – Free Screen Tests, Effects & Screensavers',
   description:
     'Free browser-based screen tools: fullscreen color screens, dead pixel and monitor tests, screensavers, timers, visual effects and harmless fake update screens. No install or sign-up.',
