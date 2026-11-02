@@ -9,6 +9,7 @@ import { SCREEN_COLORS, isLightColor } from '@/lib/screen-colors'
 import { CustomColorPicker } from './custom-color-picker'
 import { ResolutionControls } from './resolution-controls'
 import { useTranslation } from '@/lib/i18n'
+import { STAGE_SIZE, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
 
 type FullscreenDocument = Document & {
   webkitFullscreenElement?: Element | null
@@ -220,6 +221,7 @@ export function ScreenTool({ initialColorId = 'white', title, intro }: ScreenToo
     : 'bg-white/10 ring-white/20 text-white'
 
   return (
+    <>
     <div className="relative">
       {/* The stage: a large live preview that also becomes the fullscreen element. */}
       <div
@@ -234,7 +236,7 @@ export function ScreenTool({ initialColorId = 'white', title, intro }: ScreenToo
           'relative flex items-center justify-center overflow-hidden transition-colors duration-150',
           isFullscreen
             ? 'h-full w-full'
-            : 'h-[40svh] min-h-[260px] w-full rounded-2xl border sm:h-[52vh] md:h-[58vh] md:max-h-[680px] lg:h-[calc(100svh-370px)] lg:min-h-[420px] lg:max-h-[620px]',
+            : STAGE_SIZE,
           isFallbackFullscreen && 'fixed inset-0 z-[100] h-dvh max-h-none rounded-none border-0',
           isFullscreen && !isHintVisible && 'cursor-none',
         )}
@@ -290,31 +292,29 @@ export function ScreenTool({ initialColorId = 'white', title, intro }: ScreenToo
       {!isFullscreen && (
         <>
           {/* Title and intro sit on the stage so the screen itself starts at the top of the page. */}
-          <div
-            className={cn(
-              'pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3 sm:left-7 sm:right-7 sm:top-6',
-              overlayTextClass,
-              uploadedImage && '[text-shadow:0_1px_3px_rgb(0_0_0/0.6)]',
-            )}
-          >
-            <div className="flex min-w-0 flex-col gap-1.5">
-              <h1 id="hero-heading" className="text-balance text-2xl font-extrabold tracking-tight sm:text-4xl lg:text-[44px] lg:leading-tight">
-                {title}
-              </h1>
-              {intro && <p className="hidden max-w-md text-pretty text-sm leading-relaxed opacity-85 sm:block lg:text-[15px]">{intro}</p>}
-            </div>
-            <div className="flex shrink-0 flex-col items-end gap-2">
-              <span className={cn('rounded-full px-3 py-1 font-mono text-xs font-semibold ring-1', overlayChipClass)}>
-                {uploadedImage ? t('uploadedImage', 'Uploaded Image') : activeHex}
-              </span>
-              <span className={cn('hidden rounded-full px-3 py-1 text-xs font-medium ring-1 lg:inline', overlayChipClass)}>
-                {t('stageHint', 'F fullscreen · ← → change color')}
-              </span>
-            </div>
-          </div>
+          <StageTitle
+            title={title}
+            intro={intro}
+            tone={isLight ? 'light' : 'dark'}
+            aside={
+              <>
+                <span className={cn('rounded-full px-3 py-1 font-mono text-xs font-semibold ring-1', overlayChipClass)}>
+                  {uploadedImage ? t('uploadedImage', 'Uploaded Image') : activeHex}
+                </span>
+                <span className={cn('hidden rounded-full px-3 py-1 text-xs font-medium ring-1 lg:inline', overlayChipClass)}>
+                  {t('stageHint', 'F fullscreen · ← → change color')}
+                </span>
+              </>
+            }
+          />
+        </>
+      )}
+    </div>
 
-          {/* Control dock: floats on the stage from tablet up, sits under it on phones. */}
-          <div className="mt-3 flex flex-col gap-2.5 rounded-2xl border bg-background/95 p-2.5 shadow-lg backdrop-blur md:absolute md:inset-x-4 md:bottom-4 md:mt-0 lg:inset-x-auto lg:left-1/2 lg:w-max lg:max-w-[calc(100%-2rem)] lg:-translate-x-1/2 lg:flex-row lg:items-center lg:gap-3 lg:pl-4">
+      {/* Control dock under the stage, the same on every screen page. */}
+      {!isFullscreen && (
+        <StageDock onFullscreen={() => void enterFullscreen()}>
+          <div className="flex flex-col gap-2.5 lg:flex-row lg:items-center lg:gap-3">
             <div
               role="group"
               aria-label={t('screenColors', 'Screen Colors')}
@@ -393,8 +393,8 @@ export function ScreenTool({ initialColorId = 'white', title, intro }: ScreenToo
               />
             </div>
           </div>
-        </>
+        </StageDock>
       )}
-    </div>
+    </>
   )
 }

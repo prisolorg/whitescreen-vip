@@ -3,12 +3,12 @@ import { RouterProvider, useRouter } from '@/lib/next-shim'
 import { I18nProvider, useTranslation } from '@/lib/i18n'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
-import { HomePage } from '@/pages/HomePage'
-import { ColorPage } from '@/pages/ColorPage'
 import { getColorBySlug } from '@/lib/screen-colors'
 import { TOOLS } from '@/lib/tools'
-import { getPageSeo, jsonLdText, type PageSeo } from '@/lib/seo'
+import type { PageSeo } from '@/lib/seo'
 
+const HomePage = lazy(() => import('@/pages/HomePage').then(m => ({ default: m.HomePage })))
+const ColorPage = lazy(() => import('@/pages/ColorPage').then(m => ({ default: m.ColorPage })))
 const ToolsPage = lazy(() => import('@/pages/ToolsPage').then(m => ({ default: m.ToolsPage })))
 const ToolDetailPage = lazy(() => import('@/pages/ToolDetailPage').then(m => ({ default: m.ToolDetailPage })))
 const AboutPage = lazy(() => import('@/pages/AboutPage').then(m => ({ default: m.AboutPage })))
@@ -48,7 +48,7 @@ function setMeta(selector: string, attr: 'name' | 'property', key: string, conte
   el.setAttribute('content', content)
 }
 
-function applySeo(seo: PageSeo) {
+function applySeo(seo: PageSeo, jsonLdText: (data: unknown) => string) {
   document.title = seo.title
   setMeta('meta[name="description"]', 'name', 'description', seo.description)
   setMeta('meta[name="robots"]', 'name', 'robots', seo.robots)
@@ -91,13 +91,24 @@ function AppContent() {
 
   // Keep <head> in sync on client-side navigation; the prerendered HTML already has it for the first load.
   useEffect(() => {
-    applySeo(getPageSeo(cleanPath, search, language))
+    // The SEO module pulls in every page's metadata, so it loads on demand instead of in the main bundle.
+    let cancelled = false
+    void import('@/lib/seo').then(({ getPageSeo, jsonLdText }) => {
+      if (!cancelled) applySeo(getPageSeo(cleanPath, search, language), jsonLdText)
+    })
+    return () => {
+      cancelled = true
+    }
   }, [cleanPath, search, language])
 
   let pageContent: React.ReactNode
 
   if (cleanPath === '/') {
-    pageContent = <HomePage />
+    pageContent = (
+      <Suspense fallback={<PageLoading />}>
+        <HomePage />
+      </Suspense>
+    )
   } else if (cleanPath === '/tools') {
     pageContent = (
       <Suspense fallback={<PageLoading />}>
@@ -197,7 +208,11 @@ function AppContent() {
     const color = getColorBySlug(slug)
 
     if (color) {
-      pageContent = <ColorPage color={color} />
+      pageContent = (
+        <Suspense fallback={<PageLoading />}>
+          <ColorPage color={color} />
+        </Suspense>
+      )
     } else {
       const tool = TOOLS.find((t) => t.slug === slug)
       if (tool) {

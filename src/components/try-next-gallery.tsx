@@ -196,37 +196,3 @@ export function TryNextGallery({
     </section>
   )
 }
-
-/** One scrollable row of related tools, for showing next steps above the fold on tool pages. */
-export function TryNextStrip({ currentSlug, className }: { currentSlug: string; className?: string }) {
-  const { t, language } = useTranslation()
-  const current = getTool(currentSlug)
-  const seen = new Set<string>([current.slug])
-  const tools: Tool[] = []
-  for (const tool of [...current.related.map(getTool), ...tilesFor(tabOf(current), current.slug)]) {
-    if (seen.has(tool.slug)) continue
-    seen.add(tool.slug)
-    tools.push(tool)
-  }
-
-  return (
-    <nav aria-label={t('tryNext', 'Try next')} className={cn('flex items-center gap-2', className)}>
-      <span className="hidden shrink-0 text-xs font-semibold uppercase tracking-wider text-muted-foreground sm:inline">
-        {t('tryNext', 'Try next')}
-      </span>
-      <ul className="-mx-1 flex min-w-0 gap-2 overflow-x-auto px-1 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {tools.slice(0, 8).map((tool) => (
-          <li key={tool.slug} className="shrink-0">
-            <Link
-              href={toolPath(tool.slug)}
-              className="flex h-10 items-center gap-2 rounded-full border bg-card py-1 pl-1 pr-3.5 text-[13px] font-medium transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2"
-            >
-              <ToolThumb tool={tool} className="h-8 w-11 rounded-full" />
-              {getLocalizedTool(tool, language).name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  )
-}

@@ -75,7 +75,7 @@ export function PatternCycler({ label, patterns, autoCycle, showGridOption, note
       style={{ background: current.background, backgroundSize: current.backgroundSize }}
       controls={
         <>
-          <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Patterns">
+          <div className="-mx-1 flex items-center gap-2 overflow-x-auto px-1 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:shrink-0" role="group" aria-label="Patterns">
             <ActionButton onClick={() => step(-1)} aria-label={t('prevPattern', 'Previous pattern')} className="px-2.5">
               <ChevronLeft aria-hidden="true" />
             </ActionButton>
@@ -127,7 +127,7 @@ export function PatternCycler({ label, patterns, autoCycle, showGridOption, note
               {showGridOption && <Toggle label={t('gridOverlay', 'Grid overlay')} checked={showGrid} onChange={setShowGrid} />}
             </ControlRow>
           )}
-          <p className="text-sm text-muted-foreground">
+          <p className="hidden text-sm text-muted-foreground sm:block">
             {note ?? t('patternCyclerHint', 'Click the screen or use the arrow keys to switch patterns.')}
           </p>
         </>

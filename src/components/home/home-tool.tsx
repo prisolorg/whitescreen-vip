@@ -19,6 +19,7 @@ import { cn } from '@/lib/utils'
 import { SCREEN_COLORS, isLightColor } from '@/lib/screen-colors'
 import { CustomColorPicker } from '@/components/screen-tool/custom-color-picker'
 import { useTranslation } from '@/lib/i18n'
+import { STAGE_SIZE, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
 
 type FullscreenDocument = Document & {
   webkitFullscreenElement?: Element | null
@@ -391,23 +392,12 @@ export function HomeTool() {
   }
 
   return (
-    <section aria-labelledby="main-heading" className="w-full pt-3 pb-8 sm:pt-4 sm:pb-10">
-      <div className="mx-auto max-w-5xl px-3 sm:px-6">
-        {/* Compact, No-Wasted-Space Heading */}
-        <div className="text-center mb-3 sm:mb-4">
-          <h1
-            id="main-heading"
-            className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground"
-          >
-            {t('homeTitle', 'White Screen Online')}
-          </h1>
-          <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
-            {t('homeSubtitle', 'Open a fullscreen white screen, switch colors, and download white screen images for free.')}
-          </p>
-        </div>
-
-        {/* Screen Tool Card Container */}
-        <div className="rounded-2xl border border-border bg-card p-2.5 sm:p-4 shadow-sm">
+    <section aria-labelledby="screen-heading" className="w-full pt-3 pb-4 sm:pt-4">
+      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-3 sm:px-6">
+        {/* Same height as the breadcrumb row on other screen pages, so the stage never shifts between pages. */}
+        <p className="text-xs text-muted-foreground sm:text-sm">{t('freeClientSide', '100% Free · Client-Side')}</p>
+        <div>
+          <div className="relative">
           {/* Main White Screen Preview Area */}
           <div
             ref={screenRef}
@@ -421,8 +411,8 @@ export function HomeTool() {
               'relative flex items-center justify-center overflow-hidden transition-colors duration-150',
               isFullscreen
                 ? 'h-full w-full'
-                : 'h-[40vh] sm:h-[46vh] lg:h-[420px] min-h-[250px] max-h-[520px] w-full rounded-xl border border-border/80',
-              isFallbackFullscreen && 'fixed inset-0 z-[100] h-dvh rounded-none border-0',
+                : STAGE_SIZE,
+              isFallbackFullscreen && 'fixed inset-0 z-[100] h-dvh max-h-none rounded-none border-0',
               isFullscreen && !isHintVisible && 'cursor-none',
             )}
           >
@@ -482,114 +472,105 @@ export function HomeTool() {
                   <span>{t('openFullscreen', 'Open fullscreen')}</span>
                 </button>
 
-                {/* Subtitle tag */}
-                <span
-                  className={cn(
-                    'absolute bottom-2.5 left-3 font-mono text-[11px] opacity-75 backdrop-blur-xs px-2 py-0.5 rounded select-none',
-                    overlayTextClass,
-                  )}
-                >
-                  {uploadedImage ? t('customImage', 'Custom Image') : `${activeName} · ${activeHex}`}
-                  {brightness < 100 ? ` (${brightness}%)` : ''}
-                </span>
               </>
             )}
           </div>
 
-          {/* Controls Bar Immediately Above or Below the Preview */}
-          <div className="pt-3 space-y-3">
-            {/* Color Palette (12 Major Colors + Custom) */}
-            <div>
-              <div className="flex items-center justify-between pb-1.5 px-0.5">
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  {t('screenColors', 'Screen Colors')}
-                </span>
-                <span className="text-[11px] text-muted-foreground hidden sm:inline">
-                  {t('clickSwatch', 'Click any swatch to change screen')}
-                </span>
-              </div>
-              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                {SCREEN_COLORS.map((color, index) => {
-                  const isSelected = selectedId === color.id && !uploadedImage
-                  return (
-                    <button
-                      key={color.id}
-                      type="button"
-                      onClick={() => {
-                        clearImage()
-                        setSelectedId(color.id)
-                      }}
-                      title={`${t(color.id, color.name)} (${index + 1})`}
-                      aria-label={t(color.id, color.name)}
-                      aria-pressed={isSelected}
-                      className={cn(
-                        'group flex h-8 sm:h-9 items-center gap-1.5 rounded-lg border bg-background pl-1.5 pr-2.5 text-xs font-medium transition-all shadow-2xs hover:bg-accent shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2',
-                        isSelected &&
-                          'border-primary bg-primary/10 text-primary font-semibold ring-1 ring-primary/40',
-                      )}
-                    >
-                      <span
-                        className="flex size-4 sm:size-5 items-center justify-center rounded-md ring-1 ring-black/15 shrink-0"
-                        style={{ backgroundColor: color.hex }}
-                      >
-                        {isSelected && (
-                          <Check
-                            className={cn(
-                              'size-3',
-                              isLightColor(color.hex) ? 'text-black' : 'text-white',
-                            )}
-                            aria-hidden="true"
-                          />
-                        )}
-                      </span>
-                      <span className="truncate">{t(color.id, color.name)}</span>
-                    </button>
-                  )
-                })}
+            {!isFullscreen && (
+              <StageTitle
+                title={t('homeTitle', 'White Screen Online')}
+                intro={t('homeSubtitle', 'Open a fullscreen white screen, switch colors, and download white screen images for free.')}
+                tone={isLight ? 'light' : 'dark'}
+                aside={
+                  <>
+                    <span className={cn('rounded-full px-3 py-1 font-mono text-xs font-semibold ring-1', overlayChipClass)}>
+                      {uploadedImage ? t('customImage', 'Custom Image') : activeHex}
+                      {brightness < 100 ? ` · ${brightness}%` : ''}
+                    </span>
+                    <span className={cn('hidden rounded-full px-3 py-1 text-xs font-medium ring-1 lg:inline', overlayChipClass)}>
+                      {t('stageHint', 'F fullscreen · ← → change color')}
+                    </span>
+                  </>
+                }
+              />
+            )}
+          </div>
 
-                {/* Custom Color Picker */}
-                <CustomColorPicker
-                  value={customHex}
-                  isSelected={!preset && !uploadedImage}
-                  onChange={(hex) => {
-                    clearImage()
-                    setCustomHex(hex)
-                    setSelectedId('custom')
-                  }}
-                  onSelect={() => {
-                    clearImage()
-                    setSelectedId('custom')
-                  }}
-                />
-
-                {/* Optional Image Upload */}
-                <label className="inline-flex h-8 sm:h-9 items-center gap-1.5 rounded-lg border bg-background px-2.5 text-xs font-medium transition-colors hover:bg-accent cursor-pointer shadow-2xs">
-                  <ImageIcon className="size-3.5 text-muted-foreground" aria-hidden="true" />
-                  <span>{uploadedImage ? t('changeImage', 'Change Image') : t('uploadImage', 'Image')}</span>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className="sr-only"
-                    onChange={handleImageUpload}
-                  />
-                </label>
-
-                {uploadedImage && (
+          {/* Controls dock under the stage, the same on every screen page. */}
+          {!isFullscreen && (
+          <StageDock onFullscreen={() => void enterFullscreen()}>
+          <div className="space-y-3">
+            <div className="flex flex-col gap-2.5 lg:flex-row lg:flex-wrap lg:items-center lg:gap-3">
+            {/* Color dots, custom color and image upload: the same row as the color screen pages */}
+            <div
+              role="group"
+              aria-label={t('screenColors', 'Screen Colors')}
+              className="-mx-1 flex min-w-0 items-center gap-2 overflow-x-auto px-1 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+              {SCREEN_COLORS.map((color, index) => {
+                const isSelected = selectedId === color.id && !uploadedImage
+                const name = t(color.id, color.name)
+                return (
                   <button
+                    key={color.id}
                     type="button"
-                    onClick={clearImage}
-                    className="inline-flex h-8 sm:h-9 items-center gap-1 rounded-lg border border-destructive/30 bg-destructive/10 px-2 text-xs font-medium text-destructive hover:bg-destructive/20"
-                    title={t('removeImage', 'Remove image')}
+                    onClick={() => {
+                      clearImage()
+                      setSelectedId(color.id)
+                    }}
+                    title={`${name} (${index + 1})`}
+                    aria-label={name}
+                    aria-pressed={isSelected}
+                    className={cn(
+                      'flex size-9 shrink-0 items-center justify-center rounded-full ring-1 ring-inset ring-black/15 transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 lg:size-8',
+                      isSelected && 'ring-2 ring-offset-2 ring-blue-600 ring-offset-background',
+                    )}
+                    style={{ backgroundColor: color.hex }}
                   >
-                    <Trash2 className="size-3.5" aria-hidden="true" />
-                    <span className="text-[11px]">{t('clear', 'Clear')}</span>
+                    {isSelected && (
+                      <Check className={cn('size-4', isLightColor(color.hex) ? 'text-black' : 'text-white')} aria-hidden="true" />
+                    )}
                   </button>
-                )}
-              </div>
+                )
+              })}
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <CustomColorPicker
+                value={customHex}
+                isSelected={!preset && !uploadedImage}
+                onChange={(hex) => {
+                  clearImage()
+                  setCustomHex(hex)
+                  setSelectedId('custom')
+                }}
+                onSelect={() => {
+                  clearImage()
+                  setSelectedId('custom')
+                }}
+              />
+              <label
+                className="inline-flex h-10 cursor-pointer items-center gap-1.5 rounded-xl border bg-background px-3 text-sm font-medium transition-colors hover:bg-accent focus-within:ring-2 focus-within:ring-ring"
+                title={uploadedImage ? t('changeImage', 'Change Image') : t('uploadImage', 'Image')}
+              >
+                <ImageIcon className="size-4 text-muted-foreground" aria-hidden="true" />
+                <span className="sr-only xl:not-sr-only">{uploadedImage ? t('changeImage', 'Change Image') : t('uploadImage', 'Image')}</span>
+                <input type="file" accept="image/*" className="sr-only" onChange={handleImageUpload} />
+              </label>
+              {uploadedImage && (
+                <button
+                  type="button"
+                  onClick={clearImage}
+                  className="inline-flex h-10 items-center rounded-xl border border-destructive/30 bg-destructive/10 px-2.5 text-destructive hover:bg-destructive/20"
+                  aria-label={t('removeImage', 'Remove image')}
+                  title={t('removeImage', 'Remove image')}
+                >
+                  <Trash2 className="size-4" aria-hidden="true" />
+                </button>
+              )}
             </div>
 
             {/* Action Bar: Fullscreen + Download Button + Settings Toggle */}
-            <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-border/60">
+            <div className="flex flex-wrap items-center gap-2">
               <div className="flex flex-wrap items-center gap-2">
                 {/* Primary Download White Screen Button */}
                 <button
@@ -617,7 +598,7 @@ export function HomeTool() {
                     <>
                       <Download className="size-4" aria-hidden="true" />
                       <span>
-                        {t('downloadColorScreen', 'Download {color} Screen').replace('{color}', activeName)}
+                        {t('downloadFormat', 'Download {format}').replace('{format}', formatLabel)}
                       </span>
                     </>
                   )}
@@ -642,15 +623,6 @@ export function HomeTool() {
                   />
                 </button>
 
-                {/* Open Fullscreen Button */}
-                <button
-                  type="button"
-                  onClick={() => void enterFullscreen()}
-                  className="inline-flex h-9 sm:h-10 items-center gap-1.5 rounded-xl border border-border bg-background px-3 sm:px-4 text-xs sm:text-sm font-medium hover:bg-accent transition-colors shadow-2xs"
-                >
-                  <Maximize className="size-3.5" aria-hidden="true" />
-                  <span>{t('fullscreen', 'Fullscreen')}</span>
-                </button>
               </div>
 
               {/* Advanced Settings Toggle (Brightness & Temperature) */}
@@ -673,6 +645,8 @@ export function HomeTool() {
                   </span>
                 )}
               </button>
+            </div>
+
             </div>
 
             {/* Collapsible Resolution & Download Customization Panel */}
@@ -882,20 +856,8 @@ export function HomeTool() {
             )}
           </div>
 
-          {/* Minimal Keyboard Shortcuts Footer */}
-          <div className="pt-2.5 px-0.5 flex flex-wrap items-center justify-between gap-2 text-[11px] text-muted-foreground border-t border-border/40 mt-3">
-            <div className="flex items-center gap-1.5">
-              <span className="font-semibold text-foreground/80">{t('shortcuts', 'Shortcuts')}:</span>
-              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">F</kbd> {t('shortcutF', 'fullscreen')}</span>
-              <span>·</span>
-              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">1</kbd>–<kbd className="rounded border bg-muted px-1 py-0.2 font-mono">9</kbd> {t('shortcutNumbers', 'pick color')}</span>
-              <span>·</span>
-              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">←</kbd><kbd className="rounded border bg-muted px-1 py-0.2 font-mono ml-0.5">→</kbd> {t('shortcutArrows', 'cycle')}</span>
-              <span>·</span>
-              <span><kbd className="rounded border bg-muted px-1 py-0.2 font-mono">Esc</kbd> {t('shortcutEsc', 'exit')}</span>
-            </div>
-            <div className="font-mono text-[10px]">{t('freeClientSide', '100% Free · Client-Side')}</div>
-          </div>
+          </StageDock>
+          )}
         </div>
       </div>
     </section>

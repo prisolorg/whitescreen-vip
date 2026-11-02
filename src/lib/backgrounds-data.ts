@@ -75,15 +75,7 @@ export type BackgroundItem = {
   }[]
 }
 
-export const BACKGROUND_CATEGORIES: { id: BackgroundCategory | 'all'; label: string; description: string }[] = [
-  { id: 'all', label: 'All Backgrounds', description: 'Browse our complete library of solid, gradient, and studio screen backgrounds.' },
-  { id: 'solid', label: 'Solid Colors', description: 'Pure uncompressed color screens for display testing, tracing, video lighting, and clean wallpapers.' },
-  { id: 'gradient', label: 'Gradients', description: 'Smooth multi-stop aesthetic gradients to evaluate display color banding and elevate creative desktops.' },
-  { id: 'video-call', label: 'Video Call', description: 'Professional neutral and blurred virtual backgrounds designed for Zoom, Google Meet, and Microsoft Teams.' },
-  { id: 'dark-oled', label: 'Dark & OLED', description: 'True 0% pitch black and near-black carbon shades that save battery and deliver infinite contrast on OLED panels.' },
-  { id: 'minimal', label: 'Aesthetic & Minimal', description: 'Earthy, pastel, and low-contrast palettes designed to reduce eye strain during prolonged writing and reading.' },
-  { id: 'neon', label: 'Neon & Glow', description: 'Vibrant cyberpunk luminescent backgrounds engineered to evaluate monitor response time, motion ghosting, and HDR pop.' },
-]
+export { BACKGROUND_CATEGORIES } from './nav-links'
 
 export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
   // 1. White Background

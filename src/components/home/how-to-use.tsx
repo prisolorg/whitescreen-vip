@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Section } from '@/components/section'
 import { getHomeContent } from '@/lib/home-content'
 import { useTranslation } from '@/lib/i18n'
@@ -30,21 +31,21 @@ export function HowToUse() {
       <div className="mt-8 rounded-xl border bg-card p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs sm:text-sm">
         <p className="text-muted-foreground">
           Looking for detailed step-by-step instructions? Read our in-depth tutorials on{' '}
-          <a href="/guides/clean-laptop-screen" className="font-semibold text-primary hover:underline">
+          <Link href="/guides/clean-laptop-screen" className="font-semibold text-primary hover:underline">
             monitor cleaning
-          </a>{' '}
+          </Link>{' '}
           and{' '}
-          <a href="/guides/dead-pixel-test" className="font-semibold text-primary hover:underline">
+          <Link href="/guides/dead-pixel-test" className="font-semibold text-primary hover:underline">
             dead pixel diagnostics
-          </a>.
+          </Link>.
         </p>
-        <a
+        <Link
           href="/guides"
           className="inline-flex items-center gap-1 font-semibold text-primary hover:underline shrink-0"
         >
           <span>All 10 display guides</span>
           <span>→</span>
-        </a>
+        </Link>
       </div>
     </Section>
   )

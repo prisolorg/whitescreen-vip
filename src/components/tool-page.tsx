@@ -2,7 +2,8 @@ import type { ReactNode } from 'react'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { FaqList } from '@/components/faq-list'
 import { JsonLd } from '@/components/json-ld'
-import { TryNextGallery, TryNextStrip } from '@/components/try-next-gallery'
+import { TryNextGallery } from '@/components/try-next-gallery'
+import { StageHeadingContext } from '@/components/screen-stage/stage-parts'
 import { RichText, plainText } from '@/components/rich-text'
 import { getLearnMoreLinks } from '@/lib/learn-more'
 import Link from 'next/link'
@@ -68,8 +69,8 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
       <JsonLd data={appSchema} />
       <JsonLd data={faqSchema} />
 
-      <section aria-labelledby="tool-heading" className="pb-10 pt-4 sm:pt-6">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <section aria-labelledby="screen-heading" className="pb-8 pt-3 sm:pt-4">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-3 sm:px-6">
           <Breadcrumbs
             items={[
               { label: t('home', 'Home'), href: '/' },
@@ -77,20 +78,26 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
               { label: localizedTool.name, href: toolPath(slug) },
             ]}
           />
-          <div className="mb-4 mt-3 max-w-3xl">
-            <h1 id="tool-heading" className="text-balance text-2xl font-bold tracking-tight sm:text-4xl">
-              {localizedTool.name}
-            </h1>
-            <p className="mt-2 line-clamp-2 text-pretty leading-relaxed text-muted-foreground sm:line-clamp-none">
-              {language === 'en' ? <RichText text={content.intro} /> : localizedTool.description}
-            </p>
-          </div>
-          {/* Next steps stay visible above the fold, before the tool itself. */}
-          <TryNextStrip currentSlug={slug} className="mb-4" />
-          {children}
-          <TryNextGallery currentSlug={slug} className="mt-8" />
+          {/* The stage shows the page title on itself, like the color screens. */}
+          <StageHeadingContext.Provider value={{ title: localizedTool.name, intro: localizedTool.description }}>
+            {children}
+          </StageHeadingContext.Provider>
+          <TryNextGallery currentSlug={slug} className="mt-2" />
         </div>
       </section>
+
+      {language === 'en' && (
+        <section aria-labelledby="about-heading" className="border-t py-14">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6">
+            <h2 id="about-heading" className="text-2xl font-semibold tracking-tight">
+              About the {localizedTool.name}
+            </h2>
+            <p className="mt-4 text-pretty text-lg leading-relaxed text-foreground/85">
+              <RichText text={content.intro} />
+            </p>
+          </div>
+        </section>
+      )}
 
       <section aria-labelledby="how-heading" className="border-y bg-muted/40 py-14">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2">

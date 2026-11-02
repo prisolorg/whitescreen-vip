@@ -17,6 +17,9 @@ export const footerNav = [
   { label: 'Disclaimer', href: '/disclaimer' },
 ] as const
 
+/** Absolute URL for an internal path, with the trailing slash every page URL uses. */
 export function absoluteUrl(path = '/') {
-  return new URL(path, siteConfig.url).toString()
+  const url = new URL(path, siteConfig.url)
+  if (!url.pathname.endsWith('/') && !/\.[a-z0-9]+$/i.test(url.pathname)) url.pathname += '/'
+  return url.toString()
 }

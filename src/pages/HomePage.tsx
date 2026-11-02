@@ -49,7 +49,7 @@ export function HomePage() {
       <JsonLd data={webApplicationSchema} />
       <JsonLd data={faqSchema} />
       <HomeTool />
-      <div className="mx-auto max-w-5xl px-3 pb-10 sm:px-6">
+      <div className="mx-auto max-w-7xl px-3 pb-10 pt-2 sm:px-6">
         <TryNextGallery currentSlug="white-screen" />
       </div>
       {isEnglish ? (

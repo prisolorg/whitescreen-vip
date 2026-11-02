@@ -12,9 +12,7 @@ import { useTranslation, LANGUAGES, type LanguageCode } from '@/lib/i18n'
 import { isPillarPage } from '@/lib/locale-routing'
 import { getLocalizedTool } from '@/lib/tool-translations'
 import { ToolSearch } from './tool-search'
-import { GUIDES, HEADER_GUIDES } from '@/lib/guides-content'
-import { BACKGROUND_CATEGORIES } from '@/lib/backgrounds-data'
-import { SCREEN_PROBLEMS } from '@/lib/screen-problems-data'
+import { BACKGROUND_CATEGORIES, HEADER_GUIDES, PROBLEM_NAV_LINKS } from '@/lib/nav-links'
 
 type DesktopNavGroup = {
   id: string
@@ -330,7 +328,7 @@ export function DesktopNav() {
                 </Link>
               </div>
               <ul className="grid grid-cols-2 gap-0.5">
-                {SCREEN_PROBLEMS.map((prob) => (
+                {PROBLEM_NAV_LINKS.map((prob) => (
                   <li key={prob.slug}>
                     <Link
                       href={`/screen-problems/${prob.slug}`}
@@ -625,7 +623,7 @@ export function MobileNav() {
                         <span className="text-xs">→</span>
                       </Link>
                     </li>
-                    {SCREEN_PROBLEMS.map((prob) => (
+                    {PROBLEM_NAV_LINKS.map((prob) => (
                       <li key={prob.slug}>
                         <Link
                           href={`/screen-problems/${prob.slug}`}

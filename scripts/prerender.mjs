@@ -7,9 +7,14 @@ import { pathToFileURL } from 'node:url'
 const dist = path.resolve('dist')
 const ssr = await import(pathToFileURL(path.resolve('dist-ssr/entry-server.js')).href)
 const {
-  render, getPageSeo, renderHeadTags, getAllRoutes, getAliasRoutes, getIndexableRoutes, isEnglishOnlyPath,
+  render, getPageSeo, renderHeadTags, getAllRoutes, getAliasRoutes, getIndexableRoutes, isEnglishOnlyPath, LEGACY_REDIRECTS,
   SUPPORTED_LOCALES, getLocalizedPath, SITE_URL,
 } = ssr
+
+// The menu keeps its own short list of problem links; fail the build if it drifts from the data.
+const navProblems = ssr.PROBLEM_NAV_LINKS.map((item) => item.slug).join(',')
+const allProblems = ssr.SCREEN_PROBLEMS.map((item) => item.slug).join(',')
+if (navProblems !== allProblems) throw new Error(`PROBLEM_NAV_LINKS is out of date with SCREEN_PROBLEMS:\n${navProblems}\n${allProblems}`)
 
 const template = await fs.readFile(path.join(dist, 'index.html'), 'utf8')
 const today = new Date().toISOString().slice(0, 10)
@@ -72,6 +77,24 @@ await fs.writeFile(
 
 await fs.writeFile(path.join(dist, 'llms.txt'), buildLlmsTxt())
 
+// 301s from the old WordPress URLs: _redirects (Netlify, Cloudflare Pages), vercel.json (Vercel),
+// and a small redirect page at each old path for hosts without redirect rules (GitHub Pages).
+const redirects = Object.entries(LEGACY_REDIRECTS)
+await fs.writeFile(path.join(dist, '_redirects'), redirects.map(([from, to]) => `${from} ${to} 301`).join('\n') + '\n')
+await fs.writeFile(
+  path.join(dist, 'vercel.json'),
+  JSON.stringify({ trailingSlash: true, redirects: redirects.map(([source, destination]) => ({ source, destination, permanent: true })) }, null, 2),
+)
+for (const [from, to] of redirects) {
+  const target = `${SITE_URL}${to}`
+  const file = path.join(dist, from.replace(/^\/+|\/+$/g, ''), 'index.html')
+  await fs.mkdir(path.dirname(file), { recursive: true })
+  await fs.writeFile(
+    file,
+    `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved</title><link rel="canonical" href="${target}"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${to}"></head><body><p>This page has moved to <a href="${to}">${target}</a>.</p></body></html>\n`,
+  )
+}
+
 function buildLlmsTxt() {
   const { TOOLS, TOOL_CATEGORIES, GUIDES, SCREEN_PROBLEMS, GLOSSARY_ITEMS, siteConfig } = ssr
   const link = (name, href, description) => `- [${name}](${SITE_URL}${href})${description ? `: ${description}` : ''}`
@@ -109,4 +132,4 @@ function buildLlmsTxt() {
   return lines.join('\n')
 }
 
-console.log(`Prerendered ${pages} pages, ${urls.length} sitemap URLs, plus 404.html, robots.txt and llms.txt.`)
+console.log(`Prerendered ${pages} pages, ${urls.length} sitemap URLs, ${redirects.length} legacy redirects, plus 404.html, robots.txt and llms.txt.`)

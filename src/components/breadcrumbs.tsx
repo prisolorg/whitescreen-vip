@@ -34,7 +34,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (
     <nav aria-label="Breadcrumb">
       <JsonLd data={schema} />
-      <ol className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
+      <ol className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
         {localizedItems.map((item, index) => {
           const isLast = index === localizedItems.length - 1
           return (

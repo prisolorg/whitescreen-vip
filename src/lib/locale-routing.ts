@@ -50,8 +50,8 @@ export function extractLocaleAndPath(pathname: string): { lang: LanguageCode; cl
 
 /**
  * Generates a localized pathname preserving anchors/hashes and query strings.
- * English ('en') uses the standard root route e.g. "/" or "/dead-pixel-test".
- * Other locales use prefixed routes e.g. "/es/", "/es/dead-pixel-test".
+ * English ('en') uses the standard root route e.g. "/" or "/dead-pixel-test/".
+ * Other locales use prefixed routes e.g. "/es/", "/es/dead-pixel-test/".
  */
 export function getLocalizedPath(path: string, targetLang: LanguageCode): string {
   if (!path) return targetLang === 'en' ? '/' : `/${targetLang}/`
@@ -70,14 +70,9 @@ export function getLocalizedPath(path: string, targetLang: LanguageCode): string
   const [rawPathname, query] = withoutHash.split('?')
   const { cleanPath } = extractLocaleAndPath(rawPathname)
 
-  let localizedBase: string
-  if (targetLang === 'en') {
-    localizedBase = cleanPath
-  } else if (cleanPath === '/') {
-    localizedBase = `/${targetLang}/`
-  } else {
-    localizedBase = `/${targetLang}${cleanPath}`
-  }
+  // Every page URL ends with a slash, matching the URLs already indexed for whitescreen.vip.
+  const withSlash = cleanPath === '/' ? '/' : `${cleanPath}/`
+  const localizedBase = targetLang === 'en' ? withSlash : `/${targetLang}${withSlash}`
 
   const queryPart = query ? `?${query}` : ''
   const hashPart = hash ? `#${hash}` : ''

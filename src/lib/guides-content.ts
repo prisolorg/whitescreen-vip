@@ -35,14 +35,7 @@ export type GuideArticle = {
   relatedSlugs: string[]
 }
 
-export const HEADER_GUIDES = [
-  { label: 'Dead Pixel Test', slug: 'dead-pixel-test', path: '/guides/dead-pixel-test/' },
-  { label: 'Screen Color Test', slug: 'screen-color-test', path: '/guides/screen-color-test/' },
-  { label: 'Screen Uniformity', slug: 'screen-uniformity-test', path: '/guides/screen-uniformity-test/' },
-  { label: 'Clean Laptop Screen', slug: 'clean-laptop-screen', path: '/guides/clean-laptop-screen/' },
-  { label: 'OLED Burn-In', slug: 'oled-burn-in-prevention', path: '/guides/oled-burn-in-prevention/' },
-  { label: 'Monitor Test', slug: 'monitor-test', path: '/guides/monitor-test/' },
-] as const
+export { HEADER_GUIDES } from './nav-links'
 
 export const GUIDES: readonly GuideArticle[] = [
   // 1. Dead Pixel Test
