@@ -1,4 +1,4 @@
-import { englishSlug, localizeSlug } from './localized-slugs'
+import { getMessages } from './messages'
 
 export type LanguageCode =
   | 'en'
@@ -41,7 +41,7 @@ export function extractLocaleAndPath(pathname: string): { lang: LanguageCode; cl
     return {
       lang,
       // cleanPath is always the English path, whatever language the URL's slug is in.
-      cleanPath: rest === '' ? '/' : translateFirstSegment(rest, (slug) => englishSlug(slug, lang)),
+      cleanPath: rest === '' ? '/' : toEnglishPath(rest, lang),
     }
   }
   const clean = rawPath.replace(/\/+$/, '') || '/'
@@ -51,10 +51,24 @@ export function extractLocaleAndPath(pathname: string): { lang: LanguageCode; cl
   }
 }
 
-/** Applies `map` to the first path segment, e.g. "/white-noise-generator" or "/tools". */
-function translateFirstSegment(path: string, map: (slug: string) => string) {
-  const [, first, ...rest] = path.split('/')
-  return ['', map(first), ...rest].join('/')
+/** English path → path in `lang`: first segment, plus a translated guide slug under /guides/. */
+function toLocalPath(path: string, lang: LanguageCode) {
+  if (lang === 'en') return path
+  const [, first, second, ...rest] = path.split('/')
+  const slugs = getMessages(lang).slugs
+  const localSecond = second && slugs[`${first}/${second}`] ? slugs[`${first}/${second}`] : second
+  return ['', slugs[first] ?? first, ...(second !== undefined ? [localSecond] : []), ...rest].join('/')
+}
+
+/** Path in `lang` → English path (the inverse of toLocalPath). */
+function toEnglishPath(path: string, lang: LanguageCode) {
+  if (lang === 'en') return path
+  const [, first, second, ...rest] = path.split('/')
+  const entries = Object.entries(getMessages(lang).slugs)
+  const englishFirst = entries.find(([key, local]) => !key.includes('/') && local === first)?.[0] ?? first
+  const englishSecond =
+    second !== undefined ? (entries.find(([key, local]) => key.startsWith(`${englishFirst}/`) && local === second)?.[0].split('/')[1] ?? second) : undefined
+  return ['', englishFirst, ...(englishSecond !== undefined ? [englishSecond] : []), ...rest].join('/')
 }
 
 /**
@@ -80,7 +94,7 @@ export function getLocalizedPath(path: string, targetLang: LanguageCode): string
   const { cleanPath } = extractLocaleAndPath(rawPathname)
 
   // Every page URL ends with a slash, matching the URLs already indexed for whitescreen.vip.
-  const localPath = cleanPath === '/' ? '/' : translateFirstSegment(cleanPath, (slug) => localizeSlug(slug, targetLang))
+  const localPath = cleanPath === '/' ? '/' : toLocalPath(cleanPath, targetLang)
   const withSlash = localPath === '/' ? '/' : `${localPath}/`
   const localizedBase = targetLang === 'en' ? withSlash : `/${targetLang}${withSlash}`
 

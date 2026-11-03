@@ -7,4 +7,6 @@ export type ToolContent = {
   steps: string[]
   useCases: { title: string; description: string }[]
   faqs: ToolFaq[]
+  /** Extra explanatory sections under the intro, for tools that need more context. */
+  details?: { heading: string; paragraphs: string[] }[]
 }

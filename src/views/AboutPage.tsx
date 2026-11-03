@@ -18,6 +18,9 @@ export function AboutPage() {
       </ul>
       <h2>{content.offersHeading}</h2>
       <p>{content.offersText}</p>
+      <h2>{content.howHeading}</h2>
+      <p>{content.howText1}</p>
+      <p>{content.howText2}</p>
       <p>
         {content.suggestionText}{' '}
         <Link href="/feedback">{content.sendFeedbackLink}</Link> {content.or}{' '}

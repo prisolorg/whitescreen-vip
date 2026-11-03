@@ -3,9 +3,12 @@
  * (e.g. /es/generador-de-ruido-blanco/), and the main static pages have hand-picked slugs.
  * English-only sections (guides, backgrounds, problems, glossary) keep their English URLs.
  *
- * Internally the site always works with the English path; these maps convert at the edges.
+ * Internally the site always works with the English path; locale-routing converts at the edges,
+ * using the map the page embeds (messages.ts) so browsers never load every language.
  */
 import { TOOL_TRANSLATIONS } from './tool-translations'
+import { GUIDE_TRANSLATIONS } from './guide-i18n'
+import { GUIDES_SECTION_SLUG } from './guide-i18n/types'
 import type { LanguageCode } from './locale-routing'
 
 const STATIC_SLUGS: Partial<Record<LanguageCode, Record<string, string>>> = {
@@ -36,47 +39,40 @@ export function slugify(text: string, lang?: LanguageCode) {
     .replace(/^-+|-+$/g, '')
 }
 
-type SlugMaps = { toLocal: Map<string, string>; toEnglish: Map<string, string> }
-const cache = new Map<LanguageCode, SlugMaps>()
+const cache = /* @__PURE__ */ new Map<LanguageCode, Map<string, string>>()
 
-function maps(lang: LanguageCode): SlugMaps {
+/** English first-level slug → translated slug for `lang`. Build-time only (it reads every tool name). */
+export function buildSlugMap(lang: LanguageCode): Map<string, string> {
   const cached = cache.get(lang)
   if (cached) return cached
   const toLocal = new Map<string, string>()
-  const toEnglish = new Map<string, string>()
+  const used = new Set<string>()
   const add = (english: string, local: string) => {
     // A translated slug must be unique and must not be another page's English slug.
-    if (!local || local === english || toEnglish.has(local)) return
+    if (!local || local === english || used.has(local)) return
     toLocal.set(english, local)
-    toEnglish.set(local, english)
+    used.add(local)
   }
-  for (const [english, local] of Object.entries(STATIC_SLUGS[lang] ?? {})) add(english, local)
-  const tools = TOOL_TRANSLATIONS[lang] ?? {}
-  const englishSlugs = new Set(Object.keys(TOOL_TRANSLATIONS.en))
-  for (const [english, text] of Object.entries(tools)) {
-    if (english === 'white-screen') continue // the homepage
-    const local = slugify(text.name, lang)
-    if (englishSlugs.has(local)) continue
-    add(english, local)
+  if (lang !== 'en') {
+    for (const [english, local] of Object.entries(STATIC_SLUGS[lang] ?? {})) add(english, local)
+    const englishSlugs = new Set(Object.keys(TOOL_TRANSLATIONS.en))
+    for (const [english, text] of Object.entries(TOOL_TRANSLATIONS[lang] ?? {})) {
+      if (english === 'white-screen') continue // the homepage
+      const local = slugify(text.name, lang)
+      if (!englishSlugs.has(local)) add(english, local)
+    }
+    // Translated guides: the section slug, and "guides/<english>" → that guide's translated slug.
+    const guides = GUIDE_TRANSLATIONS[lang]
+    if (guides && Object.keys(guides).length) {
+      add('guides', GUIDES_SECTION_SLUG[lang] ?? 'guides')
+      for (const [english, guide] of Object.entries(guides)) toLocal.set(`guides/${english}`, guide.slug)
+    }
   }
-  const result = { toLocal, toEnglish }
-  cache.set(lang, result)
-  return result
-}
-
-/** English first-level slug → the slug used in `lang` (unchanged if it has no translation). */
-export function localizeSlug(slug: string, lang: LanguageCode) {
-  if (lang === 'en') return slug
-  return maps(lang).toLocal.get(slug) ?? slug
-}
-
-/** Translated first-level slug in `lang` → English slug (unchanged if it is not a translated one). */
-export function englishSlug(slug: string, lang: LanguageCode) {
-  if (lang === 'en') return slug
-  return maps(lang).toEnglish.get(slug) ?? slug
+  cache.set(lang, toLocal)
+  return toLocal
 }
 
 /** Every [english, translated] pair for a language, for redirects from the old English-slug URLs. */
 export function translatedSlugPairs(lang: LanguageCode): [string, string][] {
-  return lang === 'en' ? [] : [...maps(lang).toLocal.entries()]
+  return [...buildSlugMap(lang).entries()]
 }

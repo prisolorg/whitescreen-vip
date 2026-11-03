@@ -9,7 +9,7 @@ import { TOOLS, toolPath, type Tool } from '@/lib/tools'
 import { getCategory } from '@/lib/tool-categories'
 import { ToolIcon } from './tool-card'
 import { useTranslation, type LanguageCode } from '@/lib/i18n'
-import { getLocalizedCategory, getLocalizedTool } from '@/lib/tool-translations'
+import { getLocalizedCategory, getLocalizedTool } from '@/lib/localized-tools'
 
 const MAX_RESULTS = 8
 

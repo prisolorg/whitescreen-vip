@@ -1060,3 +1060,153 @@ export function FakeRadarScreen() {
     </ToolStage>
   )
 }
+
+/* ---------------- Fake Blue Screen of Death ---------------- */
+
+const BSOD_STYLES = {
+  win10: { label: 'Windows 10', background: '#0078d7' },
+  win11: { label: 'Windows 11', background: '#0063b1' },
+  black: { label: 'Black (new)', background: '#000000' },
+  classic: { label: 'Classic (XP/7)', background: '#0000aa' },
+} as const
+
+const STOP_CODES = [
+  'CRITICAL_PROCESS_DIED',
+  'IRQL_NOT_LESS_OR_EQUAL',
+  'SYSTEM_SERVICE_EXCEPTION',
+  'PAGE_FAULT_IN_NONPAGED_AREA',
+  'KMODE_EXCEPTION_NOT_HANDLED',
+  'MEMORY_MANAGEMENT',
+  'DPC_WATCHDOG_VIOLATION',
+  'VIDEO_TDR_FAILURE',
+] as const
+
+/** A decorative square of blocks in the place of the QR code (it does not encode anything). */
+function FakeQr() {
+  const cells = 21
+  let seed = 7
+  const random = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646
+  const finder = (x: number, y: number) => {
+    const inBox = (ox: number, oy: number) => x >= ox && x < ox + 7 && y >= oy && y < oy + 7
+    const ring = (ox: number, oy: number) => {
+      const dx = x - ox
+      const dy = y - oy
+      return dx === 0 || dy === 0 || dx === 6 || dy === 6 || (dx >= 2 && dx <= 4 && dy >= 2 && dy <= 4)
+    }
+    if (inBox(0, 0)) return ring(0, 0)
+    if (inBox(14, 0)) return ring(14, 0)
+    if (inBox(0, 14)) return ring(0, 14)
+    return null
+  }
+  const rects: React.ReactNode[] = []
+  for (let y = 0; y < cells; y++)
+    for (let x = 0; x < cells; x++) {
+      const f = finder(x, y)
+      if (f ?? random() < 0.5) rects.push(<rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" />)
+    }
+  return (
+    <svg viewBox="-1 -1 23 23" aria-hidden="true" className="shrink-0 bg-white" style={{ width: '13cqmin', height: '13cqmin' }} fill="currentColor">
+      {rects}
+    </svg>
+  )
+}
+
+export function FakeBlueScreen() {
+  const [style, setStyle] = useState<keyof typeof BSOD_STYLES>('win10')
+  const [stopCode, setStopCode] = useState<string>(STOP_CODES[0])
+  const [seconds, setSeconds] = useState(30)
+  const [progress, setProgress] = useState(0)
+  const [isRunning, setIsRunning] = useState(true)
+
+  useEffect(() => {
+    if (!isRunning) return
+    // Jumps in uneven steps, like the real counter.
+    const id = window.setInterval(() => {
+      setProgress((value) => (value >= 100 ? 100 : Math.min(100, value + Math.ceil(Math.random() * (200 / seconds)))))
+    }, 1000)
+    return () => window.clearInterval(id)
+  }, [isRunning, seconds])
+
+  const look = BSOD_STYLES[style]
+  const classic = style === 'classic'
+
+  return (
+    <ToolStage
+      label="Fake blue screen of death"
+      tone="dark"
+      reserveHeadingSpace
+      doubleClickFullscreen
+      badge="Simulation"
+      style={{ background: look.background }}
+      controls={
+        <ControlRow>
+          <Segmented
+            label="Style"
+            value={style}
+            onChange={setStyle}
+            options={(Object.keys(BSOD_STYLES) as (keyof typeof BSOD_STYLES)[]).map((key) => ({ value: key, label: BSOD_STYLES[key].label }))}
+          />
+          <label className="flex flex-col gap-1.5 text-sm font-medium">
+            Stop code
+            <select value={stopCode} onChange={(e) => setStopCode(e.target.value)} className="h-10 rounded-xl border bg-background px-2.5 text-sm">
+              {STOP_CODES.map((code) => (
+                <option key={code} value={code}>
+                  {code}
+                </option>
+              ))}
+            </select>
+          </label>
+          <Slider label="Reach 100% in" value={seconds} min={10} max={120} step={5} onChange={setSeconds} format={(v) => `~${v} s`} />
+          <ActionButton
+            onClick={() => {
+              setProgress(0)
+              setIsRunning(true)
+            }}
+          >
+            Restart counter
+          </ActionButton>
+        </ControlRow>
+      }
+    >
+      <div className="size-full select-none text-white" style={{ containerType: 'size' }}>
+        {classic ? (
+          <div className="flex size-full flex-col justify-center gap-[2.4cqmin] px-[6cqw] font-mono leading-snug" style={{ fontSize: 'clamp(9px, 2.6cqmin, 22px)' }}>
+            <p>A problem has been detected and Windows has been shut down to prevent damage to your computer.</p>
+            <p>{stopCode}</p>
+            <p>
+              If this is the first time you&apos;ve seen this stop error screen, restart your computer. If this screen appears again, follow these steps:
+            </p>
+            <p>Check to make sure any new hardware or software is properly installed. If this is a new installation, ask your hardware or software manufacturer for any updates you might need.</p>
+            <p>Technical information:</p>
+            <p>*** STOP: 0x000000EF (0x8A2C1B20, 0x00000000, 0x00000000, 0x00000000)</p>
+            <p>Collecting data for crash dump ... Dumping physical memory to disk: {progress}</p>
+          </div>
+        ) : (
+          <div className="flex size-full flex-col justify-center gap-[3cqmin] px-[9cqw]" style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, sans-serif' }}>
+            {style !== 'black' && <p className="font-light leading-none" style={{ fontSize: '16cqmin' }}>:(</p>}
+            <p className="max-w-[38ch] font-light leading-snug" style={{ fontSize: 'clamp(13px, 4.2cqmin, 40px)' }}>
+              Your {style === 'black' ? 'device' : 'PC'} ran into a problem and needs to restart. We&apos;re just collecting some error info, and then
+              we&apos;ll restart for you.
+            </p>
+            <p className="font-light" style={{ fontSize: 'clamp(13px, 4.2cqmin, 40px)' }}>
+              {progress}% complete
+            </p>
+            {style !== 'black' && (
+              <div className="flex items-start gap-[2.5cqmin]" style={{ fontSize: 'clamp(8px, 1.9cqmin, 18px)' }}>
+                <span style={{ color: look.background }}>
+                  <FakeQr />
+                </span>
+                <div className="flex flex-col gap-[1cqmin] leading-snug">
+                  <p>For more information about this issue and possible fixes, search online for the stop code below.</p>
+                  <p>If you call a support person, give them this info:</p>
+                  <p>Stop code: {stopCode}</p>
+                </div>
+              </div>
+            )}
+            {style === 'black' && <p style={{ fontSize: 'clamp(8px, 1.9cqmin, 18px)' }}>Stop code: {stopCode}</p>}
+          </div>
+        )}
+      </div>
+    </ToolStage>
+  )
+}

@@ -3,7 +3,7 @@ import { ArrowUpRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { toolPath, type Tool } from '@/lib/tools'
 import { useTranslation } from '@/lib/i18n'
-import { getLocalizedTool } from '@/lib/tool-translations'
+import { getLocalizedTool } from '@/lib/localized-tools'
 
 export function ToolIcon({ tool, className }: { tool: Tool; className?: string }) {
   const Icon = tool.icon

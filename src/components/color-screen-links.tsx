@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import { Section } from '@/components/section'
 import { SCREEN_COLORS } from '@/lib/screen-colors'
 import { useTranslation } from '@/lib/i18n'
-import { TOOL_TRANSLATIONS } from '@/lib/tool-translations'
+import { localizedToolName } from '@/lib/localized-tools'
 
 type ColorScreenLinksProps = {
   currentId?: string
@@ -24,7 +24,7 @@ export function ColorScreenLinks({ currentId }: ColorScreenLinksProps) {
         {colors.map((color) => {
           const toolSlug = `${color.id}-screen`
           const localizedName =
-            TOOL_TRANSLATIONS[language]?.[toolSlug]?.name ??
+            localizedToolName(toolSlug, language) ??
             `${t(color.id, color.name)} ${t('colorScreenSuffix', 'Screen')}`
 
           return (

@@ -3,6 +3,7 @@ import '@/index.css'
 import HeaderIsland from '@/islands/HeaderIsland'
 import { StaticFooter } from '@/islands/StaticPages'
 import { renderHeadTags, type PageSeo } from '@/lib/seo'
+import { serializeMessages } from '@/lib/messages'
 
 interface Props {
   seo: PageSeo
@@ -24,6 +25,8 @@ const htmlLang = seo.lang === 'pt-br' ? 'pt-BR' : seo.lang
     <link rel="icon" type="image/svg+xml" href="/icon.svg" />
     <link rel="apple-touch-icon" href="/apple-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <!-- This page's interface strings; the browser bundle carries no dictionaries of its own. -->
+    <script is:inline type="application/json" id="ws-messages" set:html={serializeMessages(seo.lang)} />
     <script is:inline>
       // Apply the saved theme (or the system one) before first paint, so dark mode never flashes white.
       (function () {

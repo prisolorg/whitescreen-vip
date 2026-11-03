@@ -88,6 +88,7 @@ const FakeScreens = lazy(() => import('@/components/tools/fake-screens').then(m 
     if (slug === 'fake-google-meet') return <m.FakeCallScreen appType="meet" />
     if (slug === 'fake-slack-huddle') return <m.FakeCallScreen appType="slack" />
     if (slug === 'fake-radar-screen') return <m.FakeRadarScreen />
+    if (slug === 'fake-blue-screen-of-death') return <m.FakeBlueScreen />
     return null
   }
 })))

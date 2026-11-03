@@ -1,5 +1,12 @@
-import { SUPPORTED_LOCALES, getLocalizedPath } from './locale-routing'
-import { translatedSlugPairs } from './localized-slugs'
+import { SUPPORTED_LOCALES } from './locale-routing'
+import { buildSlugMap, translatedSlugPairs } from './localized-slugs'
+
+/** Localized URL for an English path, using the build-time slug maps (this file also loads in astro.config). */
+function localized(path: string, lang: (typeof SUPPORTED_LOCALES)[number]) {
+  if (lang === 'en') return path
+  const [, first, ...rest] = path.split('/')
+  return ['', lang, buildSlugMap(lang).get(first) ?? first, ...rest].join('/').replace(/\/\/$/, '/')
+}
 
 /**
  * URLs from the previous WordPress site (whitescreen.vip page, post and category sitemaps) that
@@ -48,14 +55,21 @@ const REMOVED_PAGES: Record<string, string> = {
 for (const [from, to] of Object.entries(REMOVED_PAGES)) {
   for (const lang of SUPPORTED_LOCALES) {
     const prefix = lang === 'en' ? '' : `/${lang}`
-    LEGACY_REDIRECTS[`${prefix}${from}`] = getLocalizedPath(to, lang)
+    LEGACY_REDIRECTS[`${prefix}${from}`] = localized(to, lang)
   }
 }
 
 // Translated URLs: the earlier English-slug address in each language (e.g. /es/red-screen/)
 // 301s to the translated one (/es/pantalla-roja/).
 for (const lang of SUPPORTED_LOCALES) {
+  const map = buildSlugMap(lang)
   for (const [english, local] of translatedSlugPairs(lang)) {
-    LEGACY_REDIRECTS[`/${lang}/${english}/`] = `/${lang}/${local}/`
+    if (english.includes('/')) {
+      // A guide: /es/guides/dead-pixel-test/ → /es/guias/prueba-de-pixeles-muertos/
+      const [section] = english.split('/')
+      LEGACY_REDIRECTS[`/${lang}/${english}/`] = `/${lang}/${map.get(section) ?? section}/${local}/`
+    } else {
+      LEGACY_REDIRECTS[`/${lang}/${english}/`] = `/${lang}/${local}/`
+    }
   }
 }

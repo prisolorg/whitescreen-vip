@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { TOOLS, getTool, toolPath, type Tool } from '@/lib/tools'
 import { getCategory, type ToolCategoryId } from '@/lib/tool-categories'
-import { getLocalizedCategory, getLocalizedTool } from '@/lib/tool-translations'
+import { getLocalizedCategory, getLocalizedTool } from '@/lib/localized-tools'
 import { useTranslation } from '@/lib/i18n'
 
 /** Gallery tabs: solid colors get their own tab, split out of the screen-tests category. */
@@ -35,6 +35,7 @@ const THUMBS: Record<string, string> = {
   'ring-light': 'radial-gradient(circle, transparent 0 30%, #fff7ea 32% 46%, transparent 48%), #111',
   'hacked-screen': 'repeating-linear-gradient(0deg, #1a0000 0 3px, #2a0000 3px 4px)',
   'pomodoro-timer': '#b91c1c',
+  'fake-blue-screen-of-death': '#0078d7',
   'fake-radar-screen': 'radial-gradient(circle, transparent 0 20%, #14532d 21% 22%, transparent 23% 45%, #14532d 46% 47%, transparent 48%), conic-gradient(from 0deg, #22c55e88, transparent 25%), #021007',
   'visual-noise': 'repeating-linear-gradient(-45deg, #5a5a5a 0 1px, #1f1f1f 1px 2px)',
   'no-signal-screen': BARS,
@@ -73,6 +74,7 @@ const GLYPHS: Record<string, string> = {
   'screen-refresh-rate-test': 'Hz',
   'frame-rate-test': 'FPS',
   'hacked-screen': 'HACKED',
+  'fake-blue-screen-of-death': ':(',
   'dvd-screensaver': 'DVD',
   'motivational-quote-screensaver': '“ ”',
   'countdown-timer': '05:00',

@@ -2,7 +2,7 @@ import { ScreenTool } from '@/components/screen-tool/screen-tool'
 import { TryNextGallery } from '@/components/try-next-gallery'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { getCategory } from '@/lib/tool-categories'
-import { getLocalizedCategory } from '@/lib/tool-translations'
+import { getLocalizedCategory } from '@/lib/localized-tools'
 import { useTranslation } from '@/lib/i18n'
 
 type HeroProps = {

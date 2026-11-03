@@ -38,6 +38,7 @@ const OTHER_TOOL_SLUGS = [
   'fake-radar-screen',
   'countdown-timer',
   'stopwatch',
+  'fake-blue-screen-of-death',
   'fake-windows-10-update',
   'fake-windows-11-update',
   'fake-mac-update',

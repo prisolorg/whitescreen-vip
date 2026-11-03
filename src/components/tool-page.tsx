@@ -13,7 +13,7 @@ import { getCategory } from '@/lib/tool-categories'
 import { getToolContent } from '@/lib/tool-content'
 import { absoluteUrl, siteConfig } from '@/lib/site'
 import { useTranslation } from '@/lib/i18n'
-import { getLocalizedCategory, getLocalizedTool } from '@/lib/tool-translations'
+import { getLocalizedCategory, getLocalizedTool } from '@/lib/localized-tools'
 
 export function toolMetadata(slug: string): Record<string, unknown> {
   const tool = getTool(slug)
@@ -29,7 +29,40 @@ export function toolMetadata(slug: string): Record<string, unknown> {
   }
 }
 
+/** The interactive part of a tool page (hydrated): breadcrumbs, the tool itself and next links. */
 export function ToolPage({ slug, children }: { slug: string; children: ReactNode }) {
+  const { t, language } = useTranslation()
+  const tool = getTool(slug)
+  const localizedTool = getLocalizedTool(tool, language)
+  const category = getCategory(tool.category)
+  const localizedCat = getLocalizedCategory(category, language)
+
+  return (
+    <>
+      <section aria-labelledby="screen-heading" className="pb-8 pt-3 sm:pt-4">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-3 sm:px-6">
+          <Breadcrumbs
+            items={[
+              { label: t('home', 'Home'), href: '/' },
+              { label: localizedCat.name, href: `/tools#${category.id}` },
+              { label: localizedTool.name, href: toolPath(slug) },
+            ]}
+          />
+          {/* The stage shows the page title on itself, like the color screens. */}
+          <StageHeadingContext.Provider value={{ title: localizedTool.name, intro: localizedTool.description }}>
+            {children}
+          </StageHeadingContext.Provider>
+          <TryNextGallery currentSlug={slug} className="mt-2" />
+        </div>
+        {slug !== 'white-screen' && <WhiteScreenCta className="mt-6" />}
+      </section>
+
+    </>
+  )
+}
+
+/** The reading part of a tool page, rendered to static HTML with no JavaScript: schema, about, how-to, links and FAQ. */
+export function ToolPageBody({ slug }: { slug: string }) {
   const { t, language } = useTranslation()
   const tool = getTool(slug)
   const localizedTool = getLocalizedTool(tool, language)
@@ -69,25 +102,6 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
     <>
       <JsonLd data={appSchema} />
       <JsonLd data={faqSchema} />
-
-      <section aria-labelledby="screen-heading" className="pb-8 pt-3 sm:pt-4">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-3 sm:px-6">
-          <Breadcrumbs
-            items={[
-              { label: t('home', 'Home'), href: '/' },
-              { label: localizedCat.name, href: `/tools#${category.id}` },
-              { label: localizedTool.name, href: toolPath(slug) },
-            ]}
-          />
-          {/* The stage shows the page title on itself, like the color screens. */}
-          <StageHeadingContext.Provider value={{ title: localizedTool.name, intro: localizedTool.description }}>
-            {children}
-          </StageHeadingContext.Provider>
-          <TryNextGallery currentSlug={slug} className="mt-2" />
-        </div>
-        {slug !== 'white-screen' && <WhiteScreenCta className="mt-6" />}
-      </section>
-
       {language === 'en' && (
         <section aria-labelledby="about-heading" className="border-t py-14">
           <div className="mx-auto max-w-3xl px-4 sm:px-6">
@@ -97,6 +111,16 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
             <p className="mt-4 text-pretty text-lg leading-relaxed text-foreground/85">
               <RichText text={content.intro} />
             </p>
+            {content.details?.map((detail) => (
+              <div key={detail.heading} className="mt-8">
+                <h3 className="text-lg font-semibold tracking-tight">{detail.heading}</h3>
+                {detail.paragraphs.map((paragraph) => (
+                  <p key={paragraph.slice(0, 32)} className="mt-3 text-pretty leading-relaxed text-foreground/85">
+                    <RichText text={paragraph} />
+                  </p>
+                ))}
+              </div>
+            ))}
           </div>
         </section>
       )}

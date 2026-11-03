@@ -4,6 +4,21 @@ const FULLSCREEN_STEP = 'Press F or click Fullscreen to fill your display, and p
 
 export const effectsContent: Record<string, ToolContent> = {
   'no-signal-screen': {
+    details: [
+      {
+        heading: "What a no-signal screen means",
+        paragraphs: [
+          "TVs and monitors show 'No Signal' when the selected input is not receiving a video signal, usually because the source is off, asleep or connected to a different input. Older sets showed color bars, which broadcasters used to calibrate equipment, or a floating message box that moved to avoid burn-in.",
+          "This page recreates both styles so you can use them as props, transitions or placeholders, with your own text and input name.",
+        ],
+      },
+      {
+        heading: "Fixing a real no-signal message",
+        paragraphs: [
+          "Check that the source device is on and awake, that the cable is firmly seated at both ends, and that the TV or monitor is set to the same input you plugged into. Try another cable or port, and for laptops press the display-switch shortcut. If the screen itself seems faulty, the [Monitor Test](/monitor-test/) helps check the panel once a picture is back.",
+        ],
+      },
+    ],
     title: 'No Signal Screen – Fake TV “No Signal” Display',
     intro:
       'Show a realistic “No Signal” message with SMPTE color bars or a bouncing input badge, just like a TV or monitor with nothing plugged in.',
@@ -178,6 +193,21 @@ export const effectsContent: Record<string, ToolContent> = {
     ],
   },
   'hacker-typer': {
+    details: [
+      {
+        heading: "How Hacker Typer works",
+        paragraphs: [
+          "The page holds a long block of real-looking source code. Every key you press reveals the next few characters, so random typing looks like fast, fluent coding. Nothing is executed and nothing connects to the internet; it is text appearing on a page.",
+          "Speed sets how many characters each key press reveals. Higher speeds produce whole lines at a time, which looks dramatic in videos.",
+        ],
+      },
+      {
+        heading: "Making the effect convincing",
+        paragraphs: [
+          "Go fullscreen, dim the room and type steadily rather than mashing keys. The three-press Alt and Caps Lock shortcuts bring up 'ACCESS GRANTED' and 'ACCESS DENIED' banners for the big moment. For a screen that looks like a breach in progress, switch to the [Hacked Screen Simulator](/hacked-screen/).",
+        ],
+      },
+    ],
     title: 'Hacker Typer – Type Like a Movie Hacker',
     intro:
       'Mash any keys and watch realistic-looking code pour onto a terminal, like a hacker in the movies. It is pure fiction: no real commands run and nothing connects to anything.',
@@ -274,6 +304,21 @@ export const effectsContent: Record<string, ToolContent> = {
     ],
   },
   'visual-noise': {
+    details: [
+      {
+        heading: "What visual noise is useful for",
+        paragraphs: [
+          "Animated noise fills the screen with constantly changing pixels. Designers use it as a texture or overlay, video makers use it for glitch transitions and title backgrounds, and on a spare screen it makes a subtle, always-moving backdrop.",
+          "Because every pixel changes many times a second, noise is also a quick way to see whether a display is scaling an image: at 100% zoom fine grain should look crisp, while blurred or blocky grain means the picture is being resized.",
+        ],
+      },
+      {
+        heading: "Comfort and safety",
+        paragraphs: [
+          "Fast, high-contrast flicker can be uncomfortable for some people and may trigger photosensitive epilepsy. Use larger grain, lower speed and a softer palette for a calmer effect, and stop if you feel unwell. If you only need the classic black-and-white snow, the [White Noise Generator](/white-noise-generator/) has a TV static visual with matching sound.",
+        ],
+      },
+    ],
     title: 'Visual Noise – Animated Noise Patterns & Textures',
     intro:
       'Generate smooth, flowing noise patterns — grain, fog, plasma and Perlin-style waves — as calming visuals, backgrounds or texture references.',
@@ -306,6 +351,21 @@ export const effectsContent: Record<string, ToolContent> = {
     ],
   },
   'color-cycle': {
+    details: [
+      {
+        heading: "How the color cycle moves",
+        paragraphs: [
+          "The cycle steps through the hue wheel, from red through yellow, green, cyan, blue and magenta back to red, at the speed you choose. In smooth mode each color fades into the next; in step mode the screen jumps between solid colors, which is handy for quick display checks.",
+          "Full-brightness primary and secondary colors also give a fast look at your panel: uneven patches, color tints or dead subpixels stand out on solid fields.",
+        ],
+      },
+      {
+        heading: "Ambient light and parties",
+        paragraphs: [
+          "On a TV or second monitor, a slow cycle makes simple mood lighting for parties, gaming setups or relaxing. Lower the brightness and choose a slow speed for a calm room, or fast steps for a party. Fast flashing can be uncomfortable for some people; keep the speed moderate if anyone is sensitive to flicker.",
+        ],
+      },
+    ],
     title: 'Color Cycle Screen – Smooth Rainbow Color Changing',
     intro:
       'Smoothly fade your whole screen through the color spectrum, or cycle a custom list of colors. Great for mood lighting, parties and stuck-pixel exercises.',
@@ -339,6 +399,21 @@ export const effectsContent: Record<string, ToolContent> = {
     ],
   },
   'gradient-screen': {
+    details: [
+      {
+        heading: "Gradients as light and backdrops",
+        paragraphs: [
+          "A slowly shifting gradient turns a monitor or TV into soft ambient light. Warm sunset tones suit evenings, cool blues and teals make a calm work backdrop, and bold purple-to-orange blends look good behind a webcam or on a stream.",
+          "Because the colors change gradually, a gradient also helps show color banding: on a good panel the blend looks smooth, while visible stripes point to limited color depth or heavy compression.",
+        ],
+      },
+      {
+        heading: "Picking colors that blend well",
+        paragraphs: [
+          "Colors that sit near each other on the color wheel blend smoothly; opposite colors pass through a muddy middle. Add a middle color to steer the blend, and slow the animation down for a calmer look. For still images you can download, see the [Backgrounds](/backgrounds/) library.",
+        ],
+      },
+    ],
     title: 'Gradient Screen – Fullscreen Color Gradient Maker',
     intro:
       'Create a fullscreen linear or radial gradient with two or three colors, an adjustable angle, and optional slow animation. Download it as a wallpaper.',
@@ -374,6 +449,21 @@ export const effectsContent: Record<string, ToolContent> = {
 
 export const screensaverContent: Record<string, ToolContent> = {
   'matrix-screensaver': {
+    details: [
+      {
+        heading: "How the digital rain is drawn",
+        paragraphs: [
+          "Each column has a single falling drop. Every step, the screen is dimmed slightly, the old leading character is redrawn in the trail color and a new bright character is drawn one row lower. The gradual dimming creates the fading trails, and random characters on every step give the flickering look.",
+          "Speed controls how often the rain moves down, density controls how many columns are raining at once, and character size changes the number of columns on your screen.",
+        ],
+      },
+      {
+        heading: "Using it on a TV or second monitor",
+        paragraphs: [
+          "Set the character size larger for TVs viewed from a distance, and lower the density for a calmer look. Katakana gives the classic film style, while binary and alphanumeric suit hacker-themed parties or streams. For more effects, try [Hacker Typer](/hacker-typer/) or the [Hacked Screen Simulator](/hacked-screen/).",
+        ],
+      },
+    ],
     title: 'Matrix Screensaver – Digital Rain in Your Browser',
     intro:
       'Watch cascading green code rain down your screen, inspired by the famous film effect. Change the color, speed, density and characters.',
@@ -407,6 +497,21 @@ export const screensaverContent: Record<string, ToolContent> = {
     ],
   },
   'flip-clock-screensaver': {
+    details: [
+      {
+        heading: "Why a flip clock works as a screensaver",
+        paragraphs: [
+          "Split-flap clocks were designed to be read at a glance: large digits, strong contrast and a clear separation between hours and minutes. On a spare monitor, tablet or TV that makes a calm desk or bedside clock that is easy to read from across the room, without the clutter of a full desktop.",
+          "The digits flip once per change, so the screen stays still most of the time. That is gentler for a room at night than an animated wallpaper, and the dark theme keeps light output low.",
+        ],
+      },
+      {
+        heading: "Tips for an always-on clock",
+        paragraphs: [
+          "On OLED screens, move the device or switch between the light and dark theme now and then, because any image that never changes can slowly leave a mark. Turn the brightness down at night, and use fullscreen so the clock fills the display and the screen stays awake. For a quieter look, hide the seconds.",
+        ],
+      },
+    ],
     title: 'Flip Clock Screensaver – Fullscreen Retro Clock',
     intro:
       'A large, readable flip-style clock with smooth digit animation. Choose 12 or 24-hour time, show seconds, and pick a dark or light theme.',
@@ -438,6 +543,21 @@ export const screensaverContent: Record<string, ToolContent> = {
     ],
   },
   'dvd-screensaver': {
+    details: [
+      {
+        heading: "Where the bouncing logo came from",
+        paragraphs: [
+          "DVD players showed a bouncing logo when left idle, so a still menu would not burn into the CRT and plasma TVs of the time. The logo moved diagonally at a steady speed and changed color at each edge, and viewers famously waited for it to land perfectly in a corner.",
+          "This page recreates that behaviour: constant speed, a new color on every wall hit, and a counter for bounces and exact corner hits.",
+        ],
+      },
+      {
+        heading: "Will it ever hit the corner?",
+        paragraphs: [
+          "Whether the logo reaches a corner depends on the screen's width and height, the logo size and the starting point. On some sizes it hits a corner often; on others it can take a very long time. Changing the logo size or switching to fullscreen changes the path, so if you are waiting for a corner, try a different size.",
+        ],
+      },
+    ],
     title: 'DVD Screensaver – Bouncing Logo, Will It Hit the Corner?',
     intro:
       'The classic bouncing logo that changes color with every wall hit. Watch and wait for that perfect corner hit — the counter keeps score.',

@@ -1,3 +1,6 @@
+import type { LanguageCode } from './locale-routing'
+import { GUIDE_TRANSLATIONS } from './guide-i18n'
+
 export type GuideSection = {
   id: string
   title: string
@@ -705,7 +708,7 @@ export const GUIDE_SLUG_ALIASES: Record<string, string> = {
   'oled-screen-burn-in-test-and-prevention': 'oled-burn-in-prevention',
 }
 
-export function getGuideBySlug(slug: string): GuideArticle | undefined {
+function englishGuide(slug: string): GuideArticle | undefined {
   const normalized = slug
     .replace(/^\/+|\/+$/g, '')
     .replace(/^guides\//, '')
@@ -713,4 +716,36 @@ export function getGuideBySlug(slug: string): GuideArticle | undefined {
 
   const targetSlug = GUIDE_SLUG_ALIASES[normalized] || normalized
   return GUIDES.find((g) => g.slug === targetSlug)
+}
+
+/** A guide in `lang`, falling back to English for any language without a translation. */
+export function getGuideBySlug(slug: string, lang: LanguageCode = 'en'): GuideArticle | undefined {
+  const guide = englishGuide(slug)
+  if (!guide || lang === 'en') return guide
+  const t = GUIDE_TRANSLATIONS[lang]?.[guide.slug]
+  if (!t) return guide
+  return {
+    ...guide,
+    navLabel: t.navLabel,
+    title: t.title,
+    metaTitle: t.metaTitle,
+    metaDescription: t.metaDescription,
+    readingTime: t.readingTime,
+    category: t.category,
+    intro: t.intro,
+    warning: t.warning ?? guide.warning,
+    primaryTool: { ...guide.primaryTool, label: t.toolLabel, description: t.toolDescription },
+    sections: guide.sections.map((section, index) => ({ ...section, ...t.sections[index], id: section.id })),
+    faqs: t.faqs,
+  }
+}
+
+/** Every guide in `lang`. */
+export function getGuides(lang: LanguageCode = 'en'): GuideArticle[] {
+  return GUIDES.map((guide) => getGuideBySlug(guide.slug, lang)!)
+}
+
+/** Whether a guide has a translation in `lang` (English always does). */
+export function hasGuideTranslation(slug: string, lang: LanguageCode) {
+  return lang === 'en' || Boolean(GUIDE_TRANSLATIONS[lang]?.[slug])
 }

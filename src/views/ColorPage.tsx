@@ -6,18 +6,27 @@ import type { ScreenColor } from '@/lib/screen-colors'
 import { getColorPageContent } from '@/lib/color-pages'
 import { absoluteUrl } from '@/lib/site'
 import { useTranslation } from '@/lib/i18n'
-import { TOOL_TRANSLATIONS } from '@/lib/tool-translations'
+import { localizedToolName } from '@/lib/localized-tools'
 import { COLOR_GUIDES } from '@/lib/color-guides'
 import { FaqList } from '@/components/faq-list'
 import { RichText, plainText } from '@/components/rich-text'
 
+/** The interactive part of a color page (hydrated): the screen and its controls. */
 export function ColorPage({ color }: { color: ScreenColor }) {
+  const { language, t } = useTranslation()
+  const content = getColorPageContent(color.id, language)
+  const localizedName = localizedToolName(`${color.id}-screen`, language) ?? `${t(color.id, color.name)} ${t('colorScreenSuffix', 'Screen')}`
+  return <Hero colorId={color.id} title={localizedName} intro={content.intro} />
+}
+
+/** The reading part of a color page, rendered to static HTML with no JavaScript. */
+export function ColorPageBody({ color }: { color: ScreenColor }) {
   const { language, t } = useTranslation()
   const content = getColorPageContent(color.id, language)
 
   const toolSlug = `${color.id}-screen`
   const localizedName =
-    TOOL_TRANSLATIONS[language]?.[toolSlug]?.name ??
+    localizedToolName(toolSlug, language) ??
     `${t(color.id, color.name)} ${t('colorScreenSuffix', 'Screen')}`
 
   const schema = {
@@ -48,7 +57,6 @@ export function ColorPage({ color }: { color: ScreenColor }) {
     <>
       <JsonLd data={schema} />
       {faqSchema && <JsonLd data={faqSchema} />}
-      <Hero colorId={color.id} title={localizedName} intro={content.intro} />
       <Section
         id="use-cases"
         eyebrow={t('useCasesEyebrow', 'Use cases')}

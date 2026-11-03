@@ -4,6 +4,21 @@ const FULLSCREEN_STEP = 'Press F or click Fullscreen to fill your display, and p
 
 export const utilitiesContent: Record<string, ToolContent> = {
   'countdown-timer': {
+    details: [
+      {
+        heading: "Why the timer stays accurate",
+        paragraphs: [
+          "The countdown is measured against the system clock and an end time, not by counting ticks. If your browser slows down a background tab, the remaining time is still correct when you come back, and the alert still fires on time.",
+          "When time is up you get a clear visual change and an optional chime, so it works in noisy rooms and silent ones.",
+        ],
+      },
+      {
+        heading: "Ideas for using a fullscreen countdown",
+        paragraphs: [
+          "Use it for presentations and speaking slots, exams and classroom activities, cooking, workouts, meetings that must end on time, or a 'starting soon' screen on a stream. For repeated work and break cycles, the [Pomodoro Timer](/pomodoro-timer/) switches phases for you, and the [Stopwatch](/stopwatch/) counts up when there is no fixed limit.",
+        ],
+      },
+    ],
     title: 'Countdown Timer – Big Fullscreen Online Timer',
     intro:
       'A large, readable countdown timer for classrooms, presentations, workouts and cooking. Set any duration, use presets, and get a visual and optional sound alert when time is up.',
@@ -36,6 +51,21 @@ export const utilitiesContent: Record<string, ToolContent> = {
     ],
   },
   stopwatch: {
+    details: [
+      {
+        heading: "How accurate is a browser stopwatch?",
+        paragraphs: [
+          "The stopwatch counts from the system clock rather than adding up timer ticks, so it stays accurate to the hundredth of a second even if the tab is busy or in the background. What you see on screen is redrawn many times a second, but the time itself always comes from the difference between now and the moment you pressed Start.",
+          "For laps, each lap time is the gap since the previous lap, and the split is the total since Start. That makes it easy to compare intervals in training, cooking or presentations.",
+        ],
+      },
+      {
+        heading: "Good uses for a fullscreen stopwatch",
+        paragraphs: [
+          "A big, high-contrast display can be read from across a room, which suits classrooms, workshops, speed-cubing, timed exercises and live streams. Pair it with the [Countdown Timer](/countdown-timer/) when you need a fixed limit, or the [Pomodoro Timer](/pomodoro-timer/) for focus sessions with breaks.",
+        ],
+      },
+    ],
     title: 'Online Stopwatch – Fullscreen Stopwatch With Laps',
     intro:
       'A precise, fullscreen online stopwatch with lap times. Big digits, keyboard shortcuts, and accurate timing based on your device clock.',

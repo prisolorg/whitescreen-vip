@@ -3,13 +3,14 @@
  * navigation) and by scripts/prerender.mjs, which writes it into each page's static HTML.
  * Keep this module free of React and browser globals.
  */
-import { TRANSLATIONS } from './i18n'
+import { translationsFor } from './base-translations'
 import { SUPPORTED_LOCALES, getLocalizedPath, type LanguageCode } from './locale-routing'
 import { siteConfig } from './site'
 import { getColorBySlug, SCREEN_COLORS } from './screen-colors'
 import { getColorPageContent } from './color-pages'
 import { TOOLS } from './tools'
-import { getLocalizedTool, TOOL_TRANSLATIONS } from './tool-translations'
+import { TOOL_TRANSLATIONS } from './tool-translations'
+import { getLocalizedTool } from './localized-tools'
 import { getToolContent } from './tool-content'
 import { GUIDES, GUIDE_SLUG_ALIASES, getGuideBySlug } from './guides-content'
 import { BACKGROUND_ITEMS, getBackgroundBySlug } from './backgrounds-data'
@@ -35,7 +36,7 @@ const withSuffix = (title: string) => {
 }
 
 /** Sections whose body copy exists only in English. Other locales point their canonical at the English page. */
-const ENGLISH_ONLY_PREFIXES = ['/guides', '/backgrounds', '/screen-problems', '/glossary']
+const ENGLISH_ONLY_PREFIXES = ['/backgrounds', '/screen-problems', '/glossary']
 
 /**
  * /white-screen and the homepage serve the same intent ("white screen"), so the homepage is the
@@ -64,7 +65,7 @@ export function isEnglishOnlyPath(cleanPath: string): boolean {
 }
 
 function translator(language: LanguageCode) {
-  return (key: string, fallback: string) => TRANSLATIONS[language]?.[key] || TRANSLATIONS.en[key] || fallback
+  return (key: string, fallback: string) => translationsFor(language)[key] || translationsFor('en')[key] || fallback
 }
 
 const BACKGROUND_CATEGORY_META: Record<string, [string, string]> = {
@@ -145,9 +146,11 @@ function resolveMeta(cleanPath: string, search: string, language: LanguageCode):
       return page(DISCLAIMER_TRANSLATIONS)
     case '/guides':
       return {
-        title: 'Screen Testing & Monitor Guides' + SUFFIX,
-        description:
+        title: t('guidesMetaTitle', 'Screen Testing & Monitor Guides') + SUFFIX,
+        description: t(
+          'guidesMetaDesc',
           'Step-by-step guides to dead pixel testing, monitor cleaning, screen uniformity, OLED burn-in prevention and using your screen as a light.',
+        ),
       }
     case '/backgrounds': {
       const category = new URLSearchParams(search).get('category') ?? ''
@@ -172,7 +175,7 @@ function resolveMeta(cleanPath: string, search: string, language: LanguageCode):
   }
 
   if (cleanPath.startsWith('/guides/')) {
-    const guide = getGuideBySlug(cleanPath.slice('/guides/'.length))
+    const guide = getGuideBySlug(cleanPath.slice('/guides/'.length), language)
     return guide ? { title: withSuffix(guide.metaTitle), description: guide.metaDescription, ogType: 'article' } : notFound()
   }
   if (cleanPath.startsWith('/backgrounds/')) {
@@ -221,6 +224,34 @@ function completeDescription(description: string, language: LanguageCode): strin
   const base = /[.!?…]$/.test(description) ? description : `${description}.`
   const longer = `${base} ${tail}`
   return longer.length <= 160 ? longer : description
+}
+
+/** Utility pages with nothing to rank for: crawlable (links are followed) but kept out of the index. */
+const NOINDEX_PATHS = new Set(['/feedback'])
+
+const SECTION_NAMES: Record<string, string> = {
+  '/guides': 'Guides', // localized below via the "guides" UI string
+  '/backgrounds': 'Backgrounds',
+  '/screen-problems': 'Screen Problems',
+  '/glossary': 'Glossary',
+  '/about': 'About',
+  '/contact': 'Contact',
+  '/feedback': 'Feedback',
+  '/privacy-policy': 'Privacy Policy',
+  '/terms': 'Terms of Use',
+  '/disclaimer': 'Disclaimer',
+}
+
+/** White Screen → section → page, for sections, articles and static pages. Undefined elsewhere. */
+function breadcrumbTrail(path: string, title: string, language: LanguageCode): { name: string; path: string }[] | undefined {
+  const home = { name: translationsFor(language).homeTitle || 'White Screen', path: '/' }
+  const section = Object.keys(SECTION_NAMES).find((prefix) => path === prefix || path.startsWith(`${prefix}/`))
+  if (!section) return undefined
+  const sectionCrumb = { name: (section === '/guides' && translationsFor(language).guides) || SECTION_NAMES[section], path: section }
+  if (path === section) return [home, sectionCrumb]
+  // The page's own title without the "– tagline" or "| site" part.
+  const name = title.split(/\s[–|]\s/)[0].trim()
+  return [home, sectionCrumb, { name, path }]
 }
 
 /** Old guide and background slugs still resolve; they point their canonical at the real URL. */
@@ -280,6 +311,21 @@ export function getPageSeo(cleanPath: string, search: string, language: Language
     )
   }
 
+  // Breadcrumbs for pages whose own markup doesn't add them (tool and color pages render theirs).
+  const crumbs = breadcrumbTrail(canonicalPath, resolved.title, language)
+  if (crumbs) {
+    jsonLd.push({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: crumbs.map((crumb, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: crumb.name,
+        item: `${SITE_URL}${getLocalizedPath(crumb.path, canonicalLang)}`,
+      })),
+    })
+  }
+
   if (meta.pageType) {
     jsonLd.push({
       '@context': 'https://schema.org',
@@ -297,7 +343,7 @@ export function getPageSeo(cleanPath: string, search: string, language: Language
     description: meta.description,
     canonical,
     alternates,
-    robots: meta.notFound ? 'noindex, follow' : 'index, follow, max-image-preview:large',
+    robots: meta.notFound || NOINDEX_PATHS.has(cleanPath) ? 'noindex, follow' : 'index, follow, max-image-preview:large',
     ogType: meta.ogType ?? 'website',
     ogImage: OG_IMAGE,
     lang: language,
@@ -379,6 +425,6 @@ export function getAliasRoutes(): string[] {
 /** Routes that belong in the sitemap for a locale: translated pages, minus canonical aliases. */
 export function getIndexableRoutes(language: LanguageCode): string[] {
   return getAllRoutes().filter(
-    (path) => !(path in CANONICAL_ALIASES) && (language === 'en' || !isEnglishOnlyPath(path)),
+    (path) => !(path in CANONICAL_ALIASES) && !NOINDEX_PATHS.has(path) && (language === 'en' || !isEnglishOnlyPath(path)),
   )
 }

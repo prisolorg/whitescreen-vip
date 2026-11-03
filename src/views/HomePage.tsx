@@ -13,7 +13,20 @@ import { getHomeContent } from '@/lib/home-content'
 import { useTranslation } from '@/lib/i18n'
 import { getLocalizedPath } from '@/lib/locale-routing'
 
+/** The interactive part of the homepage (hydrated): the white screen tool and the tool gallery. */
 export function HomePage() {
+  return (
+    <>
+      <HomeTool />
+      <div className="mx-auto max-w-7xl px-3 pb-10 pt-2 sm:px-6">
+        <TryNextGallery currentSlug="white-screen" />
+      </div>
+    </>
+  )
+}
+
+/** The reading part of the homepage, rendered to static HTML with no JavaScript. */
+export function HomePageBody() {
   const { language, t } = useTranslation()
   const isEnglish = language === 'en'
   // The long-form HomeSections copy only exists in English; other locales use the translated sections.
@@ -48,10 +61,6 @@ export function HomePage() {
     <>
       <JsonLd data={webApplicationSchema} />
       <JsonLd data={faqSchema} />
-      <HomeTool />
-      <div className="mx-auto max-w-7xl px-3 pb-10 pt-2 sm:px-6">
-        <TryNextGallery currentSlug="white-screen" />
-      </div>
       {isEnglish ? (
         <HomeSections />
       ) : (

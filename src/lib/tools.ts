@@ -30,6 +30,7 @@ import {
   Terminal,
   Timer,
   ShieldAlert,
+  Frown,
   Hand,
   Gauge,
   Ghost,
@@ -536,7 +537,17 @@ export const TOOLS: readonly Tool[] = [
     icon: Monitor,
     keywords: ['fake windows 11 update', 'windows 11', 'update prank', 'fake update'],
     related: ['fake-windows-10-update', 'fake-mac-update', 'fake-chrome-os-update', 'hacker-typer'],
+  },  {
+    slug: 'fake-blue-screen-of-death',
+    name: 'Fake Blue Screen of Death',
+    category: 'fake-screens',
+    description:
+      'A realistic Windows Blue Screen of Death prank with the :( face, a rising percentage, stop codes, and Windows 10, 11, black and classic XP styles.',
+    icon: Frown,
+    keywords: ['fake blue screen of death', 'fake bsod', 'blue screen prank', 'windows crash screen', 'bsod simulator'],
+    related: ['fake-windows-10-update', 'fake-windows-11-update', 'hacked-screen', 'broken-screen'],
   },
+
   {
     slug: 'fake-mac-update',
     name: 'Fake Mac Update',

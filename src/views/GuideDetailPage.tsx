@@ -1,6 +1,5 @@
 'use client'
 
-import React, { useState } from 'react'
 import { WhiteScreenCta } from '@/components/white-screen-cta'
 import Link from 'next/link'
 import {
@@ -15,15 +14,15 @@ import {
   ArrowRight,
   Sparkles,
 } from 'lucide-react'
-import { getGuideBySlug, type GuideArticle, GUIDES } from '@/lib/guides-content'
+import { getGuideBySlug, type GuideArticle } from '@/lib/guides-content'
 import { absoluteUrl } from '@/lib/site'
 import { JsonLd } from '@/components/json-ld'
 import { useTranslation } from '@/lib/i18n'
+import { getLocalizedPath } from '@/lib/locale-routing'
 
 export function GuideDetailPage({ slug }: { slug: string }) {
-  const { t } = useTranslation()
-  const guide = getGuideBySlug(slug)
-  const [completedSteps, setCompletedSteps] = useState<Record<string, boolean>>({})
+  const { t, language } = useTranslation()
+  const guide = getGuideBySlug(slug, language)
 
   if (!guide) {
     return (
@@ -40,16 +39,13 @@ export function GuideDetailPage({ slug }: { slug: string }) {
     )
   }
 
-  const toggleStep = (stepKey: string) => {
-    setCompletedSteps((prev) => ({ ...prev, [stepKey]: !prev[stepKey] }))
-  }
-
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: guide.title,
     description: guide.metaDescription,
-    url: absoluteUrl(guide.path),
+    inLanguage: language === 'pt-br' ? 'pt-BR' : language,
+    url: absoluteUrl(getLocalizedPath(guide.path, language)),
     datePublished: '2025-01-15T00:00:00+00:00',
     dateModified: `${guide.updatedAt}T00:00:00+00:00`,
     author: {
@@ -64,7 +60,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': absoluteUrl(guide.path),
+      '@id': absoluteUrl(getLocalizedPath(guide.path, language)),
     },
   }
 
@@ -84,7 +80,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
     : null
 
   const relatedArticles = guide.relatedSlugs
-    .map((s) => GUIDES.find((g) => g.slug === s))
+    .map((s) => getGuideBySlug(s, language))
     .filter((g): g is GuideArticle => g !== undefined)
 
   return (
@@ -118,7 +114,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
             </span>
             <span className="inline-flex items-center gap-1 text-muted-foreground">
               <Calendar className="size-3.5" aria-hidden="true" />
-              <span>Updated {guide.updatedAt}</span>
+              <span>{t('guideUpdated', 'Updated')} <time dateTime={guide.updatedAt}>{guide.updatedAt}</time></span>
             </span>
           </div>
 
@@ -140,7 +136,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
             <div className="flex items-start gap-3">
               <AlertTriangle className="size-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" aria-hidden="true" />
               <div className="text-xs sm:text-sm leading-relaxed">
-                <span className="font-bold">Important Notice: </span>
+                <span className="font-bold">{t('guideImportant', 'Important:')} </span>
                 {guide.warning}
               </div>
             </div>
@@ -153,7 +149,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
             <div>
               <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
                 <Sparkles className="size-4" aria-hidden="true" />
-                <span>Featured WhiteScreen.vip Tool</span>
+                <span>{t('guideFeatured', 'Featured tool')}</span>
               </div>
               <p className="mt-1 text-sm text-foreground font-medium">
                 {guide.primaryTool.description}
@@ -194,36 +190,24 @@ export function GuideDetailPage({ slug }: { slug: string }) {
               {section.steps && section.steps.length > 0 && (
                 <div className="mt-5 rounded-xl border bg-muted/20 p-4 sm:p-5">
                   <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground mb-3">
-                    Interactive Step-by-Step Checklist
+                    {t('guideSteps', 'Step-by-step checklist')}
                   </h3>
                   <ol className="space-y-3">
-                    {section.steps.map((step, sIdx) => {
-                      const stepKey = `${section.id}-step-${sIdx}`
-                      const isDone = !!completedSteps[stepKey]
-                      return (
-                        <li
-                          key={sIdx}
-                          onClick={() => toggleStep(stepKey)}
-                          className={`flex items-start gap-3 rounded-lg border p-3 text-sm cursor-pointer transition-all ${
-                            isDone ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-950 dark:text-emerald-200' : 'border-border bg-card hover:bg-accent'
-                          }`}
-                        >
-                          <span
-                            className={`flex size-6 items-center justify-center rounded-md text-xs font-bold shrink-0 mt-0.5 ${
-                              isDone ? 'bg-emerald-500 text-white' : 'bg-muted text-muted-foreground'
-                            }`}
-                          >
-                            {isDone ? '✓' : sIdx + 1}
+                    {/* Native checkboxes: ticking steps works without any JavaScript. */}
+                    {section.steps.map((step, sIdx) => (
+                      <li key={sIdx}>
+                        <label className="group flex cursor-pointer items-start gap-3 rounded-lg border border-border bg-card p-3 text-sm transition-colors hover:bg-accent has-[:checked]:border-emerald-500/40 has-[:checked]:bg-emerald-500/10">
+                          <input type="checkbox" className="peer sr-only" />
+                          <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-md bg-muted text-xs font-bold text-muted-foreground peer-checked:bg-emerald-500 peer-checked:text-white">
+                            {sIdx + 1}
                           </span>
-                          <span className={`leading-relaxed ${isDone ? 'line-through opacity-80' : ''}`}>
-                            {step}
-                          </span>
-                        </li>
-                      )
-                    })}
+                          <span className="leading-relaxed peer-checked:opacity-80 peer-checked:line-through">{step}</span>
+                        </label>
+                      </li>
+                    ))}
                   </ol>
                   <p className="mt-2 text-xs text-muted-foreground">
-                    Tap any step above to track your progress as you inspect and test.
+                    {t('guideStepsHint', 'Tick each step as you go.')}
                   </p>
                 </div>
               )}
@@ -232,7 +216,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
               {section.checklist && section.checklist.length > 0 && (
                 <div className="mt-5 rounded-xl border bg-card p-4 sm:p-5">
                   <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground mb-3">
-                    Crucial Guidelines
+                    {t('guideGuidelines', 'Key guidelines')}
                   </h3>
                   <ul className="space-y-2 text-sm leading-relaxed">
                     {section.checklist.map((item, cIdx) => (
@@ -248,7 +232,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
               {/* Pro Tips */}
               {section.tips && section.tips.length > 0 && (
                 <div className="mt-4 rounded-xl border border-primary/20 bg-primary/5 p-4 text-xs sm:text-sm">
-                  <span className="font-semibold text-primary block mb-1">Pro Inspection Tips:</span>
+                  <span className="font-semibold text-primary block mb-1">{t('guideTips', 'Inspection tips')}</span>
                   <ul className="list-disc pl-4 space-y-1 text-muted-foreground">
                     {section.tips.map((tip, tIdx) => (
                       <li key={tIdx}>{tip}</li>
@@ -266,7 +250,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
             <div className="flex items-center gap-2 mb-4">
               <HelpCircle className="size-5 text-primary" aria-hidden="true" />
               <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-                Frequently Asked Questions
+                {t('guideFaq', 'Frequently asked questions')}
               </h2>
             </div>
             <div className="space-y-3">
@@ -288,14 +272,14 @@ export function GuideDetailPage({ slug }: { slug: string }) {
         <section className="mt-12 rounded-2xl border bg-gradient-to-r from-primary/10 via-card to-background p-6 text-center sm:text-left sm:flex sm:items-center sm:justify-between gap-6 shadow-sm">
           <div>
             <h3 className="text-base sm:text-lg font-bold text-foreground">
-              Ready to test your display now?
+              {t('guideReady', 'Ready to test your display now?')}
             </h3>
             <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
-              Run free browser diagnostics, dead pixel checks, or explore all 12 color screens on WhiteScreen.vip.
+              {t('guideReadyText', 'Run free browser tests, check for dead pixels, or open any of the 12 color screens.')}
             </p>
             <div className="mt-3 flex flex-wrap gap-2 text-xs font-medium">
               <Link href="/" className="text-primary hover:underline">
-                White Screen →
+                {t('homeTitle', 'White Screen')} →
               </Link>
               <span className="text-muted-foreground">·</span>
               <Link href="/black-screen" className="text-primary hover:underline">
@@ -307,7 +291,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
               </Link>
               <span className="text-muted-foreground">·</span>
               <Link href="/tools" className="text-primary hover:underline">
-                All Screen Tools →
+                {t('guideAllTools', 'All screen tools')} →
               </Link>
             </div>
           </div>
@@ -326,7 +310,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
             <div className="flex items-center gap-2 mb-5">
               <BookOpen className="size-5 text-primary" aria-hidden="true" />
               <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-                Related Display Guides
+                {t('guideRelated', 'Related display guides')}
               </h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -350,7 +334,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
                   <div className="mt-4 flex items-center justify-between text-[11px] text-muted-foreground border-t pt-2.5">
                     <span>{rel.readingTime}</span>
                     <span className="font-semibold text-primary group-hover:translate-x-0.5 transition-transform">
-                      Read guide →
+                      {t('guideRead', 'Read guide')} →
                     </span>
                   </div>
                 </Link>

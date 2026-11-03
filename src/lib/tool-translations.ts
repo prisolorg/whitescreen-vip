@@ -1,5 +1,4 @@
-import type { Tool } from './tools'
-import type { ToolCategory, ToolCategoryId } from './tool-categories'
+import type { ToolCategoryId } from './tool-categories'
 import type { LanguageCode } from './locale-routing'
 
 export interface ToolText {
@@ -308,6 +307,7 @@ export const TOOL_TRANSLATIONS: Record<LanguageCode, Record<string, ToolText>> =
     'fake-google-meet': { name: 'Fake Google Meet Screen', description: 'A Google Meet-style meeting simulation with rounded participant tiles, initial avatars, a blue speaking outline and round call controls.' },
     'fake-slack-huddle': { name: 'Fake Slack Huddle', description: 'A compact audio huddle simulation with Slack-styled avatars, live speaking rings and an active timer.' },
     'zoom-lighting': { name: 'Zoom Lighting', description: 'Turn your screen into a soft key light for video calls, with color temperature in Kelvin, brightness and a frame mode.' },
+    'fake-blue-screen-of-death': { name: 'Fake Blue Screen of Death', description: 'A realistic Windows Blue Screen of Death prank with the :( face, a rising percentage, stop codes, and Windows 10, 11, black and classic XP styles.' },
     'touch-screen-test': { name: 'Touch Screen Test', description: 'Find dead zones and test multi-touch: fill a grid with your finger, draw freely, or see every touch point live.' },
     'screen-refresh-rate-test': { name: 'Screen Refresh Rate Test', description: 'Measure your display\'s refresh rate in Hz live in the browser, with frame times, late frames and a motion check.' },
     'monitor-ghosting-test': { name: 'Monitor Ghosting Test', description: 'Moving targets on dark, mid-gray and light backgrounds reveal ghosting, smearing and overshoot on your monitor.' },
@@ -366,6 +366,7 @@ export const TOOL_TRANSLATIONS: Record<LanguageCode, Record<string, ToolText>> =
     'fake-google-meet': { name: 'Pantalla Falsa de Google Meet', description: 'Simulación de reunión estilo Google Meet con mosaicos redondeados, avatares con inicial, contorno azul al hablar y controles redondos.' },
     'fake-slack-huddle': { name: 'Simulación Slack Huddle', description: 'Simulación de llamada de audio estilo Slack con avatares parlantes y contador activo.' },
     'zoom-lighting': { name: 'Luz para Videollamadas', description: 'Convierte cualquier monitor secundario en una luz de relleno suave para tus videollamadas.' },
+    'fake-blue-screen-of-death': { name: 'Pantalla Azul de la Muerte Falsa', description: 'Broma realista de la pantalla azul de Windows con la cara :(, porcentaje que sube, códigos de error y estilos de Windows 10, 11, negro y XP clásico.' },
     'touch-screen-test': { name: 'Prueba de Pantalla Táctil', description: 'Detecta zonas muertas y prueba el multitáctil: rellena una cuadrícula, dibuja o mira cada punto de contacto.' },
     'screen-refresh-rate-test': { name: 'Prueba de Frecuencia de Actualización', description: 'Mide los Hz de tu pantalla en el navegador, con tiempos de fotograma y fotogramas tardíos.' },
     'monitor-ghosting-test': { name: 'Prueba de Ghosting del Monitor', description: 'Objetos en movimiento sobre fondos oscuros, grises y claros revelan ghosting, estelas y overshoot.' },
@@ -424,6 +425,7 @@ export const TOOL_TRANSLATIONS: Record<LanguageCode, Record<string, ToolText>> =
     'fake-google-meet': { name: 'Tela Falsa do Google Meet', description: 'Simulação de reunião estilo Google Meet com blocos arredondados, avatares com inicial, contorno azul de quem fala e controles redondos.' },
     'fake-slack-huddle': { name: 'Slack Huddle Simulado', description: 'Simulação de conversa de áudio estilo Slack com avatares e anéis de fala ativos.' },
     'zoom-lighting': { name: 'Luz para Videochamadas', description: 'Use qualquer tela extra como iluminação de preenchimento suave para suas chamadas de vídeo.' },
+    'fake-blue-screen-of-death': { name: 'Tela Azul da Morte Falsa', description: 'Pegadinha realista da tela azul do Windows com o rosto :(, porcentagem subindo, códigos de parada e estilos Windows 10, 11, preto e XP clássico.' },
     'touch-screen-test': { name: 'Teste de Tela Touch', description: 'Encontre zonas mortas e teste o multitoque: preencha uma grade, desenhe ou veja cada ponto de toque.' },
     'screen-refresh-rate-test': { name: 'Teste de Taxa de Atualização', description: 'Meça os Hz da sua tela no navegador, com tempos de quadro e quadros atrasados.' },
     'monitor-ghosting-test': { name: 'Teste de Ghosting do Monitor', description: 'Alvos em movimento em fundos escuros, cinza e claros revelam ghosting, rastros e overshoot.' },
@@ -482,6 +484,7 @@ export const TOOL_TRANSLATIONS: Record<LanguageCode, Record<string, ToolText>> =
     'fake-google-meet': { name: 'Fake-Google-Meet-Bildschirm', description: 'Besprechungssimulation im Google-Meet-Stil mit abgerundeten Kacheln, Initialen-Avataren, blauer Sprechermarkierung und runden Steuerknöpfen.' },
     'fake-slack-huddle': { name: 'Slack Huddle Simulation', description: 'Kompakte Audioanruf-Simulation im Slack-Design mit Sprechringen und laufendem Zähler.' },
     'zoom-lighting': { name: 'Beleuchtung für Videoanrufe', description: 'Nutzen Sie ein Zweitdisplay als weiches Aufhelllicht für Webcams mit wählbarer Farbtemperatur.' },
+    'fake-blue-screen-of-death': { name: 'Fake Bluescreen (Blue Screen of Death)', description: 'Täuschend echter Windows-Bluescreen mit :(, steigender Prozentanzeige, Stoppcodes und Stilen für Windows 10, 11, schwarz und klassisch XP.' },
     'touch-screen-test': { name: 'Touchscreen-Test', description: 'Tote Zonen finden und Multitouch testen: Raster füllen, frei zeichnen oder jeden Berührungspunkt sehen.' },
     'screen-refresh-rate-test': { name: 'Bildwiederholrate-Test', description: 'Miss die Hz deines Bildschirms live im Browser, mit Frame-Zeiten und verspäteten Frames.' },
     'monitor-ghosting-test': { name: 'Monitor-Ghosting-Test', description: 'Bewegte Ziele auf dunklem, grauem und hellem Grund zeigen Ghosting, Schlieren und Overshoot.' },
@@ -540,6 +543,7 @@ export const TOOL_TRANSLATIONS: Record<LanguageCode, Record<string, ToolText>> =
     'fake-google-meet': { name: 'Faux Écran Google Meet', description: 'Simulation de réunion style Google Meet avec vignettes arrondies, avatars à initiale, contour bleu de l’orateur et boutons ronds.' },
     'fake-slack-huddle': { name: 'Faux Huddle Slack', description: 'Simulation d’appel audio style Slack avec avatars et indicateurs de prise de parole.' },
     'zoom-lighting': { name: 'Lumière pour Visioconférence', description: 'Transformez un moniteur secondaire en panneau lumineux doux pour valoriser votre webcam.' },
+    'fake-blue-screen-of-death': { name: 'Faux Écran Bleu de la Mort', description: 'Blague réaliste de l’écran bleu de Windows avec le visage :(, un pourcentage qui monte, des codes d’arrêt et les styles Windows 10, 11, noir et XP classique.' },
     'touch-screen-test': { name: 'Test d’Écran Tactile', description: 'Trouvez les zones mortes et testez le multitouch : remplissez une grille, dessinez ou voyez chaque point.' },
     'screen-refresh-rate-test': { name: 'Test de Fréquence de Rafraîchissement', description: 'Mesurez les Hz de votre écran dans le navigateur, avec temps d’image et images en retard.' },
     'monitor-ghosting-test': { name: 'Test de Ghosting d’Écran', description: 'Des cibles mobiles sur fonds sombre, gris et clair révèlent ghosting, traînées et overshoot.' },
@@ -598,6 +602,7 @@ export const TOOL_TRANSLATIONS: Record<LanguageCode, Record<string, ToolText>> =
     'fake-google-meet': { name: 'Schermata Finta di Google Meet', description: 'Simulazione di riunione stile Google Meet con riquadri arrotondati, avatar con iniziale, contorno blu di chi parla e comandi rotondi.' },
     'fake-slack-huddle': { name: 'Simulazione Slack Huddle', description: 'Simulazione di chiamata vocale stile Slack con avatar parlanti e cronometro attivo.' },
     'zoom-lighting': { name: 'Luce per Videochiamate', description: 'Usa un secondo schermo come pannello luce soffusa per migliorare la resa della tua webcam.' },
+    'fake-blue-screen-of-death': { name: 'Finta Schermata Blu della Morte', description: 'Scherzo realistico della schermata blu di Windows con la faccina :(, percentuale crescente, codici di arresto e stili Windows 10, 11, nero e XP classico.' },
     'touch-screen-test': { name: 'Test Touch Screen', description: 'Trova zone morte e prova il multitouch: riempi una griglia, disegna o vedi ogni punto di contatto.' },
     'screen-refresh-rate-test': { name: 'Test Frequenza di Aggiornamento', description: 'Misura gli Hz del tuo schermo nel browser, con tempi dei frame e frame in ritardo.' },
     'monitor-ghosting-test': { name: 'Test Ghosting Monitor', description: 'Bersagli in movimento su sfondi scuri, grigi e chiari rivelano ghosting, scie e overshoot.' },
@@ -656,6 +661,7 @@ export const TOOL_TRANSLATIONS: Record<LanguageCode, Record<string, ToolText>> =
     'fake-google-meet': { name: 'Nep Google Meet-scherm', description: 'Vergadersimulatie in Google Meet-stijl met afgeronde tegels, initiaal-avatars, blauwe sprekersrand en ronde bedieningsknoppen.' },
     'fake-slack-huddle': { name: 'Nep Slack Huddle', description: 'Compacte audiobijeenkomst in Slack-stijl met pratende avatars en actieve timer.' },
     'zoom-lighting': { name: 'Verlichting voor Videogesprekken', description: 'Gebruik een extra scherm als zacht invullicht voor uw webcam met instelbare kleurtoon.' },
+    'fake-blue-screen-of-death': { name: 'Nep Blue Screen of Death', description: 'Realistische Windows-bluescreen-grap met het :(-gezicht, oplopend percentage, stopcodes en stijlen voor Windows 10, 11, zwart en klassiek XP.' },
     'touch-screen-test': { name: 'Touchscreen Test', description: 'Vind dode zones en test multitouch: vul een raster, teken vrij of zie elk aanraakpunt.' },
     'screen-refresh-rate-test': { name: 'Verversingssnelheid Test', description: 'Meet de Hz van je scherm live in de browser, met frametijden en late frames.' },
     'monitor-ghosting-test': { name: 'Monitor Ghosting Test', description: 'Bewegende doelen op donkere, grijze en lichte achtergrond tonen ghosting, vegen en overshoot.' },
@@ -714,6 +720,7 @@ export const TOOL_TRANSLATIONS: Record<LanguageCode, Record<string, ToolText>> =
     'fake-google-meet': { name: 'Layar Google Meet Palsu', description: 'Simulasi rapat ala Google Meet dengan ubin membulat, avatar inisial, garis biru pembicara, dan tombol kontrol bundar.' },
     'fake-slack-huddle': { name: 'Simulasi Slack Huddle', description: 'Simulasi obrolan audio ala Slack dengan avatar berbicara dan timer panggilan aktif.' },
     'zoom-lighting': { name: 'Pencahayaan Panggilan Video', description: 'Ubah layar monitor cadangan Anda menjadi lampu sorot lembut untuk panggilan video dan webcam.' },
+    'fake-blue-screen-of-death': { name: 'Layar Biru Kematian Palsu', description: 'Lelucon layar biru Windows yang realistis dengan wajah :(, persentase naik, kode berhenti, dan gaya Windows 10, 11, hitam, serta XP klasik.' },
     'touch-screen-test': { name: 'Tes Layar Sentuh', description: 'Temukan zona mati dan uji multi-sentuh: isi kisi, gambar bebas, atau lihat setiap titik sentuh.' },
     'screen-refresh-rate-test': { name: 'Tes Refresh Rate Layar', description: 'Ukur Hz layar Anda langsung di peramban, dengan waktu frame dan frame terlambat.' },
     'monitor-ghosting-test': { name: 'Tes Ghosting Monitor', description: 'Target bergerak di latar gelap, abu-abu, dan terang memperlihatkan ghosting, jejak, dan overshoot.' },
@@ -772,6 +779,7 @@ export const TOOL_TRANSLATIONS: Record<LanguageCode, Record<string, ToolText>> =
     'fake-google-meet': { name: 'Sahte Google Meet Ekranı', description: 'Yuvarlak kutucuklar, baş harf avatarları, konuşan kişiye mavi çerçeve ve yuvarlak kontrollerle Google Meet tarzı toplantı simülasyonu.' },
     'fake-slack-huddle': { name: 'Sahte Slack Huddle', description: 'Slack tarzı konuşan avatarlar ve aktif sayaç bulunan sesli görüşme simülasyonu.' },
     'zoom-lighting': { name: 'Görüntülü Görüşme Işığı', description: 'İkinci bir ekranı web kameranız için sıcak ve soğuk tonlarda yumuşak bir dolgu ışığına dönüştürün.' },
+    'fake-blue-screen-of-death': { name: 'Sahte Mavi Ölüm Ekranı', description: 'Gerçekçi Windows mavi ekran şakası: :( yüzü, yükselen yüzde, durdurma kodları ve Windows 10, 11, siyah ve klasik XP stilleri.' },
     'touch-screen-test': { name: 'Dokunmatik Ekran Testi', description: 'Ölü bölgeleri bulun ve çoklu dokunmayı test edin: ızgarayı doldurun, çizin veya her dokunuşu görün.' },
     'screen-refresh-rate-test': { name: 'Ekran Yenileme Hızı Testi', description: 'Ekranınızın Hz değerini tarayıcıda canlı ölçün; kare süreleri ve geciken kareler dahil.' },
     'monitor-ghosting-test': { name: 'Monitör Gölgelenme Testi', description: 'Koyu, gri ve açık arka planlarda hareket eden hedefler gölgelenme, iz ve aşmayı gösterir.' },
@@ -782,25 +790,4 @@ export const TOOL_TRANSLATIONS: Record<LanguageCode, Record<string, ToolText>> =
     'hacked-screen': { name: 'Hacklenmiş Ekran Simülatörü', description: 'Bozuk yazı, kayan kayıtlar, ilerleme çubuğu ve sirenle sahte “sistem ele geçirildi” ekranı. Zararsız bir şaka.' },
     'fake-radar-screen': { name: 'Sahte Radar Ekranı', description: 'Dönen tarama, sinyaller, mesafe halkaları ve koordinatlarla tam ekran bilim kurgu radarı. Tamamen simülasyon.' },
   },
-}
-
-export function getLocalizedTool(tool: Tool, lang: LanguageCode): Tool {
-  const dict = TOOL_TRANSLATIONS[lang]?.[tool.slug]
-  if (!dict) return tool
-  return {
-    ...tool,
-    name: dict.name,
-    description: dict.description,
-  }
-}
-
-export function getLocalizedCategory(category: ToolCategory, lang: LanguageCode): ToolCategory {
-  const dict = CATEGORY_TRANSLATIONS[lang]?.[category.id]
-  if (!dict) return category
-  return {
-    ...category,
-    name: dict.name,
-    navLabel: dict.navLabel,
-    description: dict.description,
-  }
 }

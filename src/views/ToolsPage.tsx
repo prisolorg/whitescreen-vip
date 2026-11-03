@@ -6,7 +6,7 @@ import { TOOLS, getToolsByCategory } from '@/lib/tools'
 import { Search } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n'
-import { getLocalizedCategory, getLocalizedTool } from '@/lib/tool-translations'
+import { getLocalizedCategory, getLocalizedTool } from '@/lib/localized-tools'
 
 export function ToolsPage() {
   const { t, language } = useTranslation()

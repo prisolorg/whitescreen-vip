@@ -260,4 +260,43 @@ export const fakeScreenContent: Record<string, ToolContent> = {
       EXIT_FAQ,
     ],
   },
+  'fake-blue-screen-of-death': {
+    title: 'Fake Blue Screen of Death – Windows BSOD Prank',
+    intro:
+      'A convincing Windows "Blue Screen of Death" for pranks, videos and training. It shows the sad :( face, the "Your PC ran into a problem and needs to restart" message, a percentage that climbs in uneven jumps, a QR block and a stop code such as CRITICAL_PROCESS_DIED. Pick the Windows 10 or 11 blue, the newer black crash screen, or the classic blue text screen from Windows XP and 7, then go fullscreen; the mouse pointer hides automatically. Nothing on your computer changes: it is a web page, and Esc ends it. For more fake system screens, try the [Fake Windows 10 Update](/fake-windows-10-update/) or the [Hacked Screen Simulator](/hacked-screen/).',
+    steps: [
+      'Choose a style: Windows 10, Windows 11, the new black screen, or classic XP/7.',
+      'Pick a stop code and how long the counter takes to reach 100%.',
+      'Double-tap the screen or press F for fullscreen. The cursor hides after a moment.',
+      'Press Esc, or move the mouse and click the close button, to exit.',
+    ],
+    useCases: [
+      { title: 'Office pranks', description: 'Leave it on a colleague\'s screen for a few seconds of panic, then reveal the joke.' },
+      { title: 'Videos and streams', description: 'Show a crash on camera without crashing a real computer.' },
+      { title: 'IT training', description: 'Show what a stop error looks like and what the stop code means.' },
+      { title: 'Film and theatre props', description: 'A believable crash screen for a scene, on any device.' },
+    ],
+    faqs: [
+      {
+        question: 'What is the Blue Screen of Death?',
+        answer:
+          'It is the full-screen error Windows shows when it hits a problem it cannot recover from, such as a failing driver or memory fault. It names a stop code, saves crash information and restarts.',
+      },
+      {
+        question: 'What do the stop codes mean?',
+        answer:
+          'Each names the kind of failure: CRITICAL_PROCESS_DIED means a core system process stopped, IRQL_NOT_LESS_OR_EQUAL usually points to a driver, and MEMORY_MANAGEMENT often means faulty RAM. Here they are only text.',
+      },
+      {
+        question: 'Can this harm my computer?',
+        answer: 'No. It is an image in a browser tab. It does not crash Windows, change settings or install anything.',
+      },
+      {
+        question: 'Why is the new crash screen black?',
+        answer: 'In 2025 Microsoft replaced the blue screen in Windows 11 with a simpler black one. Choose "Black (new)" for that look.',
+      },
+      AFFILIATION_FAQ('Microsoft'),
+      EXIT_FAQ,
+    ],
+  },
 }

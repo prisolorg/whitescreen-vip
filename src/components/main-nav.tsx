@@ -8,10 +8,11 @@ import { cn } from '@/lib/utils'
 import { TOOLS, getTool, toolPath, type Tool } from '@/lib/tools'
 import { getCategory, type ToolCategoryId } from '@/lib/tool-categories'
 import { useTranslation } from '@/lib/i18n'
-import { getLocalizedCategory, getLocalizedTool } from '@/lib/tool-translations'
+import { getLocalizedCategory, getLocalizedTool } from '@/lib/localized-tools'
 import { ToolSearch } from './tool-search'
 import { ToolThumb } from './try-next-gallery'
 import { GLOSSARY_NAV_LINKS, HEADER_GUIDES, PROBLEM_NAV_LINKS } from '@/lib/nav-links'
+import { getMessages } from '@/lib/messages'
 
 /**
  * Header navigation: two menus (Tools and Learn) plus a Backgrounds link. Tools opens a
@@ -44,7 +45,7 @@ const TOOL_COLUMNS: ToolColumn[] = [
     titleKey: 'navFakeTimers',
     defaultTitle: 'Fake screens & timers',
     href: '/tools#fake-screens',
-    slugs: ['fake-windows-10-update', 'fake-zoom-meeting', 'fake-teams-meeting', 'fake-google-meet', 'pomodoro-timer', 'ring-light'],
+    slugs: ['fake-blue-screen-of-death', 'fake-windows-10-update', 'fake-zoom-meeting', 'fake-teams-meeting', 'fake-google-meet', 'pomodoro-timer', 'ring-light'],
   },
 ]
 
@@ -100,7 +101,7 @@ function ColumnTitle({ children }: { children: React.ReactNode }) {
 export function DesktopNav() {
   const [openId, setOpenId] = useState<'tools' | 'learn' | null>(null)
   const pathname = usePathname()
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const navRef = useRef<HTMLElement>(null)
   const close = () => setOpenId(null)
 
@@ -181,7 +182,7 @@ export function DesktopNav() {
                   <ColumnTitle>{t('guides', 'Guides')}</ColumnTitle>
                   {HEADER_GUIDES.slice(0, 5).map((guide) => (
                     <Link key={guide.slug} href={guide.path} onClick={close} className="rounded-lg px-2.5 py-2 text-sm font-medium hover:bg-accent">
-                      {guide.label}
+                      {getMessages(language).guideLabels[guide.slug] ?? guide.label}
                     </Link>
                   ))}
                   <Link href="/guides" onClick={close} className="px-2.5 py-2 text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400">

@@ -14,6 +14,9 @@ export interface AboutContent {
   sendFeedbackLink: string
   or: string
   getInTouchLink: string
+  howHeading: string
+  howText1: string
+  howText2: string
 }
 
 export interface ContactContent {
@@ -89,6 +92,9 @@ export const ABOUT_TRANSLATIONS: Record<LanguageCode, AboutContent> = {
     sendFeedbackLink: 'Send us feedback',
     or: 'or',
     getInTouchLink: 'get in touch',
+    howHeading: 'How the tools are made',
+    howText1: 'Every tool is built and tested on real hardware: LCD, IPS, VA and OLED monitors, laptops, phones and TVs. Test patterns use exact color values, timers count against the system clock, and nothing is uploaded: images, camera previews and settings stay on your device. Pages are kept small so they open quickly even on slow connections.',
+    howText2: 'The guides, background pages and screen-problem articles explain what each test shows and what to do next, in plain language. They are written for people checking a new monitor, cleaning a screen, lighting a video call or setting up a display at work. If something is unclear or wrong, tell us and we will fix it.',
   },
   es: {
     title: 'Sobre Nosotros',
@@ -104,6 +110,9 @@ export const ABOUT_TRANSLATIONS: Record<LanguageCode, AboutContent> = {
     sendFeedbackLink: 'Envíanos tus comentarios',
     or: 'o',
     getInTouchLink: 'ponte en contacto con nosotros',
+    howHeading: 'Cómo se hacen las herramientas',
+    howText1: 'Cada herramienta se crea y prueba en hardware real: monitores LCD, IPS, VA y OLED, portátiles, móviles y televisores. Los patrones usan valores de color exactos, los temporizadores cuentan con el reloj del sistema y no se sube nada: imágenes, vista de cámara y ajustes se quedan en tu dispositivo. Las páginas son ligeras para abrir rápido incluso con conexiones lentas.',
+    howText2: 'Las guías y artículos explican con lenguaje sencillo qué muestra cada prueba y qué hacer después, para quien revisa un monitor nuevo, limpia una pantalla, ilumina una videollamada o prepara una pantalla en el trabajo. Si algo no está claro o es incorrecto, avísanos y lo corregiremos.',
   },
   'pt-br': {
     title: 'Sobre Nós',
@@ -119,6 +128,9 @@ export const ABOUT_TRANSLATIONS: Record<LanguageCode, AboutContent> = {
     sendFeedbackLink: 'Envie seu feedback',
     or: 'ou',
     getInTouchLink: 'entre em contato',
+    howHeading: 'Como as ferramentas são feitas',
+    howText1: 'Cada ferramenta é criada e testada em hardware real: monitores LCD, IPS, VA e OLED, notebooks, celulares e TVs. Os padrões usam valores de cor exatos, os timers contam pelo relógio do sistema e nada é enviado: imagens, prévia da câmera e configurações ficam no seu aparelho. As páginas são leves para abrir rápido mesmo em conexões lentas.',
+    howText2: 'Os guias e artigos explicam em linguagem simples o que cada teste mostra e o que fazer depois, para quem verifica um monitor novo, limpa uma tela, ilumina uma videochamada ou prepara uma tela no trabalho. Se algo estiver confuso ou errado, avise e nós corrigimos.',
   },
   de: {
     title: 'Über Uns',
@@ -134,6 +146,9 @@ export const ABOUT_TRANSLATIONS: Record<LanguageCode, AboutContent> = {
     sendFeedbackLink: 'Feedback senden',
     or: 'oder',
     getInTouchLink: 'Kontakt aufnehmen',
+    howHeading: 'Wie die Tools entstehen',
+    howText1: 'Jedes Tool wird auf echter Hardware gebaut und getestet: LCD-, IPS-, VA- und OLED-Monitore, Laptops, Smartphones und Fernseher. Testbilder verwenden exakte Farbwerte, Timer zählen mit der Systemuhr, und nichts wird hochgeladen: Bilder, Kameravorschau und Einstellungen bleiben auf deinem Gerät. Die Seiten sind schlank, damit sie auch bei langsamer Verbindung schnell laden.',
+    howText2: 'Die Ratgeber und Artikel erklären verständlich, was ein Test zeigt und was als Nächstes zu tun ist – für alle, die einen neuen Monitor prüfen, einen Bildschirm reinigen, ein Videotelefonat ausleuchten oder ein Display bei der Arbeit einrichten. Wenn etwas unklar oder falsch ist, sag uns Bescheid, und wir korrigieren es.',
   },
   fr: {
     title: 'À Propos',
@@ -149,6 +164,9 @@ export const ABOUT_TRANSLATIONS: Record<LanguageCode, AboutContent> = {
     sendFeedbackLink: 'Donnez-nous votre avis',
     or: 'ou',
     getInTouchLink: 'contactez-nous',
+    howHeading: 'Comment les outils sont conçus',
+    howText1: 'Chaque outil est conçu et testé sur du vrai matériel : écrans LCD, IPS, VA et OLED, ordinateurs portables, téléphones et téléviseurs. Les mires utilisent des valeurs de couleur exactes, les minuteurs comptent avec l’horloge système et rien n’est envoyé : images, aperçu caméra et réglages restent sur votre appareil. Les pages sont légères pour s’ouvrir vite, même avec une connexion lente.',
+    howText2: 'Les guides et articles expliquent simplement ce que montre chaque test et quoi faire ensuite, pour ceux qui vérifient un nouvel écran, nettoient un écran, éclairent une visioconférence ou installent un affichage au travail. Si quelque chose est flou ou faux, dites-le-nous et nous corrigerons.',
   },
   it: {
     title: 'Chi Siamo',
@@ -164,6 +182,9 @@ export const ABOUT_TRANSLATIONS: Record<LanguageCode, AboutContent> = {
     sendFeedbackLink: 'Inviaci un feedback',
     or: 'oppure',
     getInTouchLink: 'contattaci',
+    howHeading: 'Come nascono gli strumenti',
+    howText1: 'Ogni strumento è creato e testato su hardware reale: monitor LCD, IPS, VA e OLED, portatili, smartphone e TV. I pattern usano valori di colore esatti, i timer contano con l’orologio di sistema e nulla viene caricato: immagini, anteprima della fotocamera e impostazioni restano sul tuo dispositivo. Le pagine sono leggere per aprirsi in fretta anche con connessioni lente.',
+    howText2: 'Le guide e gli articoli spiegano in modo semplice cosa mostra ogni test e cosa fare dopo, per chi controlla un nuovo monitor, pulisce uno schermo, illumina una videochiamata o prepara un display al lavoro. Se qualcosa non è chiaro o è sbagliato, scrivici e lo correggeremo.',
   },
   nl: {
     title: 'Over Ons',
@@ -179,6 +200,9 @@ export const ABOUT_TRANSLATIONS: Record<LanguageCode, AboutContent> = {
     sendFeedbackLink: 'Stuur ons feedback',
     or: 'of',
     getInTouchLink: 'neem contact op',
+    howHeading: 'Hoe de tools gemaakt worden',
+    howText1: 'Elke tool wordt gebouwd en getest op echte hardware: LCD-, IPS-, VA- en OLED-monitoren, laptops, telefoons en tv\'s. Testbeelden gebruiken exacte kleurwaarden, timers tellen met de systeemklok en er wordt niets geüpload: afbeeldingen, camerabeeld en instellingen blijven op je apparaat. Pagina\'s zijn klein, zodat ze ook op een trage verbinding snel openen.',
+    howText2: 'De gidsen en artikelen leggen in gewone taal uit wat elke test laat zien en wat je daarna kunt doen, voor wie een nieuwe monitor controleert, een scherm schoonmaakt, een videogesprek belicht of een scherm op het werk instelt. Klopt er iets niet of is iets onduidelijk, laat het ons weten en we passen het aan.',
   },
   id: {
     title: 'Tentang Kami',
@@ -194,6 +218,9 @@ export const ABOUT_TRANSLATIONS: Record<LanguageCode, AboutContent> = {
     sendFeedbackLink: 'Kirim masukan',
     or: 'atau',
     getInTouchLink: 'hubungi kami',
+    howHeading: 'Cara alat-alat ini dibuat',
+    howText1: 'Setiap alat dibuat dan diuji di perangkat nyata: monitor LCD, IPS, VA, dan OLED, laptop, ponsel, dan TV. Pola uji memakai nilai warna yang tepat, timer menghitung dengan jam sistem, dan tidak ada yang diunggah: gambar, pratinjau kamera, dan pengaturan tetap di perangkat Anda. Halaman dibuat ringan agar cepat terbuka bahkan di koneksi lambat.',
+    howText2: 'Panduan dan artikel menjelaskan dengan bahasa sederhana apa yang ditunjukkan setiap tes dan langkah selanjutnya, untuk Anda yang memeriksa monitor baru, membersihkan layar, menerangi panggilan video, atau menyiapkan layar di kantor. Jika ada yang kurang jelas atau keliru, beri tahu kami dan akan kami perbaiki.',
   },
   tr: {
     title: 'Hakkımızda',
@@ -209,6 +236,9 @@ export const ABOUT_TRANSLATIONS: Record<LanguageCode, AboutContent> = {
     sendFeedbackLink: 'Bize geri bildirim gönderin',
     or: 'veya',
     getInTouchLink: 'bizimle iletişime geçin',
+    howHeading: 'Araçlar nasıl hazırlanıyor',
+    howText1: 'Her araç gerçek donanımda geliştirilip test edilir: LCD, IPS, VA ve OLED monitörler, dizüstü bilgisayarlar, telefonlar ve televizyonlar. Test desenleri tam renk değerleri kullanır, zamanlayıcılar sistem saatine göre sayar ve hiçbir şey yüklenmez: görseller, kamera önizlemesi ve ayarlar cihazınızda kalır. Sayfalar yavaş bağlantılarda bile hızlı açılsın diye hafif tutulur.',
+    howText2: 'Rehberler ve makaleler her testin ne gösterdiğini ve sonra ne yapılacağını sade bir dille anlatır; yeni bir monitörü kontrol eden, ekran temizleyen, görüntülü görüşmeyi aydınlatan ya da işyerinde bir ekran kuran herkes için. Belirsiz ya da hatalı bir şey görürseniz bize yazın, düzeltelim.',
   },
 }
 
