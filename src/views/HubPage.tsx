@@ -75,13 +75,14 @@ export function HubPage({ path }: { path: string }) {
       <AdSlot placement="top" />
       {content && (
         <section className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
-          {content.details.map((detail) => (
+          {content.details.map((detail, index) => (
             <div key={detail.heading} className="mb-8">
               <h2 className="text-2xl font-semibold tracking-tight">{detail.heading}</h2>
               <p className="mt-3 text-pretty leading-relaxed text-foreground/85">{detail.text}</p>
+              {/* The second ad follows the first section, close to the first ad. */}
+              {index === 0 && <AdSlot placement="content" className="px-0 pb-0 sm:px-0" />}
             </div>
           ))}
-          <AdSlot placement="content" className="px-0 sm:px-0" />
           <h2 className="mb-6 mt-4 text-2xl font-semibold tracking-tight">
             {isEnglish ? `${hub.name} FAQ` : t('faqTitle', 'Frequently asked questions')}
           </h2>

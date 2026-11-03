@@ -144,4 +144,6 @@ export const es: readonly string[] = [
   '¡Se acabó el tiempo!', 'Intervalo',
   // 355
   'Simulación', 'Finalizar', 'La reunión de broma ha terminado.',
+  // 358
+  'Calculando el tiempo restante…', 'Falta menos de un minuto',
 ]

@@ -144,4 +144,6 @@ export const fr: readonly string[] = [
   'Temps écoulé !', 'Intervalle',
   // 355
   'Simulation', 'Terminer', 'La fausse réunion est terminée.',
+  // 358
+  'Calcul du temps restant…', 'Moins d’une minute restante',
 ]

@@ -1,4 +1,4 @@
-import { AdSlot } from '@/components/ad-slot'
+import { ToolWithAds } from '@/components/tool-ads'
 'use client'
 
 import React, { useState, useRef, useEffect, useCallback } from 'react'
@@ -208,6 +208,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
           <span className="truncate font-medium text-foreground">{item.title}</span>
         </nav>
 
+        <ToolWithAds>
         <div className="relative">
           <div
             ref={screenRef}
@@ -322,6 +323,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
             </div>
           </StageDock>
         )}
+        </ToolWithAds>
 
         <section aria-labelledby="more-backgrounds" className="mt-2 flex flex-col gap-3">
           <div className="flex items-baseline justify-between gap-3">
@@ -364,7 +366,6 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
 
       <div className="mx-auto max-w-5xl px-3 sm:px-6">
         {/* Section 1: About This Background */}
-        <AdSlot placement="top" className="px-0 sm:px-0" />
         <section className="mt-6 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
           <div className="flex items-center gap-2">
             <Palette className="size-5 text-primary" />
@@ -496,7 +497,6 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
         </section>
 
         {/* Section 6: Frequently Asked Questions */}
-        <AdSlot placement="content" className="px-0 sm:px-0" />
         {item.faqs && item.faqs.length > 0 && (
           <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
             <div className="flex items-center gap-2">

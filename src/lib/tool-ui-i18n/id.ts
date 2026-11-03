@@ -144,4 +144,6 @@ export const id: readonly string[] = [
   'Waktu habis!', 'Interval',
   // 355
   'Simulasi', 'Akhiri', 'Rapat prank telah berakhir.',
+  // 358
+  'Menghitung waktu tersisa…', 'Kurang dari semenit lagi',
 ]

@@ -251,11 +251,12 @@ export function GuideDetailPage({ slug }: { slug: string }) {
                   </ul>
                 </div>
               )}
+              {/* The second ad follows the first section, close to the first ad and above the fold on most screens. */}
+              {idx === 0 && <AdSlot placement="content" className="mt-4 px-0 sm:px-0" />}
             </section>
           ))}
         </div>
 
-        <AdSlot placement="content" className="px-0 sm:px-0" />
         {/* FAQ Section */}
         {guide.faqs && guide.faqs.length > 0 && (
           <section id="faqs" className="mt-12 border-t pt-8">

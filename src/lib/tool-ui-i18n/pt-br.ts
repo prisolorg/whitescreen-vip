@@ -144,4 +144,6 @@ export const ptBr: readonly string[] = [
   'O tempo acabou!', 'Intervalo',
   // 355
   'Simulação', 'Encerrar', 'A reunião de pegadinha terminou.',
+  // 358
+  'Calculando o tempo restante…', 'Menos de um minuto restante',
 ]

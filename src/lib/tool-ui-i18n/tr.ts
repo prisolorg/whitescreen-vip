@@ -144,4 +144,6 @@ export const tr: readonly string[] = [
   'Süre doldu!', 'Aralık',
   // 355
   'Simülasyon', 'Bitir', 'Şaka toplantısı sona erdi.',
+  // 358
+  'Kalan süre hesaplanıyor…', 'Bir dakikadan az kaldı',
 ]

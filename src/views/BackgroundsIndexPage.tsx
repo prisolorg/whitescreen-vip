@@ -21,6 +21,7 @@ import { paintBackground } from '@/lib/background-paint'
 import { absoluteUrl } from '@/lib/site'
 import { JsonLd } from '@/components/json-ld'
 import { cn } from '@/lib/utils'
+import { SHOW_ADS, ToolWithAds, UnderAd } from '@/components/tool-ads'
 import { useRouter, useSearchParams } from '@/lib/next-shim'
 
 const CATEGORY_META: Record<BackgroundCategory, { heading: string; description: string; badge: string }> = {
@@ -243,13 +244,17 @@ export function BackgroundsIndexPage() {
         </div>
 
         {/* Backgrounds Cards Grid: Every card links directly to its own unique URL */}
-        <div className="grid grid-cols-2 gap-2.5 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {filteredItems.map((item) => {
+        {/* Ads: a sticky 300×600 beside the grid on desktop; on tablets and phones a banner after the
+            first row of cards (dense flow fills the row on 3 columns), above the fold without pushing the grid down. */}
+        <ToolWithAds under={false}>
+        <div className={cn('grid grid-flow-row-dense grid-cols-2 gap-2.5 sm:gap-4 md:grid-cols-3', SHOW_ADS ? 'lg:grid-cols-3' : 'lg:grid-cols-4')}>
+          {filteredItems.map((item, index) => {
             const isDownloading = downloadingSlug?.startsWith(item.slug)
             const itemUrl = `/backgrounds/${item.slug}`
             return (
+              <React.Fragment key={item.slug}>
+              {index === 2 && <UnderAd className="col-span-full" />}
               <article
-                key={item.slug}
                 className="group flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card shadow-2xs transition-all hover:border-foreground/30 hover:shadow-sm"
               >
                 {/* Visual Swatch Preview Link */}
@@ -326,6 +331,7 @@ export function BackgroundsIndexPage() {
                   </div>
                 </div>
               </article>
+              </React.Fragment>
             )
           })}
         </div>
@@ -346,6 +352,7 @@ export function BackgroundsIndexPage() {
             </button>
           </div>
         )}
+        </ToolWithAds>
 
         {/* Educational Content & Category Context */}
         <section className="mt-16 rounded-2xl border border-border bg-card p-6 sm:p-8 space-y-6">

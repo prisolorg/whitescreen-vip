@@ -144,4 +144,6 @@ export const nl: readonly string[] = [
   'De tijd is om!', 'Interval',
   // 355
   'Simulatie', 'Beëindigen', 'De nepvergadering is beëindigd.',
+  // 358
+  'Resterende tijd berekenen…', 'Nog minder dan een minuut',
 ]

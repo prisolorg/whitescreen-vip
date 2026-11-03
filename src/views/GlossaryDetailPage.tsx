@@ -134,6 +134,9 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
           </div>
         </section>
 
+        {/* The second ad follows the first explanation, close to the first ad. */}
+        <AdSlot placement="content" className="px-0 sm:px-0" />
+
         {/* Key Specifications & Industry Standards */}
         <section className="mb-10 space-y-4">
           <div className="flex items-center gap-2">
@@ -286,7 +289,6 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
         </section>
 
         {/* Other Glossary Terms Navigation */}
-        <AdSlot placement="content" className="px-0 sm:px-0" />
         <section className="border-t border-border/80 pt-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base sm:text-lg font-bold text-foreground">

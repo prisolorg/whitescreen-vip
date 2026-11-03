@@ -358,4 +358,6 @@ export const TOOL_UI_KEYS = [
   "Simulation",
   "End call",
   "Prank meeting simulation ended.",
+  "Calculating time remaining…",
+  "Less than a minute remaining",
 ] as const

@@ -244,6 +244,8 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
                   })}
                 </div>
               )}
+              {/* The second ad follows the first section, close to the first ad. */}
+              {sIdx === 0 && <AdSlot placement="content" className="px-0 py-2 sm:px-0" />}
             </section>
           ))}
         </div>
@@ -309,7 +311,6 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
           </div>
         </section>
 
-        <AdSlot placement="content" className="px-0 sm:px-0" />
         {/* Problem-Specific FAQs */}
         {item.faqs && item.faqs.length > 0 && (
           <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">

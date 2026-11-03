@@ -144,4 +144,6 @@ export const de: readonly string[] = [
   'Die Zeit ist abgelaufen!', 'Intervall',
   // 355
   'Simulation', 'Beenden', 'Das Scherz-Meeting wurde beendet.',
+  // 358
+  'Verbleibende Zeit wird berechnet …', 'Weniger als eine Minute verbleibend',
 ]

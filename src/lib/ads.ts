@@ -16,7 +16,7 @@ export const AD_SLOTS = {
   under: env(import.meta.env.PUBLIC_ADSENSE_SLOT_UNDER),
   /** Reading pages: under the opening answer. */
   top: env(import.meta.env.PUBLIC_ADSENSE_SLOT_TOP),
-  /** Reading pages: in the middle of the content, before the FAQ. */
+  /** Reading pages: right after the first section, close to the first ad. */
   content: env(import.meta.env.PUBLIC_ADSENSE_SLOT_CONTENT),
 } as const
 
