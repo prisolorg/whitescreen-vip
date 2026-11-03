@@ -184,7 +184,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
     answer:
       'An OLED gray test shows very dark gray steps near black, where OLED panels most often show problems. It reveals near-black banding, mura (blotchy patches), vertical lines and uneven shading that bright content hides on OLED TVs, monitors and phones.',
     features: [
-      'Near-black gray steps from 1% to 10%',
+      'Near-black gray steps from 1% to 20%, plus a ramp',
       'Full-screen fields with no overlays',
       'Manual stepping to compare levels slowly',
       'Works on phones, TVs and OLED monitors',
@@ -250,7 +250,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
     features: [
       'Three moving lanes at adjustable speed',
       'Light and dark backgrounds to reveal different transitions',
-      'Fixed target for judging trail length',
+      'Reference grid for judging trail length',
       'Matches your screen’s real refresh rate',
     ],
     benefits: ['Choose the right overdrive mode for gaming', 'Compare monitors before buying or returning', 'Free alternative to camera-based tests'],
@@ -285,7 +285,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   'no-signal-screen': {
     answer:
       'A no signal screen shows the familiar TV message that appears when a television or monitor gets no input from its HDMI or cable source. Shown in fullscreen with color bars and a drifting message box, it makes a convincing prank, film prop or placeholder for a spare display.',
-    features: ['Classic color bars or plain blue background', 'Drifting "No Signal" box like a real TV', 'Optional static and custom input name', 'Fullscreen with hidden cursor'],
+    features: ['Classic color bars or plain blue background', 'Drifting "No Signal" box like a real TV', 'Optional 1 kHz test tone and custom input name', 'Fullscreen with hidden cursor'],
     benefits: ['Easy, harmless prank', 'Prop for films, escape rooms and sets', 'Works on smart TVs through the browser'],
     sources: [WIKI('SMPTE_color_bars', 'SMPTE color bars'), WIKI('Test_card', 'Test card')],
   },
@@ -344,9 +344,9 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   },
   'visual-noise': {
     answer:
-      'Visual noise fills the screen with animated random patterns such as TV static, colored grain and soft textures. It is used as a background for videos and streams, to test how a display handles fine detail and motion, and as a calming visual to focus on.',
-    features: ['TV static, color and soft noise patterns', 'Grain size, speed and contrast controls', 'Fullscreen with smooth animation', 'Reduced-motion friendly'],
-    benefits: ['Retro static backgrounds for edits and streams', 'Checks fine detail and motion handling', 'Free and lightweight'],
+      'Visual noise fills the screen with animated, smoothly flowing noise patterns: soft fog, colorful plasma and fine grain. It is used as a background for videos and streams, as a reference for design textures, and as a calming visual to wind down with.',
+    features: ['Fog, plasma and fine grain styles', 'Scale, speed and color palette controls', 'Pause to freeze a frame you like', 'Starts paused if you prefer reduced motion'],
+    benefits: ['Calm moving backgrounds for edits and streams', 'Texture reference for design work', 'Free and lightweight'],
     sources: [WIKI('Noise_(video)', 'Noise (video)'), FLASH_GUIDELINE],
   },
   'color-cycle': {
@@ -422,7 +422,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   'fake-windows-11-update': {
     answer:
       'A fake Windows 11 update screen shows the dark "Working on updates" screen with the spinner and a slowly rising percentage. Run it fullscreen to make a computer look busy updating, as a prank or a film prop, then press Esc to return.',
-    features: ['Windows 11-style spinner and text', 'Adjustable speed and percentage', 'Fullscreen with hidden cursor', 'Esc to exit'],
+    features: ['Windows 11-style spinner and text', 'Adjustable speed and Pause', 'Fullscreen with hidden cursor', 'Esc to exit'],
     benefits: ['Realistic, harmless prank', 'Clean prop for screen recordings', 'Free'],
     sources: [WIKI('Windows_Update', 'Windows Update')],
   },
@@ -439,7 +439,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   'fake-mac-update': {
     answer:
       'A fake Mac update screen shows the black macOS update screen with a progress bar and the time remaining. In fullscreen it looks like the Mac is installing an update, for a harmless prank or a video prop. Press Esc to exit.',
-    features: ['macOS-style progress bar and time remaining', 'Adjustable duration', 'Fullscreen with hidden cursor', 'Esc to exit'],
+    features: ['macOS-style progress bar and time remaining', 'Adjustable update speed', 'Fullscreen with hidden cursor', 'Esc to exit'],
     benefits: ['Harmless prank for Mac users', 'Clean prop for videos', 'Free'],
     sources: [WIKI('MacOS', 'macOS')],
   },
@@ -460,7 +460,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   'fake-windows-xp-boot': {
     answer:
       'A fake Windows XP boot screen plays the classic startup screen with the moving blue loading bar on black. It is a quick retro prop for videos, films and pranks, and a nostalgic screensaver for fans of the 2001 operating system.',
-    features: ['Classic boot screen with animated loading bar', 'Loops or plays once', 'Fullscreen with hidden cursor', 'Esc to exit'],
+    features: ['Classic boot screen with animated loading bar', 'Loops for as long as you like', 'Fullscreen with hidden cursor', 'Esc to exit'],
     benefits: ['Retro prop in one click', 'Nostalgic screensaver', 'Free'],
     sources: [WIKI('Windows_XP', 'Windows XP')],
   },
@@ -481,28 +481,28 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   'fake-zoom-meeting': {
     answer:
       'A fake Zoom meeting screen shows a Zoom-style video call with a grid of participants, a toolbar and your own camera preview. It is for pranks, film props, screenshots and practising on camera. Your camera feed stays on your device and is never recorded or uploaded.',
-    features: ['Participant grid with names and mute icons', 'Your live camera preview, also in fullscreen', 'Meeting timer and toolbar', 'Customizable participant names'],
+    features: ['Participant grid with names and mute icons', 'Your live camera preview, also in fullscreen', 'Meeting timer and toolbar', 'Editable meeting title'],
     benefits: ['Realistic call prop for videos', 'Practise presenting on camera', 'Private: nothing leaves your device'],
     sources: [MDN('MediaDevices/getUserMedia', 'getUserMedia()')],
   },
   'fake-teams-meeting': {
     answer:
       'A fake Microsoft Teams meeting screen shows a Teams-style call with participant tiles, the meeting toolbar and your camera preview. Use it for pranks, film props or rehearsing a presentation. The camera preview stays in your browser and is never recorded.',
-    features: ['Teams-style tiles and controls', 'Live camera preview in fullscreen', 'Meeting timer', 'Custom participant names'],
+    features: ['Teams-style tiles and controls', 'Live camera preview in fullscreen', 'Meeting timer', 'Editable meeting title'],
     benefits: ['Believable office prop', 'Rehearse calls safely', 'Private and free'],
     sources: [MDN('MediaDevices/getUserMedia', 'getUserMedia()')],
   },
   'fake-google-meet': {
     answer:
       'A fake Google Meet screen shows a Meet-style video call with participant tiles, the bottom control bar and your own camera preview. It works for pranks, videos and presentation practice, and your camera image never leaves your device.',
-    features: ['Meet-style tiles and control bar', 'Live camera preview in fullscreen', 'Call timer and names', 'No Google sign-in required'],
+    features: ['Meet-style tiles and control bar', 'Live camera preview in fullscreen', 'Call timer and editable meeting title', 'No Google sign-in required'],
     benefits: ['Realistic prop for films and tutorials', 'Practise on camera', 'Private and free'],
     sources: [MDN('MediaDevices/getUserMedia', 'getUserMedia()')],
   },
   'fake-slack-huddle': {
     answer:
       'A fake Slack huddle screen shows a Slack-style audio and video huddle with participants and controls. Use it as a prank, a screenshot prop for presentations or a film set background, with nothing connected to a real Slack workspace.',
-    features: ['Huddle-style participant view', 'Speaking indicators and controls', 'Fullscreen display', 'Custom names'],
+    features: ['Huddle-style participant view', 'Speaking indicators and controls', 'Fullscreen display', 'Editable huddle title'],
     benefits: ['Quick prop for remote-work videos', 'Harmless prank', 'Free'],
   },
   'fake-radar-screen': {

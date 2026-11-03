@@ -23,22 +23,31 @@ import { it as it3 } from './batch3/it'
 import { nl as nl3 } from './batch3/nl'
 import { id as id3 } from './batch3/id'
 import { tr as tr3 } from './batch3/tr'
+import { es as es4 } from './batch4/es'
+import { ptBr as ptBr4 } from './batch4/pt-br'
+import { de as de4 } from './batch4/de'
+import { fr as fr4 } from './batch4/fr'
+import { it as it4 } from './batch4/it'
+import { nl as nl4 } from './batch4/nl'
+import { id as id4 } from './batch4/id'
+import { tr as tr4 } from './batch4/tr'
 
 /**
  * Translated tool page content, by language then tool slug. English lives in the tool-content files.
  * Batch 1: white/black screen answers, dead pixel, refresh rate, touch screen, white noise, BSOD, Pomodoro.
  * Batch 2: monitor test, screen resolution, brown noise, pink noise, broken screen, countdown timer.
  * Batch 3: uniformity test, stopwatch, Matrix, DVD, fake Windows 10 update, ring light.
+ * Batch 4: every remaining tool (display tests, effects, screensavers, fake screens).
  */
 export const TOOL_CONTENT_TRANSLATIONS: Record<string, ToolTranslations> = {
-  es: { ...es, ...es2, ...es3 },
-  'pt-br': { ...ptBr, ...ptBr2, ...ptBr3 },
-  de: { ...de, ...de2, ...de3 },
-  fr: { ...fr, ...fr2, ...fr3 },
-  it: { ...it, ...it2, ...it3 },
-  nl: { ...nl, ...nl2, ...nl3 },
-  id: { ...id, ...id2, ...id3 },
-  tr: { ...tr, ...tr2, ...tr3 },
+  es: { ...es, ...es2, ...es3, ...es4 },
+  'pt-br': { ...ptBr, ...ptBr2, ...ptBr3, ...ptBr4 },
+  de: { ...de, ...de2, ...de3, ...de4 },
+  fr: { ...fr, ...fr2, ...fr3, ...fr4 },
+  it: { ...it, ...it2, ...it3, ...it4 },
+  nl: { ...nl, ...nl2, ...nl3, ...nl4 },
+  id: { ...id, ...id2, ...id3, ...id4 },
+  tr: { ...tr, ...tr2, ...tr3, ...tr4 },
 }
 
 /**

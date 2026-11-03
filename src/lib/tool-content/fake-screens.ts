@@ -60,7 +60,7 @@ function callContent({ app, brand, intro, title, extraFaq }: CallOptions): ToolC
     title: title ?? `Fake ${app} Call Screen – Video Call Simulation`,
     intro,
     steps: [
-      'Edit the meeting title and participant names.',
+      'Edit the meeting title shown at the top of the call.',
       'Optionally turn on your camera preview — it stays on your device and is never recorded or sent.',
       'Press F or Fullscreen for a convincing full-window call.',
       'Press Esc to exit at any time.',
@@ -140,11 +140,11 @@ export const fakeScreenContent: Record<string, ToolContent> = {
   'fake-windows-xp-boot': {
     title: 'Fake Windows XP Boot Screen – Retro Startup Simulation',
     intro:
-      'Relive the classic black boot screen with the sliding blue progress blocks, then a welcome screen. A harmless, nostalgic simulation that starts silently.',
+      'Relive the classic black boot screen with the blue blocks sliding along the loading bar. A harmless, nostalgic simulation that loops silently for as long as you like.',
     steps: [
-      'Press Start to play the boot sequence.',
-      'Choose whether to loop the progress bar or continue to the welcome screen.',
-      'Press F for fullscreen.',
+      'The boot screen starts straight away, with blue blocks sliding along the loading bar.',
+      'Press F or click Fullscreen so it fills your display and hides the browser.',
+      'Leave it running: the loading bar loops for as long as you like.',
       'Press Esc to exit.',
     ],
     useCases: [

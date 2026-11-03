@@ -137,8 +137,8 @@ export const TOOL_META: Record<string, [title: string, description: string]> = {
     'Turn your screen into a ring light for selfies, video calls and makeup. Adjust size, warmth and brightness, then go fullscreen. Free, no app.',
   ],
   'visual-noise': [
-    'Visual Noise – Animated Static & Noise Patterns (Free)',
-    'Fill your screen with animated visual noise: TV static, colored grain and soft textures. Use it for backgrounds, tests or relaxation. Free.',
+    'Visual Noise – Animated Fog, Plasma & Grain (Free)',
+    'Fill your screen with animated visual noise: flowing fog, colorful plasma and fine grain. Use it for backgrounds, textures or relaxation. Free.',
   ],
   'color-cycle': [
     'Color Changing Screen – Smooth Rainbow Light (Free)',
