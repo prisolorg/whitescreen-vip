@@ -172,7 +172,7 @@ export function ToolStage({
 
         {/* Same title placement as the color screens; it sits outside the stage so fullscreen stays clean. */}
         {heading && !isFullscreen && (
-          <StageTitle title={heading.title} intro={reserveHeadingSpace ? undefined : heading.intro} tone={tone} scrim={!reserveHeadingSpace} />
+          <StageTitle title={heading.title} intro={reserveHeadingSpace ? undefined : heading.intro} tone={tone} scrim={!reserveHeadingSpace} compact={reserveHeadingSpace} />
         )}
       </div>
 

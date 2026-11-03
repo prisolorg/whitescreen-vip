@@ -125,6 +125,12 @@ export function DesktopNav() {
 
   return (
     <nav ref={navRef} aria-label={t('navigation', 'Navigation')} className="flex items-center gap-1">
+      <Link
+        href="/"
+        className="inline-flex h-10 items-center rounded-lg px-3.5 text-[15px] font-semibold text-foreground/80 transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2"
+      >
+        {t('homeTitle', 'White Screen')}
+      </Link>
       {menuButton('tools', t('navTools', 'Tools'))}
       {menuButton('learn', t('navLearn', 'Learn'))}
       <Link
@@ -314,6 +320,10 @@ export function MobileNav() {
                 ))}
               </ul>
             )}
+            <div className="h-px bg-border" />
+            <Link href="/" onClick={close} className="flex h-13 items-center px-1 text-[17px] font-bold">
+              {t('homeTitle', 'White Screen')}
+            </Link>
             <div className="h-px bg-border" />
             <Link href="/backgrounds" onClick={close} className="flex h-13 items-center px-1 text-[17px] font-bold">
               {t('backgrounds', 'Backgrounds')}

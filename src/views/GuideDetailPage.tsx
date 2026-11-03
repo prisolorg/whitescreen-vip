@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { WhiteScreenCta } from '@/components/white-screen-cta'
 import Link from 'next/link'
 import {
   ChevronRight,
@@ -95,7 +96,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-1.5 text-xs text-muted-foreground">
           <Link href="/" className="hover:text-foreground transition-colors">
-            {t('home', 'Home')}
+            {t('homeTitle', 'White Screen')}
           </Link>
           <ChevronRight className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
           <Link href="/guides" className="hover:text-foreground transition-colors">
@@ -358,6 +359,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
           </section>
         )}
       </div>
+      <WhiteScreenCta className="mt-12" />
     </article>
   )
 }

@@ -6,6 +6,7 @@ export function SiteFooter() {
   const { t } = useTranslation()
 
   const screenTestLinks = [
+    { name: t('homeTitle', 'White Screen'), href: '/' },
     { name: 'Dead Pixel Test', href: '/dead-pixel-test' },
     { name: 'Screen Uniformity Test', href: '/screen-uniformity-test' },
     { name: 'Screen Color Test', href: '/screen-color-test' },
@@ -64,6 +65,10 @@ export function SiteFooter() {
           <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
             {t('footerAbout', 'WhiteScreen.vip is an independent online screen utility.')}
           </p>
+          <Link href="/" className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400">
+            <span aria-hidden="true" className="size-4 rounded bg-white ring-1 ring-black/15" />
+            {t('ctaOpenWhiteScreen', 'Open the free White Screen')} →
+          </Link>
         </div>
 
         {/* 6 Clean Columns: Screen Tests, Backgrounds, Screen Problems, Glossary, About Us, Legal */}

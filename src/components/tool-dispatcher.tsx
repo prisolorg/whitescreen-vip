@@ -59,7 +59,6 @@ const Screensavers = lazy(() => import('@/components/tools/screensavers').then(m
     if (slug === 'flip-clock-screensaver') return <m.FlipClockScreensaver />
     if (slug === 'dvd-screensaver') return <m.DvdScreensaver />
     if (slug === 'motivational-quote-screensaver') return <m.MotivationalQuoteScreensaver />
-    if (slug === 'snow-screen') return <m.SnowScreen />
     return null
   }
 })))
@@ -150,7 +149,7 @@ export function renderToolComponent(slug: string): React.ReactNode {
   }
 
   // Screensavers
-  if (['matrix-screensaver', 'flip-clock-screensaver', 'dvd-screensaver', 'motivational-quote-screensaver', 'snow-screen'].includes(slug)) {
+  if (['matrix-screensaver', 'flip-clock-screensaver', 'dvd-screensaver', 'motivational-quote-screensaver'].includes(slug)) {
     return (
       <Suspense fallback={<ToolLoadingFallback />}>
         <Screensavers slug={slug} />

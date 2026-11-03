@@ -348,7 +348,7 @@ export const TOOLS: readonly Tool[] = [
       'Deep, rumbling brown noise generated live in your browser, with filters, volume, a sleep timer and a live waveform.',
     icon: Waves,
     keywords: ['brown noise', 'brown noise generator', 'brownian noise', 'red noise', 'sleep', 'focus', 'adhd'],
-    related: ['pink-noise-generator', 'white-noise-generator', 'pomodoro-timer', 'snow-screen'],
+    related: ['pink-noise-generator', 'white-noise-generator', 'pomodoro-timer', 'matrix-screensaver'],
   },
   {
     slug: 'pink-noise-generator',
@@ -418,7 +418,7 @@ export const TOOLS: readonly Tool[] = [
       'Customizable animated pixel noise in mono, color or tinted modes with adjustable grain and speed.',
     icon: Sparkles,
     keywords: ['visual noise', 'pixel noise', 'grain', 'random pixels', 'glitch'],
-    related: ['white-noise-generator', 'color-cycle', 'gradient-screen', 'snow-screen'],
+    related: ['white-noise-generator', 'color-cycle', 'gradient-screen', 'white-screen'],
   },
   {
     slug: 'color-cycle',
@@ -450,7 +450,7 @@ export const TOOLS: readonly Tool[] = [
       'Cascading digital rain with adjustable speed, color, character set and font size.',
     icon: Binary,
     keywords: ['matrix', 'digital rain', 'code rain', 'falling characters', 'screensaver'],
-    related: ['hacker-typer', 'dvd-screensaver', 'flip-clock-screensaver', 'snow-screen'],
+    related: ['hacker-typer', 'dvd-screensaver', 'flip-clock-screensaver', 'motivational-quote-screensaver'],
   },
   {
     slug: 'flip-clock-screensaver',
@@ -480,18 +480,9 @@ export const TOOLS: readonly Tool[] = [
       'Rotating inspirational quotes in large type on calm backgrounds, with a timer, shuffle and an optional clock.',
     icon: Quote,
     keywords: ['motivational quotes', 'inspirational quotes', 'quote screensaver', 'quote of the day', 'office display'],
-    related: ['flip-clock-screensaver', 'dvd-screensaver', 'countdown-timer', 'snow-screen'],
+    related: ['flip-clock-screensaver', 'dvd-screensaver', 'countdown-timer', 'matrix-screensaver'],
   },
-  {
-    slug: 'snow-screen',
-    name: 'Snow Screen',
-    category: 'screensavers',
-    description:
-      'Gentle falling snow with adjustable density, speed and wind for a calm winter screensaver.',
-    icon: Snowflake,
-    keywords: ['snow', 'falling snow', 'winter', 'christmas screensaver', 'snowfall'],
-    related: ['matrix-screensaver', 'brown-noise-generator', 'gradient-screen', 'flip-clock-screensaver'],
-  },
+
 
   // Utilities
   {

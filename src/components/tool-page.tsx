@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { WhiteScreenCta } from '@/components/white-screen-cta'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { FaqList } from '@/components/faq-list'
 import { JsonLd } from '@/components/json-ld'
@@ -84,6 +85,7 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
           </StageHeadingContext.Provider>
           <TryNextGallery currentSlug={slug} className="mt-2" />
         </div>
+        {slug !== 'white-screen' && <WhiteScreenCta className="mt-6" />}
       </section>
 
       {language === 'en' && (

@@ -25,6 +25,7 @@ export function StageTitle({
   tone,
   scrim,
   aside,
+  compact,
 }: {
   title: string
   intro?: string
@@ -33,6 +34,8 @@ export function StageTitle({
   /** Fade behind the text, for busy tool content (solid colors don't need it). */
   scrim?: boolean
   aside?: ReactNode
+  /** Smaller heading that always fits the reserved title band, even on two lines on a phone. */
+  compact?: boolean
 }) {
   return (
     <div
@@ -45,7 +48,13 @@ export function StageTitle({
       )}
     >
       <div className="flex min-w-0 flex-col gap-1.5">
-        <h1 id="screen-heading" className="text-balance text-2xl font-extrabold tracking-tight sm:text-4xl lg:text-[44px] lg:leading-tight">
+        <h1
+          id="screen-heading"
+          className={cn(
+            'text-balance font-extrabold tracking-tight',
+            compact ? 'text-xl leading-7 sm:text-3xl sm:leading-9 lg:text-4xl lg:leading-10' : 'text-2xl sm:text-4xl lg:text-[44px] lg:leading-tight',
+          )}
+        >
           {title}
         </h1>
         {intro && <p className="hidden max-w-md text-pretty text-sm leading-relaxed opacity-90 sm:line-clamp-2 lg:text-[15px]">{intro}</p>}

@@ -508,35 +508,4 @@ export const screensaverContent: Record<string, ToolContent> = {
       },
     ],
   },
-  'snow-screen': {
-    title: 'Snow Screen – Falling Snow Screensaver',
-    intro:
-      'Gentle snowflakes drift across your screen over a night-sky gradient. Adjust the amount of snow, wind and flake size for a cozy winter scene.',
-    steps: [
-      'Snow starts falling immediately.',
-      'Use the sliders to change density, wind and flake size.',
-      'Pick a background: night sky, dusk or pure black.',
-      FULLSCREEN_STEP,
-    ],
-    useCases: [
-      { title: 'Holiday ambiance', description: 'A winter scene on your TV during the holidays.' },
-      { title: 'Relaxation', description: 'Slow, soft motion helps you wind down.' },
-      { title: 'Shop windows', description: 'A seasonal display for storefront screens.' },
-      { title: 'Video backgrounds', description: 'Record a snowy backdrop for greetings.' },
-    ],
-    faqs: [
-      {
-        question: 'Can I use it on a TV?',
-        answer: 'Yes. Open the page in your TV’s browser or cast a browser tab, then go fullscreen.',
-      },
-      {
-        question: 'Does it work offline?',
-        answer: 'Once loaded, the animation runs entirely in your browser without a connection.',
-      },
-      {
-        question: 'Does it respect reduced motion?',
-        answer: 'Yes. With reduced motion enabled, snow falls much more slowly and with fewer flakes.',
-      },
-    ],
-  },
 }

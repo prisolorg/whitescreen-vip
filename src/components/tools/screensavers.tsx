@@ -21,87 +21,120 @@ const CHAR_SETS = {
   cyber: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*+-=',
 }
 
+const MATRIX_COLORS = {
+  green: { label: 'Green', head: '#d7ffd9', trail: '#00ff41' },
+  blue: { label: 'Blue', head: '#e0f2ff', trail: '#38bdf8' },
+  red: { label: 'Red', head: '#ffe1e1', trail: '#ff3b3b' },
+  gold: { label: 'Gold', head: '#fff6d6', trail: '#facc15' },
+} as const
+
 export function MatrixScreensaver() {
   const { canvasRef, width, height, dpr } = useCanvasSize()
-  const [speed, setSpeed] = useState(5)
-  const [density, setDensity] = useState(3)
+  const reducedMotion = usePrefersReducedMotion()
+  const [speed, setSpeed] = useState(6)
+  const [density, setDensity] = useState(4)
+  const [fontSize, setFontSize] = useState(18)
   const [charSet, setCharSet] = useState<'matrix' | 'binary' | 'cyber'>('matrix')
+  const [color, setColor] = useState<keyof typeof MATRIX_COLORS>('green')
   const [isPaused, setIsPaused] = useState(false)
-  const dropsRef = useRef<number[]>([])
+  // One drop per column: the row of its leading character, and whether the column is raining.
+  const dropsRef = useRef<{ row: number; active: boolean }[]>([])
+  const elapsedRef = useRef(0)
 
   const chars = CHAR_SETS[charSet]
 
+  // New columns whenever the size or font changes; drops start spread over the screen so rain shows at once.
   useEffect(() => {
-    if (!width) return
-    const fontSize = 16 * dpr
-    const columns = Math.floor((width * dpr) / fontSize)
-    dropsRef.current = Array.from({ length: columns }, () => Math.floor(Math.random() * -50))
-  }, [width, dpr])
-
-  useAnimationFrame(() => {
-    const canvas = canvasRef.current
-    if (!canvas || !width || !height) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)'
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-    const fontSize = Math.max(14, Math.floor(16 * dpr))
-    ctx.font = `${fontSize}px monospace`
-
-    const drops = dropsRef.current
-    for (let i = 0; i < drops.length; i++) {
-      if (Math.random() > 1 - density * 0.1) {
-        const char = chars[Math.floor(Math.random() * chars.length)]
-        const x = i * fontSize
-        const y = drops[i] * fontSize
-
-        // Bright white/green lead character
-        ctx.fillStyle = '#C8FFC8'
-        ctx.shadowColor = '#00FF41'
-        ctx.shadowBlur = 8
-        ctx.fillText(char, x, y)
-
-        // Trailing classic matrix green
-        ctx.fillStyle = '#00FF41'
-        ctx.shadowBlur = 2
-        ctx.fillText(char, x, y - fontSize)
-
-        if (y > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0
-        }
-        drops[i] += speed * 0.25
-      }
+    if (!width || !height) return
+    const columns = Math.ceil(width / fontSize)
+    const rows = Math.ceil(height / fontSize)
+    dropsRef.current = Array.from({ length: columns }, () => ({ row: Math.floor(Math.random() * rows), active: Math.random() < density / 5 }))
+    const ctx = canvasRef.current?.getContext('2d')
+    if (ctx) {
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      ctx.fillStyle = '#000'
+      ctx.fillRect(0, 0, width, height)
     }
+  }, [width, height, dpr, fontSize, density, canvasRef])
+
+  useAnimationFrame((delta) => {
+    const ctx = canvasRef.current?.getContext('2d')
+    if (!ctx || !width || !height) return
+    // Speed sets how often the rain moves down one row (frame-rate independent).
+    const stepMs = (reducedMotion ? 160 : 110) - speed * 9
+    elapsedRef.current += delta
+    if (elapsedRef.current < stepMs) return
+    elapsedRef.current = 0
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.09)'
+    ctx.fillRect(0, 0, width, height)
+    ctx.font = `${fontSize}px ui-monospace, "MS Gothic", monospace`
+    ctx.textBaseline = 'top'
+    const palette = MATRIX_COLORS[color]
+    const rows = Math.ceil(height / fontSize)
+
+    dropsRef.current.forEach((drop, column) => {
+      if (!drop.active) {
+        if (Math.random() < 0.004 * density) drop.active = true
+        return
+      }
+      const x = column * fontSize
+      const y = drop.row * fontSize
+      // Re-color the previous head as trail, then draw a bright new head.
+      ctx.fillStyle = palette.trail
+      ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, y - fontSize)
+      ctx.fillStyle = palette.head
+      ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, y)
+      drop.row++
+      if (drop.row > rows && Math.random() > 0.95) {
+        drop.row = 0
+        drop.active = Math.random() < density / 5
+      }
+    })
   }, !isPaused)
 
   return (
     <ToolStage
       label="Matrix screensaver"
       tone="dark"
+      doubleClickFullscreen
+      className="bg-black"
       controls={
-        <ControlRow>
-          <Segmented
-            label="Characters"
-            value={charSet}
-            onChange={setCharSet}
-            options={[
-              { value: 'matrix', label: 'Matrix Katakana' },
-              { value: 'binary', label: 'Binary' },
-              { value: 'cyber', label: 'Alphanumeric' },
-            ]}
-          />
-          <Slider label="Speed" value={speed} min={1} max={10} onChange={setSpeed} />
-          <Slider label="Density" value={density} min={1} max={5} onChange={setDensity} />
-          <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
-            {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
-            {isPaused ? 'Resume' : 'Pause'}
-          </ActionButton>
-        </ControlRow>
+        <>
+          <ControlRow>
+            <Segmented
+              label="Characters"
+              value={charSet}
+              onChange={setCharSet}
+              options={[
+                { value: 'matrix', label: 'Katakana' },
+                { value: 'binary', label: 'Binary' },
+                { value: 'cyber', label: 'Alphanumeric' },
+              ]}
+            />
+            <Segmented
+              label="Color"
+              value={color}
+              onChange={setColor}
+              options={(Object.keys(MATRIX_COLORS) as (keyof typeof MATRIX_COLORS)[]).map((key) => ({ value: key, label: MATRIX_COLORS[key].label }))}
+            />
+          </ControlRow>
+          <ControlRow>
+            <Slider label="Speed" value={speed} min={1} max={10} onChange={setSpeed} />
+            <Slider label="Density" value={density} min={1} max={5} onChange={setDensity} />
+            <Slider label="Character size" value={fontSize} min={12} max={32} step={2} onChange={setFontSize} format={(v) => `${v}px`} />
+            <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
+              {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
+              {isPaused ? 'Resume' : 'Pause'}
+            </ActionButton>
+          </ControlRow>
+        </>
       }
     >
-      <canvas ref={canvasRef} className="absolute inset-0 size-full bg-black" />
+      <div className="absolute inset-0">
+        <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 size-full bg-black" />
+      </div>
     </ToolStage>
   )
 }
@@ -565,88 +598,6 @@ export function MotivationalQuoteScreensaver() {
           />
         </div>
       )}
-    </ToolStage>
-  )
-}
-
-/* ---------------- Snow Screen ---------------- */
-
-type Flake = { x: number; y: number; r: number; d: number; speed: number }
-
-export function SnowScreen() {
-  const { canvasRef, width, height, dpr } = useCanvasSize()
-  const [density, setDensity] = useState(3)
-  const [speed, setSpeed] = useState(4)
-  const [wind, setWind] = useState(1)
-  const [isPaused, setIsPaused] = useState(false)
-  const flakesRef = useRef<Flake[]>([])
-
-  useEffect(() => {
-    if (!width || !height) return
-    const count = density * 75
-    flakesRef.current = Array.from({ length: count }, () => ({
-      x: Math.random() * (width * dpr),
-      y: Math.random() * (height * dpr),
-      r: Math.random() * 3 * dpr + 1,
-      d: Math.random() * count,
-      speed: Math.random() * 1.5 + 0.5,
-    }))
-  }, [width, height, dpr, density])
-
-  useAnimationFrame(() => {
-    const canvas = canvasRef.current
-    if (!canvas || !width || !height) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    // Deep winter night gradient
-    const grad = ctx.createLinearGradient(0, 0, 0, canvas.height)
-    grad.addColorStop(0, '#0a0f1d')
-    grad.addColorStop(1, '#05070e')
-    ctx.fillStyle = grad
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.85)'
-    ctx.beginPath()
-
-    const flakes = flakesRef.current
-    for (let i = 0; i < flakes.length; i++) {
-      const f = flakes[i]
-      ctx.moveTo(f.x, f.y)
-      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true)
-
-      // Move flake
-      f.y += (f.speed * speed * 0.4)
-      f.x += Math.sin(f.d) * 0.5 + (wind - 1) * 0.8
-
-      if (f.y > canvas.height) {
-        f.y = -5
-        f.x = Math.random() * canvas.width
-      }
-      if (f.x > canvas.width) f.x = 0
-      if (f.x < 0) f.x = canvas.width
-      f.d += 0.01
-    }
-    ctx.fill()
-  }, !isPaused)
-
-  return (
-    <ToolStage
-      label="Falling snow screen"
-      tone="dark"
-      controls={
-        <ControlRow>
-          <Slider label="Speed" value={speed} min={1} max={10} onChange={setSpeed} />
-          <Slider label="Density" value={density} min={1} max={5} onChange={setDensity} />
-          <Slider label="Wind" value={wind} min={0} max={3} step={0.5} onChange={setWind} />
-          <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
-            {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
-            {isPaused ? 'Resume' : 'Pause'}
-          </ActionButton>
-        </ControlRow>
-      }
-    >
-      <canvas ref={canvasRef} className="absolute inset-0 size-full" />
     </ToolStage>
   )
 }

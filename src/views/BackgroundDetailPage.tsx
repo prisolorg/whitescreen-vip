@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useRef, useEffect, useCallback } from 'react'
+import { WhiteScreenCta } from '@/components/white-screen-cta'
 import Link from 'next/link'
 import {
   Download,
@@ -192,7 +193,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
       <div className="mx-auto flex max-w-7xl flex-col gap-3 px-3 sm:px-6">
         <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
           <Link href="/" className="hover:text-foreground transition-colors">
-            Home
+            White Screen
           </Link>
           <ChevronRight className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
           <Link href="/backgrounds" className="hover:text-foreground transition-colors">
@@ -582,6 +583,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
           </section>
         )}
       </div>
+      <WhiteScreenCta className="mt-12" />
     </article>
   )
 }

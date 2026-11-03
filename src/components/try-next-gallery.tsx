@@ -15,8 +15,6 @@ const TAB_ORDER: readonly GalleryTabId[] = ['colors', 'screen-tests', 'effects',
 
 const BARS =
   'linear-gradient(90deg, #c0c0c0 0 14%, #c0c000 14% 28%, #00c0c0 28% 42%, #00c000 42% 57%, #c000c0 57% 71%, #c00000 71% 85%, #0000c0 85%)'
-const SNOW =
-  'radial-gradient(circle at 20% 30%, #fff 0 1.5px, transparent 2.5px), radial-gradient(circle at 70% 60%, #fff 0 1.5px, transparent 2.5px), radial-gradient(circle at 45% 80%, #fff 0 1.5px, transparent 2.5px), #0f1b33'
 const STATIC = 'repeating-linear-gradient(45deg, #8a8a8a 0 1px, #2b2b2b 1px 3px)'
 
 /** CSS backgrounds that hint at what each tool looks like. Tools without one fall back to their icon. */
@@ -51,7 +49,6 @@ const THUMBS: Record<string, string> = {
   'flip-clock-screensaver': '#111',
   'dvd-screensaver': '#0b0b18',
   'motivational-quote-screensaver': 'linear-gradient(135deg,#0f172a,#1e1b4b)',
-  'snow-screen': SNOW,
   'countdown-timer': '#1e3a8a',
   stopwatch: '#000',
   'fake-windows-10-update': '#0078D7',

@@ -26,6 +26,7 @@ const REMOVED_PAGES: Record<string, string> = {
   '/white-screen/': '/',
   '/bright-white-screen/': '/',
   '/custom-dvd-screensaver/': '/dvd-screensaver/',
+  '/snow-screen/': '/matrix-screensaver/',
   // TV static merged into the white noise generator; noise pages renamed to "generator".
   '/static-screen/': '/white-noise-generator/',
   '/white-noise-screen/': '/white-noise-generator/',

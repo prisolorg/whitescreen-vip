@@ -15,9 +15,10 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
     return label
   }
 
+  // The first crumb is the homepage, which is the White Screen tool: name it that, not "Home".
   const localizedItems = items.map((item) => ({
     ...item,
-    label: localizeLabel(item.label),
+    label: item.href === '/' ? t('homeTitle', 'White Screen') : localizeLabel(item.label),
   }))
 
   const schema = {

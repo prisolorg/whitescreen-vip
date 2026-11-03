@@ -15,6 +15,9 @@ function useFrameTimes(size = 120) {
     times.push(delta)
     if (times.length > size) times.shift()
   }
+  const reset = () => {
+    timesRef.current = []
+  }
   const stats = () => {
     const times = timesRef.current
     if (times.length < 10) return null
@@ -25,7 +28,7 @@ function useFrameTimes(size = 120) {
     const late = times.filter((t) => t > median * 1.5).length
     return { median, hz, min: sorted[0], max: sorted[sorted.length - 1], late: late / times.length, times }
   }
-  return { push, stats }
+  return { push, stats, reset }
 }
 
 const STANDARD_RATES = [30, 50, 60, 72, 75, 90, 100, 120, 144, 165, 170, 180, 200, 240, 280, 360, 480]
@@ -230,18 +233,43 @@ export function RefreshRateTest() {
   const { canvasRef, width, height, dpr } = useCanvasSize(2)
   const frames = useFrameTimes(240)
   const [reading, setReading] = useState<ReturnType<ReturnType<typeof useFrameTimes>['stats']>>(null)
+  const [range, setRange] = useState<{ low: number; high: number } | null>(null)
   const sinceUpdate = useRef(0)
+  const warmup = useRef(0)
   const x = useRef(0)
 
+  const restart = () => {
+    frames.reset()
+    warmup.current = 0
+    setReading(null)
+    setRange(null)
+  }
+
+  // Hidden tabs are throttled by the browser, so start over when the page becomes visible again.
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') restart()
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => document.removeEventListener('visibilitychange', onVisibility)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   useAnimationFrame((delta) => {
-    frames.push(delta)
+    // Skip the first half second: the first frames after load are often slow.
+    warmup.current += delta
+    if (warmup.current > 500) frames.push(delta)
     sinceUpdate.current += delta
     if (sinceUpdate.current > 400) {
       sinceUpdate.current = 0
-      setReading(frames.stats())
+      const stats = frames.stats()
+      setReading(stats)
+      if (stats) {
+        const hz = Math.round(stats.hz)
+        setRange((r) => (r ? { low: Math.min(r.low, hz), high: Math.max(r.high, hz) } : { low: hz, high: hz }))
+      }
     }
-    const canvas = canvasRef.current
-    const ctx = canvas?.getContext('2d')
+    const ctx = canvasRef.current?.getContext('2d')
     if (!ctx || !width) return
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     ctx.fillStyle = '#0a0a0a'
@@ -249,9 +277,9 @@ export function RefreshRateTest() {
 
     // Frame-time graph along the bottom: one bar per frame, red when a frame ran late.
     const stats = frames.stats()
-    const graphH = Math.min(70, height * 0.28)
+    const graphH = Math.min(60, height * 0.22)
     if (stats) {
-      const barW = width / stats.times.length
+      const barW = width / 240
       stats.times.forEach((t, i) => {
         const h = Math.min(graphH, (t / (stats.median * 2)) * graphH)
         ctx.fillStyle = t > stats.median * 1.5 ? '#ef4444' : 'rgba(56,189,248,0.6)'
@@ -259,11 +287,11 @@ export function RefreshRateTest() {
       })
     }
 
-    // A block that moves exactly one step per refresh: smooth at high Hz, steppy at low Hz.
-    const size = Math.min(44, height * 0.14)
+    // A block that moves one step per refresh: smooth at high Hz, steppy at low Hz.
+    const size = Math.min(36, height * 0.12)
     x.current = (x.current + (width / 2) * (delta / 1000)) % (width + size)
     ctx.fillStyle = '#f8fafc'
-    ctx.fillRect(x.current - size, height - graphH - size - 12, size, size)
+    ctx.fillRect(x.current - size, height - graphH - size - 10, size, size)
   })
 
   const hz = reading ? Math.round(reading.hz) : null
@@ -275,23 +303,34 @@ export function RefreshRateTest() {
       doubleClickFullscreen
       className="bg-[#0a0a0a]"
       controls={
-        <p className="text-sm text-muted-foreground">
-          The browser draws once per screen refresh, so the time between frames shows your refresh rate. Close heavy tabs,
-          plug in a laptop, and on multi-monitor setups test with the window on the screen you want to measure.
-        </p>
+        <>
+          <ControlRow>
+            <ActionButton onClick={restart}>
+              <RotateCcw aria-hidden="true" />
+              Measure again
+            </ActionButton>
+            <p className="pb-2 font-mono text-xs text-muted-foreground">
+              {range ? `Seen: ${range.low}–${range.high} Hz` : 'Measuring…'}
+            </p>
+          </ControlRow>
+          <p className="text-xs text-muted-foreground sm:text-sm">
+            Browsers draw once per refresh, so frame timing shows your refresh rate. For a high-refresh reading, plug in a laptop,
+            close heavy tabs and keep this window on the screen you are testing.
+          </p>
+        </>
       }
     >
       <div className="relative size-full">
         <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 size-full" />
-        <div className="pointer-events-none relative flex size-full flex-col items-center justify-start pt-2 text-center text-white sm:pt-4">
+        <div className="pointer-events-none relative flex h-[65%] flex-col items-center justify-center text-center text-white">
           <p className="font-mono text-5xl font-bold tabular-nums leading-none sm:text-7xl" aria-live="polite">
-            {hz ? `${hz} Hz` : 'Measuring…'}
+            {hz ? `${hz} Hz` : '…'}
           </p>
-          {reading && (
-            <p className="mt-2 text-xs text-white/70 sm:text-sm">
-              ~{nearestRate(reading.hz)} Hz display · {reading.median.toFixed(2)} ms per frame · {Math.round(reading.late * 100)}% late frames
-            </p>
-          )}
+          <p className="mt-2 px-3 text-xs text-white/70 sm:text-sm">
+            {reading
+              ? `≈ ${nearestRate(reading.hz)} Hz display · ${reading.median.toFixed(2)} ms per frame · ${Math.round(reading.late * 100)}% late frames`
+              : 'Measuring your display…'}
+          </p>
         </div>
       </div>
     </ToolStage>
