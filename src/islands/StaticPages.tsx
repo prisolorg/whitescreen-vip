@@ -1,5 +1,7 @@
 import { Providers } from './Providers'
 import { SiteFooter } from '@/components/site-footer'
+import { AuthorPage } from '@/views/AuthorPage'
+import { HubPage } from '@/views/HubPage'
 import { AboutPage } from '@/views/AboutPage'
 import { PrivacyPolicyPage } from '@/views/PrivacyPolicyPage'
 import { TermsPage } from '@/views/TermsPage'
@@ -14,10 +16,12 @@ import { HomePageBody } from '@/views/HomePage'
 import { SCREEN_COLORS } from '@/lib/screen-colors'
 
 /** Pages and parts with no interactivity. Astro renders these to HTML and ships no JavaScript for them. */
-export function StaticPage({ url, kind, slug }: { url: string; kind: 'about' | 'privacy' | 'terms' | 'disclaimer' | 'term' | 'notFound' | 'guides' | 'guide'; slug?: string }) {
+export function StaticPage({ url, kind, slug }: { url: string; kind: 'about' | 'author' | 'hub' | 'privacy' | 'terms' | 'disclaimer' | 'term' | 'notFound' | 'guides' | 'guide'; slug?: string }) {
   return (
     <Providers url={url}>
       {kind === 'about' && <AboutPage />}
+      {kind === 'author' && <AuthorPage />}
+      {kind === 'hub' && <HubPage path={slug ?? ''} />}
       {kind === 'privacy' && <PrivacyPolicyPage />}
       {kind === 'terms' && <TermsPage />}
       {kind === 'disclaimer' && <DisclaimerPage />}

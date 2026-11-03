@@ -4,7 +4,10 @@ import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'astro/config'
 import react from '@astrojs/react'
 import tailwindcss from '@tailwindcss/vite'
-import { LEGACY_REDIRECTS } from './src/lib/legacy-redirects'
+import { ENGLISH_ONLY_WILDCARDS, LEGACY_REDIRECTS } from './src/lib/legacy-redirects'
+import { loadEnv } from 'vite'
+
+const adsenseClient = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), 'PUBLIC_').PUBLIC_ADSENSE_CLIENT?.trim()
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url))
 const redirects = Object.entries(LEGACY_REDIRECTS)
@@ -24,10 +27,23 @@ export default defineConfig({
         // 301s for Netlify and Cloudflare Pages (_redirects) and Vercel (vercel.json).
         'astro:build:done': async ({ dir }) => {
           const out = fileURLToPath(dir)
-          await writeFile(path.join(out, '_redirects'), redirects.map(([from, to]) => `${from} ${to} 301`).join('\n') + '\n')
+          // ads.txt authorizes Google to sell this site's ad space (only when AdSense is configured).
+          if (adsenseClient) {
+            await writeFile(path.join(out, 'ads.txt'), `google.com, ${adsenseClient.replace(/^ca-/, '')}, DIRECT, f08c47fec0942fa0\n`)
+          }
+          // Exact rules first; the wildcard rules for English-only sections come last.
+          const rules = [...redirects, ...ENGLISH_ONLY_WILDCARDS]
+          await writeFile(path.join(out, '_redirects'), rules.map(([from, to]) => `${from} ${to} 301`).join('\n') + '\n')
           await writeFile(
             path.join(out, 'vercel.json'),
-            JSON.stringify({ trailingSlash: true, redirects: redirects.map(([source, destination]) => ({ source, destination, permanent: true })) }, null, 2),
+            JSON.stringify({ trailingSlash: true, redirects: [
+                ...redirects.map(([source, destination]) => ({ source, destination, permanent: true })),
+                ...ENGLISH_ONLY_WILDCARDS.map(([from, to]) => ({
+                  source: from.replace('/*', '/:path*'),
+                  destination: to.replace(':splat', ':path*'),
+                  permanent: true,
+                })),
+              ] }, null, 2),
           )
         },
       },

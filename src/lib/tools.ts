@@ -363,7 +363,7 @@ export const TOOLS: readonly Tool[] = [
   },
   {
     slug: 'broken-screen',
-    name: 'Broken Screen Effect',
+    name: 'Broken Screen Prank',
     category: 'effects',
     description:
       'Tap to shatter a realistic glass screen, with spider-web cracks, glass shards and a crack sound. A harmless prank.',
@@ -423,7 +423,7 @@ export const TOOLS: readonly Tool[] = [
   },
   {
     slug: 'color-cycle',
-    name: 'Color Cycle',
+    name: 'Color Changing Screen',
     category: 'effects',
     description:
       'Smoothly cycle the whole screen through the color wheel, or step between colors at your own pace.',
@@ -508,7 +508,7 @@ export const TOOLS: readonly Tool[] = [
   },
   {
     slug: 'stopwatch',
-    name: 'Stopwatch',
+    name: 'Online Stopwatch',
     category: 'utilities',
     description:
       'A precise fullscreen stopwatch with start, stop, reset and lap times you can review.',

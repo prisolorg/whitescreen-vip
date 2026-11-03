@@ -1,3 +1,8 @@
+import { AdSlot } from '@/components/ad-slot'
+import { ColorImage } from '@/components/color-image'
+import { ToolGlanceBlock } from '@/components/tool-glance'
+import { TOOL_GLANCE } from '@/lib/tool-content/glance'
+import { SCREEN_COLORS } from '@/lib/screen-colors'
 import Link from 'next/link'
 import {
   Monitor,
@@ -194,29 +199,12 @@ export function HomeSections() {
 
   return (
     <div className="space-y-12 sm:space-y-16 pb-16">
-      {/* 1. What Is a White Screen? */}
-      <section aria-labelledby="what-is-heading" className="mx-auto max-w-5xl px-3 sm:px-6">
-        <div className="rounded-2xl border border-border bg-card p-5 sm:p-7 shadow-xs">
-          <h2
-            id="what-is-heading"
-            className="text-xl sm:text-2xl font-bold tracking-tight text-foreground"
-          >
-            What Is a White Screen?
-          </h2>
-          <div className="mt-3 space-y-3 text-sm sm:text-base leading-relaxed text-muted-foreground">
-            <p>
-              A white screen is a plain, bright white display that you can open on your phone,
-              tablet, laptop, or monitor using a web browser. It can help you spot dust and visible
-              display defects, provide temporary lighting, and create a clean background for creative
-              projects.
-            </p>
-            <p>
-              WhiteScreen.vip lets you switch between solid colors, use the available fullscreen
-              controls, and download screen images without installing a separate application.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* 1. What Is a White Screen? Answer first, then the image and the first ad. */}
+      <div>
+        <ToolGlanceBlock name="White Screen" heading="What Is a White Screen?" glance={TOOL_GLANCE['white-screen']} />
+        <ColorImage color={SCREEN_COLORS[0]} name="White Screen" />
+        <AdSlot placement="top" />
+      </div>
 
       {/* 2. Why Use a White Screen? */}
       <section aria-labelledby="why-heading" className="mx-auto max-w-5xl px-3 sm:px-6">
@@ -365,6 +353,8 @@ export function HomeSections() {
       </section>
 
       {/* 6. Frequently Asked Questions */}
+      <AdSlot placement="content" />
+
       <section aria-labelledby="faq-heading" className="mx-auto max-w-5xl px-3 sm:px-6">
         <div className="mb-6">
           <h2

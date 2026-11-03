@@ -1,9 +1,9 @@
-import { SUPPORTED_LOCALES } from './locale-routing'
+import { ENGLISH_ONLY_PREFIXES as ENGLISH_ONLY_PREFIX_LIST, SUPPORTED_LOCALES, isEnglishOnlyPath } from './locale-routing'
 import { buildSlugMap, translatedSlugPairs } from './localized-slugs'
 
 /** Localized URL for an English path, using the build-time slug maps (this file also loads in astro.config). */
 function localized(path: string, lang: (typeof SUPPORTED_LOCALES)[number]) {
-  if (lang === 'en') return path
+  if (lang === 'en' || isEnglishOnlyPath(path.replace(/\/$/, ''))) return path
   const [, first, ...rest] = path.split('/')
   return ['', lang, buildSlugMap(lang).get(first) ?? first, ...rest].join('/').replace(/\/\/$/, '/')
 }
@@ -15,7 +15,6 @@ function localized(path: string, lang: (typeof SUPPORTED_LOCALES)[number]) {
 export const LEGACY_REDIRECTS: Record<string, string> = {
   '/contact-us/': '/contact/',
   '/about-us/': '/about/',
-  '/author-whitson-rao/': '/about/',
   '/windows-10-fake-update-screen/': '/fake-windows-10-update/',
   '/fake-broken-screen/': '/broken-screen/',
   '/how-to-check-dead-pixels-on-any-device/': '/guides/dead-pixel-test/',
@@ -68,8 +67,17 @@ for (const lang of SUPPORTED_LOCALES) {
       // A guide: /es/guides/dead-pixel-test/ → /es/guias/prueba-de-pixeles-muertos/
       const [section] = english.split('/')
       LEGACY_REDIRECTS[`/${lang}/${english}/`] = `/${lang}/${map.get(section) ?? section}/${local}/`
+    } else if (isEnglishOnlyPath(`/${english}`)) {
+      // Legal pages used to have a translated copy; it now 301s to the single English page.
+      LEGACY_REDIRECTS[`/${lang}/${local}/`] = `/${english}/`
+      LEGACY_REDIRECTS[`/${lang}/${english}/`] = `/${english}/`
     } else {
       LEGACY_REDIRECTS[`/${lang}/${english}/`] = `/${lang}/${local}/`
     }
   }
 }
+
+/** /es/backgrounds/* → /backgrounds/* and so on: English-only sections have one URL. Host rules only (no stub pages). */
+export const ENGLISH_ONLY_WILDCARDS: [from: string, to: string][] = SUPPORTED_LOCALES.filter((lang) => lang !== 'en').flatMap((lang) =>
+  ENGLISH_ONLY_PREFIX_LIST.map((prefix) => [`/${lang}${prefix}/*`, `${prefix}/:splat`] as [string, string]),
+)

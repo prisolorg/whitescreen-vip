@@ -1,3 +1,4 @@
+import { AdSlot } from '@/components/ad-slot'
 'use client'
 
 import React, { useState, useRef, useEffect, useCallback } from 'react'
@@ -363,7 +364,8 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
 
       <div className="mx-auto max-w-5xl px-3 sm:px-6">
         {/* Section 1: About This Background */}
-        <section className="mt-12 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
+        <AdSlot placement="top" className="px-0 sm:px-0" />
+        <section className="mt-6 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
           <div className="flex items-center gap-2">
             <Palette className="size-5 text-primary" />
             <h2 className="text-lg sm:text-xl font-bold text-foreground">About This Background</h2>
@@ -494,6 +496,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
         </section>
 
         {/* Section 6: Frequently Asked Questions */}
+        <AdSlot placement="content" className="px-0 sm:px-0" />
         {item.faqs && item.faqs.length > 0 && (
           <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
             <div className="flex items-center gap-2">

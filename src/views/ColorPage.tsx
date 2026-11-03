@@ -10,6 +10,12 @@ import { localizedToolName } from '@/lib/localized-tools'
 import { COLOR_GUIDES } from '@/lib/color-guides'
 import { FaqList } from '@/components/faq-list'
 import { RichText, plainText } from '@/components/rich-text'
+import { AdSlot } from '@/components/ad-slot'
+import { ToolGlanceBlock, ToolSources } from '@/components/tool-glance'
+import { ColorImage } from '@/components/color-image'
+import { getToolGlance } from '@/lib/tool-content/glance'
+import { getLocalizedPath } from '@/lib/locale-routing'
+import { AUTHOR } from '@/lib/author'
 
 /** The interactive part of a color page (hydrated): the screen and its controls. */
 export function ColorPage({ color }: { color: ScreenColor }) {
@@ -29,16 +35,25 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
     localizedToolName(toolSlug, language) ??
     `${t(color.id, color.name)} ${t('colorScreenSuffix', 'Screen')}`
 
+  const glance = getToolGlance(toolSlug, language)
+  const pageUrl = absoluteUrl(getLocalizedPath(color.path, language))
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': ['WebApplication', 'SoftwareApplication'],
+    '@id': `${pageUrl}#app`,
     name: localizedName,
-    url: absoluteUrl(color.path),
+    url: pageUrl,
     description: content.description,
+    abstract: glance?.answer,
     applicationCategory: 'UtilitiesApplication',
-    operatingSystem: 'Any',
-    browserRequirements: 'Requires a modern web browser',
-    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    operatingSystem: 'Windows, macOS, Linux, ChromeOS, Android, iOS',
+    browserRequirements: 'Requires a modern web browser with JavaScript',
+    inLanguage: language === 'pt-br' ? 'pt-BR' : language,
+    image: absoluteUrl(`/images/colors/${toolSlug}.png`),
+    featureList: glance?.features,
+    isAccessibleForFree: true,
+    creator: { '@type': 'Person', '@id': `${absoluteUrl(AUTHOR.path)}#person`, name: AUTHOR.name },
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
   }
 
   // Long-form copy is English-only; other languages keep the translated intro and use cases.
@@ -57,6 +72,9 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
     <>
       <JsonLd data={schema} />
       {faqSchema && <JsonLd data={faqSchema} />}
+      {glance && <ToolGlanceBlock name={localizedName} glance={glance} />}
+      <ColorImage color={color} name={localizedName} />
+      <AdSlot placement="top" />
       <Section
         id="use-cases"
         eyebrow={t('useCasesEyebrow', 'Use cases')}
@@ -90,7 +108,7 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
           </div>
         </Section>
       )}
-      <ColorScreenLinks currentId={color.id} />
+      <AdSlot placement="content" />
       {guide && (
         <Section id="faq" title={`${localizedName} FAQ`} className="border-t">
           <div className="max-w-3xl">
@@ -98,6 +116,8 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
           </div>
         </Section>
       )}
+      {glance?.sources && <ToolSources sources={glance.sources} />}
+      <ColorScreenLinks currentId={color.id} />
     </>
   )
 }

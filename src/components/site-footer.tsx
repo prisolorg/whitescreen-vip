@@ -1,9 +1,23 @@
 import Link from 'next/link'
 import { Logo } from './logo'
 import { useTranslation } from '@/lib/i18n'
+import { COLOR_HUB_NAMES, HUBS } from '@/lib/hubs'
+import { getCategory } from '@/lib/tool-categories'
+import { getLocalizedCategory } from '@/lib/localized-tools'
 
 export function SiteFooter() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
+
+  // Topic hubs, linked from every page.
+  const hubLinks = HUBS.map((hub) => ({
+    name:
+      language === 'en'
+        ? hub.name
+        : hub.group === 'colors'
+          ? COLOR_HUB_NAMES[language][0]
+          : getLocalizedCategory(getCategory(hub.group), language).name,
+    href: hub.path,
+  }))
 
   const screenTestLinks = [
     { name: t('homeTitle', 'White Screen'), href: '/' },
@@ -43,6 +57,7 @@ export function SiteFooter() {
   ]
 
   const aboutUsLinks = [
+    ...hubLinks,
     { name: t('about', 'About Us'), href: '/about' },
     { name: t('contact', 'Contact'), href: '/contact' },
     { name: t('feedback', 'Feedback'), href: '/feedback' },
@@ -152,7 +167,7 @@ export function SiteFooter() {
           {/* Group 5: About Us */}
           <div>
             <h2 className="mb-3 text-xs sm:text-sm font-semibold tracking-wide uppercase text-foreground">
-              {t('aboutUs', 'About Us')}
+              {t('footerExplore', 'Explore')}
             </h2>
             <ul className="flex flex-col gap-2 text-xs sm:text-sm">
               {aboutUsLinks.map((item) => (

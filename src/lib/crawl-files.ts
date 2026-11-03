@@ -1,5 +1,5 @@
 /** Text for /sitemap.xml, /robots.txt and /llms.txt, served by the endpoints in src/pages. */
-import { SITE_URL, getIndexableRoutes, isEnglishOnlyPath } from './seo'
+import { SITE_URL, getIndexableRoutes, pageLocales } from './seo'
 import { SUPPORTED_LOCALES, getLocalizedPath, type LanguageCode } from './locale-routing'
 import { TOOLS } from './tools'
 import { TOOL_CATEGORIES } from './tool-categories'
@@ -20,9 +20,11 @@ export function buildSitemap(lastmod = new Date().toISOString().slice(0, 10)): s
   const urls: string[] = []
   for (const lang of SUPPORTED_LOCALES) {
     for (const route of getIndexableRoutes(lang)) {
-      const alternates = isEnglishOnlyPath(route)
-        ? ''
-        : [...SUPPORTED_LOCALES.map((alt) => [hreflang(alt), alt] as const), ['x-default', 'en'] as const]
+      const locales = pageLocales(route)
+      const alternates =
+        locales.length < 2
+          ? ''
+          : [...locales.map((alt) => [hreflang(alt), alt] as const), ['x-default', 'en'] as const]
             .map(([code, alt]) => `\n    <xhtml:link rel="alternate" hreflang="${code}" href="${SITE_URL}${getLocalizedPath(route, alt)}"/>`)
             .join('')
       urls.push(`  <url>\n    <loc>${SITE_URL}${getLocalizedPath(route, lang)}</loc>\n    <lastmod>${lastmod}</lastmod>${alternates}\n  </url>`)

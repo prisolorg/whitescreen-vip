@@ -1,3 +1,4 @@
+import { AdSlot } from '@/components/ad-slot'
 'use client'
 
 import React, { useState } from 'react'
@@ -107,6 +108,7 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
             {item.heroSummary}
           </p>
         </header>
+        <AdSlot placement="top" className="px-0 sm:px-0" />
 
         {/* Quick Diagnostic Tool CTA */}
         <div className="mb-10 rounded-2xl border border-primary/30 bg-primary/5 p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -307,6 +309,7 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
           </div>
         </section>
 
+        <AdSlot placement="content" className="px-0 sm:px-0" />
         {/* Problem-Specific FAQs */}
         {item.faqs && item.faqs.length > 0 && (
           <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">

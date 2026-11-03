@@ -4,6 +4,7 @@ import HeaderIsland from '@/islands/HeaderIsland'
 import { StaticFooter } from '@/islands/StaticPages'
 import { renderHeadTags, type PageSeo } from '@/lib/seo'
 import { serializeMessages } from '@/lib/messages'
+import { ADSENSE_CLIENT } from '@/lib/ads'
 
 interface Props {
   seo: PageSeo
@@ -49,5 +50,32 @@ const htmlLang = seo.lang === 'pt-br' ? 'pt-BR' : seo.lang
       </main>
       <StaticFooter url={url} />
     </div>
+    {
+      ADSENSE_CLIENT && !seo.notFound && (
+        <script is:inline define:vars={{ client: ADSENSE_CLIENT }}>
+          // AdSense loads only after the first scroll, tap or key press (or 4 s idle), so ads never
+          // compete with the tool for the first paint. Units already have their space reserved.
+          ;(function () {
+            var started = false
+            function start() {
+              if (started || !document.querySelector('ins.adsbygoogle')) return
+              started = true
+              var script = document.createElement('script')
+              script.async = true
+              script.crossOrigin = 'anonymous'
+              script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + client
+              document.head.appendChild(script)
+              document.querySelectorAll('ins.adsbygoogle').forEach(function () {
+                ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+              })
+            }
+            ;['scroll', 'pointerdown', 'keydown'].forEach(function (type) {
+              addEventListener(type, start, { once: true, passive: true })
+            })
+            setTimeout(start, 4000)
+          })()
+        </script>
+      )
+    }
   </body>
 </html>

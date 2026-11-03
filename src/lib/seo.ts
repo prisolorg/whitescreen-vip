@@ -4,14 +4,19 @@
  * Keep this module free of React and browser globals.
  */
 import { translationsFor } from './base-translations'
-import { SUPPORTED_LOCALES, getLocalizedPath, type LanguageCode } from './locale-routing'
+import { SUPPORTED_LOCALES, getLocalizedPath, isEnglishOnlyPath, type LanguageCode } from './locale-routing'
 import { siteConfig } from './site'
 import { getColorBySlug, SCREEN_COLORS } from './screen-colors'
 import { getColorPageContent } from './color-pages'
 import { TOOLS } from './tools'
 import { TOOL_TRANSLATIONS } from './tool-translations'
-import { getLocalizedTool } from './localized-tools'
-import { getToolContent } from './tool-content'
+import { getLocalizedCategory, getLocalizedTool } from './localized-tools'
+import { TOOL_META } from './tool-content/meta'
+import { DISCLAIMER, PRIVACY_POLICY, TERMS_OF_USE } from './legal-pages'
+import { hasToolTranslation } from './tool-content/i18n'
+import { COLOR_HUB_NAMES, HUBS, getHub } from './hubs'
+import { getCategory } from './tool-categories'
+import { AUTHOR, SOCIAL_PROFILES } from './author'
 import { GUIDES, GUIDE_SLUG_ALIASES, getGuideBySlug } from './guides-content'
 import { BACKGROUND_ITEMS, getBackgroundBySlug } from './backgrounds-data'
 import { SCREEN_PROBLEMS, getScreenProblemBySlug } from './screen-problems-data'
@@ -19,15 +24,15 @@ import { GLOSSARY_ITEMS, getGlossaryBySlug } from './glossary-data'
 import {
   ABOUT_TRANSLATIONS,
   CONTACT_TRANSLATIONS,
-  DISCLAIMER_TRANSLATIONS,
   FEEDBACK_TRANSLATIONS,
   NOT_FOUND_TRANSLATIONS,
-  PRIVACY_TRANSLATIONS,
-  TERMS_TRANSLATIONS,
 } from './content-pages-translations'
 
 export const SITE_URL = siteConfig.url.replace(/\/+$/, '')
 export const OG_IMAGE = `${SITE_URL}/og-image.png`
+
+/** File name (without .png) of a page's preview card: "/guides/dead-pixel-test" → "guides--dead-pixel-test". */
+export const ogImageKey = (englishPath: string) => (englishPath === '/' ? 'home' : englishPath.replace(/^\/|\/$/g, '').replaceAll('/', '--'))
 const SUFFIX = ' | WhiteScreen.vip'
 /** Adds the brand suffix only while the title stays within the ~60 characters search results show. */
 const withSuffix = (title: string) => {
@@ -35,8 +40,6 @@ const withSuffix = (title: string) => {
   return base.length + SUFFIX.length <= 60 ? base + SUFFIX : base
 }
 
-/** Sections whose body copy exists only in English. Other locales point their canonical at the English page. */
-const ENGLISH_ONLY_PREFIXES = ['/backgrounds', '/screen-problems', '/glossary']
 
 /**
  * /white-screen and the homepage serve the same intent ("white screen"), so the homepage is the
@@ -60,8 +63,17 @@ export type PageSeo = {
   jsonLd: Record<string, unknown>[]
 }
 
-export function isEnglishOnlyPath(cleanPath: string): boolean {
-  return ENGLISH_ONLY_PREFIXES.some((prefix) => cleanPath === prefix || cleanPath.startsWith(`${prefix}/`))
+export { isEnglishOnlyPath }
+
+/**
+ * The languages a page really exists in. English-only sections have just English; tool pages
+ * exist in a language once their reading content is translated (colors and the rest: all).
+ */
+export function pageLocales(cleanPath: string): LanguageCode[] {
+  if (isEnglishOnlyPath(cleanPath)) return ['en']
+  const slug = cleanPath.slice(1)
+  if (TOOLS.some((tool) => tool.slug === slug && !tool.swatch)) return SUPPORTED_LOCALES.filter((lang) => hasToolTranslation(slug, lang))
+  return [...SUPPORTED_LOCALES]
 }
 
 function translator(language: LanguageCode) {
@@ -101,7 +113,7 @@ type Meta = {
   ogType?: 'website' | 'article'
   notFound?: boolean
   /** schema.org type for the page itself, for pages without their own schema. */
-  pageType?: 'AboutPage' | 'ContactPage' | 'WebPage'
+  pageType?: 'AboutPage' | 'ContactPage' | 'WebPage' | 'ProfilePage'
 }
 
 function resolveMeta(cleanPath: string, search: string, language: LanguageCode): Meta {
@@ -139,11 +151,13 @@ function resolveMeta(cleanPath: string, search: string, language: LanguageCode):
     case '/feedback':
       return page(FEEDBACK_TRANSLATIONS)
     case '/privacy-policy':
-      return page(PRIVACY_TRANSLATIONS)
+      return { title: PRIVACY_POLICY.title + SUFFIX, description: PRIVACY_POLICY.description }
     case '/terms':
-      return page(TERMS_TRANSLATIONS)
+      return { title: TERMS_OF_USE.title + SUFFIX, description: TERMS_OF_USE.description }
     case '/disclaimer':
-      return page(DISCLAIMER_TRANSLATIONS)
+      return { title: DISCLAIMER.title + SUFFIX, description: DISCLAIMER.description }
+    case '/author-whitson-rao':
+      return { title: `${AUTHOR.name} – ${AUTHOR.jobTitle}` + SUFFIX, description: AUTHOR.metaDescription, pageType: 'ProfilePage' }
     case '/guides':
       return {
         title: t('guidesMetaTitle', 'Screen Testing & Monitor Guides') + SUFFIX,
@@ -174,6 +188,14 @@ function resolveMeta(cleanPath: string, search: string, language: LanguageCode):
       }
   }
 
+  const hub = getHub(cleanPath)
+  if (hub) {
+    if (language === 'en') return { title: hub.metaTitle, description: hub.metaDescription }
+    const [name, description] =
+      hub.group === 'colors' ? COLOR_HUB_NAMES[language] : [getLocalizedCategory(getCategory(hub.group), language).name, getLocalizedCategory(getCategory(hub.group), language).description]
+    return { title: withSuffix(t('toolMetaTitle', '{name} – Free Online, No Sign-Up').replace('{name}', name)), description }
+  }
+
   if (cleanPath.startsWith('/guides/')) {
     const guide = getGuideBySlug(cleanPath.slice('/guides/'.length), language)
     return guide ? { title: withSuffix(guide.metaTitle), description: guide.metaDescription, ogType: 'article' } : notFound()
@@ -194,6 +216,8 @@ function resolveMeta(cleanPath: string, search: string, language: LanguageCode):
   const slug = cleanPath.slice(1)
   const color = getColorBySlug(slug)
   if (color) {
+    const english = language === 'en' ? TOOL_META[`${color.id}-screen`] : undefined
+    if (english) return { title: english[0], description: english[1] }
     const name =
       TOOL_TRANSLATIONS[language]?.[`${color.id}-screen`]?.name ??
       `${t(color.id, color.name)} ${t('colorScreenSuffix', 'Screen')}`
@@ -207,10 +231,9 @@ function resolveMeta(cleanPath: string, search: string, language: LanguageCode):
   if (tool) {
     const localized = getLocalizedTool(tool, language)
     // English tool pages have hand-written titles; other languages use the translated tool name.
-    const title =
-      language === 'en'
-        ? getToolContent(slug).title
-        : t('toolMetaTitle', '{name} – Free Online Screen Tool').replace('{name}', localized.name)
+    const english = language === 'en' ? TOOL_META[slug] : undefined
+    if (english) return { title: english[0], description: english[1] }
+    const title = t('toolMetaTitle', '{name} – Free Online Screen Tool').replace('{name}', localized.name)
     return { title: withSuffix(title), description: localized.description }
   }
 
@@ -240,11 +263,14 @@ const SECTION_NAMES: Record<string, string> = {
   '/privacy-policy': 'Privacy Policy',
   '/terms': 'Terms of Use',
   '/disclaimer': 'Disclaimer',
+  '/author-whitson-rao': 'Whitson Rao',
 }
 
 /** White Screen → section → page, for sections, articles and static pages. Undefined elsewhere. */
 function breadcrumbTrail(path: string, title: string, language: LanguageCode): { name: string; path: string }[] | undefined {
   const home = { name: translationsFor(language).homeTitle || 'White Screen', path: '/' }
+  const hub = getHub(path)
+  if (hub) return [home, { name: title.split(/\s[–|]\s/)[0].trim(), path }]
   const section = Object.keys(SECTION_NAMES).find((prefix) => path === prefix || path.startsWith(`${prefix}/`))
   if (!section) return undefined
   const sectionCrumb = { name: (section === '/guides' && translationsFor(language).guides) || SECTION_NAMES[section], path: section }
@@ -275,11 +301,14 @@ export function getPageSeo(cleanPath: string, search: string, language: Language
   const canonicalLang: LanguageCode = englishOnly ? 'en' : language
   const canonical = `${SITE_URL}${getLocalizedPath(canonicalPath, canonicalLang)}`
 
+  const locales = pageLocales(canonicalPath)
+  // A tool page not yet translated into this language stays out of the index (it would be thin).
+  const untranslated = !locales.includes(language)
   const alternates: Alternate[] =
-    meta.notFound || englishOnly
+    meta.notFound || englishOnly || untranslated || locales.length < 2
       ? []
       : [
-          ...SUPPORTED_LOCALES.map((locale) => ({
+          ...locales.map((locale) => ({
             hreflang: locale === 'pt-br' ? 'pt-BR' : locale,
             href: `${SITE_URL}${getLocalizedPath(canonicalPath, locale)}`,
           })),
@@ -307,6 +336,8 @@ export function getPageSeo(cleanPath: string, search: string, language: Language
         url: `${SITE_URL}/`,
         logo: `${SITE_URL}/apple-icon.png`,
         email: siteConfig.contactEmail,
+        founder: { '@type': 'Person', '@id': `${SITE_URL}${AUTHOR.path}/#person`, name: AUTHOR.name, url: `${SITE_URL}${AUTHOR.path}/` },
+        sameAs: SOCIAL_PROFILES.map((profile) => profile.url),
       },
     )
   }
@@ -343,9 +374,10 @@ export function getPageSeo(cleanPath: string, search: string, language: Language
     description: meta.description,
     canonical,
     alternates,
-    robots: meta.notFound || NOINDEX_PATHS.has(cleanPath) ? 'noindex, follow' : 'index, follow, max-image-preview:large',
+    robots: meta.notFound || NOINDEX_PATHS.has(cleanPath) || untranslated ? 'noindex, follow' : 'index, follow, max-image-preview:large',
     ogType: meta.ogType ?? 'website',
-    ogImage: OG_IMAGE,
+    // Every page has its own card (built by src/pages/og/[key].png.ts); translations share the English one.
+    ogImage: meta.notFound ? OG_IMAGE : `${SITE_URL}/og/${ogImageKey(canonicalPath)}.png`,
     lang: language,
     notFound: Boolean(meta.notFound),
     jsonLd,
@@ -399,6 +431,8 @@ export function getAllRoutes(): string[] {
     '/privacy-policy',
     '/terms',
     '/disclaimer',
+    '/author-whitson-rao',
+    ...HUBS.map((hub) => hub.path),
     ...SCREEN_COLORS.filter((color) => color.path !== '/').map((color) => color.path),
     ...TOOLS.filter((tool) => !tool.swatch).map((tool) => `/${tool.slug}`),
     '/guides',
@@ -425,6 +459,6 @@ export function getAliasRoutes(): string[] {
 /** Routes that belong in the sitemap for a locale: translated pages, minus canonical aliases. */
 export function getIndexableRoutes(language: LanguageCode): string[] {
   return getAllRoutes().filter(
-    (path) => !(path in CANONICAL_ALIASES) && !NOINDEX_PATHS.has(path) && (language === 'en' || !isEnglishOnlyPath(path)),
+    (path) => !(path in CANONICAL_ALIASES) && !NOINDEX_PATHS.has(path) && pageLocales(path).includes(language),
   )
 }

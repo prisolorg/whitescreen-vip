@@ -51,6 +51,17 @@ export function extractLocaleAndPath(pathname: string): { lang: LanguageCode; cl
   }
 }
 
+/**
+ * Sections whose articles exist only in English (and the legal pages, kept in one language so
+ * there is one authoritative version). They have a single English URL: links from
+ * other languages point there, and the old /es/backgrounds/… style addresses 301 to it.
+ */
+export const ENGLISH_ONLY_PREFIXES = ['/backgrounds', '/screen-problems', '/glossary', '/author-whitson-rao', '/privacy-policy', '/terms', '/disclaimer']
+
+export function isEnglishOnlyPath(cleanPath: string): boolean {
+  return ENGLISH_ONLY_PREFIXES.some((prefix) => cleanPath === prefix || cleanPath.startsWith(`${prefix}/`))
+}
+
 /** English path → path in `lang`: first segment, plus a translated guide slug under /guides/. */
 function toLocalPath(path: string, lang: LanguageCode) {
   if (lang === 'en') return path
@@ -94,9 +105,11 @@ export function getLocalizedPath(path: string, targetLang: LanguageCode): string
   const { cleanPath } = extractLocaleAndPath(rawPathname)
 
   // Every page URL ends with a slash, matching the URLs already indexed for whitescreen.vip.
-  const localPath = cleanPath === '/' ? '/' : toLocalPath(cleanPath, targetLang)
+  // English-only pages have a single English URL in every language.
+  const lang = isEnglishOnlyPath(cleanPath) ? 'en' : targetLang
+  const localPath = cleanPath === '/' ? '/' : toLocalPath(cleanPath, lang)
   const withSlash = localPath === '/' ? '/' : `${localPath}/`
-  const localizedBase = targetLang === 'en' ? withSlash : `/${targetLang}${withSlash}`
+  const localizedBase = lang === 'en' ? withSlash : `/${lang}${withSlash}`
 
   const queryPart = query ? `?${query}` : ''
   const hashPart = hash ? `#${hash}` : ''

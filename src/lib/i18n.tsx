@@ -1,7 +1,7 @@
 'use client'
 
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react'
-import { extractLocaleAndPath, getLocalizedPath, type LanguageCode } from './locale-routing'
+import { extractLocaleAndPath, getLocalizedPath, isEnglishOnlyPath, type LanguageCode } from './locale-routing'
 import { getMessages } from './messages'
 
 export type { LanguageCode }
@@ -112,7 +112,10 @@ export function I18nProvider({ children, initialUrl }: { children: React.ReactNo
           // Every language version is its own page. Its translated URL is in the page's hreflang links;
           // fall back to the English slug, which redirects to the translated one.
           const alternate = document.querySelector<HTMLLinkElement>(`link[rel="alternate"][hreflang="${newLang === 'pt-br' ? 'pt-BR' : newLang}" i]`)
-          const target = alternate ? new URL(alternate.href).pathname : getLocalizedPath(cleanPath, newLang)
+          // English-only articles have no other version, so those go to the homepage in the new language.
+          const target = alternate
+            ? new URL(alternate.href).pathname
+            : getLocalizedPath(isEnglishOnlyPath(cleanPath) ? '/' : cleanPath, newLang)
           window.location.assign(target + window.location.search + window.location.hash)
         }
       }

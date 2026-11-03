@@ -1,3 +1,5 @@
+import { AdSlot } from '@/components/ad-slot'
+import { AUTHOR } from '@/lib/author'
 'use client'
 
 import { WhiteScreenCta } from '@/components/white-screen-cta'
@@ -49,9 +51,11 @@ export function GuideDetailPage({ slug }: { slug: string }) {
     datePublished: '2025-01-15T00:00:00+00:00',
     dateModified: `${guide.updatedAt}T00:00:00+00:00`,
     author: {
-      '@type': 'Organization',
-      name: 'WhiteScreen.vip',
-      url: absoluteUrl('/'),
+      '@type': 'Person',
+      '@id': `${absoluteUrl(AUTHOR.path)}#person`,
+      name: AUTHOR.name,
+      url: absoluteUrl(AUTHOR.path),
+      jobTitle: AUTHOR.jobTitle,
     },
     publisher: {
       '@type': 'Organization',
@@ -116,6 +120,12 @@ export function GuideDetailPage({ slug }: { slug: string }) {
               <Calendar className="size-3.5" aria-hidden="true" />
               <span>{t('guideUpdated', 'Updated')} <time dateTime={guide.updatedAt}>{guide.updatedAt}</time></span>
             </span>
+            <span className="text-muted-foreground">
+              {t('byAuthor', 'By')}{' '}
+              <Link href={AUTHOR.path} rel="author" className="font-medium text-foreground underline-offset-4 hover:underline">
+                {AUTHOR.name}
+              </Link>
+            </span>
           </div>
 
           <h1 className="text-balance text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground leading-[1.2]">
@@ -126,6 +136,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
             {guide.intro}
           </p>
         </header>
+        <AdSlot placement="top" className="px-0 sm:px-0" />
 
         {/* Safety Warning Banner (if present) */}
         {guide.warning && (
@@ -244,6 +255,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
           ))}
         </div>
 
+        <AdSlot placement="content" className="px-0 sm:px-0" />
         {/* FAQ Section */}
         {guide.faqs && guide.faqs.length > 0 && (
           <section id="faqs" className="mt-12 border-t pt-8">

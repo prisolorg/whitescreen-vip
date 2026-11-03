@@ -1,3 +1,4 @@
+import { AdSlot } from '@/components/ad-slot'
 'use client'
 
 import React from 'react'
@@ -87,6 +88,7 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
             </p>
           </div>
         </header>
+        <AdSlot placement="top" className="px-0 sm:px-0" />
 
         {/* Related WhiteScreen.vip Tools */}
         {item.relatedTools.length > 0 && (
@@ -284,6 +286,7 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
         </section>
 
         {/* Other Glossary Terms Navigation */}
+        <AdSlot placement="content" className="px-0 sm:px-0" />
         <section className="border-t border-border/80 pt-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base sm:text-lg font-bold text-foreground">

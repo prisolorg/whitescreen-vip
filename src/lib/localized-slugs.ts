@@ -9,6 +9,7 @@
 import { TOOL_TRANSLATIONS } from './tool-translations'
 import { GUIDE_TRANSLATIONS } from './guide-i18n'
 import { GUIDES_SECTION_SLUG } from './guide-i18n/types'
+import { HUB_SLUGS } from './hubs'
 import type { LanguageCode } from './locale-routing'
 
 const STATIC_SLUGS: Partial<Record<LanguageCode, Record<string, string>>> = {
@@ -54,7 +55,7 @@ export function buildSlugMap(lang: LanguageCode): Map<string, string> {
     used.add(local)
   }
   if (lang !== 'en') {
-    for (const [english, local] of Object.entries(STATIC_SLUGS[lang] ?? {})) add(english, local)
+    for (const [english, local] of Object.entries({ ...STATIC_SLUGS[lang], ...HUB_SLUGS[lang] })) add(english, local)
     const englishSlugs = new Set(Object.keys(TOOL_TRANSLATIONS.en))
     for (const [english, text] of Object.entries(TOOL_TRANSLATIONS[lang] ?? {})) {
       if (english === 'white-screen') continue // the homepage

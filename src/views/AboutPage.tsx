@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { AUTHOR } from '@/lib/author'
 import { ContentPage } from '@/components/content-page'
 import { useTranslation } from '@/lib/i18n'
 import { ABOUT_TRANSLATIONS } from '@/lib/content-pages-translations'
@@ -21,6 +22,13 @@ export function AboutPage() {
       <h2>{content.howHeading}</h2>
       <p>{content.howText1}</p>
       <p>{content.howText2}</p>
+      <h2>{content.teamHeading}</h2>
+      <p>
+        {content.teamText}{' '}
+        <Link href={AUTHOR.path} rel="author">
+          {AUTHOR.name} →
+        </Link>
+      </p>
       <p>
         {content.suggestionText}{' '}
         <Link href="/feedback">{content.sendFeedbackLink}</Link> {content.or}{' '}

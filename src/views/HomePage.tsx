@@ -12,6 +12,11 @@ import { absoluteUrl } from '@/lib/site'
 import { getHomeContent } from '@/lib/home-content'
 import { useTranslation } from '@/lib/i18n'
 import { getLocalizedPath } from '@/lib/locale-routing'
+import { AdSlot } from '@/components/ad-slot'
+import { ColorImage } from '@/components/color-image'
+import { ToolGlanceBlock } from '@/components/tool-glance'
+import { getToolGlance } from '@/lib/tool-content/glance'
+import { SCREEN_COLORS } from '@/lib/screen-colors'
 
 /** The interactive part of the homepage (hydrated): the white screen tool and the tool gallery. */
 export function HomePage() {
@@ -30,6 +35,7 @@ export function HomePageBody() {
   const { language, t } = useTranslation()
   const isEnglish = language === 'en'
   // The long-form HomeSections copy only exists in English; other locales use the translated sections.
+  const glance = getToolGlance('white-screen', language)
   const faqs = isEnglish ? HOMEPAGE_FAQS : getHomeContent(language).faqs
 
   const webApplicationSchema = {
@@ -65,12 +71,16 @@ export function HomePageBody() {
         <HomeSections />
       ) : (
         <>
+          {glance && <ToolGlanceBlock name={t('homeTitle', 'White Screen')} glance={glance} />}
+          <ColorImage color={SCREEN_COLORS[0]} name={t('homeTitle', 'White Screen')} />
+          <AdSlot placement="top" />
           <Benefits />
           <UseCases />
           <HowToUse />
           <ToolSections />
-          <ColorScreenLinks currentId="white" />
+          <AdSlot placement="content" />
           <Faq />
+          <ColorScreenLinks currentId="white" />
         </>
       )}
     </>
