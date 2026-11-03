@@ -31,9 +31,9 @@ function updateContent({ name, brand, intro, extraFaq }: UpdateOptions): ToolCon
     title: `Fake ${name} Update Screen – Prank Simulation`,
     intro,
     steps: [
-      'Choose the starting percentage and how long the progress should take.',
+      'Set how fast the percentage climbs with the Update Speed slider.',
       'Click Fullscreen or press F so the simulation fills the screen and hides the browser.',
-      'Walk away and let the progress run. Some screens allow a fake “stuck” point.',
+      'Walk away and let the progress run. Press Pause to make the update look stuck.',
       'Press Esc to exit and reveal the joke.',
     ],
     useCases: [
@@ -93,7 +93,7 @@ export const fakeScreenContent: Record<string, ToolContent> = {
       'A full-screen recreation of the blue “Working on updates” screen with a spinning loader and slowly rising percentage. It is a harmless simulation for pranks and props.',
     extraFaq: {
       question: 'Can I control how fast it progresses?',
-      answer: 'Yes. Pick the starting percentage and a total duration from a few minutes to several hours.',
+      answer: 'Yes. The Update Speed slider sets how fast the percentage climbs, and Pause holds it in place so the update looks stuck.',
     },
   }),
   'fake-windows-11-update': updateContent({
