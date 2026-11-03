@@ -1,6 +1,7 @@
 import { ScreenTool } from '@/components/screen-tool/screen-tool'
 import { TryNextGallery } from '@/components/try-next-gallery'
 import { Breadcrumbs } from '@/components/breadcrumbs'
+import { ToolWithAds } from '@/components/tool-ads'
 import { getCategory } from '@/lib/tool-categories'
 import { getLocalizedCategory } from '@/lib/localized-tools'
 import { useTranslation } from '@/lib/i18n'
@@ -30,7 +31,9 @@ export function Hero({ colorId = 'white', title, intro }: HeroProps) {
             { label: title ?? defaultTitle, href: `/${colorId}-screen` },
           ]}
         />
-        <ScreenTool key={colorId} initialColorId={colorId} title={title ?? defaultTitle} intro={intro} />
+        <ToolWithAds>
+          <ScreenTool key={colorId} initialColorId={colorId} title={title ?? defaultTitle} intro={intro} />
+        </ToolWithAds>
         <TryNextGallery currentSlug={`${colorId}-screen`} className="mt-2" />
       </div>
     </section>

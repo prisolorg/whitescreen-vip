@@ -1,4 +1,3 @@
-import { AdSlot } from '@/components/ad-slot'
 import { ToolGlanceBlock, ToolSources } from '@/components/tool-glance'
 import { FaqList } from '@/components/faq-list'
 import { JsonLd } from '@/components/json-ld'
@@ -85,7 +84,6 @@ export function ToolPageBody({ slug }: { slug: string }) {
       <JsonLd data={appSchema} />
       {faqSchema && <JsonLd data={faqSchema} />}
       {glance && <ToolGlanceBlock name={localizedTool.name} glance={glance} />}
-      <AdSlot placement="top" />
       {language === 'en' && (
         <section aria-labelledby="about-heading" className="border-t py-14">
           <div className="mx-auto max-w-3xl px-4 sm:px-6">
@@ -145,7 +143,6 @@ export function ToolPageBody({ slug }: { slug: string }) {
         </section>
       )}
 
-      <AdSlot placement="content" className="pt-10" />
 
       {content.faqs.length > 0 && (
         <section aria-labelledby="faq-heading" className="py-14">

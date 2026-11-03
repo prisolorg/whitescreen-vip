@@ -1,4 +1,3 @@
-import { AdSlot } from '@/components/ad-slot'
 import { ColorImage } from '@/components/color-image'
 import { ToolGlanceBlock } from '@/components/tool-glance'
 import { TOOL_GLANCE } from '@/lib/tool-content/glance'
@@ -203,7 +202,6 @@ export function HomeSections() {
       <div>
         <ToolGlanceBlock name="White Screen" heading="What Is a White Screen?" glance={TOOL_GLANCE['white-screen']} />
         <ColorImage color={SCREEN_COLORS[0]} name="White Screen" />
-        <AdSlot placement="top" />
       </div>
 
       {/* 2. Why Use a White Screen? */}
@@ -353,7 +351,6 @@ export function HomeSections() {
       </section>
 
       {/* 6. Frequently Asked Questions */}
-      <AdSlot placement="content" />
 
       <section aria-labelledby="faq-heading" className="mx-auto max-w-5xl px-3 sm:px-6">
         <div className="mb-6">

@@ -67,8 +67,9 @@ const htmlLang = seo.lang === 'pt-br' ? 'pt-BR' : seo.lang
               script.crossOrigin = 'anonymous'
               script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + client
               document.head.appendChild(script)
-              document.querySelectorAll('ins.adsbygoogle').forEach(function () {
-                ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+              // Only units shown at this screen width: hidden ones (the desktop rail on a phone) stay empty.
+              document.querySelectorAll('ins.adsbygoogle').forEach(function (ins) {
+                if (ins.offsetWidth) (window.adsbygoogle = window.adsbygoogle || []).push({})
               })
             }
             ;['scroll', 'pointerdown', 'keydown'].forEach(function (type) {

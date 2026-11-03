@@ -22,6 +22,7 @@ import { CustomColorPicker } from '@/components/screen-tool/custom-color-picker'
 import { useTranslation } from '@/lib/i18n'
 import { DoubleTapHint, STAGE_SIZE, StageArrows, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
 import { getLocalizedPath } from '@/lib/locale-routing'
+import { ToolWithAds } from '@/components/tool-ads'
 
 type FullscreenDocument = Document & {
   webkitFullscreenElement?: Element | null
@@ -413,7 +414,7 @@ export function HomeTool() {
   return (
     <section aria-labelledby="screen-heading" className="w-full pt-3 pb-4 sm:pt-4">
       <div className="mx-auto flex max-w-7xl flex-col gap-3 px-3 sm:px-6">
-        <div>
+        <ToolWithAds>
           <div className="relative">
           {/* Main White Screen Preview Area */}
           <div
@@ -869,7 +870,7 @@ export function HomeTool() {
 
           </StageDock>
           )}
-        </div>
+        </ToolWithAds>
       </div>
     </section>
   )

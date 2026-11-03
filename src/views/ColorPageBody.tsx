@@ -9,7 +9,6 @@ import { localizedToolName } from '@/lib/localized-tools'
 import { COLOR_GUIDES } from '@/lib/color-guides'
 import { FaqList } from '@/components/faq-list'
 import { RichText, plainText } from '@/components/rich-text'
-import { AdSlot } from '@/components/ad-slot'
 import { ToolGlanceBlock, ToolSources } from '@/components/tool-glance'
 import { ColorImage } from '@/components/color-image'
 import { getToolGlance } from '@/lib/tool-content/glance'
@@ -65,7 +64,6 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
       {faqSchema && <JsonLd data={faqSchema} />}
       {glance && <ToolGlanceBlock name={localizedName} glance={glance} />}
       <ColorImage color={color} name={localizedName} />
-      <AdSlot placement="top" />
       <Section
         id="use-cases"
         eyebrow={t('useCasesEyebrow', 'Use cases')}
@@ -99,7 +97,6 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
           </div>
         </Section>
       )}
-      <AdSlot placement="content" />
       {guide && (
         <Section id="faq" title={`${localizedName} FAQ`} className="border-t">
           <div className="max-w-3xl">

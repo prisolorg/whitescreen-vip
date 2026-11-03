@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { StageHeadingContext } from '@/components/screen-stage/stage-parts'
+import { ToolWithAds } from '@/components/tool-ads'
 import { getTool, toolPath } from '@/lib/tools'
 import { getCategory } from '@/lib/tool-categories'
 import { getToolContent } from '@/lib/tool-content'
@@ -45,7 +46,7 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
           />
           {/* The stage shows the page title on itself, like the color screens. */}
           <StageHeadingContext.Provider value={{ title: localizedTool.name, intro: localizedTool.description }}>
-            {children}
+            <ToolWithAds>{children}</ToolWithAds>
           </StageHeadingContext.Provider>
         </div>
       </section>

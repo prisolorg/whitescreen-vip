@@ -10,7 +10,6 @@ import { absoluteUrl } from '@/lib/site'
 import { getHomeContent } from '@/lib/home-content'
 import { useTranslation } from '@/lib/i18n'
 import { getLocalizedPath } from '@/lib/locale-routing'
-import { AdSlot } from '@/components/ad-slot'
 import { ColorImage } from '@/components/color-image'
 import { ToolGlanceBlock } from '@/components/tool-glance'
 import { getToolGlance } from '@/lib/tool-content/glance'
@@ -59,12 +58,10 @@ export function HomePageBody() {
         <>
           {glance && <ToolGlanceBlock name={t('homeTitle', 'White Screen')} glance={glance} />}
           <ColorImage color={SCREEN_COLORS[0]} name={t('homeTitle', 'White Screen')} />
-          <AdSlot placement="top" />
           <Benefits />
           <UseCases />
           <HowToUse />
           <ToolSections />
-          <AdSlot placement="content" />
           <Faq />
           <ColorScreenLinks currentId="white" />
         </>
