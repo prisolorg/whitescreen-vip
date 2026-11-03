@@ -12,21 +12,22 @@ import { absoluteUrl } from '@/lib/site'
 import { getCategory } from '@/lib/tool-categories'
 import { toolPath } from '@/lib/tools'
 import Link from 'next/link'
+import { TOPIC_TRANSLATIONS } from '@/lib/topic-i18n'
 
 /**
  * A topic hub: the plain-keyword H1, a direct answer, every tool in the topic, then the longer
  * explanation and FAQ (English pages). Static HTML, no JavaScript.
  */
 export function HubPage({ path }: { path: string }) {
-  const { language } = useTranslation()
+  const { language, t } = useTranslation()
   const hub = getHub(path)!
   const isEnglish = language === 'en'
   const localizedCategory = hub.group === 'colors' ? undefined : getLocalizedCategory(getCategory(hub.group), language)
-  const [name, summary] = isEnglish
-    ? [hub.name, hub.intro]
-    : hub.group === 'colors'
-      ? COLOR_HUB_NAMES[language]
-      : [localizedCategory!.name, localizedCategory!.description]
+  // Translated hub text where it exists; otherwise the translated category description.
+  const translated = isEnglish ? undefined : TOPIC_TRANSLATIONS[language]?.hubs[hub.path]
+  const content = isEnglish ? { intro: hub.intro, details: hub.details, faqs: hub.faqs } : translated
+  const name = isEnglish ? hub.name : hub.group === 'colors' ? COLOR_HUB_NAMES[language][0] : localizedCategory!.name
+  const summary = content?.intro ?? (hub.group === 'colors' ? COLOR_HUB_NAMES[language][1] : localizedCategory!.description)
   const tools = hubTools(hub)
   const pageUrl = absoluteUrl(getLocalizedPath(hub.path, language))
 
@@ -48,10 +49,10 @@ export function HubPage({ path }: { path: string }) {
       })),
     },
   }
-  const faqSchema = isEnglish && {
+  const faqSchema = content && {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: hub.faqs.map((faq) => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })),
+    mainEntity: content.faqs.map((faq) => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })),
   }
 
   return (
@@ -72,17 +73,19 @@ export function HubPage({ path }: { path: string }) {
         <ToolGrid tools={tools} />
       </section>
       <AdSlot placement="top" />
-      {isEnglish && (
+      {content && (
         <section className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
-          {hub.details.map((detail) => (
+          {content.details.map((detail) => (
             <div key={detail.heading} className="mb-8">
               <h2 className="text-2xl font-semibold tracking-tight">{detail.heading}</h2>
               <p className="mt-3 text-pretty leading-relaxed text-foreground/85">{detail.text}</p>
             </div>
           ))}
           <AdSlot placement="content" className="px-0 sm:px-0" />
-          <h2 className="mb-6 mt-4 text-2xl font-semibold tracking-tight">{hub.name} FAQ</h2>
-          <FaqList faqs={hub.faqs} />
+          <h2 className="mb-6 mt-4 text-2xl font-semibold tracking-tight">
+            {isEnglish ? `${hub.name} FAQ` : t('faqTitle', 'Frequently asked questions')}
+          </h2>
+          <FaqList faqs={content.faqs} />
         </section>
       )}
       <nav aria-label="More topics" className="mx-auto max-w-7xl px-4 py-8 sm:px-6">

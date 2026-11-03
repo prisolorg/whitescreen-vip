@@ -4,6 +4,8 @@
  * English; translated versions live in glance-i18n.ts.
  */
 import { TOOL_CONTENT_TRANSLATIONS } from './i18n'
+import { colorGlanceFor } from '../topic-i18n'
+import { SCREEN_COLORS } from '../screen-colors'
 
 export type ToolSource = { label: string; url: string }
 
@@ -517,6 +519,8 @@ export function getToolGlance(slug: string, language: string): ToolGlance | unde
   const english = TOOL_GLANCE[slug]
   if (!english) return undefined
   if (language === 'en') return english
-  const translated = TOOL_CONTENT_TRANSLATIONS[language]?.[slug]?.glance
+  // Color screens without a hand-written translation use the per-language color template.
+  const color = SCREEN_COLORS.find((item) => `${item.id}-screen` === slug)
+  const translated = TOOL_CONTENT_TRANSLATIONS[language]?.[slug]?.glance ?? (color && colorGlanceFor(color.id, color.hex, language))
   return translated && { ...translated, sources: english.sources }
 }
