@@ -23,6 +23,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     allToolsDesc: 'Browse all free screen tools, monitor diagnostic checkups, solid color screens, and visual effects.',
 
     homeTitle: 'White Screen',
+    browseAllGuides: "Browse all guides →",
     footerExplore: "Explore",
     whatIsTool: "What is the {tool}?",
     byAuthor: "By",
@@ -142,6 +143,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     allToolsDesc: 'Explora todas las herramientas gratuitas de pantalla, pruebas de monitor, pantallas de colores sólidos y efectos visuales.',
 
     homeTitle: 'Pantalla blanca',
+    browseAllGuides: "Ver todas las guías →",
     footerExplore: "Explorar",
     whatIsTool: "¿Qué es {tool}?",
     byAuthor: "Por",
@@ -261,6 +263,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     allToolsDesc: 'Veja todas as ferramentas de tela gratuitas, testes de monitor, telas de cores sólidas e efeitos visuais.',
 
     homeTitle: 'Tela branca',
+    browseAllGuides: "Ver todos os guias →",
     footerExplore: "Explorar",
     whatIsTool: "O que é {tool}?",
     byAuthor: "Por",
@@ -380,6 +383,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     allToolsDesc: 'Alle kostenlosen Bildschirm-Tools, Monitortests, einfarbigen Bildschirme und visuellen Effekte durchsuchen.',
 
     homeTitle: 'Weißer Bildschirm',
+    browseAllGuides: "Alle Ratgeber ansehen →",
     footerExplore: "Entdecken",
     whatIsTool: "Was ist {tool}?",
     byAuthor: "Von",
@@ -499,6 +503,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     allToolsDesc: "Parcourez tous les outils d'écran gratuits, tests de moniteur, écrans de couleur unie et effets visuels.",
 
     homeTitle: 'Écran blanc',
+    browseAllGuides: "Voir tous les guides →",
     footerExplore: "Explorer",
     whatIsTool: "Qu’est-ce que {tool} ?",
     byAuthor: "Par",
@@ -618,6 +623,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     allToolsDesc: 'Sfoglia tutti gli strumenti gratuiti per lo schermo, test del monitor, schermi a tinta unita ed effetti visivi.',
 
     homeTitle: 'Schermo bianco',
+    browseAllGuides: "Vedi tutte le guide →",
     footerExplore: "Esplora",
     whatIsTool: "Che cos’è {tool}?",
     byAuthor: "Di",
@@ -737,6 +743,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     allToolsDesc: 'Bekijk alle gratis schermtools, monitortests, effen kleurenschermen en visuele effecten.',
 
     homeTitle: 'Wit scherm',
+    browseAllGuides: "Alle gidsen bekijken →",
     footerExplore: "Ontdekken",
     whatIsTool: "Wat is {tool}?",
     byAuthor: "Door",
@@ -856,6 +863,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     allToolsDesc: 'Jelajahi semua alat layar gratis, tes monitor, layar warna solid, dan efek visual.',
 
     homeTitle: 'Layar putih',
+    browseAllGuides: "Lihat semua panduan →",
     footerExplore: "Jelajahi",
     whatIsTool: "Apa itu {tool}?",
     byAuthor: "Oleh",
@@ -975,6 +983,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     allToolsDesc: 'Tüm ücretsiz ekran araçlarına, monitör testlerine, düz renk ekranlara ve görsel efektlere göz atın.',
 
     homeTitle: 'Beyaz ekran',
+    browseAllGuides: "Tüm rehberleri gör →",
     footerExplore: "Keşfet",
     whatIsTool: "{tool} nedir?",
     byAuthor: "Yazar:",

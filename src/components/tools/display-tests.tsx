@@ -1,5 +1,6 @@
 'use client'
 
+import { tx } from '@/lib/tx'
 import { useEffect, useRef, useState } from 'react'
 import { Pause, Play, RotateCcw } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
@@ -201,7 +202,7 @@ export function TouchScreenTest() {
           {mode === 'draw' && <Slider label="Line width" value={lineWidth} min={2} max={30} onChange={setLineWidth} format={(v) => `${v}px`} />}
           <ActionButton onClick={reset}>
             <RotateCcw aria-hidden="true" />
-            Clear
+            {tx('Clear')}
           </ActionButton>
         </ControlRow>
       }
@@ -209,7 +210,7 @@ export function TouchScreenTest() {
       <div className="relative size-full">
         <canvas
           ref={canvasRef}
-          aria-label="Touch area"
+          aria-label={tx('Touch area')}
           className="absolute inset-0 size-full touch-none select-none"
           onPointerDown={onDown}
           onPointerMove={onMove}
@@ -217,10 +218,10 @@ export function TouchScreenTest() {
           onPointerCancel={onUp}
         />
         <div className="pointer-events-none absolute left-3 top-2 flex flex-wrap gap-1.5 font-mono text-[11px] text-white/85 sm:text-xs">
-          <span className="rounded-full bg-black/55 px-2.5 py-1">Touches {active}</span>
-          <span className="rounded-full bg-black/55 px-2.5 py-1">Max {maxTouches}</span>
-          {mode === 'grid' && <span className="rounded-full bg-black/55 px-2.5 py-1">Covered {Math.round(coverage * 100)}%</span>}
-          {supported !== null && <span className="rounded-full bg-black/55 px-2.5 py-1">Device supports {supported || 'no'} touch points</span>}
+          <span className="rounded-full bg-black/55 px-2.5 py-1">{tx('Touches')}{' '}{active}</span>
+          <span className="rounded-full bg-black/55 px-2.5 py-1">{tx('Max')}{' '}{maxTouches}</span>
+          {mode === 'grid' && <span className="rounded-full bg-black/55 px-2.5 py-1">{tx('Covered')}{' '}{Math.round(coverage * 100)}%</span>}
+          {supported !== null && <span className="rounded-full bg-black/55 px-2.5 py-1">{tx('Device supports')}{' '}{supported || 'no'} touch points</span>}
         </div>
       </div>
     </ToolStage>
@@ -307,15 +308,14 @@ export function RefreshRateTest() {
           <ControlRow>
             <ActionButton onClick={restart}>
               <RotateCcw aria-hidden="true" />
-              Measure again
+              {tx('Measure again')}
             </ActionButton>
             <p className="pb-2 font-mono text-xs text-muted-foreground">
               {range ? `Seen: ${range.low}–${range.high} Hz` : 'Measuring…'}
             </p>
           </ControlRow>
           <p className="text-xs text-muted-foreground sm:text-sm">
-            Browsers draw once per refresh, so frame timing shows your refresh rate. For a high-refresh reading, plug in a laptop,
-            close heavy tabs and keep this window on the screen you are testing.
+            {tx('Browsers draw once per refresh, so frame timing shows your refresh rate. For a high-refresh reading, plug in a laptop, close heavy tabs and keep this window on the screen you are testing.')}
           </p>
         </>
       }
@@ -329,7 +329,7 @@ export function RefreshRateTest() {
           <p className="mt-2 px-3 text-xs text-white/70 sm:text-sm">
             {reading
               ? `≈ ${nearestRate(reading.hz)} Hz display · ${reading.median.toFixed(2)} ms per frame · ${Math.round(reading.late * 100)}% late frames`
-              : 'Measuring your display…'}
+              : tx('Measuring your display…')}
           </p>
         </div>
       </div>
@@ -399,7 +399,7 @@ export function MonitorGhostingTest() {
           <Toggle label="Reference grid" checked={grid} onChange={setGrid} />
           <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
             {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
-            {isPaused ? 'Resume' : 'Pause'}
+            {isPaused ? tx('Resume') : tx('Pause')}
           </ActionButton>
         </ControlRow>
       }
@@ -472,9 +472,9 @@ export function FrameRateTest() {
           <Slider label="Speed" value={speed} min={120} max={1800} step={60} onChange={setSpeed} format={(v) => `${v} px/s`} />
           <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
             {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
-            {isPaused ? 'Resume' : 'Pause'}
+            {isPaused ? tx('Resume') : tx('Pause')}
           </ActionButton>
-          <p className="pb-2 font-mono text-xs text-muted-foreground">Your display: {displayHz ? `${displayHz} FPS` : 'measuring…'}</p>
+          <p className="pb-2 font-mono text-xs text-muted-foreground">{tx('Your display:')}{' '}{displayHz ? `${displayHz} FPS` : tx('measuring…')}</p>
         </ControlRow>
       }
     >
@@ -619,13 +619,13 @@ export function ScreenBurnInTest() {
                 <Slider label="Run for" value={minutes} min={1} max={60} onChange={setMinutes} format={(v) => `${v} min`} />
                 <ActionButton variant="primary" onClick={() => setFixEndsAt(fixing ? null : Date.now() + minutes * 60_000)}>
                   {fixing ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
-                  {fixing ? 'Stop' : 'Start fixer'}
+                  {fixing ? tx('Stop') : tx('Start fixer')}
                 </ActionButton>
               </>
             )}
           </ControlRow>
           {mode === 'fix' && fixMode !== 'sweep' && (
-            <p className="text-xs text-muted-foreground">Photosensitivity warning: this pattern flashes. Use White sweep if flashing bothers you.</p>
+            <p className="text-xs text-muted-foreground">{tx('Photosensitivity warning: this pattern flashes. Use White sweep if flashing bothers you.')}</p>
           )}
         </>
       }
@@ -636,7 +636,7 @@ export function ScreenBurnInTest() {
           <div className={mode === 'check' ? 'invisible absolute inset-0' : 'absolute inset-0'}>
             <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 size-full" style={{ imageRendering: 'pixelated' }} />
             {mode === 'fix' && !fixing && (
-              <p className="absolute inset-x-0 bottom-12 text-center text-sm text-white/80">Choose a pattern and press Start fixer.</p>
+              <p className="absolute inset-x-0 bottom-12 text-center text-sm text-white/80">{tx('Choose a pattern and press Start fixer.')}</p>
             )}
             {fixing && (
               <span className="absolute bottom-12 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 font-mono text-xs text-white">
@@ -653,7 +653,7 @@ export function ScreenBurnInTest() {
                 next={{ label: 'Next field', onSelect: () => move(1) }}
               />
               <span className="pointer-events-none absolute bottom-12 left-1/2 -translate-x-1/2 rounded-full bg-black/45 px-3 py-1 text-xs font-medium text-white">
-                {current.label}
+                {tx(current.label)}
               </span>
             </>
           )}

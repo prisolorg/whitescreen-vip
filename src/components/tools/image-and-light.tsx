@@ -1,5 +1,6 @@
 'use client'
 
+import { tx } from '@/lib/tx'
 import { useEffect, useState, useSyncExternalStore } from 'react'
 import { Download } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -69,13 +70,13 @@ export function ImageGenerator({ defaultHex = '#FFFFFF' }: { defaultHex?: string
       </div>
       <div className="flex flex-col gap-5">
         <fieldset>
-          <legend className="mb-2 text-sm font-medium">Color</legend>
+          <legend className="mb-2 text-sm font-medium">{tx('Color')}</legend>
           <div className="flex flex-wrap gap-2">
             {SCREEN_COLORS.map((color) => (
               <button
                 key={color.id}
                 type="button"
-                aria-label={color.name}
+                aria-label={tx(color.name)}
                 aria-pressed={hex === color.hex}
                 onClick={() => applyHex(color.hex)}
                 className={cn(
@@ -89,14 +90,14 @@ export function ImageGenerator({ defaultHex = '#FFFFFF' }: { defaultHex?: string
           <div className="mt-3 flex items-center gap-2">
             <input
               type="color"
-              aria-label="Custom color"
+              aria-label={tx('Custom color')}
               value={hex}
               onChange={(event) => applyHex(event.target.value.toUpperCase())}
               className="size-10 cursor-pointer rounded-lg border bg-transparent p-1"
             />
             <input
               type="text"
-              aria-label="Hex code"
+              aria-label={tx('Hex code')}
               value={hexDraft}
               onChange={(event) => applyHex(event.target.value)}
               className="h-10 w-32 rounded-lg border bg-background px-3 font-mono text-sm uppercase outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -104,7 +105,7 @@ export function ImageGenerator({ defaultHex = '#FFFFFF' }: { defaultHex?: string
           </div>
         </fieldset>
         <fieldset>
-          <legend className="mb-2 text-sm font-medium">Resolution</legend>
+          <legend className="mb-2 text-sm font-medium">{tx('Resolution')}</legend>
           <div className="flex flex-wrap gap-2">
             {RESOLUTIONS.map((resolution) => {
               const active = resolution.width === width && resolution.height === height
@@ -122,14 +123,14 @@ export function ImageGenerator({ defaultHex = '#FFFFFF' }: { defaultHex?: string
                     active && 'border-foreground bg-accent font-medium',
                   )}
                 >
-                  {resolution.label}
+                  {tx(resolution.label)}
                 </button>
               )
             })}
           </div>
           <div className="mt-3 flex items-center gap-2 text-sm">
             <label className="flex items-center gap-2">
-              <span className="sr-only">Width</span>
+              <span className="sr-only">{tx('Width')}</span>
               <input
                 type="number"
                 min={1}
@@ -141,7 +142,7 @@ export function ImageGenerator({ defaultHex = '#FFFFFF' }: { defaultHex?: string
             </label>
             <span aria-hidden="true">×</span>
             <label className="flex items-center gap-2">
-              <span className="sr-only">Height</span>
+              <span className="sr-only">{tx('Height')}</span>
               <input
                 type="number"
                 min={1}
@@ -166,7 +167,7 @@ export function ImageGenerator({ defaultHex = '#FFFFFF' }: { defaultHex?: string
           />
           <ActionButton variant="primary" onClick={() => downloadSolidImage(hex, width, height, format)}>
             <Download aria-hidden="true" />
-            Download image
+            {tx('Download image')}
           </ActionButton>
         </ControlRow>
       </div>
@@ -205,7 +206,7 @@ function readDisplayInfo() {
     available: `${window.screen.availWidth} × ${window.screen.availHeight}`,
     dpr: window.devicePixelRatio.toFixed(2).replace(/\.?0+$/, ''),
     depth: `${window.screen.colorDepth}-bit`,
-    orientation: window.innerWidth >= window.innerHeight ? 'Landscape' : 'Portrait',
+    orientation: window.innerWidth >= window.innerHeight ? tx('Landscape') : tx('Portrait'),
   })
 }
 
@@ -233,8 +234,7 @@ export function ResolutionTest() {
       className="bg-neutral-100"
       controls={
         <p className="text-sm text-muted-foreground">
-          Values update live as you resize or rotate. The checkerboard square should look like even gray at 100% zoom; visible
-          stripes or moiré mean the image is being scaled.
+          {tx('Values update live as you resize or rotate. The checkerboard square should look like even gray at 100% zoom; visible stripes or moiré mean the image is being scaled.')}
         </p>
       }
     >
@@ -242,19 +242,19 @@ export function ResolutionTest() {
         <div className="flex items-center gap-3 sm:gap-4">
           <span
             aria-hidden="true"
-            title="1-pixel checkerboard"
+            title={tx('1-pixel checkerboard')}
             className="size-10 shrink-0 rounded-md ring-1 ring-black/15 sm:size-14"
             style={{ background: 'repeating-conic-gradient(#000 0 25%, #fff 0 50%) 0 0 / 2px 2px' }}
           />
           <div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-neutral-500 sm:text-xs">Screen resolution</p>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-neutral-500 sm:text-xs">{tx('Screen resolution')}</p>
             <p className="font-mono text-3xl font-bold tabular-nums leading-tight sm:text-5xl">{info?.screen ?? '—'}</p>
           </div>
         </div>
         <dl className="grid w-full max-w-2xl grid-cols-3 gap-1.5 sm:gap-2">
           {rows.map(([label, key]) => (
             <div key={key} className="min-w-0 rounded-lg bg-white px-2 py-1.5 shadow-sm ring-1 ring-black/5 sm:px-3 sm:py-2">
-              <dt className="truncate text-[10px] text-neutral-500 sm:text-xs">{label}</dt>
+              <dt className="truncate text-[10px] text-neutral-500 sm:text-xs">{tx(label)}</dt>
               <dd className="truncate font-mono text-xs font-semibold tabular-nums sm:text-sm">{info?.[key] ?? '—'}</dd>
             </div>
           ))}

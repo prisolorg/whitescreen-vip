@@ -10,9 +10,11 @@ interface Props {
   seo: PageSeo
   /** The page's own URL with its locale prefix, e.g. "/es/red-screen/". */
   url: string
+  /** The page shows an interactive tool, so it needs the tool text dictionary. */
+  hasTool?: boolean
 }
 
-const { seo, url } = Astro.props
+const { seo, url, hasTool = false } = Astro.props
 const htmlLang = seo.lang === 'pt-br' ? 'pt-BR' : seo.lang
 ---
 
@@ -27,7 +29,7 @@ const htmlLang = seo.lang === 'pt-br' ? 'pt-BR' : seo.lang
     <link rel="apple-touch-icon" href="/apple-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <!-- This page's interface strings; the browser bundle carries no dictionaries of its own. -->
-    <script is:inline type="application/json" id="ws-messages" set:html={serializeMessages(seo.lang)} />
+    <script is:inline type="application/json" id="ws-messages" set:html={serializeMessages(seo.lang, hasTool)} />
     <script is:inline>
       // Apply the saved theme (or the system one) before first paint, so dark mode never flashes white.
       (function () {

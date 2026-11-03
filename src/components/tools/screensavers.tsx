@@ -1,5 +1,6 @@
 'use client'
 
+import { tx } from '@/lib/tx'
 import { useEffect, useRef, useState } from 'react'
 import { Play, Pause } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
@@ -126,7 +127,7 @@ export function MatrixScreensaver() {
             <Slider label="Character size" value={fontSize} min={12} max={32} step={2} onChange={setFontSize} format={(v) => `${v}px`} />
             <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
               {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
-              {isPaused ? 'Resume' : 'Pause'}
+              {isPaused ? tx('Resume') : tx('Pause')}
             </ActionButton>
           </ControlRow>
         </>
@@ -234,7 +235,7 @@ function FlipCard({ value, label, palette, corner }: { value: string; label: str
         className="font-medium uppercase"
         style={{ fontSize: 'max(10px, calc(var(--flip-h) * 0.075))', color: palette.label, letterSpacing: '0.18em' }}
       >
-        {label}
+        {tx(label)}
       </span>
     </div>
   )
@@ -291,7 +292,7 @@ export function FlipClockScreensaver() {
           style={{ ['--flip-h' as string]: cardHeight, ['--flip-r' as string]: 'calc(var(--flip-h) * 0.09)', gap: 'calc(var(--flip-h) * 0.14)' }}
         >
           <div className="flex items-start" style={{ gap: 'calc(var(--flip-h) * 0.12)' }}>
-            <FlipCard value={pad(hours)} label="Hours" palette={palette} corner={!is24Hour && now ? (isPm ? 'PM' : 'AM') : undefined} />
+            <FlipCard value={pad(hours)} label="Hours" palette={palette} corner={!is24Hour && now ? (isPm ? tx('PM') : tx('AM')) : undefined} />
             <FlipCard value={pad(now?.getMinutes() ?? 0)} label="Minutes" palette={palette} />
             {showSeconds && <FlipCard value={pad(now?.getSeconds() ?? 0)} label="Seconds" palette={palette} />}
           </div>
@@ -427,15 +428,15 @@ export function DvdScreensaver() {
           <Slider label="Logo Size" value={logoSize} min={1} max={10} onChange={setLogoSize} />
           <div className="flex items-center gap-4 pb-2 font-mono text-xs text-muted-foreground">
             <span>
-              Bounces: <strong className="text-foreground">{bounces}</strong>
+              {tx('Bounces:')}{' '}<strong className="text-foreground">{bounces}</strong>
             </span>
             <span>
-              Corner hits: <strong className="text-primary">{corners}</strong>
+              {tx('Corner hits:')}{' '}<strong className="text-primary">{corners}</strong>
             </span>
           </div>
           <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
             {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
-            {isPaused ? 'Resume' : 'Pause'}
+            {isPaused ? tx('Resume') : tx('Pause')}
           </ActionButton>
         </ControlRow>
       }
@@ -446,7 +447,7 @@ export function DvdScreensaver() {
       </div>
       {flash && (
         <div className="pointer-events-none absolute inset-x-0 bottom-12 z-10 text-center text-2xl font-black uppercase tracking-widest text-white drop-shadow sm:text-4xl">
-          Corner hit!
+          {tx('Corner hit!')}
         </div>
       )}
     </ToolStage>
@@ -567,7 +568,7 @@ export function MotivationalQuoteScreensaver() {
           <Toggle label="Show Clock" checked={showClock} onChange={setShowClock} />
           <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
             {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
-            {isPaused ? 'Resume' : 'Pause'}
+            {isPaused ? tx('Resume') : tx('Pause')}
           </ActionButton>
         </ControlRow>
       }
@@ -579,7 +580,7 @@ export function MotivationalQuoteScreensaver() {
               className="max-w-[24ch] font-serif font-semibold leading-tight text-balance"
               style={{ fontSize: `clamp(20px, ${quote.text.length > 70 ? 6.4 : 8}cqmin, 84px)` }}
             >
-              “{quote.text}”
+              “{tx(quote.text)}”
             </blockquote>
             <figcaption className="mt-[4cqmin] font-medium uppercase" style={{ fontSize: 'clamp(11px, 2.4cqmin, 22px)', color: palette.muted, letterSpacing: '0.16em' }}>
               — {quote.author}

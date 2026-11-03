@@ -1,5 +1,6 @@
 'use client'
 
+import { tx } from '@/lib/tx'
 import { useState } from 'react'
 import { Download, Check, AlertCircle, RefreshCw, Sparkles } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n'
@@ -260,7 +261,7 @@ export function ResolutionControls({ activeHex, activeName, uploadedImageUrl, cl
                 )}
                 aria-pressed={isSelected}
               >
-                {preset.label}
+                {tx(preset.label)}
               </button>
             )
           })}
@@ -316,7 +317,7 @@ export function ResolutionControls({ activeHex, activeName, uploadedImageUrl, cl
               className="h-9 rounded-lg border bg-background px-2 font-mono text-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <option value="png">{t('pngLossless', 'PNG (lossless)')}</option>
-              <option value="jpeg">JPG</option>
+              <option value="jpeg">{tx('JPG')}</option>
             </select>
           </div>
 

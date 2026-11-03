@@ -3,7 +3,7 @@
  * does, its key features and why to use it, plus authoritative sources where they help the reader.
  * English; translated versions live in glance-i18n.ts.
  */
-import { TOOL_CONTENT_TRANSLATIONS } from './i18n'
+import { toolContentTranslations } from './i18n'
 import { colorGlanceFor } from '../topic-i18n'
 import { SCREEN_COLORS } from '../screen-colors'
 
@@ -521,6 +521,6 @@ export function getToolGlance(slug: string, language: string): ToolGlance | unde
   if (language === 'en') return english
   // Color screens without a hand-written translation use the per-language color template.
   const color = SCREEN_COLORS.find((item) => `${item.id}-screen` === slug)
-  const translated = TOOL_CONTENT_TRANSLATIONS[language]?.[slug]?.glance ?? (color && colorGlanceFor(color.id, color.hex, language))
+  const translated = toolContentTranslations(language)?.[slug]?.glance ?? (color && colorGlanceFor(color.id, color.hex, language))
   return translated && { ...translated, sources: english.sources }
 }

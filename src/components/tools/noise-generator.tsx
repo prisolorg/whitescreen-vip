@@ -1,5 +1,6 @@
 'use client'
 
+import { tx } from '@/lib/tx'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Play, Square } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
@@ -331,7 +332,7 @@ export function NoiseGenerator({ initialColor }: { initialColor: NoiseColor }) {
 
   return (
     <ToolStage
-      label={`${look.label} noise generator`}
+      label={`${tx(look.label)} noise generator`}
       tone="dark"
       reserveHeadingSpace
       style={{ background: look.stage }}
@@ -380,11 +381,11 @@ export function NoiseGenerator({ initialColor }: { initialColor: NoiseColor }) {
                 if (isPlaying) setEndsAt(minutes ? Date.now() + minutes * 60_000 : null)
                 if (!minutes) setRemaining(null)
               }}
-              options={SLEEP_MINUTES.map((m) => ({ value: String(m), label: m ? `${m} min` : 'Off' }))}
+              options={SLEEP_MINUTES.map((m) => ({ value: String(m), label: m ? `${m} min` : tx('Off') }))}
             />
           </ControlRow>
           {visual === 'static' && (
-            <p className="text-xs text-muted-foreground">Photosensitivity warning: the TV static visual flickers quickly.</p>
+            <p className="text-xs text-muted-foreground">{tx('Photosensitivity warning: the TV static visual flickers quickly.')}</p>
           )}
         </>
       }
@@ -392,7 +393,7 @@ export function NoiseGenerator({ initialColor }: { initialColor: NoiseColor }) {
       <div className="relative size-full">
         <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 size-full" style={{ imageRendering: visual === 'static' ? 'pixelated' : undefined }} />
         <div className="relative flex size-full flex-col items-center justify-center gap-4 p-4 text-white">
-          <nav aria-label="Noise type" className="flex gap-1 rounded-full bg-black/45 p-1 ring-1 ring-white/15 backdrop-blur">
+          <nav aria-label={tx('Noise type')} className="flex gap-1 rounded-full bg-black/45 p-1 ring-1 ring-white/15 backdrop-blur">
             {(Object.keys(NOISE_LOOK) as NoiseColor[]).map((key) => (
               <a
                 key={key}
@@ -417,12 +418,12 @@ export function NoiseGenerator({ initialColor }: { initialColor: NoiseColor }) {
             className="inline-flex h-14 items-center gap-2.5 rounded-full bg-white px-7 text-base font-bold text-neutral-900 shadow-xl transition-transform hover:scale-[1.03] active:scale-95 sm:h-16 sm:px-9 sm:text-lg"
           >
             {isPlaying ? <Square className="size-5 fill-current" aria-hidden="true" /> : <Play className="size-5 fill-current" aria-hidden="true" />}
-            {isPlaying ? 'Stop Noise' : 'Start Noise'}
+            {isPlaying ? tx('Stop Noise') : tx('Start Noise')}
           </button>
           <p className="rounded-full bg-black/45 px-3 py-1 text-xs text-white/75 backdrop-blur sm:text-sm" aria-live="polite">
             {isPlaying
-              ? `${look.label} noise · ${volumeDb} dB${filterMode !== 'none' ? ` · ${filterMode === 'lowpass' ? 'low pass' : 'high pass'} ${formatHz(cutoff)}` : ''}${remaining ? ` · stops in ${formatRemaining(remaining)}` : ''}`
-              : 'Press Start or Space · sound plays only after you start it'}
+              ? `${tx(look.label)} noise · ${volumeDb} dB${filterMode !== 'none' ? ` · ${filterMode === 'lowpass' ? 'low pass' : 'high pass'} ${formatHz(cutoff)}` : ''}${remaining ? ` · stops in ${formatRemaining(remaining)}` : ''}`
+              : tx('Press Start or Space · sound plays only after you start it')}
           </p>
         </div>
       </div>

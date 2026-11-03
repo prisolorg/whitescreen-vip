@@ -1,5 +1,6 @@
 'use client'
 
+import { tx } from '@/lib/tx'
 import { createContext, useContext, type ReactNode } from 'react'
 import { ChevronLeft, ChevronRight, Maximize } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -114,11 +115,11 @@ export function StageArrows({
       target.onSelect()
     }
     return target.href ? (
-      <a href={target.href} onClick={handle} onDoubleClick={(event) => event.stopPropagation()} aria-label={target.label} title={target.label} className={cn(className, position)}>
+      <a href={target.href} onClick={handle} onDoubleClick={(event) => event.stopPropagation()} aria-label={tx(target.label)} title={tx(target.label)} className={cn(className, position)}>
         <Icon className="size-5 sm:size-6" aria-hidden="true" />
       </a>
     ) : (
-      <button type="button" onClick={handle} onDoubleClick={(event) => event.stopPropagation()} aria-label={target.label} title={target.label} className={cn(className, position)}>
+      <button type="button" onClick={handle} onDoubleClick={(event) => event.stopPropagation()} aria-label={tx(target.label)} title={tx(target.label)} className={cn(className, position)}>
         <Icon className="size-5 sm:size-6" aria-hidden="true" />
       </button>
     )

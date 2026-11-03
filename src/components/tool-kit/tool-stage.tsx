@@ -1,5 +1,6 @@
 'use client'
 
+import { tx } from '@/lib/tx'
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { Maximize, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -107,7 +108,7 @@ export function ToolStage({
         <div
           ref={ref}
           role="region"
-          aria-label={label}
+          aria-label={tx(label)}
           onMouseMove={isFullscreen ? revealHint : undefined}
           onTouchStart={isFullscreen ? revealHint : undefined}
           onClick={handleStageClick}
@@ -138,7 +139,7 @@ export function ToolStage({
                 chipClass,
               )}
             >
-              {badge}
+              {typeof badge === 'string' ? tx(badge) : badge}
             </span>
           )}
 
@@ -172,7 +173,7 @@ export function ToolStage({
 
         {/* Same title placement as the color screens; it sits outside the stage so fullscreen stays clean. */}
         {heading && !isFullscreen && (
-          <StageTitle title={heading.title} intro={reserveHeadingSpace ? undefined : heading.intro} tone={tone} scrim={!reserveHeadingSpace} compact={reserveHeadingSpace} />
+          <StageTitle title={tx(heading.title)} intro={reserveHeadingSpace ? undefined : heading.intro} tone={tone} scrim={!reserveHeadingSpace} compact={reserveHeadingSpace} />
         )}
       </div>
 

@@ -1,5 +1,6 @@
 'use client'
 
+import { tx } from '@/lib/tx'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Pause, Play, RotateCcw, Volume2, VolumeX } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
@@ -13,7 +14,7 @@ function SoundButton({ isPlaying, onToggle, label = 'Sound' }: { isPlaying: bool
   return (
     <ActionButton onClick={onToggle} aria-pressed={isPlaying}>
       {isPlaying ? <Volume2 aria-hidden="true" /> : <VolumeX aria-hidden="true" />}
-      {isPlaying ? `${label} on` : `${label} off`}
+      {(isPlaying ? tx("{label} on") : tx("{label} off")).replace("{label}", tx(label))}
     </ActionButton>
   )
 }
@@ -388,7 +389,7 @@ export function BrokenScreen() {
           <Toggle label="Damaged display" checked={lcdDamage} onChange={setLcdDamage} />
           <ActionButton onClick={() => setImpacts([])}>
             <RotateCcw aria-hidden="true" />
-            Clear
+            {tx('Clear')}
           </ActionButton>
         </ControlRow>
       }
@@ -399,7 +400,7 @@ export function BrokenScreen() {
       </div>
       {impacts.length === 0 && (
         <p className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-black/50 px-3 py-1 text-xs text-white/85">
-          Tap anywhere to crack the screen
+          {tx('Tap anywhere to crack the screen')}
         </p>
       )}
     </ToolStage>
@@ -550,12 +551,11 @@ export function HackerTyper() {
             <ColorInput label="Text color" value={color} onChange={setColor} />
             <ActionButton onClick={() => setLength(0)}>
               <RotateCcw aria-hidden="true" />
-              Clear
+              {tx('Clear')}
             </ActionButton>
           </ControlRow>
           <p className="text-sm text-muted-foreground">
-            Click the terminal, then type anything. Press Alt 3× for access granted, Caps Lock 3× for access denied. This
-            only prints harmless text.
+            {tx('Click the terminal, then type anything. Press Alt 3× for access granted, Caps Lock 3× for access denied. This only prints harmless text.')}
           </p>
         </>
       }
@@ -565,12 +565,12 @@ export function HackerTyper() {
         tabIndex={0}
         onFocus={() => (stageActive.current = true)}
         onBlur={() => (stageActive.current = false)}
-        aria-label="Terminal. Type any key to print code."
+        aria-label={tx('Terminal. Type any key to print code.')}
         className="absolute inset-0 overflow-hidden p-4 font-mono text-xs leading-relaxed outline-none sm:text-sm"
         style={{ color }}
       >
         <pre className="whitespace-pre-wrap break-words">
-          {typed || 'Start typing...'}
+          {typed || tx('Start typing...')}
           <span className="animate-pulse">▌</span>
         </pre>
       </div>
@@ -584,7 +584,7 @@ export function HackerTyper() {
                 : 'border-2 border-red-500 bg-red-950/90 px-10 py-6 font-mono text-2xl font-bold tracking-widest text-red-400 sm:text-4xl'
             }
           >
-            {popup === 'granted' ? 'ACCESS GRANTED' : 'ACCESS DENIED'}
+            {popup === 'granted' ? tx('ACCESS GRANTED') : tx('ACCESS DENIED')}
           </div>
         </div>
       )}
@@ -613,7 +613,7 @@ function fakeLogLine(random: () => number) {
   const ip = `10.${Math.floor(random() * 255)}.${Math.floor(random() * 255)}.${Math.floor(random() * 255)}`
   const hex = Math.floor(random() * 0xffffffff).toString(16).padStart(8, '0').toUpperCase()
   const step = HACK_STEPS[Math.floor(random() * HACK_STEPS.length)]
-  const status = random() < 0.85 ? 'OK' : 'RETRY'
+  const status = random() < 0.85 ? tx('OK') : tx('RETRY')
   return `[${hex}] ${step} @ ${ip} ... ${status}`
 }
 
@@ -732,10 +732,10 @@ export function HackedScreen() {
               <div className="h-full" style={{ width: `${Math.min(100, progress)}%`, background: accent }} />
             </div>
             <p className="mt-1.5 flex justify-between">
-              <span>{Math.min(100, Math.floor(progress))}% complete</span>
+              <span>{tx('{n}% complete').replace('{n}', String(Math.min(100, Math.floor(progress))))}</span>
               <span className="hack-blink">00:{String(countdown).padStart(2, '0')}</span>
             </p>
-            {showNote && <p className="mt-1.5 text-[10px] opacity-60 sm:text-xs">Just kidding — this is a harmless prank screen. Press Esc to exit.</p>}
+            {showNote && <p className="mt-1.5 text-[10px] opacity-60 sm:text-xs">{tx('Just kidding — this is a harmless prank screen. Press Esc to exit.')}</p>}
           </div>
         </div>
       </div>
@@ -794,7 +794,7 @@ export function ZoomLighting() {
                   className={!useCustom && kelvin === preset.kelvin ? 'ring-2 ring-primary' : undefined}
                 >
                   <span className="size-3 rounded-full ring-1 ring-black/20" style={{ background: kelvinToRgb(preset.kelvin).css }} aria-hidden="true" />
-                  {preset.label}
+                  {tx(preset.label)}
                 </ActionButton>
               ))}
               <Toggle label="Custom color" checked={useCustom} onChange={setUseCustom} />
@@ -824,7 +824,7 @@ export function ZoomLighting() {
             className="absolute flex items-center justify-center rounded-2xl bg-neutral-950 p-4 text-center text-xs text-white/55 sm:text-sm"
             style={{ inset: `${frame / 2}% ${frame}%` }}
           >
-            <p className="max-w-xs">Put your call window here, or use this screen as a light facing you.</p>
+            <p className="max-w-xs">{tx('Put your call window here, or use this screen as a light facing you.')}</p>
           </div>
         )}
       </div>
@@ -1022,7 +1022,7 @@ export function VisualNoise() {
             <Slider label="Speed" value={speed} min={1} max={10} onChange={setSpeed} />
             <ActionButton onClick={() => setIsPaused((value) => !value)} aria-pressed={isPaused}>
               {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
-              {isPaused ? 'Resume' : 'Pause'}
+              {isPaused ? tx('Resume') : tx('Pause')}
             </ActionButton>
           </ControlRow>
         </>
@@ -1089,12 +1089,12 @@ export function ColorCycle() {
           <Slider label="Speed" value={speed} min={1} max={10} onChange={setSpeed} />
           <ActionButton onClick={() => setIsPaused((value) => !value)} aria-pressed={isPaused}>
             {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
-            {isPaused ? 'Resume' : 'Pause'}
+            {isPaused ? tx('Resume') : tx('Pause')}
           </ActionButton>
         </ControlRow>
       }
     >
-      <span className="sr-only">Color cycling screen</span>
+      <span className="sr-only">{tx('Color cycling screen')}</span>
     </ToolStage>
   )
 }
@@ -1157,7 +1157,7 @@ export function GradientScreen() {
       style={{ background }}
       controls={
         <>
-          <div className="flex flex-wrap gap-2" role="group" aria-label="Presets">
+          <div className="flex flex-wrap gap-2" role="group" aria-label={tx('Presets')}>
             {GRADIENT_PRESETS.map((preset) => (
               <button
                 key={preset.label}
@@ -1166,7 +1166,7 @@ export function GradientScreen() {
                 className="inline-flex h-10 items-center gap-2 rounded-lg border px-3 text-sm hover:bg-accent"
               >
                 <span aria-hidden="true" className="size-4 rounded-full" style={{ background: `linear-gradient(135deg, ${preset.colors.join(', ')})` }} />
-                {preset.label}
+                {tx(preset.label)}
               </button>
             ))}
           </div>
@@ -1188,12 +1188,12 @@ export function GradientScreen() {
             />
             {type === 'linear' && <Slider label="Angle" value={angle} min={0} max={360} onChange={setAngle} format={(v) => `${v}°`} />}
             <Toggle label="Animate" checked={isAnimated} onChange={setIsAnimated} />
-            <ActionButton onClick={download}>Download PNG</ActionButton>
+            <ActionButton onClick={download}>{tx('Download PNG')}</ActionButton>
           </ControlRow>
         </>
       }
     >
-      <span className="sr-only">Gradient preview</span>
+      <span className="sr-only">{tx('Gradient preview')}</span>
     </ToolStage>
   )
 }

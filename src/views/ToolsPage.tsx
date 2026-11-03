@@ -132,64 +132,6 @@ export function ToolsPage() {
         </div>
       )}
 
-      {/* Helpful Display Guides & Testing Tutorials */}
-      <section className="mt-16 border-t pt-10">
-        <div className="mb-6 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight">Display Guides & Testing Tutorials</h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Practical guides on monitor maintenance, pixel defect testing, and creative display uses.
-            </p>
-          </div>
-          <a
-            href="/guides/"
-            className="text-xs font-semibold text-primary hover:underline shrink-0"
-          >
-            Browse all 10 guides →
-          </a>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <a
-            href="/guides/clean-laptop-screen/"
-            className="group rounded-xl border bg-card p-4 transition-all hover:border-primary/40 hover:shadow-xs"
-          >
-            <span className="text-[11px] font-semibold text-primary uppercase">Cleaning & Maintenance</span>
-            <h3 className="mt-1 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
-              How to Use a White Screen for Monitor Cleaning
-            </h3>
-            <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
-              Inspect surface grime and dust under bright light before safely wiping your display.
-            </p>
-          </a>
-
-          <a
-            href="/guides/dead-pixel-test/"
-            className="group rounded-xl border bg-card p-4 transition-all hover:border-primary/40 hover:shadow-xs"
-          >
-            <span className="text-[11px] font-semibold text-primary uppercase">Display Diagnostics</span>
-            <h3 className="mt-1 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
-              How to Test Your Monitor for Dead Pixels
-            </h3>
-            <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
-              Identify dead, stuck, and hot subpixels with primary color cycles and diagnostic checks.
-            </p>
-          </a>
-
-          <a
-            href="/guides/screen-color-test/"
-            className="group rounded-xl border bg-card p-4 transition-all hover:border-primary/40 hover:shadow-xs"
-          >
-            <span className="text-[11px] font-semibold text-primary uppercase">Display Calibration</span>
-            <h3 className="mt-1 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
-              How to Test Monitor Colors and Display Uniformity
-            </h3>
-            <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
-              Evaluate backlight bleed, IPS glow, and quadrant luminance consistency across your screen.
-            </p>
-          </a>
-        </div>
-      </section>
     </div>
   )
 }

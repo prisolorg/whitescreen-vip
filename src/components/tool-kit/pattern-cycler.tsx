@@ -1,5 +1,6 @@
 'use client'
 
+import { tx } from '@/lib/tx'
 import { useCallback, useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -70,14 +71,14 @@ export function PatternCycler({ label, patterns, autoCycle, showGridOption, note
 
   return (
     <ToolStage
-      label={`${label}: ${current.label}`}
+      label={`${label}: ${tx(current.label)}`}
       tone={current.tone ?? 'dark'}
       onStageClick={() => step(1)}
       doubleClickFullscreen
       style={{ background: current.background, backgroundSize: current.backgroundSize }}
       controls={
         <>
-          <div className="-mx-1 flex items-center gap-2 overflow-x-auto px-1 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:shrink-0" role="group" aria-label="Patterns">
+          <div className="-mx-1 flex items-center gap-2 overflow-x-auto px-1 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:shrink-0" role="group" aria-label={tx('Patterns')}>
             <ActionButton onClick={() => step(-1)} aria-label={t('prevPattern', 'Previous pattern')} className="px-2.5">
               <ChevronLeft aria-hidden="true" />
             </ActionButton>
@@ -99,7 +100,7 @@ export function PatternCycler({ label, patterns, autoCycle, showGridOption, note
                     style={{ background: pattern.swatch }}
                   />
                 )}
-                {pattern.label}
+                {tx(pattern.label)}
               </button>
             ))}
             <ActionButton onClick={() => step(1)} aria-label={t('nextPattern', 'Next pattern')} className="px-2.5">
@@ -130,21 +131,21 @@ export function PatternCycler({ label, patterns, autoCycle, showGridOption, note
             </ControlRow>
           )}
           <p className="hidden text-sm text-muted-foreground sm:block">
-            {note ?? t('patternCyclerHint', 'Click the screen or use the arrow keys to switch patterns.')}
+            {note ? tx(note) : t('patternCyclerHint', 'Click the screen or use the arrow keys to switch patterns.')}
           </p>
         </>
       }
     >
       <StageArrows
         tone={current.tone ?? 'dark'}
-        prev={{ label: `${t('prevPattern', 'Previous pattern')}: ${patterns[(index - 1 + patterns.length) % patterns.length].label}`, onSelect: () => step(-1) }}
-        next={{ label: `${t('nextPattern', 'Next pattern')}: ${patterns[(index + 1) % patterns.length].label}`, onSelect: () => step(1) }}
+        prev={{ label: `${t('prevPattern', 'Previous pattern')}: ${tx(patterns[(index - 1 + patterns.length) % patterns.length].label)}`, onSelect: () => step(-1) }}
+        next={{ label: `${t('nextPattern', 'Next pattern')}: ${tx(patterns[(index + 1) % patterns.length].label)}`, onSelect: () => step(1) }}
       />
       {showGrid && (
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: GRID_OVERLAY }} />
       )}
       <span className="sr-only" aria-live="polite">
-        {current.label}
+        {tx(current.label)}
       </span>
     </ToolStage>
   )

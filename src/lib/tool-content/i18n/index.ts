@@ -39,15 +39,31 @@ import { tr as tr4 } from './batch4/tr'
  * Batch 3: uniformity test, stopwatch, Matrix, DVD, fake Windows 10 update, ring light.
  * Batch 4: every remaining tool (display tests, effects, screensavers, fake screens).
  */
-export const TOOL_CONTENT_TRANSLATIONS: Record<string, ToolTranslations> = {
-  es: { ...es, ...es2, ...es3, ...es4 },
-  'pt-br': { ...ptBr, ...ptBr2, ...ptBr3, ...ptBr4 },
-  de: { ...de, ...de2, ...de3, ...de4 },
-  fr: { ...fr, ...fr2, ...fr3, ...fr4 },
-  it: { ...it, ...it2, ...it3, ...it4 },
-  nl: { ...nl, ...nl2, ...nl3, ...nl4 },
-  id: { ...id, ...id2, ...id3, ...id4 },
-  tr: { ...tr, ...tr2, ...tr3, ...tr4 },
+const BATCHES: Record<string, ToolTranslations[]> = {
+  es: [es, es2, es3, es4],
+  'pt-br': [ptBr, ptBr2, ptBr3, ptBr4],
+  de: [de, de2, de3, de4],
+  fr: [fr, fr2, fr3, fr4],
+  it: [it, it2, it3, it4],
+  nl: [nl, nl2, nl3, nl4],
+  id: [id, id2, id3, id4],
+  tr: [tr, tr2, tr3, tr4],
+}
+const merged = /* @__PURE__ */ new Map<string, ToolTranslations>()
+
+/**
+ * Translated tool page content for `language` (merged from the batches on first use). A function
+ * rather than a module-level object, so client bundles that only import this file's types or
+ * helpers can drop the translations entirely.
+ */
+export function toolContentTranslations(language: string): ToolTranslations | undefined {
+  if (!BATCHES[language]) return undefined
+  let result = merged.get(language)
+  if (!result) {
+    result = Object.assign({}, ...BATCHES[language]) as ToolTranslations
+    merged.set(language, result)
+  }
+  return result
 }
 
 /**
@@ -55,5 +71,5 @@ export const TOOL_CONTENT_TRANSLATIONS: Record<string, ToolTranslations> = {
  * without it are kept out of the index in that language, so no page mixes in English text.
  */
 export function hasToolTranslation(slug: string, language: string): boolean {
-  return language === 'en' || Boolean(TOOL_CONTENT_TRANSLATIONS[language]?.[slug]?.steps)
+  return language === 'en' || Boolean(toolContentTranslations(language)?.[slug]?.steps)
 }

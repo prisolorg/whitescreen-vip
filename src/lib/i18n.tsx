@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react'
 import { extractLocaleAndPath, getLocalizedPath, isEnglishOnlyPath, type LanguageCode } from './locale-routing'
 import { getMessages } from './messages'
+import { setToolTextLanguage } from './tx'
 
 export type { LanguageCode }
 
@@ -72,6 +73,8 @@ export function I18nProvider({ children, initialUrl }: { children: React.ReactNo
   )
 
   const currentInfo = LANGUAGES.find((l) => l.code === language) ?? LANGUAGES[0]
+  // Text inside the tools is translated with tx(), which reads the language set here.
+  setToolTextLanguage(language)
 
   // Listen to browser navigation to synchronize language with the URL path
   useEffect(() => {

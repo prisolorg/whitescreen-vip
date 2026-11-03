@@ -1,5 +1,6 @@
 'use client'
 
+import { tx } from '@/lib/tx'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Maximize,
@@ -119,7 +120,7 @@ export function HomeTool() {
       : t('custom', 'Custom')
   // File names stay ASCII/English regardless of UI language.
   const fileSlug = uploadedImage ? 'image' : preset ? preset.id : 'custom'
-  const formatLabel = format === 'png' ? 'PNG' : 'JPG'
+  const formatLabel = format === 'png' ? tx('PNG') : tx('JPG')
   const isLight = uploadedImage ? false : isLightColor(activeHex)
 
   // Color temperature RGB
@@ -692,7 +693,7 @@ export function HomeTool() {
                             : 'border-border bg-background hover:bg-muted text-foreground',
                         )}
                       >
-                        {p.label}
+                        {tx(p.label)}
                       </button>
                     )
                   })}
@@ -750,7 +751,7 @@ export function HomeTool() {
                       className="h-8 rounded-md border bg-background px-2 font-mono text-xs outline-none focus-visible:ring-1 focus-visible:ring-primary"
                     >
                       <option value="png">{t('pngLossless', 'PNG (lossless)')}</option>
-                      <option value="jpeg">JPG</option>
+                      <option value="jpeg">{tx('JPG')}</option>
                     </select>
                   </div>
 
@@ -833,7 +834,7 @@ export function HomeTool() {
                               : 'border-border bg-background text-muted-foreground hover:text-foreground',
                           )}
                         >
-                          {preset.label}
+                          {tx(preset.label)}
                         </button>
                       ))}
                     </div>

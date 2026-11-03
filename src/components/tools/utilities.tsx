@@ -1,5 +1,6 @@
 'use client'
 
+import { tx } from '@/lib/tx'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { Play, Pause, RotateCcw, Flag, Copy, Check, Volume2, VolumeX, SkipForward } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
@@ -136,7 +137,7 @@ export function CountdownTimer() {
                     : 'border-border bg-background hover:bg-muted text-foreground',
                 )}
               >
-                {p.label}
+                {tx(p.label)}
               </button>
             ))}
           </div>
@@ -149,11 +150,11 @@ export function CountdownTimer() {
                 className="w-28"
               >
                 {isRunning ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
-                {isRunning ? 'Pause' : 'Start'}
+                {isRunning ? tx('Pause') : tx('Start')}
               </ActionButton>
               <ActionButton onClick={handleReset}>
                 <RotateCcw aria-hidden="true" />
-                Reset
+                {tx('Reset')}
               </ActionButton>
             </div>
             <Toggle label="Chime Alert" checked={hasSound} onChange={setHasSound} />
@@ -181,7 +182,7 @@ export function CountdownTimer() {
           </div>
           {isFinished && (
             <div className="mt-4 text-xl sm:text-2xl font-bold tracking-wide uppercase text-red-300">
-              Time is up!
+              {tx('Time is up!')}
             </div>
           )}
         </div>
@@ -307,21 +308,21 @@ export function Stopwatch() {
                 className="w-28"
               >
                 {isRunning ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
-                {isRunning ? 'Pause' : 'Start'}
+                {isRunning ? tx('Pause') : tx('Start')}
               </ActionButton>
               <ActionButton onClick={handleLap} disabled={!isRunning && elapsedMs === 0}>
                 <Flag aria-hidden="true" />
-                Lap
+                {tx('Lap')}
               </ActionButton>
               <ActionButton onClick={handleReset} disabled={isRunning || elapsedMs === 0}>
                 <RotateCcw aria-hidden="true" />
-                Reset
+                {tx('Reset')}
               </ActionButton>
             </div>
             {laps.length > 0 && (
               <ActionButton onClick={copyLaps}>
                 {copied ? <Check aria-hidden="true" className="text-green-500" /> : <Copy aria-hidden="true" />}
-                {copied ? 'Copied' : 'Copy Laps'}
+                {copied ? tx('Copied') : tx('Copy Laps')}
               </ActionButton>
             )}
           </ControlRow>
@@ -337,16 +338,16 @@ export function Stopwatch() {
         {laps.length > 0 && (
           <div className="mt-6 max-h-40 w-full max-w-md overflow-y-auto rounded-xl border border-white/10 bg-black/40 p-2 text-sm font-mono backdrop-blur">
             <div className="grid grid-cols-3 px-3 py-1 font-semibold text-xs uppercase text-muted-foreground border-b border-white/10">
-              <span>Lap</span>
-              <span className="text-right">Split</span>
-              <span className="text-right">Total</span>
+              <span>{tx('Lap')}</span>
+              <span className="text-right">{tx('Split')}</span>
+              <span className="text-right">{tx('Total')}</span>
             </div>
             {laps.map((lap) => (
               <div
                 key={lap.id}
                 className="grid grid-cols-3 px-3 py-1.5 transition-colors hover:bg-white/5"
               >
-                <span className="text-neutral-400">Lap {lap.id}</span>
+                <span className="text-neutral-400">{tx('Lap')}{' '}{lap.id}</span>
                 <span className="text-right font-medium text-white">{formatStopwatch(lap.splitMs)}</span>
                 <span className="text-right text-neutral-400">{formatStopwatch(lap.totalMs)}</span>
               </div>
@@ -475,11 +476,11 @@ export function PomodoroTimer() {
           <ControlRow>
             <ActionButton variant="primary" onClick={toggle}>
               {isRunning ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
-              {isRunning ? 'Pause' : timeLeft < total ? 'Resume' : 'Start'}
+              {isRunning ? 'Pause' : timeLeft < total ? tx('Resume') : tx('Start')}
             </ActionButton>
             <ActionButton onClick={advance}>
               <SkipForward aria-hidden="true" />
-              Skip
+              {tx('Skip')}
             </ActionButton>
             <ActionButton
               onClick={() => {
@@ -488,12 +489,12 @@ export function PomodoroTimer() {
               }}
             >
               <RotateCcw aria-hidden="true" />
-              Reset
+              {tx('Reset')}
             </ActionButton>
             <Toggle label="Auto-start next" checked={autoStart} onChange={setAutoStart} />
             <ActionButton onClick={() => setHasSound((value) => !value)} aria-pressed={hasSound}>
               {hasSound ? <Volume2 aria-hidden="true" /> : <VolumeX aria-hidden="true" />}
-              {hasSound ? 'Chime on' : 'Chime off'}
+              {hasSound ? tx('Chime on') : tx('Chime off')}
             </ActionButton>
           </ControlRow>
           <ControlRow>
@@ -506,7 +507,7 @@ export function PomodoroTimer() {
       }
     >
       <div className="flex size-full flex-col items-center justify-center gap-3 text-white sm:gap-5" style={{ containerType: 'size' }}>
-        <div role="tablist" aria-label="Phase" className="flex gap-1 rounded-full bg-black/25 p-1">
+        <div role="tablist" aria-label={tx('Phase')} className="flex gap-1 rounded-full bg-black/25 p-1">
           {(Object.keys(PHASES) as PomodoroPhase[]).map((key) => (
             <button
               key={key}

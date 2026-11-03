@@ -2,6 +2,7 @@ import { Providers } from './Providers'
 import { SiteFooter } from '@/components/site-footer'
 import { AuthorPage } from '@/views/AuthorPage'
 import { HubPage } from '@/views/HubPage'
+import { ToolsGuides } from '@/components/tools-guides'
 import { AboutPage } from '@/views/AboutPage'
 import { PrivacyPolicyPage } from '@/views/PrivacyPolicyPage'
 import { TermsPage } from '@/views/TermsPage'
@@ -10,9 +11,9 @@ import { GlossaryDetailPage } from '@/views/GlossaryDetailPage'
 import { NotFoundPage } from '@/views/NotFoundPage'
 import { GuideDetailPage } from '@/views/GuideDetailPage'
 import { GuidesIndexPage } from '@/views/GuidesIndexPage'
-import { ToolPageBody } from '@/components/tool-page'
-import { ColorPageBody } from '@/views/ColorPage'
-import { HomePageBody } from '@/views/HomePage'
+import { ToolPageBody } from '@/components/tool-page-body'
+import { ColorPageBody } from '@/views/ColorPageBody'
+import { HomePageBody } from '@/views/HomePageBody'
 import { SCREEN_COLORS } from '@/lib/screen-colors'
 
 /** Pages and parts with no interactivity. Astro renders these to HTML and ships no JavaScript for them. */
@@ -64,6 +65,15 @@ export function StaticHomeBody({ url }: { url: string }) {
   return (
     <Providers url={url}>
       <HomePageBody />
+    </Providers>
+  )
+}
+
+/** Static (no-JS) guide cards under the all-tools page. */
+export function StaticToolsGuides({ url }: { url: string }) {
+  return (
+    <Providers url={url}>
+      <ToolsGuides />
     </Providers>
   )
 }

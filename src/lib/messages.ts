@@ -29,7 +29,8 @@ export function getMessages(lang: LanguageCode): ClientMessages {
   return page.lang === lang ? page : { ...EMPTY, lang }
 }
 
-/** JSON for the page's <script id="ws-messages">, safe to inline in HTML. */
-export function serializeMessages(lang: LanguageCode) {
-  return JSON.stringify(buildClientMessages(lang)).replace(/</g, '\\u003c')
+/** JSON for the page's <script id="ws-messages">, safe to inline in HTML. Tool text only goes to pages with a tool. */
+export function serializeMessages(lang: LanguageCode, withToolText = false) {
+  const { toolUi, ...messages } = buildClientMessages(lang)
+  return JSON.stringify(withToolText ? { ...messages, toolUi } : messages).replace(/</g, '\\u003c')
 }

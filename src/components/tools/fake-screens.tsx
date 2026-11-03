@@ -1,5 +1,6 @@
 'use client'
 
+import { tx } from '@/lib/tx'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Mic,
@@ -74,7 +75,7 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
           <Slider label="Update Speed" value={speed} min={1} max={10} onChange={setSpeed} />
           <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
             {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
-            {isPaused ? 'Resume' : 'Pause'}
+            {isPaused ? tx('Resume') : tx('Pause')}
           </ActionButton>
           <ActionButton
             variant="outline"
@@ -82,7 +83,7 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
             onClick={() => setIsBsod((b) => !b)}
           >
             <AlertTriangle aria-hidden="true" />
-            {isBsod ? 'Restore Update' : 'Trigger BSOD Prank'}
+            {isBsod ? tx('Restore Update') : tx('Trigger BSOD Prank')}
           </ActionButton>
         </ControlRow>
       }
@@ -94,20 +95,19 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
             <div>
               <div className="text-6xl sm:text-8xl">:(</div>
               <div className="mt-8 text-xl sm:text-3xl font-light leading-relaxed max-w-2xl">
-                Your PC ran into a problem and needs to restart. We&apos;re just collecting some error
-                info, and then we&apos;ll restart for you.
+                {tx("Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.")}
               </div>
               <div className="mt-8 text-lg sm:text-2xl font-light">
-                {percent}% complete
+                {tx('{n}% complete').replace('{n}', String(percent))}
               </div>
             </div>
             <div className="flex items-center gap-6 text-sm sm:text-base font-light">
               <div className="size-24 sm:size-32 bg-white/20 p-2 border border-white/40 flex items-center justify-center font-mono text-xs">
-                QR CODE
+                {tx('QR CODE')}
               </div>
               <div>
-                <p>For more information about this issue and possible fixes, visit https://windows.com/stopcode</p>
-                <p className="mt-2 text-xs font-mono opacity-80">Stop code: CRITICAL_PROCESS_DIED</p>
+                <p>{tx('For more information about this issue and possible fixes, visit https://windows.com/stopcode')}</p>
+                <p className="mt-2 text-xs font-mono opacity-80">{tx('Stop code: CRITICAL_PROCESS_DIED')}</p>
               </div>
             </div>
           </div>
@@ -130,10 +130,10 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
                   ))}
                 </div>
                 <h2 className="text-xl sm:text-2xl font-light tracking-wide text-neutral-100">
-                  Working on updates {percent}% complete.
+                  {tx('Working on updates {n}% complete.').replace('{n}', String(percent))}
                 </h2>
                 <p className="mt-2 text-sm sm:text-base text-neutral-400">
-                  Don&apos;t turn off your PC. This will take a while.
+                  {tx("Don't turn off your PC. This will take a while.")}
                 </p>
               </div>
             )}
@@ -144,11 +144,11 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
                 {/* Fluent ring */}
                 <div className="size-16 mb-8 rounded-full border-4 border-neutral-700 border-t-white animate-spin" />
                 <h2 className="text-xl sm:text-2xl font-normal tracking-tight text-white">
-                  Working on updates
+                  {tx('Working on updates')}
                 </h2>
                 <div className="mt-2 font-mono text-lg text-neutral-300">{percent}%</div>
                 <p className="mt-3 text-sm text-neutral-400">
-                  Please keep your computer on and plugged in.
+                  {tx('Please keep your computer on and plugged in.')}
                 </p>
               </div>
             )}
@@ -168,7 +168,7 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
                   />
                 </div>
                 <p className="mt-4 text-xs font-mono text-neutral-400">
-                  About {Math.max(1, Math.round((100 - percent) * 0.4))} minutes remaining
+                  {tx('About {n} minutes remaining').replace('{n}', String(Math.max(1, Math.round((100 - percent) * 0.4))))}
                 </p>
               </div>
             )}
@@ -209,13 +209,13 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
               <div className="flex size-full flex-col items-center justify-center bg-[#001D85] p-6 text-center">
                 <div className="size-16 rounded-full border-4 border-yellow-400 border-t-transparent animate-spin mb-6" />
                 <h2 className="text-2xl font-bold text-white tracking-wide">
-                  Please wait...
+                  {tx('Please wait...')}
                 </h2>
                 <p className="mt-3 text-lg text-neutral-200">
-                  Installing update {Math.min(18, Math.max(1, Math.floor(percent / 5)))} of 18...
+                  {tx('Installing update {n} of 18...').replace('{n}', String(Math.min(18, Math.max(1, Math.floor(percent / 5)))))}
                 </p>
                 <p className="mt-6 text-sm text-yellow-300 font-medium">
-                  Do not turn off or unplug your computer.
+                  {tx('Do not turn off or unplug your computer.')}
                 </p>
               </div>
             )}
@@ -225,7 +225,7 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
               <div className="flex size-full flex-col items-center justify-center bg-black p-6 text-center">
                 <div className="size-20 mb-8 rounded-full border-4 border-[#3DDC84] border-dashed animate-spin" />
                 <h2 className="text-xl sm:text-2xl font-medium text-white">
-                  Installing system update
+                  {tx('Installing system update')}
                 </h2>
                 <div className="w-64 h-1.5 rounded-full bg-neutral-800 overflow-hidden mt-6">
                   <div className="h-full bg-[#3DDC84]" style={{ width: `${percent}%` }} />
@@ -239,7 +239,7 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
               <div className="flex size-full flex-col items-center justify-center bg-neutral-900 p-6 text-center">
                 <div className="size-16 mb-8 rounded-full border-4 border-blue-500 border-t-yellow-400 border-r-red-500 border-b-green-500 animate-spin" />
                 <h2 className="text-xl sm:text-2xl font-light text-white">
-                  Updating your device
+                  {tx('Updating your device')}
                 </h2>
                 <div className="w-64 h-1 rounded-full bg-neutral-800 overflow-hidden mt-6">
                   <div className="h-full bg-blue-500" style={{ width: `${percent}%` }} />
@@ -264,7 +264,7 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
                   ))}
                 </div>
                 <p className="mt-8 text-sm font-mono text-neutral-300">
-                  Installing updates... ({percent}%)
+                  {tx('Installing updates... ({n}%)').replace('{n}', String(percent))}
                 </p>
               </div>
             )}
@@ -288,7 +288,7 @@ const CALL_PARTICIPANTS = [
 ]
 
 export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
-  const [meetingTitle, setMeetingTitle] = useState('Weekly All-Hands & Strategy Sync')
+  const [meetingTitle, setMeetingTitle] = useState(() => tx('Weekly All-Hands & Strategy Sync'))
   const [isMuted, setIsMuted] = useState(false)
   const [isVideoOn, setIsVideoOn] = useState(false)
   const [isHandRaised, setIsHandRaised] = useState(false)
@@ -355,7 +355,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
 
   return (
     <ToolStage
-      label={appType === 'teams' ? 'Fake Teams meeting' : appType === 'zoom' ? 'Fake Zoom meeting' : appType === 'meet' ? 'Fake Google Meet meeting' : 'Fake video call'}
+      label={appType === 'teams' ? 'Fake Teams meeting' : appType === 'zoom' ? 'Fake Zoom meeting' : appType === 'meet' ? tx('Fake Google Meet meeting') : tx('Fake video call')}
       reserveHeadingSpace
       className={appType === 'teams' ? 'bg-[#1f1f1f]' : appType === 'zoom' ? 'bg-black' : appType === 'meet' ? 'bg-[#202124]' : 'bg-neutral-950'}
       tone="dark"
@@ -387,11 +387,11 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
             <div className="flex shrink-0 items-center gap-0.5 text-neutral-200">
               <button type="button" className="hidden flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10 sm:flex">
                 <MessageSquare className="size-[18px]" aria-hidden="true" />
-                Chat
+                {tx('Chat')}
               </button>
               <button type="button" className="hidden flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10 sm:flex">
                 <Users className="size-[18px]" aria-hidden="true" />
-                People
+                {tx('People')}
               </button>
               <button
                 type="button"
@@ -400,11 +400,11 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                 className={cn('flex flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10', isHandRaised && 'text-[#9ea2ff]')}
               >
                 <Hand className="size-[18px]" aria-hidden="true" />
-                Raise
+                {tx('Raise')}
               </button>
               <button type="button" className="hidden flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10 md:flex">
                 <Smile className="size-[18px]" aria-hidden="true" />
-                React
+                {tx('React')}
               </button>
               <span aria-hidden="true" className="mx-1 h-7 w-px bg-white/15" />
               <button
@@ -414,7 +414,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                 className="flex flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10"
               >
                 {isVideoOn ? <VideoIcon className="size-[18px]" aria-hidden="true" /> : <VideoOff className="size-[18px]" aria-hidden="true" />}
-                Camera
+                {tx('Camera')}
               </button>
               <button
                 type="button"
@@ -427,7 +427,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               </button>
               <button type="button" className="hidden flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10 sm:flex">
                 <Share2 className="size-[18px]" aria-hidden="true" />
-                Share
+                {tx('Share')}
               </button>
               <button
                 type="button"
@@ -435,7 +435,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                 className="ml-1.5 flex items-center gap-1.5 rounded-md bg-[#c4314b] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#a72940]"
               >
                 <PhoneOff className="size-4" aria-hidden="true" />
-                Leave
+                {tx('Leave')}
               </button>
             </div>
           </div>
@@ -451,11 +451,11 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               {isVideoOn ? (
                 <video ref={attachVideo} autoPlay playsInline muted className="size-full scale-x-[-1] object-cover" />
               ) : (
-                <div className="flex size-9 items-center justify-center rounded-full bg-[#5b5fc7] text-sm font-semibold sm:size-20 sm:text-2xl">You</div>
+                <div className="flex size-9 items-center justify-center rounded-full bg-[#5b5fc7] text-sm font-semibold sm:size-20 sm:text-2xl">{tx('You')}</div>
               )}
               <span className="absolute bottom-1.5 left-2 flex items-center gap-1 text-xs font-medium">
                 {isMuted && <MicOff className="size-3 text-red-300" aria-hidden="true" />}
-                You {isHandRaised && '✋'}
+                {tx('You')}{' '}{isHandRaised && '✋'}
               </span>
             </div>
             {CALL_PARTICIPANTS.map((participant, index) => {
@@ -478,7 +478,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                   </div>
                   <span className="absolute bottom-1.5 left-2 flex items-center gap-1 text-xs font-medium">
                     {!isSpeaking && <MicOff className="size-3 text-neutral-400" aria-hidden="true" />}
-                    {participant.name}
+                    {tx(participant.name)}
                   </span>
                 </div>
               )
@@ -501,7 +501,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               ) : (
                 <div className="flex size-10 items-center justify-center rounded-full bg-[#1a73e8] text-lg font-medium text-white sm:size-20 sm:text-3xl">Y</div>
               )}
-              <span className="absolute bottom-1.5 left-2.5 text-xs font-medium sm:text-sm">You {isHandRaised && '✋'}</span>
+              <span className="absolute bottom-1.5 left-2.5 text-xs font-medium sm:text-sm">{tx('You')}{' '}{isHandRaised && '✋'}</span>
               {isMuted && (
                 <span className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-black/40">
                   <MicOff className="size-3.5" aria-hidden="true" />
@@ -521,7 +521,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                   <div className={cn('flex size-10 items-center justify-center rounded-full text-lg font-medium text-white sm:size-20 sm:text-3xl', participant.color)}>
                     {participant.name[0]}
                   </div>
-                  <span className="absolute bottom-1.5 left-2.5 text-xs font-medium sm:text-sm">{participant.name}</span>
+                  <span className="absolute bottom-1.5 left-2.5 text-xs font-medium sm:text-sm">{tx(participant.name)}</span>
                   <span className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-black/40">
                     {isSpeaking ? <AudioLines className="size-3.5 text-[#8ab4f8]" aria-hidden="true" /> : <MicOff className="size-3.5" aria-hidden="true" />}
                   </span>
@@ -540,7 +540,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               <button
                 type="button"
                 onClick={() => setIsMuted((value) => !value)}
-                aria-label={isMuted ? 'Turn on microphone' : 'Turn off microphone'}
+                aria-label={isMuted ? tx('Turn on microphone') : tx('Turn off microphone')}
                 aria-pressed={isMuted}
                 className={cn('flex size-10 items-center justify-center rounded-full', isMuted ? 'bg-[#ea4335] text-white' : 'bg-[#3c4043] hover:bg-[#4a4e51]')}
               >
@@ -549,48 +549,48 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               <button
                 type="button"
                 onClick={() => setIsVideoOn((value) => !value)}
-                aria-label={isVideoOn ? 'Turn off camera' : 'Turn on camera'}
+                aria-label={isVideoOn ? tx('Turn off camera') : tx('Turn on camera')}
                 aria-pressed={isVideoOn}
                 className={cn('flex size-10 items-center justify-center rounded-full', !isVideoOn ? 'bg-[#ea4335] text-white' : 'bg-[#3c4043] hover:bg-[#4a4e51]')}
               >
                 {isVideoOn ? <VideoIcon className="size-5" aria-hidden="true" /> : <VideoOff className="size-5" aria-hidden="true" />}
               </button>
-              <button type="button" aria-label="Captions" className="hidden size-10 items-center justify-center rounded-full bg-[#3c4043] hover:bg-[#4a4e51] sm:flex">
+              <button type="button" aria-label={tx('Captions')} className="hidden size-10 items-center justify-center rounded-full bg-[#3c4043] hover:bg-[#4a4e51] sm:flex">
                 <Captions className="size-5" aria-hidden="true" />
               </button>
               <button
                 type="button"
                 onClick={() => setIsHandRaised((value) => !value)}
-                aria-label="Raise hand"
+                aria-label={tx('Raise hand')}
                 aria-pressed={isHandRaised}
                 className={cn('hidden size-10 items-center justify-center rounded-full sm:flex', isHandRaised ? 'bg-[#8ab4f8] text-[#202124]' : 'bg-[#3c4043] hover:bg-[#4a4e51]')}
               >
                 <Hand className="size-5" aria-hidden="true" />
               </button>
-              <button type="button" aria-label="Present now" className="hidden size-10 items-center justify-center rounded-full bg-[#3c4043] hover:bg-[#4a4e51] sm:flex">
+              <button type="button" aria-label={tx('Present now')} className="hidden size-10 items-center justify-center rounded-full bg-[#3c4043] hover:bg-[#4a4e51] sm:flex">
                 <MonitorUp className="size-5" aria-hidden="true" />
               </button>
-              <button type="button" aria-label="More options" className="flex size-10 items-center justify-center rounded-full bg-[#3c4043] hover:bg-[#4a4e51]">
+              <button type="button" aria-label={tx('More options')} className="flex size-10 items-center justify-center rounded-full bg-[#3c4043] hover:bg-[#4a4e51]">
                 <MoreVertical className="size-5" aria-hidden="true" />
               </button>
               <button
                 type="button"
                 onClick={() => alert('Prank meeting simulation ended.')}
-                aria-label="Leave call"
+                aria-label={tx('Leave call')}
                 className="flex h-10 w-14 items-center justify-center rounded-full bg-[#ea4335] text-white hover:bg-[#d93025]"
               >
                 <PhoneOff className="size-5" aria-hidden="true" />
               </button>
             </div>
             <div className="hidden items-center gap-1 lg:flex">
-              <button type="button" aria-label="Meeting details" className="flex size-10 items-center justify-center rounded-full hover:bg-[#3c4043]">
+              <button type="button" aria-label={tx('Meeting details')} className="flex size-10 items-center justify-center rounded-full hover:bg-[#3c4043]">
                 <Info className="size-5" aria-hidden="true" />
               </button>
-              <button type="button" aria-label="Show everyone" className="relative flex size-10 items-center justify-center rounded-full hover:bg-[#3c4043]">
+              <button type="button" aria-label={tx('Show everyone')} className="relative flex size-10 items-center justify-center rounded-full hover:bg-[#3c4043]">
                 <Users className="size-5" aria-hidden="true" />
                 <span className="absolute right-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-[#5f6368] text-[10px]">{CALL_PARTICIPANTS.length + 1}</span>
               </button>
-              <button type="button" aria-label="Chat with everyone" className="flex size-10 items-center justify-center rounded-full hover:bg-[#3c4043]">
+              <button type="button" aria-label={tx('Chat with everyone')} className="flex size-10 items-center justify-center rounded-full hover:bg-[#3c4043]">
                 <MessageSquare className="size-5" aria-hidden="true" />
               </button>
             </div>
@@ -605,13 +605,13 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               <ShieldCheck className="size-4 shrink-0 text-[#23d160]" aria-hidden="true" />
               <span className="flex items-center gap-1.5 rounded bg-white/10 px-1.5 py-0.5 text-[11px] text-white">
                 <span className="size-2 rounded-full bg-[#e02828]" />
-                Recording…
+                {tx('Recording…')}
               </span>
             </div>
             <span className="hidden min-w-0 truncate text-[12px] font-medium text-neutral-200 sm:block">{meetingTitle}</span>
             <span className="flex shrink-0 items-center gap-1.5 rounded px-2 py-0.5 text-[12px] text-neutral-200">
               <LayoutGrid className="size-3.5" aria-hidden="true" />
-              View
+              {tx('View')}
             </span>
           </div>
 
@@ -625,11 +625,11 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               {isVideoOn ? (
                 <video ref={attachVideo} autoPlay playsInline muted className="size-full scale-x-[-1] object-cover" />
               ) : (
-                <span className="px-2 text-center text-sm font-medium sm:text-2xl">You</span>
+                <span className="px-2 text-center text-sm font-medium sm:text-2xl">{tx('You')}</span>
               )}
               <span className="absolute bottom-1 left-1 flex items-center gap-1 rounded-sm bg-black/55 px-1.5 py-0.5 text-[11px]">
                 {isMuted && <MicOff className="size-3 text-[#e02828]" aria-hidden="true" />}
-                You {isHandRaised && '✋'}
+                {tx('You')}{' '}{isHandRaised && '✋'}
               </span>
             </div>
             {CALL_PARTICIPANTS.map((participant, index) => {
@@ -642,10 +642,10 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                     isSpeaking && 'outline outline-2 -outline-offset-2 outline-[#23d160]',
                   )}
                 >
-                  <span className="px-2 text-center text-sm font-medium sm:text-2xl">{participant.name}</span>
+                  <span className="px-2 text-center text-sm font-medium sm:text-2xl">{tx(participant.name)}</span>
                   <span className="absolute bottom-1 left-1 flex items-center gap-1 rounded-sm bg-black/55 px-1.5 py-0.5 text-[11px]">
                     {!isSpeaking && <MicOff className="size-3 text-[#e02828]" aria-hidden="true" />}
-                    {participant.name}
+                    {tx(participant.name)}
                   </span>
                 </div>
               )
@@ -664,7 +664,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                   {isMuted ? <MicOff className="size-5 text-[#e02828]" aria-hidden="true" /> : <Mic className="size-5" aria-hidden="true" />}
                   <ChevronUp className="ml-0.5 size-3 text-neutral-400" aria-hidden="true" />
                 </span>
-                <span className="max-sm:sr-only">{isMuted ? 'Unmute' : 'Mute'}</span>
+                <span className="max-sm:sr-only">{isMuted ? tx('Unmute') : tx('Mute')}</span>
               </button>
               <button
                 type="button"
@@ -676,7 +676,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                   {isVideoOn ? <VideoIcon className="size-5" aria-hidden="true" /> : <VideoOff className="size-5 text-[#e02828]" aria-hidden="true" />}
                   <ChevronUp className="ml-0.5 size-3 text-neutral-400" aria-hidden="true" />
                 </span>
-                <span className="max-sm:sr-only">{isVideoOn ? 'Stop Video' : 'Start Video'}</span>
+                <span className="max-sm:sr-only">{isVideoOn ? tx('Stop Video') : tx('Start Video')}</span>
               </button>
             </div>
 
@@ -686,21 +686,21 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                   <Users className="size-5" aria-hidden="true" />
                   <span className="absolute -right-2.5 -top-1 text-[10px] font-semibold">{CALL_PARTICIPANTS.length + 1}</span>
                 </span>
-                <span className="max-sm:sr-only">Participants</span>
+                <span className="max-sm:sr-only">{tx('Participants')}</span>
               </button>
               <button type="button" className="hidden flex-col items-center gap-0.5 rounded px-2 py-1 hover:bg-white/10 sm:flex sm:px-3">
                 <MessageSquare className="size-5" aria-hidden="true" />
-                Chat
+                {tx('Chat')}
               </button>
               <button type="button" className="flex flex-col items-center gap-0.5 rounded px-2 py-1 hover:bg-white/10 sm:px-3">
                 <span className="flex size-5 items-center justify-center rounded-[5px] bg-[#23d160]">
                   <ArrowUp className="size-3.5 text-black" strokeWidth={3} aria-hidden="true" />
                 </span>
-                <span className="max-sm:sr-only">Share Screen</span>
+                <span className="max-sm:sr-only">{tx('Share Screen')}</span>
               </button>
               <button type="button" className="hidden flex-col items-center gap-0.5 rounded px-2 py-1 hover:bg-white/10 md:flex md:px-3">
                 <Circle className="size-5" aria-hidden="true" />
-                Record
+                {tx('Record')}
               </button>
               <button
                 type="button"
@@ -709,20 +709,20 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                 className="hidden flex-col items-center gap-0.5 rounded px-2 py-1 hover:bg-white/10 sm:flex sm:px-3"
               >
                 <Smile className={cn('size-5', isHandRaised && 'text-yellow-300')} aria-hidden="true" />
-                Reactions
+                {tx('Reactions')}
               </button>
               <button type="button" className="hidden flex-col items-center gap-0.5 rounded px-2 py-1 hover:bg-white/10 md:flex md:px-3">
                 <MoreHorizontal className="size-5" aria-hidden="true" />
-                More
+                {tx('More')}
               </button>
             </div>
 
             <button
               type="button"
-              onClick={() => alert('Prank meeting simulation ended.')}
+              onClick={() => alert(tx('Prank meeting simulation ended.'))}
               className="rounded-md bg-[#e02828] px-4 py-1.5 text-[13px] font-semibold text-white hover:bg-[#c81f1f]"
             >
-              End
+              {tx('End call')}
             </button>
           </div>
         </div>
@@ -735,7 +735,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               <span className="truncate max-w-[200px] sm:max-w-md">{meetingTitle}</span>
             </div>
             <div className="flex items-center gap-3">
-              <span className="rounded bg-white/10 px-2 py-0.5 font-mono text-[11px]">REC</span>
+              <span className="rounded bg-white/10 px-2 py-0.5 font-mono text-[11px]">{tx('REC')}</span>
               <span className="hidden sm:inline">{CALL_PARTICIPANTS.length + 1} participants</span>
             </div>
           </div>
@@ -759,12 +759,12 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                 />
               ) : (
                 <div className="max-sm:hidden size-9 sm:size-20 rounded-full bg-primary flex items-center justify-center text-sm sm:text-2xl font-bold text-white shadow-lg">
-                  YOU
+                  {tx('YOU')}
                 </div>
               )}
               <div className="absolute bottom-2 left-2 flex items-center gap-1.5 rounded bg-black/60 px-2 py-1 text-xs backdrop-blur">
                 {isMuted ? <MicOff className="size-3 text-red-400" /> : <Mic className="size-3 text-emerald-400" />}
-                <span>You {isHandRaised && '✋'}</span>
+                <span>{tx('You')}{' '}{isHandRaised && '✋'}</span>
               </div>
             </div>
   
@@ -799,7 +799,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                     ) : (
                       <MicOff className="size-3 text-neutral-400" />
                     )}
-                    <span>{participant.name}</span>
+                    <span>{tx(participant.name)}</span>
                   </div>
                 </div>
               )
@@ -817,7 +817,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               )}
             >
               {isMuted ? <MicOff className="size-5" /> : <Mic className="size-5" />}
-              <span className="max-sm:sr-only">{isMuted ? 'Unmute' : 'Mute'}</span>
+              <span className="max-sm:sr-only">{isMuted ? tx('Unmute') : tx('Mute')}</span>
             </button>
   
             <button
@@ -829,7 +829,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               )}
             >
               {isVideoOn ? <VideoIcon className="size-5" /> : <VideoOff className="size-5" />}
-              <span className="max-sm:sr-only">{isVideoOn ? 'Stop Video' : 'Start Video'}</span>
+              <span className="max-sm:sr-only">{isVideoOn ? tx('Stop Video') : tx('Start Video')}</span>
             </button>
   
             <button
@@ -841,7 +841,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               )}
             >
               <Hand className="size-5" />
-              <span className="max-sm:sr-only">Raise Hand</span>
+              <span className="max-sm:sr-only">{tx('Raise Hand')}</span>
             </button>
   
             <button
@@ -849,7 +849,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               className="flex flex-col items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium text-neutral-200 hover:bg-white/10 transition-colors"
             >
               <Share2 className="size-5" />
-              <span className="max-sm:sr-only">Share</span>
+              <span className="max-sm:sr-only">{tx('Share')}</span>
             </button>
   
             <button
@@ -857,7 +857,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               className="flex flex-col items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium text-neutral-200 hover:bg-white/10 transition-colors"
             >
               <MessageSquare className="size-5" />
-              <span className="max-sm:sr-only">Chat</span>
+              <span className="max-sm:sr-only">{tx('Chat')}</span>
             </button>
   
             <div className="h-6 w-px bg-white/20 mx-1" />
@@ -868,7 +868,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               className="flex items-center gap-1.5 rounded-lg bg-red-600 hover:bg-red-700 px-4 py-2 text-xs font-semibold text-white shadow transition-colors"
             >
               <PhoneOff className="size-4" />
-              <span>Leave</span>
+              <span>{tx('Leave')}</span>
             </button>
           </div>
         </div>
@@ -1147,7 +1147,7 @@ export function FakeBlueScreen() {
             options={(Object.keys(BSOD_STYLES) as (keyof typeof BSOD_STYLES)[]).map((key) => ({ value: key, label: BSOD_STYLES[key].label }))}
           />
           <label className="flex flex-col gap-1.5 text-sm font-medium">
-            Stop code
+            {tx('Stop code')}
             <select value={stopCode} onChange={(e) => setStopCode(e.target.value)} className="h-10 rounded-xl border bg-background px-2.5 text-sm">
               {STOP_CODES.map((code) => (
                 <option key={code} value={code}>
@@ -1171,25 +1171,26 @@ export function FakeBlueScreen() {
       <div className="size-full select-none text-white" style={{ containerType: 'size' }}>
         {classic ? (
           <div className="flex size-full flex-col justify-center gap-[2.4cqmin] px-[6cqw] font-mono leading-snug" style={{ fontSize: 'clamp(9px, 2.6cqmin, 22px)' }}>
-            <p>A problem has been detected and Windows has been shut down to prevent damage to your computer.</p>
+            <p>{tx('A problem has been detected and Windows has been shut down to prevent damage to your computer.')}</p>
             <p>{stopCode}</p>
             <p>
               If this is the first time you&apos;ve seen this stop error screen, restart your computer. If this screen appears again, follow these steps:
             </p>
-            <p>Check to make sure any new hardware or software is properly installed. If this is a new installation, ask your hardware or software manufacturer for any updates you might need.</p>
-            <p>Technical information:</p>
+            <p>{tx('Check to make sure any new hardware or software is properly installed. If this is a new installation, ask your hardware or software manufacturer for any updates you might need.')}</p>
+            <p>{tx('Technical information:')}</p>
             <p>*** STOP: 0x000000EF (0x8A2C1B20, 0x00000000, 0x00000000, 0x00000000)</p>
-            <p>Collecting data for crash dump ... Dumping physical memory to disk: {progress}</p>
+            <p>{tx('Collecting data for crash dump ... Dumping physical memory to disk:')}{' '}{progress}</p>
           </div>
         ) : (
           <div className="flex size-full flex-col justify-center gap-[3cqmin] px-[9cqw]" style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, sans-serif' }}>
             {style !== 'black' && <p className="font-light leading-none" style={{ fontSize: '16cqmin' }}>:(</p>}
             <p className="max-w-[38ch] font-light leading-snug" style={{ fontSize: 'clamp(13px, 4.2cqmin, 40px)' }}>
-              Your {style === 'black' ? 'device' : 'PC'} ran into a problem and needs to restart. We&apos;re just collecting some error info, and then
-              we&apos;ll restart for you.
+              {style === 'black'
+                ? tx("Your device ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.")
+                : tx("Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.")}
             </p>
             <p className="font-light" style={{ fontSize: 'clamp(13px, 4.2cqmin, 40px)' }}>
-              {progress}% complete
+              {tx('{n}% complete').replace('{n}', String(progress))}
             </p>
             {style !== 'black' && (
               <div className="flex items-start gap-[2.5cqmin]" style={{ fontSize: 'clamp(8px, 1.9cqmin, 18px)' }}>
@@ -1197,13 +1198,13 @@ export function FakeBlueScreen() {
                   <FakeQr />
                 </span>
                 <div className="flex flex-col gap-[1cqmin] leading-snug">
-                  <p>For more information about this issue and possible fixes, search online for the stop code below.</p>
-                  <p>If you call a support person, give them this info:</p>
-                  <p>Stop code: {stopCode}</p>
+                  <p>{tx('For more information about this issue and possible fixes, search online for the stop code below.')}</p>
+                  <p>{tx('If you call a support person, give them this info:')}</p>
+                  <p>{tx('Stop code:')}{' '}{stopCode}</p>
                 </div>
               </div>
             )}
-            {style === 'black' && <p style={{ fontSize: 'clamp(8px, 1.9cqmin, 18px)' }}>Stop code: {stopCode}</p>}
+            {style === 'black' && <p style={{ fontSize: 'clamp(8px, 1.9cqmin, 18px)' }}>{tx('Stop code:')}{' '}{stopCode}</p>}
           </div>
         )}
       </div>
