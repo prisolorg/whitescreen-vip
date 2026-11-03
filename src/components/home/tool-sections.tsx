@@ -11,6 +11,11 @@ const SCREEN_TEST_SLUGS = [
   'oled-burn-in-test',
   'screen-color-test',
   'screen-resolution-test',
+  'touch-screen-test',
+  'screen-refresh-rate-test',
+  'monitor-ghosting-test',
+  'frame-rate-test',
+  'screen-burn-in-test',
 ]
 
 const EFFECT_SLUGS = [

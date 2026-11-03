@@ -1,3 +1,5 @@
+import { englishSlug, localizeSlug } from './localized-slugs'
+
 export type LanguageCode =
   | 'en'
   | 'es'
@@ -38,7 +40,8 @@ export function extractLocaleAndPath(pathname: string): { lang: LanguageCode; cl
     const rest = match[2] ? `/${match[2]}`.replace(/\/+$/, '') : '/'
     return {
       lang,
-      cleanPath: rest === '' ? '/' : rest,
+      // cleanPath is always the English path, whatever language the URL's slug is in.
+      cleanPath: rest === '' ? '/' : translateFirstSegment(rest, (slug) => englishSlug(slug, lang)),
     }
   }
   const clean = rawPath.replace(/\/+$/, '') || '/'
@@ -46,6 +49,12 @@ export function extractLocaleAndPath(pathname: string): { lang: LanguageCode; cl
     lang: 'en',
     cleanPath: clean,
   }
+}
+
+/** Applies `map` to the first path segment, e.g. "/white-noise-generator" or "/tools". */
+function translateFirstSegment(path: string, map: (slug: string) => string) {
+  const [, first, ...rest] = path.split('/')
+  return ['', map(first), ...rest].join('/')
 }
 
 /**
@@ -71,7 +80,8 @@ export function getLocalizedPath(path: string, targetLang: LanguageCode): string
   const { cleanPath } = extractLocaleAndPath(rawPathname)
 
   // Every page URL ends with a slash, matching the URLs already indexed for whitescreen.vip.
-  const withSlash = cleanPath === '/' ? '/' : `${cleanPath}/`
+  const localPath = cleanPath === '/' ? '/' : translateFirstSegment(cleanPath, (slug) => localizeSlug(slug, targetLang))
+  const withSlash = localPath === '/' ? '/' : `${localPath}/`
   const localizedBase = targetLang === 'en' ? withSlash : `/${targetLang}${withSlash}`
 
   const queryPart = query ? `?${query}` : ''

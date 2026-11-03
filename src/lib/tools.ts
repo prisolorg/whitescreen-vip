@@ -30,6 +30,10 @@ import {
   Terminal,
   Timer,
   ShieldAlert,
+  Hand,
+  Gauge,
+  Ghost,
+  Film,
   CircleDot,
   Radar,
   Users,
@@ -243,7 +247,57 @@ export const TOOLS: readonly Tool[] = [
     icon: Flame,
     keywords: ['burn in', 'image retention', 'oled', 'ghosting', 'screen burn'],
     related: ['oled-gray-test', 'dead-pixel-test', 'color-cycle', 'gray-screen'],
+  },  {
+    slug: 'screen-burn-in-test',
+    name: 'Screen Burn-In Test',
+    category: 'screen-tests',
+    description:
+      'Check any LCD, OLED or plasma screen for burn-in and image retention, then run a white-sweep or color fixer to clear it.',
+    icon: Flame,
+    keywords: ['screen burn test', 'burn in test', 'image retention', 'burn in fixer', 'ghost image'],
+    related: ['oled-burn-in-test', 'oled-gray-test', 'dead-pixel-test', 'screen-uniformity-test'],
   },
+  {
+    slug: 'touch-screen-test',
+    name: 'Touch Screen Test',
+    category: 'screen-tests',
+    description:
+      'Find dead zones and test multi-touch: fill a grid with your finger, draw freely, or see every touch point live.',
+    icon: Hand,
+    keywords: ['touch screen test', 'touchscreen test', 'dead zone', 'multi touch test', 'digitizer test'],
+    related: ['dead-pixel-test', 'screen-refresh-rate-test', 'screen-resolution-test', 'screen-color-test'],
+  },
+  {
+    slug: 'screen-refresh-rate-test',
+    name: 'Screen Refresh Rate Test',
+    category: 'screen-tests',
+    description:
+      'Measure your display\'s refresh rate in Hz live in the browser, with frame times, late frames and a motion check.',
+    icon: Gauge,
+    keywords: ['refresh rate test', 'hz test', 'monitor hz', '144hz test', 'screen refresh rate'],
+    related: ['frame-rate-test', 'monitor-ghosting-test', 'monitor-test', 'dead-pixel-test'],
+  },
+  {
+    slug: 'monitor-ghosting-test',
+    name: 'Monitor Ghosting Test',
+    category: 'screen-tests',
+    description:
+      'Moving targets on dark, mid-gray and light backgrounds reveal ghosting, smearing and overshoot on your monitor.',
+    icon: Ghost,
+    keywords: ['ghosting test', 'monitor ghosting', 'response time test', 'motion blur test', 'overdrive test'],
+    related: ['screen-refresh-rate-test', 'frame-rate-test', 'monitor-test', 'oled-burn-in-test'],
+  },
+  {
+    slug: 'frame-rate-test',
+    name: 'Frame Rate Test',
+    category: 'screen-tests',
+    description:
+      'Compare 15, 24, 30, 60 FPS and your display\'s maximum side by side to see how frame rate changes motion.',
+    icon: Film,
+    keywords: ['frame rate test', 'fps test', '30 vs 60 fps', 'fps comparison', 'framerate'],
+    related: ['screen-refresh-rate-test', 'monitor-ghosting-test', 'monitor-test', 'stopwatch'],
+  },
+
   {
     slug: 'screen-color-test',
     name: 'Screen Color Test',

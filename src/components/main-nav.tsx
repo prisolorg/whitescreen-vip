@@ -32,7 +32,7 @@ const TOOL_COLUMNS: ToolColumn[] = [
     titleKey: 'screenTests',
     defaultTitle: 'Screen tests',
     href: '/tools#screen-tests',
-    slugs: ['dead-pixel-test', 'screen-uniformity-test', 'screen-color-test', 'monitor-test', 'oled-burn-in-test'],
+    slugs: ['dead-pixel-test', 'screen-refresh-rate-test', 'touch-screen-test', 'monitor-ghosting-test', 'screen-burn-in-test', 'monitor-test'],
   },
   {
     titleKey: 'navEffectsSavers',

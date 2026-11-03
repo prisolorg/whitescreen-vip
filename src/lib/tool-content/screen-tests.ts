@@ -354,4 +354,162 @@ export const screenTestContent: Record<string, ToolContent> = {
       },
     ],
   },
+  'screen-burn-in-test': {
+    title: 'Screen Burn-In Test – Check & Fix Image Retention',
+    intro:
+      'Check any screen (OLED, LCD or plasma) for burn-in and image retention, then try to clear it. In Check mode, step through 50% gray, dark gray, white, black and pure red, green and blue fields; faint taskbars, logos, keyboards or game HUDs that stay visible are burn-in or retention. In Fixer mode, run a white bar sweep, a color cycle or color noise for a set time, which often clears temporary retention on LCDs and OLEDs. For OLED-specific checks, see the [OLED Burn-In Test](/oled-burn-in-test/) and the [OLED Gray Test](/oled-gray-test/).',
+    steps: [
+      'Turn the brightness up and go fullscreen in a dim room.',
+      'In Check mode, use the arrows or field buttons to step through each color. 50% gray shows burn-in best.',
+      'If you see shapes, switch to Fixer, choose White sweep (or a flashing pattern if flashing does not bother you) and run it for 10–30 minutes.',
+      'Check again afterwards. Shapes that remain after several runs are usually permanent burn-in.',
+    ],
+    useCases: [
+      { title: 'Buying a used screen', description: 'Spot burned-in logos or taskbars before you pay.' },
+      { title: 'After long static use', description: 'Check monitors that showed dashboards, tickers or games for hours.' },
+      { title: 'Clearing image retention', description: 'Run the fixer when a ghost image lingers after a static screen.' },
+      { title: 'Warranty claims', description: 'Photograph burn-in on a gray field to show support.' },
+    ],
+    faqs: [
+      {
+        question: 'What is the difference between image retention and burn-in?',
+        answer:
+          'Image retention is temporary and fades after minutes or hours of varied content. Burn-in is permanent wear of the pixels and does not go away.',
+      },
+      {
+        question: 'Can this fixer repair burn-in?',
+        answer:
+          'It can help clear temporary image retention. Permanent burn-in on OLED is uneven pixel wear, which no pattern can undo; your TV or monitor\'s own pixel refresher is the best option.',
+      },
+      {
+        question: 'Which color shows burn-in best?',
+        answer: 'A mid or dark gray usually shows it most clearly, followed by solid red, green and blue.',
+      },
+    ],
+  },
+  'touch-screen-test': {
+    title: 'Touch Screen Test – Find Dead Zones & Test Multi-Touch',
+    intro:
+      'Test your phone, tablet or touchscreen laptop for dead zones and multi-touch problems. Dead zone grid mode fills each square you touch, so any square that will not light up is a spot your digitizer misses. Draw mode shows whether lines stay smooth and unbroken, and Multi-touch mode shows every finger with its coordinates and counts how many touches your screen tracks at once. Check the display itself with the [Dead Pixel Test](/dead-pixel-test/).',
+    steps: [
+      'Choose Dead zone grid and slowly swipe your finger across every square until the coverage reaches 100%.',
+      'Squares that will not fill, even with several tries, point to a dead zone.',
+      'Switch to Draw and drag slow lines across the screen; breaks or jumps mean missed touches.',
+      'Use Multi-touch and put down several fingers to see how many are tracked at once.',
+    ],
+    useCases: [
+      { title: 'Unresponsive spots', description: 'Find exactly where a phone or tablet ignores touches.' },
+      { title: 'After a screen repair', description: 'Check a replacement digitizer before you hand it back.' },
+      { title: 'Buying second-hand', description: 'Test the whole surface in a minute.' },
+      { title: 'Ghost touches', description: 'Watch for touch points that appear without a finger.' },
+    ],
+    faqs: [
+      {
+        question: 'How many touch points should my screen support?',
+        answer: 'Most phones and tablets track 5–10 fingers. The page shows the number your browser reports and the most it has seen at once.',
+      },
+      {
+        question: 'Does it work with a mouse or stylus?',
+        answer: 'Yes. Mouse and pen input are drawn too, so you can test a stylus the same way.',
+      },
+      {
+        question: 'What causes dead zones?',
+        answer: 'Cracked glass, a damaged digitizer cable, moisture, or a screen protector with an air gap. Remove the protector and test again first.',
+      },
+    ],
+  },
+  'screen-refresh-rate-test': {
+    title: 'Screen Refresh Rate Test – Check Your Monitor Hz',
+    intro:
+      'Find out how many times per second your screen refreshes. Browsers draw one frame per refresh, so timing those frames shows your real refresh rate in Hz: 60, 120, 144, 165, 240 or more. You also see the time per frame, how many frames arrived late, and a moving block that looks smoother at higher rates. Compare frame rates side by side with the [Frame Rate Test](/frame-rate-test/), or check motion clarity with the [Monitor Ghosting Test](/monitor-ghosting-test/).',
+    steps: [
+      'Open the page and wait a second or two for the reading to settle.',
+      'Read the Hz value and the nearest standard rate.',
+      'If it shows 60 Hz on a high-refresh monitor, check your display settings and cable, then test again.',
+      'Press F or double-tap the screen to go fullscreen, and Esc to exit.',
+    ],
+    useCases: [
+      { title: 'New monitor check', description: 'Confirm a 144 Hz or 240 Hz monitor is really running at that rate.' },
+      { title: 'Cable and port issues', description: 'Older HDMI cables or ports can cap you at 60 Hz.' },
+      { title: 'Laptop power settings', description: 'Many laptops drop to 60 Hz on battery.' },
+      { title: 'Phones and tablets', description: 'See whether adaptive 90/120 Hz modes are active.' },
+    ],
+    faqs: [
+      {
+        question: 'Why does it show 60 Hz on my 144 Hz monitor?',
+        answer:
+          'The refresh rate is set in your operating system\'s display settings, and the cable must support it (DisplayPort or HDMI 2.0+ for high rates). Also check that the browser window is on the right monitor.',
+      },
+      {
+        question: 'Why does the number jump around?',
+        answer: 'Busy tabs, power saving and variable refresh (FreeSync, G-Sync, ProMotion) can change frame timing. The reading uses the median of recent frames to smooth this out.',
+      },
+      {
+        question: 'Is refresh rate the same as FPS?',
+        answer: 'No. Refresh rate is how often the screen updates; FPS is how many new frames a game or video provides. You only see as many frames as your refresh rate allows.',
+      },
+    ],
+  },
+  'monitor-ghosting-test': {
+    title: 'Monitor Ghosting Test – Check Response Time & Smearing',
+    intro:
+      'See how cleanly your monitor shows motion. A sharp target moves across dark, mid-gray and light lanes at the speed you choose. Trails behind it are ghosting or smearing (slow pixel response), and bright or dark halos are overshoot from overdrive set too high. Use it to pick the best overdrive setting, compare monitors, or check for black smearing on VA panels. Check the refresh rate first with the [Refresh Rate Test](/screen-refresh-rate-test/).',
+    steps: [
+      'Set your monitor to its highest refresh rate and go fullscreen.',
+      'Watch the target with your eyes following it. Look for trails behind it and halos around the edges.',
+      'Change the speed, then try each overdrive or response-time setting in your monitor menu and compare.',
+      'Pause to look at a still frame; the target itself should be crisp.',
+    ],
+    useCases: [
+      { title: 'Tuning overdrive', description: 'Pick the setting with the shortest trail and no inverse ghosting.' },
+      { title: 'VA black smearing', description: 'The dark lane shows the purple-black smear common on VA panels.' },
+      { title: 'Comparing monitors', description: 'Run the same speed on two screens side by side.' },
+      { title: 'Checking a new purchase', description: 'Make sure motion looks as advertised.' },
+    ],
+    faqs: [
+      {
+        question: 'What is monitor ghosting?',
+        answer: 'A faint trail behind moving objects, caused by pixels not changing color fast enough before the next frame.',
+      },
+      {
+        question: 'What is inverse ghosting?',
+        answer: 'A bright or colored halo around moving objects, caused by overdrive pushing pixels past their target. Lower the overdrive setting to fix it.',
+      },
+      {
+        question: 'Why does the target look blurry even without ghosting?',
+        answer: 'Sample-and-hold blur: your eyes track the object while each frame stays still. Higher refresh rates or a backlight-strobing mode reduce it.',
+      },
+    ],
+  },
+  'frame-rate-test': {
+    title: 'Frame Rate Test – Compare 15, 24, 30 & 60 FPS',
+    intro:
+      'See the difference frame rate makes. Five lanes move the same object at the same speed, but update it at 15, 24, 30 and 60 frames per second, and at your display\'s full rate. Lower frame rates look steppier, and the top lane shows the smoothest motion your screen can show. Raise the speed to make the difference obvious. Measure your screen\'s rate with the [Refresh Rate Test](/screen-refresh-rate-test/).',
+    steps: [
+      'Watch each lane; they all move at the same speed.',
+      'Raise the speed to make stuttering easier to see.',
+      'Compare the 60 FPS lane with the max lane on a high-refresh display.',
+      'Press F or double-tap the screen to go fullscreen, and Esc to exit.',
+    ],
+    useCases: [
+      { title: 'Gaming settings', description: 'Decide whether higher frame rates are worth lower graphics settings.' },
+      { title: 'Video production', description: 'See why films use 24 FPS and sports use 50 or 60.' },
+      { title: 'Showing friends', description: 'Settle the “can you see more than 30 FPS” debate.' },
+      { title: 'Display shopping', description: 'See what a 120 Hz or 144 Hz screen adds.' },
+    ],
+    faqs: [
+      {
+        question: 'Why does the max lane look like 60 FPS?',
+        answer: 'Your display shows at most one frame per refresh. On a 60 Hz screen the 60 FPS and max lanes look the same.',
+      },
+      {
+        question: 'Why does 24 FPS look jerky here but fine in films?',
+        answer: 'Film cameras record motion blur within each frame, which smooths movement. This test uses sharp frames, so every step is visible.',
+      },
+      {
+        question: 'What frame rate do I need for gaming?',
+        answer: 'At least 60 FPS feels smooth for most games; competitive players aim to match a 144 Hz or higher monitor.',
+      },
+    ],
+  },
 }

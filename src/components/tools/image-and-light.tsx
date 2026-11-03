@@ -213,32 +213,47 @@ export function ResolutionTest() {
   useEffect(() => setInfo(raw ? JSON.parse(raw) : null), [raw])
 
   const rows: [string, string][] = [
-    ['Screen resolution (CSS px)', 'screen'],
-    ['Estimated physical pixels', 'physical'],
+    ['Physical pixels', 'physical'],
     ['Browser viewport', 'viewport'],
-    ['Available screen area', 'available'],
-    ['Device pixel ratio', 'dpr'],
+    ['Available area', 'available'],
+    ['Pixel ratio', 'dpr'],
     ['Color depth', 'depth'],
     ['Orientation', 'orientation'],
   ]
 
+  // The headline resolution sits below the page title, with the other readings in a compact grid,
+  // so nothing overlaps at any stage size.
   return (
     <ToolStage
       label="Screen resolution test"
       tone="light"
-      style={{ background: 'repeating-conic-gradient(#000 0 25%, #fff 0 50%)', backgroundSize: '2px 2px' }}
+      reserveHeadingSpace
+      className="bg-neutral-100"
       controls={
         <p className="text-sm text-muted-foreground">
-          Values update live as you resize or rotate. The fine checkerboard should look like even gray at 100% zoom.
+          Values update live as you resize or rotate. The checkerboard square should look like even gray at 100% zoom; visible
+          stripes or moiré mean the image is being scaled.
         </p>
       }
     >
-      <div className="absolute inset-0 flex items-center justify-center p-4">
-        <dl className="w-full max-w-md overflow-hidden rounded-xl bg-background/95 text-sm shadow-xl ring-1 ring-black/10 backdrop-blur">
+      <div className="flex size-full flex-col items-center justify-center gap-3 px-3 pb-3 text-neutral-900 sm:gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
+          <span
+            aria-hidden="true"
+            title="1-pixel checkerboard"
+            className="size-10 shrink-0 rounded-md ring-1 ring-black/15 sm:size-14"
+            style={{ background: 'repeating-conic-gradient(#000 0 25%, #fff 0 50%) 0 0 / 2px 2px' }}
+          />
+          <div>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-neutral-500 sm:text-xs">Screen resolution</p>
+            <p className="font-mono text-3xl font-bold tabular-nums leading-tight sm:text-5xl">{info?.screen ?? '—'}</p>
+          </div>
+        </div>
+        <dl className="grid w-full max-w-2xl grid-cols-3 gap-1.5 sm:gap-2">
           {rows.map(([label, key]) => (
-            <div key={key} className="flex items-center justify-between gap-4 border-b px-4 py-2.5 last:border-0">
-              <dt className="text-muted-foreground">{label}</dt>
-              <dd className="font-mono font-medium tabular-nums">{info?.[key] ?? '—'}</dd>
+            <div key={key} className="min-w-0 rounded-lg bg-white px-2 py-1.5 shadow-sm ring-1 ring-black/5 sm:px-3 sm:py-2">
+              <dt className="truncate text-[10px] text-neutral-500 sm:text-xs">{label}</dt>
+              <dd className="truncate font-mono text-xs font-semibold tabular-nums sm:text-sm">{info?.[key] ?? '—'}</dd>
             </div>
           ))}
         </dl>

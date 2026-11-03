@@ -41,7 +41,7 @@ export const effectsContent: Record<string, ToolContent> = {
       'Press Start and this white noise generator plays a steady, full-spectrum hiss made live in your browser, with nothing to download or stream. Shape the sound with a low-pass or high-pass filter, set the volume in decibels, and add a sleep timer that fades out gently. Watch the live waveform, or switch the visual to classic TV static (this page replaces our old TV Static Screen). Want something softer? Try the [Pink Noise Generator](/pink-noise-generator/) or the deeper [Brown Noise Generator](/brown-noise-generator/), and pair any of them with the [Pomodoro Timer](/pomodoro-timer/) for focused work.',
     steps: [
       'Press Start. Sound never plays until you do, and it starts at a moderate volume.',
-      'Switch between white, pink and brown noise at any time without stopping.',
+      'Use the White, Pink and Brown buttons to open each noise generator; your volume, filter and visual settings come with you.',
       'Use a low-pass filter to soften the hiss, or a high-pass filter to remove rumble, and set the cutoff.',
       'Pick a visual (waveform, TV static or a dark screen) and an optional sleep timer.',
       FULLSCREEN_STEP,

@@ -8,9 +8,20 @@ import { useAnimationFrame, useCanvasSize, usePrefersReducedMotion } from '@/com
 import { isTypingTarget } from '@/components/tool-kit/use-fullscreen'
 import type { NoiseColor } from '@/components/tool-kit/audio'
 import { cn } from '@/lib/utils'
+import { getLocalizedPath } from '@/lib/locale-routing'
+import { useTranslation } from '@/lib/i18n'
 
 type FilterMode = 'none' | 'lowpass' | 'highpass'
 type Visual = 'wave' | 'static' | 'dark'
+
+const NOISE_PAGES: Record<NoiseColor, string> = {
+  white: '/white-noise-generator',
+  pink: '/pink-noise-generator',
+  brown: '/brown-noise-generator',
+}
+
+/** Settings carried from one noise page to the next in this tab. */
+const SETTINGS_KEY = 'whitescreen_noise_settings'
 
 const NOISE_LOOK: Record<NoiseColor, { label: string; stage: string; line: string; glow: string }> = {
   white: { label: 'White', stage: '#0f141b', line: '#e2e8f0', glow: 'rgba(226,232,240,0.18)' },
@@ -71,7 +82,8 @@ type Graph = {
 }
 
 export function NoiseGenerator({ initialColor }: { initialColor: NoiseColor }) {
-  const [color, setColor] = useState<NoiseColor>(initialColor)
+  const { language } = useTranslation()
+  const color = initialColor
   const [isPlaying, setIsPlaying] = useState(false)
   const [filterMode, setFilterMode] = useState<FilterMode>('none')
   const [cutoffPosition, setCutoffPosition] = useState(65)
@@ -164,11 +176,31 @@ export function NoiseGenerator({ initialColor }: { initialColor: NoiseColor }) {
     }, fadeSeconds * 5000)
   }, [])
 
-  // Switch color while playing, without stopping.
-  const chooseColor = (next: NoiseColor) => {
-    setColor(next)
-    if (isPlaying) playColor(next)
-  }
+  // Each noise color is its own page; the switch links there and the settings come along.
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(sessionStorage.getItem(SETTINGS_KEY) ?? 'null') as {
+        volumeDb?: number
+        filterMode?: FilterMode
+        cutoffPosition?: number
+        visual?: Visual
+      } | null
+      if (!saved) return
+      if (typeof saved.volumeDb === 'number') setVolumeDb(saved.volumeDb)
+      if (saved.filterMode) setFilterMode(saved.filterMode)
+      if (typeof saved.cutoffPosition === 'number') setCutoffPosition(saved.cutoffPosition)
+      if (saved.visual) setVisual(saved.visual)
+    } catch {
+      /* storage unavailable */
+    }
+  }, [])
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(SETTINGS_KEY, JSON.stringify({ volumeDb, filterMode, cutoffPosition, visual }))
+    } catch {
+      /* storage unavailable */
+    }
+  }, [volumeDb, filterMode, cutoffPosition, visual])
 
   // Volume, filter type and cutoff follow the controls live.
   useEffect(() => {
@@ -360,26 +392,22 @@ export function NoiseGenerator({ initialColor }: { initialColor: NoiseColor }) {
       <div className="relative size-full">
         <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 size-full" style={{ imageRendering: visual === 'static' ? 'pixelated' : undefined }} />
         <div className="relative flex size-full flex-col items-center justify-center gap-4 p-4 text-white">
-          <div role="radiogroup" aria-label="Noise type" className="flex gap-1 rounded-full bg-black/45 p-1 ring-1 ring-white/15 backdrop-blur">
+          <nav aria-label="Noise type" className="flex gap-1 rounded-full bg-black/45 p-1 ring-1 ring-white/15 backdrop-blur">
             {(Object.keys(NOISE_LOOK) as NoiseColor[]).map((key) => (
-              <button
+              <a
                 key={key}
-                type="button"
-                role="radio"
-                aria-checked={color === key}
-                onClick={(event) => {
-                  event.stopPropagation()
-                  chooseColor(key)
-                }}
+                href={getLocalizedPath(NOISE_PAGES[key], language)}
+                aria-current={color === key ? 'page' : undefined}
+                onClick={(event) => event.stopPropagation()}
                 className={cn(
-                  'h-9 rounded-full px-4 text-sm font-semibold transition-colors',
+                  'inline-flex h-9 items-center rounded-full px-4 text-sm font-semibold transition-colors',
                   color === key ? 'bg-white text-neutral-900' : 'text-white/80 hover:bg-white/10',
                 )}
               >
                 {NOISE_LOOK[key].label}
-              </button>
+              </a>
             ))}
-          </div>
+          </nav>
           <button
             type="button"
             onClick={(event) => {

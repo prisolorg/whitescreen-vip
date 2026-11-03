@@ -42,6 +42,17 @@ const NoiseGenerator = lazy(() => import('@/components/tools/noise-generator').t
   default: ({ slug }: { slug: string }) => <m.NoiseGenerator initialColor={slug === 'brown-noise-generator' ? 'brown' : slug === 'pink-noise-generator' ? 'pink' : 'white'} />
 })))
 
+const DisplayTests = lazy(() => import('@/components/tools/display-tests').then(m => ({
+  default: ({ slug }: { slug: string }) => {
+    if (slug === 'touch-screen-test') return <m.TouchScreenTest />
+    if (slug === 'screen-refresh-rate-test') return <m.RefreshRateTest />
+    if (slug === 'monitor-ghosting-test') return <m.MonitorGhostingTest />
+    if (slug === 'frame-rate-test') return <m.FrameRateTest />
+    if (slug === 'screen-burn-in-test') return <m.ScreenBurnInTest />
+    return null
+  }
+})))
+
 const Screensavers = lazy(() => import('@/components/tools/screensavers').then(m => ({
   default: ({ slug }: { slug: string }) => {
     if (slug === 'matrix-screensaver') return <m.MatrixScreensaver />
@@ -100,6 +111,14 @@ export function renderToolComponent(slug: string): React.ReactNode {
     return (
       <Suspense fallback={<ToolLoadingFallback />}>
         <ScreenTests slug={slug} />
+      </Suspense>
+    )
+  }
+
+  if (['touch-screen-test', 'screen-refresh-rate-test', 'monitor-ghosting-test', 'frame-rate-test', 'screen-burn-in-test'].includes(slug)) {
+    return (
+      <Suspense fallback={<ToolLoadingFallback />}>
+        <DisplayTests slug={slug} />
       </Suspense>
     )
   }
