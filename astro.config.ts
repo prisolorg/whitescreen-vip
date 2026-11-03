@@ -2,7 +2,7 @@ import { writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'astro/config'
-import react from '@astrojs/react'
+import preact from '@astrojs/preact'
 import tailwindcss from '@tailwindcss/vite'
 import { ENGLISH_ONLY_WILDCARDS, LEGACY_REDIRECTS } from './src/lib/legacy-redirects'
 import { loadEnv } from 'vite'
@@ -20,7 +20,8 @@ export default defineConfig({
   // Static redirect pages for hosts without redirect rules; the integration below adds real 301s.
   redirects: Object.fromEntries(redirects),
   integrations: [
-    react(),
+    // Preact with React compatibility: same components, a much smaller runtime than React.
+    preact({ compat: true }),
     {
       name: 'whitescreen-redirect-files',
       hooks: {
@@ -52,7 +53,16 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     resolve: {
+      // Bundle React-based packages into the server build too, so their `react` import resolves to preact/compat.
+      noExternal: ['lucide-react'],
       alias: {
+        // React APIs come from Preact (also inside node_modules such as lucide-react).
+        'react/jsx-runtime': 'preact/jsx-runtime',
+        'react/jsx-dev-runtime': 'preact/jsx-dev-runtime',
+        'react-dom/client': 'preact/compat/client',
+        'react-dom/server': 'preact/compat/server',
+        'react-dom': 'preact/compat',
+        react: 'preact/compat',
         '@': path.resolve(rootDir, 'src'),
         'next/link': path.resolve(rootDir, 'src/lib/next-shim.tsx'),
         'next/navigation': path.resolve(rootDir, 'src/lib/next-shim.tsx'),

@@ -196,6 +196,8 @@ function subscribeResize(callback: () => void) {
 }
 
 function readDisplayInfo() {
+  // Also called during server rendering under Preact, where there is no window.
+  if (typeof window === 'undefined') return ''
   return JSON.stringify({
     screen: `${window.screen.width} × ${window.screen.height}`,
     physical: `${Math.round(window.screen.width * window.devicePixelRatio)} × ${Math.round(window.screen.height * window.devicePixelRatio)}`,

@@ -11,7 +11,8 @@ function subscribeReducedMotion(callback: () => void) {
 export function usePrefersReducedMotion() {
   return useSyncExternalStore(
     subscribeReducedMotion,
-    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    // Preact's useSyncExternalStore also calls this during server rendering, where there is no window.
+    () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
     () => false,
   )
 }

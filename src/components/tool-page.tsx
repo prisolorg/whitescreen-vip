@@ -52,7 +52,7 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
   const category = getCategory(tool.category)
   const localizedCat = getLocalizedCategory(category, language)
   const hub = hubForTool(tool)
-  const hubName = hub?.group === 'colors' ? COLOR_HUB_NAMES[language][0] : localizedCat.name
+  const hubName = language === 'en' && hub ? hub.name : hub?.group === 'colors' ? COLOR_HUB_NAMES[language][0] : localizedCat.name
 
   return (
     <>
