@@ -11,7 +11,6 @@ const SCREEN_TEST_SLUGS = [
   'oled-burn-in-test',
   'screen-color-test',
   'screen-resolution-test',
-  'bright-white-screen',
 ]
 
 const EFFECT_SLUGS = [
@@ -35,6 +34,7 @@ const OTHER_TOOL_SLUGS = [
   'fake-mac-update',
   'fake-zoom-meeting',
   'fake-teams-meeting',
+  'fake-google-meet',
 ]
 
 export function ToolSections() {

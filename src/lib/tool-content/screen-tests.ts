@@ -77,40 +77,6 @@ export const screenTestContent: Record<string, ToolContent> = {
   'magenta-screen': colorContent('magenta'),
   'gray-screen': colorContent('gray'),
 
-  'bright-white-screen': {
-    title: 'Bright White Screen – Adjustable Light Source',
-    intro:
-      'Push your display to pure, maximum white and tune its color temperature from warm candlelight to cool daylight. Ideal when you need a flat, even light rather than just a blank page.',
-    steps: [
-      'Turn your device brightness all the way up for the strongest light.',
-      'Drag the color temperature slider: lower values are warmer, 6500K is neutral white, higher values are cooler.',
-      'Use the intensity slider if the light is too harsh for close-up use.',
-      'Press F to go fullscreen, then point the screen at your subject. Press Esc to exit.',
-    ],
-    useCases: [
-      { title: 'Emergency flashlight', description: 'A phone or tablet at full white lights up a dark room or a power outage.' },
-      { title: 'Photo fill light', description: 'Match the warmth of the light to your room so skin tones look natural.' },
-      { title: 'Lightbox for tracing', description: 'Even white backlight makes it easy to trace drawings or check film negatives.' },
-      { title: 'Reading light', description: 'A warm 3000K tone is gentler on the eyes for reading at night.' },
-    ],
-    faqs: [
-      {
-        question: 'Is this brighter than a normal white screen?',
-        answer:
-          'Both show #FFFFFF at 100%, which is the brightest color your panel can produce. The real brightness comes from your device’s brightness setting, so turn it up to the maximum.',
-      },
-      {
-        question: 'What color temperature should I use?',
-        answer:
-          'Around 2700–3200K looks like warm indoor bulbs, about 5000–6500K looks like daylight, and higher values look blue-ish. For video calls, match the light already in your room.',
-      },
-      {
-        question: 'Can a white screen damage my eyes?',
-        answer:
-          'Looking directly at a bright screen for a long time can be uncomfortable. Point the screen at your subject, not your eyes, and lower intensity for close work.',
-      },
-    ],
-  },
 
   'white-screen-image': {
     title: 'White Screen Image – Download Any Size PNG or JPG',

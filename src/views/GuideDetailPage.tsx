@@ -293,7 +293,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
               Run free browser diagnostics, dead pixel checks, or explore all 12 color screens on WhiteScreen.vip.
             </p>
             <div className="mt-3 flex flex-wrap gap-2 text-xs font-medium">
-              <Link href="/white-screen" className="text-primary hover:underline">
+              <Link href="/" className="text-primary hover:underline">
                 White Screen →
               </Link>
               <span className="text-muted-foreground">·</span>

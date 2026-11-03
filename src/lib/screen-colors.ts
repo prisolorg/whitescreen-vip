@@ -6,7 +6,8 @@ export type ScreenColor = {
 }
 
 export const SCREEN_COLORS: readonly ScreenColor[] = [
-  { id: 'white', name: 'White', hex: '#FFFFFF', path: '/white-screen' },
+  // White is the homepage; /white-screen/ redirects there.
+  { id: 'white', name: 'White', hex: '#FFFFFF', path: '/' },
   { id: 'black', name: 'Black', hex: '#000000', path: '/black-screen' },
   { id: 'red', name: 'Red', hex: '#FF0000', path: '/red-screen' },
   { id: 'green', name: 'Green', hex: '#00FF00', path: '/green-screen' },

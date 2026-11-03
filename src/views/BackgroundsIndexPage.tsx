@@ -6,12 +6,10 @@ import {
   Download,
   Search,
   Sparkles,
-  Layers,
   ArrowRight,
   Maximize2,
   Check,
   ChevronRight,
-  Filter,
 } from 'lucide-react'
 import {
   BACKGROUND_CATEGORIES,
@@ -177,12 +175,12 @@ export function BackgroundsIndexPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background py-6 sm:py-10">
+    <div className="min-h-screen bg-background pb-10 pt-3 sm:pt-4">
       <JsonLd data={collectionSchema} />
 
-      <div className="mx-auto max-w-6xl px-3 sm:px-6">
+      <div className="mx-auto max-w-7xl px-3 sm:px-6">
         {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-xs text-muted-foreground flex-wrap">
+        <nav aria-label="Breadcrumb" className="mb-2 flex items-center gap-1.5 text-xs text-muted-foreground flex-wrap">
           <Link href="/" className="hover:text-foreground transition-colors">
             Home
           </Link>
@@ -200,27 +198,26 @@ export function BackgroundsIndexPage() {
           )}
         </nav>
 
-        {/* Dynamic Page Header */}
-        <div className="max-w-3xl mb-8">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary mb-2.5">
-            <Layers className="size-3.5" aria-hidden="true" />
-            <span>{activeMeta ? activeMeta.badge : 'Curated Screen Backgrounds'}</span>
+        {/* Compact header so the category chips and the grid are above the fold on every device. */}
+        <div className="mb-3 flex flex-col gap-1 lg:flex-row lg:items-end lg:justify-between lg:gap-6">
+          <div className="min-w-0">
+            <h1 className="text-xl font-extrabold leading-tight tracking-tight text-foreground sm:text-2xl md:text-3xl">
+              {pageHeading}
+            </h1>
+            <p className="mt-1 line-clamp-2 max-w-3xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
+              {pageDescription}
+            </p>
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground leading-tight">
-            {pageHeading}
-          </h1>
-          <p className="mt-2 text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
-            {pageDescription}
-          </p>
+          <span className="hidden shrink-0 text-xs text-muted-foreground lg:block">
+            {filteredItems.length} backgrounds · free PNG up to 8K
+          </span>
         </div>
 
-        {/* Search & Category Filter Navigation Bar */}
-        <div className="mb-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-          {/* Category Tabs (Syncs directly with URL query parameter) */}
+        <div className="sticky top-16 z-10 -mx-3 mb-4 flex flex-col gap-2 bg-background/95 px-3 py-2 backdrop-blur sm:-mx-6 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <div
             role="tablist"
             aria-label="Background categories"
-            className="flex items-center gap-1.5 overflow-x-auto pb-1 [scrollbar-width:none]"
+            className="-mx-1 flex items-center gap-1.5 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {BACKGROUND_CATEGORIES.map((cat) => {
               const isSelected = activeCategory === cat.id
@@ -232,10 +229,8 @@ export function BackgroundsIndexPage() {
                   aria-selected={isSelected}
                   onClick={() => handleCategoryClick(cat.id)}
                   className={cn(
-                    'rounded-lg px-3 py-1.5 text-xs font-semibold whitespace-nowrap transition-all cursor-pointer',
-                    isSelected
-                      ? 'bg-primary text-primary-foreground shadow-xs'
-                      : 'bg-muted/70 hover:bg-muted text-muted-foreground hover:text-foreground',
+                    'h-9 shrink-0 cursor-pointer whitespace-nowrap rounded-full px-3.5 text-sm font-semibold transition-colors',
+                    isSelected ? 'bg-foreground text-background' : 'border bg-background text-foreground/80 hover:bg-accent',
                   )}
                 >
                   {cat.label}
@@ -244,47 +239,28 @@ export function BackgroundsIndexPage() {
             })}
           </div>
 
-          {/* Search Input */}
-          <div className="relative w-full sm:w-64">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
+          <div className="relative w-full sm:w-60 sm:shrink-0">
+            <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
             <input
-              type="text"
-              placeholder={`Search in ${activeCategory === 'all' ? 'backgrounds' : currentCategoryObj?.label || 'collection'}...`}
+              type="search"
+              aria-label="Search backgrounds"
+              placeholder={`Search ${activeCategory === 'all' ? 'backgrounds' : currentCategoryObj?.label || 'collection'}…`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-9 w-full rounded-lg border border-border bg-background pl-9 pr-3 text-xs outline-none focus-visible:ring-1 focus-visible:ring-primary"
+              className="h-9 w-full rounded-full border border-border bg-background pl-9 pr-3 text-sm outline-none focus-visible:ring-1 focus-visible:ring-primary"
             />
           </div>
         </div>
 
-        {/* Filter State Status Banner (when viewing a specific category) */}
-        {activeCategory !== 'all' && (
-          <div className="mb-6 flex items-center justify-between rounded-xl border border-primary/20 bg-primary/5 px-4 py-2.5 text-xs">
-            <div className="flex items-center gap-2">
-              <Filter className="size-3.5 text-primary" />
-              <span className="text-foreground">
-                Showing <strong>{filteredItems.length}</strong> {pageHeading.toLowerCase()}
-              </span>
-            </div>
-            <button
-              type="button"
-              onClick={() => handleCategoryClick('all')}
-              className="font-semibold text-primary hover:underline cursor-pointer"
-            >
-              View All Backgrounds →
-            </button>
-          </div>
-        )}
-
         {/* Backgrounds Cards Grid: Every card links directly to its own unique URL */}
-        <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-2.5 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
           {filteredItems.map((item) => {
             const isDownloading = downloadingSlug?.startsWith(item.slug)
             const itemUrl = `/backgrounds/${item.slug}`
             return (
               <article
                 key={item.slug}
-                className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card shadow-2xs transition-all hover:border-foreground/30 hover:shadow-sm"
+                className="group flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card shadow-2xs transition-all hover:border-foreground/30 hover:shadow-sm"
               >
                 {/* Visual Swatch Preview Link */}
                 <Link
@@ -305,7 +281,7 @@ export function BackgroundsIndexPage() {
                 </Link>
 
                 {/* Card Info */}
-                <div className="p-4 flex flex-col flex-1 justify-between gap-3">
+                <div className="flex flex-1 flex-col justify-between gap-2 p-2.5 sm:p-3.5">
                   <div>
                     <div className="flex items-center justify-between text-[11px] mb-1.5">
                       <button
@@ -315,14 +291,14 @@ export function BackgroundsIndexPage() {
                       >
                         {item.categoryLabel}
                       </button>
-                      <span className="font-mono text-[10px] text-muted-foreground">PNG · Lossless</span>
+                      <span className="hidden font-mono text-[10px] text-muted-foreground sm:inline">PNG · Lossless</span>
                     </div>
 
-                    <h2 className="text-sm sm:text-base font-bold text-foreground group-hover:text-primary transition-colors">
+                    <h2 className="text-[13px] leading-snug sm:text-sm font-bold text-foreground group-hover:text-primary transition-colors">
                       <Link href={itemUrl}>{item.title}</Link>
                     </h2>
 
-                    <p className="mt-1 text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                    <p className="mt-1 hidden text-xs text-muted-foreground line-clamp-2 leading-relaxed sm:block">
                       {item.shortDescription}
                     </p>
                   </div>
@@ -352,7 +328,7 @@ export function BackgroundsIndexPage() {
 
                     <Link
                       href={itemUrl}
-                      className="inline-flex items-center gap-1 font-semibold text-primary hover:underline text-xs"
+                      className="hidden items-center gap-1 font-semibold text-primary hover:underline text-xs sm:inline-flex"
                     >
                       <span>Custom specs</span>
                       <ArrowRight className="size-3" />

@@ -9,7 +9,8 @@ import { SCREEN_COLORS, isLightColor } from '@/lib/screen-colors'
 import { CustomColorPicker } from './custom-color-picker'
 import { ResolutionControls } from './resolution-controls'
 import { useTranslation } from '@/lib/i18n'
-import { STAGE_SIZE, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
+import { DoubleTapHint, STAGE_SIZE, StageArrows, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
+import { getLocalizedPath } from '@/lib/locale-routing'
 
 type FullscreenDocument = Document & {
   webkitFullscreenElement?: Element | null
@@ -35,7 +36,7 @@ type ScreenToolProps = {
 
 export function ScreenTool({ initialColorId = 'white', title, intro }: ScreenToolProps) {
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [selectedId, setSelectedId] = useState<string>(initialColorId)
   const [customHex, setCustomHex] = useState('#F5F5F0')
   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
@@ -134,6 +135,11 @@ export function ScreenTool({ initialColorId = 'white', title, intro }: ScreenToo
     [isFullscreen, router],
   )
 
+  const neighbor = (direction: 1 | -1) => {
+    const index = SCREEN_COLORS.findIndex((color) => color.id === selectedId)
+    return SCREEN_COLORS[(Math.max(index, 0) + direction + SCREEN_COLORS.length) % SCREEN_COLORS.length]
+  }
+
   const cycleColor = useCallback(
     (direction: 1 | -1) => {
       const index = SCREEN_COLORS.findIndex((color) => color.id === selectedId)
@@ -230,10 +236,11 @@ export function ScreenTool({ initialColorId = 'white', title, intro }: ScreenToo
         aria-label={t('screenPreview', '{color} screen preview').replace('{color}', activeLabel)}
         onMouseMove={isFullscreen ? revealHint : undefined}
         onTouchStart={isFullscreen ? revealHint : undefined}
-        onDoubleClick={isFullscreen ? () => void exitFullscreen() : undefined}
+        // Double-click or double-tap toggles fullscreen (it replaces the old center button).
+        onDoubleClick={() => void (isFullscreen ? exitFullscreen() : enterFullscreen())}
         style={{ backgroundColor: uploadedImage ? '#000000' : activeHex }}
         className={cn(
-          'relative flex items-center justify-center overflow-hidden transition-colors duration-150',
+          'relative flex touch-manipulation select-none items-center justify-center overflow-hidden transition-colors duration-150',
           isFullscreen
             ? 'h-full w-full'
             : STAGE_SIZE,
@@ -275,18 +282,16 @@ export function ScreenTool({ initialColorId = 'white', title, intro }: ScreenToo
             </div>
           </div>
         ) : (
-          <button
-            type="button"
-            onClick={() => void enterFullscreen()}
-            className={cn(
-              'inline-flex h-14 items-center gap-2.5 rounded-full px-7 text-base font-bold shadow-xl transition-transform hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none md:-translate-y-8 md:h-16 md:px-8 md:text-lg',
-              isLight ? 'bg-neutral-900 text-white' : 'bg-white text-neutral-900',
-            )}
-          >
-            <Maximize className="size-5" aria-hidden="true" />
-            <span>{t('openFullscreen', 'Open fullscreen')}</span>
-          </button>
+          <DoubleTapHint tone={isLight ? 'light' : 'dark'} />
         )}
+
+        {/* Previous / next color. Outside fullscreen these open the neighbouring color page. */}
+        <StageArrows
+          tone={isLight ? 'light' : 'dark'}
+          hidden={isFullscreen && !isHintVisible}
+          prev={{ label: `${t('navPrev', 'Previous')}: ${t(neighbor(-1).id, neighbor(-1).name)}`, href: getLocalizedPath(neighbor(-1).path, language), onSelect: () => cycleColor(-1) }}
+          next={{ label: `${t('navNext', 'Next')}: ${t(neighbor(1).id, neighbor(1).name)}`, href: getLocalizedPath(neighbor(1).path, language), onSelect: () => cycleColor(1) }}
+        />
       </div>
 
       {!isFullscreen && (

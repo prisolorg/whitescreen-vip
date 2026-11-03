@@ -163,7 +163,7 @@ export function GuidesIndexPage() {
               Every guide on WhiteScreen.vip connects directly to our free, browser-based display testing tools. Test pixels, check uniformity, simulate fake screens, or generate solid color wallpapers.
             </p>
             <div className="mt-4 flex flex-wrap gap-2 text-xs">
-              <Link href="/white-screen" className="rounded-lg border bg-background px-3 py-1.5 font-medium hover:bg-accent transition-colors">
+              <Link href="/" className="rounded-lg border bg-background px-3 py-1.5 font-medium hover:bg-accent transition-colors">
                 White Screen
               </Link>
               <Link href="/black-screen" className="rounded-lg border bg-background px-3 py-1.5 font-medium hover:bg-accent transition-colors">

@@ -28,7 +28,6 @@ const THUMBS: Record<string, string> = {
   'oled-burn-in-test': 'repeating-linear-gradient(90deg, #3a3a3a 0 10px, #262626 10px 20px)',
   'screen-color-test': 'linear-gradient(90deg, #f00 0 33%, #0f0 33% 66%, #00f 66%)',
   'screen-resolution-test': 'repeating-conic-gradient(#000 0 25%, #fff 0 50%) 0 0 / 6px 6px',
-  'bright-white-screen': 'radial-gradient(circle, #fff, #eef0f3)',
   'zoom-lighting': 'radial-gradient(circle at 50% 45%, #fffaf0, #ffd59a)',
   'static-screen': STATIC,
   'visual-noise': 'repeating-linear-gradient(-45deg, #5a5a5a 0 1px, #1f1f1f 1px 2px)',
@@ -57,6 +56,7 @@ const THUMBS: Record<string, string> = {
   'fake-ubuntu-update': '#300a24',
   'fake-zoom-meeting': '#1c1c1c',
   'fake-teams-meeting': '#292a4a',
+  'fake-google-meet': '#202124',
   'fake-slack-huddle': '#3f0e40',
 }
 

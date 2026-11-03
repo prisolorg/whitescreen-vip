@@ -10,7 +10,6 @@ import {
   ArrowRight,
   Check,
   ChevronRight,
-  Layers,
   Copy,
   ExternalLink,
   HelpCircle,
@@ -20,7 +19,9 @@ import {
   ShieldCheck,
   Monitor,
 } from 'lucide-react'
-import { getBackgroundBySlug, BACKGROUND_ITEMS, type BackgroundItem } from '@/lib/backgrounds-data'
+import { getBackgroundBySlug, BACKGROUND_ITEMS, BACKGROUND_CATEGORIES, type BackgroundItem } from '@/lib/backgrounds-data'
+import { isLightColor } from '@/lib/screen-colors'
+import { DoubleTapHint, STAGE_SIZE, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
 import { absoluteUrl } from '@/lib/site'
 import { JsonLd } from '@/components/json-ld'
 import { cn } from '@/lib/utils'
@@ -33,6 +34,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
   const [height, setHeight] = useState(1080)
   const [isDownloading, setIsDownloading] = useState(false)
   const [downloadSuccess, setDownloadSuccess] = useState(false)
+  const [sizeId, setSizeId] = useState('4k')
   const screenRef = useRef<HTMLDivElement>(null)
 
   const exitFullscreen = useCallback(async () => {
@@ -196,14 +198,30 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
         }
       : null
 
+  const SIZES = [
+    { id: '1080p', label: '1080p · 1920×1080', w: 1920, h: 1080 },
+    { id: '2k', label: '2K · 2560×1440', w: 2560, h: 1440 },
+    { id: '4k', label: '4K · 3840×2160', w: 3840, h: 2160 },
+    { id: 'phone', label: 'Phone · 1080×2400', w: 1080, h: 2400 },
+    { id: 'custom', label: 'Custom size', w: width, h: height },
+  ]
+  const size = SIZES.find((option) => option.id === sizeId) ?? SIZES[2]
+  const tone = isLightColor(item.primaryHex) ? 'light' : 'dark'
+  // Same category first, then others, so there is always a full row of next steps.
+  const moreBackgrounds = [
+    ...BACKGROUND_ITEMS.filter((b) => b.slug !== item.slug && b.category === item.category),
+    ...BACKGROUND_ITEMS.filter((b) => b.slug !== item.slug && b.category !== item.category),
+  ].slice(0, 6)
+
   return (
-    <article className="min-h-screen bg-background py-6 sm:py-10">
+    <article className="bg-background pb-8 pt-3 sm:pt-4">
       <JsonLd data={imageSchema} />
       {faqSchema && <JsonLd data={faqSchema} />}
 
-      <div className="mx-auto max-w-5xl px-3 sm:px-6">
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-xs text-muted-foreground flex-wrap">
+      {/* Same layout as the screen pages: breadcrumbs, the preview with its title, a control dock,
+          then more backgrounds, so the tool and the next links are above the fold. */}
+      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-3 sm:px-6">
+        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
           <Link href="/" className="hover:text-foreground transition-colors">
             Home
           </Link>
@@ -216,160 +234,164 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
             {item.categoryLabel}
           </Link>
           <ChevronRight className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
-          <span className="font-medium text-foreground truncate">{item.title}</span>
+          <span className="truncate font-medium text-foreground">{item.title}</span>
         </nav>
 
-        {/* Title Header */}
-        <header className="mb-6">
-          <div className="flex items-center gap-2 text-xs mb-2.5 flex-wrap">
-            <span className="rounded-md bg-primary/10 px-2.5 py-0.5 font-semibold text-primary">
-              {item.categoryLabel}
-            </span>
-            <span className="text-muted-foreground font-mono">{item.primaryHex}</span>
-            <span className="text-muted-foreground">•</span>
-            <span className="text-muted-foreground">{item.dominantColorName}</span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-            {item.h1}
-          </h1>
-          <p className="mt-2.5 text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
-            {item.shortDescription}
-          </p>
-        </header>
-
-        {/* Live Canvas Preview */}
-        <div
-          ref={screenRef}
-          style={{ background: item.cssBackground }}
-          className={cn(
-            'relative aspect-video w-full overflow-hidden rounded-2xl border border-border shadow-sm flex items-center justify-center transition-all',
-            isFullscreen && 'fixed inset-0 z-50 rounded-none border-0 aspect-auto h-screen',
-          )}
-        >
-          {isFullscreen ? (
-            <button
-              type="button"
-              onClick={exitFullscreen}
-              className="absolute top-4 right-4 rounded-full bg-black/60 p-2.5 text-white hover:bg-black/80 transition-colors shadow-lg cursor-pointer"
-              aria-label="Exit fullscreen"
-            >
-              <X className="size-5" />
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={enterFullscreen}
-              className="inline-flex items-center gap-2 rounded-full bg-black/50 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white backdrop-blur-xs hover:bg-black/70 transition-colors shadow-md cursor-pointer"
-            >
-              <Maximize className="size-4" />
-              <span>Open Fullscreen (F)</span>
-            </button>
-          )}
-
-          <span className="absolute bottom-3 left-3 rounded-md bg-black/60 px-2.5 py-1 font-mono text-xs text-white backdrop-blur-xs">
-            {item.primaryHex}
-          </span>
-        </div>
-
-        {/* Resolution Preset Downloads Grid */}
-        <div className="mt-8 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs space-y-6">
-          <div>
-            <div className="flex items-center justify-between flex-wrap gap-2">
-              <h2 className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2">
-                <Download className="size-4 text-primary" />
-                <span>Export High-Resolution PNG</span>
-              </h2>
-              <span className="text-xs font-mono text-muted-foreground">Lossless Client-Side PNG</span>
-            </div>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Generate pixel-perfect image files in standard desktop, mobile, and cinema resolutions. Rendered in lossless 24-bit PNG.
-            </p>
-          </div>
-
-          {/* Preset Buttons */}
-          <div className="grid gap-2.5 sm:grid-cols-2 md:grid-cols-4">
-            {[
-              { label: '1080p Full HD', dims: '1920 × 1080', w: 1920, h: 1080, tag: 'Desktop' },
-              { label: '2K Quad HD', dims: '2560 × 1440', w: 2560, h: 1440, tag: 'QHD' },
-              { label: '4K Ultra HD', dims: '3840 × 2160', w: 3840, h: 2160, tag: 'UHD' },
-              { label: 'Mobile Portrait', dims: '1080 × 2400', w: 1080, h: 2400, tag: 'Smartphone' },
-            ].map((p) => (
+        <div className="relative">
+          <div
+            ref={screenRef}
+            role="region"
+            aria-label={`${item.title} preview`}
+            onDoubleClick={() => void (isFullscreen ? exitFullscreen() : enterFullscreen())}
+            style={{ background: item.cssBackground }}
+            className={cn(
+              'relative touch-manipulation select-none overflow-hidden',
+              isFullscreen ? 'fixed inset-0 z-50 h-dvh w-full' : STAGE_SIZE,
+            )}
+          >
+            {isFullscreen ? (
               <button
-                key={p.label}
                 type="button"
-                onClick={() => handleDownload(p.w, p.h)}
-                disabled={isDownloading}
-                className="flex flex-col justify-between rounded-xl border border-border p-3 text-left hover:border-primary/50 hover:bg-accent transition-all cursor-pointer shadow-2xs group"
+                onClick={exitFullscreen}
+                className="absolute right-4 top-4 rounded-full bg-black/60 p-2.5 text-white shadow-lg transition-colors hover:bg-black/80"
+                aria-label="Exit fullscreen"
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold text-xs sm:text-sm text-foreground">{p.label}</span>
-                  <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
-                    {p.tag}
-                  </span>
-                </div>
-                <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
-                  <span className="font-mono text-[11px]">{p.dims}</span>
-                  <Download className="size-3.5 text-primary group-hover:scale-110 transition-transform" />
-                </div>
+                <X className="size-5" />
               </button>
-            ))}
+            ) : (
+              <DoubleTapHint tone={tone} />
+            )}
           </div>
-
-          {/* Custom Dimension Bar */}
-          <div className="flex flex-wrap items-end gap-3 pt-4 border-t border-border/50 text-xs">
-            <div className="flex items-center gap-1.5">
-              <div className="flex flex-col gap-1">
-                <label htmlFor="bg-w" className="text-[11px] font-medium text-muted-foreground">
-                  Custom Width (px)
-                </label>
-                <input
-                  id="bg-w"
-                  type="number"
-                  min={1}
-                  max={8192}
-                  value={width}
-                  onChange={(e) => setWidth(Math.min(8192, Math.max(1, parseInt(e.target.value, 10) || 1)))}
-                  className="h-9 w-24 rounded-lg border bg-background px-2.5 font-mono text-xs"
-                />
-              </div>
-              <span className="pt-4 text-muted-foreground">×</span>
-              <div className="flex flex-col gap-1">
-                <label htmlFor="bg-h" className="text-[11px] font-medium text-muted-foreground">
-                  Custom Height (px)
-                </label>
-                <input
-                  id="bg-h"
-                  type="number"
-                  min={1}
-                  max={8192}
-                  value={height}
-                  onChange={(e) => setHeight(Math.min(8192, Math.max(1, parseInt(e.target.value, 10) || 1)))}
-                  className="h-9 w-24 rounded-lg border bg-background px-2.5 font-mono text-xs"
-                />
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => handleDownload(width, height)}
-              disabled={isDownloading}
-              className="h-9 inline-flex items-center gap-1.5 rounded-lg bg-primary px-4 font-semibold text-primary-foreground hover:bg-primary/90 transition-colors cursor-pointer shadow-2xs"
-            >
-              <Download className="size-3.5" />
-              <span>{isDownloading ? 'Generating...' : downloadSuccess ? 'Downloaded!' : 'Download Custom'}</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={copyCss}
-              className="h-9 inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3 font-medium text-foreground hover:bg-accent transition-colors cursor-pointer shadow-2xs ml-auto"
-            >
-              {isCopied ? <Check className="size-3.5 text-emerald-500" /> : <Copy className="size-3.5" />}
-              <span>{isCopied ? 'CSS Copied!' : 'Copy CSS'}</span>
-            </button>
-          </div>
+          {!isFullscreen && (
+            <StageTitle
+              title={item.title}
+              intro={item.shortDescription}
+              tone={tone}
+              aside={
+                <span
+                  className={cn(
+                    'rounded-full px-3 py-1 font-mono text-xs font-semibold ring-1',
+                    tone === 'light' ? 'bg-black/5 text-neutral-900 ring-black/10' : 'bg-white/10 text-white ring-white/20',
+                  )}
+                >
+                  {item.primaryHex}
+                </span>
+              }
+            />
+          )}
         </div>
 
+        {!isFullscreen && (
+          <StageDock onFullscreen={enterFullscreen}>
+            <div className="flex flex-wrap items-center gap-2">
+              <label htmlFor="bg-size" className="sr-only">
+                Image size
+              </label>
+              <select
+                id="bg-size"
+                value={sizeId}
+                onChange={(e) => setSizeId(e.target.value)}
+                className="h-10 rounded-xl border bg-background px-2.5 text-sm font-semibold"
+              >
+                {SIZES.map((option) => (
+                  <option key={option.id} value={option.id}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              {sizeId === 'custom' && (
+                <span className="flex items-center gap-1.5 text-sm">
+                  <label htmlFor="bg-w" className="sr-only">
+                    Width (px)
+                  </label>
+                  <input
+                    id="bg-w"
+                    type="number"
+                    min={1}
+                    max={8192}
+                    value={width}
+                    onChange={(e) => setWidth(Math.min(8192, Math.max(1, parseInt(e.target.value, 10) || 1)))}
+                    className="h-10 w-24 rounded-xl border bg-background px-2.5 font-mono text-sm"
+                  />
+                  ×
+                  <label htmlFor="bg-h" className="sr-only">
+                    Height (px)
+                  </label>
+                  <input
+                    id="bg-h"
+                    type="number"
+                    min={1}
+                    max={8192}
+                    value={height}
+                    onChange={(e) => setHeight(Math.min(8192, Math.max(1, parseInt(e.target.value, 10) || 1)))}
+                    className="h-10 w-24 rounded-xl border bg-background px-2.5 font-mono text-sm"
+                  />
+                </span>
+              )}
+              <button
+                type="button"
+                onClick={() => handleDownload(size.w, size.h)}
+                disabled={isDownloading}
+                className={cn(
+                  'inline-flex h-10 items-center gap-2 rounded-xl px-4 text-sm font-semibold text-white transition-colors',
+                  downloadSuccess ? 'bg-emerald-600' : 'bg-blue-600 hover:bg-blue-700',
+                )}
+              >
+                {downloadSuccess ? <Check className="size-4" /> : <Download className="size-4" />}
+                <span>{isDownloading ? 'Generating…' : downloadSuccess ? 'Downloaded!' : 'Download PNG'}</span>
+              </button>
+              <button
+                type="button"
+                onClick={copyCss}
+                className="inline-flex h-10 items-center gap-1.5 rounded-xl border bg-background px-3 text-sm font-medium transition-colors hover:bg-accent"
+              >
+                {isCopied ? <Check className="size-4 text-emerald-500" /> : <Copy className="size-4" />}
+                <span>{isCopied ? 'CSS Copied!' : 'Copy CSS'}</span>
+              </button>
+            </div>
+          </StageDock>
+        )}
+
+        <section aria-labelledby="more-backgrounds" className="mt-2 flex flex-col gap-3">
+          <div className="flex items-baseline justify-between gap-3">
+            <h2 id="more-backgrounds" className="text-base font-bold tracking-tight sm:text-lg">
+              More backgrounds
+            </h2>
+            <Link href="/backgrounds" className="shrink-0 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400">
+              All backgrounds →
+            </Link>
+          </div>
+          <nav aria-label="Background categories" className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {BACKGROUND_CATEGORIES.filter((cat) => cat.id !== 'all').map((cat) => (
+              <Link
+                key={cat.id}
+                href={`/backgrounds?category=${cat.id}`}
+                className={cn(
+                  'h-10 shrink-0 content-center rounded-full px-4 text-sm font-semibold transition-colors',
+                  cat.id === item.category ? 'bg-foreground text-background' : 'border bg-background text-foreground/80 hover:bg-accent',
+                )}
+              >
+                {cat.label}
+              </Link>
+            ))}
+          </nav>
+          <ul className="grid grid-cols-3 gap-2 sm:gap-3 lg:grid-cols-6">
+            {moreBackgrounds.map((bg) => (
+              <li key={bg.slug}>
+                <Link
+                  href={`/backgrounds/${bg.slug}`}
+                  className="flex h-full flex-col gap-1.5 rounded-xl border bg-card p-1.5 transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md"
+                >
+                  <span aria-hidden="true" className="h-12 w-full rounded-lg ring-1 ring-inset ring-black/10 sm:h-14" style={{ background: bg.cssBackground }} />
+                  <span className="line-clamp-2 px-1 pb-0.5 text-xs font-semibold leading-snug sm:text-[13px]">{bg.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+
+      <div className="mx-auto max-w-5xl px-3 sm:px-6">
         {/* Section 1: About This Background */}
         <section className="mt-12 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
           <div className="flex items-center gap-2">

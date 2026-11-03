@@ -541,7 +541,7 @@ export const SCREEN_PROBLEMS: readonly ScreenProblemItem[] = [
     heroSummary: 'Image retention is a temporary ghost shadow that lingers after a high-contrast static image is displayed for a prolonged period. Unlike permanent burn-in, image retention is completely reversible and leaves no permanent damage on the display.',
     quickDiagnostic: {
       toolName: 'White Screen Clearing Canvas',
-      toolPath: '/white-screen',
+      toolPath: '/',
       actionText: 'Open Full White Screen',
       description: 'Display an even white or alternating pattern field to reset liquid crystal capacitance.',
     },
@@ -588,7 +588,7 @@ export const SCREEN_PROBLEMS: readonly ScreenProblemItem[] = [
     },
     contextualLinks: [
       { label: 'Screen Burn-In Guide', href: '/screen-problems/screen-burn-in', description: 'Understand permanent organic subpixel degradation.' },
-      { label: 'White Screen Tool', href: '/white-screen', description: 'Neutralize residual electrostatic charges.' },
+      { label: 'White Screen Tool', href: '/', description: 'Neutralize residual electrostatic charges.' },
       { label: 'Dead Pixel Test', href: '/dead-pixel-test', description: 'Exercise liquid crystal alignment.' },
     ],
     faqs: [
@@ -985,7 +985,7 @@ export const SCREEN_PROBLEMS: readonly ScreenProblemItem[] = [
     heroSummary: 'A yellow tint gives the entire display a warm, sepia, or jaundiced color cast across white backgrounds. It is almost always caused by software blue-light reduction filters, misconfigured color temperature presets, or physical backlight aging.',
     quickDiagnostic: {
       toolName: 'Pure White Reference Screen',
-      toolPath: '/white-screen',
+      toolPath: '/',
       actionText: 'Open Full White Reference',
       description: 'Display standard 6500K neutral white to visually evaluate color temperature balance.',
     },
@@ -1047,7 +1047,7 @@ export const SCREEN_PROBLEMS: readonly ScreenProblemItem[] = [
       warrantyAdvice: 'Do not return a monitor for uniform warm color before performing an OSD factory reset and verifying in Windows/macOS that all blue-light filters and custom color profiles are disabled.',
     },
     contextualLinks: [
-      { label: 'White Screen Reference Tool', href: '/white-screen', description: 'Inspect 6500K reference white in fullscreen.' },
+      { label: 'White Screen Reference Tool', href: '/', description: 'Inspect 6500K reference white in fullscreen.' },
       { label: 'Yellow Background Canvas', href: '/backgrounds/yellow-background', description: 'Compare warm color balance against pure yellow.' },
       { label: 'Screen Color Test Suite', href: '/screen-color-test', description: 'Verify RGB balance across color wheels.' },
     ],

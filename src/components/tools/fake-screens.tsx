@@ -22,6 +22,11 @@ import {
   Circle,
   ArrowUp,
   MoreHorizontal,
+  MoreVertical,
+  Captions,
+  MonitorUp,
+  Info,
+  AudioLines,
 } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
 import { ControlRow, Slider, Toggle, TextInput, ActionButton } from '@/components/tool-kit/controls'
@@ -270,7 +275,7 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
 
 /* ---------------- Fake Video Call Simulation ---------------- */
 
-type AppType = 'zoom' | 'teams' | 'slack' | 'generic'
+type AppType = 'zoom' | 'teams' | 'meet' | 'slack' | 'generic'
 
 const CALL_PARTICIPANTS = [
   { name: 'Sarah Jenkins', role: 'Host', color: 'bg-emerald-600', active: true },
@@ -288,6 +293,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
   const [activeSpeaker, setActiveSpeaker] = useState(0)
 
   const [elapsed, setElapsed] = useState(0)
+  const [clockTime, setClockTime] = useState('')
   const videoRef = useRef<HTMLVideoElement>(null)
   const streamRef = useRef<MediaStream | null>(null)
 
@@ -330,13 +336,19 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
     return () => window.clearInterval(id)
   }, [])
   const clock = `${String(Math.floor(elapsed / 60)).padStart(2, '0')}:${String(elapsed % 60).padStart(2, '0')}`
+  useEffect(() => {
+    const update = () => setClockTime(new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }))
+    update()
+    const id = window.setInterval(update, 15000)
+    return () => window.clearInterval(id)
+  }, [])
   const initials = (name: string) => name.split(' ').map((part) => part[0]).join('')
 
   return (
     <ToolStage
-      label={appType === 'teams' ? 'Fake Teams meeting' : appType === 'zoom' ? 'Fake Zoom meeting' : 'Fake video call'}
+      label={appType === 'teams' ? 'Fake Teams meeting' : appType === 'zoom' ? 'Fake Zoom meeting' : appType === 'meet' ? 'Fake Google Meet meeting' : 'Fake video call'}
       reserveHeadingSpace
-      className={appType === 'teams' ? 'bg-[#1f1f1f]' : appType === 'zoom' ? 'bg-black' : 'bg-neutral-950'}
+      className={appType === 'teams' ? 'bg-[#1f1f1f]' : appType === 'zoom' ? 'bg-black' : appType === 'meet' ? 'bg-[#202124]' : 'bg-neutral-950'}
       tone="dark"
       badge="Simulation"
       controls={
@@ -462,6 +474,117 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                 </div>
               )
             })}
+          </div>
+        </div>
+      ) : appType === 'meet' ? (
+        // Google Meet-style: charcoal stage, rounded tiles with an initial avatar when the camera is
+        // off, a blue speaking outline, and round controls with a wide red hang-up button.
+        <div className="flex size-full flex-col bg-[#202124] text-[#e8eaed] select-none">
+          <div className="grid flex-1 grid-cols-2 gap-2 overflow-hidden p-2.5 sm:grid-cols-3 max-sm:[&>*:nth-child(n+5)]:hidden">
+            <div
+              className={cn(
+                'relative flex items-center justify-center overflow-hidden rounded-lg bg-[#3c4043]',
+                activeSpeaker === 0 && 'outline outline-[3px] -outline-offset-[3px] outline-[#8ab4f8]',
+              )}
+            >
+              {isVideoOn ? (
+                <video ref={videoRef} autoPlay playsInline muted className="size-full scale-x-[-1] object-cover" />
+              ) : (
+                <div className="flex size-10 items-center justify-center rounded-full bg-[#1a73e8] text-lg font-medium text-white sm:size-20 sm:text-3xl">Y</div>
+              )}
+              <span className="absolute bottom-1.5 left-2.5 text-xs font-medium sm:text-sm">You {isHandRaised && '✋'}</span>
+              {isMuted && (
+                <span className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-black/40">
+                  <MicOff className="size-3.5" aria-hidden="true" />
+                </span>
+              )}
+            </div>
+            {CALL_PARTICIPANTS.map((participant, index) => {
+              const isSpeaking = activeSpeaker === index + 1
+              return (
+                <div
+                  key={participant.name}
+                  className={cn(
+                    'relative flex items-center justify-center rounded-lg bg-[#3c4043]',
+                    isSpeaking && 'outline outline-[3px] -outline-offset-[3px] outline-[#8ab4f8]',
+                  )}
+                >
+                  <div className={cn('flex size-10 items-center justify-center rounded-full text-lg font-medium text-white sm:size-20 sm:text-3xl', participant.color)}>
+                    {participant.name[0]}
+                  </div>
+                  <span className="absolute bottom-1.5 left-2.5 text-xs font-medium sm:text-sm">{participant.name}</span>
+                  <span className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-black/40">
+                    {isSpeaking ? <AudioLines className="size-3.5 text-[#8ab4f8]" aria-hidden="true" /> : <MicOff className="size-3.5" aria-hidden="true" />}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+
+          <div className="flex items-center justify-between gap-2 px-3 pb-3 pt-1 text-sm">
+            <div className="hidden min-w-0 items-center gap-2 lg:flex">
+              <span className="tabular-nums">{clockTime}</span>
+              <span className="text-[#9aa0a6]">|</span>
+              <span className="truncate">abc-defg-hij</span>
+            </div>
+            <div className="flex flex-1 items-center justify-center gap-2 lg:flex-none">
+              <button
+                type="button"
+                onClick={() => setIsMuted((value) => !value)}
+                aria-label={isMuted ? 'Turn on microphone' : 'Turn off microphone'}
+                aria-pressed={isMuted}
+                className={cn('flex size-10 items-center justify-center rounded-full', isMuted ? 'bg-[#ea4335] text-white' : 'bg-[#3c4043] hover:bg-[#4a4e51]')}
+              >
+                {isMuted ? <MicOff className="size-5" aria-hidden="true" /> : <Mic className="size-5" aria-hidden="true" />}
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsVideoOn((value) => !value)}
+                aria-label={isVideoOn ? 'Turn off camera' : 'Turn on camera'}
+                aria-pressed={isVideoOn}
+                className={cn('flex size-10 items-center justify-center rounded-full', !isVideoOn ? 'bg-[#ea4335] text-white' : 'bg-[#3c4043] hover:bg-[#4a4e51]')}
+              >
+                {isVideoOn ? <VideoIcon className="size-5" aria-hidden="true" /> : <VideoOff className="size-5" aria-hidden="true" />}
+              </button>
+              <button type="button" aria-label="Captions" className="hidden size-10 items-center justify-center rounded-full bg-[#3c4043] hover:bg-[#4a4e51] sm:flex">
+                <Captions className="size-5" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsHandRaised((value) => !value)}
+                aria-label="Raise hand"
+                aria-pressed={isHandRaised}
+                className={cn('hidden size-10 items-center justify-center rounded-full sm:flex', isHandRaised ? 'bg-[#8ab4f8] text-[#202124]' : 'bg-[#3c4043] hover:bg-[#4a4e51]')}
+              >
+                <Hand className="size-5" aria-hidden="true" />
+              </button>
+              <button type="button" aria-label="Present now" className="hidden size-10 items-center justify-center rounded-full bg-[#3c4043] hover:bg-[#4a4e51] sm:flex">
+                <MonitorUp className="size-5" aria-hidden="true" />
+              </button>
+              <button type="button" aria-label="More options" className="flex size-10 items-center justify-center rounded-full bg-[#3c4043] hover:bg-[#4a4e51]">
+                <MoreVertical className="size-5" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                onClick={() => alert('Prank meeting simulation ended.')}
+                aria-label="Leave call"
+                className="flex h-10 w-14 items-center justify-center rounded-full bg-[#ea4335] text-white hover:bg-[#d93025]"
+              >
+                <PhoneOff className="size-5" aria-hidden="true" />
+              </button>
+            </div>
+            <div className="hidden items-center gap-1 lg:flex">
+              <button type="button" aria-label="Meeting details" className="flex size-10 items-center justify-center rounded-full hover:bg-[#3c4043]">
+                <Info className="size-5" aria-hidden="true" />
+              </button>
+              <button type="button" aria-label="Show everyone" className="relative flex size-10 items-center justify-center rounded-full hover:bg-[#3c4043]">
+                <Users className="size-5" aria-hidden="true" />
+                <span className="absolute right-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-[#5f6368] text-[10px]">{CALL_PARTICIPANTS.length + 1}</span>
+              </button>
+              <button type="button" aria-label="Chat with everyone" className="flex size-10 items-center justify-center rounded-full hover:bg-[#3c4043]">
+                <MessageSquare className="size-5" aria-hidden="true" />
+              </button>
+            </div>
           </div>
         </div>
       ) : appType === 'zoom' ? (

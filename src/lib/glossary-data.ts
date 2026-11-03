@@ -339,8 +339,8 @@ export const GLOSSARY_ITEMS: readonly GlossaryItem[] = [
     ],
     relatedTools: [
       {
-        name: 'Bright White Screen',
-        path: '/bright-white-screen',
+        name: 'White Screen',
+        path: '/',
         description: 'Test peak white luminance and adjust color temperatures from 3000K to 9300K.',
       },
       {
@@ -455,7 +455,7 @@ export const GLOSSARY_ITEMS: readonly GlossaryItem[] = [
       },
       {
         name: 'White Screen Image Generator',
-        path: '/white-screen',
+        path: '/',
         description: 'Generate and download solid color test backgrounds in exact 1080p, 1440p, 4K, or 8K resolution.',
       },
       {
@@ -571,8 +571,8 @@ export const GLOSSARY_ITEMS: readonly GlossaryItem[] = [
         description: 'Softbox forward fill lighting to eliminate facial shadows and balance video call cameras.',
       },
       {
-        name: 'Bright White Screen',
-        path: '/bright-white-screen',
+        name: 'White Screen',
+        path: '/',
         description: 'Neutral daylight white screen to act as a soft fill light reflector for webcam video.',
       },
     ],

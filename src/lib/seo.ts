@@ -41,7 +41,7 @@ const ENGLISH_ONLY_PREFIXES = ['/guides', '/backgrounds', '/screen-problems', '/
  * /white-screen and the homepage serve the same intent ("white screen"), so the homepage is the
  * one page that ranks for it and /white-screen points its canonical there.
  */
-const CANONICAL_ALIASES: Record<string, string> = { '/white-screen': '/' }
+const CANONICAL_ALIASES: Record<string, string> = {}
 
 export type Alternate = { hreflang: string; href: string }
 
@@ -353,7 +353,7 @@ export function getAllRoutes(): string[] {
     '/privacy-policy',
     '/terms',
     '/disclaimer',
-    ...SCREEN_COLORS.map((color) => color.path),
+    ...SCREEN_COLORS.filter((color) => color.path !== '/').map((color) => color.path),
     ...TOOLS.filter((tool) => !tool.swatch).map((tool) => `/${tool.slug}`),
     '/guides',
     ...GUIDES.map((guide) => `/guides/${guide.slug}`),

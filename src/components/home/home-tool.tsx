@@ -19,7 +19,8 @@ import { cn } from '@/lib/utils'
 import { SCREEN_COLORS, isLightColor } from '@/lib/screen-colors'
 import { CustomColorPicker } from '@/components/screen-tool/custom-color-picker'
 import { useTranslation } from '@/lib/i18n'
-import { STAGE_SIZE, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
+import { DoubleTapHint, STAGE_SIZE, StageArrows, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
+import { getLocalizedPath } from '@/lib/locale-routing'
 
 type FullscreenDocument = Document & {
   webkitFullscreenElement?: Element | null
@@ -79,7 +80,7 @@ function kelvinToRgb(kelvin: number): { r: number; g: number; b: number; css: st
 }
 
 export function HomeTool() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [selectedId, setSelectedId] = useState<string>('white')
   const [customHex, setCustomHex] = useState<string>('#FFFFFF')
   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
@@ -192,16 +193,34 @@ export function HomeTool() {
     else void enterFullscreen()
   }, [isFullscreen, enterFullscreen, exitFullscreen])
 
-  // Cycle through colors
+  // Every color except white has its own page, so picking one opens it (the URL follows the color).
+  // In fullscreen the color switches in place instead, so fullscreen isn't interrupted.
+  const goToColor = useCallback(
+    (id: string) => {
+      const color = SCREEN_COLORS.find((item) => item.id === id)
+      if (!color) return
+      if (isFullscreen || color.path === '/') {
+        clearImage()
+        setSelectedId(color.id)
+        return
+      }
+      window.location.assign(getLocalizedPath(color.path, language))
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isFullscreen, language, uploadedImage],
+  )
+
+  const neighbor = (direction: 1 | -1) => {
+    const index = SCREEN_COLORS.findIndex((color) => color.id === selectedId)
+    return SCREEN_COLORS[(Math.max(index, 0) + direction + SCREEN_COLORS.length) % SCREEN_COLORS.length]
+  }
+
   const cycleColor = useCallback(
     (direction: 1 | -1) => {
-      clearImage()
       const index = SCREEN_COLORS.findIndex((color) => color.id === selectedId)
-      const nextIndex =
-        index === -1 ? 0 : (index + direction + SCREEN_COLORS.length) % SCREEN_COLORS.length
-      setSelectedId(SCREEN_COLORS[nextIndex].id)
+      goToColor(SCREEN_COLORS[(Math.max(index, 0) + direction + SCREEN_COLORS.length) % SCREEN_COLORS.length].id)
     },
-    [selectedId],
+    [selectedId, goToColor],
   )
 
   useEffect(() => {
@@ -241,8 +260,7 @@ export function HomeTool() {
       } else if (/^[1-9]$/.test(key)) {
         const num = Number(key) - 1
         if (num < SCREEN_COLORS.length) {
-          clearImage()
-          setSelectedId(SCREEN_COLORS[num].id)
+          goToColor(SCREEN_COLORS[num].id)
           if (isFullscreen) revealHint()
         }
       }
@@ -405,10 +423,11 @@ export function HomeTool() {
             aria-label={t('screenPreview', '{color} screen preview').replace('{color}', activeName)}
             onMouseMove={isFullscreen ? revealHint : undefined}
             onTouchStart={isFullscreen ? revealHint : undefined}
-            onDoubleClick={isFullscreen ? () => void exitFullscreen() : undefined}
+            // Double-click or double-tap toggles fullscreen (it replaces the old center button).
+            onDoubleClick={() => void (isFullscreen ? exitFullscreen() : enterFullscreen())}
             style={filterStyle}
             className={cn(
-              'relative flex items-center justify-center overflow-hidden transition-colors duration-150',
+              'relative flex touch-manipulation select-none items-center justify-center overflow-hidden transition-colors duration-150',
               isFullscreen
                 ? 'h-full w-full'
                 : STAGE_SIZE,
@@ -457,23 +476,16 @@ export function HomeTool() {
               </div>
             ) : (
               <>
-                {/* Center "Open fullscreen" Button */}
-                <button
-                  type="button"
-                  onClick={() => void enterFullscreen()}
-                  className={cn(
-                    'inline-flex items-center gap-2 rounded-full px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold transition-all shadow-md focus-visible:outline-2 focus-visible:outline-offset-2',
-                    isLight
-                      ? 'bg-neutral-900 text-white hover:bg-neutral-800 ring-1 ring-black/20'
-                      : 'bg-white text-neutral-900 hover:bg-neutral-100 ring-1 ring-white/30',
-                  )}
-                >
-                  <Maximize className="size-4" aria-hidden="true" />
-                  <span>{t('openFullscreen', 'Open fullscreen')}</span>
-                </button>
-
+                <DoubleTapHint tone={isLight ? 'light' : 'dark'} />
               </>
             )}
+
+            <StageArrows
+              tone={isLight ? 'light' : 'dark'}
+              hidden={isFullscreen && !isHintVisible}
+              prev={{ label: `${t('navPrev', 'Previous')}: ${t(neighbor(-1).id, neighbor(-1).name)}`, href: getLocalizedPath(neighbor(-1).path, language), onSelect: () => cycleColor(-1) }}
+              next={{ label: `${t('navNext', 'Next')}: ${t(neighbor(1).id, neighbor(1).name)}`, href: getLocalizedPath(neighbor(1).path, language), onSelect: () => cycleColor(1) }}
+            />
           </div>
 
             {!isFullscreen && (
@@ -511,16 +523,16 @@ export function HomeTool() {
                 const isSelected = selectedId === color.id && !uploadedImage
                 const name = t(color.id, color.name)
                 return (
-                  <button
+                  <a
                     key={color.id}
-                    type="button"
-                    onClick={() => {
-                      clearImage()
-                      setSelectedId(color.id)
+                    href={getLocalizedPath(color.path, language)}
+                    onClick={(event) => {
+                      event.preventDefault()
+                      goToColor(color.id)
                     }}
                     title={`${name} (${index + 1})`}
                     aria-label={name}
-                    aria-pressed={isSelected}
+                    aria-current={isSelected ? 'page' : undefined}
                     className={cn(
                       'flex size-9 shrink-0 items-center justify-center rounded-full ring-1 ring-inset ring-black/15 transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 lg:size-8',
                       isSelected && 'ring-2 ring-offset-2 ring-blue-600 ring-offset-background',
@@ -530,7 +542,7 @@ export function HomeTool() {
                     {isSelected && (
                       <Check className={cn('size-4', isLightColor(color.hex) ? 'text-black' : 'text-white')} aria-hidden="true" />
                     )}
-                  </button>
+                  </a>
                 )
               })}
             </div>

@@ -5,7 +5,7 @@ import { Maximize, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { isTypingTarget, useFullscreen } from './use-fullscreen'
 import { useTranslation } from '@/lib/i18n'
-import { STAGE_SIZE, StageDock, StageTitle, useStageHeading } from '@/components/screen-stage/stage-parts'
+import { DoubleTapHint, STAGE_SIZE, StageDock, StageTitle, useStageHeading } from '@/components/screen-stage/stage-parts'
 
 const HINT_DURATION_MS = 2500
 
@@ -29,6 +29,8 @@ type ToolStageProps = {
    * page title so it never covers the tool. The band disappears in fullscreen.
    */
   reserveHeadingSpace?: boolean
+  /** Double-click or double-tap toggles fullscreen; a single click still reaches onStageClick. */
+  doubleClickFullscreen?: boolean
   children: ReactNode | ((state: StageState) => ReactNode)
 }
 
@@ -42,6 +44,7 @@ export function ToolStage({
   disableShortcut,
   onStageClick,
   reserveHeadingSpace,
+  doubleClickFullscreen,
   children,
 }: ToolStageProps) {
   const { t } = useTranslation()
@@ -82,6 +85,22 @@ export function ToolStage({
 
   const exitStage = () => void exit()
 
+  // With double-click fullscreen, wait briefly before treating a click as a single click.
+  const clickTimerRef = useRef<number | undefined>(undefined)
+  useEffect(() => () => window.clearTimeout(clickTimerRef.current), [])
+  const handleStageClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!doubleClickFullscreen) {
+      onStageClick?.(event)
+      return
+    }
+    window.clearTimeout(clickTimerRef.current)
+    if (event.detail >= 2) {
+      toggle()
+      return
+    }
+    clickTimerRef.current = window.setTimeout(() => onStageClick?.(event), 250)
+  }
+
   return (
     <div>
       <div className="relative">
@@ -91,10 +110,11 @@ export function ToolStage({
           aria-label={label}
           onMouseMove={isFullscreen ? revealHint : undefined}
           onTouchStart={isFullscreen ? revealHint : undefined}
-          onClick={onStageClick}
+          onClick={handleStageClick}
           style={style}
           className={cn(
             'relative isolate overflow-hidden',
+            doubleClickFullscreen && 'touch-manipulation select-none',
             isFullscreen ? 'h-full w-full' : STAGE_SIZE,
             isFallback && 'fixed inset-0 z-[100] h-dvh max-h-none rounded-none border-0',
             isFullscreen && !isHintVisible && 'cursor-none',
@@ -110,6 +130,8 @@ export function ToolStage({
           ) : (
             children
           )}
+
+          {doubleClickFullscreen && !isFullscreen && <DoubleTapHint tone={tone} />}
 
           {badge && (
             <span

@@ -192,7 +192,7 @@ export const fakeScreenContent: Record<string, ToolContent> = {
     brand: 'Zoom Video Communications',
     title: 'Fake Zoom Meeting Screen – Zoom-Style Meeting Simulation',
     intro:
-      'A Zoom-style meeting screen with a dark gallery view, participant tiles, an active-speaker outline and a bottom toolbar. An independent simulation for film props, mockups and harmless jokes. For a Teams-style layout, open the [Fake Teams Meeting Screen](/fake-teams-meeting).',
+      'A Zoom-style meeting screen with a dark gallery view, participant tiles, an active-speaker outline and a bottom toolbar. An independent simulation for film props, mockups and harmless jokes. For other layouts, open the [Fake Teams Meeting Screen](/fake-teams-meeting) or the [Fake Google Meet Screen](/fake-google-meet).',
     extraFaq: {
       question: 'How is it different from the Teams meeting screen?',
       answer:
@@ -204,11 +204,23 @@ export const fakeScreenContent: Record<string, ToolContent> = {
     brand: 'Microsoft',
     title: 'Fake Teams Meeting Screen – Teams-Style Meeting Simulation',
     intro:
-      'A Teams-style meeting screen with a dark stage, participant tiles with name labels, a top control bar with a red Leave button and a running meeting timer. An independent simulation for film props, mockups and harmless jokes. For a Zoom-style gallery, open the [Fake Zoom Meeting Screen](/fake-zoom-meeting).',
+      'A Teams-style meeting screen with a dark stage, participant tiles with name labels, a top control bar with a red Leave button and a running meeting timer. An independent simulation for film props, mockups and harmless jokes. For other layouts, open the [Fake Zoom Meeting Screen](/fake-zoom-meeting) or the [Fake Google Meet Screen](/fake-google-meet).',
     extraFaq: {
       question: 'Can I change the meeting name?',
       answer:
         'Yes. Type a new name in the Meeting Title box below the screen. It appears in the top bar straight away, and nothing is saved or sent anywhere.',
+    },
+  }),
+  'fake-google-meet': callContent({
+    app: 'Google Meet',
+    brand: 'Google',
+    title: 'Fake Google Meet Screen – Meet-Style Meeting Simulation',
+    intro:
+      'A Google Meet-style meeting screen with rounded participant tiles, initial avatars for cameras that are off, a blue outline on whoever is speaking, the time and meeting code, and round call controls with a red hang-up button. An independent simulation for film props, mockups and harmless jokes. For other layouts, open the [Fake Zoom Meeting Screen](/fake-zoom-meeting) or the [Fake Teams Meeting Screen](/fake-teams-meeting).',
+    extraFaq: {
+      question: 'Is the meeting code real?',
+      answer:
+        'No. "abc-defg-hij" is placeholder text. Nobody can join, and the page never connects to Google Meet or any other service.',
     },
   }),
   'fake-slack-huddle': callContent({

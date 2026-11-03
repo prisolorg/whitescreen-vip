@@ -17,3 +17,13 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     ),
   ),
 }
+
+/** Pages removed from this site; each language version 301s to the replacement. */
+const REMOVED_PAGES: Record<string, string> = {
+  '/white-screen/': '/',
+  '/bright-white-screen/': '/',
+}
+const LOCALE_PREFIXES = ['', '/es', '/pt-br', '/de', '/fr', '/it', '/nl', '/id', '/tr']
+for (const [from, to] of Object.entries(REMOVED_PAGES)) {
+  for (const prefix of LOCALE_PREFIXES) LEGACY_REDIRECTS[`${prefix}${from}`] = `${prefix}${to}`
+}

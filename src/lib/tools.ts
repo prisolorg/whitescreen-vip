@@ -67,7 +67,7 @@ export const TOOLS: readonly Tool[] = [
       'A clean fullscreen white screen for lighting, cleaning your monitor, tracing and spotting dead pixels.',
     icon: Square,
     keywords: [...colorKeywords('white'), 'blank screen', 'light source', 'lightbox'],
-    related: ['bright-white-screen', 'black-screen', 'dead-pixel-test', 'zoom-lighting'],
+    related: ['black-screen', 'dead-pixel-test', 'zoom-lighting', 'screen-uniformity-test'],
     swatch: '#FFFFFF',
   },
   {
@@ -190,16 +190,6 @@ export const TOOLS: readonly Tool[] = [
     keywords: [...colorKeywords('gray'), 'grey screen', 'dirty screen effect', 'banding'],
     related: ['screen-uniformity-test', 'oled-gray-test', 'black-screen', 'monitor-test'],
     swatch: '#808080',
-  },
-  {
-    slug: 'bright-white-screen',
-    name: 'Bright White Screen',
-    category: 'screen-tests',
-    description:
-      'Maximum-brightness white light with adjustable color temperature, from candle-warm to daylight-cool.',
-    icon: Sun,
-    keywords: ['bright white', 'light source', 'color temperature', 'flashlight', 'lightbox', 'kelvin'],
-    related: ['white-screen', 'zoom-lighting', 'dead-pixel-test', 'gray-screen'],
   },
   {
     slug: 'dead-pixel-test',
@@ -351,7 +341,7 @@ export const TOOLS: readonly Tool[] = [
       'Turn a spare screen into a soft key light for video calls, with warm-to-cool tones and a ring mode.',
     icon: Lightbulb,
     keywords: ['zoom lighting', 'ring light', 'video call light', 'webcam light', 'fill light'],
-    related: ['bright-white-screen', 'white-screen', 'fake-zoom-meeting', 'pink-screen'],
+    related: ['white-screen', 'fake-zoom-meeting', 'pink-screen', 'countdown-timer'],
   },
   {
     slug: 'visual-noise',
@@ -381,7 +371,7 @@ export const TOOLS: readonly Tool[] = [
       'Build an animated fullscreen gradient with your own colors, angle and speed, or pick a preset.',
     icon: Blend,
     keywords: ['gradient', 'animated gradient', 'background', 'aurora', 'mood light'],
-    related: ['color-cycle', 'screen-color-test', 'bright-white-screen', 'visual-noise'],
+    related: ['color-cycle', 'screen-color-test', 'white-screen', 'visual-noise'],
   },
 
   // Screensavers
@@ -547,7 +537,7 @@ export const TOOLS: readonly Tool[] = [
       'A gallery-view meeting simulation in a dark theme with a toolbar, timer, webcam preview and active-speaker outline.',
     icon: Users,
     keywords: ['fake zoom meeting', 'fake zoom call', 'zoom meeting screen', 'gallery view', 'film prop', 'meeting simulation'],
-    related: ['fake-teams-meeting', 'fake-slack-huddle', 'zoom-lighting', 'countdown-timer'],
+    related: ['fake-teams-meeting', 'fake-google-meet', 'fake-slack-huddle', 'zoom-lighting'],
   },
   {
     slug: 'fake-teams-meeting',
@@ -557,7 +547,17 @@ export const TOOLS: readonly Tool[] = [
       'A Teams-style meeting simulation with a dark stage, participant tiles, a top control bar with a Leave button and a running meeting timer.',
     icon: Users,
     keywords: ['fake teams meeting', 'fake teams call', 'teams meeting screen', 'microsoft teams', 'film prop', 'meeting simulation'],
-    related: ['fake-zoom-meeting', 'fake-slack-huddle', 'zoom-lighting', 'countdown-timer'],
+    related: ['fake-zoom-meeting', 'fake-google-meet', 'fake-slack-huddle', 'zoom-lighting'],
+  },
+  {
+    slug: 'fake-google-meet',
+    name: 'Fake Google Meet Screen',
+    category: 'fake-screens',
+    description:
+      'A Google Meet-style meeting simulation with rounded participant tiles, initial avatars, a blue speaking outline and round call controls.',
+    icon: Users,
+    keywords: ['fake google meet', 'google meet screen', 'fake meet call', 'meeting screen', 'film prop', 'meeting simulation'],
+    related: ['fake-zoom-meeting', 'fake-teams-meeting', 'fake-slack-huddle', 'zoom-lighting'],
   },
   {
     slug: 'fake-slack-huddle',
@@ -586,7 +586,7 @@ export const COLOR_TOOL_SLUGS = TOOLS.filter((tool) => tool.swatch).map((tool) =
 
 export function getTool(slug: string) {
   // Graceful alias for pruned tools
-  if (slug === 'white-screen-image') return getTool('white-screen')
+  if (slug === 'white-screen-image' || slug === 'bright-white-screen') return getTool('white-screen')
   // Earlier slugs for the meeting screens.
   if (slug === 'fake-zoom-call' || slug === 'fake-video-call') return getTool('fake-zoom-meeting')
   if (slug === 'fake-teams-call') return getTool('fake-teams-meeting')
@@ -601,5 +601,6 @@ export function getToolsByCategory(category: ToolCategoryId) {
 }
 
 export function toolPath(slug: string) {
-  return `/${slug}`
+  // The white screen lives on the homepage.
+  return slug === 'white-screen' ? '/' : `/${slug}`
 }

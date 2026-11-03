@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, type ReactNode } from 'react'
-import { Maximize } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Maximize } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n'
 
@@ -70,5 +70,69 @@ export function StageDock({ children, onFullscreen }: { children?: ReactNode; on
         {t('fullscreen', 'Fullscreen')}
       </button>
     </div>
+  )
+}
+
+type ArrowTarget = { label: string; href?: string; onSelect: () => void }
+
+/**
+ * Previous/next arrows on the stage. With an href they are real links (crawlable, and they open the
+ * neighbouring page); `onSelect` runs instead of following the link, e.g. to switch in place.
+ */
+export function StageArrows({
+  prev,
+  next,
+  tone,
+  hidden,
+}: {
+  prev: ArrowTarget
+  next: ArrowTarget
+  tone: 'light' | 'dark'
+  /** Fade out (e.g. while the cursor is hidden in fullscreen). */
+  hidden?: boolean
+}) {
+  const className = cn(
+    'absolute top-1/2 z-20 flex size-10 -translate-y-1/2 items-center justify-center rounded-full ring-1 backdrop-blur transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 sm:size-12',
+    tone === 'light' ? 'bg-black/10 text-neutral-900 ring-black/15 hover:bg-black/20' : 'bg-white/15 text-white ring-white/25 hover:bg-white/25',
+    hidden && 'pointer-events-none opacity-0',
+  )
+  const arrow = (target: ArrowTarget, side: 'left' | 'right') => {
+    const Icon = side === 'left' ? ChevronLeft : ChevronRight
+    const position = side === 'left' ? 'left-2 sm:left-4' : 'right-2 sm:right-4'
+    const handle = (event: React.MouseEvent) => {
+      event.preventDefault()
+      event.stopPropagation()
+      target.onSelect()
+    }
+    return target.href ? (
+      <a href={target.href} onClick={handle} onDoubleClick={(event) => event.stopPropagation()} aria-label={target.label} title={target.label} className={cn(className, position)}>
+        <Icon className="size-5 sm:size-6" aria-hidden="true" />
+      </a>
+    ) : (
+      <button type="button" onClick={handle} onDoubleClick={(event) => event.stopPropagation()} aria-label={target.label} title={target.label} className={cn(className, position)}>
+        <Icon className="size-5 sm:size-6" aria-hidden="true" />
+      </button>
+    )
+  }
+  return (
+    <>
+      {arrow(prev, 'left')}
+      {arrow(next, 'right')}
+    </>
+  )
+}
+
+/** Small hint at the bottom of the stage, replacing the old center "Open fullscreen" button. */
+export function DoubleTapHint({ tone }: { tone: 'light' | 'dark' }) {
+  const { t } = useTranslation()
+  return (
+    <span
+      className={cn(
+        'pointer-events-none absolute bottom-3 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1 text-xs font-medium ring-1',
+        tone === 'light' ? 'bg-black/5 text-neutral-800 ring-black/10' : 'bg-white/10 text-white ring-white/20',
+      )}
+    >
+      {t('doubleTapHint', 'Double-tap for fullscreen')}
+    </span>
   )
 }

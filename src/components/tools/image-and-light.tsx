@@ -185,46 +185,6 @@ function kelvinToRgb(kelvin: number) {
   return `rgb(${clamp(red)} ${clamp(green)} ${clamp(blue)})`
 }
 
-export function BrightWhiteScreen() {
-  const [kelvin, setKelvin] = useState(6500)
-  const [intensity, setIntensity] = useState(100)
-  const color = kelvinToRgb(kelvin)
-
-  return (
-    <ToolStage
-      label="Bright white light"
-      tone="light"
-      style={{ background: color, filter: intensity < 100 ? `brightness(${intensity / 100})` : undefined }}
-      controls={
-        <ControlRow>
-          <Slider
-            label="Color temperature"
-            value={kelvin}
-            min={2000}
-            max={10000}
-            step={100}
-            onChange={setKelvin}
-            format={(value) => `${value}K`}
-          />
-          <Slider label="Intensity" value={intensity} min={10} max={100} onChange={setIntensity} format={(v) => `${v}%`} />
-          <div className="flex gap-2">
-            {[
-              { label: 'Warm', value: 3000 },
-              { label: 'Neutral', value: 6500 },
-              { label: 'Cool', value: 9000 },
-            ].map((preset) => (
-              <ActionButton key={preset.label} onClick={() => setKelvin(preset.value)} aria-pressed={kelvin === preset.value}>
-                {preset.label}
-              </ActionButton>
-            ))}
-          </div>
-        </ControlRow>
-      }
-    >
-      <span className="sr-only">{`Light at ${kelvin} kelvin, ${intensity}% intensity`}</span>
-    </ToolStage>
-  )
-}
 
 function subscribeResize(callback: () => void) {
   window.addEventListener('resize', callback)

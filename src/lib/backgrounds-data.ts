@@ -122,7 +122,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
         title: 'Manual Tracing Light Box',
         description: 'Turn an iPad, tablet, or laptop into an impromptu lightbox by laying translucent paper over the glass surface.',
         linkText: 'Open Full White Screen',
-        linkHref: '/white-screen',
+        linkHref: '/',
       },
       {
         title: 'Screen Cleaning & Dust Inspection',
@@ -163,7 +163,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
       },
     ],
     relatedTools: [
-      { name: 'White Screen Tool', path: '/white-screen', description: 'Fullscreen white tool with brightness controls and timers.' },
+      { name: 'White Screen Tool', path: '/', description: 'Fullscreen white tool with brightness controls and timers.' },
       { name: 'Zoom Lighting', path: '/zoom-lighting', description: 'Adjustable color temperature softbox fill light.' },
       { name: 'Dead Pixel Test', path: '/dead-pixel-test', description: 'Cycle through primary colors to locate defective subpixels.' },
       { name: 'Screen Uniformity Test', path: '/screen-uniformity-test', description: 'Evaluate backlight variance across multi-zone panels.' },
@@ -707,7 +707,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     ],
     relatedTools: [
       { name: 'Yellow Screen Tool', path: '/yellow-screen', description: 'Fullscreen yellow tool with brightness controls.' },
-      { name: 'White Screen Tool', path: '/white-screen', description: 'Verify clean 6500K neutral white.' },
+      { name: 'White Screen Tool', path: '/', description: 'Verify clean 6500K neutral white.' },
     ],
   },
 
@@ -926,7 +926,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     ],
     relatedTools: [
       { name: 'Zoom Lighting', path: '/zoom-lighting', description: 'Adjustable color temperature lighting.' },
-      { name: 'White Screen Tool', path: '/white-screen', description: 'Baseline pure white screen.' },
+      { name: 'White Screen Tool', path: '/', description: 'Baseline pure white screen.' },
     ],
   },
 
@@ -1264,7 +1264,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
       },
     ],
     relatedTools: [
-      { name: 'White Screen Tool', path: '/white-screen', description: 'Fullscreen white screen tool.' },
+      { name: 'White Screen Tool', path: '/', description: 'Fullscreen white screen tool.' },
     ],
   },
 

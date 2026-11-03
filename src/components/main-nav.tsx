@@ -44,7 +44,7 @@ const TOOL_COLUMNS: ToolColumn[] = [
     titleKey: 'navFakeTimers',
     defaultTitle: 'Fake screens & timers',
     href: '/tools#fake-screens',
-    slugs: ['fake-windows-10-update', 'fake-zoom-meeting', 'fake-teams-meeting', 'stopwatch', 'countdown-timer'],
+    slugs: ['fake-windows-10-update', 'fake-zoom-meeting', 'fake-teams-meeting', 'fake-google-meet', 'stopwatch'],
   },
 ]
 

@@ -303,7 +303,7 @@ export const GUIDES: readonly GuideArticle[] = [
       'CRITICAL SAFETY INSTRUCTIONS: Always turn off and unplug your laptop or monitor from power before applying any cloth or liquid. Never spray water or cleaning solution directly onto the display surface, hinges, or bezel edges. Liquid migration into the bottom bezel will permanently destroy the display backlight.',
     primaryTool: {
       label: 'Open White Screen for Inspection',
-      path: '/white-screen',
+      path: '/',
       description: 'Use fullscreen white light to reveal dust, fingerprints, and smudges clearly before cleaning.',
     },
     sections: [
@@ -571,7 +571,7 @@ export const GUIDES: readonly GuideArticle[] = [
       'Traditional light tables and tracing boxes can cost upwards of $60 and clutter your desk. If you already own an iPad, Android tablet, or laptop, you can transform your device into an ultra-bright, flicker-free digital lightbox in one click.',
     primaryTool: {
       label: 'Open White Screen Lightbox',
-      path: '/white-screen',
+      path: '/',
       description: 'Fullscreen white light source ideal for paper tracing, stenciling, and inspecting negatives.',
     },
     sections: [
@@ -615,8 +615,8 @@ export const GUIDES: readonly GuideArticle[] = [
     intro:
       'Staring at a harsh, misconfigured monitor for 8 to 10 hours a day causes Computer Vision Syndrome (CVS), marked by dry eyes, blurred vision, tension headaches, and neck stiffness. Adjusting display luminance to harmonize with room lighting is the most impactful ergonomic improvement you can make.',
     primaryTool: {
-      label: 'Open Bright White Screen Tool',
-      path: '/bright-white-screen',
+      label: 'Open the White Screen Tool',
+      path: '/',
       description: 'Compare screen luminance with ambient paper lighting to calibrate comfortable brightness.',
     },
     sections: [

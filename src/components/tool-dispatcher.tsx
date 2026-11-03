@@ -17,7 +17,6 @@ const ScreenTests = lazy(() => import('@/components/tools/screen-tests').then(m 
 
 const ImageAndLight = lazy(() => import('@/components/tools/image-and-light').then(m => ({
   default: ({ slug }: { slug: string }) => {
-    if (slug === 'bright-white-screen') return <m.BrightWhiteScreen />
     if (slug === 'white-screen-image') return <m.ImageGenerator />
     if (slug === 'screen-resolution-test') return <m.ResolutionTest />
     return null
@@ -73,6 +72,7 @@ const FakeScreens = lazy(() => import('@/components/tools/fake-screens').then(m 
     if (slug === 'fake-video-call') return <m.FakeCallScreen appType="generic" />
     if (slug === 'fake-zoom-meeting') return <m.FakeCallScreen appType="zoom" />
     if (slug === 'fake-teams-meeting') return <m.FakeCallScreen appType="teams" />
+    if (slug === 'fake-google-meet') return <m.FakeCallScreen appType="meet" />
     if (slug === 'fake-slack-huddle') return <m.FakeCallScreen appType="slack" />
     return null
   }
@@ -101,7 +101,7 @@ export function renderToolComponent(slug: string): React.ReactNode {
   }
 
   // Image & Light
-  if (['bright-white-screen', 'white-screen-image', 'screen-resolution-test'].includes(slug)) {
+  if (['white-screen-image', 'screen-resolution-test'].includes(slug)) {
     return (
       <Suspense fallback={<ToolLoadingFallback />}>
         <ImageAndLight slug={slug} />

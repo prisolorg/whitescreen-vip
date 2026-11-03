@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ToolStage } from './tool-stage'
+import { StageArrows } from '@/components/screen-stage/stage-parts'
 import { ActionButton, ControlRow, Slider, Toggle } from './controls'
 import { isTypingTarget } from './use-fullscreen'
 import { useTranslation } from '@/lib/i18n'
@@ -72,6 +73,7 @@ export function PatternCycler({ label, patterns, autoCycle, showGridOption, note
       label={`${label}: ${current.label}`}
       tone={current.tone ?? 'dark'}
       onStageClick={() => step(1)}
+      doubleClickFullscreen
       style={{ background: current.background, backgroundSize: current.backgroundSize }}
       controls={
         <>
@@ -133,6 +135,11 @@ export function PatternCycler({ label, patterns, autoCycle, showGridOption, note
         </>
       }
     >
+      <StageArrows
+        tone={current.tone ?? 'dark'}
+        prev={{ label: `${t('prevPattern', 'Previous pattern')}: ${patterns[(index - 1 + patterns.length) % patterns.length].label}`, onSelect: () => step(-1) }}
+        next={{ label: `${t('nextPattern', 'Next pattern')}: ${patterns[(index + 1) % patterns.length].label}`, onSelect: () => step(1) }}
+      />
       {showGrid && (
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: GRID_OVERLAY }} />
       )}

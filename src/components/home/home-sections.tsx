@@ -66,7 +66,7 @@ export const HOMEPAGE_FAQS = [
 ] as const
 
 export const COLOR_CARDS = [
-  { id: 'white', name: 'White Screen', hex: '#FFFFFF', path: '/white-screen' },
+  { id: 'white', name: 'White Screen', hex: '#FFFFFF', path: '/' },
   { id: 'black', name: 'Black Screen', hex: '#000000', path: '/black-screen' },
   { id: 'red', name: 'Red Screen', hex: '#FF0000', path: '/red-screen' },
   { id: 'green', name: 'Green Screen', hex: '#00FF00', path: '/green-screen' },
@@ -170,7 +170,7 @@ export function HomeSections() {
       title: 'Cannot Download a White Screen Image',
       description:
         'Check whether your browser blocked the download. Verify the selected dimensions and ensure your device has enough available memory.',
-      linkHref: '/white-screen',
+      linkHref: '/',
       linkLabel: 'Open image tool →',
     },
     {
