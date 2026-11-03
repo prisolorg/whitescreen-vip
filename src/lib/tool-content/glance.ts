@@ -391,8 +391,8 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   },
   'countdown-timer': {
     answer:
-      'A countdown timer counts down from a set time to zero in large fullscreen digits, then sounds an alarm. Set hours, minutes and seconds for classes, exams, meetings, presentations, workouts or cooking, and read it clearly from across the room.',
-    features: ['Big fullscreen digits', 'Hours, minutes and seconds input with presets', 'Alarm sound at zero', 'Keeps time accurately even in background tabs'],
+      'A countdown timer counts down from a set time to zero in large fullscreen digits, then alerts you with a gentle flash and an optional chime. Set hours, minutes and seconds for classes, exams, meetings, presentations, workouts or cooking, and read it clearly from across the room.',
+    features: ['Big fullscreen digits', 'Hours, minutes and seconds input with presets', 'Screen flash and optional chime at zero', 'Keeps time accurately even in background tabs'],
     benefits: ['Keeps meetings and classes on schedule', 'Readable from the back of a room', 'Free, no app'],
     sources: [WIKI('Timer')],
   },
