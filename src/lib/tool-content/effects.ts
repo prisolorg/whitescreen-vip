@@ -3,39 +3,6 @@ import type { ToolContent } from './types'
 const FULLSCREEN_STEP = 'Press F or click Fullscreen to fill your display, and press Esc to exit.'
 
 export const effectsContent: Record<string, ToolContent> = {
-  'static-screen': {
-    title: 'Static Screen – Animated TV Static Noise Effect',
-    intro:
-      'Recreate the flickering black-and-white “snow” of an untuned analog TV. Adjust grain, speed and color, and optionally add soft static sound.',
-    steps: [
-      'The static starts playing immediately in the preview.',
-      'Use the grain, speed and contrast sliders to tune the look, or switch to color static.',
-      'Turn on sound for a gentle hiss — it only plays after you click, and starts quiet.',
-      FULLSCREEN_STEP,
-    ],
-    useCases: [
-      { title: 'Retro video backdrops', description: 'Use static as a transition or background in videos and streams.' },
-      { title: 'Halloween & props', description: 'Put a “haunted TV” on a spare screen for parties or escape rooms.' },
-      { title: 'Film and theater', description: 'Show convincing TV static on set without a real broadcast signal.' },
-      { title: 'Ambient focus', description: 'Some people find gentle static helpful for focus or sleep.' },
-    ],
-    faqs: [
-      {
-        question: 'Why do analog TVs show static?',
-        answer:
-          'Without a station signal, the tuner amplifies random electrical noise, including a small amount of cosmic background radiation, which appears as flickering dots.',
-      },
-      {
-        question: 'Is the static flashing safe?',
-        answer:
-          'Rapid flicker can be uncomfortable for some people and may trigger photosensitive epilepsy. Lower the speed or enable reduced motion, and stop if you feel unwell.',
-      },
-      {
-        question: 'Does it play sound automatically?',
-        answer: 'No. Sound is off by default and only starts after you turn it on.',
-      },
-    ],
-  },
   'no-signal-screen': {
     title: 'No Signal Screen – Fake TV “No Signal” Display',
     intro:
@@ -68,134 +35,145 @@ export const effectsContent: Record<string, ToolContent> = {
       },
     ],
   },
-  'white-noise-screen': {
-    title: 'White Noise Screen – Calming Visuals With White Noise',
+  'white-noise-generator': {
+    title: 'White Noise Generator – Free Online White Noise',
     intro:
-      'Play soft, continuous white noise generated in your browser, paired with a slow, gentle visual. Use a timer to fade out automatically when you fall asleep.',
+      'Press Start and this white noise generator plays a steady, full-spectrum hiss made live in your browser, with nothing to download or stream. Shape the sound with a low-pass or high-pass filter, set the volume in decibels, and add a sleep timer that fades out gently. Watch the live waveform, or switch the visual to classic TV static (this page replaces our old TV Static Screen). Want something softer? Try the [Pink Noise Generator](/pink-noise-generator/) or the deeper [Brown Noise Generator](/brown-noise-generator/), and pair any of them with the [Pomodoro Timer](/pomodoro-timer/) for focused work.',
     steps: [
-      'Click Play. Audio never starts without your action.',
-      'Set the volume — it starts low on purpose — and choose a visual style or a dark screen.',
-      'Optionally set a sleep timer to fade out after 15, 30 or 60 minutes.',
+      'Press Start. Sound never plays until you do, and it starts at a moderate volume.',
+      'Switch between white, pink and brown noise at any time without stopping.',
+      'Use a low-pass filter to soften the hiss, or a high-pass filter to remove rumble, and set the cutoff.',
+      'Pick a visual (waveform, TV static or a dark screen) and an optional sleep timer.',
       FULLSCREEN_STEP,
     ],
     useCases: [
-      { title: 'Sleep', description: 'Mask traffic, neighbors or snoring with steady white noise.' },
-      { title: 'Focus', description: 'Block distractions in open offices or busy homes.' },
-      { title: 'Babies', description: 'Many parents use soft white noise to help infants settle.' },
-      { title: 'Tinnitus relief', description: 'Some people find background noise makes ringing less noticeable.' },
+      { title: 'Sleep', description: 'Mask traffic, neighbours and snoring with a steady, even sound.' },
+      { title: 'Focus', description: 'Cover office chatter and household noise while you work or study.' },
+      { title: 'Babies', description: 'Many parents use soft white noise to help infants settle. Keep it quiet and away from the cot.' },
+      { title: 'Retro TV static', description: 'Switch the visual to TV static for videos, props or a haunted-TV party screen.' },
     ],
     faqs: [
       {
         question: 'What is white noise?',
         answer:
-          'White noise contains all audible frequencies at equal power, which sounds like a bright hiss, similar to an untuned radio.',
+          'White noise has equal power at every frequency. To the ear it sounds like a bright, even hiss, like an untuned radio or TV.',
+      },
+      {
+        question: 'What do the low-pass and high-pass filters do?',
+        answer:
+          'A low-pass filter keeps frequencies below the cutoff, so the noise sounds darker and softer. A high-pass filter keeps frequencies above it, removing rumble and making it airier.',
+      },
+      {
+        question: 'Where did the TV Static Screen go?',
+        answer:
+          'It is now part of this page. Choose the TV static visual to get the flickering black-and-white snow with matching white noise.',
       },
       {
         question: 'Does it use any data?',
-        answer: 'No. The noise is generated live in your browser with the Web Audio API, so nothing is streamed.',
+        answer: 'No. The noise is generated on your device with the Web Audio API, so nothing is streamed and it keeps working offline once loaded.',
       },
       {
-        question: 'Is it safe for babies?',
+        question: 'Is the TV static visual safe to watch?',
         answer:
-          'Keep the volume low and the device away from the crib. Pediatric guidance suggests staying below about 50 dB at the baby’s position.',
+          'Fast flicker can be uncomfortable for some people and may trigger photosensitive epilepsy. Use the waveform or dark visual if you are sensitive.',
       },
     ],
   },
-  'brown-noise-screen': {
-    title: 'Brown Noise Screen – Deep Brown Noise for Focus & Sleep',
+  'brown-noise-generator': {
+    title: 'Brown Noise Generator – Deep Online Brown Noise',
     intro:
-      'Play deep, rumbling brown noise, generated live in your browser, with a calm visual. Brown noise emphasizes low frequencies and sounds like distant thunder or a waterfall.',
+      'A brown noise generator for deep focus and sleep. Brown noise puts most of its energy in the low frequencies, so it sounds like a distant waterfall or a steady rumble rather than a hiss. Press Start, set the volume in decibels, soften or trim it with a filter, and let the sleep timer fade it out. Compare it with the [White Noise Generator](/white-noise-generator/) and the [Pink Noise Generator](/pink-noise-generator/) using the switch on the stage.',
     steps: [
-      'Click Play to start — nothing plays automatically.',
-      'Adjust the volume, which starts quiet, and choose a visual or a dark screen.',
-      'Set an optional sleep timer to fade out gently.',
+      'Press Start. Nothing plays until you do.',
+      'Set the volume; brown noise feels quieter than white noise at the same level, so go slowly.',
+      'Add a low-pass filter for an even deeper rumble, or a high-pass filter to remove the lowest boom on small speakers.',
+      'Choose an optional sleep timer and a visual.',
       FULLSCREEN_STEP,
     ],
     useCases: [
-      { title: 'Deep focus', description: 'Many people with ADHD report brown noise helps them concentrate.' },
-      { title: 'Sleep', description: 'Its low rumble is softer than white noise for long listening.' },
-      { title: 'Masking low sounds', description: 'Helps cover rumbling traffic or HVAC hum.' },
-      { title: 'Relaxation', description: 'Pair with a dark screen for a calm wind-down routine.' },
+      { title: 'Deep focus', description: 'Many people, including some with ADHD, say brown noise helps them settle into work.' },
+      { title: 'Sleep', description: 'Its soft, low tone is gentle enough to leave on for hours.' },
+      { title: 'Masking low sounds', description: 'Covers traffic rumble, footsteps and air conditioning hum.' },
+      { title: 'Wind-down', description: 'Pair it with a dark screen in the evening.' },
     ],
     faqs: [
       {
-        question: 'How is brown noise different from white noise?',
+        question: 'How is brown noise different from white and pink noise?',
         answer:
-          'Brown noise loses power as frequency rises, so it sounds deeper and less hissy. White noise has equal power at all frequencies and sounds brighter.',
+          'Brown noise loses power quickly as frequency rises (about 6 dB per octave), so it is the deepest of the three. Pink noise is in between, and white noise is the brightest.',
       },
       {
         question: 'Why is it called brown noise?',
-        answer: 'It is named after Brownian motion, the random movement of particles, not the color brown.',
+        answer: 'It is named after Brownian motion, the random movement of particles, not the colour brown. It is also called red noise.',
       },
       {
-        question: 'Can I leave it running all night?',
-        answer: 'Yes, but keep the volume moderate. A sleep timer is available if you prefer it to stop.',
+        question: 'Why can I barely hear it on my phone?',
+        answer: 'Small speakers cannot reproduce deep bass. Use headphones or larger speakers, or add a high-pass filter and raise the volume a little.',
       },
     ],
   },
-  'pink-noise-screen': {
-    title: 'Pink Noise Screen – Balanced Pink Noise Generator',
+  'pink-noise-generator': {
+    title: 'Pink Noise Generator – Online Pink Noise for Sleep',
     intro:
-      'Play balanced pink noise, generated live in your browser, with a soothing visual. Pink noise sits between white and brown, sounding like steady rain or wind.',
+      'A pink noise generator that sounds like steady rain or wind. Pink noise has equal energy in every octave, so it is fuller and less hissy than white noise but brighter than brown noise. Press Start, adjust the volume in decibels, shape it with a filter and set a sleep timer. Switch to the [White Noise Generator](/white-noise-generator/) or [Brown Noise Generator](/brown-noise-generator/) right from the stage.',
     steps: [
-      'Click Play to start — audio never autoplays.',
-      'Adjust the volume, which starts low, and pick a visual style.',
-      'Set an optional sleep timer to fade out automatically.',
+      'Press Start. Audio never plays on its own.',
+      'Set the volume in decibels.',
+      'Use the low-pass or high-pass filter and cutoff slider to fine-tune the tone.',
+      'Choose an optional sleep timer and a visual.',
       FULLSCREEN_STEP,
     ],
     useCases: [
-      { title: 'Sleep quality', description: 'Pink noise is a popular, less harsh alternative to white noise for sleep.' },
+      { title: 'Sleep', description: 'A popular, less harsh alternative to white noise for the whole night.' },
       { title: 'Studying', description: 'A balanced background sound for long reading sessions.' },
-      { title: 'Audio testing', description: 'Pink noise is used to roughly check speaker balance in a room.' },
-      { title: 'Calm spaces', description: 'Add soft background sound to a waiting room or studio.' },
+      { title: 'Speaker check', description: 'Pink noise is the standard signal for a rough listen to speaker balance.' },
+      { title: 'Calm spaces', description: 'Soft background sound for waiting rooms and studios.' },
     ],
     faqs: [
       {
         question: 'What is pink noise?',
         answer:
-          'Pink noise has equal energy per octave, so lower frequencies are louder than in white noise. It sounds more natural, like rain.',
+          'Pink noise has equal energy per octave, so each step up in pitch is a little quieter than in white noise. It sounds more natural, like rain.',
       },
       {
         question: 'Is pink noise good for sleep?',
-        answer:
-          'Many people find it relaxing, and some small studies suggest it may help deep sleep, but results vary by person.',
+        answer: 'Many people find it relaxing, and some small studies suggest it may support deep sleep, but results vary from person to person.',
       },
       {
         question: 'Can I use it to test speakers?',
-        answer:
-          'It is fine for a rough listening check. For precise room measurement, use dedicated measurement software and a calibrated microphone.',
+        answer: 'It is fine for a quick listening check. For accurate room measurements use measurement software and a calibrated microphone.',
       },
     ],
   },
   'broken-screen': {
-    title: 'Broken Screen Prank – Fake Cracked Screen Effect',
+    title: 'Broken Screen Prank – Realistic Cracked Glass Effect',
     intro:
-      'Show a realistic cracked-glass effect over a black or wallpaper background. Click to add more cracks. It is a harmless visual — nothing is actually broken.',
+      'Tap anywhere and the screen "shatters": a spider-web of cracks spreads from the impact point, with glass shards that catch the light, a crushed centre and a sharp crack sound. Pick a wallpaper, lock screen or black background, go fullscreen and hand over the phone or laptop. Nothing is actually broken; it is a picture drawn in your browser. For a different scare, try the [Hacked Screen Simulator](/hacked-screen/).',
     steps: [
-      'Pick a background and crack style.',
-      'Click or tap anywhere on the stage to add a new crack at that point.',
-      'Turn on the optional glass sound if you want — it starts off.',
+      'Pick a background: wallpaper, phone lock screen or black.',
+      'Tap or click anywhere on the screen to crack the glass at that point. Each tap adds another impact.',
+      'Leave the crack sound on for extra realism, or turn it off.',
       FULLSCREEN_STEP,
     ],
     useCases: [
-      { title: 'Harmless pranks', description: 'Give a friend a brief scare, then show them it is a webpage.' },
-      { title: 'Video props', description: 'Show a broken phone or monitor in a short film without damage.' },
-      { title: 'April Fools', description: 'A classic, reversible joke for the office.' },
-      { title: 'Design reference', description: 'Use the crack visuals as reference for illustrations.' },
+      { title: 'Harmless pranks', description: 'A quick scare for a friend, followed by the reveal.' },
+      { title: 'Video props', description: 'Show a smashed phone or monitor in a short film without breaking anything.' },
+      { title: 'April Fools', description: 'A classic, fully reversible office joke.' },
+      { title: 'Design reference', description: 'Study how impact cracks spread for illustration and VFX.' },
     ],
     faqs: [
       {
         question: 'Can this damage my screen?',
-        answer: 'No. It is only an image drawn in your browser. Press Esc or close the tab to remove it.',
+        answer: 'No. It is only an image drawn in your browser. Press Esc, tap Clear or close the tab to remove it.',
+      },
+      {
+        question: 'Why does it look like real glass?',
+        answer:
+          'Real impacts make a dense, crushed centre, long radial cracks and rings of short cracks between them. The effect draws all three, with highlights and shadows on each crack and lighter shards where pieces have lifted.',
       },
       {
         question: 'How do I use it as a prank responsibly?',
-        answer:
-          'Keep it short, choose someone who will laugh, never use it to get money or information, and reveal the joke right away.',
-      },
-      {
-        question: 'Can I add more cracks?',
-        answer: 'Yes. Every click or tap on the stage adds a new crack radiating from that point.',
+        answer: 'Keep it short, choose someone who will laugh, never use it to get money or information, and reveal the joke right away.',
       },
     ],
   },
@@ -231,36 +209,67 @@ export const effectsContent: Record<string, ToolContent> = {
       },
     ],
   },
-  'zoom-lighting': {
-    title: 'Zoom Lighting – Screen Light for Video Calls',
+  'hacked-screen': {
+    title: 'Hacked Screen Simulator – Fake Hacked Screen Prank',
     intro:
-      'Turn your monitor into a soft ring light for Zoom, Teams or Meet. Choose a warm or cool tone, set the brightness, and frame your face with a glowing border while you keep your call visible.',
+      'A movie-style "SYSTEM BREACHED" screen: red warning banners, glitching text, scrolling fake logs, a countdown and a progress bar that pretends to copy files. It is a harmless simulation. Nothing is accessed, nothing is sent, and it ends the moment you press Esc. Want to play the hacker instead? Try [Hacker Typer](/hacker-typer/) or the [Matrix Screensaver](/matrix-screensaver/).',
     steps: [
-      'Open this page on a second monitor, or put it beside your call window.',
-      'Pick a light tone — warm, neutral, cool or a custom color — and adjust brightness.',
-      'Use ring mode to light only the edges of the screen, or full mode for maximum light.',
-      FULLSCREEN_STEP,
+      'Choose a style (red alert or green terminal) and the text to show.',
+      'Turn the optional siren on or off; it only plays after you start it.',
+      'Go fullscreen and leave the device for your friend to find.',
+      'Press Esc or move the mouse to reveal the close button.',
     ],
     useCases: [
-      { title: 'Video calls', description: 'Brighten your face in dim rooms without buying a ring light.' },
-      { title: 'Streaming', description: 'Add soft key light from a spare monitor or tablet.' },
-      { title: 'Selfies', description: 'Use a laptop or tablet as a quick, even light source.' },
-      { title: 'Makeup', description: 'Check makeup under warm or daylight-like light.' },
+      { title: 'Pranks', description: 'A short scare for a friend who will laugh about it afterwards.' },
+      { title: 'Films and escape rooms', description: 'A convincing "you have been hacked" prop screen.' },
+      { title: 'Security awareness', description: 'Show what scareware looks like so people learn to ignore it.' },
+      { title: 'Streams and videos', description: 'A dramatic interlude or reaction moment.' },
     ],
     faqs: [
       {
-        question: 'Does this work with Zoom’s own settings?',
-        answer:
-          'Yes. It only lights your face; it does not change your camera. You can still use Zoom’s “Adjust for low light” option too.',
+        question: 'Does this actually hack or harm my device?',
+        answer: 'No. It is text and animation in a normal browser tab. It does not run commands, read files or connect to anything.',
       },
       {
-        question: 'Which tone should I choose?',
+        question: 'What should I do if a real website says I have been hacked?',
         answer:
-          'Warm tones flatter skin in evening rooms, while neutral or cool tones match daylight from a window.',
+          'Close the tab. Real security tools never ask you to call a number or pay to unlock your device; pop-ups that do are scams.',
+      },
+      {
+        question: 'How do I exit?',
+        answer: 'Press Esc, or move the mouse or tap to reveal the close button. Closing the tab also works.',
+      },
+    ],
+  },
+  'zoom-lighting': {
+    title: 'Zoom Lighting – Screen Light for Video Calls',
+    intro:
+      'Turn your monitor into a soft key light for Zoom, Teams or Google Meet. Set the color temperature in Kelvin, from warm 2700 K to daylight 6500 K, adjust brightness, and choose full-screen light or a frame that leaves room for your call window. For a round light that looks great in reflections, use the [Ring Light](/ring-light/).',
+    steps: [
+      'Open this page on a second monitor, or beside your call window on one screen.',
+      'Set the color temperature and brightness. Turn your display brightness up for more light.',
+      'Choose Full light for maximum brightness, or Frame to keep a dark window in the middle for your call.',
+      FULLSCREEN_STEP,
+    ],
+    useCases: [
+      { title: 'Video calls', description: 'Brighten and even out your face in dim rooms.' },
+      { title: 'Streaming', description: 'A soft key light from a spare monitor or tablet.' },
+      { title: 'Selfies', description: 'Use a laptop or tablet as a quick, even light source.' },
+      { title: 'Makeup', description: 'Check makeup under warm evening or daylight-like light.' },
+    ],
+    faqs: [
+      {
+        question: 'Which color temperature should I use?',
+        answer:
+          'Match the room. Around 3000 K suits lamp-lit evening rooms, 4000–4500 K is neutral, and 5500–6500 K matches daylight from a window.',
+      },
+      {
+        question: 'Does this change my camera?',
+        answer: 'No. It only lights your face. You can still use your meeting app\'s own low-light setting.',
       },
       {
         question: 'Will it make my screen brighter than usual?',
-        answer: 'No. It uses your current brightness. Turn your display brightness up for more light.',
+        answer: 'No. It uses your current brightness setting; turn your display up for more light.',
       },
     ],
   },

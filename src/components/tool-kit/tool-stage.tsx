@@ -121,15 +121,11 @@ export function ToolStage({
             className,
           )}
         >
-          {reserveHeadingSpace && heading && !isFullscreen ? (
-            <div className="size-full pt-20 sm:pt-24">
-              {typeof children === 'function' ? children({ isFullscreen, exit: exitStage }) : children}
-            </div>
-          ) : typeof children === 'function' ? (
-            children({ isFullscreen, exit: exitStage })
-          ) : (
-            children
-          )}
+          {/* Always the same wrapper, so entering fullscreen never remounts the tool (camera
+              streams and canvases would otherwise be lost); it only drops the title padding. */}
+          <div className={reserveHeadingSpace && heading && !isFullscreen ? 'size-full pt-20 sm:pt-24' : 'contents'}>
+            {typeof children === 'function' ? children({ isFullscreen, exit: exitStage }) : children}
+          </div>
 
           {doubleClickFullscreen && !isFullscreen && <DoubleTapHint tone={tone} />}
 

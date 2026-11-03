@@ -155,3 +155,27 @@
     display: none;
   }
 }
+
+/* Hacked screen: jittery RGB-split glitch on the headline, and a slow blink for warnings. */
+@keyframes hack-glitch {
+  0%, 86%, 100% { transform: translate(0); text-shadow: 2px 0 rgba(0, 255, 255, 0.7), -2px 0 rgba(255, 0, 64, 0.7); }
+  88% { transform: translate(-3px, 1px) skewX(-6deg); text-shadow: -5px 0 rgba(0, 255, 255, 0.8), 5px 0 rgba(255, 0, 64, 0.8); }
+  90% { transform: translate(4px, -2px); clip-path: inset(10% 0 45% 0); }
+  92% { transform: translate(-2px, 2px); clip-path: inset(55% 0 5% 0); }
+  94% { transform: translate(0); clip-path: none; }
+}
+.hack-glitch {
+  animation: hack-glitch 2.4s steps(1, end) infinite;
+}
+@keyframes hack-blink {
+  50% { opacity: 0.25; }
+}
+.hack-blink {
+  animation: hack-blink 1s steps(1, end) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hack-glitch,
+  .hack-blink {
+    animation: none;
+  }
+}

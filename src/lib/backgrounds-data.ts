@@ -500,7 +500,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     ],
     relatedTools: [
       { name: 'Monitor Test', path: '/monitor-test', description: 'Motion blur, response time, and tearing checks.' },
-      { name: 'Static Screen', path: '/static-screen', description: 'Retro analog TV static noise generator.' },
+      { name: 'White Noise Generator', path: '/white-noise-generator/', description: 'White noise with a TV static visual.' },
       { name: 'Flip Clock Screensaver', path: '/flip-clock-screensaver', description: 'Aesthetic minimal clock screensaver.' },
     ],
   },

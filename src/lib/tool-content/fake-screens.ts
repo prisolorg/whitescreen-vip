@@ -1,5 +1,7 @@
 import type { ToolContent, ToolFaq } from './types'
 
+const FULLSCREEN_STEP = 'Press F or click Fullscreen to fill your display, and press Esc to exit.'
+
 const SAFETY_FAQ: ToolFaq = {
   question: 'Is this a real update or anything harmful?',
   answer:
@@ -229,4 +231,33 @@ export const fakeScreenContent: Record<string, ToolContent> = {
     intro:
       'A Slack-style huddle window with avatars, speaking indicators and huddle controls. An independent simulation for props and jokes.',
   }),
+  'fake-radar-screen': {
+    title: 'Fake Radar Screen – Sci-Fi Radar Sweep Simulator',
+    intro:
+      'A fullscreen radar display straight out of a submarine or air-traffic movie: a green sweep line rotates around range rings, contacts light up as the beam passes and slowly fade, and the readouts show bearing, range and a running clock. Change the color, speed and number of contacts, and turn on the soft ping. It is a simulation only and shows no real data. For more screen props, try the [Hacked Screen Simulator](/hacked-screen/) or [Hacker Typer](/hacker-typer/).',
+    steps: [
+      'The radar starts sweeping straight away.',
+      'Choose a color (green, amber or blue), sweep speed and number of contacts.',
+      'Turn on the ping sound if you want; it plays only after you enable it.',
+      FULLSCREEN_STEP,
+    ],
+    useCases: [
+      { title: 'Film and theatre props', description: 'A convincing control-room screen without real equipment.' },
+      { title: 'Escape rooms and games', description: 'Set the mood for submarine, space or spy themes.' },
+      { title: 'Parties and streams', description: 'A moving sci-fi backdrop on a TV or second monitor.' },
+      { title: 'Screensaver', description: 'A calm, looping animation for an idle display.' },
+    ],
+    faqs: [
+      {
+        question: 'Does this show real radar or aircraft data?',
+        answer: 'No. Every contact is randomly generated in your browser. It is for entertainment and props only.',
+      },
+      {
+        question: 'Why do the blips fade?',
+        answer:
+          'Classic radar screens used phosphor that glowed after the beam passed and then dimmed. The fade copies that afterglow.',
+      },
+      EXIT_FAQ,
+    ],
+  },
 }

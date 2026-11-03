@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Mic,
   MicOff,
@@ -29,7 +29,9 @@ import {
   AudioLines,
 } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
-import { ControlRow, Slider, Toggle, TextInput, ActionButton } from '@/components/tool-kit/controls'
+import { ControlRow, Segmented, Slider, Toggle, TextInput, ActionButton } from '@/components/tool-kit/controls'
+import { useAnimationFrame, useCanvasSize } from '@/components/tool-kit/hooks'
+import { playTone } from '@/components/tool-kit/audio'
 import { cn } from '@/lib/utils'
 
 /* ---------------- Fake Update Simulation ---------------- */
@@ -294,8 +296,15 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
 
   const [elapsed, setElapsed] = useState(0)
   const [clockTime, setClockTime] = useState('')
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
   const streamRef = useRef<MediaStream | null>(null)
+  // A callback ref, so any newly mounted <video> (layout switch, fullscreen) picks up the live stream.
+  const attachVideo = useCallback((element: HTMLVideoElement | null) => {
+    videoRef.current = element
+    if (element && streamRef.current && element.srcObject !== streamRef.current) {
+      element.srcObject = streamRef.current
+    }
+  }, [])
 
   // Cycle active speaker for realism
   useEffect(() => {
@@ -440,7 +449,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               )}
             >
               {isVideoOn ? (
-                <video ref={videoRef} autoPlay playsInline muted className="size-full scale-x-[-1] object-cover" />
+                <video ref={attachVideo} autoPlay playsInline muted className="size-full scale-x-[-1] object-cover" />
               ) : (
                 <div className="flex size-9 items-center justify-center rounded-full bg-[#5b5fc7] text-sm font-semibold sm:size-20 sm:text-2xl">You</div>
               )}
@@ -488,7 +497,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               )}
             >
               {isVideoOn ? (
-                <video ref={videoRef} autoPlay playsInline muted className="size-full scale-x-[-1] object-cover" />
+                <video ref={attachVideo} autoPlay playsInline muted className="size-full scale-x-[-1] object-cover" />
               ) : (
                 <div className="flex size-10 items-center justify-center rounded-full bg-[#1a73e8] text-lg font-medium text-white sm:size-20 sm:text-3xl">Y</div>
               )}
@@ -614,7 +623,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               )}
             >
               {isVideoOn ? (
-                <video ref={videoRef} autoPlay playsInline muted className="size-full scale-x-[-1] object-cover" />
+                <video ref={attachVideo} autoPlay playsInline muted className="size-full scale-x-[-1] object-cover" />
               ) : (
                 <span className="px-2 text-center text-sm font-medium sm:text-2xl">You</span>
               )}
@@ -742,7 +751,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
             >
               {isVideoOn ? (
                 <video
-                  ref={videoRef}
+                  ref={attachVideo}
                   autoPlay
                   playsInline
                   muted
@@ -864,6 +873,190 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
           </div>
         </div>
       )}
+    </ToolStage>
+  )
+}
+
+/* ---------------- Fake radar screen ---------------- */
+
+const RADAR_COLORS = {
+  green: { label: 'Green', rgb: '34,197,94', background: '#010d05' },
+  amber: { label: 'Amber', rgb: '245,158,11', background: '#0d0802' },
+  blue: { label: 'Blue', rgb: '56,189,248', background: '#020a12' },
+} as const
+
+type Contact = { angle: number; dist: number; drift: number; speed: number; lastHit: number; id: number }
+
+function makeContacts(count: number): Contact[] {
+  return Array.from({ length: count }, (_, i) => ({
+    angle: Math.random() * Math.PI * 2,
+    dist: 0.15 + Math.random() * 0.8,
+    drift: Math.random() * Math.PI * 2,
+    speed: 0.002 + Math.random() * 0.01,
+    lastHit: -10_000,
+    id: 10 + i * 7 + Math.floor(Math.random() * 6),
+  }))
+}
+
+export function FakeRadarScreen() {
+  const { canvasRef, width, height, dpr } = useCanvasSize(2)
+  const [palette, setPalette] = useState<keyof typeof RADAR_COLORS>('green')
+  const [rpm, setRpm] = useState(12)
+  const [count, setCount] = useState(8)
+  const [ping, setPing] = useState(false)
+  const [labels, setLabels] = useState(true)
+  const contactsRef = useRef<Contact[]>([])
+  const sweepRef = useRef(0)
+  const timeRef = useRef(0)
+
+  useEffect(() => {
+    contactsRef.current = makeContacts(count)
+  }, [count])
+
+  useAnimationFrame((delta) => {
+    const canvas = canvasRef.current
+    const ctx = canvas?.getContext('2d')
+    if (!canvas || !ctx || !width) return
+    const { rgb, background } = RADAR_COLORS[palette]
+    const color = (alpha: number) => `rgba(${rgb},${alpha})`
+    timeRef.current += delta
+    const now = timeRef.current
+    const previous = sweepRef.current
+    sweepRef.current = (previous + ((rpm * Math.PI * 2) / 60) * (delta / 1000)) % (Math.PI * 2)
+    const sweep = sweepRef.current
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    ctx.fillStyle = background
+    ctx.fillRect(0, 0, width, height)
+    const cx = width / 2
+    const cy = height / 2
+    const R = Math.min(width, height) * 0.44
+
+    // Range rings, crosshair and bearing ticks.
+    ctx.strokeStyle = color(0.35)
+    ctx.lineWidth = 1
+    for (let i = 1; i <= 4; i++) {
+      ctx.beginPath()
+      ctx.arc(cx, cy, (R * i) / 4, 0, Math.PI * 2)
+      ctx.stroke()
+    }
+    ctx.beginPath()
+    ctx.moveTo(cx - R, cy)
+    ctx.lineTo(cx + R, cy)
+    ctx.moveTo(cx, cy - R)
+    ctx.lineTo(cx, cy + R)
+    ctx.stroke()
+    ctx.fillStyle = color(0.7)
+    ctx.font = `${Math.max(9, R * 0.045)}px ui-monospace, monospace`
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    for (let deg = 0; deg < 360; deg += 10) {
+      const a = (deg - 90) * (Math.PI / 180)
+      const inner = deg % 30 === 0 ? R * 0.95 : R * 0.975
+      ctx.beginPath()
+      ctx.moveTo(cx + Math.cos(a) * inner, cy + Math.sin(a) * inner)
+      ctx.lineTo(cx + Math.cos(a) * R, cy + Math.sin(a) * R)
+      ctx.stroke()
+      if (deg % 30 === 0) ctx.fillText(String(deg).padStart(3, '0'), cx + Math.cos(a) * R * 1.07, cy + Math.sin(a) * R * 1.07)
+    }
+
+    // Sweep with a fading phosphor trail.
+    const trail = Math.PI / 2.2
+    const slices = 48
+    for (let i = 0; i < slices; i++) {
+      const a1 = sweep - (trail * (i + 1)) / slices
+      const a2 = sweep - (trail * i) / slices
+      ctx.beginPath()
+      ctx.moveTo(cx, cy)
+      ctx.arc(cx, cy, R, a1 - Math.PI / 2, a2 - Math.PI / 2)
+      ctx.closePath()
+      ctx.fillStyle = color(0.28 * Math.pow(1 - i / slices, 2))
+      ctx.fill()
+    }
+    ctx.strokeStyle = color(0.95)
+    ctx.lineWidth = 2
+    ctx.shadowColor = color(1)
+    ctx.shadowBlur = 12
+    ctx.beginPath()
+    ctx.moveTo(cx, cy)
+    ctx.lineTo(cx + Math.cos(sweep - Math.PI / 2) * R, cy + Math.sin(sweep - Math.PI / 2) * R)
+    ctx.stroke()
+    ctx.shadowBlur = 0
+
+    // Contacts light up when the beam passes, then fade.
+    let pinged = false
+    for (const c of contactsRef.current) {
+      c.angle = (c.angle + Math.cos(c.drift) * c.speed * (delta / 1000)) % (Math.PI * 2)
+      c.dist = Math.min(0.97, Math.max(0.08, c.dist + Math.sin(c.drift) * c.speed * 0.4 * (delta / 1000)))
+      const a = (c.angle + Math.PI * 2) % (Math.PI * 2)
+      const crossed = previous <= sweep ? a > previous && a <= sweep : a > previous || a <= sweep
+      if (crossed) {
+        c.lastHit = now
+        pinged = true
+      }
+      const age = (now - c.lastHit) / 1000
+      const alpha = Math.max(0, 1 - age / ((60 / rpm) * 0.95))
+      if (alpha <= 0) continue
+      const x = cx + Math.cos(a - Math.PI / 2) * c.dist * R
+      const y = cy + Math.sin(a - Math.PI / 2) * c.dist * R
+      ctx.fillStyle = color(alpha)
+      ctx.shadowColor = color(alpha)
+      ctx.shadowBlur = 10
+      ctx.beginPath()
+      ctx.arc(x, y, Math.max(2.5, R * 0.014), 0, Math.PI * 2)
+      ctx.fill()
+      ctx.shadowBlur = 0
+      if (labels) {
+        ctx.textAlign = 'left'
+        ctx.fillStyle = color(alpha * 0.85)
+        ctx.font = `${Math.max(9, R * 0.04)}px ui-monospace, monospace`
+        ctx.fillText(`TGT-${String(c.id).padStart(2, '0')}`, x + 8, y - 8)
+        ctx.textAlign = 'center'
+      }
+    }
+    if (pinged && ping) playTone(1320, 120, 0.05)
+
+    // Corner readouts.
+    const bearing = Math.round(((sweep * 180) / Math.PI) % 360)
+    const pad = 14
+    ctx.font = `${Math.max(10, Math.min(width, height) * 0.024)}px ui-monospace, monospace`
+    ctx.fillStyle = color(0.85)
+    ctx.textAlign = 'left'
+    ctx.textBaseline = 'bottom'
+    ctx.fillText(`BRG ${String(bearing).padStart(3, '0')}°`, pad, height - pad - 18)
+    ctx.fillText(`RNG 40 NM · ${rpm} RPM`, pad, height - pad)
+    ctx.textAlign = 'right'
+    const clock = new Date().toISOString().slice(11, 19)
+    ctx.fillText(`${clock} UTC`, width - pad, height - pad - 18)
+    ctx.fillText(`CONTACTS ${String(contactsRef.current.length).padStart(2, '0')}`, width - pad, height - pad)
+  })
+
+  return (
+    <ToolStage
+      label="Fake radar screen"
+      tone="dark"
+      reserveHeadingSpace
+      doubleClickFullscreen
+      badge="Simulation"
+      style={{ background: RADAR_COLORS[palette].background }}
+      controls={
+        <ControlRow>
+          <Segmented
+            label="Color"
+            value={palette}
+            onChange={setPalette}
+            options={(Object.keys(RADAR_COLORS) as (keyof typeof RADAR_COLORS)[]).map((key) => ({ value: key, label: RADAR_COLORS[key].label }))}
+          />
+          <Slider label="Sweep speed" value={rpm} min={4} max={40} onChange={setRpm} format={(v) => `${v} rpm`} />
+          <Slider label="Contacts" value={count} min={0} max={24} onChange={setCount} />
+          <Toggle label="Contact labels" checked={labels} onChange={setLabels} />
+          <Toggle label="Ping sound" checked={ping} onChange={setPing} />
+        </ControlRow>
+      }
+    >
+      <div className="relative size-full">
+        <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 size-full" />
+      </div>
     </ToolStage>
   )
 }

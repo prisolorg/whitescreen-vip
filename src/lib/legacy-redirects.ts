@@ -23,6 +23,11 @@ const REMOVED_PAGES: Record<string, string> = {
   '/white-screen/': '/',
   '/bright-white-screen/': '/',
   '/custom-dvd-screensaver/': '/dvd-screensaver/',
+  // TV static merged into the white noise generator; noise pages renamed to "generator".
+  '/static-screen/': '/white-noise-generator/',
+  '/white-noise-screen/': '/white-noise-generator/',
+  '/brown-noise-screen/': '/brown-noise-generator/',
+  '/pink-noise-screen/': '/pink-noise-generator/',
   // Retired background pages go to the closest page that replaced them.
   '/backgrounds/warm-beige/': '/backgrounds/beige-background/',
   '/backgrounds/soft-lavender/': '/backgrounds/pastel-background/',

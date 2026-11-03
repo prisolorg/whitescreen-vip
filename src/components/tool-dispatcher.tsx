@@ -25,19 +25,21 @@ const ImageAndLight = lazy(() => import('@/components/tools/image-and-light').th
 
 const Effects = lazy(() => import('@/components/tools/effects').then(m => ({
   default: ({ slug }: { slug: string }) => {
-    if (slug === 'static-screen') return <m.StaticScreen />
     if (slug === 'no-signal-screen') return <m.NoSignalScreen />
-    if (slug === 'white-noise-screen') return <m.NoiseScreen color="white" />
-    if (slug === 'brown-noise-screen') return <m.NoiseScreen color="brown" />
-    if (slug === 'pink-noise-screen') return <m.NoiseScreen color="pink" />
     if (slug === 'broken-screen') return <m.BrokenScreen />
     if (slug === 'hacker-typer') return <m.HackerTyper />
+    if (slug === 'hacked-screen') return <m.HackedScreen />
     if (slug === 'zoom-lighting') return <m.ZoomLighting />
+    if (slug === 'ring-light') return <m.RingLight />
     if (slug === 'visual-noise') return <m.VisualNoise />
     if (slug === 'color-cycle') return <m.ColorCycle />
     if (slug === 'gradient-screen') return <m.GradientScreen />
     return null
   }
+})))
+
+const NoiseGenerator = lazy(() => import('@/components/tools/noise-generator').then(m => ({
+  default: ({ slug }: { slug: string }) => <m.NoiseGenerator initialColor={slug === 'brown-noise-generator' ? 'brown' : slug === 'pink-noise-generator' ? 'pink' : 'white'} />
 })))
 
 const Screensavers = lazy(() => import('@/components/tools/screensavers').then(m => ({
@@ -55,6 +57,7 @@ const Utilities = lazy(() => import('@/components/tools/utilities').then(m => ({
   default: ({ slug }: { slug: string }) => {
     if (slug === 'countdown-timer') return <m.CountdownTimer />
     if (slug === 'stopwatch') return <m.Stopwatch />
+    if (slug === 'pomodoro-timer') return <m.PomodoroTimer />
     return null
   }
 })))
@@ -74,6 +77,7 @@ const FakeScreens = lazy(() => import('@/components/tools/fake-screens').then(m 
     if (slug === 'fake-teams-meeting') return <m.FakeCallScreen appType="teams" />
     if (slug === 'fake-google-meet') return <m.FakeCallScreen appType="meet" />
     if (slug === 'fake-slack-huddle') return <m.FakeCallScreen appType="slack" />
+    if (slug === 'fake-radar-screen') return <m.FakeRadarScreen />
     return null
   }
 })))
@@ -110,7 +114,15 @@ export function renderToolComponent(slug: string): React.ReactNode {
   }
 
   // Visual effects
-  if (['static-screen', 'no-signal-screen', 'white-noise-screen', 'brown-noise-screen', 'pink-noise-screen', 'broken-screen', 'hacker-typer', 'zoom-lighting', 'visual-noise', 'color-cycle', 'gradient-screen'].includes(slug)) {
+  if (['white-noise-generator', 'brown-noise-generator', 'pink-noise-generator'].includes(slug)) {
+    return (
+      <Suspense fallback={<ToolLoadingFallback />}>
+        <NoiseGenerator slug={slug} />
+      </Suspense>
+    )
+  }
+
+  if (['no-signal-screen', 'broken-screen', 'hacker-typer', 'hacked-screen', 'zoom-lighting', 'ring-light', 'visual-noise', 'color-cycle', 'gradient-screen'].includes(slug)) {
     return (
       <Suspense fallback={<ToolLoadingFallback />}>
         <Effects slug={slug} />
@@ -128,7 +140,7 @@ export function renderToolComponent(slug: string): React.ReactNode {
   }
 
   // Utilities
-  if (['countdown-timer', 'stopwatch'].includes(slug)) {
+  if (['countdown-timer', 'stopwatch', 'pomodoro-timer'].includes(slug)) {
     return (
       <Suspense fallback={<ToolLoadingFallback />}>
         <Utilities slug={slug} />

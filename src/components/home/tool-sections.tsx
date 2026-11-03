@@ -18,16 +18,19 @@ const EFFECT_SLUGS = [
   'flip-clock-screensaver',
   'dvd-screensaver',
   'motivational-quote-screensaver',
-  'static-screen',
+  'white-noise-generator',
+  'brown-noise-generator',
   'no-signal-screen',
-  'white-noise-screen',
   'broken-screen',
   'hacker-typer',
+  'hacked-screen',
 ]
 
 const OTHER_TOOL_SLUGS = [
   'zoom-lighting',
-  'fake-slack-huddle',
+  'ring-light',
+  'pomodoro-timer',
+  'fake-radar-screen',
   'countdown-timer',
   'stopwatch',
   'fake-windows-10-update',

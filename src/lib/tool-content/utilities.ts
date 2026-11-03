@@ -1,5 +1,7 @@
 import type { ToolContent } from './types'
 
+const FULLSCREEN_STEP = 'Press F or click Fullscreen to fill your display, and press Esc to exit.'
+
 export const utilitiesContent: Record<string, ToolContent> = {
   'countdown-timer': {
     title: 'Countdown Timer – Big Fullscreen Online Timer',
@@ -62,6 +64,73 @@ export const utilitiesContent: Record<string, ToolContent> = {
       {
         question: 'Does it work offline?',
         answer: 'Yes. Once the page has loaded, the stopwatch runs without a connection.',
+      },
+    ],
+  },
+  'pomodoro-timer': {
+    title: 'Pomodoro Timer – Online Focus Timer (25/5)',
+    intro:
+      'A clean, fullscreen Pomodoro timer. Work for 25 minutes, take a 5-minute break, and after four focus sessions take a longer 15-minute break. The timer moves between phases on its own, counts your sessions, shows the time left in the tab title and plays a soft chime at the end of each phase. Add steady background sound with the [Brown Noise Generator](/brown-noise-generator/), or use the [Countdown Timer](/countdown-timer/) for one-off timings.',
+    steps: [
+      'Press Start to begin a 25-minute focus session.',
+      'Change the focus, short-break and long-break lengths if you like (for example 50/10).',
+      'When a phase ends you hear a chime and the next phase starts; turn off auto-start to begin each one yourself.',
+      'Use Skip to jump ahead or Reset to start over. Space starts and pauses.',
+      FULLSCREEN_STEP,
+    ],
+    useCases: [
+      { title: 'Studying', description: 'Break revision into short, focused blocks with real rest in between.' },
+      { title: 'Deep work', description: 'Protect 25 minutes at a time from email and chat.' },
+      { title: 'Classrooms', description: 'Show the timer on a projector for timed work and breaks.' },
+      { title: 'Habit building', description: 'Count sessions to see how much focused time you put in.' },
+    ],
+    faqs: [
+      {
+        question: 'What is the Pomodoro Technique?',
+        answer:
+          'A time-management method from the late 1980s: work in focused blocks (traditionally 25 minutes), take a short break after each, and a longer break after every four.',
+      },
+      {
+        question: 'Does the timer keep running in a background tab?',
+        answer:
+          'Yes. It counts against the real clock, so it stays accurate even if the browser slows down hidden tabs, and the tab title shows the time left.',
+      },
+      {
+        question: 'Can I change the lengths?',
+        answer: 'Yes. Set focus, short break and long break in minutes, and how many sessions come before a long break.',
+      },
+    ],
+  },
+  'ring-light': {
+    title: 'Ring Light Online – Free Screen Ring Light',
+    intro:
+      'Use your screen as a ring light. A soft, glowing ring lights your face evenly and puts the round catchlight in your eyes that photographers love. Adjust the ring size, thickness and brightness, set the color temperature from warm to daylight, or pick a tint. It works for video calls, selfies, makeup and streaming. For a plain full-screen light, use [Zoom Lighting](/zoom-lighting/) or the [White Screen](/).',
+    steps: [
+      'Open the page on the screen you face (a laptop, monitor or tablet) and turn its brightness up.',
+      'Adjust ring size and thickness; a thicker ring gives more light.',
+      'Set the color temperature, or choose a tint for creative looks.',
+      FULLSCREEN_STEP,
+    ],
+    useCases: [
+      { title: 'Video calls', description: 'Even, flattering light on your face without buying a ring light.' },
+      { title: 'Selfies and portraits', description: 'Get the classic round catchlight in your eyes.' },
+      { title: 'Makeup', description: 'See your face clearly under warm or daylight-colored light.' },
+      { title: 'Streaming', description: 'Soft key light from a spare monitor or tablet.' },
+    ],
+    faqs: [
+      {
+        question: 'Is a screen as bright as a real ring light?',
+        answer:
+          'No. A real LED ring light is much brighter. A screen ring light works best in a dim room with the display at full brightness and close to your face.',
+      },
+      {
+        question: 'Why a ring and not the whole screen?',
+        answer:
+          'A ring lights you from all sides, which reduces shadows under the nose and eyes, and it makes the round reflection in your eyes. Use Fill center if you need every bit of light.',
+      },
+      {
+        question: 'Which color temperature looks best?',
+        answer: 'Around 4500–5500 K looks natural for most skin tones. Go warmer (3000 K) in the evening, cooler (6500 K) to match daylight.',
       },
     ],
   },

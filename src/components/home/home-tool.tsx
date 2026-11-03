@@ -412,8 +412,6 @@ export function HomeTool() {
   return (
     <section aria-labelledby="screen-heading" className="w-full pt-3 pb-4 sm:pt-4">
       <div className="mx-auto flex max-w-7xl flex-col gap-3 px-3 sm:px-6">
-        {/* Same height as the breadcrumb row on other screen pages, so the stage never shifts between pages. */}
-        <p className="text-xs text-muted-foreground sm:text-sm">{t('freeClientSide', '100% Free · Client-Side')}</p>
         <div>
           <div className="relative">
           {/* Main White Screen Preview Area */}
@@ -490,7 +488,7 @@ export function HomeTool() {
 
             {!isFullscreen && (
               <StageTitle
-                title={t('homeTitle', 'White Screen Online')}
+                title={t('homeTitle', 'White Screen')}
                 intro={t('homeSubtitle', 'Open a fullscreen white screen, switch colors, and download white screen images for free.')}
                 tone={isLight ? 'light' : 'dark'}
                 aside={

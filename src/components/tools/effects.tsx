@@ -6,8 +6,8 @@ import { ToolStage } from '@/components/tool-kit/tool-stage'
 import { ActionButton, ColorInput, ControlRow, Segmented, Slider, TextInput, Toggle } from '@/components/tool-kit/controls'
 import { useAnimationFrame, useCanvasSize, usePrefersReducedMotion } from '@/components/tool-kit/hooks'
 import { isTypingTarget } from '@/components/tool-kit/use-fullscreen'
-import { useNoise, type NoiseColor } from '@/components/tool-kit/audio'
 import { downloadCanvas } from '@/components/tool-kit/download'
+import { kelvinToRgb } from '@/lib/color-temperature'
 
 function SoundButton({ isPlaying, onToggle, label = 'Sound' }: { isPlaying: boolean; onToggle: () => void; label?: string }) {
   return (
@@ -15,80 +15,6 @@ function SoundButton({ isPlaying, onToggle, label = 'Sound' }: { isPlaying: bool
       {isPlaying ? <Volume2 aria-hidden="true" /> : <VolumeX aria-hidden="true" />}
       {isPlaying ? `${label} on` : `${label} off`}
     </ActionButton>
-  )
-}
-
-/* ---------------- Static screen ---------------- */
-
-export function StaticScreen() {
-  const reducedMotion = usePrefersReducedMotion()
-  const [grain, setGrain] = useState(3)
-  const [speed, setSpeed] = useState(30)
-  const [contrast, setContrast] = useState(100)
-  const [isColor, setIsColor] = useState(false)
-  const [volume, setVolume] = useState(0.08)
-  const noise = useNoise('white', volume)
-  const { canvasRef, width, height } = useCanvasSize(1)
-  const elapsedRef = useRef(0)
-  const fps = reducedMotion ? Math.min(speed, 6) : speed
-
-  useAnimationFrame((delta) => {
-    elapsedRef.current += delta
-    if (elapsedRef.current < 1000 / fps) return
-    elapsedRef.current = 0
-    const canvas = canvasRef.current
-    const context = canvas?.getContext('2d')
-    if (!canvas || !context || !width) return
-    const w = Math.ceil(width / grain)
-    const h = Math.ceil(height / grain)
-    const image = context.createImageData(w, h)
-    const data = image.data
-    for (let i = 0; i < data.length; i += 4) {
-      if (isColor) {
-        data[i] = Math.random() * 255
-        data[i + 1] = Math.random() * 255
-        data[i + 2] = Math.random() * 255
-      } else {
-        const value = Math.random() * 255
-        data[i] = data[i + 1] = data[i + 2] = value
-      }
-      data[i + 3] = 255
-    }
-    const off = new OffscreenCanvas(w, h)
-    off.getContext('2d')?.putImageData(image, 0, 0)
-    context.imageSmoothingEnabled = false
-    context.drawImage(off, 0, 0, canvas.width, canvas.height)
-  })
-
-  return (
-    <ToolStage
-      label="TV static"
-      className="bg-black"
-      controls={
-        <>
-          <ControlRow>
-            <Slider label="Grain size" value={grain} min={1} max={8} onChange={setGrain} format={(v) => `${v}px`} />
-            <Slider label="Speed" value={speed} min={2} max={60} onChange={setSpeed} format={(v) => `${v} fps`} />
-            <Slider label="Contrast" value={contrast} min={40} max={200} onChange={setContrast} format={(v) => `${v}%`} />
-          </ControlRow>
-          <ControlRow>
-            <Toggle label="Color static" checked={isColor} onChange={setIsColor} />
-            <SoundButton isPlaying={noise.isPlaying} onToggle={noise.isPlaying ? noise.stop : noise.start} />
-            <Slider label="Volume" value={volume} min={0} max={0.4} step={0.01} onChange={setVolume} format={(v) => `${Math.round(v * 250)}%`} className="max-w-60" />
-          </ControlRow>
-          <p className="text-xs text-muted-foreground">
-            Photosensitivity warning: this effect flickers. Lower the speed if it is uncomfortable.
-          </p>
-        </>
-      }
-    >
-      <canvas
-        ref={canvasRef}
-        aria-hidden="true"
-        className="absolute inset-0 size-full"
-        style={{ filter: `contrast(${contrast}%)`, imageRendering: 'pixelated' }}
-      />
-    </ToolStage>
   )
 }
 
@@ -216,109 +142,10 @@ export function NoSignalScreen() {
   )
 }
 
-/* ---------------- Noise screens ---------------- */
-
-const NOISE_THEMES: Record<NoiseColor, { label: string; colors: [string, string] }> = {
-  white: { label: 'White noise', colors: ['#2b3440', '#5b6b7d'] },
-  pink: { label: 'Pink noise', colors: ['#3a1f33', '#8a4f72'] },
-  brown: { label: 'Brown noise', colors: ['#24170f', '#6b4a2f'] },
-}
-
-const SLEEP_OPTIONS = [0, 15, 30, 60] as const
-
-export function NoiseScreen({ color }: { color: NoiseColor }) {
-  const theme = NOISE_THEMES[color]
-  const [volume, setVolume] = useState(0.15)
-  const [visual, setVisual] = useState<'waves' | 'dark'>('waves')
-  const [sleepMinutes, setSleepMinutes] = useState<(typeof SLEEP_OPTIONS)[number]>(0)
-  const [endsAt, setEndsAt] = useState<number | null>(null)
-  const [remaining, setRemaining] = useState<number | null>(null)
-  const noise = useNoise(color, volume)
-  const reducedMotion = usePrefersReducedMotion()
-
-  const play = () => {
-    noise.start()
-    setEndsAt(sleepMinutes ? Date.now() + sleepMinutes * 60_000 : null)
-  }
-  const stop = () => {
-    noise.stop()
-    setEndsAt(null)
-    setRemaining(null)
-  }
-
-  useEffect(() => {
-    if (!endsAt) return
-    const id = window.setInterval(() => {
-      const left = endsAt - Date.now()
-      if (left <= 0) {
-        noise.stop()
-        setEndsAt(null)
-        setRemaining(null)
-      } else setRemaining(left)
-    }, 1000)
-    return () => window.clearInterval(id)
-  }, [endsAt, noise])
-
-  const formatRemaining = (ms: number) => {
-    const total = Math.ceil(ms / 1000)
-    return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`
-  }
-
-  return (
-    <ToolStage
-      label={theme.label}
-      style={{
-        // Longhand properties only: mixing the `background` shorthand with `backgroundSize` breaks on toggle.
-        backgroundColor: visual === 'dark' ? '#000' : theme.colors[0],
-        backgroundImage:
-          visual === 'dark'
-            ? 'none'
-            : `radial-gradient(circle at 30% 30%, ${theme.colors[1]}, transparent 60%), radial-gradient(circle at 70% 70%, ${theme.colors[1]}aa, transparent 55%)`,
-        backgroundSize: '200% 200%',
-        animation: visual === 'waves' && noise.isPlaying && !reducedMotion ? 'noise-drift 18s ease-in-out infinite alternate' : undefined,
-      }}
-      controls={
-        <>
-          <ControlRow>
-            <ActionButton variant="primary" onClick={noise.isPlaying ? stop : play}>
-              {noise.isPlaying ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
-              {noise.isPlaying ? 'Stop' : 'Play'}
-            </ActionButton>
-            <Slider label="Volume" value={volume} min={0} max={0.6} step={0.01} onChange={setVolume} format={(v) => `${Math.round((v / 0.6) * 100)}%`} />
-          </ControlRow>
-          <ControlRow>
-            <Segmented
-              label="Visual"
-              value={visual}
-              onChange={setVisual}
-              options={[
-                { value: 'waves', label: 'Soft glow' },
-                { value: 'dark', label: 'Dark screen' },
-              ]}
-            />
-            <Segmented
-              label="Sleep timer"
-              value={String(sleepMinutes)}
-              onChange={(value) => setSleepMinutes(Number(value) as (typeof SLEEP_OPTIONS)[number])}
-              options={SLEEP_OPTIONS.map((minutes) => ({ value: String(minutes), label: minutes ? `${minutes} min` : 'Off' }))}
-            />
-          </ControlRow>
-        </>
-      }
-    >
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center text-white/85">
-        {visual === 'waves' && <p className="text-xl font-medium tracking-wide sm:text-2xl">{theme.label}</p>}
-        <p className="text-sm text-white/60" aria-live="polite">
-          {noise.isPlaying ? (remaining ? `Fading out in ${formatRemaining(remaining)}` : 'Playing') : 'Press Play to start'}
-        </p>
-      </div>
-    </ToolStage>
-  )
-}
-
 /* ---------------- Broken screen ---------------- */
 
-type Crack = { x: number; y: number; seed: number; size: number }
+type Impact = { x: number; y: number; seed: number; size: number }
+type Pt = { x: number; y: number }
 
 function seededRandom(seed: number) {
   let value = seed
@@ -328,88 +155,222 @@ function seededRandom(seed: number) {
   }
 }
 
-function crackPaths(crack: Crack, scale: number) {
-  const random = seededRandom(crack.seed)
-  const paths: string[] = []
-  const rays = 9 + Math.floor(random() * 6)
-  for (let r = 0; r < rays; r++) {
-    const angle = (r / rays) * Math.PI * 2 + random() * 0.5
-    const length = (120 + random() * 380) * crack.size * scale
-    let x = crack.x
-    let y = crack.y
-    let d = `M${x.toFixed(1)} ${y.toFixed(1)}`
-    const segments = 6 + Math.floor(random() * 5)
-    for (let s = 0; s < segments; s++) {
-      const a = angle + (random() - 0.5) * 0.6
-      const step = length / segments
-      x += Math.cos(a) * step
-      y += Math.sin(a) * step
-      d += ` L${x.toFixed(1)} ${y.toFixed(1)}`
+/** Strokes one crack with a dark refraction edge, a faint glow and a bright core, like real broken glass. */
+function strokeCrack(ctx: CanvasRenderingContext2D, points: Pt[], weight: number) {
+  if (points.length < 2) return
+  const path = new Path2D()
+  path.moveTo(points[0].x, points[0].y)
+  for (const p of points.slice(1)) path.lineTo(p.x, p.y)
+  ctx.save()
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+  ctx.strokeStyle = 'rgba(255,255,255,0.08)'
+  ctx.lineWidth = weight * 5
+  ctx.stroke(path)
+  ctx.translate(0.8, 0.8)
+  ctx.strokeStyle = 'rgba(0,0,0,0.55)'
+  ctx.lineWidth = weight * 1.8
+  ctx.stroke(path)
+  ctx.translate(-0.8, -0.8)
+  ctx.strokeStyle = 'rgba(255,255,255,0.9)'
+  ctx.lineWidth = weight
+  ctx.stroke(path)
+  ctx.restore()
+}
+
+/**
+ * Draws one impact: a crushed centre, radial cracks (some branching, the longest reaching the
+ * edges), concentric rings of short cracks between them, and a few lifted shards catching light.
+ */
+function drawImpact(ctx: CanvasRenderingContext2D, impact: Impact, width: number, height: number, lcdDamage: boolean) {
+  const random = seededRandom(impact.seed)
+  const cx = impact.x * width
+  const cy = impact.y * height
+  const scale = Math.max(0.6, Math.min(width, height) / 700) * impact.size
+  const base = 12 * scale
+  const rayCount = 14 + Math.floor(random() * 9)
+  const reach = Math.hypot(width, height)
+
+  // Rays: vertices at growing distances, with a little wobble in direction.
+  const rays: Pt[][] = []
+  for (let r = 0; r < rayCount; r++) {
+    let angle = (r / rayCount) * Math.PI * 2 + (random() - 0.5) * 0.35
+    const isLong = random() < 0.45
+    const vertices = isLong ? 14 : 4 + Math.floor(random() * 6)
+    const points: Pt[] = [{ x: cx, y: cy }]
+    let x = cx
+    let y = cy
+    let step = base * (0.7 + random() * 0.6)
+    for (let v = 0; v < vertices; v++) {
+      angle += (random() - 0.5) * 0.28
+      x += Math.cos(angle) * step
+      y += Math.sin(angle) * step
+      points.push({ x, y })
+      step *= 1.32 + random() * 0.18
+      if (Math.hypot(x - cx, y - cy) > reach) break
     }
-    paths.push(d)
+    rays.push(points)
   }
-  for (let ring = 1; ring <= 3; ring++) {
-    const radius = ring * (22 + random() * 18) * crack.size * scale
-    let d = ''
-    const points = 10
-    for (let p = 0; p <= points; p++) {
-      if (random() < 0.25 && p !== 0) {
-        continue
+
+  // Lifted shards: cells between neighbouring rays and rings, lightly tinted.
+  for (let r = 0; r < rays.length; r++) {
+    const a = rays[r]
+    const b = rays[(r + 1) % rays.length]
+    for (let k = 1; k < 5; k++) {
+      if (!a[k + 1] || !b[k + 1] || random() > 0.38) continue
+      ctx.beginPath()
+      ctx.moveTo(a[k].x, a[k].y)
+      ctx.lineTo(a[k + 1].x, a[k + 1].y)
+      ctx.lineTo(b[k + 1].x, b[k + 1].y)
+      ctx.lineTo(b[k].x, b[k].y)
+      ctx.closePath()
+      ctx.fillStyle = random() < 0.7 ? `rgba(255,255,255,${0.03 + random() * 0.11})` : `rgba(0,0,0,${0.08 + random() * 0.14})`
+      ctx.fill()
+    }
+  }
+
+  // Concentric rings: short, slightly bowed cracks joining neighbouring rays.
+  for (let k = 1; k < 6; k++) {
+    const chance = [0, 0.95, 0.8, 0.6, 0.38, 0.2][k]
+    for (let r = 0; r < rays.length; r++) {
+      const a = rays[r][k]
+      const b = rays[(r + 1) % rays.length][k]
+      if (!a || !b || random() > chance) continue
+      const mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }
+      const bow = 0.88 + random() * 0.2
+      const bent = { x: cx + (mid.x - cx) * bow, y: cy + (mid.y - cy) * bow }
+      strokeCrack(ctx, [a, bent, b], Math.max(0.6, 0.9 * scale - k * 0.08))
+    }
+  }
+
+  // Radial cracks and their branches.
+  for (const ray of rays) {
+    strokeCrack(ctx, ray, Math.max(0.7, 1.25 * scale))
+    for (let v = 2; v < ray.length - 1; v++) {
+      if (random() > 0.22) continue
+      const from = ray[v]
+      const dir = Math.atan2(ray[v + 1].y - from.y, ray[v + 1].x - from.x) + (random() < 0.5 ? -1 : 1) * (0.35 + random() * 0.45)
+      const branch: Pt[] = [from]
+      let x = from.x
+      let y = from.y
+      let step = Math.hypot(ray[v + 1].x - from.x, ray[v + 1].y - from.y) * 0.6
+      let angle = dir
+      for (let s = 0; s < 3 + Math.floor(random() * 4); s++) {
+        angle += (random() - 0.5) * 0.4
+        x += Math.cos(angle) * step
+        y += Math.sin(angle) * step
+        branch.push({ x, y })
+        step *= 1.15
       }
-      const a = (p / points) * Math.PI * 2
-      const rr = radius * (0.8 + random() * 0.4)
-      d += `${d ? ' L' : 'M'}${(crack.x + Math.cos(a) * rr).toFixed(1)} ${(crack.y + Math.sin(a) * rr).toFixed(1)}`
+      strokeCrack(ctx, branch, Math.max(0.5, 0.8 * scale))
     }
-    paths.push(d)
   }
-  return paths
+
+  // Crushed centre: a bright, powdery spot full of tiny fractures.
+  const crush = base * 2.2
+  const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, crush)
+  glow.addColorStop(0, 'rgba(255,255,255,0.75)')
+  glow.addColorStop(0.35, 'rgba(255,255,255,0.28)')
+  glow.addColorStop(1, 'rgba(255,255,255,0)')
+  ctx.fillStyle = glow
+  ctx.beginPath()
+  ctx.arc(cx, cy, crush, 0, Math.PI * 2)
+  ctx.fill()
+  for (let i = 0; i < 70; i++) {
+    const angle = random() * Math.PI * 2
+    const dist = Math.pow(random(), 1.6) * crush
+    const x = cx + Math.cos(angle) * dist
+    const y = cy + Math.sin(angle) * dist
+    const len = (2 + random() * 7) * scale
+    const turn = random() * Math.PI
+    strokeCrack(ctx, [{ x, y }, { x: x + Math.cos(turn) * len, y: y + Math.sin(turn) * len }], 0.6)
+  }
+
+  // Damaged LCD under the glass: an ink-like dead patch and stuck columns of color.
+  if (lcdDamage) {
+    const ink = ctx.createRadialGradient(cx, cy, 0, cx, cy, base * 5)
+    ink.addColorStop(0, 'rgba(0,0,0,0.85)')
+    ink.addColorStop(0.5, 'rgba(0,0,0,0.45)')
+    ink.addColorStop(1, 'rgba(0,0,0,0)')
+    ctx.globalCompositeOperation = 'multiply'
+    ctx.fillStyle = ink
+    ctx.beginPath()
+    ctx.ellipse(cx, cy, base * 5, base * 3.4, random() * Math.PI, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.globalCompositeOperation = 'source-over'
+    const columns = ['#ff00ff', '#00ff66', '#00e5ff', '#ffffff', '#ff2d55']
+    for (let i = 0; i < 3 + Math.floor(random() * 4); i++) {
+      ctx.globalAlpha = 0.55 + random() * 0.35
+      ctx.fillStyle = columns[Math.floor(random() * columns.length)]
+      ctx.fillRect(cx + (random() - 0.5) * base * 12, 0, 1 + Math.floor(random() * 3), height)
+    }
+    ctx.globalAlpha = 1
+  }
+}
+
+function LockScreenClock() {
+  const [now, setNow] = useState<Date | null>(null)
+  useEffect(() => {
+    setNow(new Date())
+    const id = window.setInterval(() => setNow(new Date()), 15000)
+    return () => window.clearInterval(id)
+  }, [])
+  return (
+    <div className="pointer-events-none absolute inset-x-0 top-[14%] text-center text-white drop-shadow">
+      <p className="text-sm font-medium opacity-90 sm:text-base">
+        {now ? now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }) : ' '}
+      </p>
+      <p className="text-6xl font-semibold leading-none tracking-tight sm:text-8xl">
+        {now ? now.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }).replace(/\s?[AP]M/i, '') : ' '}
+      </p>
+    </div>
+  )
+}
+
+const BROKEN_BACKGROUNDS = {
+  wallpaper:
+    'radial-gradient(ellipse at 20% 15%, #60a5fa 0%, transparent 50%), radial-gradient(ellipse at 85% 80%, #a855f7 0%, transparent 55%), radial-gradient(ellipse at 60% 40%, #f472b6 0%, transparent 45%), #0f172a',
+  lock: 'linear-gradient(160deg, #1e3a8a 0%, #7c3aed 45%, #db2777 75%, #f59e0b 100%)',
+  black: '#030303',
 }
 
 export function BrokenScreen() {
-  const [background, setBackground] = useState<'black' | 'wallpaper' | 'white'>('wallpaper')
-  const [cracks, setCracks] = useState<Crack[]>([{ x: 0.42, y: 0.45, seed: 12345, size: 1.2 }])
-  const [withSound, setWithSound] = useState(false)
-  const stageRef = useRef<HTMLDivElement>(null)
-  const [box, setBox] = useState({ width: 1000, height: 600 })
+  const [background, setBackground] = useState<keyof typeof BROKEN_BACKGROUNDS>('wallpaper')
+  const [impacts, setImpacts] = useState<Impact[]>([{ x: 0.62, y: 0.58, seed: 48271, size: 1 }])
+  const [withSound, setWithSound] = useState(true)
+  const [lcdDamage, setLcdDamage] = useState(true)
+  const { canvasRef, width, height, dpr } = useCanvasSize(2)
 
   useEffect(() => {
-    const element = stageRef.current
-    if (!element) return
-    const observer = new ResizeObserver(([entry]) => setBox({ width: entry.contentRect.width, height: entry.contentRect.height }))
-    observer.observe(element)
-    return () => observer.disconnect()
-  }, [])
+    const canvas = canvasRef.current
+    const ctx = canvas?.getContext('2d')
+    if (!canvas || !ctx || !width) return
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    ctx.clearRect(0, 0, width, height)
+    impacts.forEach((impact, index) => drawImpact(ctx, impact, width, height, lcdDamage && index === 0))
+  }, [impacts, width, height, dpr, lcdDamage, canvasRef])
 
-  const addCrack = (event: React.MouseEvent<HTMLDivElement>) => {
-    const target = event.target as HTMLElement
-    if (target.closest('button')) return
+  const addImpact = (event: React.MouseEvent<HTMLDivElement>) => {
+    if ((event.target as HTMLElement).closest('button')) return
     const rect = event.currentTarget.getBoundingClientRect()
-    setCracks((list) => [
-      ...list.slice(-11),
+    setImpacts((list) => [
+      ...list.slice(-7),
       {
         x: (event.clientX - rect.left) / rect.width,
         y: (event.clientY - rect.top) / rect.height,
         seed: Math.floor(Math.random() * 2_000_000) + 1,
-        size: 0.7 + Math.random() * 0.6,
+        size: 0.75 + Math.random() * 0.5,
       },
     ])
     if (withSound) playCrackSound()
   }
 
-  const scale = Math.max(0.5, Math.min(box.width, box.height) / 600)
-  const backgrounds = {
-    black: '#050505',
-    white: '#f4f4f4',
-    wallpaper: 'radial-gradient(ellipse at 20% 20%, #3b82f6 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, #7c3aed 0%, transparent 55%), #0f172a',
-  }
-  const stroke = background === 'white' ? 'rgba(40,40,40,0.75)' : 'rgba(255,255,255,0.8)'
-
   return (
     <ToolStage
       label="Broken screen effect"
-      tone={background === 'white' ? 'light' : 'dark'}
-      style={{ background: backgrounds[background] }}
-      onStageClick={addCrack}
+      tone="dark"
+      style={{ background: BROKEN_BACKGROUNDS[background] }}
+      onStageClick={addImpact}
       badge="Simulation"
       controls={
         <ControlRow>
@@ -419,55 +380,52 @@ export function BrokenScreen() {
             onChange={setBackground}
             options={[
               { value: 'wallpaper', label: 'Wallpaper' },
-              { value: 'black', label: 'Black' },
-              { value: 'white', label: 'White' },
+              { value: 'lock', label: 'Lock screen' },
+              { value: 'black', label: 'Screen off' },
             ]}
           />
-          <Toggle label="Glass sound on click" checked={withSound} onChange={setWithSound} />
-          <ActionButton onClick={() => setCracks([])}>
+          <Toggle label="Crack sound" checked={withSound} onChange={setWithSound} />
+          <Toggle label="Damaged display" checked={lcdDamage} onChange={setLcdDamage} />
+          <ActionButton onClick={() => setImpacts([])}>
             <RotateCcw aria-hidden="true" />
-            Clear cracks
+            Clear
           </ActionButton>
         </ControlRow>
       }
     >
-      <div ref={stageRef} className="absolute inset-0 cursor-crosshair">
-        <svg aria-hidden="true" className="size-full" viewBox={`0 0 ${box.width} ${box.height}`}>
-          {cracks.map((crack, index) => {
-            const positioned = { ...crack, x: crack.x * box.width, y: crack.y * box.height }
-            return (
-              <g key={`${crack.seed}-${index}`} fill="none" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx={positioned.x} cy={positioned.y} r={10 * crack.size * scale} fill={stroke} opacity={0.35} />
-                {crackPaths(positioned, scale).map((d, pathIndex) => (
-                  <g key={pathIndex}>
-                    <path d={d} stroke="rgba(0,0,0,0.5)" strokeWidth={2.5} />
-                    <path d={d} stroke={stroke} strokeWidth={pathIndex % 3 === 0 ? 1.4 : 0.9} />
-                  </g>
-                ))}
-              </g>
-            )
-          })}
-        </svg>
-        <p className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded bg-black/40 px-2 py-1 text-xs text-white/80">
-          Click to add cracks
-        </p>
+      {background === 'lock' && <LockScreenClock />}
+      <div className="absolute inset-0 cursor-crosshair">
+        <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 size-full" />
       </div>
+      {impacts.length === 0 && (
+        <p className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-black/50 px-3 py-1 text-xs text-white/85">
+          Tap anywhere to crack the screen
+        </p>
+      )}
     </ToolStage>
   )
 }
 
+/** A sharp crack: a bright snap followed by a short tinkle of glass. */
 function playCrackSound() {
-  const context = new AudioContext()
-  const length = context.sampleRate * 0.35
+  const Ctor = window.AudioContext ?? (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+  if (!Ctor) return
+  const context = new Ctor()
+  const length = Math.floor(context.sampleRate * 0.6)
   const buffer = context.createBuffer(1, length, context.sampleRate)
   const data = buffer.getChannelData(0)
-  for (let i = 0; i < length; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, 4)
+  for (let i = 0; i < length; i++) {
+    const t = i / context.sampleRate
+    const snap = t < 0.03 ? (Math.random() * 2 - 1) * (1 - t / 0.03) : 0
+    const tinkle = Math.random() < 0.004 ? (Math.random() * 2 - 1) * 0.8 * Math.exp(-t * 6) : 0
+    data[i] = snap + (Math.random() * 2 - 1) * 0.25 * Math.exp(-t * 14) + tinkle
+  }
   const source = context.createBufferSource()
   const filter = context.createBiquadFilter()
   const gain = context.createGain()
   filter.type = 'highpass'
-  filter.frequency.value = 2500
-  gain.gain.value = 0.25
+  filter.frequency.value = 1800
+  gain.gain.value = 0.35
   source.buffer = buffer
   source.connect(filter).connect(gain).connect(context.destination)
   source.start()
@@ -634,60 +592,314 @@ export function HackerTyper() {
   )
 }
 
+/* ---------------- Hacked screen ---------------- */
+
+const HACK_STEPS = [
+  'Bypassing firewall',
+  'Injecting payload into kernel',
+  'Disabling antivirus services',
+  'Decrypting password vault',
+  'Escalating privileges to root',
+  'Copying /home/user/Documents',
+  'Copying browser history',
+  'Uploading photos to remote server',
+  'Opening reverse shell',
+  'Overwriting boot sector',
+  'Activating webcam stream',
+  'Encrypting local drives',
+]
+
+function fakeLogLine(random: () => number) {
+  const ip = `10.${Math.floor(random() * 255)}.${Math.floor(random() * 255)}.${Math.floor(random() * 255)}`
+  const hex = Math.floor(random() * 0xffffffff).toString(16).padStart(8, '0').toUpperCase()
+  const step = HACK_STEPS[Math.floor(random() * HACK_STEPS.length)]
+  const status = random() < 0.85 ? 'OK' : 'RETRY'
+  return `[${hex}] ${step} @ ${ip} ... ${status}`
+}
+
+export function HackedScreen() {
+  const [style, setStyle] = useState<'red' | 'green'>('red')
+  const [headline, setHeadline] = useState('SYSTEM HACKED')
+  const [siren, setSiren] = useState(false)
+  const [showNote, setShowNote] = useState(true)
+  const [lines, setLines] = useState<string[]>([])
+  const [progress, setProgress] = useState(0)
+  const [countdown, setCountdown] = useState(59)
+  const sirenRef = useRef<{ context: AudioContext; osc: OscillatorNode } | null>(null)
+  const red = style === 'red'
+  const accent = red ? '#ff1f3d' : '#22ff88'
+
+  // Fake logs and progress, generated after mount so prerendered HTML stays stable.
+  useEffect(() => {
+    let seed = Date.now() % 2147483646 || 1
+    const random = () => {
+      seed = (seed * 16807) % 2147483647
+      return (seed - 1) / 2147483646
+    }
+    const id = window.setInterval(() => {
+      setLines((list) => [...list.slice(-40), fakeLogLine(random)])
+      setProgress((value) => (value >= 100 ? 0 : value + random() * 2.2))
+    }, 140)
+    const tick = window.setInterval(() => setCountdown((value) => (value <= 0 ? 59 : value - 1)), 1000)
+    return () => {
+      window.clearInterval(id)
+      window.clearInterval(tick)
+    }
+  }, [])
+
+  // Optional siren: a sine wave sweeping up and down, only after the user turns it on.
+  useEffect(() => {
+    if (!siren) return
+    const Ctor = window.AudioContext ?? (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+    if (!Ctor) return
+    const context = new Ctor()
+    const osc = context.createOscillator()
+    const lfo = context.createOscillator()
+    const lfoGain = context.createGain()
+    const gain = context.createGain()
+    osc.type = 'sawtooth'
+    osc.frequency.value = 800
+    lfo.frequency.value = 0.8
+    lfoGain.gain.value = 300
+    gain.gain.value = 0.05
+    lfo.connect(lfoGain).connect(osc.frequency)
+    osc.connect(gain).connect(context.destination)
+    osc.start()
+    lfo.start()
+    sirenRef.current = { context, osc }
+    return () => {
+      osc.stop()
+      lfo.stop()
+      void context.close()
+      sirenRef.current = null
+    }
+  }, [siren])
+
+  const step = HACK_STEPS[Math.floor((progress / 100) * HACK_STEPS.length) % HACK_STEPS.length]
+
+  return (
+    <ToolStage
+      label="Hacked screen simulation"
+      tone="dark"
+      reserveHeadingSpace
+      doubleClickFullscreen
+      badge="Simulation"
+      className="bg-black"
+      controls={
+        <ControlRow>
+          <Segmented
+            label="Style"
+            value={style}
+            onChange={setStyle}
+            options={[
+              { value: 'red', label: 'Red alert' },
+              { value: 'green', label: 'Green terminal' },
+            ]}
+          />
+          <TextInput label="Headline" value={headline} onChange={setHeadline} maxLength={24} />
+          <Toggle label="Siren sound" checked={siren} onChange={setSiren} />
+          <Toggle label="Show “just kidding” note" checked={showNote} onChange={setShowNote} />
+        </ControlRow>
+      }
+    >
+      <div className="relative size-full overflow-hidden font-mono" style={{ color: accent }}>
+        {/* Scrolling logs behind everything. */}
+        <div className="absolute inset-0 flex flex-col justify-end p-3 text-[10px] leading-snug opacity-45 sm:text-xs">
+          {lines.map((line, index) => (
+            <p key={index} className="truncate">
+              {line}
+            </p>
+          ))}
+        </div>
+        {/* Scanlines and a pulsing vignette. */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: `repeating-linear-gradient(0deg, rgba(0,0,0,0.35) 0 2px, transparent 2px 4px), radial-gradient(ellipse at center, transparent 40%, ${red ? 'rgba(120,0,0,0.65)' : 'rgba(0,60,20,0.6)'} 100%)`,
+          }}
+        />
+        <div className="relative flex size-full flex-col items-center justify-center gap-3 px-4 pb-10 text-center sm:gap-4">
+          <p className="hack-blink text-xs font-bold tracking-[0.3em] sm:text-sm">⚠ WARNING ⚠ SECURITY BREACH DETECTED ⚠</p>
+          <h2
+            className="hack-glitch text-4xl font-black uppercase leading-none tracking-tight text-white sm:text-6xl md:text-7xl"
+            style={{ textShadow: `0 0 24px ${accent}` }}
+          >
+            {headline || 'SYSTEM HACKED'}
+          </h2>
+          <div className="w-full max-w-md rounded border px-3 py-2 text-left text-xs sm:text-sm" style={{ borderColor: accent, background: 'rgba(0,0,0,0.75)' }}>
+            <p className="truncate">&gt; {step}…</p>
+            <div className="mt-2 h-3 w-full overflow-hidden rounded-sm border" style={{ borderColor: accent }}>
+              <div className="h-full" style={{ width: `${Math.min(100, progress)}%`, background: accent }} />
+            </div>
+            <p className="mt-1.5 flex justify-between">
+              <span>{Math.min(100, Math.floor(progress))}% complete</span>
+              <span className="hack-blink">00:{String(countdown).padStart(2, '0')}</span>
+            </p>
+            {showNote && <p className="mt-1.5 text-[10px] opacity-60 sm:text-xs">Just kidding — this is a harmless prank screen. Press Esc to exit.</p>}
+          </div>
+        </div>
+      </div>
+    </ToolStage>
+  )
+}
+
 /* ---------------- Zoom lighting ---------------- */
 
-const LIGHT_TONES = [
-  { value: 'warm', label: 'Warm', color: '#FFD9A8' },
-  { value: 'neutral', label: 'Neutral', color: '#FFF6EC' },
-  { value: 'cool', label: 'Cool', color: '#E6F0FF' },
-  { value: 'custom', label: 'Custom', color: '' },
+const LIGHT_PRESETS = [
+  { kelvin: 3000, label: 'Warm' },
+  { kelvin: 4500, label: 'Neutral' },
+  { kelvin: 6500, label: 'Daylight' },
 ] as const
 
 export function ZoomLighting() {
-  const [tone, setTone] = useState<(typeof LIGHT_TONES)[number]['value']>('neutral')
+  const [kelvin, setKelvin] = useState(4500)
+  const [useCustom, setUseCustom] = useState(false)
   const [custom, setCustom] = useState('#ffd1dc')
   const [brightness, setBrightness] = useState(100)
-  const [mode, setMode] = useState<'ring' | 'full'>('ring')
-  const [ringSize, setRingSize] = useState(18)
-  const color = tone === 'custom' ? custom : LIGHT_TONES.find((item) => item.value === tone)!.color
+  const [mode, setMode] = useState<'full' | 'frame'>('full')
+  const [frame, setFrame] = useState(14)
+  const color = useCustom ? custom : kelvinToRgb(kelvin).css
 
   return (
     <ToolStage
       label="Video call lighting"
       tone="light"
-      style={{ background: color, filter: `brightness(${brightness / 100})` }}
+      reserveHeadingSpace
+      doubleClickFullscreen
+      style={{ background: color }}
       controls={
         <>
           <ControlRow>
-            <Segmented label="Tone" value={tone} onChange={setTone} options={LIGHT_TONES} />
-            {tone === 'custom' && <ColorInput label="Custom light" value={custom} onChange={setCustom} />}
+            <Slider
+              label="Color temperature"
+              value={kelvin}
+              min={2700}
+              max={6500}
+              step={100}
+              onChange={(value) => {
+                setKelvin(value)
+                setUseCustom(false)
+              }}
+              format={(v) => (useCustom ? 'Custom color' : `${v} K`)}
+            />
+            <div className="flex flex-wrap items-end gap-1.5">
+              {LIGHT_PRESETS.map((preset) => (
+                <ActionButton
+                  key={preset.kelvin}
+                  aria-pressed={!useCustom && kelvin === preset.kelvin}
+                  onClick={() => {
+                    setKelvin(preset.kelvin)
+                    setUseCustom(false)
+                  }}
+                  className={!useCustom && kelvin === preset.kelvin ? 'ring-2 ring-primary' : undefined}
+                >
+                  <span className="size-3 rounded-full ring-1 ring-black/20" style={{ background: kelvinToRgb(preset.kelvin).css }} aria-hidden="true" />
+                  {preset.label}
+                </ActionButton>
+              ))}
+              <Toggle label="Custom color" checked={useCustom} onChange={setUseCustom} />
+              {useCustom && <ColorInput label="Light color" value={custom} onChange={setCustom} />}
+            </div>
+          </ControlRow>
+          <ControlRow>
+            <Slider label="Brightness" value={brightness} min={20} max={100} onChange={setBrightness} format={(v) => `${v}%`} />
             <Segmented
               label="Mode"
               value={mode}
               onChange={setMode}
               options={[
-                { value: 'ring', label: 'Ring light' },
-                { value: 'full', label: 'Full screen' },
+                { value: 'full', label: 'Full light' },
+                { value: 'frame', label: 'Frame' },
               ]}
             />
-          </ControlRow>
-          <ControlRow>
-            <Slider label="Brightness" value={brightness} min={30} max={100} onChange={setBrightness} format={(v) => `${v}%`} />
-            {mode === 'ring' && (
-              <Slider label="Ring thickness" value={ringSize} min={6} max={35} onChange={setRingSize} format={(v) => `${v}%`} />
-            )}
+            {mode === 'frame' && <Slider label="Frame width" value={frame} min={6} max={30} onChange={setFrame} format={(v) => `${v}%`} />}
           </ControlRow>
         </>
       }
     >
-      {mode === 'ring' && (
+      {/* Dimming is an overlay, so the page title stays readable whatever the brightness. */}
+      <div className="relative size-full">
+        {mode === 'frame' && (
+          <div
+            className="absolute flex items-center justify-center rounded-2xl bg-neutral-950 p-4 text-center text-xs text-white/55 sm:text-sm"
+            style={{ inset: `${frame / 2}% ${frame}%` }}
+          >
+            <p className="max-w-xs">Put your call window here, or use this screen as a light facing you.</p>
+          </div>
+        )}
+      </div>
+      <div className="pointer-events-none absolute inset-0 bg-black" style={{ opacity: 1 - brightness / 100 }} />
+    </ToolStage>
+  )
+}
+
+/* ---------------- Ring light ---------------- */
+
+const RING_TINTS = [
+  { value: 'temp', label: 'White' },
+  { value: '#ffb3c7', label: 'Pink' },
+  { value: '#b3d4ff', label: 'Blue' },
+  { value: '#d9b3ff', label: 'Purple' },
+] as const
+
+export function RingLight() {
+  const [size, setSize] = useState(70)
+  const [thickness, setThickness] = useState(12)
+  const [kelvin, setKelvin] = useState(5000)
+  const [tint, setTint] = useState<(typeof RING_TINTS)[number]['value']>('temp')
+  const [brightness, setBrightness] = useState(100)
+  const [fillCenter, setFillCenter] = useState(false)
+  const [surround, setSurround] = useState<'black' | 'dim'>('black')
+  const color = tint === 'temp' ? kelvinToRgb(kelvin).css : tint
+
+  return (
+    <ToolStage
+      label="Ring light"
+      tone="dark"
+      reserveHeadingSpace
+      doubleClickFullscreen
+      className={surround === 'black' ? 'bg-black' : 'bg-neutral-800'}
+      controls={
+        <>
+          <ControlRow>
+            <Slider label="Ring size" value={size} min={30} max={98} onChange={setSize} format={(v) => `${v}%`} />
+            <Slider label="Thickness" value={thickness} min={3} max={30} onChange={setThickness} format={(v) => `${v}%`} />
+            <Slider label="Brightness" value={brightness} min={20} max={100} onChange={setBrightness} format={(v) => `${v}%`} />
+          </ControlRow>
+          <ControlRow>
+            <Segmented label="Color" value={tint} onChange={setTint} options={RING_TINTS} />
+            {tint === 'temp' && (
+              <Slider label="Color temperature" value={kelvin} min={2700} max={6500} step={100} onChange={setKelvin} format={(v) => `${v} K`} />
+            )}
+            <Toggle label="Fill center" checked={fillCenter} onChange={setFillCenter} />
+            <Segmented
+              label="Background"
+              value={surround}
+              onChange={setSurround}
+              options={[
+                { value: 'black', label: 'Black' },
+                { value: 'dim', label: 'Gray' },
+              ]}
+            />
+          </ControlRow>
+        </>
+      }
+    >
+      {/* Bottom padding keeps the ring clear of the double-tap hint. */}
+      <div className="flex size-full items-center justify-center pb-10" style={{ containerType: 'size' }}>
         <div
-          className="absolute flex items-center justify-center rounded-[2rem] bg-neutral-950 text-center text-sm text-white/60"
-          style={{ inset: `${ringSize / 2}%` }}
-        >
-          <p className="max-w-xs px-4">Place your call window here, or use this on a second screen facing you.</p>
-        </div>
-      )}
+          aria-hidden="true"
+          className="rounded-full"
+          style={{
+            width: `${size}cqmin`,
+            height: `${size}cqmin`,
+            border: `${(thickness / 100) * size}cqmin solid ${color}`,
+            background: fillCenter ? color : 'transparent',
+            boxShadow: `0 0 ${size * 0.12}cqmin ${color}, inset 0 0 ${size * 0.08}cqmin ${color}`,
+            opacity: brightness / 100,
+          }}
+        />
+      </div>
     </ToolStage>
   )
 }

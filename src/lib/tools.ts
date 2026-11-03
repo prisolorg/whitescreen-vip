@@ -29,7 +29,9 @@ import {
   Sun,
   Terminal,
   Timer,
-  Tv,
+  ShieldAlert,
+  CircleDot,
+  Radar,
   Users,
   Video,
   Waves,
@@ -265,16 +267,6 @@ export const TOOLS: readonly Tool[] = [
 
   // Effects
   {
-    slug: 'static-screen',
-    name: 'TV Static Screen',
-    category: 'effects',
-    description:
-      'Animated analog TV static with scanlines, adjustable intensity and optional static hiss audio.',
-    icon: Tv,
-    keywords: ['static', 'tv static', 'snow', 'analog noise', 'no channel'],
-    related: ['no-signal-screen', 'visual-noise', 'white-noise-screen', 'broken-screen'],
-  },
-  {
     slug: 'no-signal-screen',
     name: 'No Signal Screen',
     category: 'effects',
@@ -282,47 +274,47 @@ export const TOOLS: readonly Tool[] = [
       'A retro "No Signal" display with color bars or a floating message box, with your own custom text.',
     icon: WifiOff,
     keywords: ['no signal', 'color bars', 'test card', 'tv', 'input not found'],
-    related: ['static-screen', 'dvd-screensaver', 'broken-screen', 'screen-color-test'],
+    related: ['white-noise-generator', 'dvd-screensaver', 'broken-screen', 'screen-color-test'],
   },
   {
-    slug: 'white-noise-screen',
-    name: 'White Noise Screen',
+    slug: 'white-noise-generator',
+    name: 'White Noise Generator',
     category: 'effects',
     description:
-      'Generated white noise audio with a soft animated grain visual and a sleep timer for focus or rest.',
+      'Free online white noise generator with filters, volume, a sleep timer and a live waveform or TV static visual.',
     icon: AudioWaveform,
-    keywords: ['white noise', 'sleep sound', 'focus', 'noise generator', 'ambient'],
-    related: ['pink-noise-screen', 'brown-noise-screen', 'static-screen', 'countdown-timer'],
+    keywords: ['white noise', 'white noise generator', 'tv static', 'static noise', 'sleep sound', 'focus', 'noise generator'],
+    related: ['pink-noise-generator', 'brown-noise-generator', 'pomodoro-timer', 'no-signal-screen'],
   },
   {
-    slug: 'brown-noise-screen',
-    name: 'Brown Noise Screen',
+    slug: 'brown-noise-generator',
+    name: 'Brown Noise Generator',
     category: 'effects',
     description:
-      'Deep, rumbling brown noise generated live in your browser, with volume control and a calm visual.',
+      'Deep, rumbling brown noise generated live in your browser, with filters, volume, a sleep timer and a live waveform.',
     icon: Waves,
-    keywords: ['brown noise', 'brownian noise', 'red noise', 'sleep', 'focus', 'adhd'],
-    related: ['pink-noise-screen', 'white-noise-screen', 'snow-screen', 'countdown-timer'],
+    keywords: ['brown noise', 'brown noise generator', 'brownian noise', 'red noise', 'sleep', 'focus', 'adhd'],
+    related: ['pink-noise-generator', 'white-noise-generator', 'pomodoro-timer', 'snow-screen'],
   },
   {
-    slug: 'pink-noise-screen',
-    name: 'Pink Noise Screen',
+    slug: 'pink-noise-generator',
+    name: 'Pink Noise Generator',
     category: 'effects',
     description:
-      'Balanced pink noise that sounds like steady rain, generated in real time with a soft pink visual.',
+      'Balanced pink noise that sounds like steady rain, with filters, volume, a sleep timer and a live waveform.',
     icon: AudioWaveform,
-    keywords: ['pink noise', 'rain sound', 'sleep', 'noise generator', 'relax'],
-    related: ['brown-noise-screen', 'white-noise-screen', 'color-cycle', 'countdown-timer'],
+    keywords: ['pink noise', 'pink noise generator', 'rain sound', 'sleep', 'noise generator', 'relax'],
+    related: ['brown-noise-generator', 'white-noise-generator', 'pomodoro-timer', 'countdown-timer'],
   },
   {
     slug: 'broken-screen',
     name: 'Broken Screen Effect',
     category: 'effects',
     description:
-      'Click or tap to add realistic-looking cracks to a simulated display. A harmless visual effect.',
+      'Tap to shatter a realistic glass screen, with spider-web cracks, glass shards and a crack sound. A harmless prank.',
     icon: Zap,
     keywords: ['broken screen', 'cracked screen', 'prank', 'shattered glass', 'effect'],
-    related: ['static-screen', 'fake-windows-10-update', 'no-signal-screen', 'hacker-typer'],
+    related: ['hacked-screen', 'fake-windows-10-update', 'no-signal-screen', 'hacker-typer'],
   },
   {
     slug: 'hacker-typer',
@@ -332,17 +324,37 @@ export const TOOLS: readonly Tool[] = [
       'Mash any key to "type" convincing code like a movie hacker, or let it auto-type at your chosen speed.',
     icon: Terminal,
     keywords: ['hacker typer', 'fake code', 'hacker screen', 'typing prank', 'terminal'],
-    related: ['matrix-screensaver', 'fake-ubuntu-update', 'broken-screen', 'static-screen'],
+    related: ['hacked-screen', 'matrix-screensaver', 'fake-radar-screen', 'broken-screen'],
+  },
+  {
+    slug: 'hacked-screen',
+    name: 'Hacked Screen Simulator',
+    category: 'effects',
+    description:
+      'A fake "system breached" screen with glitching text, scrolling logs, a fake progress bar and a warning siren. A harmless prank.',
+    icon: ShieldAlert,
+    keywords: ['hacked screen', 'hacked screen prank', 'fake virus screen', 'hacker screen', 'system breached'],
+    related: ['hacker-typer', 'broken-screen', 'fake-radar-screen', 'matrix-screensaver'],
   },
   {
     slug: 'zoom-lighting',
     name: 'Zoom Lighting',
     category: 'utilities',
     description:
-      'Turn a spare screen into a soft key light for video calls, with warm-to-cool tones and a ring mode.',
+      'Turn your screen into a soft key light for video calls, with color temperature in Kelvin, brightness and a frame mode.',
     icon: Lightbulb,
-    keywords: ['zoom lighting', 'ring light', 'video call light', 'webcam light', 'fill light'],
-    related: ['white-screen', 'fake-zoom-meeting', 'pink-screen', 'countdown-timer'],
+    keywords: ['zoom lighting', 'video call light', 'webcam light', 'fill light', 'screen light'],
+    related: ['ring-light', 'white-screen', 'fake-zoom-meeting', 'pink-screen'],
+  },
+  {
+    slug: 'ring-light',
+    name: 'Ring Light Online',
+    category: 'utilities',
+    description:
+      'A free online ring light: a glowing ring on your screen with adjustable size, thickness, brightness and color temperature.',
+    icon: CircleDot,
+    keywords: ['ring light', 'ring light online', 'online ring light', 'selfie light', 'webcam light'],
+    related: ['zoom-lighting', 'white-screen', 'fake-zoom-meeting', 'pink-screen'],
   },
   {
     slug: 'visual-noise',
@@ -352,7 +364,7 @@ export const TOOLS: readonly Tool[] = [
       'Customizable animated pixel noise in mono, color or tinted modes with adjustable grain and speed.',
     icon: Sparkles,
     keywords: ['visual noise', 'pixel noise', 'grain', 'random pixels', 'glitch'],
-    related: ['static-screen', 'color-cycle', 'gradient-screen', 'white-noise-screen'],
+    related: ['white-noise-generator', 'color-cycle', 'gradient-screen', 'snow-screen'],
   },
   {
     slug: 'color-cycle',
@@ -424,7 +436,7 @@ export const TOOLS: readonly Tool[] = [
       'Gentle falling snow with adjustable density, speed and wind for a calm winter screensaver.',
     icon: Snowflake,
     keywords: ['snow', 'falling snow', 'winter', 'christmas screensaver', 'snowfall'],
-    related: ['matrix-screensaver', 'brown-noise-screen', 'gradient-screen', 'flip-clock-screensaver'],
+    related: ['matrix-screensaver', 'brown-noise-generator', 'gradient-screen', 'flip-clock-screensaver'],
   },
 
   // Utilities
@@ -436,7 +448,17 @@ export const TOOLS: readonly Tool[] = [
       'A big fullscreen countdown timer with presets, pause and resume, and a sound and visual alert.',
     icon: Hourglass,
     keywords: ['countdown', 'timer', 'fullscreen timer', 'presentation timer', 'alarm'],
-    related: ['stopwatch', 'flip-clock-screensaver', 'white-noise-screen', 'zoom-lighting'],
+    related: ['pomodoro-timer', 'stopwatch', 'flip-clock-screensaver', 'white-noise-generator'],
+  },
+  {
+    slug: 'pomodoro-timer',
+    name: 'Pomodoro Timer',
+    category: 'utilities',
+    description:
+      'A fullscreen Pomodoro timer: 25-minute focus sessions, short and long breaks, a session counter and gentle alerts.',
+    icon: Timer,
+    keywords: ['pomodoro', 'pomodoro timer', 'focus timer', 'study timer', 'tomato timer', 'productivity'],
+    related: ['countdown-timer', 'white-noise-generator', 'brown-noise-generator', 'stopwatch'],
   },
   {
     slug: 'stopwatch',
@@ -508,7 +530,7 @@ export const TOOLS: readonly Tool[] = [
       'A retro boot screen simulation with the iconic sliding progress blocks on a black background.',
     icon: Loader,
     keywords: ['windows xp boot', 'boot screen', 'startup screen', 'retro', 'nostalgia'],
-    related: ['fake-windows-xp-update', 'fake-windows-10-update', 'no-signal-screen', 'static-screen'],
+    related: ['fake-windows-xp-update', 'fake-windows-10-update', 'no-signal-screen', 'white-noise-generator'],
   },
   {
     slug: 'fake-chrome-os-update',
@@ -570,6 +592,17 @@ export const TOOLS: readonly Tool[] = [
     keywords: ['fake slack huddle', 'huddle', 'audio call', 'film prop', 'call simulation'],
     related: ['fake-zoom-meeting', 'fake-teams-meeting', 'zoom-lighting', 'countdown-timer'],
   },
+  {
+    slug: 'fake-radar-screen',
+    name: 'Fake Radar Screen',
+    category: 'fake-screens',
+    description:
+      'A fullscreen sci-fi radar with a rotating sweep, fading blips, range rings and live coordinates. Pure simulation.',
+    icon: Radar,
+    keywords: ['fake radar', 'radar screen', 'radar sweep', 'sonar screen', 'sci-fi display'],
+    related: ['hacked-screen', 'hacker-typer', 'matrix-screensaver', 'fake-windows-10-update'],
+  },
+
 ]
 
 export const POPULAR_TOOL_SLUGS = [

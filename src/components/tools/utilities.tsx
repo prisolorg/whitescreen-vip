@@ -1,9 +1,9 @@
 'use client'
 
 import { useEffect, useRef, useState, useCallback } from 'react'
-import { Play, Pause, RotateCcw, Flag, Copy, Check, Volume2, VolumeX } from 'lucide-react'
+import { Play, Pause, RotateCcw, Flag, Copy, Check, Volume2, VolumeX, SkipForward } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
-import { ControlRow, ActionButton, Toggle } from '@/components/tool-kit/controls'
+import { ControlRow, ActionButton, Slider, Toggle } from '@/components/tool-kit/controls'
 import { playTone } from '@/components/tool-kit/audio'
 import { cn } from '@/lib/utils'
 
@@ -353,6 +353,204 @@ export function Stopwatch() {
             ))}
           </div>
         )}
+      </div>
+    </ToolStage>
+  )
+}
+
+/* ---------------- Pomodoro Timer ---------------- */
+
+type PomodoroPhase = 'focus' | 'short' | 'long'
+
+const PHASES: Record<PomodoroPhase, { label: string; background: string; ring: string }> = {
+  focus: { label: 'Focus', background: 'linear-gradient(160deg, #b91c1c 0%, #7f1d1d 100%)', ring: '#fecaca' },
+  short: { label: 'Short break', background: 'linear-gradient(160deg, #0f766e 0%, #134e4a 100%)', ring: '#99f6e4' },
+  long: { label: 'Long break', background: 'linear-gradient(160deg, #1d4ed8 0%, #1e3a8a 100%)', ring: '#bfdbfe' },
+}
+
+export function PomodoroTimer() {
+  const [minutes, setMinutes] = useState<Record<PomodoroPhase, number>>({ focus: 25, short: 5, long: 15 })
+  const [rounds, setRounds] = useState(4)
+  const [phase, setPhase] = useState<PomodoroPhase>('focus')
+  const [timeLeft, setTimeLeft] = useState(25 * 60)
+  const [isRunning, setIsRunning] = useState(false)
+  const [completed, setCompleted] = useState(0)
+  const [autoStart, setAutoStart] = useState(true)
+  const [hasSound, setHasSound] = useState(true)
+  const endRef = useRef<number | null>(null)
+  const total = minutes[phase] * 60
+
+  const goTo = useCallback(
+    (next: PomodoroPhase, run: boolean) => {
+      setPhase(next)
+      const seconds = minutes[next] * 60
+      setTimeLeft(seconds)
+      endRef.current = run ? Date.now() + seconds * 1000 : null
+      setIsRunning(run)
+    },
+    [minutes],
+  )
+
+  // Which phase follows this one: every `rounds`-th focus session earns a long break.
+  const advance = useCallback(() => {
+    if (phase === 'focus') {
+      const done = completed + 1
+      setCompleted(done)
+      goTo(done % rounds === 0 ? 'long' : 'short', autoStart)
+    } else {
+      goTo('focus', autoStart)
+    }
+  }, [phase, completed, rounds, autoStart, goTo])
+
+  // Counts against the real clock, so background tabs stay accurate.
+  useEffect(() => {
+    if (!isRunning) return
+    const id = window.setInterval(() => {
+      const left = Math.max(0, Math.round(((endRef.current ?? Date.now()) - Date.now()) / 1000))
+      setTimeLeft(left)
+      if (left <= 0) {
+        if (hasSound) {
+          playTone(660, 220, 0.2)
+          window.setTimeout(() => playTone(880, 220, 0.2), 260)
+          window.setTimeout(() => playTone(990, 450, 0.22), 520)
+        }
+        advance()
+      }
+    }, 250)
+    return () => window.clearInterval(id)
+  }, [isRunning, hasSound, advance])
+
+  const toggle = useCallback(() => {
+    if (isRunning) {
+      setIsRunning(false)
+      endRef.current = null
+    } else {
+      endRef.current = Date.now() + timeLeft * 1000
+      setIsRunning(true)
+    }
+  }, [isRunning, timeLeft])
+
+  // Changing a length resets the current phase if it is not running.
+  const setLength = (key: PomodoroPhase, value: number) => {
+    setMinutes((current) => ({ ...current, [key]: value }))
+    if (key === phase && !isRunning) setTimeLeft(value * 60)
+  }
+
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement
+      if (event.key !== ' ' || target.closest('input, textarea, button, select')) return
+      event.preventDefault()
+      toggle()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [toggle])
+
+  const mm = String(Math.floor(timeLeft / 60)).padStart(2, '0')
+  const ss = String(timeLeft % 60).padStart(2, '0')
+
+  // Time left in the tab title while running.
+  useEffect(() => {
+    const original = document.title
+    return () => {
+      document.title = original
+    }
+  }, [])
+  useEffect(() => {
+    if (isRunning) document.title = `${mm}:${ss} · ${PHASES[phase].label}`
+  }, [isRunning, mm, ss, phase])
+
+  const progress = total ? 1 - timeLeft / total : 0
+  const look = PHASES[phase]
+
+  return (
+    <ToolStage
+      label="Pomodoro timer"
+      tone="dark"
+      reserveHeadingSpace
+      style={{ background: look.background }}
+      controls={
+        <>
+          <ControlRow>
+            <ActionButton variant="primary" onClick={toggle}>
+              {isRunning ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
+              {isRunning ? 'Pause' : timeLeft < total ? 'Resume' : 'Start'}
+            </ActionButton>
+            <ActionButton onClick={advance}>
+              <SkipForward aria-hidden="true" />
+              Skip
+            </ActionButton>
+            <ActionButton
+              onClick={() => {
+                setCompleted(0)
+                goTo('focus', false)
+              }}
+            >
+              <RotateCcw aria-hidden="true" />
+              Reset
+            </ActionButton>
+            <Toggle label="Auto-start next" checked={autoStart} onChange={setAutoStart} />
+            <ActionButton onClick={() => setHasSound((value) => !value)} aria-pressed={hasSound}>
+              {hasSound ? <Volume2 aria-hidden="true" /> : <VolumeX aria-hidden="true" />}
+              {hasSound ? 'Chime on' : 'Chime off'}
+            </ActionButton>
+          </ControlRow>
+          <ControlRow>
+            <Slider label="Focus" value={minutes.focus} min={5} max={90} step={5} onChange={(v) => setLength('focus', v)} format={(v) => `${v} min`} />
+            <Slider label="Short break" value={minutes.short} min={1} max={20} onChange={(v) => setLength('short', v)} format={(v) => `${v} min`} />
+            <Slider label="Long break" value={minutes.long} min={5} max={45} step={5} onChange={(v) => setLength('long', v)} format={(v) => `${v} min`} />
+            <Slider label="Sessions before long break" value={rounds} min={2} max={8} onChange={setRounds} />
+          </ControlRow>
+        </>
+      }
+    >
+      <div className="flex size-full flex-col items-center justify-center gap-3 text-white sm:gap-5" style={{ containerType: 'size' }}>
+        <div role="tablist" aria-label="Phase" className="flex gap-1 rounded-full bg-black/25 p-1">
+          {(Object.keys(PHASES) as PomodoroPhase[]).map((key) => (
+            <button
+              key={key}
+              type="button"
+              role="tab"
+              aria-selected={phase === key}
+              onClick={() => goTo(key, false)}
+              className={cn('h-8 rounded-full px-3 text-xs font-semibold transition-colors sm:h-9 sm:px-4 sm:text-sm', phase === key ? 'bg-white text-neutral-900' : 'text-white/85 hover:bg-white/10')}
+            >
+              {PHASES[key].label}
+            </button>
+          ))}
+        </div>
+        <div className="relative flex items-center justify-center" style={{ width: '62cqmin', height: '62cqmin' }}>
+          <svg viewBox="0 0 100 100" className="absolute inset-0 size-full -rotate-90" aria-hidden="true">
+            <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="3" />
+            <circle
+              cx="50"
+              cy="50"
+              r="46"
+              fill="none"
+              stroke={look.ring}
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeDasharray={2 * Math.PI * 46}
+              strokeDashoffset={2 * Math.PI * 46 * (1 - progress)}
+              style={{ transition: 'stroke-dashoffset 0.3s linear' }}
+            />
+          </svg>
+          <div className="text-center">
+            <p className="font-bold tabular-nums leading-none tracking-tight" style={{ fontSize: '17cqmin' }} aria-live="off">
+              {mm}:{ss}
+            </p>
+            <p className="mt-[1.5cqmin] font-medium text-white/80" style={{ fontSize: 'max(12px, 3.6cqmin)' }}>
+              {phase === 'focus' ? `Session ${(completed % rounds) + 1} of ${rounds}` : look.label}
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-1.5" aria-label={`${completed} sessions completed`}>
+          {Array.from({ length: rounds }, (_, i) => (
+            <span key={i} className={cn('size-2.5 rounded-full', i < completed % rounds || (completed > 0 && completed % rounds === 0 && phase === 'long') ? 'bg-white' : 'bg-white/30')} />
+          ))}
+          <span className="ml-2 text-xs text-white/75">{completed} done</span>
+        </div>
       </div>
     </ToolStage>
   )

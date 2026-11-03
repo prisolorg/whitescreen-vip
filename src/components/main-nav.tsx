@@ -38,13 +38,13 @@ const TOOL_COLUMNS: ToolColumn[] = [
     titleKey: 'navEffectsSavers',
     defaultTitle: 'Effects & screensavers',
     href: '/tools#effects',
-    slugs: ['dvd-screensaver', 'flip-clock-screensaver', 'motivational-quote-screensaver', 'matrix-screensaver', 'static-screen', 'color-cycle'],
+    slugs: ['dvd-screensaver', 'flip-clock-screensaver', 'motivational-quote-screensaver', 'white-noise-generator', 'hacked-screen', 'broken-screen'],
   },
   {
     titleKey: 'navFakeTimers',
     defaultTitle: 'Fake screens & timers',
     href: '/tools#fake-screens',
-    slugs: ['fake-windows-10-update', 'fake-zoom-meeting', 'fake-teams-meeting', 'fake-google-meet', 'stopwatch'],
+    slugs: ['fake-windows-10-update', 'fake-zoom-meeting', 'fake-teams-meeting', 'fake-google-meet', 'pomodoro-timer', 'ring-light'],
   },
 ]
 
@@ -52,7 +52,7 @@ const TOOL_COLUMNS: ToolColumn[] = [
 const MOBILE_CATEGORIES: { id: 'colors' | ToolCategoryId; thumb: string }[] = [
   { id: 'colors', thumb: 'color-cycle' },
   { id: 'screen-tests', thumb: 'dead-pixel-test' },
-  { id: 'effects', thumb: 'static-screen' },
+  { id: 'effects', thumb: 'white-noise-generator' },
   { id: 'screensavers', thumb: 'dvd-screensaver' },
   { id: 'fake-screens', thumb: 'fake-windows-10-update' },
   { id: 'utilities', thumb: 'countdown-timer' },
