@@ -17,6 +17,7 @@ const EFFECT_SLUGS = [
   'matrix-screensaver',
   'flip-clock-screensaver',
   'dvd-screensaver',
+  'motivational-quote-screensaver',
   'static-screen',
   'no-signal-screen',
   'white-noise-screen',

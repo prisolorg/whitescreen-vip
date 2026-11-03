@@ -17,6 +17,7 @@ import {
   type BackgroundCategory,
   type BackgroundItem,
 } from '@/lib/backgrounds-data'
+import { paintBackground } from '@/lib/background-paint'
 import { absoluteUrl } from '@/lib/site'
 import { JsonLd } from '@/components/json-ld'
 import { cn } from '@/lib/utils'
@@ -113,18 +114,7 @@ export function BackgroundsIndexPage() {
       const ctx = canvas.getContext('2d')
       if (!ctx) return
 
-      if (item.type === 'gradient' && item.secondaryHex) {
-        const grad = ctx.createLinearGradient(0, 0, width, height)
-        grad.addColorStop(0, item.primaryHex)
-        if (item.accentHex) {
-          grad.addColorStop(0.5, item.accentHex)
-        }
-        grad.addColorStop(1, item.secondaryHex)
-        ctx.fillStyle = grad
-      } else {
-        ctx.fillStyle = item.primaryHex
-      }
-      ctx.fillRect(0, 0, width, height)
+      paintBackground(ctx, item, width, height)
 
       canvas.toBlob(
         (blob) => {

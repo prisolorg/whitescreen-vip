@@ -20,6 +20,7 @@ import {
   Monitor,
 } from 'lucide-react'
 import { getBackgroundBySlug, BACKGROUND_ITEMS, BACKGROUND_CATEGORIES, type BackgroundItem } from '@/lib/backgrounds-data'
+import { paintBackground } from '@/lib/background-paint'
 import { isLightColor } from '@/lib/screen-colors'
 import { DoubleTapHint, STAGE_SIZE, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
 import { absoluteUrl } from '@/lib/site'
@@ -103,39 +104,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
       const ctx = canvas.getContext('2d')
       if (!ctx) return
 
-      if (item.type === 'gradient' && item.secondaryHex) {
-        const grad = ctx.createLinearGradient(0, 0, customW, customH)
-        grad.addColorStop(0, item.primaryHex)
-        if (item.accentHex) {
-          grad.addColorStop(0.5, item.accentHex)
-        }
-        grad.addColorStop(1, item.secondaryHex)
-        ctx.fillStyle = grad
-      } else if (item.type === 'pattern') {
-        // High-res pattern simulation
-        ctx.fillStyle = item.primaryHex
-        ctx.fillRect(0, 0, customW, customH)
-        if (item.secondaryHex) {
-          ctx.strokeStyle = item.secondaryHex
-          ctx.lineWidth = 1
-          const step = 40
-          for (let x = 0; x < customW; x += step) {
-            ctx.beginPath()
-            ctx.moveTo(x, 0)
-            ctx.lineTo(x, customH)
-            ctx.stroke()
-          }
-          for (let y = 0; y < customH; y += step) {
-            ctx.beginPath()
-            ctx.moveTo(0, y)
-            ctx.lineTo(customW, y)
-            ctx.stroke()
-          }
-        }
-      } else {
-        ctx.fillStyle = item.primaryHex
-      }
-      ctx.fillRect(0, 0, customW, customH)
+      paintBackground(ctx, item, customW, customH)
 
       canvas.toBlob(
         (blob) => {

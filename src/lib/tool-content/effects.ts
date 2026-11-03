@@ -403,7 +403,7 @@ export const screensaverContent: Record<string, ToolContent> = {
       'A large, readable flip-style clock with smooth digit animation. Choose 12 or 24-hour time, show seconds, and pick a dark or light theme.',
     steps: [
       'Your local time appears automatically.',
-      'Toggle 12/24-hour format, seconds and date.',
+      'Toggle 12/24-hour format, seconds and the date. Each digit flips like a real split-flap clock.',
       'Choose a theme that suits your room.',
       FULLSCREEN_STEP,
     ],
@@ -434,7 +434,7 @@ export const screensaverContent: Record<string, ToolContent> = {
       'The classic bouncing logo that changes color with every wall hit. Watch and wait for that perfect corner hit — the counter keeps score.',
     steps: [
       'The logo starts bouncing right away.',
-      'Adjust speed and size with the sliders.',
+      'Adjust speed and logo size with the sliders.',
       'Watch the corner hit counter — every exact corner gets celebrated.',
       FULLSCREEN_STEP,
     ],
@@ -456,40 +456,46 @@ export const screensaverContent: Record<string, ToolContent> = {
           'No. It uses a generic bouncing badge in the same spirit, and is not affiliated with the DVD Format/Logo Licensing Corporation.',
       },
       {
-        question: 'Can I use my own logo?',
-        answer: 'Yes. Use the Custom DVD Screensaver to bounce your own text or image.',
+        question: 'Why does the logo change color?',
+        answer:
+          'Like the classic DVD player screensaver, the logo picks a new color every time it touches an edge, and it never repeats the same color twice in a row.',
       },
     ],
   },
-  'custom-dvd-screensaver': {
-    title: 'Custom DVD Screensaver – Bounce Your Own Logo or Text',
+  'motivational-quote-screensaver': {
+    title: 'Motivational Quote Screensaver – Rotating Inspirational Quotes',
     intro:
-      'Make the classic bouncing screensaver your own. Upload a logo or type text, choose colors, and let it bounce. Images stay on your device.',
+      'Fill any screen with one big, calm quote at a time. Quotes fade in on a timer, so a spare monitor, office TV or classroom display gives people a small push without asking for attention. Pair it with the [Flip Clock Screensaver](/flip-clock-screensaver/) for a desk display, or the [Countdown Timer](/countdown-timer/) for focused work blocks.',
     steps: [
-      'Type your text, or upload a PNG, JPG, SVG or GIF logo.',
-      'Choose whether the color changes on each bounce.',
-      'Adjust size and speed.',
+      'A random quote appears straight away.',
+      'Pick a background and how many seconds each quote stays on screen.',
+      'Use the arrows or ← → keys to move between quotes; Space pauses.',
       FULLSCREEN_STEP,
     ],
     useCases: [
-      { title: 'Office branding', description: 'Bounce your company logo on a lobby screen.' },
-      { title: 'Events', description: 'Show a wedding monogram or party name.' },
-      { title: 'Streaming', description: 'Bounce your channel logo during breaks.' },
-      { title: 'Gifts and jokes', description: 'Bounce a friend’s name or face for a laugh.' },
+      { title: 'Office and lobby screens', description: 'A quiet, positive loop for reception TVs and team areas.' },
+      { title: 'Classrooms', description: 'Show a thought for the day as students arrive.' },
+      { title: 'Gyms and studios', description: 'Short, punchy lines that read from across the room.' },
+      { title: 'Home desk', description: 'Keep a second monitor or old tablet useful while you work.' },
     ],
     faqs: [
       {
-        question: 'Is my uploaded image stored?',
-        answer: 'No. It is read locally in your browser and never uploaded. It disappears when you leave the page.',
-      },
-      {
-        question: 'What image works best?',
+        question: 'Where do the quotes come from?',
         answer:
-          'A transparent PNG or SVG works best. Color-change mode tints single-color logos; full-color images keep their colors.',
+          'They are short lines from long-established authors and proverbs, such as Seneca, Marcus Aurelius, Confucius, Benjamin Franklin and Mark Twain. They are built into the page, so nothing is fetched while it runs.',
       },
       {
-        question: 'Can I bounce text instead?',
-        answer: 'Yes. Type up to 24 characters and pick a font weight.',
+        question: 'Can I keep one quote on screen?',
+        answer: 'Yes. Press Pause (or Space) and the current quote stays until you resume or press an arrow.',
+      },
+      {
+        question: 'Will it read well on a TV?',
+        answer:
+          'Yes. The text scales with the screen and stays within a comfortable line length, so it is readable from across a room in fullscreen.',
+      },
+      {
+        question: 'Does it keep the screen awake?',
+        answer: 'In fullscreen on supported browsers, a screen wake lock stops the display from sleeping.',
       },
     ],
   },

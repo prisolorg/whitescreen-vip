@@ -287,7 +287,7 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
       {
         heading: 'Purple for ambient light',
         paragraphs: [
-          'Purple (#8000FF) is full blue with half red and no green. It makes a rich ambient color for parties, gaming setups and backdrops in photos and videos. Combine it with the [color cycle](/color-cycle) or the [gradient screen](/gradient-screen) for light that changes slowly, or download a [purple background](/backgrounds/purple-dream) to use as a wallpaper.',
+          'Purple (#8000FF) is full blue with half red and no green. It makes a rich ambient color for parties, gaming setups and backdrops in photos and videos. Combine it with the [color cycle](/color-cycle) or the [gradient screen](/gradient-screen) for light that changes slowly, or download a [purple background](/backgrounds/purple-background) to use as a wallpaper.',
         ],
       },
       {
@@ -329,7 +329,7 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
       {
         heading: 'A cool, bright backdrop',
         paragraphs: [
-          'Cyan is one of the brightest colors a screen can show, with a cool, clean look. It works as a bright backdrop for product photos, a highlight color for presentations and signs, or a cool accent light. For a calmer cool tone, try a [gradient screen](/gradient-screen) or the [ocean breeze background](/backgrounds/ocean-breeze).',
+          'Cyan is one of the brightest colors a screen can show, with a cool, clean look. It works as a bright backdrop for product photos, a highlight color for presentations and signs, or a cool accent light. For a calmer cool tone, try a [gradient screen](/gradient-screen) or the [pastel background](/backgrounds/pastel-background).',
         ],
       },
     ],

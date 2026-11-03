@@ -38,7 +38,7 @@ const TOOL_COLUMNS: ToolColumn[] = [
     titleKey: 'navEffectsSavers',
     defaultTitle: 'Effects & screensavers',
     href: '/tools#effects',
-    slugs: ['dvd-screensaver', 'flip-clock-screensaver', 'static-screen', 'color-cycle', 'matrix-screensaver'],
+    slugs: ['dvd-screensaver', 'flip-clock-screensaver', 'motivational-quote-screensaver', 'matrix-screensaver', 'static-screen', 'color-cycle'],
   },
   {
     titleKey: 'navFakeTimers',

@@ -134,10 +134,10 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     selectionAdvice: {
       whenToChoose: 'Choose pure white when you need maximum lumen output for video lighting, physical tracing, or high-contrast display uniformity testing.',
       contrastAndReadability: 'Pure white provides maximum contrast for black typography (21:1 ratio), but prolonged exposure in a dark room can cause eye fatigue. Lower your display brightness if reading for extended periods.',
-      alternativeConsiderations: 'For everyday writing and coding, consider Warm Beige or Soft Lavender to soften harsh blue wavelength emissions.',
+      alternativeConsiderations: 'For everyday writing and coding, consider the Beige or Pastel backgrounds for a warmer, softer light.',
     },
     contextualLinks: [
-      { label: 'Warm Beige Background', href: '/backgrounds/warm-beige', description: 'Gentler warm cream alternative for reduced eye strain.' },
+      { label: 'Beige Background', href: '/backgrounds/beige-background', description: 'Gentler warm neutral for long reading sessions.' },
       { label: 'Black Background', href: '/backgrounds/black-background', description: 'Opposite true 0% black screen for OLED panels.' },
       { label: 'Gradient Background', href: '/backgrounds/gradient-background', description: 'Smooth colorful linear gradients for creative wallpaper.' },
       { label: 'Screen Uniformity Test', href: '/screen-uniformity-test', description: 'Inspect panel backlight distribution and edge vignetting.' },
@@ -226,11 +226,10 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     selectionAdvice: {
       whenToChoose: 'Select true black for OLED battery saving, darkroom media consumption, and panel defect diagnostics.',
       contrastAndReadability: 'While true black offers infinite contrast, reading dense small text against pitch black can cause halation or astigmatism glow for some users. Dark gray backgrounds (#121212) can be more forgiving for reading.',
-      alternativeConsiderations: 'For low-light creative editing where near-black shadow detail is essential, consider Carbon Dark (#0D0E11) or Midnight Cosmic Purple (#140B1F).',
+      alternativeConsiderations: 'For low-light creative editing where near-black shadow detail is essential, consider the Dark Background (#121212), which keeps a little separation from pure black.',
     },
     contextualLinks: [
-      { label: 'Carbon Dark Background', href: '/backgrounds/carbon-dark', description: '5% near-black shade for shadow detail testing.' },
-      { label: 'Midnight Cosmic Purple', href: '/backgrounds/midnight-cosmic-purple', description: 'Deep space tone that preserves OLED battery efficiency.' },
+      { label: 'Dark Background', href: '/backgrounds/dark-background', description: 'Soft #121212 dark-mode gray.' },
       { label: 'Backlight Bleed Guide', href: '/screen-problems/backlight-bleed', description: 'Learn how to differentiate light bleed from IPS angle glow.' },
       { label: 'OLED Burn-In Guide', href: '/screen-problems/screen-burn-in', description: 'Prevent uneven organic pixel degradation on OLED displays.' },
     ],
@@ -304,19 +303,19 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
       {
         title: 'Creative Presentation & Video Backdrops',
         description: 'Provides an energetic foundation for title cards, digital signage, and product mockups.',
-        linkText: 'Sunset Glow Background',
-        linkHref: '/backgrounds/sunset-glow',
+        linkText: 'Gold Background',
+        linkHref: '/backgrounds/gold-background',
       },
     ],
     selectionAdvice: {
       whenToChoose: 'Choose vibrant orange when you want an uplifting, warm environment that avoids the clinical feel of cool white or blue.',
       contrastAndReadability: 'Pair orange with dark charcoal (#1A1A1A) or navy blue (#0F172A) for maximum typographic legibility. White text requires bold weights to maintain readability.',
-      alternativeConsiderations: 'If this orange feels too vibrant for a late evening workspace, consider Sunset Glow or Warm Beige for a softer aesthetic.',
+      alternativeConsiderations: 'If this orange feels too vibrant for a late evening workspace, consider the Beige or Aesthetic backgrounds for a softer look.',
     },
     contextualLinks: [
       { label: 'Red Background', href: '/backgrounds/red-background', description: 'Check pure red primary channel subpixel performance.' },
       { label: 'Yellow Background', href: '/backgrounds/yellow-background', description: 'Sunny high-reflectivity alternative for daylight illumination.' },
-      { label: 'Sunset Glow Gradient', href: '/backgrounds/sunset-glow', description: 'Warm transitional sunset gradient blending orange, pink, and purple.' },
+      { label: 'Gold Background', href: '/backgrounds/gold-background', description: 'Warm metallic gold gradient.' },
       { label: 'Orange Screen Tool', href: '/orange-screen', description: 'Fullscreen orange screen with adjustable brightness.' },
     ],
     authoritativeLink: {
@@ -380,25 +379,25 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
       {
         title: 'Modern Desktop Wallpaper',
         description: 'Elevate your dual-monitor or laptop workspace with a contemporary high-res colorway that complements dark mode operating systems.',
-        linkText: 'Purple Dream Gradient',
-        linkHref: '/backgrounds/purple-dream',
+        linkText: 'Aesthetic Background',
+        linkHref: '/backgrounds/aesthetic-background',
       },
       {
         title: 'Video Presentation Title Backdrop',
         description: 'Provide an engaging, professional background for remote slideshows and keynote presentations.',
-        linkText: 'Ocean Breeze Gradient',
-        linkHref: '/backgrounds/ocean-breeze',
+        linkText: 'Pastel Background',
+        linkHref: '/backgrounds/pastel-background',
       },
     ],
     selectionAdvice: {
       whenToChoose: 'Choose this gradient background when you want visual depth and rich color variety without the clutter of photographic wallpapers.',
       contrastAndReadability: 'Dark icons and white text both maintain good legibility across the gradient, but semi-transparent frosted glass UI elements (macOS dock, Windows acrylic) look particularly striking against it.',
-      alternativeConsiderations: 'For a calmer, cooler tone, consider Ocean Breeze (cyan to royal blue). For a nocturnal aesthetic, explore Purple Dream.',
+      alternativeConsiderations: 'For a calmer, lighter look, try the Pastel or Aesthetic backgrounds. For something warm and festive, try Gold.',
     },
     contextualLinks: [
       { label: 'Color Banding Guide', href: '/screen-problems/color-banding', description: 'Diagnose stepped stripes in smooth gradients.' },
-      { label: 'Purple Dream Gradient', href: '/backgrounds/purple-dream', description: 'Deep violet to pink gradient background.' },
-      { label: 'Ocean Breeze Gradient', href: '/backgrounds/ocean-breeze', description: 'Cool cyan to deep ocean blue gradient.' },
+      { label: 'Aesthetic Background', href: '/backgrounds/aesthetic-background', description: 'Soft peach, pink and blue gradient.' },
+      { label: 'Pastel Background', href: '/backgrounds/pastel-background', description: 'Mint, lavender and peach.' },
       { label: 'Screen Color Test', href: '/screen-color-test', description: 'Check full spectrum color purity and RGB balance.' },
     ],
     authoritativeLink: {
@@ -421,87 +420,6 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
       { name: 'Screen Color Test', path: '/screen-color-test', description: 'Inspect full-spectrum color transitions.' },
       { name: 'Monitor Test', path: '/monitor-test', description: 'Test contrast ratios and motion clarity.' },
       { name: 'Screen Uniformity Test', path: '/screen-uniformity-test', description: 'Examine luminance consistency across the panel.' },
-    ],
-  },
-
-  // 5. Forest Background
-  {
-    slug: 'forest-background',
-    aliases: ['sage-green'],
-    title: 'Forest Background',
-    h1: 'Deep Forest Green Background (#1E3A2B) — Calming Pine Wallpaper & 4K PNG',
-    metaTitle: 'Forest Green Background (Deep Pine #1E3A2B & 4K PNG) | WhiteScreen.vip',
-    metaDescription: 'Soothing deep forest pine green background. Reduces eye strain, brings natural tranquility to workspaces, and provides lossless 1080p and 4K downloads.',
-    category: 'minimal',
-    categoryLabel: 'Aesthetic & Minimal',
-    shortDescription: 'Deep, earthy pine green (#1E3A2B) inspired by Scandinavian evergreens to soothe tired eyes and bring tranquility.',
-    dominantColorName: 'Deep Pine Green',
-    primaryHex: '#1E3A2B',
-    type: 'solid',
-    cssBackground: '#1E3A2B',
-    isDark: true,
-    tags: ['forest', 'green', 'pine', 'nature', 'minimal', 'eye-strain', 'calm'],
-    about: {
-      overview: 'This background displays a rich, organic forest green (hex #1E3A2B, RGB 30, 58, 43). Drawn from the deep shade of subalpine fir needles and mossy woodlands, this color strikes a deliberate balance between deep contrast and muted organic warmth.',
-      colorCharacteristics: 'Green sits right in the center of the human visual sensitivity curve (around 555 nanometers). Deep botanical greens trigger minimal retinal fatigue, making them physiologically restorative.',
-      aestheticTone: 'Grounded, peaceful, and scholarly. It pairs effortlessly with natural wood desk setups, minimalist mechanical keyboards, and ambient warm desk lamps.',
-    },
-    fullscreenGuide: {
-      instruction: 'Open full screen during 5-minute Pomodoro breaks. Rest your gaze upon the deep evergreen shade while practicing the 20-20-20 rule to relax your ciliary eye muscles.',
-      bestUsedFor: 'Reducing digital eye fatigue during marathon coding, writing, or studying sessions, and creating a calming desktop wallpaper.',
-      inspectionTip: 'Inspect whether your screen maintains rich green depth or washes out into dark gray from off-center viewing angles.',
-    },
-    useCases: [
-      {
-        title: 'Eye Strain Relief During Work Sprints',
-        description: 'Swap stark white backgrounds for forest green to dramatically reduce retinal glare while maintaining high visual elegance.',
-        linkText: 'Laptop Screen Care Guide',
-        linkHref: '/guides/clean-laptop-screen',
-      },
-      {
-        title: 'Minimalist Focus Wallpaper',
-        description: 'Eliminates icon clutter distraction on your desktop while framing terminal windows and text editors with organic warmth.',
-        linkText: 'Warm Beige Aesthetic',
-        linkHref: '/backgrounds/warm-beige',
-      },
-      {
-        title: 'Understated Video Call Ambience',
-        description: 'Provides a grounded, sophisticated backdrop that looks professional without feeling clinical.',
-        linkText: 'Virtual Office Background',
-        linkHref: '/backgrounds/virtual-office',
-      },
-    ],
-    selectionAdvice: {
-      whenToChoose: 'Choose forest green when you work long hours at your computer and want to alleviate eye fatigue while avoiding harsh stark black.',
-      contrastAndReadability: 'Pure white text, cream, and soft gold accents offer exceptional contrast and legibility over this background.',
-      alternativeConsiderations: 'For studio video keying or green-screen production, do not use forest green; use pure Chroma Key Green (#00FF00) instead.',
-    },
-    contextualLinks: [
-      { label: 'Green Screen Background', href: '/backgrounds/green-screen-background', description: 'Pure #00FF00 green for video keying in OBS and Zoom.' },
-      { label: 'Warm Beige Background', href: '/backgrounds/warm-beige', description: 'Gentle cream companion for light-mode lovers.' },
-      { label: 'Deep Navy Background', href: '/backgrounds/deep-navy', description: 'Dark executive slate blue alternative.' },
-      { label: 'Green Screen Tool', href: '/green-screen', description: 'Live broadcast green screen utility.' },
-    ],
-    authoritativeLink: {
-      title: 'American Academy of Ophthalmology: Computer Eye Strain & 20-20-20 Rule',
-      url: 'https://www.aao.org/eye-health/tips-prevention/computer-usage',
-      organization: 'American Academy of Ophthalmology (AAO)',
-      note: 'Clinical recommendations on reducing visual fatigue, glare management, and taking distance eye breaks.',
-    },
-    faqs: [
-      {
-        question: 'Why is green considered the easiest color on human eyes?',
-        answer: 'Human retinas feature photoreceptor cone cells that are most sensitive to green wavelengths. Processing green requires minimal optical lens refraction, reducing strain on focusing muscles.',
-      },
-      {
-        question: 'Can this forest green be keyed out in OBS or Zoom?',
-        answer: 'While technically possible with color pickers, chroma key software is engineered for pure high-luminance green (#00FF00). Use our Green Screen Background for studio keying.',
-      },
-    ],
-    relatedTools: [
-      { name: 'Green Screen Tool', path: '/green-screen', description: 'Chroma key green screen tool.' },
-      { name: 'Screen Color Test', path: '/screen-color-test', description: 'Verify RGB balance and panel uniformity.' },
-      { name: 'Monitor Test', path: '/monitor-test', description: 'Check contrast and black level gradation.' },
     ],
   },
 
@@ -556,7 +474,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     selectionAdvice: {
       whenToChoose: 'Choose neon glow when you want an exciting, futuristic gaming aesthetic that highlights the contrast ratio of your screen.',
       contrastAndReadability: 'Keep desktop icons along the darker center and bottom edges to maintain readability against the vivid neon flares.',
-      alternativeConsiderations: 'For a calmer nighttime ambiance, try Purple Dream or Midnight Cosmic Purple.',
+      alternativeConsiderations: 'For a calmer nighttime ambiance, try the Purple or Dark backgrounds.',
     },
     contextualLinks: [
       { label: 'Ghosting Diagnostic Guide', href: '/screen-problems/ghosting', description: 'Identify response time blur and overdrive overshoot.' },
@@ -692,7 +610,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     selectionAdvice: {
       whenToChoose: 'Select bright yellow for cheerful daylight illumination and warm-point panel inspection.',
       contrastAndReadability: 'Always use deep black or dark charcoal typography (#111827) for high legibility. White text will blend into the background.',
-      alternativeConsiderations: 'For softer warm reading, choose Warm Beige (#F5EBE0).',
+      alternativeConsiderations: 'For softer warm reading, choose the Beige Background (#EADBC8).',
     },
     contextualLinks: [
       { label: 'Yellow Tint on Screen Guide', href: '/screen-problems/yellow-tint-on-screen', description: 'Diagnose and fix warm screen discoloration.' },
@@ -761,11 +679,11 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     selectionAdvice: {
       whenToChoose: 'Select royal blue for subpixel inspection, cool studio accent lighting, or video compositing.',
       contrastAndReadability: 'Pure white text (#FFFFFF) provides crisp legibility (over 8:1 contrast ratio) against royal blue.',
-      alternativeConsiderations: 'For a darker midnight tone, consider Deep Navy (#0F172A). For video calls in green attire, Blue Screen (#0000FF) is ideal.',
+      alternativeConsiderations: 'For a darker midnight tone, consider the Dark Background (#121212). For video calls in green attire, Blue Screen (#0000FF) is ideal.',
     },
     contextualLinks: [
       { label: 'Blue Screen Tool', href: '/blue-screen', description: 'Fullscreen pure blue utility with brightness controls.' },
-      { label: 'Deep Navy Background', href: '/backgrounds/deep-navy', description: 'Dark midnight slate alternative.' },
+      { label: 'Purple Background', href: '/backgrounds/purple-background', description: 'Rich plain violet.' },
       { label: 'Green Screen Background', href: '/backgrounds/green-screen-background', description: 'Studio green chroma key backdrop.' },
       { label: 'Screen Color Test', href: '/screen-color-test', description: 'Inspect all three RGB primary channels.' },
     ],
@@ -867,243 +785,6 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     ],
   },
 
-  // 10. Warm Beige
-  {
-    slug: 'warm-beige',
-    aliases: ['beige-background'],
-    title: 'Warm Beige Background',
-    h1: 'Warm Beige Aesthetic Background (#F5EBE0) — Calm Linen & 4K Wallpaper',
-    metaTitle: 'Warm Beige Background (Minimalist Cream Linen & 4K PNG) | WhiteScreen.vip',
-    metaDescription: 'Gentle warm beige and cream linen background (#F5EBE0). Low eye strain, Scandinavian minimalism, and lossless 1080p and 4K downloads.',
-    category: 'minimal',
-    categoryLabel: 'Aesthetic & Minimal',
-    shortDescription: 'Gentle warm cream and unbleached linen tone (#F5EBE0) that softens harsh blue glare during long work sessions.',
-    dominantColorName: 'Warm Linen Beige',
-    primaryHex: '#F5EBE0',
-    type: 'solid',
-    cssBackground: '#F5EBE0',
-    isDark: false,
-    tags: ['beige', 'cream', 'minimal', 'aesthetic', 'calm', 'low-contrast'],
-    about: {
-      overview: 'This background presents a tranquil warm beige (hex #F5EBE0, RGB 245, 235, 224). Inspired by unbleached linen, natural stone, and heavy cream book paper, it reflects light gently without the intense glare of 100% white.',
-      colorCharacteristics: 'Slightly attenuated blue subpixels create a warm color cast around 5400K, mirroring the natural warmth of morning sunlight.',
-      aestheticTone: 'Restful, understated, and timeless. Favored in architectural portfolios and Scandinavian minimalist interior workspaces.',
-    },
-    fullscreenGuide: {
-      instruction: 'Use full screen warm beige as an ambient reading lamp or soothing background for long typing sessions.',
-      bestUsedFor: 'Reducing eye fatigue for users who dislike dark mode but find pure white too harsh.',
-      inspectionTip: 'Check whether your screen renders the cream undertone smoothly across the panel without cool cyan blotches.',
-    },
-    useCases: [
-      {
-        title: 'Comfortable Long-Form Writing & Reading',
-        description: 'Mimics the optical warmth of high-grade paperback book paper for prolonged document review.',
-        linkText: 'Forest Background Alternative',
-        linkHref: '/backgrounds/forest-background',
-      },
-      {
-        title: 'Minimalist Clean Wallpaper',
-        description: 'Creates a clutter-free, aesthetic desktop that complements light-colored physical accessories.',
-        linkText: 'White Background',
-        linkHref: '/backgrounds/white-background',
-      },
-    ],
-    selectionAdvice: {
-      whenToChoose: 'Choose warm beige if you want a clean, bright workspace that does not assault your retinas with blue light.',
-      contrastAndReadability: 'Pair with dark espresso brown (#2B1B17) or deep charcoal (#1F2937) for sophisticated legibility.',
-      alternativeConsiderations: 'For even lower light at night, switch to Forest Green or Deep Navy.',
-    },
-    contextualLinks: [
-      { label: 'White Background', href: '/backgrounds/white-background', description: 'Clinical 100% pure white alternative.' },
-      { label: 'Forest Background', href: '/backgrounds/forest-background', description: 'Calming dark botanical green.' },
-      { label: 'Zoom Lighting Tool', href: '/zoom-lighting', description: 'Adjustable warm ambient softbox.' },
-    ],
-    faqs: [
-      {
-        question: 'Is beige easier on eyes than white?',
-        answer: 'Yes. Warm beige emits significantly lower blue wavelength energy and reduces pupil contraction stress, preventing headaches during long reading sessions.',
-      },
-    ],
-    relatedTools: [
-      { name: 'Zoom Lighting', path: '/zoom-lighting', description: 'Adjustable color temperature lighting.' },
-      { name: 'White Screen Tool', path: '/', description: 'Baseline pure white screen.' },
-    ],
-  },
-
-  // 11. Deep Navy
-  {
-    slug: 'deep-navy',
-    aliases: ['navy-background'],
-    title: 'Deep Navy Background',
-    h1: 'Deep Navy Blue Background (#0F172A) — Executive Midnight & 4K Wallpaper',
-    metaTitle: 'Deep Navy Background (Midnight Slate #0F172A & 4K PNG) | WhiteScreen.vip',
-    metaDescription: 'Executive deep navy slate background (#0F172A). Authoritative, low glare, high contrast for white text, and 4K lossless PNG downloads.',
-    category: 'dark-oled',
-    categoryLabel: 'Dark & OLED',
-    shortDescription: 'Authoritative midnight slate blue (#0F172A) for executive presentations and glare-free dark workspaces.',
-    dominantColorName: 'Deep Navy Slate',
-    primaryHex: '#0F172A',
-    type: 'solid',
-    cssBackground: '#0F172A',
-    isDark: true,
-    tags: ['navy', 'blue', 'midnight', 'executive', 'dark', 'corporate'],
-    about: {
-      overview: 'This background renders a deep, saturated navy slate (hex #0F172A, RGB 15, 23, 42). It evokes the serene stillness of the midnight ocean while maintaining crisp contrast for white typography.',
-      colorCharacteristics: 'Rich in deep blue hues with heavy black absorption, it minimizes screen glare while avoiding the stark void of pure black.',
-      aestheticTone: 'Authoritative, calm, and professional. The classic corporate tone for fintech, law, and high-stakes executive briefings.',
-    },
-    fullscreenGuide: {
-      instruction: 'Open fullscreen to create a sophisticated, distraction-free environment for deep focus.',
-      bestUsedFor: 'Slide presentations, dual-monitor workstations, and high-contrast dark mode coding.',
-      inspectionTip: 'Check whether the deep navy retains blue saturation or washes out into charcoal on low-contrast TN panels.',
-    },
-    useCases: [
-      {
-        title: 'Executive Presentation Slide Backdrop',
-        description: 'Lends authority and clarity to charts, key metrics, and financial presentations.',
-        linkText: 'Virtual Office Background',
-        linkHref: '/backgrounds/virtual-office',
-      },
-      {
-        title: 'Nighttime Coding & Writing Environment',
-        description: 'Deep navy provides a gentle dark backdrop that makes colored syntax pop cleanly.',
-        linkText: 'Black Background',
-        linkHref: '/backgrounds/black-background',
-      },
-    ],
-    selectionAdvice: {
-      whenToChoose: 'Choose deep navy when you want the glare reduction of dark mode combined with rich color elegance.',
-      contrastAndReadability: 'Provides over 14:1 contrast ratio with white text (#FFFFFF) and pairs beautifully with cyan and gold accents.',
-      alternativeConsiderations: 'For battery saving on OLED panels, True Black is slightly more energy efficient.',
-    },
-    contextualLinks: [
-      { label: 'Black Background', href: '/backgrounds/black-background', description: '0% true OLED black.' },
-      { label: 'Ocean Breeze Gradient', href: '/backgrounds/ocean-breeze', description: 'Dynamic cyan to navy ocean gradient.' },
-      { label: 'Blue Screen Tool', href: '/blue-screen', description: 'Primary chroma blue screen.' },
-    ],
-    faqs: [
-      {
-        question: 'Why do so many professional software applications use navy slate?',
-        answer: 'Navy slate (#0F172A) provides the eye-comfort benefits of dark mode while retaining subtle color psychology of stability and trust that pure black lacks.',
-      },
-    ],
-    relatedTools: [
-      { name: 'Blue Screen Tool', path: '/blue-screen', description: 'Fullscreen blue screen tool.' },
-      { name: 'Black Screen Tool', path: '/black-screen', description: 'Zero emission black screen.' },
-    ],
-  },
-
-  // 12. Sunset Glow
-  {
-    slug: 'sunset-glow',
-    title: 'Sunset Glow Background',
-    h1: 'Sunset Glow Gradient Background — Warm Horizon 4K Wallpaper',
-    metaTitle: 'Sunset Glow Background (Warm Horizon & 4K PNG) | WhiteScreen.vip',
-    metaDescription: 'Mesmerizing warm sunset gradient background blending dusk violet, coral, and golden amber. Download in 1080p and 4K Ultra HD.',
-    category: 'gradient',
-    categoryLabel: 'Gradients',
-    shortDescription: 'Warm, poetic transition from dusk violet to coral and golden amber reminiscent of twilight skies.',
-    dominantColorName: 'Sunset Glow',
-    primaryHex: '#4A154B',
-    secondaryHex: '#FF7A00',
-    accentHex: '#E11D48',
-    type: 'gradient',
-    cssBackground: 'linear-gradient(135deg, #3B0764 0%, #BE185D 45%, #F97316 80%, #FBBF24 100%)',
-    isDark: true,
-    tags: ['sunset', 'gradient', 'warm', 'coral', 'amber', 'twilight'],
-    about: {
-      overview: 'This background captures the ethereal beauty of twilight, transitioning smoothly from deep violet sky through warm raspberry coral into radiant amber gold.',
-      colorCharacteristics: 'Rich in warm red and amber frequencies with deep purple anchor tones, creating high dynamic visual drama.',
-      aestheticTone: 'Poetic, evocative, and cozy. Brings warmth and inspiration to any desktop or tablet setup.',
-    },
-    fullscreenGuide: {
-      instruction: 'Open fullscreen during dusk hours to harmonize your indoor lighting with natural twilight outdoors.',
-      bestUsedFor: 'Desktop wallpapers, creative mood boards, and aesthetic stream overlays.',
-      inspectionTip: 'Inspect the smoothness of color blending across the red-to-orange threshold for bit-depth banding.',
-    },
-    useCases: [
-      {
-        title: 'Aesthetic Workstation Wallpaper',
-        description: 'Transforms cold monitor setups into an inspiring, radiant artistic window.',
-        linkText: 'Orange Background',
-        linkHref: '/backgrounds/orange-background',
-      },
-    ],
-    selectionAdvice: {
-      whenToChoose: 'Choose Sunset Glow for an uplifting, warm creative aesthetic.',
-      contrastAndReadability: 'Use bold white or dark icons depending on screen position.',
-      alternativeConsiderations: 'For a cooler palette, choose Ocean Breeze.',
-    },
-    contextualLinks: [
-      { label: 'Gradient Background', href: '/backgrounds/gradient-background', description: 'Sunset Horizon multi-stop gradient.' },
-      { label: 'Orange Background', href: '/backgrounds/orange-background', description: 'Pure saturated amber orange.' },
-    ],
-    faqs: [
-      {
-        question: 'Does this gradient support 4K UHD monitors?',
-        answer: 'Yes, our download engine renders the gradient at 3840×2160 lossless PNG with full mathematical smoothing.',
-      },
-    ],
-    relatedTools: [
-      { name: 'Screen Color Test', path: '/screen-color-test', description: 'Test color rendering.' },
-    ],
-  },
-
-  // 13. Ocean Breeze
-  {
-    slug: 'ocean-breeze',
-    title: 'Ocean Breeze Background',
-    h1: 'Ocean Breeze Gradient Background — Coastal Cyan to Deep Blue 4K PNG',
-    metaTitle: 'Ocean Breeze Background (Cyan to Deep Blue & 4K PNG) | WhiteScreen.vip',
-    metaDescription: 'Invigorating cyan to deep ocean sapphire gradient background. Clean, refreshing aesthetic with 1080p and 4K downloads.',
-    category: 'gradient',
-    categoryLabel: 'Gradients',
-    shortDescription: 'Refreshing gradient flowing from tropical aqua cyan into deep oceanic sapphire blue.',
-    dominantColorName: 'Ocean Cyan & Sapphire',
-    primaryHex: '#06B6D4',
-    secondaryHex: '#1E3A8A',
-    type: 'gradient',
-    cssBackground: 'linear-gradient(135deg, #06B6D4 0%, #0284C7 40%, #1E3A8A 100%)',
-    isDark: false,
-    tags: ['ocean', 'cyan', 'blue', 'gradient', 'refreshing', 'water'],
-    about: {
-      overview: 'This background evokes clear coastal waters, moving smoothly from luminous aqua cyan into cobalt and deep marine sapphire.',
-      colorCharacteristics: 'Cool color temperature that promotes clarity, focus, and calm efficiency.',
-      aestheticTone: 'Crisp, refreshing, and clean.',
-    },
-    fullscreenGuide: {
-      instruction: 'Open fullscreen for an energizing visual reset during midday work slumps.',
-      bestUsedFor: 'High-productivity workspaces and tech presentation backdrops.',
-      inspectionTip: 'Check blue subpixel saturation consistency from top left to bottom right.',
-    },
-    useCases: [
-      {
-        title: 'Productivity & Focus Desktop',
-        description: 'Promotes sustained mental clarity without warm distractions.',
-        linkText: 'Deep Navy Background',
-        linkHref: '/backgrounds/deep-navy',
-      },
-    ],
-    selectionAdvice: {
-      whenToChoose: 'Choose Ocean Breeze when you want clean modern vibes without harsh dark mode.',
-      contrastAndReadability: 'Crisp white typography looks exceptional across the entire gradient.',
-      alternativeConsiderations: 'For evening work, warmer tones like Sunset Glow may be easier on the eyes.',
-    },
-    contextualLinks: [
-      { label: 'Deep Navy Background', href: '/backgrounds/deep-navy', description: 'Executive dark blue alternative.' },
-      { label: 'Blue Screen Tool', href: '/blue-screen', description: 'Pure blue screen tool.' },
-    ],
-    faqs: [
-      {
-        question: 'Why do cool blue backgrounds aid focus?',
-        answer: 'Cool optical wavelengths stimulate alertness pathways and promote mental endurance during analytical tasks.',
-      },
-    ],
-    relatedTools: [
-      { name: 'Blue Screen Tool', path: '/blue-screen', description: 'Pure blue screen.' },
-    ],
-  },
-
   // 14. Virtual Office
   {
     slug: 'virtual-office',
@@ -1142,7 +823,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     selectionAdvice: {
       whenToChoose: 'Use on any video conference where you want to look polished and trustworthy.',
       contrastAndReadability: 'Dark neutral background makes light and dark clothing stand out clearly.',
-      alternativeConsiderations: 'For creative meetings, try Blurred Studio or Soft Lavender.',
+      alternativeConsiderations: 'For creative meetings, try the Aesthetic or Pastel backgrounds.',
     },
     contextualLinks: [
       { label: 'Green Screen Background', href: '/backgrounds/green-screen-background', description: 'Hardware chroma keying alternative.' },
@@ -1159,388 +840,665 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     ],
   },
 
-  // 15. Purple Dream
-  {
-    slug: 'purple-dream',
-    title: 'Purple Dream Background',
-    h1: 'Purple Dream Gradient Background — Soft Lilac to Magenta 4K Wallpaper',
-    metaTitle: 'Purple Dream Background (Lilac to Magenta Gradient & 4K PNG) | WhiteScreen.vip',
-    metaDescription: 'Dreamy purple, lilac, and magenta gradient background. Aesthetic desktop wallpaper with 1080p, 2K, and 4K downloads.',
-    category: 'gradient',
-    categoryLabel: 'Gradients',
-    shortDescription: 'Dreamy blend of soft lilac, cosmic violet, and rich magenta for creative desktop elegance.',
-    dominantColorName: 'Cosmic Violet & Lilac',
-    primaryHex: '#8B5CF6',
-    secondaryHex: '#EC4899',
-    type: 'gradient',
-    cssBackground: 'linear-gradient(135deg, #7C3AED 0%, #C026D3 50%, #F43F5E 100%)',
-    isDark: true,
-    tags: ['purple', 'dream', 'violet', 'magenta', 'aesthetic', 'creative'],
-    about: {
-      overview: 'A lush, modern gradient that blends regal purple with electric magenta and rose twilight.',
-      colorCharacteristics: 'Rich in both blue and red wavelengths, stimulating both calm focus and imaginative energy.',
-      aestheticTone: 'Mystical, creative, and luxurious.',
-    },
-    fullscreenGuide: {
-      instruction: 'Enter fullscreen to envelop your room in ambient violet glow.',
-      bestUsedFor: 'Creative digital art setups, late-night writing, and aesthetic wallpapers.',
-      inspectionTip: 'Check for smooth gradation across violet-to-rose transitions.',
-    },
-    useCases: [
-      {
-        title: 'Creative Studio Wallpaper',
-        description: 'Brings modern creative vibrancy to dual-monitor edit suites.',
-        linkText: 'Neon Background',
-        linkHref: '/backgrounds/neon-background',
-      },
-    ],
-    selectionAdvice: {
-      whenToChoose: 'Select Purple Dream for creative workstations and designer desktops.',
-      contrastAndReadability: 'White typography and dark icons both maintain strong contrast.',
-      alternativeConsiderations: 'For a softer pastel approach, try Soft Lavender.',
-    },
-    contextualLinks: [
-      { label: 'Neon Background', href: '/backgrounds/neon-background', description: 'High-energy cyberpunk glow.' },
-      { label: 'Gradient Background', href: '/backgrounds/gradient-background', description: 'Multi-stop sunset horizon.' },
-    ],
-    faqs: [
-      {
-        question: 'What monitors display purple gradients best?',
-        answer: 'Wide color gamut displays covering 95%+ of DCI-P3 reproduce the deep magenta and violet tones with breathtaking saturation.',
-      },
-    ],
-    relatedTools: [
-      { name: 'Screen Color Test', path: '/screen-color-test', description: 'Verify color gamut accuracy.' },
-    ],
-  },
-
-  // 16. Soft Lavender
-  {
-    slug: 'soft-lavender',
-    title: 'Soft Lavender Background',
-    h1: 'Soft Lavender Aesthetic Background (#E9D5FF) — Pastel Calm & 4K PNG',
-    metaTitle: 'Soft Lavender Background (Pastel Lilac #E9D5FF & 4K PNG) | WhiteScreen.vip',
-    metaDescription: 'Delicate pastel soft lavender background (#E9D5FF). Calming, elegant, low glare, and available in lossless 1080p and 4K resolution.',
-    category: 'minimal',
-    categoryLabel: 'Aesthetic & Minimal',
-    shortDescription: 'Delicate pastel lilac (#E9D5FF) with soothing undertones for peaceful, low-stress computing.',
-    dominantColorName: 'Pastel Lavender',
-    primaryHex: '#E9D5FF',
-    type: 'solid',
-    cssBackground: '#E9D5FF',
-    isDark: false,
-    tags: ['lavender', 'pastel', 'lilac', 'calm', 'minimal', 'gentle'],
-    about: {
-      overview: 'This background renders a delicate, gentle lavender (hex #E9D5FF, RGB 233, 213, 255). It blends white light with soft floral violet for an airy, peaceful ambiance.',
-      colorCharacteristics: 'Low saturation pastel that softens harsh glare while keeping spaces feeling light and open.',
-      aestheticTone: 'Tranquil, sweet, and comforting.',
-    },
-    fullscreenGuide: {
-      instruction: 'Open fullscreen to create a gentle, warm pastel ambient light in dark rooms.',
-      bestUsedFor: 'Studying, creative journaling, and aesthetic desktop setups.',
-      inspectionTip: 'Inspect whether the delicate lilac hue remains consistent across the entire display.',
-    },
-    useCases: [
-      {
-        title: 'Mindful Study & Writing Backdrop',
-        description: 'Reduces visual noise and anxiety during intense study and writing periods.',
-        linkText: 'Warm Beige Alternative',
-        linkHref: '/backgrounds/warm-beige',
-      },
-    ],
-    selectionAdvice: {
-      whenToChoose: 'Choose Soft Lavender when you want a light, cheerful environment that feels much softer than stark white.',
-      contrastAndReadability: 'Pair with dark violet or charcoal typography (#3B0764) for perfect legibility.',
-      alternativeConsiderations: 'For a neutral earthy tone, choose Warm Beige.',
-    },
-    contextualLinks: [
-      { label: 'Warm Beige Background', href: '/backgrounds/warm-beige', description: 'Earthy cream linen alternative.' },
-      { label: 'White Background', href: '/backgrounds/white-background', description: 'Pure white background.' },
-    ],
-    faqs: [
-      {
-        question: 'Does soft lavender reduce glare?',
-        answer: 'Yes, its reduced luminance compared to 100% white prevents pupil fatigue and harsh reflection off glossy screens.',
-      },
-    ],
-    relatedTools: [
-      { name: 'White Screen Tool', path: '/', description: 'Fullscreen white screen tool.' },
-    ],
-  },
-
-  // 17. Blurred Studio
-  {
-    slug: 'blurred-studio',
-    title: 'Blurred Studio Background',
-    h1: 'Blurred Studio Bokeh Background — Video Call Depth of Field & 4K PNG',
-    metaTitle: 'Blurred Studio Background (Bokeh Blur & 4K PNG) | WhiteScreen.vip',
-    metaDescription: 'Realistic shallow depth of field blurred studio background for video calls. Download in 1080p and 4K Ultra HD.',
-    category: 'video-call',
-    categoryLabel: 'Video Call',
-    shortDescription: 'Realistic optical bokeh blur mimicking high-end DSLR shallow depth of field for Zoom and Teams.',
-    dominantColorName: 'Studio Bokeh Blur',
-    primaryHex: '#1E293B',
-    secondaryHex: '#64748B',
-    type: 'gradient',
-    cssBackground: 'radial-gradient(circle at 75% 20%, #94A3B8 0%, #475569 35%, #1E293B 75%, #0F172A 100%)',
-    isDark: true,
-    tags: ['blurred-studio', 'bokeh', 'dslr', 'zoom', 'teams', 'video-call'],
-    about: {
-      overview: 'Simulates the creamy optical bokeh of an f/1.4 prime lens in a professional architectural loft, giving your webcam feed a high-end cinematic depth.',
-      colorCharacteristics: 'Rich mid-tone grays and soft ambient light patches that look convincing to the human eye.',
-      aestheticTone: 'Refined, high-end, and contemporary.',
-    },
-    fullscreenGuide: {
-      instruction: 'Download the 1080p image and set it as your virtual background in your preferred video conferencing software.',
-      bestUsedFor: 'Concealing unmade beds or home clutter with believable photographic depth.',
-      inspectionTip: 'Ensures natural blending without the jagged "cutout" look of artificial AI background blurs.',
-    },
-    useCases: [
-      {
-        title: 'Cinematic Webcam Enhancement',
-        description: 'Gives standard $30 webcams the appearance of a $1,500 mirrorless camera setup.',
-        linkText: 'Virtual Office Background',
-        linkHref: '/backgrounds/virtual-office',
-      },
-    ],
-    selectionAdvice: {
-      whenToChoose: 'Choose when you want the most realistic, believable video conference backdrop available.',
-      contrastAndReadability: 'Balanced tones flatter both formal and casual business attire.',
-      alternativeConsiderations: 'For a simpler minimal look, try Virtual Office.',
-    },
-    contextualLinks: [
-      { label: 'Virtual Office Background', href: '/backgrounds/virtual-office', description: 'Clean architectural backdrop.' },
-      { label: 'Zoom Lighting Tool', href: '/zoom-lighting', description: 'Facial fill lighting.' },
-    ],
-    faqs: [
-      {
-        question: 'Why is an image background often better than built-in app blur?',
-        answer: 'Real-time AI blur consumes heavy CPU/GPU power causing video lag. A static pre-blurred image requires virtually zero processing power.',
-      },
-    ],
-    relatedTools: [
-      { name: 'Zoom Lighting', path: '/zoom-lighting', description: 'Fill light for webcam calls.' },
-    ],
-  },
-
-  // 18. Matrix Code
-  {
-    slug: 'matrix-code',
-    title: 'Matrix Code Background',
-    h1: 'Matrix Terminal Digital Rain Background — Cyber Green & 4K Wallpaper',
-    metaTitle: 'Matrix Code Background (Cyber Green Terminal & 4K PNG) | WhiteScreen.vip',
-    metaDescription: 'Iconic sci-fi cyber terminal digital rain background. Download high-resolution 1080p and 4K wallpapers.',
-    category: 'neon',
-    categoryLabel: 'Neon & Glow',
-    shortDescription: 'Cyberpunk digital rain terminal aesthetics inspired by classic sci-fi hacking consoles.',
-    dominantColorName: 'Terminal Green',
-    primaryHex: '#00FF41',
-    secondaryHex: '#0D0208',
-    type: 'pattern',
-    cssBackground: 'linear-gradient(180deg, #00FF41 0%, #008F11 50%, #003B00 85%, #0D0208 100%)',
-    isDark: true,
-    tags: ['matrix', 'cyber', 'terminal', 'code', 'hacker', 'green'],
-    about: {
-      overview: 'Tribute to classic phosphor terminal screens and sci-fi digital rain aesthetics. High-contrast terminal green (#00FF41) descending into obsidian darkness.',
-      colorCharacteristics: 'Saturated green phosphorescence on true black for extreme contrast.',
-      aestheticTone: 'Nostalgic, hacker-chic, and futuristic.',
-    },
-    fullscreenGuide: {
-      instruction: 'Open fullscreen on secondary monitors for an authentic cyber terminal vibe while programming.',
-      bestUsedFor: 'Developer desks, streaming overlays, and gaming wallpapers.',
-      inspectionTip: 'Check monitor contrast and black level detail.',
-    },
-    useCases: [
-      {
-        title: 'Developer Battlestation Decor',
-        description: 'Brings classic hacker cinema aesthetic to your development workstation.',
-        linkText: 'Interactive Matrix Screensaver',
-        linkHref: '/matrix-screensaver',
-      },
-    ],
-    selectionAdvice: {
-      whenToChoose: 'Choose for playful sci-fi atmosphere and gamer setups.',
-      contrastAndReadability: 'High visual activity; best suited for secondary screens.',
-      alternativeConsiderations: 'For a solid calm green, choose Forest Background.',
-    },
-    contextualLinks: [
-      { label: 'Matrix Screen Tool', href: '/matrix-screensaver', description: 'Interactive live falling code simulation.' },
-      { label: 'Neon Background', href: '/backgrounds/neon-background', description: 'Cyberpunk neon glow.' },
-    ],
-    faqs: [
-      {
-        question: 'Is there an animated version of this background?',
-        answer: 'Yes! Check out our interactive Matrix Screen tool for live streaming digital rain code.',
-      },
-    ],
-    relatedTools: [
-      { name: 'Matrix Screen', path: '/matrix-screensaver', description: 'Live animated digital rain.' },
-      { name: 'Static Screen', path: '/static-screen', description: 'TV static effect.' },
-    ],
-  },
-
-  // 19. Graph Paper
+  // Graph Paper
   {
     slug: 'graph-paper',
+    aliases: ['graph-paper-background'],
     title: 'Graph Paper Background',
-    h1: 'Engineering Graph Paper Background — Blueprint Grid & 4K PNG',
-    metaTitle: 'Graph Paper Background (Blueprint Grid & 4K PNG) | WhiteScreen.vip',
-    metaDescription: 'Precision engineering grid and graph paper background. Perfect for architectural sketching, alignment, and minimalist desktop setups.',
+    h1: 'Graph Paper Background — Blue Grid Paper Wallpaper & PNG',
+    metaTitle: 'Graph Paper Background (Blue Grid, Fullscreen & PNG)',
+    metaDescription:
+      'Free graph paper background with a light blue 5×5 grid on white. Use it fullscreen for sketching, tracing and alignment, or download a crisp PNG up to 8K.',
     category: 'minimal',
     categoryLabel: 'Aesthetic & Minimal',
-    shortDescription: 'Precision engineering grid pattern for visual alignment, layout planning, and technical desktop setups.',
-    dominantColorName: 'Blueprint Slate & Grid',
-    primaryHex: '#0F172A',
-    secondaryHex: '#1E293B',
+    shortDescription: 'Classic white graph paper with light blue squares and darker lines every fifth square.',
+    dominantColorName: 'Paper White & Grid Blue',
+    primaryHex: '#F8FBFF',
+    secondaryHex: '#D3E3F4',
+    accentHex: '#8DB4DD',
     type: 'pattern',
-    cssBackground: 'linear-gradient(to right, #334155 1px, transparent 1px), linear-gradient(to bottom, #334155 1px, #0F172A 1px)',
-    isDark: true,
-    tags: ['graph-paper', 'grid', 'blueprint', 'engineering', 'alignment', 'technical'],
+    cssBackground:
+      'linear-gradient(#8DB4DD 1px, transparent 1px) 0 0 / 100px 100px, linear-gradient(90deg, #8DB4DD 1px, transparent 1px) 0 0 / 100px 100px, linear-gradient(#D3E3F4 1px, transparent 1px) 0 0 / 20px 20px, linear-gradient(90deg, #D3E3F4 1px, transparent 1px) 0 0 / 20px 20px, #F8FBFF',
+    isDark: false,
+    tags: ['graph-paper', 'grid-paper', 'squared-paper', 'engineering', 'sketching', 'alignment'],
     about: {
-      overview: 'Features a clean, mathematically precise technical grid overlaid on deep slate blue. Evokes technical blueprints and precision drafting paper.',
-      colorCharacteristics: 'Subtle high-precision lines that assist with window alignment and layout planning without causing visual noise.',
-      aestheticTone: 'Analytical, structured, and disciplined.',
+      overview:
+        'This is the squared paper you know from maths and engineering notebooks: a near-white sheet (#F8FBFF) ruled with fine light blue lines (#D3E3F4) and a heavier blue line (#8DB4DD) every fifth square. In the preview each small square is 20 px and each major square is 100 px.',
+      colorCharacteristics:
+        'The minor grid is pale enough to fade into the background while you work, and the major grid gives you quick reference points for counting, measuring and lining things up.',
+      aestheticTone: 'Tidy, studious and practical, like a fresh page in a lab notebook.',
     },
     fullscreenGuide: {
-      instruction: 'Open fullscreen to verify window placement, check display aspect ratios, or inspect physical monitor tilt and bezel alignment.',
-      bestUsedFor: 'Display geometry inspection and technical wallpapers.',
-      inspectionTip: 'Inspect whether grid lines remain perfectly straight across the panel without barrel or pincushion distortion.',
+      instruction:
+        'Open it fullscreen and turn the brightness up to use your screen as a light box with a built-in grid, or leave it at normal brightness as a planning surface behind floating windows.',
+      bestUsedFor: 'Tracing, pixel art and lettering practice, layout planning, and checking monitor geometry.',
+      inspectionTip:
+        'Look along the major lines toward the edges. On a well-set-up monitor or projector they stay straight and evenly spaced; bowing or squeezing shows a geometry or scaling problem.',
     },
     useCases: [
       {
-        title: 'Physical Display Alignment & Tilt Check',
-        description: 'Verify dual-monitor horizontal alignment and bezel seams using straight grid references.',
-        linkText: 'Monitor Test Suite',
-        linkHref: '/monitor-test',
+        title: 'Tracing and lettering practice',
+        description: 'Lay thin paper over the screen and use the grid to keep letters, sketches and diagrams square.',
+        linkText: 'Drawing and tracing guide',
+        linkHref: '/guides/fullscreen-white-screen-for-drawing-and-tracing/',
+      },
+      {
+        title: 'Monitor geometry and scaling check',
+        description: 'Uneven squares reveal non-native resolutions, overscan on TVs and keystone errors on projectors.',
+        linkText: 'Screen resolution test',
+        linkHref: '/screen-resolution-test/',
+      },
+      {
+        title: 'Desk wallpaper for makers',
+        description: 'A calm grid behind your icons suits engineers, designers and students.',
       },
     ],
     selectionAdvice: {
-      whenToChoose: 'Choose for structured technical workstations and engineering setups.',
-      contrastAndReadability: 'Subtle lines do not interfere with desktop icon text.',
-      alternativeConsiderations: 'For a plain solid blue, choose Deep Navy.',
+      whenToChoose: 'Choose graph paper when you need straight reference lines; choose a plain color when you only need light.',
+      contrastAndReadability: 'Dark icon labels and black text read clearly; the grid is too light to compete with them.',
+      alternativeConsiderations: 'For a plain bright sheet without lines, use the White Background or the fullscreen White Screen.',
     },
     contextualLinks: [
-      { label: 'Deep Navy Background', href: '/backgrounds/deep-navy', description: 'Solid midnight slate blue.' },
-      { label: 'Monitor Test', href: '/monitor-test', description: 'Comprehensive monitor alignment suite.' },
+      { label: 'White Background', href: '/backgrounds/white-background/', description: 'The same bright sheet without a grid.' },
+      { label: 'Screen Resolution Test', href: '/screen-resolution-test/', description: 'Check that your display runs at native resolution.' },
+      { label: 'Monitor Test', href: '/monitor-test/', description: 'Geometry, sharpness and color patterns in one place.' },
     ],
     faqs: [
       {
-        question: 'Can I use this grid to check for monitor distortion?',
-        answer: 'Yes. Curved monitors or miscalibrated projectors can be checked against these straight reference lines.',
+        question: 'What size are the squares?',
+        answer:
+          'In the preview each small square is 20 × 20 px, grouped into 100 px major squares (5 × 5). Downloads scale the grid with the image so it looks the same at 1080p and 4K.',
+      },
+      {
+        question: 'Can I print it?',
+        answer:
+          'Yes. Download the PNG and print it to fit the page. Printed square size depends on the paper size and scaling, so it is not a precise millimetre grid.',
+      },
+      {
+        question: 'Can I check my monitor for distortion with it?',
+        answer:
+          'Yes. Straight, evenly spaced lines across the whole screen mean the image is not being stretched. Bent or uneven lines usually mean scaling, overscan or projector keystone settings need adjusting.',
       },
     ],
     relatedTools: [
-      { name: 'Monitor Test', path: '/monitor-test', description: 'Geometry and sharpness tests.' },
+      { name: 'Monitor Test', path: '/monitor-test/', description: 'Geometry and sharpness tests.' },
+      { name: 'White Screen', path: '/', description: 'Plain fullscreen white for light-box tracing.' },
     ],
   },
 
-  // 20. Carbon Dark
+  // Pink Background
   {
-    slug: 'carbon-dark',
-    title: 'Carbon Dark Background',
-    h1: 'Carbon Dark Background (#0D0E11) — 5% Near-Black OLED & 4K PNG',
-    metaTitle: 'Carbon Dark Background (5% Near-Black #0D0E11 & 4K PNG) | WhiteScreen.vip',
-    metaDescription: 'Precision 5% near-black carbon background (#0D0E11). Test OLED near-black uniformity, prevent black crush, and download 4K wallpapers.',
-    category: 'dark-oled',
-    categoryLabel: 'Dark & OLED',
-    shortDescription: 'Subtle 5% near-black carbon (#0D0E11) designed to prevent black crush and inspect OLED dark gray uniformity.',
-    dominantColorName: 'Carbon Near-Black',
-    primaryHex: '#0D0E11',
+    slug: 'pink-background',
+    title: 'Pink Background',
+    h1: 'Pink Background (#F472B6) — Plain Pink Wallpaper & PNG',
+    metaTitle: 'Pink Background (Plain Pink #F472B6, Fullscreen & PNG)',
+    metaDescription:
+      'A clean, plain pink background (#F472B6). Show it fullscreen as soft fill light or download a pink wallpaper PNG in 1080p, 2K, 4K or a phone size.',
+    category: 'solid',
+    categoryLabel: 'Solid Color',
+    shortDescription: 'Bright, friendly plain pink (#F472B6) for wallpapers, designs and flattering fill light.',
+    dominantColorName: 'Bubblegum Pink',
+    primaryHex: '#F472B6',
     type: 'solid',
-    cssBackground: '#0D0E11',
-    isDark: true,
-    tags: ['carbon', 'oled', 'near-black', '5-percent', 'shadow-detail', 'banding-test'],
+    cssBackground: '#F472B6',
+    isDark: false,
+    tags: ['pink', 'plain-pink', 'cute', 'wallpaper', 'fill-light'],
     about: {
-      overview: 'Renders an ultra-deep charcoal (hex #0D0E11, RGB 13, 14, 17) sitting at approximately 5% stimulus above absolute black. Specifically tuned for discerning shadow detail.',
-      colorCharacteristics: 'Exposes vertical banding streaks and panel mura that hide in pure pitch black.',
-      aestheticTone: 'Understated, sophisticated, and dark.',
+      overview:
+        'A single flat field of pink (hex #F472B6, RGB 244, 114, 182): bright enough to feel cheerful, soft enough not to glare. There is no texture, noise or watermark, so it works as a base for designs and as a plain phone or desktop wallpaper.',
+      colorCharacteristics:
+        'It mixes strong red with a good share of blue and a little green, so it reads as a cool, candy pink rather than salmon or coral.',
+      aestheticTone: 'Playful, warm and upbeat.',
     },
     fullscreenGuide: {
-      instruction: 'Open full screen in a darkened room to evaluate near-black uniformity on OLED TVs and monitors.',
-      bestUsedFor: 'Inspecting OLED vertical banding and preventing black crush in image editing.',
-      inspectionTip: 'OLED panels often show faint vertical bands on 5% dark gray that vanish at 20% gray or pure black.',
+      instruction:
+        'Go fullscreen and turn the brightness up to use the screen as a soft pink fill light for selfies, product shots or video calls.',
+      bestUsedFor: 'Wallpapers, social graphics, flattering fill light and party displays.',
+      inspectionTip: 'Pink lights red and blue subpixels together, so an uneven tint across the screen is easy to spot.',
     },
     useCases: [
       {
-        title: 'OLED Near-Black Uniformity Testing',
-        description: 'Reveal panel manufacturing banding across low-stimulus gray channels.',
-        linkText: 'OLED Gray Test Suite',
-        linkHref: '/oled-gray-test',
+        title: 'Selfie and video-call fill light',
+        description: 'A pink glow warms skin tones in a way plain white light does not.',
+        linkText: 'Zoom lighting tool',
+        linkHref: '/zoom-lighting/',
+      },
+      {
+        title: 'Phone and desktop wallpaper',
+        description: 'Download a phone-size PNG for a minimal, cheerful lock screen.',
+      },
+      {
+        title: 'Design base',
+        description: 'Drop text or product cutouts on top for posts, invites and thumbnails.',
       },
     ],
     selectionAdvice: {
-      whenToChoose: 'Choose when 100% black causes black crush and you need faint visible separation for dark mode UI.',
-      contrastAndReadability: 'Excellent contrast with muted light gray and white text.',
-      alternativeConsiderations: 'For total pixel shut-off, use True Black.',
+      whenToChoose: 'Choose pink when you want something light-hearted that still looks clean.',
+      contrastAndReadability: 'Dark text (near black or deep plum) reads best; white text works only when large and bold.',
+      alternativeConsiderations: 'For a softer, whiter tone try the Pastel Background; for a stronger color try the Purple Background.',
     },
     contextualLinks: [
-      { label: 'Black Background', href: '/backgrounds/black-background', description: '0% true OLED black.' },
-      { label: 'OLED Gray Test', href: '/oled-gray-test', description: '5% to 50% gray field evaluation.' },
+      { label: 'Pink Screen', href: '/pink-screen/', description: 'Fullscreen pink with color controls.' },
+      { label: 'Pastel Background', href: '/backgrounds/pastel-background/', description: 'Softer mint, lavender and peach.' },
+      { label: 'Aesthetic Background', href: '/backgrounds/aesthetic-background/', description: 'Peach-to-pink-to-blue gradient.' },
     ],
     faqs: [
       {
-        question: 'What is black crush?',
-        answer: 'Black crush occurs when near-black dark gray details are pushed into pure pitch black, losing shadow detail in photos and games.',
+        question: 'What is the hex code of this pink?',
+        answer: 'It is #F472B6 (RGB 244, 114, 182).',
+      },
+      {
+        question: 'Can I use it as a phone wallpaper?',
+        answer: 'Yes. Pick the phone size (1080 × 2400) or enter your exact screen size, then download the PNG.',
       },
     ],
     relatedTools: [
-      { name: 'OLED Gray Test', path: '/oled-gray-test', description: 'Near-black banding test.' },
-      { name: 'Black Screen Tool', path: '/black-screen', description: '0% black screen.' },
+      { name: 'Pink Screen', path: '/pink-screen/', description: 'Fullscreen pink light.' },
+      { name: 'Zoom Lighting', path: '/zoom-lighting/', description: 'Adjustable video-call fill light.' },
     ],
   },
 
-  // 21. Midnight Cosmic Purple
+  // Green Background
   {
-    slug: 'midnight-cosmic-purple',
-    title: 'Midnight Cosmic Purple Background',
-    h1: 'Midnight Cosmic Purple Background (#140B1F) — Deep Space 4K Wallpaper',
-    metaTitle: 'Midnight Cosmic Purple Background (#140B1F & 4K PNG) | WhiteScreen.vip',
-    metaDescription: 'Deep midnight cosmic purple (#140B1F) background. Atmospheric low-light wallpaper with 1080p, 2K, and 4K downloads.',
-    category: 'dark-oled',
-    categoryLabel: 'Dark & OLED',
-    shortDescription: 'Deep obsidian purple (#140B1F) that maintains low OLED power draw while providing rich subtle color.',
-    dominantColorName: 'Midnight Cosmic Purple',
-    primaryHex: '#140B1F',
+    slug: 'green-background',
+    aliases: ['sage-green'],
+    title: 'Green Background',
+    h1: 'Green Background (#16A34A) — Plain Green Wallpaper & PNG',
+    metaTitle: 'Green Background (Plain Green #16A34A, Fullscreen & PNG)',
+    metaDescription:
+      'A plain, fresh green background (#16A34A). Use it fullscreen or download a green wallpaper PNG in 1080p, 2K, 4K or phone size. Need chroma key? See Green Screen.',
+    category: 'solid',
+    categoryLabel: 'Solid Color',
+    shortDescription: 'Fresh leaf green (#16A34A) for calm wallpapers, slides and design backdrops.',
+    dominantColorName: 'Leaf Green',
+    primaryHex: '#16A34A',
     type: 'solid',
-    cssBackground: '#140B1F',
+    cssBackground: '#16A34A',
     isDark: true,
-    tags: ['midnight', 'purple', 'space', 'cosmic', 'oled', 'dark'],
+    tags: ['green', 'plain-green', 'nature', 'wallpaper', 'calm'],
     about: {
-      overview: 'A deep space obsidian purple (hex #140B1F, RGB 20, 11, 31) that merges the battery benefits of dark themes with the richness of cosmic violet.',
-      colorCharacteristics: 'Low luminous emission with just enough chromatic presence to feel atmospheric.',
-      aestheticTone: 'Mysterious, tranquil, and luxurious.',
+      overview:
+        'A flat, natural leaf green (hex #16A34A, RGB 22, 163, 74). It is a decorative green: deeper and calmer than the bright chroma-key green used for video keying.',
+      colorCharacteristics:
+        'Green sits in the middle of the visible spectrum where the eye is most sensitive, so even a mid-tone green looks bright and lively without being harsh.',
+      aestheticTone: 'Fresh, balanced and restful.',
     },
     fullscreenGuide: {
-      instruction: 'Open fullscreen for an atmospheric nocturnal glow that does not disturb room ambiance.',
-      bestUsedFor: 'Nighttime coding, ambient room lighting, and desktop wallpapers.',
-      inspectionTip: 'Check whether your panel maintains subtle purple undertones without crushing into plain black.',
+      instruction: 'Go fullscreen for a calm green backdrop on a TV or spare monitor, or as a soft green fill light.',
+      bestUsedFor: 'Wallpapers, presentation backdrops, eco and nature themed designs.',
+      inspectionTip: 'For a clean check of green subpixels only, use the pure #00FF00 Green Screen instead.',
     },
     useCases: [
       {
-        title: 'Atmospheric Nocturnal Wallpaper',
-        description: 'Offers an alluring alternative to standard charcoal dark mode themes.',
-        linkText: 'Deep Navy Background',
-        linkHref: '/backgrounds/deep-navy',
+        title: 'Calm desktop wallpaper',
+        description: 'A plain green desktop is easy on the eyes and keeps icons readable.',
+      },
+      {
+        title: 'Slides and social posts',
+        description: 'A natural green base suits sustainability, health and garden topics.',
+      },
+      {
+        title: 'Not for chroma key',
+        description: 'Keying software works best with the brighter, purer chroma green.',
+        linkText: 'Green Screen Background',
+        linkHref: '/backgrounds/green-screen-background/',
       },
     ],
     selectionAdvice: {
-      whenToChoose: 'Choose for low-light workstations where you want mood and color depth.',
-      contrastAndReadability: 'Pastel text (cyan, lavender, peach) creates an ethereal reading experience.',
-      alternativeConsiderations: 'For a bolder vibrant look, choose Purple Dream.',
+      whenToChoose: 'Choose this green for a natural, relaxed look rather than a technical keying color.',
+      contrastAndReadability: 'White text reads well on it; very dark green or black text also works.',
+      alternativeConsiderations: 'For video keying use the Green Screen Background; for something lighter use the Pastel Background.',
     },
     contextualLinks: [
-      { label: 'Deep Navy Background', href: '/backgrounds/deep-navy', description: 'Classic executive dark blue.' },
-      { label: 'Purple Dream Gradient', href: '/backgrounds/purple-dream', description: 'Vibrant violet-to-pink gradient.' },
+      { label: 'Green Screen Background', href: '/backgrounds/green-screen-background/', description: 'Chroma-key green for video.' },
+      { label: 'Green Screen', href: '/green-screen/', description: 'Pure #00FF00 for subpixel tests.' },
+      { label: 'Pastel Background', href: '/backgrounds/pastel-background/', description: 'Soft mint, lavender and peach.' },
     ],
     faqs: [
       {
-        question: 'Does this save power on OLED screens?',
-        answer: 'Yes, because the subpixels are emitting only a tiny fraction of their maximum luminance compared to standard bright wallpapers.',
+        question: 'Is this the same as a green screen for video?',
+        answer:
+          'No. This is a decorative green. For keying out a background in OBS, Zoom or video editors, use the Green Screen Background, which is the standard bright chroma green.',
+      },
+      {
+        question: 'What is the hex code?',
+        answer: 'It is #16A34A (RGB 22, 163, 74).',
       },
     ],
     relatedTools: [
-      { name: 'Black Screen Tool', path: '/black-screen', description: 'True 0% black screen.' },
-      { name: 'OLED Gray Test', path: '/oled-gray-test', description: 'Uniformity test.' },
+      { name: 'Green Screen', path: '/green-screen/', description: 'Fullscreen pure green.' },
+      { name: 'Dead Pixel Test', path: '/dead-pixel-test/', description: 'Cycle red, green and blue fields.' },
+    ],
+  },
+
+  // Purple Background
+  {
+    slug: 'purple-background',
+    title: 'Purple Background',
+    h1: 'Purple Background (#7C3AED) — Plain Purple Wallpaper & PNG',
+    metaTitle: 'Purple Background (Plain Purple #7C3AED, Fullscreen & PNG)',
+    metaDescription:
+      'A rich, plain purple background (#7C3AED). Use it fullscreen as mood lighting or download a purple wallpaper PNG in 1080p, 2K, 4K or phone size.',
+    category: 'solid',
+    categoryLabel: 'Solid Color',
+    shortDescription: 'Rich violet purple (#7C3AED) for bold wallpapers, mood lighting and creative designs.',
+    dominantColorName: 'Royal Violet',
+    primaryHex: '#7C3AED',
+    type: 'solid',
+    cssBackground: '#7C3AED',
+    isDark: true,
+    tags: ['purple', 'violet', 'plain-purple', 'mood-lighting', 'wallpaper'],
+    about: {
+      overview:
+        'A flat, saturated violet (hex #7C3AED, RGB 124, 58, 237). It is strong enough to set a mood on its own and works as a clean base for text and graphics.',
+      colorCharacteristics:
+        'Mostly blue with a strong red component, so it glows cool and rich on screen and makes white text stand out.',
+      aestheticTone: 'Creative, dreamy and a little luxurious.',
+    },
+    fullscreenGuide: {
+      instruction: 'Go fullscreen in a dim room for purple mood lighting behind a desk, stream or gaming setup.',
+      bestUsedFor: 'Gaming and streaming backdrops, mood lighting, posters and wallpapers.',
+      inspectionTip: 'Purple combines red and blue subpixels; a greenish cast in one area hints at uneven backlighting.',
+    },
+    useCases: [
+      {
+        title: 'Streaming and gaming ambience',
+        description: 'A purple screen behind you adds color to a webcam shot without extra lights.',
+      },
+      {
+        title: 'Bold wallpaper',
+        description: 'Plain purple keeps a desktop or phone tidy while still feeling personal.',
+      },
+      {
+        title: 'Posters and thumbnails',
+        description: 'White or yellow text on purple is easy to read at a glance.',
+      },
+    ],
+    selectionAdvice: {
+      whenToChoose: 'Choose purple when you want a bold color that is less aggressive than red.',
+      contrastAndReadability: 'White, pale yellow and light pink text all read clearly.',
+      alternativeConsiderations: 'For a gentler, pastel version use the Aesthetic or Pastel backgrounds; for darkness use the Dark Background.',
+    },
+    contextualLinks: [
+      { label: 'Purple Screen', href: '/purple-screen/', description: 'Fullscreen purple with color controls.' },
+      { label: 'Pink Background', href: '/backgrounds/pink-background/', description: 'A lighter, warmer neighbour.' },
+      { label: 'Neon Background', href: '/backgrounds/neon-background/', description: 'Cyan and magenta glow on black.' },
+    ],
+    faqs: [
+      {
+        question: 'What is the hex code of this purple?',
+        answer: 'It is #7C3AED (RGB 124, 58, 237).',
+      },
+      {
+        question: 'Can I use it as room lighting?',
+        answer:
+          'Yes. In fullscreen at high brightness a monitor or TV gives a soft purple wash. A screen is dimmer than a real light, so it works best in a dark room.',
+      },
+    ],
+    relatedTools: [
+      { name: 'Purple Screen', path: '/purple-screen/', description: 'Fullscreen purple light.' },
+      { name: 'Color Cycle', path: '/color-cycle/', description: 'Smoothly cycle through colors.' },
+    ],
+  },
+
+  // Dark Background
+  {
+    slug: 'dark-background',
+    aliases: ['navy-background'],
+    title: 'Dark Background',
+    h1: 'Dark Background (#121212) — Plain Dark Gray Wallpaper & PNG',
+    metaTitle: 'Dark Background (Plain Dark Gray #121212, Fullscreen & PNG)',
+    metaDescription:
+      'A plain dark background (#121212), the soft dark gray used by dark-mode apps. Easy on the eyes at night; download a dark wallpaper PNG up to 8K.',
+    category: 'dark-oled',
+    categoryLabel: 'Dark & OLED',
+    shortDescription: 'Soft dark gray (#121212), the dark-mode shade that is gentler than pure black.',
+    dominantColorName: 'Dark Mode Gray',
+    primaryHex: '#121212',
+    type: 'solid',
+    cssBackground: '#121212',
+    isDark: true,
+    tags: ['dark', 'dark-mode', 'dark-gray', 'night', 'wallpaper', 'oled'],
+    about: {
+      overview:
+        'A flat dark gray (hex #121212, RGB 18, 18, 18), the shade many dark-mode designs use as their base surface. It is dark enough for night use but keeps a little separation from pure black.',
+      colorCharacteristics:
+        'Because it is not fully black, shadows, borders and lighter gray panels on top of it stay visible, and white text does not "bloom" as harshly as it can on pure black.',
+      aestheticTone: 'Quiet, modern and focused.',
+    },
+    fullscreenGuide: {
+      instruction: 'Go fullscreen to dim a second monitor at night without turning it off, or as a calm backdrop behind floating windows.',
+      bestUsedFor: 'Night-time wallpapers, dark-mode design mockups and low-glare backdrops.',
+      inspectionTip: 'On OLED screens a near-black gray can show faint vertical bands; on LCDs it reveals backlight bleed at the edges.',
+    },
+    useCases: [
+      {
+        title: 'Low-glare night wallpaper',
+        description: 'Keeps your desktop readable in a dark room without a bright glow.',
+      },
+      {
+        title: 'Dark-mode design base',
+        description: 'Use it as the background surface when mocking up dark interfaces.',
+      },
+      {
+        title: 'Backlight bleed check',
+        description: 'A dark field makes light leaking from the edges of an LCD easy to see.',
+        linkText: 'Backlight bleed guide',
+        linkHref: '/screen-problems/backlight-bleed/',
+      },
+    ],
+    selectionAdvice: {
+      whenToChoose: 'Choose dark gray for comfortable night use; choose pure black when you want OLED pixels fully off.',
+      contrastAndReadability: 'Off-white and light gray text read comfortably without harsh contrast.',
+      alternativeConsiderations: 'For true 0% black use the Black Background.',
+    },
+    contextualLinks: [
+      { label: 'Black Background', href: '/backgrounds/black-background/', description: 'True #000000 black.' },
+      { label: 'OLED Gray Test', href: '/oled-gray-test/', description: 'Check near-black uniformity.' },
+      { label: 'Black Screen', href: '/black-screen/', description: 'Fullscreen black with controls.' },
+    ],
+    faqs: [
+      {
+        question: 'Why #121212 instead of pure black?',
+        answer:
+          'Pure black next to white text creates very high contrast that some people find tiring, and it hides shadows. A soft dark gray is calmer and keeps depth visible.',
+      },
+      {
+        question: 'Does a dark background save battery?',
+        answer:
+          'On OLED screens, yes: darker pixels use less power. On LCD screens the backlight stays on, so the saving is small.',
+      },
+    ],
+    relatedTools: [
+      { name: 'Black Screen', path: '/black-screen/', description: 'Pure black fullscreen.' },
+      { name: 'OLED Gray Test', path: '/oled-gray-test/', description: 'Near-black banding test.' },
+    ],
+  },
+
+  // Gold Background
+  {
+    slug: 'gold-background',
+    title: 'Gold Background',
+    h1: 'Gold Background — Metallic Gold Gradient Wallpaper & PNG',
+    metaTitle: 'Gold Background (Metallic Gold Gradient, Fullscreen & PNG)',
+    metaDescription:
+      'A shiny metallic gold background with a bright highlight across the middle. Use it fullscreen or download a gold wallpaper PNG in 1080p, 2K, 4K or phone size.',
+    category: 'gradient',
+    categoryLabel: 'Gradients',
+    shortDescription: 'Metallic gold gradient with a bright sheen, for luxury designs, invitations and celebrations.',
+    dominantColorName: 'Metallic Gold',
+    primaryHex: '#B8860B',
+    accentHex: '#F6D77A',
+    secondaryHex: '#8A6512',
+    type: 'gradient',
+    cssBackground: 'linear-gradient(135deg, #B8860B 0%, #F6D77A 50%, #8A6512 100%)',
+    isDark: false,
+    tags: ['gold', 'metallic', 'luxury', 'celebration', 'gradient', 'wallpaper'],
+    about: {
+      overview:
+        'Gold cannot be shown as one flat color, because what makes metal look metallic is the change from shadow to highlight. This background runs from deep goldenrod (#B8860B) through a pale gold sheen (#F6D77A) to antique gold (#8A6512) on a diagonal.',
+      colorCharacteristics:
+        'Warm yellow and orange tones with a bright band in the middle that reads as light catching a polished surface.',
+      aestheticTone: 'Luxurious, festive and premium.',
+    },
+    fullscreenGuide: {
+      instruction: 'Go fullscreen on a TV or monitor as a warm, festive backdrop for parties, award nights or product displays.',
+      bestUsedFor: 'Invitations, certificates, celebration slides and premium product graphics.',
+      inspectionTip: 'Look for steps in the gradient; visible bands mean the display or file is using limited color depth.',
+    },
+    useCases: [
+      {
+        title: 'Invitations and certificates',
+        description: 'Gold behind dark text instantly looks formal and celebratory.',
+      },
+      {
+        title: 'Event and party screens',
+        description: 'A warm gold glow suits weddings, anniversaries and New Year displays.',
+      },
+      {
+        title: 'Gradient banding check',
+        description: 'Smooth gradients reveal banding on 6-bit and 8-bit panels.',
+        linkText: 'Color banding guide',
+        linkHref: '/screen-problems/color-banding/',
+      },
+    ],
+    selectionAdvice: {
+      whenToChoose: 'Choose gold when the design should feel special, formal or celebratory.',
+      contrastAndReadability: 'Dark brown or black text reads best; white text only works on the darker corners.',
+      alternativeConsiderations: 'For a softer warm tone use the Beige Background; for a flat bright color use Yellow.',
+    },
+    contextualLinks: [
+      { label: 'Yellow Background', href: '/backgrounds/yellow-background/', description: 'Flat bright yellow.' },
+      { label: 'Beige Background', href: '/backgrounds/beige-background/', description: 'Soft warm neutral.' },
+      { label: 'Gradient Background', href: '/backgrounds/gradient-background/', description: 'Indigo, magenta and amber.' },
+    ],
+    faqs: [
+      {
+        question: 'What colors make up this gold?',
+        answer: 'A diagonal gradient from #B8860B through #F6D77A to #8A6512.',
+      },
+      {
+        question: 'Will it look metallic when printed?',
+        answer:
+          'It will look like a gold illustration. Real metallic shine in print needs special foil or metallic ink, which no image file can reproduce.',
+      },
+    ],
+    relatedTools: [
+      { name: 'Gradient Screen', path: '/gradient-screen/', description: 'Make your own fullscreen gradient.' },
+      { name: 'Yellow Screen', path: '/yellow-screen/', description: 'Fullscreen yellow.' },
+    ],
+  },
+
+  // Aesthetic Background
+  {
+    slug: 'aesthetic-background',
+    title: 'Aesthetic Background',
+    h1: 'Aesthetic Background — Soft Peach, Pink & Blue Gradient',
+    metaTitle: 'Aesthetic Background (Soft Gradient Wallpaper, Fullscreen & PNG)',
+    metaDescription:
+      'A dreamy aesthetic background that fades from peach to pink to periwinkle blue. Use it fullscreen or download an aesthetic wallpaper PNG for phone or desktop.',
+    category: 'minimal',
+    categoryLabel: 'Aesthetic & Minimal',
+    shortDescription: 'Dreamy peach-to-pink-to-blue gradient for aesthetic wallpapers, stories and mood boards.',
+    dominantColorName: 'Peach, Rose & Periwinkle',
+    primaryHex: '#FBD3C1',
+    accentHex: '#F5B5D6',
+    secondaryHex: '#A9C1F2',
+    type: 'gradient',
+    cssBackground: 'linear-gradient(135deg, #FBD3C1 0%, #F5B5D6 50%, #A9C1F2 100%)',
+    isDark: false,
+    tags: ['aesthetic', 'soft', 'dreamy', 'gradient', 'wallpaper', 'instagram'],
+    about: {
+      overview:
+        'A soft sky-at-dusk gradient: warm peach (#FBD3C1) blends into rose pink (#F5B5D6) and settles into periwinkle blue (#A9C1F2). It is the low-contrast, washed-out look popular for phone wallpapers and social stories.',
+      colorCharacteristics: 'All three colors are light and gently saturated, so the image feels bright without being glaring.',
+      aestheticTone: 'Dreamy, calm and romantic.',
+    },
+    fullscreenGuide: {
+      instruction: 'Go fullscreen as a soft backdrop for photos, or as a gentle light behind a webcam.',
+      bestUsedFor: 'Phone wallpapers, story and post backgrounds, mood boards and planners.',
+      inspectionTip: 'Pale gradients are a good test for banding; smooth panels show no visible steps.',
+    },
+    useCases: [
+      {
+        title: 'Phone and tablet wallpaper',
+        description: 'Download at your exact screen size for a clean aesthetic lock screen.',
+      },
+      {
+        title: 'Story and post backgrounds',
+        description: 'Light colors keep dark text and stickers easy to read.',
+      },
+      {
+        title: 'Soft photo backdrop',
+        description: 'Show it fullscreen behind small products or flat lays for a pastel glow.',
+      },
+    ],
+    selectionAdvice: {
+      whenToChoose: 'Choose this when you want a pretty, calm background that does not compete with what is on top.',
+      contrastAndReadability: 'Dark gray, navy or deep plum text reads best. Avoid white text.',
+      alternativeConsiderations: 'For more color use the Gradient Background; for a cleaner single tone use Beige or Pink.',
+    },
+    contextualLinks: [
+      { label: 'Pastel Background', href: '/backgrounds/pastel-background/', description: 'Mint, lavender and peach.' },
+      { label: 'Pink Background', href: '/backgrounds/pink-background/', description: 'Plain bright pink.' },
+      { label: 'Gradient Screen', href: '/gradient-screen/', description: 'Build your own gradient.' },
+    ],
+    faqs: [
+      {
+        question: 'What does "aesthetic background" mean?',
+        answer:
+          'It usually means a soft, pleasing image with gentle colors and little detail, used to make a phone, desktop or post look calm and coordinated.',
+      },
+      {
+        question: 'Which colors are used?',
+        answer: 'Peach #FBD3C1, rose #F5B5D6 and periwinkle #A9C1F2 in a diagonal gradient.',
+      },
+    ],
+    relatedTools: [
+      { name: 'Gradient Screen', path: '/gradient-screen/', description: 'Fullscreen custom gradients.' },
+      { name: 'Pink Screen', path: '/pink-screen/', description: 'Fullscreen pink.' },
+    ],
+  },
+
+  // Beige Background
+  {
+    slug: 'beige-background',
+    title: 'Beige Background',
+    h1: 'Beige Background (#EADBC8) — Plain Beige Wallpaper & PNG',
+    metaTitle: 'Beige Background (Plain Beige #EADBC8, Fullscreen & PNG)',
+    metaDescription:
+      'A plain, warm beige background (#EADBC8). Softer than white for reading and video calls; download a beige wallpaper PNG in 1080p, 2K, 4K or phone size.',
+    category: 'minimal',
+    categoryLabel: 'Aesthetic & Minimal',
+    shortDescription: 'Warm, plain beige (#EADBC8) that is softer than white for reading, calls and minimalist wallpapers.',
+    dominantColorName: 'Sand Beige',
+    primaryHex: '#EADBC8',
+    type: 'solid',
+    cssBackground: '#EADBC8',
+    isDark: false,
+    tags: ['beige', 'neutral', 'cream', 'minimal', 'warm', 'wallpaper'],
+    about: {
+      overview:
+        'A flat sandy beige (hex #EADBC8, RGB 234, 219, 200). It has the brightness of paper with a warm tint, so it feels calmer than pure white.',
+      colorCharacteristics:
+        'Blue is lowered relative to red and green, which gives the warm, paper-like tone and cuts some of the cool glare of a white screen.',
+      aestheticTone: 'Natural, cosy and understated.',
+    },
+    fullscreenGuide: {
+      instruction: 'Go fullscreen behind a reading window or use it as a warm fill light for video calls.',
+      bestUsedFor: 'Minimal wallpapers, reading and writing backdrops, and neutral design bases.',
+      inspectionTip: 'Compare it with a white screen side by side; the difference shows how warm or cool your display is set.',
+    },
+    useCases: [
+      {
+        title: 'Comfortable reading backdrop',
+        description: 'A warm, paper-like tone behind documents can feel easier than bright white.',
+        linkText: 'Monitor settings for eye strain',
+        linkHref: '/guides/best-monitor-settings-for-eye-strain/',
+      },
+      {
+        title: 'Warm video-call light',
+        description: 'Gives a softer, more natural skin tone than a cool white screen.',
+      },
+      {
+        title: 'Minimalist wallpaper',
+        description: 'A neutral beige desktop keeps the focus on your work.',
+      },
+    ],
+    selectionAdvice: {
+      whenToChoose: 'Choose beige when white feels too harsh but you still want a light background.',
+      contrastAndReadability: 'Black, charcoal and dark brown text read very well.',
+      alternativeConsiderations: 'For a crisp neutral use the White Background; for gentle color use the Pastel Background.',
+    },
+    contextualLinks: [
+      { label: 'White Background', href: '/backgrounds/white-background/', description: 'Pure #FFFFFF white.' },
+      { label: 'Gold Background', href: '/backgrounds/gold-background/', description: 'Warm metallic gradient.' },
+      { label: 'Aesthetic Background', href: '/backgrounds/aesthetic-background/', description: 'Soft peach, pink and blue.' },
+    ],
+    faqs: [
+      {
+        question: 'What is the hex code of this beige?',
+        answer: 'It is #EADBC8 (RGB 234, 219, 200). The web color named "beige" (#F5F5DC) is paler and slightly greenish.',
+      },
+      {
+        question: 'Is beige better for my eyes than white?',
+        answer:
+          'Many people find a warm, slightly darker background more comfortable for long reading, but brightness and room lighting matter more than the exact color.',
+      },
+    ],
+    relatedTools: [
+      { name: 'White Screen', path: '/', description: 'Fullscreen white.' },
+      { name: 'Zoom Lighting', path: '/zoom-lighting/', description: 'Warm or cool fill light for calls.' },
+    ],
+  },
+
+  // Pastel Background
+  {
+    slug: 'pastel-background',
+    title: 'Pastel Background',
+    h1: 'Pastel Background — Mint, Lavender & Peach Gradient',
+    metaTitle: 'Pastel Background (Mint, Lavender & Peach, Fullscreen & PNG)',
+    metaDescription:
+      'A soft pastel background blending mint green, lavender and peach. Use it fullscreen or download a pastel wallpaper PNG in 1080p, 2K, 4K or phone size.',
+    category: 'gradient',
+    categoryLabel: 'Gradients',
+    shortDescription: 'Light mint, lavender and peach pastels blended into one soft gradient.',
+    dominantColorName: 'Mint, Lavender & Peach',
+    primaryHex: '#B8F0DC',
+    accentHex: '#D5CCF5',
+    secondaryHex: '#FFD9C2',
+    type: 'gradient',
+    cssBackground: 'linear-gradient(135deg, #B8F0DC 0%, #D5CCF5 50%, #FFD9C2 100%)',
+    isDark: false,
+    tags: ['pastel', 'mint', 'lavender', 'peach', 'soft', 'gradient', 'wallpaper'],
+    about: {
+      overview:
+        'Pastels are colors mixed with a lot of white. This background blends three of the most popular: mint (#B8F0DC), lavender (#D5CCF5) and peach (#FFD9C2), on a gentle diagonal.',
+      colorCharacteristics: 'High brightness and low saturation keep it light and airy, with cool tones on one side and warm on the other.',
+      aestheticTone: 'Fresh, gentle and cheerful.',
+    },
+    fullscreenGuide: {
+      instruction: 'Go fullscreen as a soft, colorful light for photos and calls, or as a calm backdrop in a classroom or nursery.',
+      bestUsedFor: 'Wallpapers, planners, children\'s materials, baby showers and spring designs.',
+      inspectionTip: 'Pale gradients show banding easily; smooth panels show no visible steps between colors.',
+    },
+    useCases: [
+      {
+        title: 'Planner and study wallpaper',
+        description: 'Soft colors keep a desktop pleasant without distracting from notes.',
+      },
+      {
+        title: 'Party and shower designs',
+        description: 'A neutral-friendly pastel mix works for invitations and welcome screens.',
+      },
+      {
+        title: 'Classroom display',
+        description: 'A gentle full-screen color for TVs and projectors between lessons.',
+      },
+    ],
+    selectionAdvice: {
+      whenToChoose: 'Choose pastel for a light, friendly look with more color than beige.',
+      contrastAndReadability: 'Dark gray or navy text reads well on all three tones.',
+      alternativeConsiderations: 'For warmer, pinker tones use the Aesthetic Background; for one flat color use Pink or Green.',
+    },
+    contextualLinks: [
+      { label: 'Aesthetic Background', href: '/backgrounds/aesthetic-background/', description: 'Peach, rose and periwinkle.' },
+      { label: 'Green Background', href: '/backgrounds/green-background/', description: 'Plain leaf green.' },
+      { label: 'Purple Background', href: '/backgrounds/purple-background/', description: 'Rich plain violet.' },
+    ],
+    faqs: [
+      {
+        question: 'What makes a color "pastel"?',
+        answer: 'A pastel is a pale, softened color, high in brightness and low in saturation, as if mixed with plenty of white.',
+      },
+      {
+        question: 'Which colors are in this background?',
+        answer: 'Mint #B8F0DC, lavender #D5CCF5 and peach #FFD9C2.',
+      },
+    ],
+    relatedTools: [
+      { name: 'Gradient Screen', path: '/gradient-screen/', description: 'Fullscreen custom gradients.' },
+      { name: 'Color Cycle', path: '/color-cycle/', description: 'Slowly cycle through colors.' },
     ],
   },
 ] as const

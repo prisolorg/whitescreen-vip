@@ -118,3 +118,40 @@
     scroll-behavior: auto;
   }
 }
+
+/* Flip clock: the old top half folds down, then the new bottom half folds into place. */
+@keyframes flip-fold-top {
+  from { transform: rotateX(0deg); }
+  to { transform: rotateX(-90deg); }
+}
+@keyframes flip-fold-bottom {
+  from { transform: rotateX(90deg); }
+  to { transform: rotateX(0deg); }
+}
+.flip-fold-top {
+  transform-origin: 50% 100%;
+  animation: flip-fold-top 260ms ease-in forwards;
+  backface-visibility: hidden;
+}
+.flip-fold-bottom {
+  transform-origin: 50% 0%;
+  animation: flip-fold-bottom 260ms ease-out 260ms both;
+  backface-visibility: hidden;
+}
+@keyframes quote-fade {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.quote-fade {
+  animation: quote-fade 700ms ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flip-fold-top,
+  .flip-fold-bottom,
+  .quote-fade {
+    animation: none;
+  }
+  .flip-fold-top {
+    display: none;
+  }
+}
