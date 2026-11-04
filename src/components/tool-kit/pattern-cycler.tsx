@@ -71,7 +71,7 @@ export function PatternCycler({ label, patterns, autoCycle, showGridOption, note
 
   return (
     <ToolStage
-      label={`${label}: ${tx(current.label)}`}
+      label={`${tx(label)}: ${tx(current.label)}`}
       tone={current.tone ?? 'dark'}
       onStageClick={() => step(1)}
       doubleClickFullscreen

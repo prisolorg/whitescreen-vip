@@ -26,7 +26,7 @@ const SMPTE_MID = ['#0000C0', '#131313', '#C000C0', '#131313', '#00C0C0', '#1313
 
 export function NoSignalScreen() {
   const [style, setStyle] = useState<'bars' | 'bounce' | 'blue'>('bars')
-  const [message, setMessage] = useState('NO SIGNAL')
+  const [message, setMessage] = useState(() => tx('NO SIGNAL'))
   const [input, setInput] = useState('HDMI 1')
   const [isToneOn, setIsToneOn] = useState(false)
   const toneRef = useRef<{ context: AudioContext; oscillator: OscillatorNode } | null>(null)
@@ -614,12 +614,12 @@ function fakeLogLine(random: () => number) {
   const hex = Math.floor(random() * 0xffffffff).toString(16).padStart(8, '0').toUpperCase()
   const step = HACK_STEPS[Math.floor(random() * HACK_STEPS.length)]
   const status = random() < 0.85 ? tx('OK') : tx('RETRY')
-  return `[${hex}] ${step} @ ${ip} ... ${status}`
+  return `[${hex}] ${tx(step)} @ ${ip} ... ${status}`
 }
 
 export function HackedScreen() {
   const [style, setStyle] = useState<'red' | 'green'>('red')
-  const [headline, setHeadline] = useState('SYSTEM HACKED')
+  const [headline, setHeadline] = useState(() => tx('SYSTEM HACKED'))
   const [siren, setSiren] = useState(false)
   const [showNote, setShowNote] = useState(true)
   const [lines, setLines] = useState<string[]>([])
@@ -719,15 +719,15 @@ export function HackedScreen() {
           }}
         />
         <div className="relative flex size-full flex-col items-center justify-center gap-3 px-4 pb-10 text-center sm:gap-4">
-          <p className="hack-blink text-xs font-bold tracking-[0.3em] sm:text-sm">⚠ WARNING ⚠ SECURITY BREACH DETECTED ⚠</p>
+          <p className="hack-blink text-xs font-bold tracking-[0.3em] sm:text-sm">{tx('⚠ WARNING ⚠ SECURITY BREACH DETECTED ⚠')}</p>
           <h2
             className="hack-glitch text-4xl font-black uppercase leading-none tracking-tight text-white sm:text-6xl md:text-7xl"
             style={{ textShadow: `0 0 24px ${accent}` }}
           >
-            {headline || 'SYSTEM HACKED'}
+            {headline || tx('SYSTEM HACKED')}
           </h2>
           <div className="w-full max-w-md rounded border px-3 py-2 text-left text-xs sm:text-sm" style={{ borderColor: accent, background: 'rgba(0,0,0,0.75)' }}>
-            <p className="truncate">&gt; {step}…</p>
+            <p className="truncate">&gt; {tx(step)}…</p>
             <div className="mt-2 h-3 w-full overflow-hidden rounded-sm border" style={{ borderColor: accent }}>
               <div className="h-full" style={{ width: `${Math.min(100, progress)}%`, background: accent }} />
             </div>

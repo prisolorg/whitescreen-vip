@@ -311,7 +311,7 @@ export function RefreshRateTest() {
               {tx('Measure again')}
             </ActionButton>
             <p className="pb-2 font-mono text-xs text-muted-foreground">
-              {range ? `Seen: ${range.low}–${range.high} Hz` : 'Measuring…'}
+              {range ? tx('Seen: {low}–{high} Hz').replace('{low}', String(range.low)).replace('{high}', String(range.high)) : tx('Measuring…')}
             </p>
           </ControlRow>
           <p className="text-xs text-muted-foreground sm:text-sm">
@@ -328,7 +328,7 @@ export function RefreshRateTest() {
           </p>
           <p className="mt-2 px-3 text-xs text-white/70 sm:text-sm">
             {reading
-              ? `≈ ${nearestRate(reading.hz)} Hz display · ${reading.median.toFixed(2)} ms per frame · ${Math.round(reading.late * 100)}% late frames`
+              ? tx('≈ {hz} Hz display · {ms} ms per frame · {late}% late frames').replace('{hz}', String(nearestRate(reading.hz))).replace('{ms}', reading.median.toFixed(2)).replace('{late}', String(Math.round(reading.late * 100)))
               : tx('Measuring your display…')}
           </p>
         </div>
@@ -381,7 +381,7 @@ export function MonitorGhostingTest() {
       }
       ctx.fillStyle = i === 2 ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.65)'
       ctx.font = '600 11px ui-monospace, monospace'
-      ctx.fillText(lane.label.toUpperCase(), 10, y + 16)
+      ctx.fillText(tx(lane.label).toUpperCase(), 10, y + 16)
       drawTarget(ctx, offset.current - size * 1.6, y + (laneH - size) / 2, size)
     })
   }, !isPaused)

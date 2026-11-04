@@ -332,7 +332,7 @@ export function NoiseGenerator({ initialColor }: { initialColor: NoiseColor }) {
 
   return (
     <ToolStage
-      label={`${tx(look.label)} noise generator`}
+      label={`${look.label} noise generator`}
       tone="dark"
       reserveHeadingSpace
       style={{ background: look.stage }}
@@ -405,7 +405,7 @@ export function NoiseGenerator({ initialColor }: { initialColor: NoiseColor }) {
                   color === key ? 'bg-white text-neutral-900' : 'text-white/80 hover:bg-white/10',
                 )}
               >
-                {NOISE_LOOK[key].label}
+                {tx(NOISE_LOOK[key].label)}
               </a>
             ))}
           </nav>
@@ -422,7 +422,7 @@ export function NoiseGenerator({ initialColor }: { initialColor: NoiseColor }) {
           </button>
           <p className="rounded-full bg-black/45 px-3 py-1 text-xs text-white/75 backdrop-blur sm:text-sm" aria-live="polite">
             {isPlaying
-              ? `${tx(look.label)} noise · ${volumeDb} dB${filterMode !== 'none' ? ` · ${filterMode === 'lowpass' ? 'low pass' : 'high pass'} ${formatHz(cutoff)}` : ''}${remaining ? ` · stops in ${formatRemaining(remaining)}` : ''}`
+              ? `${tx(`${look.label} noise`)} · ${volumeDb} dB${filterMode !== 'none' ? ` · ${tx(filterMode === 'lowpass' ? 'Low pass' : 'High pass')} ${formatHz(cutoff)}` : ''}${remaining ? ` · ${tx('stops in {time}').replace('{time}', formatRemaining(remaining))}` : ''}`
               : tx('Press Start or Space · sound plays only after you start it')}
           </p>
         </div>

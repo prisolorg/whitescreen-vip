@@ -441,7 +441,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
                 className={cn('flex flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10', isMuted && 'text-red-300')}
               >
                 {isMuted ? <MicOff className="size-[18px]" aria-hidden="true" /> : <Mic className="size-[18px]" aria-hidden="true" />}
-                Mic
+                {tx('Mic')}
               </button>
               <button type="button" className="hidden flex-col items-center gap-0.5 rounded-md px-2 py-1 text-[10px] hover:bg-white/10 sm:flex">
                 <Share2 className="size-[18px]" aria-hidden="true" />
@@ -449,7 +449,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               </button>
               <button
                 type="button"
-                onClick={() => alert('Prank meeting simulation ended.')}
+                onClick={() => alert(tx('Prank meeting simulation ended.'))}
                 className="ml-1.5 flex items-center gap-1.5 rounded-md bg-[#c4314b] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#a72940]"
               >
                 <PhoneOff className="size-4" aria-hidden="true" />
@@ -593,7 +593,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
               </button>
               <button
                 type="button"
-                onClick={() => alert('Prank meeting simulation ended.')}
+                onClick={() => alert(tx('Prank meeting simulation ended.'))}
                 aria-label={tx('Leave call')}
                 className="flex h-10 w-14 items-center justify-center rounded-full bg-[#ea4335] text-white hover:bg-[#d93025]"
               >
@@ -754,7 +754,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
             </div>
             <div className="flex items-center gap-3">
               <span className="rounded bg-white/10 px-2 py-0.5 font-mono text-[11px]">{tx('REC')}</span>
-              <span className="hidden sm:inline">{CALL_PARTICIPANTS.length + 1} participants</span>
+              <span className="hidden sm:inline">{tx('{n} participants').replace('{n}', String(CALL_PARTICIPANTS.length + 1))}</span>
             </div>
           </div>
   
@@ -882,7 +882,7 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
   
             <button
               type="button"
-              onClick={() => alert('Prank call simulation ended.')}
+              onClick={() => alert(tx('Prank call simulation ended.'))}
               className="flex items-center gap-1.5 rounded-lg bg-red-600 hover:bg-red-700 px-4 py-2 text-xs font-semibold text-white shadow transition-colors"
             >
               <PhoneOff className="size-4" />
@@ -1181,7 +1181,7 @@ export function FakeBlueScreen() {
               setIsRunning(true)
             }}
           >
-            Restart counter
+            {tx('Restart counter')}
           </ActionButton>
         </ControlRow>
       }

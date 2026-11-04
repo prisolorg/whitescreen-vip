@@ -107,7 +107,8 @@ function tilesFor(tab: GalleryTabId, currentSlug: string): Tool[] {
 
 export function ToolThumb({ tool, className }: { tool: Tool; className?: string }) {
   const background = tool.swatch ?? THUMBS[tool.slug]
-  const glyph = GLYPHS[tool.slug]
+  const { t } = useTranslation()
+  const glyph = tool.slug === 'hacked-screen' ? t('hackedGlyph', GLYPHS[tool.slug]) : GLYPHS[tool.slug]
   const Icon = tool.icon
   return (
     <span

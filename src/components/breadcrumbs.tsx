@@ -33,7 +33,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
   }
 
   return (
-    <nav aria-label="Breadcrumb">
+    <nav aria-label={t('breadcrumb', 'Breadcrumb')}>
       <JsonLd data={schema} />
       <ol className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
         {localizedItems.map((item, index) => {

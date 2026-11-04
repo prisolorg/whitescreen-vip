@@ -286,7 +286,7 @@ export function Stopwatch() {
   const copyLaps = () => {
     if (laps.length === 0) return
     const text = laps
-      .map((l) => `Lap ${l.id}: ${formatStopwatch(l.splitMs)} (Total: ${formatStopwatch(l.totalMs)})`)
+      .map((l) => tx('Lap {n}: {split} (Total: {total})').replace('{n}', String(l.id)).replace('{split}', formatStopwatch(l.splitMs)).replace('{total}', formatStopwatch(l.totalMs)))
       .join('\n')
     navigator.clipboard.writeText(text)
     setCopied(true)
@@ -459,7 +459,7 @@ export function PomodoroTimer() {
     }
   }, [])
   useEffect(() => {
-    if (isRunning) document.title = `${mm}:${ss} · ${PHASES[phase].label}`
+    if (isRunning) document.title = `${mm}:${ss} · ${tx(PHASES[phase].label)}`
   }, [isRunning, mm, ss, phase])
 
   const progress = total ? 1 - timeLeft / total : 0
@@ -517,7 +517,7 @@ export function PomodoroTimer() {
               onClick={() => goTo(key, false)}
               className={cn('h-8 rounded-full px-3 text-xs font-semibold transition-colors sm:h-9 sm:px-4 sm:text-sm', phase === key ? 'bg-white text-neutral-900' : 'text-white/85 hover:bg-white/10')}
             >
-              {PHASES[key].label}
+              {tx(PHASES[key].label)}
             </button>
           ))}
         </div>
@@ -542,15 +542,15 @@ export function PomodoroTimer() {
               {mm}:{ss}
             </p>
             <p className="mt-[1.5cqmin] font-medium text-white/80" style={{ fontSize: 'max(12px, 3.6cqmin)' }}>
-              {phase === 'focus' ? `Session ${(completed % rounds) + 1} of ${rounds}` : look.label}
+              {phase === 'focus' ? tx('Session {n} of {total}').replace('{n}', String((completed % rounds) + 1)).replace('{total}', String(rounds)) : tx(look.label)}
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-1.5" aria-label={`${completed} sessions completed`}>
+        <div className="flex items-center gap-1.5" aria-label={tx('{n} sessions completed').replace('{n}', String(completed))}>
           {Array.from({ length: rounds }, (_, i) => (
             <span key={i} className={cn('size-2.5 rounded-full', i < completed % rounds || (completed > 0 && completed % rounds === 0 && phase === 'long') ? 'bg-white' : 'bg-white/30')} />
           ))}
-          <span className="ml-2 text-xs text-white/75">{completed} done</span>
+          <span className="ml-2 text-xs text-white/75">{tx('{n} done').replace('{n}', String(completed))}</span>
         </div>
       </div>
     </ToolStage>

@@ -63,7 +63,7 @@ export function ImageGenerator({ defaultHex = '#FFFFFF' }: { defaultHex?: string
       <div className="flex items-center justify-center rounded-xl border bg-muted/50 p-6">
         <div
           role="img"
-          aria-label={`Preview of a ${hex} image at ${width} by ${height} pixels`}
+          aria-label={tx('Preview of a {hex} image at {w} by {h} pixels').replace('{hex}', hex).replace('{w}', String(width)).replace('{h}', String(height))}
           className="max-h-72 w-full max-w-full rounded-md shadow-sm ring-1 ring-black/10"
           style={{ background: hex, aspectRatio: `${width} / ${height}`, maxWidth: width < height ? '12rem' : undefined }}
         />
