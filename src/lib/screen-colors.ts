@@ -40,10 +40,12 @@ export function normalizeHex(value: string): string | null {
   return `#${hex.toUpperCase()}`
 }
 
+/** True when white text would fall below 3:1 contrast (the WCAG minimum for large text), so text on this color should be dark. */
 export function isLightColor(hex: string): boolean {
   const value = normalizeHex(hex) ?? '#FFFFFF'
-  const r = parseInt(value.slice(1, 3), 16)
-  const g = parseInt(value.slice(3, 5), 16)
-  const b = parseInt(value.slice(5, 7), 16)
-  return (r * 299 + g * 587 + b * 114) / 1000 > 150
+  const [r, g, b] = [1, 3, 5].map((start) => {
+    const channel = parseInt(value.slice(start, start + 2), 16) / 255
+    return channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4
+  })
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.3
 }
