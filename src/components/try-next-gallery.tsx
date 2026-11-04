@@ -186,26 +186,23 @@ export function TryNextGallery({
         })}
       </div>
 
-      <ul
-        id={`${baseId}-panel`}
-        role="tabpanel"
-        aria-labelledby={`${baseId}-tab-${tab}`}
-        className="grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-3 lg:grid-cols-6 max-sm:[&>li:nth-child(n+10)]:hidden"
-      >
-        {tiles.map((tool) => (
-          <li key={tool.slug}>
-            <Link
-              href={toolPath(tool.slug)}
-              className="group flex h-full flex-col gap-1.5 rounded-xl border bg-card p-1.5 transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-            >
-              <ToolThumb tool={tool} className="h-12 w-full sm:h-14" />
-              <span className="line-clamp-2 px-1 pb-0.5 text-xs font-semibold leading-snug sm:text-[13px]">
-                {getLocalizedTool(tool, language).name}
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div id={`${baseId}-panel`} role="tabpanel" aria-labelledby={`${baseId}-tab-${tab}`}>
+        <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-3 lg:grid-cols-6 max-sm:[&>li:nth-child(n+10)]:hidden">
+          {tiles.map((tool) => (
+            <li key={tool.slug}>
+              <Link
+                href={toolPath(tool.slug)}
+                className="group flex h-full flex-col gap-1.5 rounded-xl border bg-card p-1.5 transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              >
+                <ToolThumb tool={tool} className="h-12 w-full sm:h-14" />
+                <span className="line-clamp-2 px-1 pb-0.5 text-xs font-semibold leading-snug sm:text-[13px]">
+                  {getLocalizedTool(tool, language).name}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   )
 }
