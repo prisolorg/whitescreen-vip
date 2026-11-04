@@ -6061,163 +6061,53 @@
       "permanent": true
     },
     {
-      "source": "/es/author-whitson-rao/:path*",
-      "destination": "/author-whitson-rao/:path*",
+      "source": "/es/author-whitson-rao/",
+      "destination": "/author-whitson-rao/",
       "permanent": true
     },
     {
-      "source": "/es/privacy-policy/:path*",
-      "destination": "/privacy-policy/:path*",
+      "source": "/pt-br/author-whitson-rao/",
+      "destination": "/author-whitson-rao/",
       "permanent": true
     },
     {
-      "source": "/es/terms/:path*",
-      "destination": "/terms/:path*",
+      "source": "/de/author-whitson-rao/",
+      "destination": "/author-whitson-rao/",
       "permanent": true
     },
     {
-      "source": "/es/disclaimer/:path*",
-      "destination": "/disclaimer/:path*",
+      "source": "/fr/author-whitson-rao/",
+      "destination": "/author-whitson-rao/",
       "permanent": true
     },
     {
-      "source": "/pt-br/author-whitson-rao/:path*",
-      "destination": "/author-whitson-rao/:path*",
+      "source": "/it/author-whitson-rao/",
+      "destination": "/author-whitson-rao/",
       "permanent": true
     },
     {
-      "source": "/pt-br/privacy-policy/:path*",
-      "destination": "/privacy-policy/:path*",
+      "source": "/it/disclaimer/",
+      "destination": "/disclaimer/",
       "permanent": true
     },
     {
-      "source": "/pt-br/terms/:path*",
-      "destination": "/terms/:path*",
+      "source": "/nl/author-whitson-rao/",
+      "destination": "/author-whitson-rao/",
       "permanent": true
     },
     {
-      "source": "/pt-br/disclaimer/:path*",
-      "destination": "/disclaimer/:path*",
+      "source": "/nl/disclaimer/",
+      "destination": "/disclaimer/",
       "permanent": true
     },
     {
-      "source": "/de/author-whitson-rao/:path*",
-      "destination": "/author-whitson-rao/:path*",
+      "source": "/id/author-whitson-rao/",
+      "destination": "/author-whitson-rao/",
       "permanent": true
     },
     {
-      "source": "/de/privacy-policy/:path*",
-      "destination": "/privacy-policy/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/de/terms/:path*",
-      "destination": "/terms/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/de/disclaimer/:path*",
-      "destination": "/disclaimer/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/fr/author-whitson-rao/:path*",
-      "destination": "/author-whitson-rao/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/fr/privacy-policy/:path*",
-      "destination": "/privacy-policy/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/fr/terms/:path*",
-      "destination": "/terms/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/fr/disclaimer/:path*",
-      "destination": "/disclaimer/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/it/author-whitson-rao/:path*",
-      "destination": "/author-whitson-rao/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/it/privacy-policy/:path*",
-      "destination": "/privacy-policy/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/it/terms/:path*",
-      "destination": "/terms/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/it/disclaimer/:path*",
-      "destination": "/disclaimer/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/nl/author-whitson-rao/:path*",
-      "destination": "/author-whitson-rao/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/nl/privacy-policy/:path*",
-      "destination": "/privacy-policy/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/nl/terms/:path*",
-      "destination": "/terms/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/nl/disclaimer/:path*",
-      "destination": "/disclaimer/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/id/author-whitson-rao/:path*",
-      "destination": "/author-whitson-rao/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/id/privacy-policy/:path*",
-      "destination": "/privacy-policy/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/id/terms/:path*",
-      "destination": "/terms/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/id/disclaimer/:path*",
-      "destination": "/disclaimer/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/tr/author-whitson-rao/:path*",
-      "destination": "/author-whitson-rao/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/tr/privacy-policy/:path*",
-      "destination": "/privacy-policy/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/tr/terms/:path*",
-      "destination": "/terms/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/tr/disclaimer/:path*",
-      "destination": "/disclaimer/:path*",
+      "source": "/tr/author-whitson-rao/",
+      "destination": "/author-whitson-rao/",
       "permanent": true
     }
   ]

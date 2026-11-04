@@ -1,4 +1,4 @@
-import { ENGLISH_ONLY_PREFIXES as ENGLISH_ONLY_PREFIX_LIST, SUPPORTED_LOCALES, isEnglishOnlyPath } from './locale-routing'
+import { ENGLISH_ONLY_PREFIXES, SUPPORTED_LOCALES, isEnglishOnlyPath } from './locale-routing'
 import { buildSlugMap, translatedSlugPairs } from './localized-slugs'
 import { BACKGROUND_ITEMS } from './backgrounds-data'
 
@@ -89,7 +89,8 @@ for (const lang of SUPPORTED_LOCALES) {
   }
 }
 
-/** /es/terms/* → /terms/* and so on: English-only pages have one URL. Host rules only (no stub pages). */
-export const ENGLISH_ONLY_WILDCARDS: [from: string, to: string][] = SUPPORTED_LOCALES.filter((lang) => lang !== 'en').flatMap((lang) =>
-  ENGLISH_ONLY_PREFIX_LIST.map((prefix) => [`/${lang}${prefix}/*`, `${prefix}/:splat`] as [string, string]),
-)
+// /es/terms/ → /terms/ and so on: English-only pages have one URL.
+for (const lang of SUPPORTED_LOCALES) {
+  if (lang === 'en') continue
+  for (const prefix of ENGLISH_ONLY_PREFIXES) LEGACY_REDIRECTS[`/${lang}${prefix}/`] = `${prefix}/`
+}

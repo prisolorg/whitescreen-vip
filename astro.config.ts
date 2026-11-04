@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'astro/config'
 import preact from '@astrojs/preact'
 import tailwindcss from '@tailwindcss/vite'
-import { ENGLISH_ONLY_WILDCARDS, LEGACY_REDIRECTS } from './src/lib/legacy-redirects'
+import { LEGACY_REDIRECTS } from './src/lib/legacy-redirects'
 import { loadEnv } from 'vite'
 
 const adsenseClient = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), 'PUBLIC_').PUBLIC_ADSENSE_CLIENT?.trim()
@@ -32,21 +32,12 @@ export default defineConfig({
           if (adsenseClient) {
             await writeFile(path.join(out, 'ads.txt'), `google.com, ${adsenseClient.replace(/^ca-/, '')}, DIRECT, f08c47fec0942fa0\n`)
           }
-          // Exact rules first; the wildcard rules for English-only sections come last.
-          const rules = [...redirects, ...ENGLISH_ONLY_WILDCARDS]
-          await writeFile(path.join(out, '_redirects'), rules.map(([from, to]) => `${from} ${to} 301`).join('\n') + '\n')
+          await writeFile(path.join(out, '_redirects'), redirects.map(([from, to]) => `${from} ${to} 301`).join('\n') + '\n')
           // Vercel reads vercel.json from the project root before building, so this file is committed:
           // when the redirects change, a local build updates it.
           await writeFile(
             path.join(rootDir, 'vercel.json'),
-            JSON.stringify({ framework: 'astro', installCommand: 'npm ci', buildCommand: 'npm run build', outputDirectory: 'dist', trailingSlash: true, redirects: [
-                ...redirects.map(([source, destination]) => ({ source, destination, permanent: true })),
-                ...ENGLISH_ONLY_WILDCARDS.map(([from, to]) => ({
-                  source: from.replace('/*', '/:path*'),
-                  destination: to.replace(':splat', ':path*'),
-                  permanent: true,
-                })),
-              ] }, null, 2),
+            JSON.stringify({ framework: 'astro', installCommand: 'npm ci', buildCommand: 'npm run build', outputDirectory: 'dist', trailingSlash: true, redirects: redirects.map(([source, destination]) => ({ source, destination, permanent: true })) }, null, 2),
           )
         },
       },
