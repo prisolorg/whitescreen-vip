@@ -6,6 +6,8 @@ import { renderHeadTags, type PageSeo } from '@/lib/seo'
 import { serializeMessages } from '@/lib/messages'
 import { ADSENSE_CLIENT } from '@/lib/ads'
 
+const clarityId = (import.meta.env.PUBLIC_CLARITY_ID as string | undefined)?.trim()
+
 interface Props {
   seo: PageSeo
   /** The page's own URL with its locale prefix, e.g. "/es/red-screen/". */
@@ -25,6 +27,7 @@ const htmlLang = seo.lang === 'pt-br' ? 'pt-BR' : seo.lang
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <Fragment set:html={renderHeadTags(seo)} />
     <meta name="theme-color" content="#ffffff" />
+    <meta name="google-site-verification" content="AxofjuwHB4Ld_PPJyE-UXNW8eI9MbjMzfxTk7T6zaDY" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/icon.svg" />
     <link rel="icon" type="image/png" sizes="48x48" href="/icon-48.png" />
@@ -77,6 +80,31 @@ const htmlLang = seo.lang === 'pt-br' ? 'pt-BR' : seo.lang
               document.querySelectorAll('ins.adsbygoogle').forEach(function () {
                 ;(window.adsbygoogle = window.adsbygoogle || []).push({})
               })
+            }
+            ;['scroll', 'pointerdown', 'keydown'].forEach(function (type) {
+              addEventListener(type, start, { once: true, passive: true })
+            })
+            setTimeout(start, 4000)
+          })()
+        </script>
+      )
+    }
+    {
+      clarityId && (
+        <script is:inline define:vars={{ clarityId }}>
+          // Microsoft Clarity, started the same way as ads so it never competes with the first paint.
+          ;(function () {
+            var started = false
+            function start() {
+              if (started) return
+              started = true
+              window.clarity = window.clarity || function () {
+                ;(window.clarity.q = window.clarity.q || []).push(arguments)
+              }
+              var script = document.createElement('script')
+              script.async = true
+              script.src = 'https://www.clarity.ms/tag/' + clarityId
+              document.head.appendChild(script)
             }
             ;['scroll', 'pointerdown', 'keydown'].forEach(function (type) {
               addEventListener(type, start, { once: true, passive: true })

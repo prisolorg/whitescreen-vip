@@ -22,11 +22,11 @@ const UPDATED = 'November 3, 2026'
 export const PRIVACY_POLICY: LegalPage = {
   title: 'Privacy Policy',
   description:
-    'How WhiteScreen.vip handles data: tools run in your browser, what cookies Google ads and analytics use, and how to opt out or contact us.',
-  updated: UPDATED,
+    'How WhiteScreen.vip handles data: tools run in your browser, what cookies Google ads and Microsoft Clarity use, and how to opt out or contact us.',
+  updated: 'November 4, 2026',
   summary: [
     'Our screen tools run in your browser. Colors, settings, camera previews and sounds never leave your device.',
-    'We show ads from Google AdSense and use privacy-friendly analytics. Google may use cookies to show ads.',
+    'We show ads from Google AdSense and use Microsoft Clarity to see how the site is used. Both may use cookies.',
     'You can turn off personalized ads at any time, and we never sell your personal information.',
   ],
   sections: [
@@ -42,7 +42,7 @@ export const PRIVACY_POLICY: LegalPage = {
       list: [
         'Tool data: your color choices, timer settings and preferences are saved only in your browser’s local storage. Camera previews in the fake meeting tools are shown on your screen and are never recorded or uploaded.',
         'Usage data: like every website, our host receives standard request data (IP address, browser type, pages visited, time of visit) to deliver pages and protect against abuse.',
-        'Analytics: we use aggregated statistics such as page views and approximate country to see which tools are useful.',
+        'Analytics: we use Microsoft Clarity to see which tools are useful and where pages cause problems. Clarity captures how you use the site, including clicks, scrolling, heatmaps and session replays, along with device details and approximate location. See the [Microsoft Privacy Statement](https://privacy.microsoft.com/privacystatement).',
         'Messages you send: if you use the contact or feedback form, we receive what you write and the email address you give, and use it only to reply.',
       ],
     },
@@ -51,6 +51,7 @@ export const PRIVACY_POLICY: LegalPage = {
       paragraphs: [
         'We use Google AdSense to show ads, which keeps every tool free. Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this website or other websites.',
         'Google’s use of advertising cookies enables it and its partners to serve ads to you based on your visit to this site and/or other sites on the Internet. Learn more in [how Google uses information from sites that use its services](https://policies.google.com/technologies/partner-sites).',
+        'Microsoft Clarity may also use first- and third-party cookies to collect the analytics described above. Microsoft may use this data as set out in its privacy statement.',
         'You may opt out of personalized advertising by visiting [Google Ads Settings](https://adssettings.google.com). You can also opt out of some third-party vendors’ use of cookies for personalized advertising at [aboutads.info](https://www.aboutads.info/choices/) or, in Europe, [youronlinechoices.eu](https://www.youronlinechoices.eu/). If you opt out, you will still see ads, but they will be less relevant.',
       ],
     },
