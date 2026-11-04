@@ -25,7 +25,7 @@ export default defineConfig({
     {
       name: 'whitescreen-redirect-files',
       hooks: {
-        // 301s for Netlify and Cloudflare Pages (_redirects) and Vercel (vercel.json).
+        // 301s for Netlify and Cloudflare Pages (_redirects) and Vercel (vercel.json in the project root).
         'astro:build:done': async ({ dir }) => {
           const out = fileURLToPath(dir)
           // ads.txt authorizes Google to sell this site's ad space (only when AdSense is configured).
@@ -35,9 +35,11 @@ export default defineConfig({
           // Exact rules first; the wildcard rules for English-only sections come last.
           const rules = [...redirects, ...ENGLISH_ONLY_WILDCARDS]
           await writeFile(path.join(out, '_redirects'), rules.map(([from, to]) => `${from} ${to} 301`).join('\n') + '\n')
+          // Vercel reads vercel.json from the project root before building, so this file is committed:
+          // when the redirects change, a local build updates it.
           await writeFile(
-            path.join(out, 'vercel.json'),
-            JSON.stringify({ trailingSlash: true, redirects: [
+            path.join(rootDir, 'vercel.json'),
+            JSON.stringify({ framework: 'astro', installCommand: 'npm ci', buildCommand: 'npm run build', outputDirectory: 'dist', trailingSlash: true, redirects: [
                 ...redirects.map(([source, destination]) => ({ source, destination, permanent: true })),
                 ...ENGLISH_ONLY_WILDCARDS.map(([from, to]) => ({
                   source: from.replace('/*', '/:path*'),

@@ -1,0 +1,6224 @@
+{
+  "framework": "astro",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/contact-us/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/windows-10-fake-update-screen/",
+      "destination": "/fake-windows-10-update/",
+      "permanent": true
+    },
+    {
+      "source": "/fake-broken-screen/",
+      "destination": "/broken-screen/",
+      "permanent": true
+    },
+    {
+      "source": "/how-to-check-dead-pixels-on-any-device/",
+      "destination": "/guides/dead-pixel-test/",
+      "permanent": true
+    },
+    {
+      "source": "/category/blog/",
+      "destination": "/guides/",
+      "permanent": true
+    },
+    {
+      "source": "/linen/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/oldlace/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/mint-cream/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/lavender-blush/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ivory/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/honeydew/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ghost-white/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/floralwhite/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/beige/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/azure/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/alice-blue/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/seashell/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/snow-white/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/white-smoke/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/white-solid/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/white-screen/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/es/white-screen/",
+      "destination": "/es/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/white-screen/",
+      "destination": "/pt-br/",
+      "permanent": true
+    },
+    {
+      "source": "/de/white-screen/",
+      "destination": "/de/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/white-screen/",
+      "destination": "/fr/",
+      "permanent": true
+    },
+    {
+      "source": "/it/white-screen/",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/white-screen/",
+      "destination": "/nl/",
+      "permanent": true
+    },
+    {
+      "source": "/id/white-screen/",
+      "destination": "/id/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/white-screen/",
+      "destination": "/tr/",
+      "permanent": true
+    },
+    {
+      "source": "/bright-white-screen/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/es/bright-white-screen/",
+      "destination": "/es/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/bright-white-screen/",
+      "destination": "/pt-br/",
+      "permanent": true
+    },
+    {
+      "source": "/de/bright-white-screen/",
+      "destination": "/de/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/bright-white-screen/",
+      "destination": "/fr/",
+      "permanent": true
+    },
+    {
+      "source": "/it/bright-white-screen/",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/bright-white-screen/",
+      "destination": "/nl/",
+      "permanent": true
+    },
+    {
+      "source": "/id/bright-white-screen/",
+      "destination": "/id/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/bright-white-screen/",
+      "destination": "/tr/",
+      "permanent": true
+    },
+    {
+      "source": "/custom-dvd-screensaver/",
+      "destination": "/dvd-screensaver/",
+      "permanent": true
+    },
+    {
+      "source": "/es/custom-dvd-screensaver/",
+      "destination": "/es/salvapantallas-dvd/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/custom-dvd-screensaver/",
+      "destination": "/pt-br/protetor-de-tela-dvd/",
+      "permanent": true
+    },
+    {
+      "source": "/de/custom-dvd-screensaver/",
+      "destination": "/de/dvd-bildschirmschoner/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/custom-dvd-screensaver/",
+      "destination": "/fr/ecran-de-veille-dvd/",
+      "permanent": true
+    },
+    {
+      "source": "/it/custom-dvd-screensaver/",
+      "destination": "/it/salvaschermo-dvd/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/custom-dvd-screensaver/",
+      "destination": "/nl/dvd-screensaver/",
+      "permanent": true
+    },
+    {
+      "source": "/id/custom-dvd-screensaver/",
+      "destination": "/id/screensaver-logo-dvd/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/custom-dvd-screensaver/",
+      "destination": "/tr/dvd-ekran-koruyucu/",
+      "permanent": true
+    },
+    {
+      "source": "/snow-screen/",
+      "destination": "/matrix-screensaver/",
+      "permanent": true
+    },
+    {
+      "source": "/es/snow-screen/",
+      "destination": "/es/salvapantallas-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/snow-screen/",
+      "destination": "/pt-br/protetor-de-tela-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/de/snow-screen/",
+      "destination": "/de/matrix-bildschirmschoner/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/snow-screen/",
+      "destination": "/fr/ecran-de-veille-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/it/snow-screen/",
+      "destination": "/it/salvaschermo-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/snow-screen/",
+      "destination": "/nl/matrix-screensaver/",
+      "permanent": true
+    },
+    {
+      "source": "/id/snow-screen/",
+      "destination": "/id/screensaver-hujan-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/snow-screen/",
+      "destination": "/tr/matrix-ekran-koruyucu/",
+      "permanent": true
+    },
+    {
+      "source": "/static-screen/",
+      "destination": "/white-noise-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/es/static-screen/",
+      "destination": "/es/generador-de-ruido-blanco/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/static-screen/",
+      "destination": "/pt-br/gerador-de-ruido-branco/",
+      "permanent": true
+    },
+    {
+      "source": "/de/static-screen/",
+      "destination": "/de/weisses-rauschen-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/static-screen/",
+      "destination": "/fr/generateur-de-bruit-blanc/",
+      "permanent": true
+    },
+    {
+      "source": "/it/static-screen/",
+      "destination": "/it/generatore-di-rumore-bianco/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/static-screen/",
+      "destination": "/nl/witte-ruis-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/id/static-screen/",
+      "destination": "/id/generator-white-noise/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/static-screen/",
+      "destination": "/tr/beyaz-gurultu-uretici/",
+      "permanent": true
+    },
+    {
+      "source": "/white-noise-screen/",
+      "destination": "/white-noise-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/es/white-noise-screen/",
+      "destination": "/es/generador-de-ruido-blanco/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/white-noise-screen/",
+      "destination": "/pt-br/gerador-de-ruido-branco/",
+      "permanent": true
+    },
+    {
+      "source": "/de/white-noise-screen/",
+      "destination": "/de/weisses-rauschen-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/white-noise-screen/",
+      "destination": "/fr/generateur-de-bruit-blanc/",
+      "permanent": true
+    },
+    {
+      "source": "/it/white-noise-screen/",
+      "destination": "/it/generatore-di-rumore-bianco/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/white-noise-screen/",
+      "destination": "/nl/witte-ruis-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/id/white-noise-screen/",
+      "destination": "/id/generator-white-noise/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/white-noise-screen/",
+      "destination": "/tr/beyaz-gurultu-uretici/",
+      "permanent": true
+    },
+    {
+      "source": "/brown-noise-screen/",
+      "destination": "/brown-noise-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/es/brown-noise-screen/",
+      "destination": "/es/generador-de-ruido-marron/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/brown-noise-screen/",
+      "destination": "/pt-br/gerador-de-ruido-marrom/",
+      "permanent": true
+    },
+    {
+      "source": "/de/brown-noise-screen/",
+      "destination": "/de/braunes-rauschen-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/brown-noise-screen/",
+      "destination": "/fr/generateur-de-bruit-marron/",
+      "permanent": true
+    },
+    {
+      "source": "/it/brown-noise-screen/",
+      "destination": "/it/generatore-di-rumore-marrone/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/brown-noise-screen/",
+      "destination": "/nl/bruine-ruis-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/id/brown-noise-screen/",
+      "destination": "/id/generator-brown-noise/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/brown-noise-screen/",
+      "destination": "/tr/kahverengi-gurultu-uretici/",
+      "permanent": true
+    },
+    {
+      "source": "/pink-noise-screen/",
+      "destination": "/pink-noise-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/es/pink-noise-screen/",
+      "destination": "/es/generador-de-ruido-rosa/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/pink-noise-screen/",
+      "destination": "/pt-br/gerador-de-ruido-rosa/",
+      "permanent": true
+    },
+    {
+      "source": "/de/pink-noise-screen/",
+      "destination": "/de/rosa-rauschen-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/pink-noise-screen/",
+      "destination": "/fr/generateur-de-bruit-rose/",
+      "permanent": true
+    },
+    {
+      "source": "/it/pink-noise-screen/",
+      "destination": "/it/generatore-di-rumore-rosa/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/pink-noise-screen/",
+      "destination": "/nl/roze-ruis-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/id/pink-noise-screen/",
+      "destination": "/id/generator-pink-noise/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/pink-noise-screen/",
+      "destination": "/tr/pembe-gurultu-uretici/",
+      "permanent": true
+    },
+    {
+      "source": "/backgrounds/warm-beige/",
+      "destination": "/backgrounds/beige-background/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/warm-beige/",
+      "destination": "/es/fondos/fondo-beis/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/warm-beige/",
+      "destination": "/pt-br/fundos/fundo-bege/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/warm-beige/",
+      "destination": "/de/hintergruende/beiger-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/warm-beige/",
+      "destination": "/fr/fonds/fond-beige/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/warm-beige/",
+      "destination": "/it/sfondi/sfondo-beige/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/warm-beige/",
+      "destination": "/nl/achtergronden/beige-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/warm-beige/",
+      "destination": "/id/latar-belakang/krem/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/warm-beige/",
+      "destination": "/tr/arka-planlar/bej-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/backgrounds/soft-lavender/",
+      "destination": "/backgrounds/pastel-background/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/soft-lavender/",
+      "destination": "/es/fondos/fondo-pastel/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/soft-lavender/",
+      "destination": "/pt-br/fundos/fundo-pastel/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/soft-lavender/",
+      "destination": "/de/hintergruende/pastell-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/soft-lavender/",
+      "destination": "/fr/fonds/fond-pastel/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/soft-lavender/",
+      "destination": "/it/sfondi/sfondo-pastello/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/soft-lavender/",
+      "destination": "/nl/achtergronden/pastel-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/soft-lavender/",
+      "destination": "/id/latar-belakang/pastel/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/soft-lavender/",
+      "destination": "/tr/arka-planlar/pastel-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/backgrounds/purple-dream/",
+      "destination": "/backgrounds/purple-background/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/purple-dream/",
+      "destination": "/es/fondos/fondo-morado/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/purple-dream/",
+      "destination": "/pt-br/fundos/fundo-roxo/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/purple-dream/",
+      "destination": "/de/hintergruende/lila-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/purple-dream/",
+      "destination": "/fr/fonds/fond-violet/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/purple-dream/",
+      "destination": "/it/sfondi/sfondo-viola/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/purple-dream/",
+      "destination": "/nl/achtergronden/paarse-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/purple-dream/",
+      "destination": "/id/latar-belakang/ungu/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/purple-dream/",
+      "destination": "/tr/arka-planlar/mor-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/backgrounds/midnight-cosmic-purple/",
+      "destination": "/backgrounds/purple-background/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/midnight-cosmic-purple/",
+      "destination": "/es/fondos/fondo-morado/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/midnight-cosmic-purple/",
+      "destination": "/pt-br/fundos/fundo-roxo/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/midnight-cosmic-purple/",
+      "destination": "/de/hintergruende/lila-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/midnight-cosmic-purple/",
+      "destination": "/fr/fonds/fond-violet/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/midnight-cosmic-purple/",
+      "destination": "/it/sfondi/sfondo-viola/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/midnight-cosmic-purple/",
+      "destination": "/nl/achtergronden/paarse-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/midnight-cosmic-purple/",
+      "destination": "/id/latar-belakang/ungu/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/midnight-cosmic-purple/",
+      "destination": "/tr/arka-planlar/mor-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/backgrounds/carbon-dark/",
+      "destination": "/backgrounds/dark-background/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/carbon-dark/",
+      "destination": "/es/fondos/fondo-oscuro/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/carbon-dark/",
+      "destination": "/pt-br/fundos/fundo-escuro/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/carbon-dark/",
+      "destination": "/de/hintergruende/dunkler-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/carbon-dark/",
+      "destination": "/fr/fonds/fond-sombre/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/carbon-dark/",
+      "destination": "/it/sfondi/sfondo-scuro/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/carbon-dark/",
+      "destination": "/nl/achtergronden/donkere-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/carbon-dark/",
+      "destination": "/id/latar-belakang/gelap/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/carbon-dark/",
+      "destination": "/tr/arka-planlar/koyu-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/backgrounds/deep-navy/",
+      "destination": "/backgrounds/dark-background/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/deep-navy/",
+      "destination": "/es/fondos/fondo-oscuro/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/deep-navy/",
+      "destination": "/pt-br/fundos/fundo-escuro/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/deep-navy/",
+      "destination": "/de/hintergruende/dunkler-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/deep-navy/",
+      "destination": "/fr/fonds/fond-sombre/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/deep-navy/",
+      "destination": "/it/sfondi/sfondo-scuro/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/deep-navy/",
+      "destination": "/nl/achtergronden/donkere-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/deep-navy/",
+      "destination": "/id/latar-belakang/gelap/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/deep-navy/",
+      "destination": "/tr/arka-planlar/koyu-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/backgrounds/forest-background/",
+      "destination": "/backgrounds/green-background/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/forest-background/",
+      "destination": "/es/fondos/fondo-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/forest-background/",
+      "destination": "/pt-br/fundos/fundo-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/forest-background/",
+      "destination": "/de/hintergruende/gruener-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/forest-background/",
+      "destination": "/fr/fonds/fond-vert/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/forest-background/",
+      "destination": "/it/sfondi/sfondo-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/forest-background/",
+      "destination": "/nl/achtergronden/groene-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/forest-background/",
+      "destination": "/id/latar-belakang/hijau/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/forest-background/",
+      "destination": "/tr/arka-planlar/yesil-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/backgrounds/sunset-glow/",
+      "destination": "/backgrounds/aesthetic-background/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/sunset-glow/",
+      "destination": "/es/fondos/fondo-estetico/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/sunset-glow/",
+      "destination": "/pt-br/fundos/fundo-estetico/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/sunset-glow/",
+      "destination": "/de/hintergruende/aesthetischer-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/sunset-glow/",
+      "destination": "/fr/fonds/fond-esthetique/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/sunset-glow/",
+      "destination": "/it/sfondi/sfondo-estetico/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/sunset-glow/",
+      "destination": "/nl/achtergronden/esthetische-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/sunset-glow/",
+      "destination": "/id/latar-belakang/estetik/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/sunset-glow/",
+      "destination": "/tr/arka-planlar/estetik-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/backgrounds/ocean-breeze/",
+      "destination": "/backgrounds/gradient-background/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/ocean-breeze/",
+      "destination": "/es/fondos/fondo-degradado/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/ocean-breeze/",
+      "destination": "/pt-br/fundos/fundo-em-degrade/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/ocean-breeze/",
+      "destination": "/de/hintergruende/verlaufshintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/ocean-breeze/",
+      "destination": "/fr/fonds/fond-degrade/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/ocean-breeze/",
+      "destination": "/it/sfondi/sfondo-sfumato/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/ocean-breeze/",
+      "destination": "/nl/achtergronden/verloopachtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/ocean-breeze/",
+      "destination": "/id/latar-belakang/gradien/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/ocean-breeze/",
+      "destination": "/tr/arka-planlar/gradyan-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/backgrounds/blurred-studio/",
+      "destination": "/backgrounds/virtual-office/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/blurred-studio/",
+      "destination": "/es/fondos/fondo-de-oficina-virtual/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/blurred-studio/",
+      "destination": "/pt-br/fundos/fundo-de-escritorio-virtual/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/blurred-studio/",
+      "destination": "/de/hintergruende/virtueller-buero-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/blurred-studio/",
+      "destination": "/fr/fonds/fond-de-bureau-virtuel/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/blurred-studio/",
+      "destination": "/it/sfondi/sfondo-ufficio-virtuale/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/blurred-studio/",
+      "destination": "/nl/achtergronden/virtuele-kantoorachtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/blurred-studio/",
+      "destination": "/id/latar-belakang/kantor-virtual/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/blurred-studio/",
+      "destination": "/tr/arka-planlar/sanal-ofis-arka-plani/",
+      "permanent": true
+    },
+    {
+      "source": "/backgrounds/matrix-code/",
+      "destination": "/matrix-screensaver/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/matrix-code/",
+      "destination": "/es/salvapantallas-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/matrix-code/",
+      "destination": "/pt-br/protetor-de-tela-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/matrix-code/",
+      "destination": "/de/matrix-bildschirmschoner/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/matrix-code/",
+      "destination": "/fr/ecran-de-veille-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/matrix-code/",
+      "destination": "/it/salvaschermo-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/matrix-code/",
+      "destination": "/nl/matrix-screensaver/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/matrix-code/",
+      "destination": "/id/screensaver-hujan-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/matrix-code/",
+      "destination": "/tr/matrix-ekran-koruyucu/",
+      "permanent": true
+    },
+    {
+      "source": "/es/tools/",
+      "destination": "/es/herramientas/",
+      "permanent": true
+    },
+    {
+      "source": "/es/about/",
+      "destination": "/es/acerca-de/",
+      "permanent": true
+    },
+    {
+      "source": "/es/contact/",
+      "destination": "/es/contacto/",
+      "permanent": true
+    },
+    {
+      "source": "/es/feedback/",
+      "destination": "/es/comentarios/",
+      "permanent": true
+    },
+    {
+      "source": "/es/politica-de-privacidad/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/es/privacy-policy/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/es/terminos/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/es/terms/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/es/aviso-legal/",
+      "destination": "/disclaimer/",
+      "permanent": true
+    },
+    {
+      "source": "/es/disclaimer/",
+      "destination": "/disclaimer/",
+      "permanent": true
+    },
+    {
+      "source": "/es/color-screens/",
+      "destination": "/es/pantallas-de-colores/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-tests/",
+      "destination": "/es/pruebas-de-pantalla/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screensavers/",
+      "destination": "/es/salvapantallas/",
+      "permanent": true
+    },
+    {
+      "source": "/es/prank-screens/",
+      "destination": "/es/pantallas-de-broma/",
+      "permanent": true
+    },
+    {
+      "source": "/es/visual-effects/",
+      "destination": "/es/efectos-visuales/",
+      "permanent": true
+    },
+    {
+      "source": "/es/online-timers/",
+      "destination": "/es/temporizadores-online/",
+      "permanent": true
+    },
+    {
+      "source": "/es/black-screen/",
+      "destination": "/es/pantalla-negra/",
+      "permanent": true
+    },
+    {
+      "source": "/es/red-screen/",
+      "destination": "/es/pantalla-roja/",
+      "permanent": true
+    },
+    {
+      "source": "/es/green-screen/",
+      "destination": "/es/pantalla-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/es/blue-screen/",
+      "destination": "/es/pantalla-azul/",
+      "permanent": true
+    },
+    {
+      "source": "/es/yellow-screen/",
+      "destination": "/es/pantalla-amarilla/",
+      "permanent": true
+    },
+    {
+      "source": "/es/orange-screen/",
+      "destination": "/es/pantalla-naranja/",
+      "permanent": true
+    },
+    {
+      "source": "/es/pink-screen/",
+      "destination": "/es/pantalla-rosa/",
+      "permanent": true
+    },
+    {
+      "source": "/es/purple-screen/",
+      "destination": "/es/pantalla-purpura/",
+      "permanent": true
+    },
+    {
+      "source": "/es/cyan-screen/",
+      "destination": "/es/pantalla-cian/",
+      "permanent": true
+    },
+    {
+      "source": "/es/magenta-screen/",
+      "destination": "/es/pantalla-magenta/",
+      "permanent": true
+    },
+    {
+      "source": "/es/gray-screen/",
+      "destination": "/es/pantalla-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/es/dead-pixel-test/",
+      "destination": "/es/prueba-de-pixeles-muertos/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-uniformity-test/",
+      "destination": "/es/prueba-de-uniformidad/",
+      "permanent": true
+    },
+    {
+      "source": "/es/monitor-test/",
+      "destination": "/es/prueba-de-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/es/oled-gray-test/",
+      "destination": "/es/prueba-gris-para-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/es/oled-burn-in-test/",
+      "destination": "/es/prueba-de-quemado-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-color-test/",
+      "destination": "/es/prueba-de-color-de-pantalla/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-resolution-test/",
+      "destination": "/es/prueba-de-resolucion/",
+      "permanent": true
+    },
+    {
+      "source": "/es/no-signal-screen/",
+      "destination": "/es/pantalla-sin-senal/",
+      "permanent": true
+    },
+    {
+      "source": "/es/white-noise-generator/",
+      "destination": "/es/generador-de-ruido-blanco/",
+      "permanent": true
+    },
+    {
+      "source": "/es/brown-noise-generator/",
+      "destination": "/es/generador-de-ruido-marron/",
+      "permanent": true
+    },
+    {
+      "source": "/es/pink-noise-generator/",
+      "destination": "/es/generador-de-ruido-rosa/",
+      "permanent": true
+    },
+    {
+      "source": "/es/broken-screen/",
+      "destination": "/es/efecto-pantalla-rota/",
+      "permanent": true
+    },
+    {
+      "source": "/es/hacker-typer/",
+      "destination": "/es/escritura-hacker/",
+      "permanent": true
+    },
+    {
+      "source": "/es/visual-noise/",
+      "destination": "/es/ruido-visual/",
+      "permanent": true
+    },
+    {
+      "source": "/es/color-cycle/",
+      "destination": "/es/ciclo-de-colores/",
+      "permanent": true
+    },
+    {
+      "source": "/es/gradient-screen/",
+      "destination": "/es/pantalla-de-degradado/",
+      "permanent": true
+    },
+    {
+      "source": "/es/matrix-screensaver/",
+      "destination": "/es/salvapantallas-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/es/flip-clock-screensaver/",
+      "destination": "/es/reloj-flip-screensaver/",
+      "permanent": true
+    },
+    {
+      "source": "/es/dvd-screensaver/",
+      "destination": "/es/salvapantallas-dvd/",
+      "permanent": true
+    },
+    {
+      "source": "/es/motivational-quote-screensaver/",
+      "destination": "/es/salvapantallas-de-frases-motivadoras/",
+      "permanent": true
+    },
+    {
+      "source": "/es/countdown-timer/",
+      "destination": "/es/temporizador-de-cuenta-atras/",
+      "permanent": true
+    },
+    {
+      "source": "/es/stopwatch/",
+      "destination": "/es/cronometro-pantalla-completa/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-windows-10-update/",
+      "destination": "/es/actualizacion-falsa-windows-10/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-windows-11-update/",
+      "destination": "/es/actualizacion-falsa-windows-11/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-mac-update/",
+      "destination": "/es/actualizacion-falsa-mac/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-android-update/",
+      "destination": "/es/actualizacion-falsa-android/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-windows-xp-update/",
+      "destination": "/es/instalacion-falsa-windows-xp/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-windows-xp-boot/",
+      "destination": "/es/arranque-falso-windows-xp/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-chrome-os-update/",
+      "destination": "/es/actualizacion-falsa-chrome-os/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-ubuntu-update/",
+      "destination": "/es/actualizacion-falsa-ubuntu/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-zoom-meeting/",
+      "destination": "/es/pantalla-falsa-de-reunion-de-zoom/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-teams-meeting/",
+      "destination": "/es/pantalla-falsa-de-reunion-de-teams/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-google-meet/",
+      "destination": "/es/pantalla-falsa-de-google-meet/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-slack-huddle/",
+      "destination": "/es/simulacion-slack-huddle/",
+      "permanent": true
+    },
+    {
+      "source": "/es/zoom-lighting/",
+      "destination": "/es/luz-para-videollamadas/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-blue-screen-of-death/",
+      "destination": "/es/pantalla-azul-de-la-muerte-falsa/",
+      "permanent": true
+    },
+    {
+      "source": "/es/touch-screen-test/",
+      "destination": "/es/prueba-de-pantalla-tactil/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-refresh-rate-test/",
+      "destination": "/es/prueba-de-frecuencia-de-actualizacion/",
+      "permanent": true
+    },
+    {
+      "source": "/es/monitor-ghosting-test/",
+      "destination": "/es/prueba-de-ghosting-del-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/es/frame-rate-test/",
+      "destination": "/es/prueba-de-fps/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-burn-in-test/",
+      "destination": "/es/prueba-de-quemado-de-pantalla/",
+      "permanent": true
+    },
+    {
+      "source": "/es/pomodoro-timer/",
+      "destination": "/es/temporizador-pomodoro/",
+      "permanent": true
+    },
+    {
+      "source": "/es/ring-light/",
+      "destination": "/es/aro-de-luz-online/",
+      "permanent": true
+    },
+    {
+      "source": "/es/hacked-screen/",
+      "destination": "/es/simulador-de-pantalla-hackeada/",
+      "permanent": true
+    },
+    {
+      "source": "/es/fake-radar-screen/",
+      "destination": "/es/pantalla-de-radar-falsa/",
+      "permanent": true
+    },
+    {
+      "source": "/es/guides/",
+      "destination": "/es/guias/",
+      "permanent": true
+    },
+    {
+      "source": "/es/guides/dead-pixel-test/",
+      "destination": "/es/guias/prueba-de-pixeles-muertos/",
+      "permanent": true
+    },
+    {
+      "source": "/es/guides/screen-color-test/",
+      "destination": "/es/guias/prueba-de-color-de-pantalla/",
+      "permanent": true
+    },
+    {
+      "source": "/es/guides/screen-uniformity-test/",
+      "destination": "/es/guias/prueba-de-uniformidad-de-pantalla/",
+      "permanent": true
+    },
+    {
+      "source": "/es/guides/clean-laptop-screen/",
+      "destination": "/es/guias/limpiar-pantalla-portatil/",
+      "permanent": true
+    },
+    {
+      "source": "/es/guides/oled-burn-in-prevention/",
+      "destination": "/es/guias/prevenir-quemado-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/es/guides/monitor-test/",
+      "destination": "/es/guias/prueba-de-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/es/guides/white-screen-for-video-calls-and-zoom/",
+      "destination": "/es/guias/pantalla-blanca-para-videollamadas/",
+      "permanent": true
+    },
+    {
+      "source": "/es/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+      "destination": "/es/guias/pantalla-blanca-para-calcar-y-dibujar/",
+      "permanent": true
+    },
+    {
+      "source": "/es/guides/best-monitor-settings-for-eye-strain/",
+      "destination": "/es/guias/ajustes-de-monitor-para-la-fatiga-visual/",
+      "permanent": true
+    },
+    {
+      "source": "/es/guides/common-monitor-display-problems-diagnostics/",
+      "destination": "/es/guias/problemas-comunes-del-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-problems/",
+      "destination": "/es/problemas-de-pantalla/",
+      "permanent": true
+    },
+    {
+      "source": "/es/glossary/",
+      "destination": "/es/glosario/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/",
+      "destination": "/es/fondos/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-problems/stuck-pixel/",
+      "destination": "/es/problemas-de-pantalla/pixel-atascado/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-problems/hot-pixel/",
+      "destination": "/es/problemas-de-pantalla/pixel-caliente/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-problems/backlight-bleed/",
+      "destination": "/es/problemas-de-pantalla/fuga-de-retroiluminacion/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-problems/ips-glow/",
+      "destination": "/es/problemas-de-pantalla/brillo-ips/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-problems/screen-burn-in/",
+      "destination": "/es/problemas-de-pantalla/quemado-de-pantalla/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-problems/image-retention/",
+      "destination": "/es/problemas-de-pantalla/retencion-de-imagen/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-problems/screen-flickering/",
+      "destination": "/es/problemas-de-pantalla/parpadeo-de-pantalla/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-problems/screen-tearing/",
+      "destination": "/es/problemas-de-pantalla/tearing-de-pantalla/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-problems/ghosting/",
+      "destination": "/es/problemas-de-pantalla/ghosting-de-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-problems/color-banding/",
+      "destination": "/es/problemas-de-pantalla/bandas-de-color/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-problems/yellow-tint-on-screen/",
+      "destination": "/es/problemas-de-pantalla/pantalla-amarillenta/",
+      "permanent": true
+    },
+    {
+      "source": "/es/glossary/refresh-rate/",
+      "destination": "/es/glosario/frecuencia-de-actualizacion/",
+      "permanent": true
+    },
+    {
+      "source": "/es/glossary/oled-vs-lcd/",
+      "destination": "/es/glosario/oled-vs-lcd/",
+      "permanent": true
+    },
+    {
+      "source": "/es/glossary/hdr/",
+      "destination": "/es/glosario/hdr/",
+      "permanent": true
+    },
+    {
+      "source": "/es/glossary/resolution/",
+      "destination": "/es/glosario/resolucion/",
+      "permanent": true
+    },
+    {
+      "source": "/es/glossary/chroma-key/",
+      "destination": "/es/glosario/chroma-key/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/white-background/",
+      "destination": "/es/fondos/fondo-blanco/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/black-background/",
+      "destination": "/es/fondos/fondo-negro/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/orange-background/",
+      "destination": "/es/fondos/fondo-naranja/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/gradient-background/",
+      "destination": "/es/fondos/fondo-degradado/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/neon-background/",
+      "destination": "/es/fondos/fondo-neon/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/red-background/",
+      "destination": "/es/fondos/fondo-rojo/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/yellow-background/",
+      "destination": "/es/fondos/fondo-amarillo/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/blue-background/",
+      "destination": "/es/fondos/fondo-azul/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/green-screen-background/",
+      "destination": "/es/fondos/fondo-de-pantalla-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/virtual-office/",
+      "destination": "/es/fondos/fondo-de-oficina-virtual/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/graph-paper/",
+      "destination": "/es/fondos/fondo-de-papel-cuadriculado/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/pink-background/",
+      "destination": "/es/fondos/fondo-rosa/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/green-background/",
+      "destination": "/es/fondos/fondo-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/purple-background/",
+      "destination": "/es/fondos/fondo-morado/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/dark-background/",
+      "destination": "/es/fondos/fondo-oscuro/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/gold-background/",
+      "destination": "/es/fondos/fondo-dorado/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/aesthetic-background/",
+      "destination": "/es/fondos/fondo-estetico/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/beige-background/",
+      "destination": "/es/fondos/fondo-beis/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/pastel-background/",
+      "destination": "/es/fondos/fondo-pastel/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/tools/",
+      "destination": "/pt-br/ferramentas/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/about/",
+      "destination": "/pt-br/sobre/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/contact/",
+      "destination": "/pt-br/contato/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/politica-de-privacidade/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/privacy-policy/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/termos/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/terms/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/aviso-legal/",
+      "destination": "/disclaimer/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/disclaimer/",
+      "destination": "/disclaimer/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/color-screens/",
+      "destination": "/pt-br/telas-coloridas/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-tests/",
+      "destination": "/pt-br/testes-de-tela/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screensavers/",
+      "destination": "/pt-br/protetores-de-tela/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/prank-screens/",
+      "destination": "/pt-br/telas-de-pegadinha/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/visual-effects/",
+      "destination": "/pt-br/efeitos-visuais/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/online-timers/",
+      "destination": "/pt-br/temporizadores-online/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/black-screen/",
+      "destination": "/pt-br/tela-preta/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/red-screen/",
+      "destination": "/pt-br/tela-vermelha/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/green-screen/",
+      "destination": "/pt-br/tela-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/blue-screen/",
+      "destination": "/pt-br/tela-azul/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/yellow-screen/",
+      "destination": "/pt-br/tela-amarela/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/orange-screen/",
+      "destination": "/pt-br/tela-laranja/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/pink-screen/",
+      "destination": "/pt-br/tela-rosa/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/purple-screen/",
+      "destination": "/pt-br/tela-roxa/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/cyan-screen/",
+      "destination": "/pt-br/tela-ciano/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/magenta-screen/",
+      "destination": "/pt-br/tela-magenta/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/gray-screen/",
+      "destination": "/pt-br/tela-cinza/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/dead-pixel-test/",
+      "destination": "/pt-br/teste-de-dead-pixel/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-uniformity-test/",
+      "destination": "/pt-br/teste-de-uniformidade/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/monitor-test/",
+      "destination": "/pt-br/teste-de-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/oled-gray-test/",
+      "destination": "/pt-br/teste-de-cinza-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/oled-burn-in-test/",
+      "destination": "/pt-br/teste-de-burn-in-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-color-test/",
+      "destination": "/pt-br/teste-de-cores-do-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-resolution-test/",
+      "destination": "/pt-br/teste-de-resolucao/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/no-signal-screen/",
+      "destination": "/pt-br/tela-sem-sinal/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/white-noise-generator/",
+      "destination": "/pt-br/gerador-de-ruido-branco/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/brown-noise-generator/",
+      "destination": "/pt-br/gerador-de-ruido-marrom/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/pink-noise-generator/",
+      "destination": "/pt-br/gerador-de-ruido-rosa/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/broken-screen/",
+      "destination": "/pt-br/efeito-tela-quebrada/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/hacker-typer/",
+      "destination": "/pt-br/digitacao-hacker/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/visual-noise/",
+      "destination": "/pt-br/ruido-visual/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/color-cycle/",
+      "destination": "/pt-br/ciclo-de-cores/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/gradient-screen/",
+      "destination": "/pt-br/tela-de-degrade/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/matrix-screensaver/",
+      "destination": "/pt-br/protetor-de-tela-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/flip-clock-screensaver/",
+      "destination": "/pt-br/protetor-relogio-flip/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/dvd-screensaver/",
+      "destination": "/pt-br/protetor-de-tela-dvd/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/motivational-quote-screensaver/",
+      "destination": "/pt-br/protetor-de-tela-com-frases-motivacionais/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/countdown-timer/",
+      "destination": "/pt-br/temporizador-de-contagem-regressiva/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/stopwatch/",
+      "destination": "/pt-br/cronometro-em-tela-cheia/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-windows-10-update/",
+      "destination": "/pt-br/atualizacao-falsa-windows-10/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-windows-11-update/",
+      "destination": "/pt-br/atualizacao-falsa-windows-11/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-mac-update/",
+      "destination": "/pt-br/atualizacao-falsa-mac/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-android-update/",
+      "destination": "/pt-br/atualizacao-falsa-android/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-windows-xp-update/",
+      "destination": "/pt-br/instalacao-falsa-windows-xp/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-windows-xp-boot/",
+      "destination": "/pt-br/inicializacao-falsa-windows-xp/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-chrome-os-update/",
+      "destination": "/pt-br/atualizacao-falsa-chrome-os/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-ubuntu-update/",
+      "destination": "/pt-br/atualizacao-falsa-ubuntu/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-zoom-meeting/",
+      "destination": "/pt-br/tela-falsa-de-reuniao-do-zoom/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-teams-meeting/",
+      "destination": "/pt-br/tela-falsa-de-reuniao-do-teams/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-google-meet/",
+      "destination": "/pt-br/tela-falsa-do-google-meet/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-slack-huddle/",
+      "destination": "/pt-br/slack-huddle-simulado/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/zoom-lighting/",
+      "destination": "/pt-br/luz-para-videochamadas/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-blue-screen-of-death/",
+      "destination": "/pt-br/tela-azul-da-morte-falsa/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/touch-screen-test/",
+      "destination": "/pt-br/teste-de-tela-touch/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-refresh-rate-test/",
+      "destination": "/pt-br/teste-de-taxa-de-atualizacao/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/monitor-ghosting-test/",
+      "destination": "/pt-br/teste-de-ghosting-do-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/frame-rate-test/",
+      "destination": "/pt-br/teste-de-fps/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-burn-in-test/",
+      "destination": "/pt-br/teste-de-burn-in-de-tela/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/pomodoro-timer/",
+      "destination": "/pt-br/timer-pomodoro/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/ring-light/",
+      "destination": "/pt-br/ring-light-online/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/hacked-screen/",
+      "destination": "/pt-br/simulador-de-tela-hackeada/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/fake-radar-screen/",
+      "destination": "/pt-br/tela-de-radar-falsa/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/",
+      "destination": "/pt-br/guias/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/dead-pixel-test/",
+      "destination": "/pt-br/guias/teste-de-dead-pixel/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/screen-color-test/",
+      "destination": "/pt-br/guias/teste-de-cores-da-tela/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/screen-uniformity-test/",
+      "destination": "/pt-br/guias/teste-de-uniformidade-da-tela/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/clean-laptop-screen/",
+      "destination": "/pt-br/guias/como-limpar-tela-do-notebook/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/oled-burn-in-prevention/",
+      "destination": "/pt-br/guias/prevenir-burn-in-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/monitor-test/",
+      "destination": "/pt-br/guias/teste-de-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/white-screen-for-video-calls-and-zoom/",
+      "destination": "/pt-br/guias/tela-branca-para-videochamadas/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+      "destination": "/pt-br/guias/tela-branca-para-decalcar-e-desenhar/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/best-monitor-settings-for-eye-strain/",
+      "destination": "/pt-br/guias/configuracoes-do-monitor-para-cansaco-visual/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/common-monitor-display-problems-diagnostics/",
+      "destination": "/pt-br/guias/problemas-comuns-de-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-problems/",
+      "destination": "/pt-br/problemas-de-tela/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/glossary/",
+      "destination": "/pt-br/glossario/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/",
+      "destination": "/pt-br/fundos/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-problems/stuck-pixel/",
+      "destination": "/pt-br/problemas-de-tela/pixel-travado/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-problems/hot-pixel/",
+      "destination": "/pt-br/problemas-de-tela/pixel-quente/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-problems/backlight-bleed/",
+      "destination": "/pt-br/problemas-de-tela/vazamento-de-luz/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-problems/ips-glow/",
+      "destination": "/pt-br/problemas-de-tela/brilho-ips/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-problems/screen-burn-in/",
+      "destination": "/pt-br/problemas-de-tela/burn-in-de-tela/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-problems/image-retention/",
+      "destination": "/pt-br/problemas-de-tela/retencao-de-imagem/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-problems/screen-flickering/",
+      "destination": "/pt-br/problemas-de-tela/cintilacao-da-tela/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-problems/screen-tearing/",
+      "destination": "/pt-br/problemas-de-tela/tearing-da-tela/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-problems/ghosting/",
+      "destination": "/pt-br/problemas-de-tela/ghosting-de-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-problems/color-banding/",
+      "destination": "/pt-br/problemas-de-tela/faixas-de-cor/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-problems/yellow-tint-on-screen/",
+      "destination": "/pt-br/problemas-de-tela/tela-amarelada/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/glossary/refresh-rate/",
+      "destination": "/pt-br/glossario/taxa-de-atualizacao/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/glossary/oled-vs-lcd/",
+      "destination": "/pt-br/glossario/oled-vs-lcd/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/glossary/hdr/",
+      "destination": "/pt-br/glossario/hdr/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/glossary/resolution/",
+      "destination": "/pt-br/glossario/resolucao/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/glossary/chroma-key/",
+      "destination": "/pt-br/glossario/chroma-key/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/white-background/",
+      "destination": "/pt-br/fundos/fundo-branco/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/black-background/",
+      "destination": "/pt-br/fundos/fundo-preto/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/orange-background/",
+      "destination": "/pt-br/fundos/fundo-laranja/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/gradient-background/",
+      "destination": "/pt-br/fundos/fundo-em-degrade/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/neon-background/",
+      "destination": "/pt-br/fundos/fundo-neon/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/red-background/",
+      "destination": "/pt-br/fundos/fundo-vermelho/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/yellow-background/",
+      "destination": "/pt-br/fundos/fundo-amarelo/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/blue-background/",
+      "destination": "/pt-br/fundos/fundo-azul/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/green-screen-background/",
+      "destination": "/pt-br/fundos/fundo-de-tela-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/virtual-office/",
+      "destination": "/pt-br/fundos/fundo-de-escritorio-virtual/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/graph-paper/",
+      "destination": "/pt-br/fundos/fundo-de-papel-quadriculado/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/pink-background/",
+      "destination": "/pt-br/fundos/fundo-rosa/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/green-background/",
+      "destination": "/pt-br/fundos/fundo-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/purple-background/",
+      "destination": "/pt-br/fundos/fundo-roxo/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/dark-background/",
+      "destination": "/pt-br/fundos/fundo-escuro/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/gold-background/",
+      "destination": "/pt-br/fundos/fundo-dourado/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/aesthetic-background/",
+      "destination": "/pt-br/fundos/fundo-estetico/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/beige-background/",
+      "destination": "/pt-br/fundos/fundo-bege/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/pastel-background/",
+      "destination": "/pt-br/fundos/fundo-pastel/",
+      "permanent": true
+    },
+    {
+      "source": "/de/tools/",
+      "destination": "/de/werkzeuge/",
+      "permanent": true
+    },
+    {
+      "source": "/de/about/",
+      "destination": "/de/ueber-uns/",
+      "permanent": true
+    },
+    {
+      "source": "/de/contact/",
+      "destination": "/de/kontakt/",
+      "permanent": true
+    },
+    {
+      "source": "/de/datenschutz/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/de/privacy-policy/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/de/nutzungsbedingungen/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/de/terms/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/de/haftungsausschluss/",
+      "destination": "/disclaimer/",
+      "permanent": true
+    },
+    {
+      "source": "/de/disclaimer/",
+      "destination": "/disclaimer/",
+      "permanent": true
+    },
+    {
+      "source": "/de/color-screens/",
+      "destination": "/de/farbbildschirme/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-tests/",
+      "destination": "/de/bildschirmtests/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screensavers/",
+      "destination": "/de/bildschirmschoner/",
+      "permanent": true
+    },
+    {
+      "source": "/de/prank-screens/",
+      "destination": "/de/scherz-bildschirme/",
+      "permanent": true
+    },
+    {
+      "source": "/de/visual-effects/",
+      "destination": "/de/visuelle-effekte/",
+      "permanent": true
+    },
+    {
+      "source": "/de/online-timers/",
+      "destination": "/de/online-timer/",
+      "permanent": true
+    },
+    {
+      "source": "/de/black-screen/",
+      "destination": "/de/schwarzer-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/red-screen/",
+      "destination": "/de/roter-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/green-screen/",
+      "destination": "/de/gruener-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/blue-screen/",
+      "destination": "/de/blauer-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/yellow-screen/",
+      "destination": "/de/gelber-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/orange-screen/",
+      "destination": "/de/oranger-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/pink-screen/",
+      "destination": "/de/rosa-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/purple-screen/",
+      "destination": "/de/violetter-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/cyan-screen/",
+      "destination": "/de/cyan-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/magenta-screen/",
+      "destination": "/de/magenta-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/gray-screen/",
+      "destination": "/de/grauer-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/dead-pixel-test/",
+      "destination": "/de/pixelfehlertest/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-uniformity-test/",
+      "destination": "/de/bildschirm-homogenitaetstest/",
+      "permanent": true
+    },
+    {
+      "source": "/de/monitor-test/",
+      "destination": "/de/monitortest/",
+      "permanent": true
+    },
+    {
+      "source": "/de/oled-gray-test/",
+      "destination": "/de/oled-grautest/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-color-test/",
+      "destination": "/de/bildschirm-farbtest/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-resolution-test/",
+      "destination": "/de/bildschirm-aufloesungstest/",
+      "permanent": true
+    },
+    {
+      "source": "/de/no-signal-screen/",
+      "destination": "/de/kein-signal-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/white-noise-generator/",
+      "destination": "/de/weisses-rauschen-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/de/brown-noise-generator/",
+      "destination": "/de/braunes-rauschen-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/de/pink-noise-generator/",
+      "destination": "/de/rosa-rauschen-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/de/broken-screen/",
+      "destination": "/de/displayschaden-effekt/",
+      "permanent": true
+    },
+    {
+      "source": "/de/hacker-typer/",
+      "destination": "/de/hacker-tippsimulation/",
+      "permanent": true
+    },
+    {
+      "source": "/de/visual-noise/",
+      "destination": "/de/visuelles-rauschen/",
+      "permanent": true
+    },
+    {
+      "source": "/de/color-cycle/",
+      "destination": "/de/farbzyklus/",
+      "permanent": true
+    },
+    {
+      "source": "/de/gradient-screen/",
+      "destination": "/de/verlaufsbildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/matrix-screensaver/",
+      "destination": "/de/matrix-bildschirmschoner/",
+      "permanent": true
+    },
+    {
+      "source": "/de/flip-clock-screensaver/",
+      "destination": "/de/klappuhr-bildschirmschoner/",
+      "permanent": true
+    },
+    {
+      "source": "/de/dvd-screensaver/",
+      "destination": "/de/dvd-bildschirmschoner/",
+      "permanent": true
+    },
+    {
+      "source": "/de/motivational-quote-screensaver/",
+      "destination": "/de/motivationssprueche-bildschirmschoner/",
+      "permanent": true
+    },
+    {
+      "source": "/de/countdown-timer/",
+      "destination": "/de/vollbild-countdown/",
+      "permanent": true
+    },
+    {
+      "source": "/de/stopwatch/",
+      "destination": "/de/vollbild-stoppuhr/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-windows-10-update/",
+      "destination": "/de/windows-10-update-simulation/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-windows-11-update/",
+      "destination": "/de/windows-11-update-simulation/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-mac-update/",
+      "destination": "/de/mac-update-simulation/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-android-update/",
+      "destination": "/de/android-update-simulation/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-windows-xp-update/",
+      "destination": "/de/windows-xp-setup-simulation/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-windows-xp-boot/",
+      "destination": "/de/windows-xp-boot-simulation/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-chrome-os-update/",
+      "destination": "/de/chrome-os-update-simulation/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-ubuntu-update/",
+      "destination": "/de/ubuntu-terminal-update/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-zoom-meeting/",
+      "destination": "/de/fake-zoom-meeting-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-teams-meeting/",
+      "destination": "/de/fake-teams-meeting-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-google-meet/",
+      "destination": "/de/fake-google-meet-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-slack-huddle/",
+      "destination": "/de/slack-huddle-simulation/",
+      "permanent": true
+    },
+    {
+      "source": "/de/zoom-lighting/",
+      "destination": "/de/beleuchtung-fuer-videoanrufe/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-blue-screen-of-death/",
+      "destination": "/de/fake-bluescreen/",
+      "permanent": true
+    },
+    {
+      "source": "/de/touch-screen-test/",
+      "destination": "/de/touchscreen-test/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-refresh-rate-test/",
+      "destination": "/de/bildwiederholrate-test/",
+      "permanent": true
+    },
+    {
+      "source": "/de/frame-rate-test/",
+      "destination": "/de/bildrate-test/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-burn-in-test/",
+      "destination": "/de/bildschirm-einbrenn-test/",
+      "permanent": true
+    },
+    {
+      "source": "/de/ring-light/",
+      "destination": "/de/ringlicht-online/",
+      "permanent": true
+    },
+    {
+      "source": "/de/hacked-screen/",
+      "destination": "/de/gehackter-bildschirm-simulator/",
+      "permanent": true
+    },
+    {
+      "source": "/de/fake-radar-screen/",
+      "destination": "/de/fake-radarbildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/de/guides/",
+      "destination": "/de/ratgeber/",
+      "permanent": true
+    },
+    {
+      "source": "/de/guides/dead-pixel-test/",
+      "destination": "/de/ratgeber/pixelfehler-test/",
+      "permanent": true
+    },
+    {
+      "source": "/de/guides/screen-color-test/",
+      "destination": "/de/ratgeber/bildschirm-farbtest/",
+      "permanent": true
+    },
+    {
+      "source": "/de/guides/screen-uniformity-test/",
+      "destination": "/de/ratgeber/bildschirm-homogenitaetstest/",
+      "permanent": true
+    },
+    {
+      "source": "/de/guides/clean-laptop-screen/",
+      "destination": "/de/ratgeber/laptop-bildschirm-reinigen/",
+      "permanent": true
+    },
+    {
+      "source": "/de/guides/oled-burn-in-prevention/",
+      "destination": "/de/ratgeber/oled-einbrennen-vermeiden/",
+      "permanent": true
+    },
+    {
+      "source": "/de/guides/monitor-test/",
+      "destination": "/de/ratgeber/monitortest/",
+      "permanent": true
+    },
+    {
+      "source": "/de/guides/white-screen-for-video-calls-and-zoom/",
+      "destination": "/de/ratgeber/weisser-bildschirm-fuer-videoanrufe/",
+      "permanent": true
+    },
+    {
+      "source": "/de/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+      "destination": "/de/ratgeber/weisser-bildschirm-zum-abpausen-und-zeichnen/",
+      "permanent": true
+    },
+    {
+      "source": "/de/guides/best-monitor-settings-for-eye-strain/",
+      "destination": "/de/ratgeber/monitoreinstellungen-gegen-augenbelastung/",
+      "permanent": true
+    },
+    {
+      "source": "/de/guides/common-monitor-display-problems-diagnostics/",
+      "destination": "/de/ratgeber/haeufige-monitorprobleme/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-problems/",
+      "destination": "/de/bildschirmprobleme/",
+      "permanent": true
+    },
+    {
+      "source": "/de/glossary/",
+      "destination": "/de/glossar/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/",
+      "destination": "/de/hintergruende/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-problems/stuck-pixel/",
+      "destination": "/de/bildschirmprobleme/haengender-pixel/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-problems/hot-pixel/",
+      "destination": "/de/bildschirmprobleme/heisser-pixel/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-problems/backlight-bleed/",
+      "destination": "/de/bildschirmprobleme/backlight-bleeding/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-problems/ips-glow/",
+      "destination": "/de/bildschirmprobleme/ips-glow/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-problems/screen-burn-in/",
+      "destination": "/de/bildschirmprobleme/einbrennen/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-problems/image-retention/",
+      "destination": "/de/bildschirmprobleme/bildnachleuchten/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-problems/screen-flickering/",
+      "destination": "/de/bildschirmprobleme/bildschirmflackern/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-problems/screen-tearing/",
+      "destination": "/de/bildschirmprobleme/screen-tearing/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-problems/ghosting/",
+      "destination": "/de/bildschirmprobleme/monitor-ghosting/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-problems/color-banding/",
+      "destination": "/de/bildschirmprobleme/color-banding/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-problems/yellow-tint-on-screen/",
+      "destination": "/de/bildschirmprobleme/gelbstich/",
+      "permanent": true
+    },
+    {
+      "source": "/de/glossary/refresh-rate/",
+      "destination": "/de/glossar/bildwiederholrate/",
+      "permanent": true
+    },
+    {
+      "source": "/de/glossary/oled-vs-lcd/",
+      "destination": "/de/glossar/oled-vs-lcd/",
+      "permanent": true
+    },
+    {
+      "source": "/de/glossary/hdr/",
+      "destination": "/de/glossar/hdr/",
+      "permanent": true
+    },
+    {
+      "source": "/de/glossary/resolution/",
+      "destination": "/de/glossar/aufloesung/",
+      "permanent": true
+    },
+    {
+      "source": "/de/glossary/chroma-key/",
+      "destination": "/de/glossar/chroma-key/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/white-background/",
+      "destination": "/de/hintergruende/weisser-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/black-background/",
+      "destination": "/de/hintergruende/schwarzer-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/orange-background/",
+      "destination": "/de/hintergruende/oranger-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/gradient-background/",
+      "destination": "/de/hintergruende/verlaufshintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/neon-background/",
+      "destination": "/de/hintergruende/neon-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/red-background/",
+      "destination": "/de/hintergruende/roter-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/yellow-background/",
+      "destination": "/de/hintergruende/gelber-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/blue-background/",
+      "destination": "/de/hintergruende/blauer-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/green-screen-background/",
+      "destination": "/de/hintergruende/greenscreen-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/virtual-office/",
+      "destination": "/de/hintergruende/virtueller-buero-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/graph-paper/",
+      "destination": "/de/hintergruende/karopapier-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/pink-background/",
+      "destination": "/de/hintergruende/rosa-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/green-background/",
+      "destination": "/de/hintergruende/gruener-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/purple-background/",
+      "destination": "/de/hintergruende/lila-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/dark-background/",
+      "destination": "/de/hintergruende/dunkler-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/gold-background/",
+      "destination": "/de/hintergruende/goldener-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/aesthetic-background/",
+      "destination": "/de/hintergruende/aesthetischer-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/beige-background/",
+      "destination": "/de/hintergruende/beiger-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/pastel-background/",
+      "destination": "/de/hintergruende/pastell-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/tools/",
+      "destination": "/fr/outils/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/about/",
+      "destination": "/fr/a-propos/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/feedback/",
+      "destination": "/fr/avis/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/politique-de-confidentialite/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/privacy-policy/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/conditions/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/terms/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/avertissement/",
+      "destination": "/disclaimer/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/disclaimer/",
+      "destination": "/disclaimer/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/color-screens/",
+      "destination": "/fr/ecrans-de-couleur/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-tests/",
+      "destination": "/fr/tests-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screensavers/",
+      "destination": "/fr/economiseurs-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/prank-screens/",
+      "destination": "/fr/ecrans-blagues/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/visual-effects/",
+      "destination": "/fr/effets-visuels/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/online-timers/",
+      "destination": "/fr/minuteurs-en-ligne/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/black-screen/",
+      "destination": "/fr/ecran-noir/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/red-screen/",
+      "destination": "/fr/ecran-rouge/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/green-screen/",
+      "destination": "/fr/ecran-vert/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/blue-screen/",
+      "destination": "/fr/ecran-bleu/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/yellow-screen/",
+      "destination": "/fr/ecran-jaune/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/orange-screen/",
+      "destination": "/fr/ecran-orange/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/pink-screen/",
+      "destination": "/fr/ecran-rose/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/purple-screen/",
+      "destination": "/fr/ecran-violet/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/cyan-screen/",
+      "destination": "/fr/ecran-cyan/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/magenta-screen/",
+      "destination": "/fr/ecran-magenta/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/gray-screen/",
+      "destination": "/fr/ecran-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/dead-pixel-test/",
+      "destination": "/fr/test-de-pixels-morts/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-uniformity-test/",
+      "destination": "/fr/test-d-uniformite-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/monitor-test/",
+      "destination": "/fr/mire-de-test-pour-moniteur/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/oled-gray-test/",
+      "destination": "/fr/test-gris-fonce-pour-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/oled-burn-in-test/",
+      "destination": "/fr/test-de-marquage-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-color-test/",
+      "destination": "/fr/test-des-couleurs-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-resolution-test/",
+      "destination": "/fr/test-de-resolution-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/no-signal-screen/",
+      "destination": "/fr/ecran-aucun-signal/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/white-noise-generator/",
+      "destination": "/fr/generateur-de-bruit-blanc/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/brown-noise-generator/",
+      "destination": "/fr/generateur-de-bruit-marron/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/pink-noise-generator/",
+      "destination": "/fr/generateur-de-bruit-rose/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/broken-screen/",
+      "destination": "/fr/effet-ecran-casse/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/hacker-typer/",
+      "destination": "/fr/simulation-de-frappe-hacker/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/visual-noise/",
+      "destination": "/fr/bruit-visuel-anime/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/color-cycle/",
+      "destination": "/fr/cycle-de-couleurs/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/gradient-screen/",
+      "destination": "/fr/ecran-de-degrade/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/matrix-screensaver/",
+      "destination": "/fr/ecran-de-veille-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/flip-clock-screensaver/",
+      "destination": "/fr/ecran-de-veille-horloge-flip/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/dvd-screensaver/",
+      "destination": "/fr/ecran-de-veille-dvd/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/motivational-quote-screensaver/",
+      "destination": "/fr/ecran-de-veille-citations-motivantes/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/countdown-timer/",
+      "destination": "/fr/minuteur-plein-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/stopwatch/",
+      "destination": "/fr/chronometre-plein-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-windows-10-update/",
+      "destination": "/fr/fausse-mise-a-jour-windows-10/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-windows-11-update/",
+      "destination": "/fr/fausse-mise-a-jour-windows-11/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-mac-update/",
+      "destination": "/fr/fausse-mise-a-jour-mac/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-android-update/",
+      "destination": "/fr/fausse-mise-a-jour-android/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-windows-xp-update/",
+      "destination": "/fr/fausse-installation-windows-xp/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-windows-xp-boot/",
+      "destination": "/fr/demarrage-faux-windows-xp/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-chrome-os-update/",
+      "destination": "/fr/fausse-mise-a-jour-chrome-os/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-ubuntu-update/",
+      "destination": "/fr/fausse-mise-a-jour-ubuntu/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-zoom-meeting/",
+      "destination": "/fr/faux-ecran-de-reunion-zoom/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-teams-meeting/",
+      "destination": "/fr/faux-ecran-de-reunion-teams/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-google-meet/",
+      "destination": "/fr/faux-ecran-google-meet/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-slack-huddle/",
+      "destination": "/fr/faux-huddle-slack/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/zoom-lighting/",
+      "destination": "/fr/lumiere-pour-visioconference/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-blue-screen-of-death/",
+      "destination": "/fr/faux-ecran-bleu-de-la-mort/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/touch-screen-test/",
+      "destination": "/fr/test-d-ecran-tactile/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-refresh-rate-test/",
+      "destination": "/fr/test-de-frequence-de-rafraichissement/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/monitor-ghosting-test/",
+      "destination": "/fr/test-de-ghosting-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/frame-rate-test/",
+      "destination": "/fr/test-de-fps/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-burn-in-test/",
+      "destination": "/fr/test-de-marquage-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/pomodoro-timer/",
+      "destination": "/fr/minuteur-pomodoro/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/ring-light/",
+      "destination": "/fr/ring-light-en-ligne/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/hacked-screen/",
+      "destination": "/fr/simulateur-d-ecran-pirate/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/fake-radar-screen/",
+      "destination": "/fr/faux-ecran-radar/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/guides/dead-pixel-test/",
+      "destination": "/fr/guides/test-de-pixels-morts/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/guides/screen-color-test/",
+      "destination": "/fr/guides/test-des-couleurs-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/guides/screen-uniformity-test/",
+      "destination": "/fr/guides/test-d-uniformite-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/guides/clean-laptop-screen/",
+      "destination": "/fr/guides/nettoyer-ecran-ordinateur-portable/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/guides/oled-burn-in-prevention/",
+      "destination": "/fr/guides/prevenir-le-marquage-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/guides/monitor-test/",
+      "destination": "/fr/guides/test-de-moniteur/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/guides/white-screen-for-video-calls-and-zoom/",
+      "destination": "/fr/guides/ecran-blanc-pour-visioconference/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+      "destination": "/fr/guides/ecran-blanc-pour-decalquer-et-dessiner/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/guides/best-monitor-settings-for-eye-strain/",
+      "destination": "/fr/guides/reglages-ecran-contre-la-fatigue-visuelle/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/guides/common-monitor-display-problems-diagnostics/",
+      "destination": "/fr/guides/problemes-courants-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-problems/",
+      "destination": "/fr/problemes-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/glossary/",
+      "destination": "/fr/glossaire/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/",
+      "destination": "/fr/fonds/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-problems/stuck-pixel/",
+      "destination": "/fr/problemes-d-ecran/pixel-bloque/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-problems/hot-pixel/",
+      "destination": "/fr/problemes-d-ecran/pixel-chaud/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-problems/backlight-bleed/",
+      "destination": "/fr/problemes-d-ecran/fuites-de-retroeclairage/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-problems/ips-glow/",
+      "destination": "/fr/problemes-d-ecran/halo-ips/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-problems/screen-burn-in/",
+      "destination": "/fr/problemes-d-ecran/marquage-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-problems/image-retention/",
+      "destination": "/fr/problemes-d-ecran/remanence-d-image/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-problems/screen-flickering/",
+      "destination": "/fr/problemes-d-ecran/scintillement-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-problems/screen-tearing/",
+      "destination": "/fr/problemes-d-ecran/tearing-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-problems/ghosting/",
+      "destination": "/fr/problemes-d-ecran/ghosting-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-problems/color-banding/",
+      "destination": "/fr/problemes-d-ecran/banding-de-couleur/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-problems/yellow-tint-on-screen/",
+      "destination": "/fr/problemes-d-ecran/ecran-jauni/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/glossary/refresh-rate/",
+      "destination": "/fr/glossaire/taux-de-rafraichissement/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/glossary/oled-vs-lcd/",
+      "destination": "/fr/glossaire/oled-vs-lcd/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/glossary/hdr/",
+      "destination": "/fr/glossaire/hdr/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/glossary/resolution/",
+      "destination": "/fr/glossaire/resolution/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/glossary/chroma-key/",
+      "destination": "/fr/glossaire/chroma-key/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/white-background/",
+      "destination": "/fr/fonds/fond-blanc/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/black-background/",
+      "destination": "/fr/fonds/fond-noir/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/orange-background/",
+      "destination": "/fr/fonds/fond-orange/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/gradient-background/",
+      "destination": "/fr/fonds/fond-degrade/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/neon-background/",
+      "destination": "/fr/fonds/fond-neon/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/red-background/",
+      "destination": "/fr/fonds/fond-rouge/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/yellow-background/",
+      "destination": "/fr/fonds/fond-jaune/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/blue-background/",
+      "destination": "/fr/fonds/fond-bleu/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/green-screen-background/",
+      "destination": "/fr/fonds/fond-d-ecran-vert/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/virtual-office/",
+      "destination": "/fr/fonds/fond-de-bureau-virtuel/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/graph-paper/",
+      "destination": "/fr/fonds/fond-de-papier-quadrille/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/pink-background/",
+      "destination": "/fr/fonds/fond-rose/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/green-background/",
+      "destination": "/fr/fonds/fond-vert/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/purple-background/",
+      "destination": "/fr/fonds/fond-violet/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/dark-background/",
+      "destination": "/fr/fonds/fond-sombre/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/gold-background/",
+      "destination": "/fr/fonds/fond-dore/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/aesthetic-background/",
+      "destination": "/fr/fonds/fond-esthetique/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/beige-background/",
+      "destination": "/fr/fonds/fond-beige/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/pastel-background/",
+      "destination": "/fr/fonds/fond-pastel/",
+      "permanent": true
+    },
+    {
+      "source": "/it/tools/",
+      "destination": "/it/strumenti/",
+      "permanent": true
+    },
+    {
+      "source": "/it/about/",
+      "destination": "/it/chi-siamo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/contact/",
+      "destination": "/it/contatti/",
+      "permanent": true
+    },
+    {
+      "source": "/it/informativa-privacy/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/it/privacy-policy/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/it/termini/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/it/terms/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/it/color-screens/",
+      "destination": "/it/schermi-colorati/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-tests/",
+      "destination": "/it/test-schermo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screensavers/",
+      "destination": "/it/salvaschermi/",
+      "permanent": true
+    },
+    {
+      "source": "/it/prank-screens/",
+      "destination": "/it/schermi-scherzo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/visual-effects/",
+      "destination": "/it/effetti-visivi/",
+      "permanent": true
+    },
+    {
+      "source": "/it/online-timers/",
+      "destination": "/it/timer-online/",
+      "permanent": true
+    },
+    {
+      "source": "/it/black-screen/",
+      "destination": "/it/schermo-nero/",
+      "permanent": true
+    },
+    {
+      "source": "/it/red-screen/",
+      "destination": "/it/schermo-rosso/",
+      "permanent": true
+    },
+    {
+      "source": "/it/green-screen/",
+      "destination": "/it/schermo-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/it/blue-screen/",
+      "destination": "/it/schermo-blu/",
+      "permanent": true
+    },
+    {
+      "source": "/it/yellow-screen/",
+      "destination": "/it/schermo-giallo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/orange-screen/",
+      "destination": "/it/schermo-arancione/",
+      "permanent": true
+    },
+    {
+      "source": "/it/pink-screen/",
+      "destination": "/it/schermo-rosa/",
+      "permanent": true
+    },
+    {
+      "source": "/it/purple-screen/",
+      "destination": "/it/schermo-viola/",
+      "permanent": true
+    },
+    {
+      "source": "/it/cyan-screen/",
+      "destination": "/it/schermo-ciano/",
+      "permanent": true
+    },
+    {
+      "source": "/it/magenta-screen/",
+      "destination": "/it/schermo-magenta/",
+      "permanent": true
+    },
+    {
+      "source": "/it/gray-screen/",
+      "destination": "/it/schermo-grigio/",
+      "permanent": true
+    },
+    {
+      "source": "/it/dead-pixel-test/",
+      "destination": "/it/test-pixel-bruciati/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-uniformity-test/",
+      "destination": "/it/test-uniformita-schermo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/monitor-test/",
+      "destination": "/it/test-calibrazione-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/it/oled-gray-test/",
+      "destination": "/it/test-grigi-per-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/it/oled-burn-in-test/",
+      "destination": "/it/test-burn-in-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-color-test/",
+      "destination": "/it/test-colori-schermo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-resolution-test/",
+      "destination": "/it/test-risoluzione-schermo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/no-signal-screen/",
+      "destination": "/it/schermo-nessun-segnale/",
+      "permanent": true
+    },
+    {
+      "source": "/it/white-noise-generator/",
+      "destination": "/it/generatore-di-rumore-bianco/",
+      "permanent": true
+    },
+    {
+      "source": "/it/brown-noise-generator/",
+      "destination": "/it/generatore-di-rumore-marrone/",
+      "permanent": true
+    },
+    {
+      "source": "/it/pink-noise-generator/",
+      "destination": "/it/generatore-di-rumore-rosa/",
+      "permanent": true
+    },
+    {
+      "source": "/it/broken-screen/",
+      "destination": "/it/effetto-schermo-rotto/",
+      "permanent": true
+    },
+    {
+      "source": "/it/hacker-typer/",
+      "destination": "/it/scrittura-da-hacker/",
+      "permanent": true
+    },
+    {
+      "source": "/it/visual-noise/",
+      "destination": "/it/rumore-visivo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/color-cycle/",
+      "destination": "/it/ciclo-di-colori/",
+      "permanent": true
+    },
+    {
+      "source": "/it/gradient-screen/",
+      "destination": "/it/schermo-a-gradiente/",
+      "permanent": true
+    },
+    {
+      "source": "/it/matrix-screensaver/",
+      "destination": "/it/salvaschermo-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/it/flip-clock-screensaver/",
+      "destination": "/it/salvaschermo-orologio-a-palette/",
+      "permanent": true
+    },
+    {
+      "source": "/it/dvd-screensaver/",
+      "destination": "/it/salvaschermo-dvd/",
+      "permanent": true
+    },
+    {
+      "source": "/it/motivational-quote-screensaver/",
+      "destination": "/it/salvaschermo-citazioni-motivazionali/",
+      "permanent": true
+    },
+    {
+      "source": "/it/countdown-timer/",
+      "destination": "/it/timer-conto-alla-rovescia/",
+      "permanent": true
+    },
+    {
+      "source": "/it/stopwatch/",
+      "destination": "/it/cronometro-a-schermo-intero/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-windows-10-update/",
+      "destination": "/it/aggiornamento-falso-windows-10/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-windows-11-update/",
+      "destination": "/it/aggiornamento-falso-windows-11/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-mac-update/",
+      "destination": "/it/aggiornamento-falso-mac/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-android-update/",
+      "destination": "/it/aggiornamento-falso-android/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-windows-xp-update/",
+      "destination": "/it/installazione-falsa-windows-xp/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-windows-xp-boot/",
+      "destination": "/it/avvio-falso-windows-xp/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-chrome-os-update/",
+      "destination": "/it/aggiornamento-falso-chrome-os/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-ubuntu-update/",
+      "destination": "/it/aggiornamento-falso-ubuntu/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-zoom-meeting/",
+      "destination": "/it/schermata-finta-di-riunione-zoom/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-teams-meeting/",
+      "destination": "/it/schermata-finta-di-riunione-teams/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-google-meet/",
+      "destination": "/it/schermata-finta-di-google-meet/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-slack-huddle/",
+      "destination": "/it/simulazione-slack-huddle/",
+      "permanent": true
+    },
+    {
+      "source": "/it/zoom-lighting/",
+      "destination": "/it/luce-per-videochiamate/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-blue-screen-of-death/",
+      "destination": "/it/finta-schermata-blu-della-morte/",
+      "permanent": true
+    },
+    {
+      "source": "/it/touch-screen-test/",
+      "destination": "/it/test-touch-screen/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-refresh-rate-test/",
+      "destination": "/it/test-frequenza-di-aggiornamento/",
+      "permanent": true
+    },
+    {
+      "source": "/it/monitor-ghosting-test/",
+      "destination": "/it/test-ghosting-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/it/frame-rate-test/",
+      "destination": "/it/test-fps/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-burn-in-test/",
+      "destination": "/it/test-burn-in-schermo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/pomodoro-timer/",
+      "destination": "/it/timer-pomodoro/",
+      "permanent": true
+    },
+    {
+      "source": "/it/ring-light/",
+      "destination": "/it/ring-light-online/",
+      "permanent": true
+    },
+    {
+      "source": "/it/hacked-screen/",
+      "destination": "/it/simulatore-schermo-hackerato/",
+      "permanent": true
+    },
+    {
+      "source": "/it/fake-radar-screen/",
+      "destination": "/it/finto-schermo-radar/",
+      "permanent": true
+    },
+    {
+      "source": "/it/guides/",
+      "destination": "/it/guide/",
+      "permanent": true
+    },
+    {
+      "source": "/it/guides/dead-pixel-test/",
+      "destination": "/it/guide/test-pixel-morti/",
+      "permanent": true
+    },
+    {
+      "source": "/it/guides/screen-color-test/",
+      "destination": "/it/guide/test-colori-schermo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/guides/screen-uniformity-test/",
+      "destination": "/it/guide/test-uniformita-schermo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/guides/clean-laptop-screen/",
+      "destination": "/it/guide/pulire-schermo-portatile/",
+      "permanent": true
+    },
+    {
+      "source": "/it/guides/oled-burn-in-prevention/",
+      "destination": "/it/guide/prevenire-burn-in-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/it/guides/monitor-test/",
+      "destination": "/it/guide/test-del-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/it/guides/white-screen-for-video-calls-and-zoom/",
+      "destination": "/it/guide/schermo-bianco-per-videochiamate/",
+      "permanent": true
+    },
+    {
+      "source": "/it/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+      "destination": "/it/guide/schermo-bianco-per-ricalcare-e-disegnare/",
+      "permanent": true
+    },
+    {
+      "source": "/it/guides/best-monitor-settings-for-eye-strain/",
+      "destination": "/it/guide/impostazioni-monitor-affaticamento-visivo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/guides/common-monitor-display-problems-diagnostics/",
+      "destination": "/it/guide/problemi-comuni-del-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-problems/",
+      "destination": "/it/problemi-dello-schermo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/glossary/",
+      "destination": "/it/glossario/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/",
+      "destination": "/it/sfondi/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-problems/stuck-pixel/",
+      "destination": "/it/problemi-dello-schermo/pixel-bloccato/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-problems/hot-pixel/",
+      "destination": "/it/problemi-dello-schermo/pixel-caldo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-problems/backlight-bleed/",
+      "destination": "/it/problemi-dello-schermo/backlight-bleed/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-problems/ips-glow/",
+      "destination": "/it/problemi-dello-schermo/ips-glow/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-problems/screen-burn-in/",
+      "destination": "/it/problemi-dello-schermo/burn-in-dello-schermo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-problems/image-retention/",
+      "destination": "/it/problemi-dello-schermo/ritenzione-dell-immagine/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-problems/screen-flickering/",
+      "destination": "/it/problemi-dello-schermo/sfarfallio-dello-schermo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-problems/screen-tearing/",
+      "destination": "/it/problemi-dello-schermo/tearing-dello-schermo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-problems/ghosting/",
+      "destination": "/it/problemi-dello-schermo/ghosting-del-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-problems/color-banding/",
+      "destination": "/it/problemi-dello-schermo/bande-di-colore/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-problems/yellow-tint-on-screen/",
+      "destination": "/it/problemi-dello-schermo/schermo-giallognolo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/glossary/refresh-rate/",
+      "destination": "/it/glossario/frequenza-di-aggiornamento/",
+      "permanent": true
+    },
+    {
+      "source": "/it/glossary/oled-vs-lcd/",
+      "destination": "/it/glossario/oled-vs-lcd/",
+      "permanent": true
+    },
+    {
+      "source": "/it/glossary/hdr/",
+      "destination": "/it/glossario/hdr/",
+      "permanent": true
+    },
+    {
+      "source": "/it/glossary/resolution/",
+      "destination": "/it/glossario/risoluzione/",
+      "permanent": true
+    },
+    {
+      "source": "/it/glossary/chroma-key/",
+      "destination": "/it/glossario/chroma-key/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/white-background/",
+      "destination": "/it/sfondi/sfondo-bianco/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/black-background/",
+      "destination": "/it/sfondi/sfondo-nero/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/orange-background/",
+      "destination": "/it/sfondi/sfondo-arancione/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/gradient-background/",
+      "destination": "/it/sfondi/sfondo-sfumato/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/neon-background/",
+      "destination": "/it/sfondi/sfondo-neon/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/red-background/",
+      "destination": "/it/sfondi/sfondo-rosso/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/yellow-background/",
+      "destination": "/it/sfondi/sfondo-giallo/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/blue-background/",
+      "destination": "/it/sfondi/sfondo-blu/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/green-screen-background/",
+      "destination": "/it/sfondi/sfondo-green-screen/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/virtual-office/",
+      "destination": "/it/sfondi/sfondo-ufficio-virtuale/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/graph-paper/",
+      "destination": "/it/sfondi/sfondo-carta-a-quadretti/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/pink-background/",
+      "destination": "/it/sfondi/sfondo-rosa/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/green-background/",
+      "destination": "/it/sfondi/sfondo-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/purple-background/",
+      "destination": "/it/sfondi/sfondo-viola/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/dark-background/",
+      "destination": "/it/sfondi/sfondo-scuro/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/gold-background/",
+      "destination": "/it/sfondi/sfondo-dorato/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/aesthetic-background/",
+      "destination": "/it/sfondi/sfondo-estetico/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/beige-background/",
+      "destination": "/it/sfondi/sfondo-beige/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/pastel-background/",
+      "destination": "/it/sfondi/sfondo-pastello/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/about/",
+      "destination": "/nl/over-ons/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/privacybeleid/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/privacy-policy/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/voorwaarden/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/terms/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/color-screens/",
+      "destination": "/nl/kleurschermen/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-tests/",
+      "destination": "/nl/schermtests/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screensavers/",
+      "destination": "/nl/schermbeveiligingen/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/prank-screens/",
+      "destination": "/nl/grapschermen/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/visual-effects/",
+      "destination": "/nl/visuele-effecten/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/black-screen/",
+      "destination": "/nl/zwart-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/red-screen/",
+      "destination": "/nl/rood-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/green-screen/",
+      "destination": "/nl/groen-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/blue-screen/",
+      "destination": "/nl/blauw-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/yellow-screen/",
+      "destination": "/nl/geel-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/orange-screen/",
+      "destination": "/nl/oranje-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/pink-screen/",
+      "destination": "/nl/roze-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/purple-screen/",
+      "destination": "/nl/paars-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/cyan-screen/",
+      "destination": "/nl/cyaan-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/magenta-screen/",
+      "destination": "/nl/magenta-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/gray-screen/",
+      "destination": "/nl/grijs-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/dead-pixel-test/",
+      "destination": "/nl/dode-pixel-test/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-uniformity-test/",
+      "destination": "/nl/scherm-uniformiteitstest/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/monitor-test/",
+      "destination": "/nl/monitortest/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/oled-gray-test/",
+      "destination": "/nl/oled-grijstest/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/oled-burn-in-test/",
+      "destination": "/nl/oled-inbrandtest/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-color-test/",
+      "destination": "/nl/scherm-kleurentest/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-resolution-test/",
+      "destination": "/nl/scherm-resolutietest/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/no-signal-screen/",
+      "destination": "/nl/geen-signaal-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/white-noise-generator/",
+      "destination": "/nl/witte-ruis-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/brown-noise-generator/",
+      "destination": "/nl/bruine-ruis-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/pink-noise-generator/",
+      "destination": "/nl/roze-ruis-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/broken-screen/",
+      "destination": "/nl/gebroken-scherm-effect/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/visual-noise/",
+      "destination": "/nl/visuele-ruis/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/color-cycle/",
+      "destination": "/nl/kleurcyclus/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/gradient-screen/",
+      "destination": "/nl/kleurverloop-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/flip-clock-screensaver/",
+      "destination": "/nl/klapklok-screensaver/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/motivational-quote-screensaver/",
+      "destination": "/nl/motiverende-quotes-screensaver/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/countdown-timer/",
+      "destination": "/nl/aftelklok-volledig-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/stopwatch/",
+      "destination": "/nl/stopwatch-volledig-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-windows-10-update/",
+      "destination": "/nl/nep-windows-10-update/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-windows-11-update/",
+      "destination": "/nl/nep-windows-11-update/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-mac-update/",
+      "destination": "/nl/nep-mac-update/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-android-update/",
+      "destination": "/nl/nep-android-update/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-windows-xp-update/",
+      "destination": "/nl/nep-windows-xp-installatie/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-windows-xp-boot/",
+      "destination": "/nl/nep-windows-xp-opstarten/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-chrome-os-update/",
+      "destination": "/nl/nep-chrome-os-update/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-ubuntu-update/",
+      "destination": "/nl/nep-ubuntu-update/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-zoom-meeting/",
+      "destination": "/nl/nep-zoom-vergaderscherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-teams-meeting/",
+      "destination": "/nl/nep-teams-vergaderscherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-google-meet/",
+      "destination": "/nl/nep-google-meet-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-slack-huddle/",
+      "destination": "/nl/nep-slack-huddle/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/zoom-lighting/",
+      "destination": "/nl/verlichting-voor-videogesprekken/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-blue-screen-of-death/",
+      "destination": "/nl/nep-blue-screen-of-death/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/touch-screen-test/",
+      "destination": "/nl/touchscreen-test/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-refresh-rate-test/",
+      "destination": "/nl/verversingssnelheid-test/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/frame-rate-test/",
+      "destination": "/nl/framerate-test/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-burn-in-test/",
+      "destination": "/nl/scherm-inbrand-test/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/ring-light/",
+      "destination": "/nl/ringlamp-online/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/hacked-screen/",
+      "destination": "/nl/gehackt-scherm-simulator/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/fake-radar-screen/",
+      "destination": "/nl/nep-radarscherm/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/guides/",
+      "destination": "/nl/gidsen/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/guides/dead-pixel-test/",
+      "destination": "/nl/gidsen/dode-pixel-test/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/guides/screen-color-test/",
+      "destination": "/nl/gidsen/scherm-kleurentest/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/guides/screen-uniformity-test/",
+      "destination": "/nl/gidsen/scherm-uniformiteitstest/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/guides/clean-laptop-screen/",
+      "destination": "/nl/gidsen/laptopscherm-schoonmaken/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/guides/oled-burn-in-prevention/",
+      "destination": "/nl/gidsen/oled-inbranden-voorkomen/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/guides/monitor-test/",
+      "destination": "/nl/gidsen/monitortest/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/guides/white-screen-for-video-calls-and-zoom/",
+      "destination": "/nl/gidsen/wit-scherm-voor-videogesprekken/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+      "destination": "/nl/gidsen/wit-scherm-om-over-te-trekken-en-te-tekenen/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/guides/best-monitor-settings-for-eye-strain/",
+      "destination": "/nl/gidsen/monitorinstellingen-tegen-vermoeide-ogen/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/guides/common-monitor-display-problems-diagnostics/",
+      "destination": "/nl/gidsen/veelvoorkomende-monitorproblemen/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-problems/",
+      "destination": "/nl/schermproblemen/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/glossary/",
+      "destination": "/nl/woordenlijst/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/",
+      "destination": "/nl/achtergronden/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-problems/stuck-pixel/",
+      "destination": "/nl/schermproblemen/vastzittende-pixel/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-problems/hot-pixel/",
+      "destination": "/nl/schermproblemen/hete-pixel/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-problems/backlight-bleed/",
+      "destination": "/nl/schermproblemen/backlight-bleed/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-problems/ips-glow/",
+      "destination": "/nl/schermproblemen/ips-glow/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-problems/screen-burn-in/",
+      "destination": "/nl/schermproblemen/inbranden/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-problems/image-retention/",
+      "destination": "/nl/schermproblemen/beeldretentie/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-problems/screen-flickering/",
+      "destination": "/nl/schermproblemen/schermflikkering/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-problems/screen-tearing/",
+      "destination": "/nl/schermproblemen/screen-tearing/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-problems/ghosting/",
+      "destination": "/nl/schermproblemen/monitorghosting/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-problems/color-banding/",
+      "destination": "/nl/schermproblemen/color-banding/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-problems/yellow-tint-on-screen/",
+      "destination": "/nl/schermproblemen/gele-zweem/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/glossary/refresh-rate/",
+      "destination": "/nl/woordenlijst/verversingssnelheid/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/glossary/oled-vs-lcd/",
+      "destination": "/nl/woordenlijst/oled-vs-lcd/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/glossary/hdr/",
+      "destination": "/nl/woordenlijst/hdr/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/glossary/resolution/",
+      "destination": "/nl/woordenlijst/resolutie/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/glossary/chroma-key/",
+      "destination": "/nl/woordenlijst/chroma-key/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/white-background/",
+      "destination": "/nl/achtergronden/witte-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/black-background/",
+      "destination": "/nl/achtergronden/zwarte-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/orange-background/",
+      "destination": "/nl/achtergronden/oranje-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/gradient-background/",
+      "destination": "/nl/achtergronden/verloopachtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/neon-background/",
+      "destination": "/nl/achtergronden/neonachtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/red-background/",
+      "destination": "/nl/achtergronden/rode-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/yellow-background/",
+      "destination": "/nl/achtergronden/gele-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/blue-background/",
+      "destination": "/nl/achtergronden/blauwe-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/green-screen-background/",
+      "destination": "/nl/achtergronden/greenscreen-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/virtual-office/",
+      "destination": "/nl/achtergronden/virtuele-kantoorachtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/graph-paper/",
+      "destination": "/nl/achtergronden/ruitjespapierachtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/pink-background/",
+      "destination": "/nl/achtergronden/roze-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/green-background/",
+      "destination": "/nl/achtergronden/groene-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/purple-background/",
+      "destination": "/nl/achtergronden/paarse-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/dark-background/",
+      "destination": "/nl/achtergronden/donkere-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/gold-background/",
+      "destination": "/nl/achtergronden/gouden-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/aesthetic-background/",
+      "destination": "/nl/achtergronden/esthetische-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/beige-background/",
+      "destination": "/nl/achtergronden/beige-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/pastel-background/",
+      "destination": "/nl/achtergronden/pastel-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/id/tools/",
+      "destination": "/id/alat/",
+      "permanent": true
+    },
+    {
+      "source": "/id/about/",
+      "destination": "/id/tentang/",
+      "permanent": true
+    },
+    {
+      "source": "/id/contact/",
+      "destination": "/id/kontak/",
+      "permanent": true
+    },
+    {
+      "source": "/id/feedback/",
+      "destination": "/id/masukan/",
+      "permanent": true
+    },
+    {
+      "source": "/id/kebijakan-privasi/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/id/privacy-policy/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/id/ketentuan/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/id/terms/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/id/penafian/",
+      "destination": "/disclaimer/",
+      "permanent": true
+    },
+    {
+      "source": "/id/disclaimer/",
+      "destination": "/disclaimer/",
+      "permanent": true
+    },
+    {
+      "source": "/id/color-screens/",
+      "destination": "/id/layar-warna/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-tests/",
+      "destination": "/id/tes-layar/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screensavers/",
+      "destination": "/id/screensaver-online/",
+      "permanent": true
+    },
+    {
+      "source": "/id/prank-screens/",
+      "destination": "/id/layar-prank/",
+      "permanent": true
+    },
+    {
+      "source": "/id/visual-effects/",
+      "destination": "/id/efek-visual/",
+      "permanent": true
+    },
+    {
+      "source": "/id/online-timers/",
+      "destination": "/id/timer-online/",
+      "permanent": true
+    },
+    {
+      "source": "/id/black-screen/",
+      "destination": "/id/layar-hitam/",
+      "permanent": true
+    },
+    {
+      "source": "/id/red-screen/",
+      "destination": "/id/layar-merah/",
+      "permanent": true
+    },
+    {
+      "source": "/id/green-screen/",
+      "destination": "/id/layar-hijau/",
+      "permanent": true
+    },
+    {
+      "source": "/id/blue-screen/",
+      "destination": "/id/layar-biru/",
+      "permanent": true
+    },
+    {
+      "source": "/id/yellow-screen/",
+      "destination": "/id/layar-kuning/",
+      "permanent": true
+    },
+    {
+      "source": "/id/orange-screen/",
+      "destination": "/id/layar-oranye/",
+      "permanent": true
+    },
+    {
+      "source": "/id/pink-screen/",
+      "destination": "/id/layar-merah-muda/",
+      "permanent": true
+    },
+    {
+      "source": "/id/purple-screen/",
+      "destination": "/id/layar-ungu/",
+      "permanent": true
+    },
+    {
+      "source": "/id/cyan-screen/",
+      "destination": "/id/layar-sian/",
+      "permanent": true
+    },
+    {
+      "source": "/id/magenta-screen/",
+      "destination": "/id/layar-magenta/",
+      "permanent": true
+    },
+    {
+      "source": "/id/gray-screen/",
+      "destination": "/id/layar-abu-abu/",
+      "permanent": true
+    },
+    {
+      "source": "/id/dead-pixel-test/",
+      "destination": "/id/tes-piksel-mati/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-uniformity-test/",
+      "destination": "/id/uji-keseragaman-layar/",
+      "permanent": true
+    },
+    {
+      "source": "/id/monitor-test/",
+      "destination": "/id/uji-monitor-lengkap/",
+      "permanent": true
+    },
+    {
+      "source": "/id/oled-gray-test/",
+      "destination": "/id/uji-abu-abu-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/id/oled-burn-in-test/",
+      "destination": "/id/uji-burn-in-layar-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-color-test/",
+      "destination": "/id/uji-warna-layar-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-resolution-test/",
+      "destination": "/id/uji-resolusi-layar/",
+      "permanent": true
+    },
+    {
+      "source": "/id/no-signal-screen/",
+      "destination": "/id/layar-tanpa-sinyal/",
+      "permanent": true
+    },
+    {
+      "source": "/id/white-noise-generator/",
+      "destination": "/id/generator-white-noise/",
+      "permanent": true
+    },
+    {
+      "source": "/id/brown-noise-generator/",
+      "destination": "/id/generator-brown-noise/",
+      "permanent": true
+    },
+    {
+      "source": "/id/pink-noise-generator/",
+      "destination": "/id/generator-pink-noise/",
+      "permanent": true
+    },
+    {
+      "source": "/id/broken-screen/",
+      "destination": "/id/efek-layar-retak/",
+      "permanent": true
+    },
+    {
+      "source": "/id/hacker-typer/",
+      "destination": "/id/ketik-kode-hacker/",
+      "permanent": true
+    },
+    {
+      "source": "/id/visual-noise/",
+      "destination": "/id/noise-visual-piksel/",
+      "permanent": true
+    },
+    {
+      "source": "/id/color-cycle/",
+      "destination": "/id/siklus-pergantian-warna/",
+      "permanent": true
+    },
+    {
+      "source": "/id/gradient-screen/",
+      "destination": "/id/layar-gradien-dinamis/",
+      "permanent": true
+    },
+    {
+      "source": "/id/matrix-screensaver/",
+      "destination": "/id/screensaver-hujan-matrix/",
+      "permanent": true
+    },
+    {
+      "source": "/id/flip-clock-screensaver/",
+      "destination": "/id/screensaver-jam-flip/",
+      "permanent": true
+    },
+    {
+      "source": "/id/dvd-screensaver/",
+      "destination": "/id/screensaver-logo-dvd/",
+      "permanent": true
+    },
+    {
+      "source": "/id/motivational-quote-screensaver/",
+      "destination": "/id/screensaver-kutipan-motivasi/",
+      "permanent": true
+    },
+    {
+      "source": "/id/countdown-timer/",
+      "destination": "/id/penghitung-waktu-mundur/",
+      "permanent": true
+    },
+    {
+      "source": "/id/stopwatch/",
+      "destination": "/id/stopwatch-layar-penuh/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-windows-10-update/",
+      "destination": "/id/pembaruan-palsu-windows-10/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-windows-11-update/",
+      "destination": "/id/pembaruan-palsu-windows-11/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-mac-update/",
+      "destination": "/id/pembaruan-palsu-mac/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-android-update/",
+      "destination": "/id/pembaruan-palsu-android/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-windows-xp-update/",
+      "destination": "/id/instalasi-palsu-windows-xp/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-windows-xp-boot/",
+      "destination": "/id/booting-palsu-windows-xp/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-chrome-os-update/",
+      "destination": "/id/pembaruan-palsu-chrome-os/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-ubuntu-update/",
+      "destination": "/id/pembaruan-palsu-terminal-ubuntu/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-zoom-meeting/",
+      "destination": "/id/layar-rapat-zoom-palsu/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-teams-meeting/",
+      "destination": "/id/layar-rapat-teams-palsu/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-google-meet/",
+      "destination": "/id/layar-google-meet-palsu/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-slack-huddle/",
+      "destination": "/id/simulasi-slack-huddle/",
+      "permanent": true
+    },
+    {
+      "source": "/id/zoom-lighting/",
+      "destination": "/id/pencahayaan-panggilan-video/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-blue-screen-of-death/",
+      "destination": "/id/layar-biru-kematian-palsu/",
+      "permanent": true
+    },
+    {
+      "source": "/id/touch-screen-test/",
+      "destination": "/id/tes-layar-sentuh/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-refresh-rate-test/",
+      "destination": "/id/tes-refresh-rate-layar/",
+      "permanent": true
+    },
+    {
+      "source": "/id/monitor-ghosting-test/",
+      "destination": "/id/tes-ghosting-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/id/frame-rate-test/",
+      "destination": "/id/tes-frame-rate/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-burn-in-test/",
+      "destination": "/id/tes-burn-in-layar/",
+      "permanent": true
+    },
+    {
+      "source": "/id/pomodoro-timer/",
+      "destination": "/id/timer-pomodoro/",
+      "permanent": true
+    },
+    {
+      "source": "/id/ring-light/",
+      "destination": "/id/ring-light-online/",
+      "permanent": true
+    },
+    {
+      "source": "/id/hacked-screen/",
+      "destination": "/id/simulator-layar-diretas/",
+      "permanent": true
+    },
+    {
+      "source": "/id/fake-radar-screen/",
+      "destination": "/id/layar-radar-palsu/",
+      "permanent": true
+    },
+    {
+      "source": "/id/guides/",
+      "destination": "/id/panduan/",
+      "permanent": true
+    },
+    {
+      "source": "/id/guides/dead-pixel-test/",
+      "destination": "/id/panduan/tes-piksel-mati/",
+      "permanent": true
+    },
+    {
+      "source": "/id/guides/screen-color-test/",
+      "destination": "/id/panduan/uji-warna-layar/",
+      "permanent": true
+    },
+    {
+      "source": "/id/guides/screen-uniformity-test/",
+      "destination": "/id/panduan/uji-keseragaman-layar/",
+      "permanent": true
+    },
+    {
+      "source": "/id/guides/clean-laptop-screen/",
+      "destination": "/id/panduan/cara-membersihkan-layar-laptop/",
+      "permanent": true
+    },
+    {
+      "source": "/id/guides/oled-burn-in-prevention/",
+      "destination": "/id/panduan/mencegah-burn-in-oled/",
+      "permanent": true
+    },
+    {
+      "source": "/id/guides/monitor-test/",
+      "destination": "/id/panduan/uji-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/id/guides/white-screen-for-video-calls-and-zoom/",
+      "destination": "/id/panduan/layar-putih-untuk-panggilan-video/",
+      "permanent": true
+    },
+    {
+      "source": "/id/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+      "destination": "/id/panduan/layar-putih-untuk-menjiplak-dan-menggambar/",
+      "permanent": true
+    },
+    {
+      "source": "/id/guides/best-monitor-settings-for-eye-strain/",
+      "destination": "/id/panduan/pengaturan-monitor-untuk-mata-lelah/",
+      "permanent": true
+    },
+    {
+      "source": "/id/guides/common-monitor-display-problems-diagnostics/",
+      "destination": "/id/panduan/masalah-umum-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-problems/",
+      "destination": "/id/masalah-layar/",
+      "permanent": true
+    },
+    {
+      "source": "/id/glossary/",
+      "destination": "/id/glosarium/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/",
+      "destination": "/id/latar-belakang/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-problems/stuck-pixel/",
+      "destination": "/id/masalah-layar/piksel-macet/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-problems/hot-pixel/",
+      "destination": "/id/masalah-layar/piksel-panas/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-problems/backlight-bleed/",
+      "destination": "/id/masalah-layar/backlight-bleed/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-problems/ips-glow/",
+      "destination": "/id/masalah-layar/ips-glow/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-problems/screen-burn-in/",
+      "destination": "/id/masalah-layar/burn-in-layar/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-problems/image-retention/",
+      "destination": "/id/masalah-layar/retensi-gambar/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-problems/screen-flickering/",
+      "destination": "/id/masalah-layar/layar-berkedip/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-problems/screen-tearing/",
+      "destination": "/id/masalah-layar/screen-tearing/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-problems/ghosting/",
+      "destination": "/id/masalah-layar/ghosting-monitor/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-problems/color-banding/",
+      "destination": "/id/masalah-layar/color-banding/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-problems/yellow-tint-on-screen/",
+      "destination": "/id/masalah-layar/layar-kekuningan/",
+      "permanent": true
+    },
+    {
+      "source": "/id/glossary/refresh-rate/",
+      "destination": "/id/glosarium/refresh-rate/",
+      "permanent": true
+    },
+    {
+      "source": "/id/glossary/oled-vs-lcd/",
+      "destination": "/id/glosarium/oled-vs-lcd/",
+      "permanent": true
+    },
+    {
+      "source": "/id/glossary/hdr/",
+      "destination": "/id/glosarium/hdr/",
+      "permanent": true
+    },
+    {
+      "source": "/id/glossary/resolution/",
+      "destination": "/id/glosarium/resolusi/",
+      "permanent": true
+    },
+    {
+      "source": "/id/glossary/chroma-key/",
+      "destination": "/id/glosarium/chroma-key/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/white-background/",
+      "destination": "/id/latar-belakang/putih/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/black-background/",
+      "destination": "/id/latar-belakang/hitam/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/orange-background/",
+      "destination": "/id/latar-belakang/oranye/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/gradient-background/",
+      "destination": "/id/latar-belakang/gradien/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/neon-background/",
+      "destination": "/id/latar-belakang/neon/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/red-background/",
+      "destination": "/id/latar-belakang/merah/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/yellow-background/",
+      "destination": "/id/latar-belakang/kuning/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/blue-background/",
+      "destination": "/id/latar-belakang/biru/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/green-screen-background/",
+      "destination": "/id/latar-belakang/green-screen/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/virtual-office/",
+      "destination": "/id/latar-belakang/kantor-virtual/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/graph-paper/",
+      "destination": "/id/latar-belakang/kertas-grafik/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/pink-background/",
+      "destination": "/id/latar-belakang/merah-muda/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/green-background/",
+      "destination": "/id/latar-belakang/hijau/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/purple-background/",
+      "destination": "/id/latar-belakang/ungu/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/dark-background/",
+      "destination": "/id/latar-belakang/gelap/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/gold-background/",
+      "destination": "/id/latar-belakang/emas/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/aesthetic-background/",
+      "destination": "/id/latar-belakang/estetik/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/beige-background/",
+      "destination": "/id/latar-belakang/krem/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/pastel-background/",
+      "destination": "/id/latar-belakang/pastel/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/tools/",
+      "destination": "/tr/araclar/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/about/",
+      "destination": "/tr/hakkimizda/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/contact/",
+      "destination": "/tr/iletisim/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/feedback/",
+      "destination": "/tr/geri-bildirim/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/gizlilik-politikasi/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/privacy-policy/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/kosullar/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/terms/",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/sorumluluk-reddi/",
+      "destination": "/disclaimer/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/disclaimer/",
+      "destination": "/disclaimer/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/color-screens/",
+      "destination": "/tr/renkli-ekranlar/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-tests/",
+      "destination": "/tr/ekran-testleri/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screensavers/",
+      "destination": "/tr/ekran-koruyucular/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/prank-screens/",
+      "destination": "/tr/saka-ekranlari/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/visual-effects/",
+      "destination": "/tr/gorsel-efektler/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/online-timers/",
+      "destination": "/tr/online-zamanlayicilar/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/black-screen/",
+      "destination": "/tr/siyah-ekran/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/red-screen/",
+      "destination": "/tr/kirmizi-ekran/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/green-screen/",
+      "destination": "/tr/yesil-ekran/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/blue-screen/",
+      "destination": "/tr/mavi-ekran/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/yellow-screen/",
+      "destination": "/tr/sari-ekran/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/orange-screen/",
+      "destination": "/tr/turuncu-ekran/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/pink-screen/",
+      "destination": "/tr/pembe-ekran/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/purple-screen/",
+      "destination": "/tr/mor-ekran/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/cyan-screen/",
+      "destination": "/tr/camgobegi-ekran/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/magenta-screen/",
+      "destination": "/tr/macenta-ekran/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/gray-screen/",
+      "destination": "/tr/gri-ekran/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/dead-pixel-test/",
+      "destination": "/tr/olu-piksel-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-uniformity-test/",
+      "destination": "/tr/ekran-homojenlik-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/monitor-test/",
+      "destination": "/tr/monitor-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/oled-gray-test/",
+      "destination": "/tr/oled-gri-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/oled-burn-in-test/",
+      "destination": "/tr/oled-yanma-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-color-test/",
+      "destination": "/tr/ekran-renk-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-resolution-test/",
+      "destination": "/tr/ekran-cozunurluk-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/no-signal-screen/",
+      "destination": "/tr/sinyal-yok-ekrani/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/white-noise-generator/",
+      "destination": "/tr/beyaz-gurultu-uretici/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/brown-noise-generator/",
+      "destination": "/tr/kahverengi-gurultu-uretici/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/pink-noise-generator/",
+      "destination": "/tr/pembe-gurultu-uretici/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/broken-screen/",
+      "destination": "/tr/kirik-ekran-efekti/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/hacker-typer/",
+      "destination": "/tr/hacker-yazi-simulasyonu/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/visual-noise/",
+      "destination": "/tr/gorsel-piksel-paraziti/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/color-cycle/",
+      "destination": "/tr/renk-dongusu/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/gradient-screen/",
+      "destination": "/tr/gradyan-ekrani/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/matrix-screensaver/",
+      "destination": "/tr/matrix-ekran-koruyucu/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/flip-clock-screensaver/",
+      "destination": "/tr/yaprak-saat-ekran-koruyucu/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/dvd-screensaver/",
+      "destination": "/tr/dvd-ekran-koruyucu/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/motivational-quote-screensaver/",
+      "destination": "/tr/motivasyon-sozleri-ekran-koruyucu/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/countdown-timer/",
+      "destination": "/tr/geri-sayim-sayaci/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/stopwatch/",
+      "destination": "/tr/tam-ekran-kronometre/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-windows-10-update/",
+      "destination": "/tr/sahte-windows-10-guncellemesi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-windows-11-update/",
+      "destination": "/tr/sahte-windows-11-guncellemesi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-mac-update/",
+      "destination": "/tr/sahte-mac-guncellemesi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-android-update/",
+      "destination": "/tr/sahte-android-guncellemesi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-windows-xp-update/",
+      "destination": "/tr/sahte-windows-xp-kurulumu/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-windows-xp-boot/",
+      "destination": "/tr/sahte-windows-xp-baslangici/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-chrome-os-update/",
+      "destination": "/tr/sahte-chrome-os-guncellemesi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-ubuntu-update/",
+      "destination": "/tr/sahte-ubuntu-terminal-guncellemesi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-zoom-meeting/",
+      "destination": "/tr/sahte-zoom-toplanti-ekrani/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-teams-meeting/",
+      "destination": "/tr/sahte-teams-toplanti-ekrani/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-google-meet/",
+      "destination": "/tr/sahte-google-meet-ekrani/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-slack-huddle/",
+      "destination": "/tr/sahte-slack-huddle/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/zoom-lighting/",
+      "destination": "/tr/goruntulu-gorusme-isigi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-blue-screen-of-death/",
+      "destination": "/tr/sahte-mavi-olum-ekrani/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/touch-screen-test/",
+      "destination": "/tr/dokunmatik-ekran-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-refresh-rate-test/",
+      "destination": "/tr/ekran-yenileme-hizi-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/monitor-ghosting-test/",
+      "destination": "/tr/monitor-golgelenme-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/frame-rate-test/",
+      "destination": "/tr/kare-hizi-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-burn-in-test/",
+      "destination": "/tr/ekran-yanma-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/pomodoro-timer/",
+      "destination": "/tr/pomodoro-zamanlayici/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/ring-light/",
+      "destination": "/tr/online-halka-isik/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/hacked-screen/",
+      "destination": "/tr/hacklenmis-ekran-simulatoru/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/fake-radar-screen/",
+      "destination": "/tr/sahte-radar-ekrani/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/",
+      "destination": "/tr/rehberler/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/dead-pixel-test/",
+      "destination": "/tr/rehberler/olu-piksel-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/screen-color-test/",
+      "destination": "/tr/rehberler/ekran-renk-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/screen-uniformity-test/",
+      "destination": "/tr/rehberler/ekran-homojenlik-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/clean-laptop-screen/",
+      "destination": "/tr/rehberler/dizustu-ekrani-temizleme/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/oled-burn-in-prevention/",
+      "destination": "/tr/rehberler/oled-yanmasini-onleme/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/monitor-test/",
+      "destination": "/tr/rehberler/monitor-testi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/white-screen-for-video-calls-and-zoom/",
+      "destination": "/tr/rehberler/goruntulu-gorusme-icin-beyaz-ekran/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+      "destination": "/tr/rehberler/kopyalama-ve-cizim-icin-beyaz-ekran/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/best-monitor-settings-for-eye-strain/",
+      "destination": "/tr/rehberler/goz-yorgunlugu-icin-monitor-ayarlari/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/common-monitor-display-problems-diagnostics/",
+      "destination": "/tr/rehberler/yaygin-monitor-sorunlari/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-problems/",
+      "destination": "/tr/ekran-sorunlari/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/glossary/",
+      "destination": "/tr/sozluk/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/",
+      "destination": "/tr/arka-planlar/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-problems/stuck-pixel/",
+      "destination": "/tr/ekran-sorunlari/takili-piksel/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-problems/hot-pixel/",
+      "destination": "/tr/ekran-sorunlari/sicak-piksel/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-problems/backlight-bleed/",
+      "destination": "/tr/ekran-sorunlari/arka-isik-sizintisi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-problems/ips-glow/",
+      "destination": "/tr/ekran-sorunlari/ips-parlamasi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-problems/screen-burn-in/",
+      "destination": "/tr/ekran-sorunlari/ekran-yanmasi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-problems/image-retention/",
+      "destination": "/tr/ekran-sorunlari/goruntu-kalintisi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-problems/screen-flickering/",
+      "destination": "/tr/ekran-sorunlari/ekran-titremesi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-problems/screen-tearing/",
+      "destination": "/tr/ekran-sorunlari/ekran-yirtilmasi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-problems/ghosting/",
+      "destination": "/tr/ekran-sorunlari/monitor-golgelenmesi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-problems/color-banding/",
+      "destination": "/tr/ekran-sorunlari/renk-bantlanmasi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-problems/yellow-tint-on-screen/",
+      "destination": "/tr/ekran-sorunlari/ekranda-sari-ton/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/glossary/refresh-rate/",
+      "destination": "/tr/sozluk/yenileme-hizi/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/glossary/oled-vs-lcd/",
+      "destination": "/tr/sozluk/oled-ve-lcd/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/glossary/hdr/",
+      "destination": "/tr/sozluk/hdr/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/glossary/resolution/",
+      "destination": "/tr/sozluk/cozunurluk/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/glossary/chroma-key/",
+      "destination": "/tr/sozluk/chroma-key/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/white-background/",
+      "destination": "/tr/arka-planlar/beyaz-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/black-background/",
+      "destination": "/tr/arka-planlar/siyah-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/orange-background/",
+      "destination": "/tr/arka-planlar/turuncu-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/gradient-background/",
+      "destination": "/tr/arka-planlar/gradyan-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/neon-background/",
+      "destination": "/tr/arka-planlar/neon-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/red-background/",
+      "destination": "/tr/arka-planlar/kirmizi-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/yellow-background/",
+      "destination": "/tr/arka-planlar/sari-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/blue-background/",
+      "destination": "/tr/arka-planlar/mavi-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/green-screen-background/",
+      "destination": "/tr/arka-planlar/yesil-ekran-arka-plani/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/virtual-office/",
+      "destination": "/tr/arka-planlar/sanal-ofis-arka-plani/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/graph-paper/",
+      "destination": "/tr/arka-planlar/kareli-kagit-arka-plani/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/pink-background/",
+      "destination": "/tr/arka-planlar/pembe-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/green-background/",
+      "destination": "/tr/arka-planlar/yesil-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/purple-background/",
+      "destination": "/tr/arka-planlar/mor-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/dark-background/",
+      "destination": "/tr/arka-planlar/koyu-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/gold-background/",
+      "destination": "/tr/arka-planlar/altin-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/aesthetic-background/",
+      "destination": "/tr/arka-planlar/estetik-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/beige-background/",
+      "destination": "/tr/arka-planlar/bej-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/pastel-background/",
+      "destination": "/tr/arka-planlar/pastel-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/pure-white/",
+      "destination": "/es/fondos/fondo-blanco/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/true-black/",
+      "destination": "/es/fondos/fondo-negro/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/cyberpunk-neon/",
+      "destination": "/es/fondos/fondo-neon/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/pure-blue/",
+      "destination": "/es/fondos/fondo-azul/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/solid-blue/",
+      "destination": "/es/fondos/fondo-azul/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/chroma-green/",
+      "destination": "/es/fondos/fondo-de-pantalla-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/graph-paper-background/",
+      "destination": "/es/fondos/fondo-de-papel-cuadriculado/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/sage-green/",
+      "destination": "/es/fondos/fondo-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/es/backgrounds/navy-background/",
+      "destination": "/es/fondos/fondo-oscuro/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/pure-white/",
+      "destination": "/pt-br/fundos/fundo-branco/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/true-black/",
+      "destination": "/pt-br/fundos/fundo-preto/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/cyberpunk-neon/",
+      "destination": "/pt-br/fundos/fundo-neon/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/pure-blue/",
+      "destination": "/pt-br/fundos/fundo-azul/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/solid-blue/",
+      "destination": "/pt-br/fundos/fundo-azul/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/chroma-green/",
+      "destination": "/pt-br/fundos/fundo-de-tela-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/graph-paper-background/",
+      "destination": "/pt-br/fundos/fundo-de-papel-quadriculado/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/sage-green/",
+      "destination": "/pt-br/fundos/fundo-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/navy-background/",
+      "destination": "/pt-br/fundos/fundo-escuro/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/pure-white/",
+      "destination": "/de/hintergruende/weisser-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/true-black/",
+      "destination": "/de/hintergruende/schwarzer-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/cyberpunk-neon/",
+      "destination": "/de/hintergruende/neon-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/pure-blue/",
+      "destination": "/de/hintergruende/blauer-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/solid-blue/",
+      "destination": "/de/hintergruende/blauer-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/chroma-green/",
+      "destination": "/de/hintergruende/greenscreen-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/graph-paper-background/",
+      "destination": "/de/hintergruende/karopapier-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/sage-green/",
+      "destination": "/de/hintergruende/gruener-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/de/backgrounds/navy-background/",
+      "destination": "/de/hintergruende/dunkler-hintergrund/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/pure-white/",
+      "destination": "/fr/fonds/fond-blanc/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/true-black/",
+      "destination": "/fr/fonds/fond-noir/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/cyberpunk-neon/",
+      "destination": "/fr/fonds/fond-neon/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/pure-blue/",
+      "destination": "/fr/fonds/fond-bleu/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/solid-blue/",
+      "destination": "/fr/fonds/fond-bleu/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/chroma-green/",
+      "destination": "/fr/fonds/fond-d-ecran-vert/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/graph-paper-background/",
+      "destination": "/fr/fonds/fond-de-papier-quadrille/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/sage-green/",
+      "destination": "/fr/fonds/fond-vert/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/navy-background/",
+      "destination": "/fr/fonds/fond-sombre/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/pure-white/",
+      "destination": "/it/sfondi/sfondo-bianco/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/true-black/",
+      "destination": "/it/sfondi/sfondo-nero/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/cyberpunk-neon/",
+      "destination": "/it/sfondi/sfondo-neon/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/pure-blue/",
+      "destination": "/it/sfondi/sfondo-blu/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/solid-blue/",
+      "destination": "/it/sfondi/sfondo-blu/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/chroma-green/",
+      "destination": "/it/sfondi/sfondo-green-screen/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/graph-paper-background/",
+      "destination": "/it/sfondi/sfondo-carta-a-quadretti/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/sage-green/",
+      "destination": "/it/sfondi/sfondo-verde/",
+      "permanent": true
+    },
+    {
+      "source": "/it/backgrounds/navy-background/",
+      "destination": "/it/sfondi/sfondo-scuro/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/pure-white/",
+      "destination": "/nl/achtergronden/witte-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/true-black/",
+      "destination": "/nl/achtergronden/zwarte-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/cyberpunk-neon/",
+      "destination": "/nl/achtergronden/neonachtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/pure-blue/",
+      "destination": "/nl/achtergronden/blauwe-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/solid-blue/",
+      "destination": "/nl/achtergronden/blauwe-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/chroma-green/",
+      "destination": "/nl/achtergronden/greenscreen-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/graph-paper-background/",
+      "destination": "/nl/achtergronden/ruitjespapierachtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/sage-green/",
+      "destination": "/nl/achtergronden/groene-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/backgrounds/navy-background/",
+      "destination": "/nl/achtergronden/donkere-achtergrond/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/pure-white/",
+      "destination": "/id/latar-belakang/putih/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/true-black/",
+      "destination": "/id/latar-belakang/hitam/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/cyberpunk-neon/",
+      "destination": "/id/latar-belakang/neon/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/pure-blue/",
+      "destination": "/id/latar-belakang/biru/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/solid-blue/",
+      "destination": "/id/latar-belakang/biru/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/chroma-green/",
+      "destination": "/id/latar-belakang/green-screen/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/graph-paper-background/",
+      "destination": "/id/latar-belakang/kertas-grafik/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/sage-green/",
+      "destination": "/id/latar-belakang/hijau/",
+      "permanent": true
+    },
+    {
+      "source": "/id/backgrounds/navy-background/",
+      "destination": "/id/latar-belakang/gelap/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/pure-white/",
+      "destination": "/tr/arka-planlar/beyaz-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/true-black/",
+      "destination": "/tr/arka-planlar/siyah-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/cyberpunk-neon/",
+      "destination": "/tr/arka-planlar/neon-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/pure-blue/",
+      "destination": "/tr/arka-planlar/mavi-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/solid-blue/",
+      "destination": "/tr/arka-planlar/mavi-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/chroma-green/",
+      "destination": "/tr/arka-planlar/yesil-ekran-arka-plani/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/graph-paper-background/",
+      "destination": "/tr/arka-planlar/kareli-kagit-arka-plani/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/sage-green/",
+      "destination": "/tr/arka-planlar/yesil-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/navy-background/",
+      "destination": "/tr/arka-planlar/koyu-arka-plan/",
+      "permanent": true
+    },
+    {
+      "source": "/es/author-whitson-rao/:path*",
+      "destination": "/author-whitson-rao/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/es/privacy-policy/:path*",
+      "destination": "/privacy-policy/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/es/terms/:path*",
+      "destination": "/terms/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/es/disclaimer/:path*",
+      "destination": "/disclaimer/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/author-whitson-rao/:path*",
+      "destination": "/author-whitson-rao/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/privacy-policy/:path*",
+      "destination": "/privacy-policy/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/terms/:path*",
+      "destination": "/terms/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/disclaimer/:path*",
+      "destination": "/disclaimer/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/de/author-whitson-rao/:path*",
+      "destination": "/author-whitson-rao/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/de/privacy-policy/:path*",
+      "destination": "/privacy-policy/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/de/terms/:path*",
+      "destination": "/terms/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/de/disclaimer/:path*",
+      "destination": "/disclaimer/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/fr/author-whitson-rao/:path*",
+      "destination": "/author-whitson-rao/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/fr/privacy-policy/:path*",
+      "destination": "/privacy-policy/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/fr/terms/:path*",
+      "destination": "/terms/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/fr/disclaimer/:path*",
+      "destination": "/disclaimer/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/it/author-whitson-rao/:path*",
+      "destination": "/author-whitson-rao/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/it/privacy-policy/:path*",
+      "destination": "/privacy-policy/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/it/terms/:path*",
+      "destination": "/terms/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/it/disclaimer/:path*",
+      "destination": "/disclaimer/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/nl/author-whitson-rao/:path*",
+      "destination": "/author-whitson-rao/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/nl/privacy-policy/:path*",
+      "destination": "/privacy-policy/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/nl/terms/:path*",
+      "destination": "/terms/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/nl/disclaimer/:path*",
+      "destination": "/disclaimer/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/id/author-whitson-rao/:path*",
+      "destination": "/author-whitson-rao/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/id/privacy-policy/:path*",
+      "destination": "/privacy-policy/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/id/terms/:path*",
+      "destination": "/terms/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/id/disclaimer/:path*",
+      "destination": "/disclaimer/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/tr/author-whitson-rao/:path*",
+      "destination": "/author-whitson-rao/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/tr/privacy-policy/:path*",
+      "destination": "/privacy-policy/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/tr/terms/:path*",
+      "destination": "/terms/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/tr/disclaimer/:path*",
+      "destination": "/disclaimer/:path*",
+      "permanent": true
+    }
+  ]
+}
