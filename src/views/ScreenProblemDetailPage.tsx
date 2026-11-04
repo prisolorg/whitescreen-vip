@@ -1,5 +1,3 @@
-import { AdSlot } from '@/components/ad-slot'
-
 import React from 'react'
 import { WhiteScreenCta } from '@/components/white-screen-cta'
 import Link from 'next/link'
@@ -109,7 +107,6 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
             {item.heroSummary}
           </p>
         </header>
-        <AdSlot placement="top" className="px-0 sm:px-0" />
 
         {/* Quick Diagnostic Tool CTA */}
         <div className="mb-10 rounded-2xl border border-primary/30 bg-primary/5 p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -233,8 +230,6 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
                   ))}
                 </div>
               )}
-              {/* The second ad follows the first section, close to the first ad. */}
-              {sIdx === 0 && <AdSlot placement="content" className="px-0 py-2 sm:px-0" />}
             </section>
           ))}
         </div>

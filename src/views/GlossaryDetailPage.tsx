@@ -1,5 +1,3 @@
-import { AdSlot } from '@/components/ad-slot'
-
 import React from 'react'
 import { WhiteScreenCta } from '@/components/white-screen-cta'
 import Link from 'next/link'
@@ -93,7 +91,6 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
             </p>
           </div>
         </header>
-        <AdSlot placement="top" className="px-0 sm:px-0" />
 
         {/* Related WhiteScreen.vip Tools */}
         {item.relatedTools.length > 0 && (
@@ -139,8 +136,6 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
           </div>
         </section>
 
-        {/* The second ad follows the first explanation, close to the first ad. */}
-        <AdSlot placement="content" className="px-0 sm:px-0" />
 
         {/* Key Specifications & Industry Standards */}
         <section className="mb-10 space-y-4">

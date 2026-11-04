@@ -1,4 +1,3 @@
-import { AdSlot } from '@/components/ad-slot'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { FaqList } from '@/components/faq-list'
 import { JsonLd } from '@/components/json-ld'
@@ -72,15 +71,12 @@ export function HubPage({ path }: { path: string }) {
       <section aria-label={name} className="mx-auto max-w-7xl px-4 sm:px-6">
         <ToolGrid tools={tools} />
       </section>
-      <AdSlot placement="top" />
       {content && (
         <section className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
           {content.details.map((detail, index) => (
             <div key={detail.heading} className="mb-8">
               <h2 className="text-2xl font-semibold tracking-tight">{detail.heading}</h2>
               <p className="mt-3 text-pretty leading-relaxed text-foreground/85">{detail.text}</p>
-              {/* The second ad follows the first section, close to the first ad. */}
-              {index === 0 && <AdSlot placement="content" className="px-0 pb-0 sm:px-0" />}
             </div>
           ))}
           <h2 className="mb-6 mt-4 text-2xl font-semibold tracking-tight">

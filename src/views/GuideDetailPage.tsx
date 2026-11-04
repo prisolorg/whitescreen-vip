@@ -1,4 +1,3 @@
-import { AdSlot } from '@/components/ad-slot'
 import { AUTHOR } from '@/lib/author'
 'use client'
 
@@ -136,7 +135,6 @@ export function GuideDetailPage({ slug }: { slug: string }) {
             {guide.intro}
           </p>
         </header>
-        <AdSlot placement="top" className="px-0 sm:px-0" />
 
         {/* Safety Warning Banner (if present) */}
         {guide.warning && (
@@ -251,8 +249,6 @@ export function GuideDetailPage({ slug }: { slug: string }) {
                   </ul>
                 </div>
               )}
-              {/* The second ad follows the first section, close to the first ad and above the fold on most screens. */}
-              {idx === 0 && <AdSlot placement="content" className="mt-4 px-0 sm:px-0" />}
             </section>
           ))}
         </div>
