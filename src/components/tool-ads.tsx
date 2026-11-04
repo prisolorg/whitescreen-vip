@@ -7,13 +7,17 @@ export const SHOW_ADS = Boolean(ADSENSE_CLIENT) || import.meta.env.DEV
 
 /**
  * One fixed-size AdSense unit. The `ins` is raw HTML so React never touches what Google injects,
- * and its exact size is set by CSS per screen width, so the space is reserved before the ad loads.
+ * and its exact size is set by CSS per screen width.
  */
 function AdUnit({ slot, sizeClass, label, className }: { slot: string; sizeClass: string; label: string; className?: string }) {
   const { t } = useTranslation()
   return (
-    // When Google has no ad to show (data-ad-status "unfilled"), the whole unit collapses, label included.
-    <aside aria-label={t('advertisement', 'Advertisement')} className={cn('flex-col items-center has-[[data-ad-status^=unfill]]:hidden!', className)}>
+    // The unit stays closed (label included) until Google reports a real ad, so a slow, empty or blocked
+    // ad never leaves a blank space. Clipped rather than display:none, because AdSense needs its size.
+    <aside
+      aria-label={t('advertisement', 'Advertisement')}
+      className={cn('flex-col items-center', ADSENSE_CLIENT && 'max-h-0 overflow-hidden has-[[data-ad-status=filled]]:max-h-none has-[[data-ad-status=filled]]:overflow-visible', className)}
+    >
       <p className="mb-1 text-center text-[11px] uppercase tracking-wider text-muted-foreground">{t('advertisement', 'Advertisement')}</p>
       {ADSENSE_CLIENT ? (
         <div
