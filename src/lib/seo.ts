@@ -19,8 +19,10 @@ import { getCategory } from './tool-categories'
 import { AUTHOR, SOCIAL_PROFILES } from './author'
 import { GUIDES, GUIDE_SLUG_ALIASES, getGuideBySlug } from './guides-content'
 import { BACKGROUND_ITEMS, getBackgroundBySlug } from './backgrounds-data'
-import { SCREEN_PROBLEMS, getScreenProblemBySlug } from './screen-problems-data'
-import { GLOSSARY_ITEMS, getGlossaryBySlug } from './glossary-data'
+import { SCREEN_PROBLEMS } from './screen-problems-data'
+import { GLOSSARY_ITEMS } from './glossary-data'
+import { getProblem, getTerm } from './article-i18n'
+import { articlePageText } from './article-i18n/page-text'
 import {
   ABOUT_TRANSLATIONS,
   CONTACT_TRANSLATIONS,
@@ -176,15 +178,13 @@ function resolveMeta(cleanPath: string, search: string, language: LanguageCode):
     }
     case '/screen-problems':
       return {
-        title: 'Screen Problems: Diagnose & Fix Display Issues' + SUFFIX,
-        description:
-          'Diagnose stuck pixels, backlight bleed, flickering, tearing, burn-in, ghosting and color banding, with a free test for each problem.',
+        title: articlePageText(language).problemsMetaTitle + SUFFIX,
+        description: articlePageText(language).problemsMetaDescription,
       }
     case '/glossary':
       return {
-        title: 'Display & Monitor Glossary' + SUFFIX,
-        description:
-          'Plain-English explanations of display specs: refresh rate, OLED vs LCD, HDR, resolution and chroma key, with practical examples.',
+        title: articlePageText(language).glossaryMetaTitle + SUFFIX,
+        description: articlePageText(language).glossaryMetaDescription,
       }
   }
 
@@ -205,11 +205,11 @@ function resolveMeta(cleanPath: string, search: string, language: LanguageCode):
     return bg ? { title: withSuffix(bg.metaTitle), description: bg.metaDescription } : notFound()
   }
   if (cleanPath.startsWith('/screen-problems/')) {
-    const problem = getScreenProblemBySlug(cleanPath.slice('/screen-problems/'.length))
+    const problem = getProblem(cleanPath.slice('/screen-problems/'.length), language)
     return problem ? { title: withSuffix(problem.metaTitle), description: problem.metaDescription, ogType: 'article' } : notFound()
   }
   if (cleanPath.startsWith('/glossary/')) {
-    const term = getGlossaryBySlug(cleanPath.slice('/glossary/'.length))
+    const term = getTerm(cleanPath.slice('/glossary/'.length), language)
     return term ? { title: withSuffix(term.metaTitle), description: term.metaDescription, ogType: 'article' } : notFound()
   }
 
@@ -273,7 +273,7 @@ function breadcrumbTrail(path: string, title: string, language: LanguageCode): {
   if (hub) return [home, { name: title.split(/\s[–|]\s/)[0].trim(), path }]
   const section = Object.keys(SECTION_NAMES).find((prefix) => path === prefix || path.startsWith(`${prefix}/`))
   if (!section) return undefined
-  const sectionCrumb = { name: (section === '/guides' && translationsFor(language).guides) || SECTION_NAMES[section], path: section }
+  const sectionCrumb = { name: (section === '/guides' && translationsFor(language).guides) || (section === '/screen-problems' && translationsFor(language).screenProblems) || (section === '/glossary' && translationsFor(language).glossary) || SECTION_NAMES[section], path: section }
   if (path === section) return [home, sectionCrumb]
   // The page's own title without the "– tagline" or "| site" part.
   const name = title.split(/\s[–|]\s/)[0].trim()

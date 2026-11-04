@@ -187,7 +187,7 @@ export function DesktopNav() {
                   <ColumnTitle>{t('screenProblems', 'Screen Problems')}</ColumnTitle>
                   {PROBLEM_NAV_LINKS.slice(0, 5).map((problem) => (
                     <Link key={problem.slug} href={`/screen-problems/${problem.slug}`} onClick={close} className="rounded-lg px-2.5 py-2 text-sm font-medium hover:bg-accent">
-                      {problem.shortLabel}
+                      {getMessages(language).problemLabels[problem.slug] ?? problem.shortLabel}
                     </Link>
                   ))}
                   <Link href="/screen-problems" onClick={close} className="px-2.5 py-2 text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400">
@@ -198,7 +198,7 @@ export function DesktopNav() {
                   <ColumnTitle>{t('glossary', 'Glossary')}</ColumnTitle>
                   {GLOSSARY_NAV_LINKS.map((term) => (
                     <Link key={term.slug} href={`/glossary/${term.slug}`} onClick={close} className="rounded-lg px-2.5 py-2 text-sm font-medium hover:bg-accent">
-                      {term.shortLabel}
+                      {getMessages(language).termLabels[term.slug] ?? term.shortLabel}
                     </Link>
                   ))}
                   <Link href="/glossary" onClick={close} className="px-2.5 py-2 text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400">

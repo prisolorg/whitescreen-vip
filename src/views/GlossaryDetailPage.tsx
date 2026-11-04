@@ -1,5 +1,4 @@
 import { AdSlot } from '@/components/ad-slot'
-'use client'
 
 import React from 'react'
 import { WhiteScreenCta } from '@/components/white-screen-cta'
@@ -17,12 +16,17 @@ import {
   ArrowRight,
   Info,
 } from 'lucide-react'
-import { getGlossaryBySlug, GLOSSARY_ITEMS } from '@/lib/glossary-data'
+import { getTerm, getTerms } from '@/lib/article-i18n'
+import { articlePageText } from '@/lib/article-i18n/page-text'
+import { getLocalizedPath } from '@/lib/locale-routing'
+import { useTranslation } from '@/lib/i18n'
 import { absoluteUrl } from '@/lib/site'
 import { JsonLd } from '@/components/json-ld'
 
 export function GlossaryDetailPage({ slug }: { slug: string }) {
-  const item = getGlossaryBySlug(slug)
+  const { t, language } = useTranslation()
+  const item = getTerm(slug, language)
+  const text = articlePageText(language)
 
   if (!item) {
     return (
@@ -44,11 +48,12 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
     '@type': 'DefinedTerm',
     name: item.shortLabel,
     description: item.definition,
-    url: absoluteUrl(`/glossary/${item.slug}`),
-    inDefinedTermSet: absoluteUrl('/glossary'),
+    url: absoluteUrl(getLocalizedPath(`/glossary/${item.slug}`, language)),
+    inDefinedTermSet: absoluteUrl(getLocalizedPath('/glossary', language)),
+    inLanguage: language,
   }
 
-  const otherTerms = GLOSSARY_ITEMS.filter((t) => t.slug !== item.slug)
+  const otherTerms = getTerms(language).filter((t) => t.slug !== item.slug)
 
   return (
     <article className="min-h-screen bg-background py-6 sm:py-10">
@@ -58,11 +63,11 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-xs text-muted-foreground">
           <Link href="/" className="hover:text-foreground transition-colors">
-            White Screen
+            {t('homeTitle', 'White Screen')}
           </Link>
           <ChevronRight className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
           <Link href="/glossary" className="hover:text-foreground transition-colors">
-            Glossary
+            {t('glossary', 'Glossary')}
           </Link>
           <ChevronRight className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
           <span className="font-medium text-foreground truncate">{item.shortLabel}</span>
@@ -72,7 +77,7 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
         <header className="mb-8 border-b border-border/80 pb-6">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary mb-3">
             <BookOpen className="size-3.5" aria-hidden="true" />
-            <span>Display Technology Term</span>
+            <span>{text.termBadge}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground leading-[1.2]">
             {item.title}
@@ -81,7 +86,7 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
           {/* Callout Definition Box */}
           <div className="mt-4 rounded-xl border border-primary/20 bg-primary/5 p-4 sm:p-5">
             <span className="text-xs font-bold uppercase tracking-wider text-primary block mb-1">
-              Definition:
+              {text.definition}
             </span>
             <p className="text-sm sm:text-base font-medium text-foreground leading-relaxed">
               {item.definition}
@@ -95,7 +100,7 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
           <section className="mb-10 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
             <div className="flex items-center gap-2 mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
               <Sparkles className="size-4" />
-              <span>Related WhiteScreen.vip Inspection & Testing Tools</span>
+              <span>{text.relatedTools}</span>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {item.relatedTools.map((tool) => (
@@ -124,7 +129,7 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
           <div className="flex items-center gap-2">
             <Cpu className="size-5 text-primary" />
             <h2 className="text-lg sm:text-xl font-bold text-foreground">
-              How It Works: The Underlying Mechanism
+              {text.howItWorks}
             </h2>
           </div>
           <div className="space-y-3.5 text-sm sm:text-base leading-relaxed text-foreground/90">
@@ -142,7 +147,7 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
           <div className="flex items-center gap-2">
             <Layers className="size-5 text-primary" />
             <h2 className="text-lg sm:text-xl font-bold text-foreground">
-              Key Specifications & Technical Standards
+              {text.keySpecs}
             </h2>
           </div>
           <div className="grid gap-3.5 sm:grid-cols-2">
@@ -201,7 +206,7 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
         {/* Practical Everyday Scenarios */}
         <section className="mb-10 space-y-4">
           <h2 className="text-lg sm:text-xl font-bold text-foreground">
-            Practical Everyday Scenarios
+            {text.scenarios}
           </h2>
           <div className="grid gap-3 sm:grid-cols-3">
             {item.practicalExamples.map((ex, idx) => (
@@ -223,14 +228,14 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
         {/* Advantages & Limitations */}
         <section className="mb-10 space-y-4">
           <h2 className="text-lg sm:text-xl font-bold text-foreground">
-            Advantages & Real-World Limitations
+            {text.advantagesLimits}
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {/* Advantages */}
             <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 sm:p-5">
               <h3 className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mb-3 flex items-center gap-1.5">
                 <CheckCircle2 className="size-4" />
-                <span>Primary Advantages</span>
+                <span>{text.advantages}</span>
               </h3>
               <ul className="space-y-2 text-xs sm:text-sm text-foreground/90">
                 {item.advantagesAndLimits.advantages.map((adv, idx) => (
@@ -246,7 +251,7 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
             <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 sm:p-5">
               <h3 className="text-sm font-bold text-amber-600 dark:text-amber-400 mb-3 flex items-center gap-1.5">
                 <AlertTriangle className="size-4" />
-                <span>Technical Limitations & Trade-Offs</span>
+                <span>{text.limitations}</span>
               </h3>
               <ul className="space-y-2 text-xs sm:text-sm text-foreground/90">
                 {item.advantagesAndLimits.limitations.map((lim, idx) => (
@@ -265,7 +270,7 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
           <div className="flex items-center gap-2">
             <Info className="size-5 text-primary" />
             <h2 className="text-lg sm:text-xl font-bold text-foreground">
-              Common Misunderstandings & Myths Debunked
+              {text.myths}
             </h2>
           </div>
           <div className="space-y-3.5">
@@ -273,13 +278,13 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
               <div key={idx} className="rounded-xl border border-border bg-card p-4 sm:p-5 text-xs sm:text-sm">
                 <div className="flex items-start gap-2 text-foreground font-semibold mb-2">
                   <span className="rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 px-1.5 py-0.5 text-[11px] font-bold uppercase tracking-wider shrink-0 mt-0.5">
-                    Myth
+                    {text.myth}
                   </span>
                   <span className="text-sm sm:text-base leading-snug">"{m.myth}"</span>
                 </div>
                 <div className="flex items-start gap-2 text-muted-foreground pl-1">
                   <span className="rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-1.5 py-0.5 text-[11px] font-bold uppercase tracking-wider shrink-0 mt-0.5">
-                    Reality
+                    {text.reality}
                   </span>
                   <p className="leading-relaxed">{m.reality}</p>
                 </div>
@@ -292,10 +297,10 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
         <section className="border-t border-border/80 pt-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base sm:text-lg font-bold text-foreground">
-              Explore More Display Terms
+              {text.exploreTerms}
             </h2>
             <Link href="/glossary" className="text-xs font-semibold text-primary hover:underline">
-              View full glossary →
+              {text.fullGlossary}
             </Link>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -314,7 +319,7 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
                   </span>
                 </div>
                 <span className="mt-3 text-[11px] font-medium text-primary flex items-center gap-1">
-                  <span>Learn more</span>
+                  <span>{text.learnMore}</span>
                   <ArrowRight className="size-3" />
                 </span>
               </Link>

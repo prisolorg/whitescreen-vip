@@ -1,7 +1,7 @@
 /**
  * Translated URL slugs. Tool pages take their slug from the tool's translated name
  * (e.g. /es/generador-de-ruido-blanco/), and the main static pages have hand-picked slugs.
- * English-only sections (guides, backgrounds, problems, glossary) keep their English URLs.
+ * English-only sections (backgrounds, legal pages) keep their English URLs.
  *
  * Internally the site always works with the English path; locale-routing converts at the edges,
  * using the map the page embeds (messages.ts) so browsers never load every language.
@@ -9,6 +9,7 @@
 import { TOOL_TRANSLATIONS } from './tool-translations'
 import { GUIDE_TRANSLATIONS } from './guide-i18n'
 import { GUIDES_SECTION_SLUG } from './guide-i18n/types'
+import { PROBLEM_SLUGS, SECTION_SLUGS, TERM_SLUGS } from './article-i18n/slugs'
 import { HUB_SLUGS } from './hubs'
 import type { LanguageCode } from './locale-routing'
 
@@ -67,6 +68,14 @@ export function buildSlugMap(lang: LanguageCode): Map<string, string> {
     if (guides && Object.keys(guides).length) {
       add('guides', GUIDES_SECTION_SLUG[lang] ?? 'guides')
       for (const [english, guide] of Object.entries(guides)) toLocal.set(`guides/${english}`, guide.slug)
+    }
+    // Screen problems and glossary terms work the same way.
+    const sections = SECTION_SLUGS[lang]
+    if (sections) {
+      add('screen-problems', sections.problems)
+      add('glossary', sections.glossary)
+      for (const [english, local] of Object.entries(PROBLEM_SLUGS[lang] ?? {})) toLocal.set(`screen-problems/${english}`, local)
+      for (const [english, local] of Object.entries(TERM_SLUGS[lang] ?? {})) toLocal.set(`glossary/${english}`, local)
     }
   }
   cache.set(lang, toLocal)

@@ -3,6 +3,7 @@ import { FaqList } from '@/components/faq-list'
 import { JsonLd } from '@/components/json-ld'
 import { RichText, plainText } from '@/components/rich-text'
 import { getLearnMoreLinks } from '@/lib/learn-more'
+import { articlePageText } from '@/lib/article-i18n/page-text'
 import Link from 'next/link'
 import { getTool, toolPath } from '@/lib/tools'
 import { getCategory } from '@/lib/tool-categories'
@@ -37,7 +38,8 @@ export function ToolPageBody({ slug }: { slug: string }) {
   const category = getCategory(tool.category)
   const localizedCat = getLocalizedCategory(category, language)
   // Articles are English-only, so the cross-links only appear on English pages.
-  const learnMore = language === 'en' ? getLearnMoreLinks(toolPath(slug)) : []
+  const learnMore = getLearnMoreLinks(toolPath(slug), language)
+  const articleText = articlePageText(language)
 
   const glance = getToolGlance(slug, language)
   const pageUrl = absoluteUrl(getLocalizedPath(toolPath(slug), language))
@@ -159,7 +161,7 @@ export function ToolPageBody({ slug }: { slug: string }) {
         <section aria-labelledby="learn-heading" className="py-14">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <h2 id="learn-heading" className="text-2xl font-semibold tracking-tight">
-              Guides and fixes that use the {localizedTool.name}
+              {articleText.learnHeading.replace('{tool}', localizedTool.name)}
             </h2>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {learnMore.map((item) => (
@@ -169,7 +171,7 @@ export function ToolPageBody({ slug }: { slug: string }) {
                     className="flex h-full flex-col gap-1.5 rounded-xl border bg-card p-4 transition-colors hover:border-foreground/25"
                   >
                     <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      {item.kind === 'guide' ? 'Guide' : item.kind === 'problem' ? 'Screen problem' : 'Glossary'}
+                      {item.kind === 'guide' ? articleText.kindGuide : item.kind === 'problem' ? articleText.kindProblem : t('glossary', 'Glossary')}
                     </span>
                     <span className="font-medium">{item.title}</span>
                     <span className="text-sm leading-relaxed text-muted-foreground">{item.description}</span>

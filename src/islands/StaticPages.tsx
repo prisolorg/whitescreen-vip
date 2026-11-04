@@ -8,6 +8,7 @@ import { PrivacyPolicyPage } from '@/views/PrivacyPolicyPage'
 import { TermsPage } from '@/views/TermsPage'
 import { DisclaimerPage } from '@/views/DisclaimerPage'
 import { GlossaryDetailPage } from '@/views/GlossaryDetailPage'
+import { ScreenProblemDetailPage } from '@/views/ScreenProblemDetailPage'
 import { NotFoundPage } from '@/views/NotFoundPage'
 import { GuideDetailPage } from '@/views/GuideDetailPage'
 import { GuidesIndexPage } from '@/views/GuidesIndexPage'
@@ -17,7 +18,7 @@ import { HomePageBody } from '@/views/HomePageBody'
 import { SCREEN_COLORS } from '@/lib/screen-colors'
 
 /** Pages and parts with no interactivity. Astro renders these to HTML and ships no JavaScript for them. */
-export function StaticPage({ url, kind, slug }: { url: string; kind: 'about' | 'author' | 'hub' | 'privacy' | 'terms' | 'disclaimer' | 'term' | 'notFound' | 'guides' | 'guide'; slug?: string }) {
+export function StaticPage({ url, kind, slug }: { url: string; kind: 'problem' | 'about' | 'author' | 'hub' | 'privacy' | 'terms' | 'disclaimer' | 'term' | 'notFound' | 'guides' | 'guide'; slug?: string }) {
   return (
     <Providers url={url}>
       {kind === 'about' && <AboutPage />}
@@ -27,6 +28,7 @@ export function StaticPage({ url, kind, slug }: { url: string; kind: 'about' | '
       {kind === 'terms' && <TermsPage />}
       {kind === 'disclaimer' && <DisclaimerPage />}
       {kind === 'term' && <GlossaryDetailPage slug={slug ?? ''} />}
+      {kind === 'problem' && <ScreenProblemDetailPage slug={slug ?? ''} />}
       {kind === 'notFound' && <NotFoundPage />}
       {kind === 'guides' && <GuidesIndexPage />}
       {kind === 'guide' && <GuideDetailPage slug={slug ?? ''} />}

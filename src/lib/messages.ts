@@ -8,7 +8,7 @@ import { buildClientMessages, type ClientMessages } from './i18n-messages'
 
 export type { ClientMessages }
 
-const EMPTY: ClientMessages = { lang: 'en', ui: {}, tools: {}, categories: {}, slugs: {}, guideLabels: {} }
+const EMPTY: ClientMessages = { lang: 'en', ui: {}, tools: {}, categories: {}, slugs: {}, guideLabels: {}, problemLabels: {}, termLabels: {} }
 let embedded: ClientMessages | null = null
 
 function readEmbedded(): ClientMessages {

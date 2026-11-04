@@ -56,7 +56,7 @@ export function extractLocaleAndPath(pathname: string): { lang: LanguageCode; cl
  * there is one authoritative version). They have a single English URL: links from
  * other languages point there, and the old /es/backgrounds/… style addresses 301 to it.
  */
-export const ENGLISH_ONLY_PREFIXES = ['/backgrounds', '/screen-problems', '/glossary', '/author-whitson-rao', '/privacy-policy', '/terms', '/disclaimer']
+export const ENGLISH_ONLY_PREFIXES = ['/backgrounds', '/author-whitson-rao', '/privacy-policy', '/terms', '/disclaimer']
 
 export function isEnglishOnlyPath(cleanPath: string): boolean {
   return ENGLISH_ONLY_PREFIXES.some((prefix) => cleanPath === prefix || cleanPath.startsWith(`${prefix}/`))

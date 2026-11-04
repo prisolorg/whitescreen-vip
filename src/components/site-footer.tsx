@@ -4,6 +4,7 @@ import { useTranslation } from '@/lib/i18n'
 import { COLOR_HUB_NAMES, HUBS } from '@/lib/hubs'
 import { getCategory } from '@/lib/tool-categories'
 import { getLocalizedCategory } from '@/lib/localized-tools'
+import { getMessages } from '@/lib/messages'
 
 export function SiteFooter() {
   const { t, language } = useTranslation()
@@ -38,22 +39,24 @@ export function SiteFooter() {
     { name: 'Neon & Glow Backgrounds', href: '/backgrounds?category=neon' },
   ]
 
+  const messages = getMessages(language)
+
   // "All Screen Problems" removed per instructions; individual problem guides preserved
   const screenProblemLinks = [
-    { name: 'Stuck Pixel Guide', href: '/screen-problems/stuck-pixel' },
-    { name: 'Backlight Bleed Guide', href: '/screen-problems/backlight-bleed' },
-    { name: 'Screen Burn-In Guide', href: '/screen-problems/screen-burn-in' },
-    { name: 'Screen Flickering', href: '/screen-problems/screen-flickering' },
-    { name: 'Screen Tearing Guide', href: '/screen-problems/screen-tearing' },
+    { name: messages.problemLabels['stuck-pixel'] ?? 'Stuck Pixel Guide', href: '/screen-problems/stuck-pixel' },
+    { name: messages.problemLabels['backlight-bleed'] ?? 'Backlight Bleed Guide', href: '/screen-problems/backlight-bleed' },
+    { name: messages.problemLabels['screen-burn-in'] ?? 'Screen Burn-In Guide', href: '/screen-problems/screen-burn-in' },
+    { name: messages.problemLabels['screen-flickering'] ?? 'Screen Flickering', href: '/screen-problems/screen-flickering' },
+    { name: messages.problemLabels['screen-tearing'] ?? 'Screen Tearing Guide', href: '/screen-problems/screen-tearing' },
   ]
 
   // Moved from Header into Footer per instructions
   const glossaryLinks = [
-    { name: 'Refresh Rate', href: '/glossary/refresh-rate' },
-    { name: 'OLED vs LCD', href: '/glossary/oled-vs-lcd' },
-    { name: 'HDR', href: '/glossary/hdr' },
-    { name: 'Resolution', href: '/glossary/resolution' },
-    { name: 'Chroma Key (Green Screen)', href: '/glossary/chroma-key' },
+    { name: messages.termLabels['refresh-rate'] ?? 'Refresh Rate', href: '/glossary/refresh-rate' },
+    { name: messages.termLabels['oled-vs-lcd'] ?? 'OLED vs LCD', href: '/glossary/oled-vs-lcd' },
+    { name: messages.termLabels['hdr'] ?? 'HDR', href: '/glossary/hdr' },
+    { name: messages.termLabels['resolution'] ?? 'Resolution', href: '/glossary/resolution' },
+    { name: messages.termLabels['chroma-key'] ?? 'Chroma Key (Green Screen)', href: '/glossary/chroma-key' },
   ]
 
   const aboutUsLinks = [

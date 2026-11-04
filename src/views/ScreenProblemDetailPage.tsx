@@ -1,7 +1,6 @@
 import { AdSlot } from '@/components/ad-slot'
-'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { WhiteScreenCta } from '@/components/white-screen-cta'
 import Link from 'next/link'
 import {
@@ -17,14 +16,18 @@ import {
   Check,
   RotateCcw,
 } from 'lucide-react'
-import { getScreenProblemBySlug, SCREEN_PROBLEMS, type ScreenProblemItem } from '@/lib/screen-problems-data'
+import { getProblem, getProblems } from '@/lib/article-i18n'
+import { articlePageText } from '@/lib/article-i18n/page-text'
+import { getLocalizedPath } from '@/lib/locale-routing'
+import { useTranslation } from '@/lib/i18n'
 import { absoluteUrl } from '@/lib/site'
 import { JsonLd } from '@/components/json-ld'
 import { cn } from '@/lib/utils'
 
 export function ScreenProblemDetailPage({ slug }: { slug: string }) {
-  const item = getScreenProblemBySlug(slug)
-  const [completedSteps, setCompletedSteps] = useState<Record<string, boolean>>({})
+  const { t, language } = useTranslation()
+  const item = getProblem(slug, language)
+  const text = articlePageText(language)
 
   if (!item) {
     return (
@@ -41,16 +44,13 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
     )
   }
 
-  const toggleStep = (stepKey: string) => {
-    setCompletedSteps((prev) => ({ ...prev, [stepKey]: !prev[stepKey] }))
-  }
-
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: item.title,
     description: item.metaDescription,
-    url: absoluteUrl(`/screen-problems/${item.slug}`),
+    url: absoluteUrl(getLocalizedPath(`/screen-problems/${item.slug}`, language)),
+    inLanguage: language,
     publisher: {
       '@type': 'Organization',
       name: 'WhiteScreen.vip',
@@ -74,7 +74,8 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
         }
       : null
 
-  const relatedProblems = SCREEN_PROBLEMS.filter((p) => p.slug !== item.slug).slice(0, 3)
+  const problems = getProblems(language)
+  const relatedProblems = problems.filter((p) => p.slug !== item.slug).slice(0, 3)
 
   return (
     <article className="min-h-screen bg-background py-6 sm:py-10">
@@ -85,11 +86,11 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-xs text-muted-foreground flex-wrap">
           <Link href="/" className="hover:text-foreground transition-colors">
-            White Screen
+            {t('homeTitle', 'White Screen')}
           </Link>
           <ChevronRight className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
           <Link href="/screen-problems" className="hover:text-foreground transition-colors">
-            Screen Problems
+            {t('screenProblems', 'Screen Problems')}
           </Link>
           <ChevronRight className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
           <span className="font-medium text-foreground truncate">{item.shortLabel}</span>
@@ -99,7 +100,7 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
         <header className="mb-8 border-b border-border/80 pb-6">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-700 dark:text-amber-300 mb-3">
             <AlertTriangle className="size-3.5" aria-hidden="true" />
-            <span>Display Diagnostic Guide</span>
+            <span>{text.guideBadge}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground leading-[1.2]">
             {item.title}
@@ -115,10 +116,10 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
           <div>
             <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
               <Sparkles className="size-4" />
-              <span>Recommended Diagnostic Tool</span>
+              <span>{text.recommendedTool}</span>
             </div>
             <h2 className="text-base sm:text-lg font-bold text-foreground mt-1">
-              Test with {item.quickDiagnostic.toolName}
+              {text.testWith.replace('{tool}', item.quickDiagnostic.toolName)}
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
               {item.quickDiagnostic.description}
@@ -212,36 +213,24 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
               {section.checklist && section.checklist.length > 0 && (
                 <div className="space-y-2 pt-2">
                   <span className="text-xs text-muted-foreground block mb-2">
-                    Tap to check off diagnostic steps as you complete them:
+                    {text.checklistHint}
                   </span>
-                  {section.checklist.map((step, cIdx) => {
-                    const stepKey = `${sIdx}-${cIdx}`
-                    const isDone = !!completedSteps[stepKey]
-                    return (
-                      <div
-                        key={cIdx}
-                        onClick={() => toggleStep(stepKey)}
-                        className={cn(
-                          'flex items-start gap-3 rounded-xl border p-3.5 text-xs sm:text-sm cursor-pointer transition-all',
-                          isDone
-                            ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-950 dark:text-emerald-200'
-                            : 'border-border bg-background hover:bg-accent',
-                        )}
-                      >
-                        <span
-                          className={cn(
-                            'flex size-6 items-center justify-center rounded-md text-xs font-bold shrink-0 mt-0.5 transition-colors',
-                            isDone ? 'bg-emerald-500 text-white' : 'bg-muted text-muted-foreground',
-                          )}
-                        >
-                          {isDone ? <Check className="size-3.5" /> : cIdx + 1}
-                        </span>
-                        <span className={cn('leading-relaxed', isDone && 'line-through opacity-80')}>
-                          {step}
-                        </span>
-                      </div>
-                    )
-                  })}
+                  {/* A plain checkbox: the checked state needs no JavaScript. */}
+                  {section.checklist.map((step, cIdx) => (
+                    <label
+                      key={cIdx}
+                      className="relative flex items-start gap-3 rounded-xl border border-border bg-background p-3.5 text-xs sm:text-sm cursor-pointer transition-all hover:bg-accent has-[:checked]:border-emerald-500/40 has-[:checked]:bg-emerald-500/10 has-[:checked]:text-emerald-950 dark:has-[:checked]:text-emerald-200"
+                    >
+                      <input type="checkbox" className="peer sr-only" />
+                      <span className="flex size-6 items-center justify-center rounded-md bg-muted text-xs font-bold text-muted-foreground shrink-0 mt-0.5 peer-checked:hidden peer-focus-visible:ring-2 peer-focus-visible:ring-primary">
+                        {cIdx + 1}
+                      </span>
+                      <span className="hidden size-6 items-center justify-center rounded-md bg-emerald-500 text-white shrink-0 mt-0.5 peer-checked:flex peer-focus-visible:ring-2 peer-focus-visible:ring-primary">
+                        <Check className="size-3.5" />
+                      </span>
+                      <span className="leading-relaxed peer-checked:line-through peer-checked:opacity-80">{step}</span>
+                    </label>
+                  ))}
                 </div>
               )}
               {/* The second ad follows the first section, close to the first ad. */}
@@ -258,7 +247,7 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
               <strong className="font-bold text-sm block">{item.hardwareReality.heading}</strong>
               <p>{item.hardwareReality.text}</p>
               <div className="pt-2 border-t border-amber-500/30">
-                <span className="font-semibold block mb-0.5">Warranty & RMA Guidance:</span>
+                <span className="font-semibold block mb-0.5">{text.warranty}</span>
                 <p className="text-amber-900 dark:text-amber-300">{item.hardwareReality.warrantyAdvice}</p>
               </div>
             </div>
@@ -272,7 +261,7 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
               <ExternalLink className="size-5 text-primary shrink-0 mt-0.5" />
               <div className="text-xs sm:text-sm leading-relaxed">
                 <span className="font-semibold text-foreground block">
-                  Authoritative Industry Standard: {item.authoritativeReference.title}
+                  {text.standard.replace('{title}', item.authoritativeReference.title)}
                 </span>
                 <p className="text-muted-foreground mt-1">{item.authoritativeReference.summary}</p>
                 <a
@@ -281,7 +270,7 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline mt-2"
                 >
-                  <span>Official Document from {item.authoritativeReference.organization}</span>
+                  <span>{text.officialDoc.replace('{org}', item.authoritativeReference.organization)}</span>
                   <ExternalLink className="size-3" />
                 </a>
               </div>
@@ -291,7 +280,7 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
 
         {/* Contextual Internal Links */}
         <section className="mt-10 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-3">
-          <h2 className="text-base sm:text-lg font-bold text-foreground">Related Display Guides & Diagnostics</h2>
+          <h2 className="text-base sm:text-lg font-bold text-foreground">{text.relatedGuides}</h2>
           <div className="grid gap-2.5 sm:grid-cols-2">
             {item.contextualLinks.map((cl, i) => (
               <Link
@@ -316,7 +305,7 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
           <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
             <div className="flex items-center gap-2">
               <HelpCircle className="size-5 text-primary" />
-              <h2 className="text-lg sm:text-xl font-bold text-foreground">Frequently Asked Questions</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-foreground">{t('faqTitle', 'Frequently asked questions')}</h2>
             </div>
             <div className="space-y-3">
               {item.faqs.map((faq, i) => (
@@ -332,12 +321,12 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
         {/* Related Problems Grid & Clear Path Back */}
         <section className="mt-12 pt-8 border-t border-border/80">
           <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-            <h2 className="text-base sm:text-lg font-bold text-foreground">Explore Other Screen Problems</h2>
+            <h2 className="text-base sm:text-lg font-bold text-foreground">{text.exploreProblems}</h2>
             <Link
               href="/screen-problems"
               className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
             >
-              <span>View all 11 problem guides</span>
+              <span>{text.viewAllProblems.replace('{n}', String(problems.length))}</span>
               <ArrowRight className="size-3.5" />
             </Link>
           </div>
@@ -356,7 +345,7 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
                   <p className="mt-1 text-xs text-muted-foreground line-clamp-2">{rp.heroSummary}</p>
                 </div>
                 <span className="mt-3 text-xs font-medium text-primary flex items-center gap-1">
-                  Read guide <ArrowRight className="size-3" />
+                  {text.readGuide} <ArrowRight className="size-3" />
                 </span>
               </Link>
             ))}

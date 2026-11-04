@@ -8,6 +8,7 @@ import { CATEGORY_TRANSLATIONS, TOOL_TRANSLATIONS, type CategoryText, type ToolT
 import { buildSlugMap } from './localized-slugs'
 import { GUIDE_TRANSLATIONS } from './guide-i18n'
 import { toolUiTranslations } from './tool-ui-i18n'
+import { problemLabels, termLabels } from './article-i18n'
 
 export type ClientMessages = {
   lang: LanguageCode
@@ -18,6 +19,9 @@ export type ClientMessages = {
   slugs: Record<string, string>
   /** Guide slug → short menu label in this language. */
   guideLabels: Record<string, string>
+  /** Screen problem and glossary slug → short menu label in this language. */
+  problemLabels: Record<string, string>
+  termLabels: Record<string, string>
   /** English text inside the tools → this language (only on pages that show a tool). */
   toolUi?: Record<string, string>
 }
@@ -34,6 +38,8 @@ export function buildClientMessages(lang: LanguageCode): ClientMessages {
     categories: lang === 'en' ? {} : (CATEGORY_TRANSLATIONS[lang] ?? {}),
     slugs: Object.fromEntries(buildSlugMap(lang)),
     guideLabels: Object.fromEntries(Object.entries(GUIDE_TRANSLATIONS[lang] ?? {}).map(([slug, guide]) => [slug, guide.navLabel])),
+    problemLabels: problemLabels(lang),
+    termLabels: termLabels(lang),
     toolUi: toolUiTranslations(lang),
   }
   cache.set(lang, messages)
