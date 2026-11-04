@@ -21,7 +21,8 @@ import { GUIDES, GUIDE_SLUG_ALIASES, getGuideBySlug } from './guides-content'
 import { BACKGROUND_ITEMS, getBackgroundBySlug } from './backgrounds-data'
 import { SCREEN_PROBLEMS } from './screen-problems-data'
 import { GLOSSARY_ITEMS } from './glossary-data'
-import { getProblem, getTerm } from './article-i18n'
+import { getBackground, getProblem, getTerm } from './article-i18n'
+import { backgroundText } from './article-i18n/background-text'
 import { articlePageText } from './article-i18n/page-text'
 import {
   ABOUT_TRANSLATIONS,
@@ -170,10 +171,8 @@ function resolveMeta(cleanPath: string, search: string, language: LanguageCode):
       }
     case '/backgrounds': {
       const category = new URLSearchParams(search).get('category') ?? ''
-      const [title, description] = BACKGROUND_CATEGORY_META[category] ?? [
-        'Free Screen Backgrounds – Solid, Gradient & 4K Wallpapers',
-        'Download free high-resolution backgrounds: solid colors, gradients, video call backdrops, OLED black and neon wallpapers in 1080p and 4K.',
-      ]
+      const { metaTitle, metaDescription } = backgroundText(language).index
+      const [title, description] = (language === 'en' && BACKGROUND_CATEGORY_META[category]) || [metaTitle, metaDescription]
       return { title: title + SUFFIX, description }
     }
     case '/screen-problems':
@@ -201,7 +200,7 @@ function resolveMeta(cleanPath: string, search: string, language: LanguageCode):
     return guide ? { title: withSuffix(guide.metaTitle), description: guide.metaDescription, ogType: 'article' } : notFound()
   }
   if (cleanPath.startsWith('/backgrounds/')) {
-    const bg = getBackgroundBySlug(cleanPath.slice('/backgrounds/'.length))
+    const bg = getBackground(cleanPath.slice('/backgrounds/'.length), language)
     return bg ? { title: withSuffix(bg.metaTitle), description: bg.metaDescription } : notFound()
   }
   if (cleanPath.startsWith('/screen-problems/')) {
@@ -273,7 +272,7 @@ function breadcrumbTrail(path: string, title: string, language: LanguageCode): {
   if (hub) return [home, { name: title.split(/\s[–|]\s/)[0].trim(), path }]
   const section = Object.keys(SECTION_NAMES).find((prefix) => path === prefix || path.startsWith(`${prefix}/`))
   if (!section) return undefined
-  const sectionCrumb = { name: (section === '/guides' && translationsFor(language).guides) || (section === '/screen-problems' && translationsFor(language).screenProblems) || (section === '/glossary' && translationsFor(language).glossary) || SECTION_NAMES[section], path: section }
+  const sectionCrumb = { name: (section === '/guides' && translationsFor(language).guides) || (section === '/screen-problems' && translationsFor(language).screenProblems) || (section === '/glossary' && translationsFor(language).glossary) || (section === '/backgrounds' && translationsFor(language).backgrounds) || SECTION_NAMES[section], path: section }
   if (path === section) return [home, sectionCrumb]
   // The page's own title without the "– tagline" or "| site" part.
   const name = title.split(/\s[–|]\s/)[0].trim()
@@ -448,11 +447,14 @@ export function getAllRoutes(): string[] {
 
 export { LEGACY_REDIRECTS } from './legacy-redirects'
 
-/** Legacy URLs that still work. They are prerendered, canonicalize to the real page and stay out of the sitemap. */
-export function getAliasRoutes(): string[] {
+/**
+ * Legacy URLs that still work. They are prerendered, canonicalize to the real page and stay out of the sitemap.
+ * Old background slugs only exist as English pages; in other languages they 301 (see legacy-redirects).
+ */
+export function getAliasRoutes(language: LanguageCode): string[] {
   return [
     ...Object.keys(GUIDE_SLUG_ALIASES).map((slug) => `/guides/${slug}`),
-    ...BACKGROUND_ITEMS.flatMap((item) => (item.aliases ?? []).map((slug) => `/backgrounds/${slug}`)),
+    ...(language === 'en' ? BACKGROUND_ITEMS.flatMap((item) => (item.aliases ?? []).map((slug) => `/backgrounds/${slug}`)) : []),
   ]
 }
 

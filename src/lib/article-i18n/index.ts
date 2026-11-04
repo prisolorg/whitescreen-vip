@@ -1,10 +1,11 @@
 /**
- * Screen problem and glossary articles in every language. Server-side only: it imports all the
+ * Screen problem, glossary and background articles in every language. Server-side only: it imports all the
  * article text, so hydrated code must receive what it needs as props (see index-items) instead.
  */
 import type { LanguageCode } from '../locale-routing'
 import { GLOSSARY_ITEMS, type GlossaryItem } from '../glossary-data'
 import { SCREEN_PROBLEMS, type ScreenProblemItem } from '../screen-problems-data'
+import { BACKGROUND_ITEMS, type BackgroundItem } from '../backgrounds-data'
 import { applyStrings } from './walk'
 import { es as glossaryEs } from './glossary/es'
 import { ptBr as glossaryPtBr } from './glossary/pt-br'
@@ -30,6 +31,14 @@ import { id1 } from './problems/id-1'
 import { id2 } from './problems/id-2'
 import { tr1 } from './problems/tr-1'
 import { tr2 } from './problems/tr-2'
+import { es as backgroundsEs } from './backgrounds/es'
+import { ptBr as backgroundsPtBr } from './backgrounds/pt-br'
+import { de as backgroundsDe } from './backgrounds/de'
+import { fr as backgroundsFr } from './backgrounds/fr'
+import { it as backgroundsIt } from './backgrounds/it'
+import { nl as backgroundsNl } from './backgrounds/nl'
+import { id as backgroundsId } from './backgrounds/id'
+import { tr as backgroundsTr } from './backgrounds/tr'
 
 type Strings = Record<string, readonly string[]>
 
@@ -50,6 +59,9 @@ const problemStrings = (lang: LanguageCode): Strings | undefined =>
     tr: { ...tr1, ...tr2 },
   } as Partial<Record<LanguageCode, Strings>>)[lang]
 
+const backgroundStrings = (lang: LanguageCode): Strings | undefined =>
+  ({ es: backgroundsEs, 'pt-br': backgroundsPtBr, de: backgroundsDe, fr: backgroundsFr, it: backgroundsIt, nl: backgroundsNl, id: backgroundsId, tr: backgroundsTr } as Partial<Record<LanguageCode, Strings>>)[lang]
+
 const caches = /* @__PURE__ */ new Map<string, unknown[]>()
 
 function localized<T extends { slug: string }>(kind: string, items: readonly T[], strings: Strings | undefined, lang: LanguageCode): readonly T[] {
@@ -66,8 +78,13 @@ function localized<T extends { slug: string }>(kind: string, items: readonly T[]
 export const getProblems = (lang: LanguageCode) => localized<ScreenProblemItem>('problems', SCREEN_PROBLEMS, problemStrings(lang), lang)
 export const getTerms = (lang: LanguageCode) => localized<GlossaryItem>('terms', GLOSSARY_ITEMS, termStrings(lang), lang)
 
+export const getBackgrounds = (lang: LanguageCode) => localized<BackgroundItem>('backgrounds', BACKGROUND_ITEMS, backgroundStrings(lang), lang)
+
 export const getProblem = (slug: string, lang: LanguageCode) => getProblems(lang).find((item) => item.slug === slug)
 export const getTerm = (slug: string, lang: LanguageCode) => getTerms(lang).find((item) => item.slug === slug)
+
+/** Also finds a background by one of its old slugs (the English alias pages). */
+export const getBackground = (slug: string, lang: LanguageCode) => getBackgrounds(lang).find((item) => item.slug === slug || item.aliases?.includes(slug))
 
 /** Article slug → short menu label in `lang` (the second string of every article). */
 export const problemLabels = (lang: LanguageCode) => Object.fromEntries(Object.entries(problemStrings(lang) ?? {}).map(([slug, strings]) => [slug, strings[1]]))

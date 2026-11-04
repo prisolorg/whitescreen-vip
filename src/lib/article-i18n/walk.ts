@@ -2,7 +2,7 @@
  * Articles are translated as flat lists of strings, in the order this walk visits them, so the
  * data files hold only text. Links, slugs and other non-text fields always come from English.
  */
-const SKIP_KEYS = new Set(['slug', 'path', 'toolPath', 'url', 'href', 'type', 'organization'])
+const SKIP_KEYS = new Set(['slug', 'path', 'toolPath', 'url', 'href', 'type', 'organization', 'aliases', 'category', 'tags', 'primaryHex', 'secondaryHex', 'accentHex', 'cssBackground', 'linkHref'])
 const isText = (value: string) => /[A-Za-z]{2}/.test(value)
 
 function walk(value: unknown, visit: (text: string) => string): unknown {

@@ -13,6 +13,7 @@ import { NotFoundPage } from '@/views/NotFoundPage'
 import { GuideDetailPage } from '@/views/GuideDetailPage'
 import { GuidesIndexPage } from '@/views/GuidesIndexPage'
 import { ToolPageBody } from '@/components/tool-page-body'
+import { BackgroundBody } from '@/views/BackgroundBody'
 import { ColorPageBody } from '@/views/ColorPageBody'
 import { HomePageBody } from '@/views/HomePageBody'
 import { SCREEN_COLORS } from '@/lib/screen-colors'
@@ -49,6 +50,15 @@ export function StaticToolBody({ url, slug }: { url: string; slug: string }) {
   return (
     <Providers url={url}>
       <ToolPageBody slug={slug} />
+    </Providers>
+  )
+}
+
+/** Static (no-JS) article under a background's preview and download controls. */
+export function StaticBackgroundBody({ url, slug }: { url: string; slug: string }) {
+  return (
+    <Providers url={url}>
+      <BackgroundBody slug={slug} />
     </Providers>
   )
 }

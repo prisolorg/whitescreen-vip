@@ -1,36 +1,19 @@
-import { ToolWithAds } from '@/components/tool-ads'
 'use client'
 
 import React, { useState, useRef, useEffect, useCallback } from 'react'
-import { WhiteScreenCta } from '@/components/white-screen-cta'
 import Link from 'next/link'
-import {
-  Download,
-  Maximize,
-  X,
-  Sparkles,
-  ArrowRight,
-  Check,
-  ChevronRight,
-  Copy,
-  ExternalLink,
-  HelpCircle,
-  Eye,
-  Palette,
-  Lightbulb,
-  ShieldCheck,
-  Monitor,
-} from 'lucide-react'
-import { getBackgroundBySlug, BACKGROUND_ITEMS, BACKGROUND_CATEGORIES, type BackgroundItem } from '@/lib/backgrounds-data'
+import { Download, X, Check, ChevronRight, Copy } from 'lucide-react'
+import { ToolWithAds } from '@/components/tool-ads'
 import { paintBackground } from '@/lib/background-paint'
 import { isLightColor } from '@/lib/screen-colors'
 import { DoubleTapHint, STAGE_SIZE, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
-import { absoluteUrl } from '@/lib/site'
-import { JsonLd } from '@/components/json-ld'
+import { useTranslation } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
+import type { BackgroundToolProps } from '@/lib/article-i18n/background-props'
 
-export function BackgroundDetailPage({ slug }: { slug: string }) {
-  const item = getBackgroundBySlug(slug)
+/** The interactive part of a background page: preview, downloads and next links. The article below it is static (BackgroundBody). */
+export function BackgroundDetailPage({ item, more, categories, text }: BackgroundToolProps) {
+  const { t } = useTranslation()
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isCopied, setIsCopied] = useState(false)
   const [width, setWidth] = useState(1920)
@@ -80,21 +63,6 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [isFullscreen, enterFullscreen, exitFullscreen])
 
-  if (!item) {
-    return (
-      <div className="mx-auto max-w-4xl px-4 py-16 text-center">
-        <h1 className="text-3xl font-bold">Background Not Found</h1>
-        <p className="mt-3 text-muted-foreground">The requested background could not be located.</p>
-        <Link
-          href="/backgrounds"
-          className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
-        >
-          Browse All Backgrounds
-        </Link>
-      </div>
-    )
-  }
-
   const handleDownload = (customW = width, customH = height) => {
     if (isDownloading) return
     setIsDownloading(true)
@@ -142,63 +110,28 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
     } catch {}
   }
 
-  const related = BACKGROUND_ITEMS.filter((b) => b.slug !== item.slug && b.category === item.category).slice(0, 3)
-
-  const imageSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ImageObject',
-    name: item.title,
-    description: item.shortDescription,
-    contentUrl: absoluteUrl(`/backgrounds/${item.slug}`),
-    representativeOfPage: true,
-  }
-
-  const faqSchema =
-    item.faqs && item.faqs.length > 0
-      ? {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: item.faqs.map((faq) => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: faq.answer,
-            },
-          })),
-        }
-      : null
-
   const SIZES = [
     { id: '1080p', label: '1080p · 1920×1080', w: 1920, h: 1080 },
     { id: '2k', label: '2K · 2560×1440', w: 2560, h: 1440 },
     { id: '4k', label: '4K · 3840×2160', w: 3840, h: 2160 },
-    { id: 'phone', label: 'Phone · 1080×2400', w: 1080, h: 2400 },
-    { id: 'custom', label: 'Custom size', w: width, h: height },
+    { id: 'phone', label: text.sizePhone, w: 1080, h: 2400 },
+    { id: 'custom', label: text.sizeCustom, w: width, h: height },
   ]
   const size = SIZES.find((option) => option.id === sizeId) ?? SIZES[2]
   const tone = isLightColor(item.primaryHex) ? 'light' : 'dark'
-  // Same category first, then others, so there is always a full row of next steps.
-  const moreBackgrounds = [
-    ...BACKGROUND_ITEMS.filter((b) => b.slug !== item.slug && b.category === item.category),
-    ...BACKGROUND_ITEMS.filter((b) => b.slug !== item.slug && b.category !== item.category),
-  ].slice(0, 6)
 
   return (
-    <article className="bg-background pb-8 pt-3 sm:pt-4">
-      <JsonLd data={imageSchema} />
-      {faqSchema && <JsonLd data={faqSchema} />}
-
+    <div className="bg-background pt-3 sm:pt-4">
       {/* Same layout as the screen pages: breadcrumbs, the preview with its title, a control dock,
           then more backgrounds, so the tool and the next links are above the fold. */}
       <div className="mx-auto flex max-w-7xl flex-col gap-3 px-3 sm:px-6">
         <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
           <Link href="/" className="hover:text-foreground transition-colors">
-            White Screen
+            {t('homeTitle', 'White Screen')}
           </Link>
           <ChevronRight className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
           <Link href="/backgrounds" className="hover:text-foreground transition-colors">
-            Backgrounds
+            {t('backgrounds', 'Backgrounds')}
           </Link>
           <ChevronRight className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
           <Link href={`/backgrounds?category=${item.category}`} className="hover:text-foreground transition-colors">
@@ -213,7 +146,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
           <div
             ref={screenRef}
             role="region"
-            aria-label={`${item.title} preview`}
+            aria-label={text.preview.replace('{title}', item.title)}
             onDoubleClick={() => void (isFullscreen ? exitFullscreen() : enterFullscreen())}
             style={{ background: item.cssBackground }}
             className={cn(
@@ -226,7 +159,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
                 type="button"
                 onClick={exitFullscreen}
                 className="absolute right-4 top-4 rounded-full bg-black/60 p-2.5 text-white shadow-lg transition-colors hover:bg-black/80"
-                aria-label="Exit fullscreen"
+                aria-label={text.exitFullscreen}
               >
                 <X className="size-5" />
               </button>
@@ -257,7 +190,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
           <StageDock onFullscreen={enterFullscreen}>
             <div className="flex flex-wrap items-center gap-2">
               <label htmlFor="bg-size" className="sr-only">
-                Image size
+                {text.imageSize}
               </label>
               <select
                 id="bg-size"
@@ -274,7 +207,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
               {sizeId === 'custom' && (
                 <span className="flex items-center gap-1.5 text-sm">
                   <label htmlFor="bg-w" className="sr-only">
-                    Width (px)
+                    {text.width}
                   </label>
                   <input
                     id="bg-w"
@@ -287,7 +220,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
                   />
                   ×
                   <label htmlFor="bg-h" className="sr-only">
-                    Height (px)
+                    {text.height}
                   </label>
                   <input
                     id="bg-h"
@@ -310,7 +243,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
                 )}
               >
                 {downloadSuccess ? <Check className="size-4" /> : <Download className="size-4" />}
-                <span>{isDownloading ? 'Generating…' : downloadSuccess ? 'Downloaded!' : 'Download PNG'}</span>
+                <span>{isDownloading ? text.generating : downloadSuccess ? text.downloaded : text.downloadPng}</span>
               </button>
               <button
                 type="button"
@@ -318,7 +251,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
                 className="inline-flex h-10 items-center gap-1.5 rounded-xl border bg-background px-3 text-sm font-medium transition-colors hover:bg-accent"
               >
                 {isCopied ? <Check className="size-4 text-emerald-500" /> : <Copy className="size-4" />}
-                <span>{isCopied ? 'CSS Copied!' : 'Copy CSS'}</span>
+                <span>{isCopied ? text.cssCopied : text.copyCss}</span>
               </button>
             </div>
           </StageDock>
@@ -328,14 +261,14 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
         <section aria-labelledby="more-backgrounds" className="mt-2 flex flex-col gap-3">
           <div className="flex items-baseline justify-between gap-3">
             <h2 id="more-backgrounds" className="text-base font-bold tracking-tight sm:text-lg">
-              More backgrounds
+              {text.moreBackgrounds}
             </h2>
             <Link href="/backgrounds" className="shrink-0 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400">
-              All backgrounds →
+              {text.allBackgroundsLink}
             </Link>
           </div>
-          <nav aria-label="Background categories" className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {BACKGROUND_CATEGORIES.filter((cat) => cat.id !== 'all').map((cat) => (
+          <nav aria-label={text.categoriesLabel} className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {categories.map((cat) => (
               <Link
                 key={cat.id}
                 href={`/backgrounds?category=${cat.id}`}
@@ -349,7 +282,7 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
             ))}
           </nav>
           <ul className="grid grid-cols-3 gap-2 sm:gap-3 lg:grid-cols-6">
-            {moreBackgrounds.map((bg) => (
+            {more.map((bg) => (
               <li key={bg.slug}>
                 <Link
                   href={`/backgrounds/${bg.slug}`}
@@ -364,229 +297,6 @@ export function BackgroundDetailPage({ slug }: { slug: string }) {
         </section>
       </div>
 
-      <div className="mx-auto max-w-5xl px-3 sm:px-6">
-        {/* Section 1: About This Background */}
-        <section className="mt-6 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
-          <div className="flex items-center gap-2">
-            <Palette className="size-5 text-primary" />
-            <h2 className="text-lg sm:text-xl font-bold text-foreground">About This Background</h2>
-          </div>
-          <div className="space-y-3 text-xs sm:text-sm text-foreground/90 leading-relaxed">
-            <p>{item.about.overview}</p>
-            <p>{item.about.colorCharacteristics}</p>
-            <p className="text-muted-foreground italic">{item.about.aestheticTone}</p>
-          </div>
-        </section>
-
-        {/* Section 2: View in Full Screen */}
-        <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
-          <div className="flex items-center gap-2">
-            <Eye className="size-5 text-primary" />
-            <h2 className="text-lg sm:text-xl font-bold text-foreground">View in Full Screen</h2>
-          </div>
-          <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed">
-            {item.fullscreenGuide.instruction}
-          </p>
-          <div className="grid gap-3 sm:grid-cols-2 text-xs sm:text-sm pt-2">
-            <div className="rounded-xl border border-border/80 bg-muted/30 p-3.5">
-              <span className="font-semibold text-foreground block mb-1">Optimal Uses:</span>
-              <p className="text-muted-foreground">{item.fullscreenGuide.bestUsedFor}</p>
-            </div>
-            <div className="rounded-xl border border-border/80 bg-muted/30 p-3.5">
-              <span className="font-semibold text-foreground block mb-1">Display Inspection Tip:</span>
-              <p className="text-muted-foreground">{item.fullscreenGuide.inspectionTip}</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 3: How to Use This Background */}
-        <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
-          <div className="flex items-center gap-2">
-            <Lightbulb className="size-5 text-primary" />
-            <h2 className="text-lg sm:text-xl font-bold text-foreground">How to Use This Background</h2>
-          </div>
-          <div className="grid gap-3.5 sm:grid-cols-2">
-            {item.useCases.map((uc, i) => (
-              <div key={i} className="rounded-xl border border-border bg-background p-4 flex flex-col justify-between">
-                <div>
-                  <h3 className="font-semibold text-xs sm:text-sm text-foreground mb-1.5">{uc.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{uc.description}</p>
-                </div>
-                {uc.linkHref && uc.linkText && (
-                  <div className="mt-3 pt-2.5 border-t border-border/60">
-                    <Link
-                      href={uc.linkHref}
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
-                    >
-                      <span>{uc.linkText}</span>
-                      <ArrowRight className="size-3" />
-                    </Link>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Section 4: Choosing the Right Background */}
-        <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="size-5 text-primary" />
-            <h2 className="text-lg sm:text-xl font-bold text-foreground">Choosing the Right Background</h2>
-          </div>
-          <div className="space-y-3 text-xs sm:text-sm text-foreground/90 leading-relaxed">
-            <div className="rounded-xl border border-border/70 p-3.5 bg-muted/20">
-              <strong className="text-foreground block mb-1">When to choose this background:</strong>
-              <p className="text-muted-foreground">{item.selectionAdvice.whenToChoose}</p>
-            </div>
-            <div className="rounded-xl border border-border/70 p-3.5 bg-muted/20">
-              <strong className="text-foreground block mb-1">Contrast & typography legibility:</strong>
-              <p className="text-muted-foreground">{item.selectionAdvice.contrastAndReadability}</p>
-            </div>
-            <div className="rounded-xl border border-border/70 p-3.5 bg-muted/20">
-              <strong className="text-foreground block mb-1">Alternative options to consider:</strong>
-              <p className="text-muted-foreground">{item.selectionAdvice.alternativeConsiderations}</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Authoritative Reference Link (When applicable) */}
-        {item.authoritativeLink && (
-          <section className="mt-8 rounded-2xl border border-primary/30 bg-primary/5 p-5 shadow-xs">
-            <div className="flex items-start gap-3">
-              <ExternalLink className="size-5 text-primary shrink-0 mt-0.5" />
-              <div className="text-xs sm:text-sm leading-relaxed">
-                <span className="font-semibold text-foreground block">
-                  Authoritative Reference: {item.authoritativeLink.title}
-                </span>
-                <p className="text-muted-foreground mt-1">{item.authoritativeLink.note}</p>
-                <a
-                  href={item.authoritativeLink.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline mt-2"
-                >
-                  <span>Read Official Guidance from {item.authoritativeLink.organization}</span>
-                  <ExternalLink className="size-3" />
-                </a>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Section 5: Contextual Internal Links */}
-        <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-3">
-          <h2 className="text-base sm:text-lg font-bold text-foreground">Related Guides & Complementary Backgrounds</h2>
-          <div className="grid gap-2.5 sm:grid-cols-2">
-            {item.contextualLinks.map((cl, i) => (
-              <Link
-                key={i}
-                href={cl.href}
-                className="group flex flex-col justify-between rounded-xl border border-border p-3.5 hover:border-primary/50 hover:bg-accent transition-all"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors">
-                    {cl.label}
-                  </span>
-                  <ArrowRight className="size-3.5 text-muted-foreground group-hover:text-primary transition-transform group-hover:translate-x-0.5" />
-                </div>
-                <p className="mt-1 text-xs text-muted-foreground">{cl.description}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* Section 6: Frequently Asked Questions */}
-        {item.faqs && item.faqs.length > 0 && (
-          <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
-            <div className="flex items-center gap-2">
-              <HelpCircle className="size-5 text-primary" />
-              <h2 className="text-lg sm:text-xl font-bold text-foreground">Frequently Asked Questions</h2>
-            </div>
-            <div className="space-y-3">
-              {item.faqs.map((faq, i) => (
-                <div key={i} className="rounded-xl border border-border/70 p-4 bg-muted/20">
-                  <h3 className="font-semibold text-xs sm:text-sm text-foreground">{faq.question}</h3>
-                  <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Section 7: Related Tools */}
-        {item.relatedTools && item.relatedTools.length > 0 && (
-          <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
-            <div className="flex items-center gap-2">
-              <Monitor className="size-5 text-primary" />
-              <h2 className="text-lg sm:text-xl font-bold text-foreground">Relevant WhiteScreen.vip Tools</h2>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {item.relatedTools.map((t, i) => (
-                <Link
-                  key={i}
-                  href={t.path}
-                  className="group rounded-xl border border-border p-3.5 hover:border-primary/50 hover:bg-accent transition-all flex items-center justify-between"
-                >
-                  <div>
-                    <h3 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors">
-                      {t.name}
-                    </h3>
-                    <p className="text-xs text-muted-foreground mt-0.5">{t.description}</p>
-                  </div>
-                  <ArrowRight className="size-4 text-muted-foreground group-hover:text-primary shrink-0 ml-2" />
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Section 8: More Backgrounds in this Collection */}
-        {related.length > 0 && (
-          <section className="mt-10">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-base sm:text-lg font-bold text-foreground">
-                More {item.categoryLabel} Backgrounds
-              </h2>
-              <div className="flex items-center gap-2 text-xs">
-                <Link
-                  href={`/backgrounds?category=${item.category}`}
-                  className="font-semibold text-primary hover:underline"
-                >
-                  View all {item.categoryLabel} →
-                </Link>
-                <span className="text-muted-foreground">•</span>
-                <Link
-                  href="/backgrounds"
-                  className="text-muted-foreground hover:text-foreground hover:underline"
-                >
-                  All Backgrounds
-                </Link>
-              </div>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {related.map((rel) => (
-                <Link
-                  key={rel.slug}
-                  href={`/backgrounds/${rel.slug}`}
-                  className="group overflow-hidden rounded-xl border border-border bg-card shadow-2xs transition-all hover:border-foreground/30"
-                >
-                  <div className="aspect-video w-full" style={{ background: rel.cssBackground }} />
-                  <div className="p-3">
-                    <span className="font-semibold text-xs text-foreground group-hover:text-primary transition-colors">
-                      {rel.title}
-                    </span>
-                    <span className="block font-mono text-[10px] text-muted-foreground mt-0.5">
-                      {rel.primaryHex}
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
-      </div>
-      <WhiteScreenCta className="mt-12" />
-    </article>
+    </div>
   )
 }

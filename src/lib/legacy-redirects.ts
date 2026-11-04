@@ -1,11 +1,14 @@
 import { ENGLISH_ONLY_PREFIXES as ENGLISH_ONLY_PREFIX_LIST, SUPPORTED_LOCALES, isEnglishOnlyPath } from './locale-routing'
 import { buildSlugMap, translatedSlugPairs } from './localized-slugs'
+import { BACKGROUND_ITEMS } from './backgrounds-data'
 
 /** Localized URL for an English path, using the build-time slug maps (this file also loads in astro.config). */
 function localized(path: string, lang: (typeof SUPPORTED_LOCALES)[number]) {
   if (lang === 'en' || isEnglishOnlyPath(path.replace(/\/$/, ''))) return path
-  const [, first, ...rest] = path.split('/')
-  return ['', lang, buildSlugMap(lang).get(first) ?? first, ...rest].join('/').replace(/\/\/$/, '/')
+  const [, first, second, ...rest] = path.split('/')
+  const map = buildSlugMap(lang)
+  const local = second ? [map.get(`${first}/${second}`) ?? second] : second === '' ? [''] : []
+  return ['', lang, map.get(first) ?? first, ...local, ...rest].join('/').replace(/\/\/$/, '/')
 }
 
 /**
@@ -77,7 +80,16 @@ for (const lang of SUPPORTED_LOCALES) {
   }
 }
 
-/** /es/backgrounds/* → /backgrounds/* and so on: English-only sections have one URL. Host rules only (no stub pages). */
+// Old background slugs: in English they still render (with a canonical to the real page); in other
+// languages the old /es/backgrounds/pure-white/ address goes straight to the translated page.
+for (const lang of SUPPORTED_LOCALES) {
+  if (lang === 'en') continue
+  for (const item of BACKGROUND_ITEMS) {
+    for (const alias of item.aliases ?? []) LEGACY_REDIRECTS[`/${lang}/backgrounds/${alias}/`] = localized(`/backgrounds/${item.slug}/`, lang)
+  }
+}
+
+/** /es/terms/* → /terms/* and so on: English-only pages have one URL. Host rules only (no stub pages). */
 export const ENGLISH_ONLY_WILDCARDS: [from: string, to: string][] = SUPPORTED_LOCALES.filter((lang) => lang !== 'en').flatMap((lang) =>
   ENGLISH_ONLY_PREFIX_LIST.map((prefix) => [`/${lang}${prefix}/*`, `${prefix}/:splat`] as [string, string]),
 )

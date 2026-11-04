@@ -4,7 +4,7 @@ import type { BackgroundItem } from './backgrounds-data'
  * Paints a background onto a canvas at any size, for the PNG downloads. Gradients run corner to
  * corner like the 135° CSS previews; patterns (graph paper) scale their grid with the image.
  */
-export function paintBackground(ctx: CanvasRenderingContext2D, item: BackgroundItem, width: number, height: number) {
+export function paintBackground(ctx: CanvasRenderingContext2D, item: Pick<BackgroundItem, 'type' | 'primaryHex' | 'secondaryHex' | 'accentHex'>, width: number, height: number) {
   if (item.type === 'gradient' && item.secondaryHex) {
     const grad = ctx.createLinearGradient(0, 0, width, height)
     grad.addColorStop(0, item.primaryHex)

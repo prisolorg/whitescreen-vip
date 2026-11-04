@@ -5,6 +5,7 @@ import { COLOR_HUB_NAMES, HUBS } from '@/lib/hubs'
 import { getCategory } from '@/lib/tool-categories'
 import { getLocalizedCategory } from '@/lib/localized-tools'
 import { getMessages } from '@/lib/messages'
+import { backgroundText } from '@/lib/article-i18n/background-text'
 
 export function SiteFooter() {
   const { t, language } = useTranslation()
@@ -31,13 +32,11 @@ export function SiteFooter() {
   ]
 
   // "Backgrounds Library" removed per instructions; individual background collections preserved
-  const backgroundLinks = [
-    { name: 'Solid Color Backgrounds', href: '/backgrounds?category=solid' },
-    { name: 'Gradient Backgrounds', href: '/backgrounds?category=gradient' },
-    { name: 'Video Call Backgrounds', href: '/backgrounds?category=video-call' },
-    { name: 'Dark & OLED Backgrounds', href: '/backgrounds?category=dark-oled' },
-    { name: 'Neon & Glow Backgrounds', href: '/backgrounds?category=neon' },
-  ]
+  const backgroundCategories = backgroundText(language).categories
+  const backgroundLinks = (['solid', 'gradient', 'video-call', 'dark-oled', 'neon'] as const).map((id) => ({
+    name: backgroundCategories[id].heading,
+    href: `/backgrounds?category=${id}`,
+  }))
 
   const messages = getMessages(language)
 

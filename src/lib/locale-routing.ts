@@ -52,11 +52,11 @@ export function extractLocaleAndPath(pathname: string): { lang: LanguageCode; cl
 }
 
 /**
- * Sections whose articles exist only in English (and the legal pages, kept in one language so
- * there is one authoritative version). They have a single English URL: links from
- * other languages point there, and the old /es/backgrounds/… style addresses 301 to it.
+ * Pages that exist only in English (the legal pages, kept in one language so there is one
+ * authoritative version, and the author page). They have a single English URL: links from
+ * other languages point there, and the old /es/terms/… style addresses 301 to it.
  */
-export const ENGLISH_ONLY_PREFIXES = ['/backgrounds', '/author-whitson-rao', '/privacy-policy', '/terms', '/disclaimer']
+export const ENGLISH_ONLY_PREFIXES = ['/author-whitson-rao', '/privacy-policy', '/terms', '/disclaimer']
 
 export function isEnglishOnlyPath(cleanPath: string): boolean {
   return ENGLISH_ONLY_PREFIXES.some((prefix) => cleanPath === prefix || cleanPath.startsWith(`${prefix}/`))
