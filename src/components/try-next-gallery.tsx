@@ -150,7 +150,7 @@ export function TryNextGallery({
     <section aria-labelledby={`${baseId}-heading`} className={cn('flex flex-col gap-3', className)}>
       <div className="flex items-baseline justify-between gap-3">
         <h2 id={`${baseId}-heading`} className="text-base font-bold tracking-tight sm:text-lg">
-          {t('keepTesting', 'Keep testing your display')}
+          {defaultTabFor(currentSlug) === 'screen-tests' ? t('keepTesting', 'Keep testing your display') : t('tryNext', 'Try next')}
         </h2>
         <Link href="/tools" className="shrink-0 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400">
           {t('allToolsLink', 'All 50+ tools →')}

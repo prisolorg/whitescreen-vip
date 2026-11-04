@@ -61,7 +61,7 @@ export function ToolSections() {
         title={t('screenTests', 'Screen Tests')}
         description={t(
           'screenTestsDesc',
-          'Solid colors and test patterns for checking dead pixels, uniformity, burn-in and color accuracy.'
+          'Test patterns for checking dead pixels, uniformity, burn-in and color accuracy.'
         )}
         className="border-t bg-muted/20"
       >

@@ -13,7 +13,7 @@ export const TOOL_CATEGORIES: readonly ToolCategory[] = [
     name: 'Screen Tests',
     navLabel: 'Screen Tests',
     description:
-      'Solid colors and test patterns for checking dead pixels, uniformity, burn-in and color accuracy.',
+      'Test patterns for checking dead pixels, uniformity, burn-in and color accuracy.',
   },
   {
     id: 'effects',

@@ -23,7 +23,7 @@ export function toolMetadata(slug: string): Record<string, unknown> {
   }
 }
 
-/** The interactive part of a tool page (hydrated): breadcrumbs, the tool itself and next links. */
+/** The interactive part of a tool page (hydrated): breadcrumbs and the tool itself. The next links are GalleryIsland. */
 export function ToolPage({ slug, children }: { slug: string; children: ReactNode }) {
   const { t, language } = useTranslation()
   const tool = getTool(slug)

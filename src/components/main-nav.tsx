@@ -25,14 +25,14 @@ const TOOL_COLUMNS: ToolColumn[] = [
   {
     titleKey: 'navColorScreens',
     defaultTitle: 'Color screens',
-    href: '/tools#screen-tests',
+    href: '/color-screens',
     slugs: ['white-screen', 'black-screen', 'red-screen', 'green-screen', 'blue-screen'],
-    more: { key: 'navAllColors', label: 'All 12 colors →', href: '/tools#screen-tests' },
+    more: { key: 'navAllColors', label: 'All 12 colors →', href: '/color-screens' },
   },
   {
     titleKey: 'screenTests',
     defaultTitle: 'Screen tests',
-    href: '/tools#screen-tests',
+    href: '/screen-tests',
     slugs: ['dead-pixel-test', 'screen-refresh-rate-test', 'touch-screen-test', 'monitor-ghosting-test', 'screen-burn-in-test', 'monitor-test'],
   },
   {
@@ -280,7 +280,7 @@ export function MobileNav() {
                   return (
                     <li key={item.id}>
                       <Link
-                        href={`/tools#${item.id === 'colors' ? 'screen-tests' : item.id}`}
+                        href={item.id === 'colors' ? '/color-screens' : `/tools#${item.id}`}
                         onClick={close}
                         className="flex min-h-12 items-center gap-3 rounded-xl px-1.5 hover:bg-accent"
                       >

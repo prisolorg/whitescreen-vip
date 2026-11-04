@@ -50,8 +50,8 @@ const slug = 'slug' in page ? page.slug : 'path' in page ? page.path : ''
   {page.kind === 'color' && <ColorIsland url={url} colorId={page.colorId} client:load />}
   {page.kind === 'color' && <StaticColorBody url={url} colorId={page.colorId} />}
   {page.kind === 'tool' && <ToolIsland url={url} slug={slug} client:load />}
-  {page.kind === 'tool' && <StaticToolBody url={url} slug={slug} />}
   {page.kind === 'tool' && <GalleryIsland url={url} slug={slug} client:visible />}
+  {page.kind === 'tool' && <StaticToolBody url={url} slug={slug} />}
   {page.kind === 'contact' && <ContactIsland url={url} client:load />}
   {page.kind === 'feedback' && <FeedbackIsland url={url} client:load />}
   {page.kind === 'backgrounds' && <BackgroundsIsland url={url} {...backgroundIndexProps(lang)} client:load />}

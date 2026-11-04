@@ -2,8 +2,7 @@ import { ScreenTool } from '@/components/screen-tool/screen-tool'
 import { TryNextGallery } from '@/components/try-next-gallery'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { ToolWithAds } from '@/components/tool-ads'
-import { getCategory } from '@/lib/tool-categories'
-import { getLocalizedCategory } from '@/lib/localized-tools'
+import { COLOR_HUB_NAMES } from '@/lib/hubs'
 import { useTranslation } from '@/lib/i18n'
 
 type HeroProps = {
@@ -14,7 +13,6 @@ type HeroProps = {
 
 export function Hero({ colorId = 'white', title, intro }: HeroProps) {
   const { t, language } = useTranslation()
-  const category = getLocalizedCategory(getCategory('screen-tests'), language)
 
   const defaultTitle =
     colorId === 'white'
@@ -27,7 +25,7 @@ export function Hero({ colorId = 'white', title, intro }: HeroProps) {
         <Breadcrumbs
           items={[
             { label: t('home', 'Home'), href: '/' },
-            { label: category.name, href: '/tools#screen-tests' },
+            { label: COLOR_HUB_NAMES[language][0], href: '/color-screens' },
             { label: title ?? defaultTitle, href: `/${colorId}-screen` },
           ]}
         />

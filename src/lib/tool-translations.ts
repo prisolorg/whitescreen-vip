@@ -17,7 +17,7 @@ export const CATEGORY_TRANSLATIONS: Record<LanguageCode, Record<ToolCategoryId, 
     'screen-tests': {
       name: 'Screen Tests',
       navLabel: 'Screen Tests',
-      description: 'Solid colors and test patterns for checking dead pixels, uniformity, burn-in and color accuracy.',
+      description: 'Test patterns for checking dead pixels, uniformity, burn-in and color accuracy.',
     },
     effects: {
       name: 'Visual Effects',
@@ -44,7 +44,7 @@ export const CATEGORY_TRANSLATIONS: Record<LanguageCode, Record<ToolCategoryId, 
     'screen-tests': {
       name: 'Pruebas de pantalla',
       navLabel: 'Pruebas de pantalla',
-      description: 'Colores sólidos y patrones de prueba para detectar píxeles muertos, uniformidad y precisión cromática.',
+      description: 'Patrones de prueba para detectar píxeles muertos, uniformidad y precisión cromática.',
     },
     effects: {
       name: 'Efectos visuales',
@@ -71,7 +71,7 @@ export const CATEGORY_TRANSLATIONS: Record<LanguageCode, Record<ToolCategoryId, 
     'screen-tests': {
       name: 'Testes de tela',
       navLabel: 'Testes de tela',
-      description: 'Cores sólidas e padrões de teste para verificar dead pixels, uniformidade, burn-in e fidelidade de cor.',
+      description: 'Padrões de teste para verificar dead pixels, uniformidade, burn-in e fidelidade de cor.',
     },
     effects: {
       name: 'Efeitos visuais',
@@ -98,7 +98,7 @@ export const CATEGORY_TRANSLATIONS: Record<LanguageCode, Record<ToolCategoryId, 
     'screen-tests': {
       name: 'Bildschirmtests',
       navLabel: 'Bildschirmtests',
-      description: 'Farbfelder und Testmuster zur Erkennung von Pixelfehlern, Ausleuchtung, Einbrennen und Farbgenauigkeit.',
+      description: 'Testmuster zur Erkennung von Pixelfehlern, Ausleuchtung, Einbrennen und Farbgenauigkeit.',
     },
     effects: {
       name: 'Visuelle Effekte',
@@ -125,7 +125,7 @@ export const CATEGORY_TRANSLATIONS: Record<LanguageCode, Record<ToolCategoryId, 
     'screen-tests': {
       name: "Tests d'écran",
       navLabel: "Tests d'écran",
-      description: 'Couleurs unies et mires de test pour détecter les pixels morts, l’uniformité et la justesse des couleurs.',
+      description: 'Mires de test pour détecter les pixels morts, l’uniformité et la justesse des couleurs.',
     },
     effects: {
       name: 'Effets visuels',
@@ -152,7 +152,7 @@ export const CATEGORY_TRANSLATIONS: Record<LanguageCode, Record<ToolCategoryId, 
     'screen-tests': {
       name: 'Test dello schermo',
       navLabel: 'Test dello schermo',
-      description: 'Colori pieni e pattern di test per verificare pixel bruciati, uniformità, burn-in e precisione cromatica.',
+      description: 'Pattern di test per verificare pixel bruciati, uniformità, burn-in e precisione cromatica.',
     },
     effects: {
       name: 'Effetti visivi',
@@ -179,7 +179,7 @@ export const CATEGORY_TRANSLATIONS: Record<LanguageCode, Record<ToolCategoryId, 
     'screen-tests': {
       name: 'Schermtests',
       navLabel: 'Schermtests',
-      description: 'Effen kleuren en testpatronen voor het controleren van dode pixels, uniformiteit en kleurnauwkeurigheid.',
+      description: 'Testpatronen voor het controleren van dode pixels, uniformiteit en kleurnauwkeurigheid.',
     },
     effects: {
       name: 'Visuele effecten',
@@ -206,7 +206,7 @@ export const CATEGORY_TRANSLATIONS: Record<LanguageCode, Record<ToolCategoryId, 
     'screen-tests': {
       name: 'Tes Layar',
       navLabel: 'Tes Layar',
-      description: 'Warna solid dan pola uji untuk memeriksa piksel mati, keseragaman panel, dan akurasi warna.',
+      description: 'Pola uji untuk memeriksa piksel mati, keseragaman panel, dan akurasi warna.',
     },
     effects: {
       name: 'Efek Visual',
@@ -233,7 +233,7 @@ export const CATEGORY_TRANSLATIONS: Record<LanguageCode, Record<ToolCategoryId, 
     'screen-tests': {
       name: 'Ekran Testleri',
       navLabel: 'Ekran Testleri',
-      description: 'Ölü piksel, parlaklık dağılımı, yanma ve renk doğruluğunu kontrol etmek için düz renkler ve test desenleri.',
+      description: 'Ölü piksel, parlaklık dağılımı, yanma ve renk doğruluğunu kontrol etmek için test desenleri.',
     },
     effects: {
       name: 'Görsel Efektler',

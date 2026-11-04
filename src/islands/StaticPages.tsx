@@ -13,6 +13,7 @@ import { NotFoundPage } from '@/views/NotFoundPage'
 import { GuideDetailPage } from '@/views/GuideDetailPage'
 import { GuidesIndexPage } from '@/views/GuidesIndexPage'
 import { ToolPageBody } from '@/components/tool-page-body'
+import { WhiteScreenCta } from '@/components/white-screen-cta'
 import { BackgroundBody } from '@/views/BackgroundBody'
 import { ColorPageBody } from '@/views/ColorPageBody'
 import { HomePageBody } from '@/views/HomePageBody'
@@ -50,6 +51,7 @@ export function StaticToolBody({ url, slug }: { url: string; slug: string }) {
   return (
     <Providers url={url}>
       <ToolPageBody slug={slug} />
+      {slug !== 'white-screen' && <WhiteScreenCta className="my-10" />}
     </Providers>
   )
 }

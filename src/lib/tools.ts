@@ -686,8 +686,13 @@ export function getTool(slug: string) {
   return tool
 }
 
+/** The tools of a category. Solid color screens aren't included: they are listed as their own group. */
 export function getToolsByCategory(category: ToolCategoryId) {
-  return TOOLS.filter((tool) => tool.category === category)
+  return TOOLS.filter((tool) => tool.category === category && !tool.swatch)
+}
+
+export function getColorScreens() {
+  return TOOLS.filter((tool) => tool.swatch)
 }
 
 export function toolPath(slug: string) {

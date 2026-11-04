@@ -2,7 +2,8 @@ import { useState, useMemo } from 'react'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { ToolGrid } from '@/components/tool-card'
 import { TOOL_CATEGORIES, type ToolCategoryId } from '@/lib/tool-categories'
-import { TOOLS, getToolsByCategory } from '@/lib/tools'
+import { TOOLS, getColorScreens, getToolsByCategory } from '@/lib/tools'
+import { COLOR_HUB_NAMES } from '@/lib/hubs'
 import { Search } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n'
@@ -10,12 +11,13 @@ import { getLocalizedCategory, getLocalizedTool } from '@/lib/localized-tools'
 
 export function ToolsPage() {
   const { t, language } = useTranslation()
-  const [selectedCategory, setSelectedCategory] = useState<ToolCategoryId | 'all'>('all')
+  const [selectedCategory, setSelectedCategory] = useState<ToolCategoryId | 'all' | 'colors'>('all')
   const [query, setQuery] = useState('')
 
   const filteredTools = useMemo(() => {
     return TOOLS.filter((tool) => {
-      const matchesCategory = selectedCategory === 'all' || tool.category === selectedCategory
+      const matchesCategory =
+        selectedCategory === 'all' || (selectedCategory === 'colors' ? Boolean(tool.swatch) : tool.category === selectedCategory && !tool.swatch)
       const q = query.toLowerCase().trim()
       if (!q) return matchesCategory
 
@@ -29,6 +31,9 @@ export function ToolsPage() {
       return matchesCategory && matchesQuery
     })
   }, [selectedCategory, query, language])
+
+  const colorScreens = getColorScreens()
+  const [colorsName, colorsDescription] = COLOR_HUB_NAMES[language]
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
@@ -65,6 +70,18 @@ export function ToolsPage() {
             )}
           >
             {t('allTools', 'All Tools')} ({TOOLS.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setSelectedCategory('colors')}
+            className={cn(
+              'rounded-lg px-3.5 py-1.5 text-sm font-medium transition-colors cursor-pointer',
+              selectedCategory === 'colors'
+                ? 'bg-primary text-primary-foreground shadow-sm'
+                : 'bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground',
+            )}
+          >
+            {colorsName} ({colorScreens.length})
           </button>
           {TOOL_CATEGORIES.map((cat) => {
             const count = getToolsByCategory(cat.id).length
@@ -111,6 +128,18 @@ export function ToolsPage() {
       ) : (
         /* Grouped by categories */
         <div className="flex flex-col gap-14">
+          <section id="color-screens" className="scroll-mt-24">
+            <div className="mb-4 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+              <div>
+                <h2 className="text-2xl font-bold tracking-tight">{colorsName}</h2>
+                <p className="mt-1 text-sm text-muted-foreground">{colorsDescription}</p>
+              </div>
+              <span className="text-xs font-mono text-muted-foreground">
+                {colorScreens.length} {t('toolsCount', 'tools')}
+              </span>
+            </div>
+            <ToolGrid tools={colorScreens} />
+          </section>
           {TOOL_CATEGORIES.map((cat) => {
             const categoryTools = getToolsByCategory(cat.id)
             const localizedCat = getLocalizedCategory(cat, language)

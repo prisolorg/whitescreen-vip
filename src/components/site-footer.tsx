@@ -22,7 +22,6 @@ export function SiteFooter() {
   }))
 
   const screenTestLinks = [
-    { name: t('homeTitle', 'White Screen'), href: '/' },
     { name: 'Dead Pixel Test', href: '/dead-pixel-test' },
     { name: 'Screen Uniformity Test', href: '/screen-uniformity-test' },
     { name: 'Screen Color Test', href: '/screen-color-test' },

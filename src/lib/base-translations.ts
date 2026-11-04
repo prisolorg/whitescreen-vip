@@ -98,7 +98,7 @@ export const BASE_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     moreColors: 'More colors',
 
     screenTestsEyebrow: 'Display testing',
-    screenTestsDesc: 'Solid colors and test patterns for checking dead pixels, uniformity, burn-in and color accuracy.',
+    screenTestsDesc: 'Test patterns for checking dead pixels, uniformity, burn-in and color accuracy.',
     effectsEyebrow: 'Visuals & animations',
     effectsDesc: 'Animated static, noise, gradients and simulated effects that run right in your browser.',
     otherToolsEyebrow: 'Utilities & simulations',
@@ -211,7 +211,7 @@ export const BASE_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     moreColors: 'Más colores',
 
     screenTestsEyebrow: 'Pruebas de visualización',
-    screenTestsDesc: 'Colores sólidos y patrones para detectar píxeles muertos, uniformidad y precisión cromática.',
+    screenTestsDesc: 'Patrones de prueba para detectar píxeles muertos, uniformidad y precisión cromática.',
     effectsEyebrow: 'Efectos y animaciones',
     effectsDesc: 'Estática animada, ruido, degradados y simulaciones que funcionan directamente en tu navegador.',
     otherToolsEyebrow: 'Utilidades y simulaciones',
@@ -324,7 +324,7 @@ export const BASE_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     moreColors: 'Mais cores',
 
     screenTestsEyebrow: 'Testes de exibição',
-    screenTestsDesc: 'Cores sólidas e padrões para verificar dead pixels, uniformidade, burn-in e precisão cromática.',
+    screenTestsDesc: 'Padrões de teste para verificar dead pixels, uniformidade, burn-in e precisão cromática.',
     effectsEyebrow: 'Efeitos e visuais',
     effectsDesc: 'Estática animada, ruído, degradês e efeitos visuais que rodam direto no navegador.',
     otherToolsEyebrow: 'Utilitários e simulações',
@@ -437,7 +437,7 @@ export const BASE_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     moreColors: 'Weitere Farben',
 
     screenTestsEyebrow: 'Bildschirmprüfung',
-    screenTestsDesc: 'Farbfelder und Testbilder zur Erkennung von Pixelfehlern, Ausleuchtung und Farbgenauigkeit.',
+    screenTestsDesc: 'Testbilder zur Erkennung von Pixelfehlern, Ausleuchtung und Farbgenauigkeit.',
     effectsEyebrow: 'Visuals & Animationen',
     effectsDesc: 'Animiertes TV-Rauschen, Verläufe und Browsereffekte ohne Installation.',
     otherToolsEyebrow: 'Dienstprogramme & Simulationen',
@@ -550,7 +550,7 @@ export const BASE_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     moreColors: 'Plus de couleurs',
 
     screenTestsEyebrow: 'Tests de moniteur',
-    screenTestsDesc: 'Couleurs unies et mires de test pour détecter les pixels morts, l’uniformité et la colorimétrie.',
+    screenTestsDesc: 'Mires de test pour détecter les pixels morts, l’uniformité et la colorimétrie.',
     effectsEyebrow: 'Animations et effets',
     effectsDesc: 'Neige TV, bruit visuel, dégradés et effets animés directement dans votre navigateur.',
     otherToolsEyebrow: 'Utilitaires et simulations',
@@ -663,7 +663,7 @@ export const BASE_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     moreColors: 'Altri colori',
 
     screenTestsEyebrow: 'Test per monitor',
-    screenTestsDesc: 'Colori uniformi e pattern di prova per pixel bruciati, uniformità e calibrazione.',
+    screenTestsDesc: 'Pattern di prova per pixel bruciati, uniformità e calibrazione.',
     effectsEyebrow: 'Effetti e animazioni',
     effectsDesc: 'Neve TV, rumore visivo, gradienti ed effetti dinamici in esecuzione nel browser.',
     otherToolsEyebrow: 'Utilità e simulazioni',
@@ -776,7 +776,7 @@ export const BASE_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     moreColors: 'Meer kleuren',
 
     screenTestsEyebrow: 'Beeldschermcontrole',
-    screenTestsDesc: 'Effen kleuren en testpatronen voor het controleren van dode pixels, uniformiteit en kleurbereik.',
+    screenTestsDesc: 'Testpatronen voor het controleren van dode pixels, uniformiteit en kleurbereik.',
     effectsEyebrow: 'Visuals & animaties',
     effectsDesc: 'TV-sneeuw, geanimeerde ruis, verlopen en simulaties die direct in uw browser draaien.',
     otherToolsEyebrow: 'Hulpmiddelen & simulaties',
@@ -889,7 +889,7 @@ export const BASE_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     moreColors: 'Warna lainnya',
 
     screenTestsEyebrow: 'Pengujian layar',
-    screenTestsDesc: 'Warna solid dan pola uji untuk memeriksa piksel mati, keseragaman panel, dan akurasi warna.',
+    screenTestsDesc: 'Pola uji untuk memeriksa piksel mati, keseragaman panel, dan akurasi warna.',
     effectsEyebrow: 'Visual & animasi',
     effectsDesc: 'Statik TV animasi, noise piksel, gradien dan efek visual di peramban Anda.',
     otherToolsEyebrow: 'Utilitas & simulasi',
@@ -1002,7 +1002,7 @@ export const BASE_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     moreColors: 'Diğer renkler',
 
     screenTestsEyebrow: 'Ekran testi araçları',
-    screenTestsDesc: 'Ölü piksel, homojenlik, yanma ve renk doğruluğunu kontrol etmek için düz renkler ve test desenleri.',
+    screenTestsDesc: 'Ölü piksel, homojenlik, yanma ve renk doğruluğunu kontrol etmek için test desenleri.',
     effectsEyebrow: 'Görsel efektler ve animasyonlar',
     effectsDesc: 'Hareketli TV karıncalanması, parazit ve gradyan efektleri doğrudan tarayıcınızda.',
     otherToolsEyebrow: 'Yardımcı araçlar ve simülasyonlar',
