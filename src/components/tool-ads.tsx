@@ -12,7 +12,8 @@ export const SHOW_ADS = Boolean(ADSENSE_CLIENT) || import.meta.env.DEV
 function AdUnit({ slot, sizeClass, label, className }: { slot: string; sizeClass: string; label: string; className?: string }) {
   const { t } = useTranslation()
   return (
-    <aside aria-label={t('advertisement', 'Advertisement')} className={cn('flex-col items-center', className)}>
+    // When Google has no ad to show (data-ad-status "unfilled"), the whole unit collapses, label included.
+    <aside aria-label={t('advertisement', 'Advertisement')} className={cn('flex-col items-center has-[[data-ad-status^=unfill]]:hidden!', className)}>
       <p className="mb-1 text-center text-[11px] uppercase tracking-wider text-muted-foreground">{t('advertisement', 'Advertisement')}</p>
       {ADSENSE_CLIENT ? (
         <div
