@@ -169,7 +169,7 @@ export function ResolutionControls({ activeHex, activeName, uploadedImageUrl, cl
 
   if (compact) {
     return (
-      <div className={cn('flex items-center gap-2', className)}>
+      <div className={cn('flex flex-wrap items-center gap-2', className)}>
         <label htmlFor="dock-size" className="sr-only">
           {t('resolution', 'Resolution & Download')}
         </label>

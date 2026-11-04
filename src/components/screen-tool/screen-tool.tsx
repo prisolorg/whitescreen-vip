@@ -319,7 +319,7 @@ export function ScreenTool({ initialColorId = 'white', title, intro }: ScreenToo
       {/* Control dock under the stage, the same on every screen page. */}
       {!isFullscreen && (
         <StageDock onFullscreen={() => void enterFullscreen()}>
-          <div className="flex flex-col gap-2.5 lg:flex-row lg:items-center lg:gap-3">
+          <div className="flex flex-col gap-2.5 lg:flex-row lg:flex-wrap lg:items-center lg:gap-3">
             <div
               role="group"
               aria-label={t('screenColors', 'Screen Colors')}
@@ -354,9 +354,7 @@ export function ScreenTool({ initialColorId = 'white', title, intro }: ScreenToo
               })}
             </div>
 
-            <span aria-hidden="true" className="hidden h-8 w-px bg-border lg:block" />
-
-            <div className="flex flex-wrap items-center gap-2 lg:flex-nowrap">
+            <div className="flex flex-wrap items-center gap-2">
               <CustomColorPicker
                 value={customHex}
                 isSelected={!preset && !uploadedImage}
@@ -391,7 +389,7 @@ export function ScreenTool({ initialColorId = 'white', title, intro }: ScreenToo
               )}
               <ResolutionControls
                 compact
-                className="min-w-[220px] flex-1 lg:min-w-0"
+                className="flex-1"
                 activeHex={activeHex}
                 activeName={uploadedImage ? 'image' : activeName}
                 uploadedImageUrl={uploadedImage}
