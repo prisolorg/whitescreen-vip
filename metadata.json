@@ -1,0 +1,6 @@
+{
+  "name": "WhiteScreen.vip – Free Screen Tests, Effects & Screensavers",
+  "description": "Free browser-based screen tools: fullscreen color screens, dead pixel and monitor tests, screensavers, timers, visual effects and harmless fake update screens. No install or sign-up.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
