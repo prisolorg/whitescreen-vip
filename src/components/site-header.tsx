@@ -3,6 +3,8 @@ import { DesktopNav, HeaderSearchButton, MobileNav } from './main-nav'
 import { ToolSearch } from './tool-search'
 import { LanguageSelector } from './language-selector'
 import { ThemeToggle } from './theme-toggle'
+import Link from 'next/link'
+import { MessageSquarePlus } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n'
 
 export function SiteHeader() {
@@ -27,6 +29,13 @@ export function SiteHeader() {
           <div className="lg:hidden">
             <HeaderSearchButton />
           </div>
+          <Link
+            href="/feedback"
+            className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-border px-3 text-sm font-medium transition-colors hover:bg-accent"
+          >
+            <MessageSquarePlus className="size-4" aria-hidden="true" />
+            {t('feedback', 'Feedback')}
+          </Link>
           <ThemeToggle className="size-10" />
           <LanguageSelector />
         </div>
@@ -34,6 +43,14 @@ export function SiteHeader() {
         {/* Phones: search, theme, language and the menu */}
         <div className="flex shrink-0 items-center gap-0.5 md:hidden">
           <HeaderSearchButton />
+          <Link
+            href="/feedback"
+            aria-label={t('feedback', 'Feedback')}
+            title={t('feedback', 'Feedback')}
+            className="inline-flex size-9 items-center justify-center rounded-lg transition-colors hover:bg-accent"
+          >
+            <MessageSquarePlus className="size-5" aria-hidden="true" />
+          </Link>
           <ThemeToggle className="size-9" />
           <LanguageSelector compact />
           <MobileNav />

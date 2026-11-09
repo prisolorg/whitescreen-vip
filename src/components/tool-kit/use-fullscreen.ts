@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useSignalOnFullscreenExit } from '@/lib/ratings'
 
 type FullscreenDocument = Document & {
   webkitFullscreenElement?: Element | null
@@ -26,6 +27,7 @@ export function useFullscreen<T extends HTMLElement = HTMLDivElement>() {
   const [isFallback, setIsFallback] = useState(false)
   const wakeLockRef = useRef<WakeLockSentinel | null>(null)
   const isFullscreen = isNative || isFallback
+  useSignalOnFullscreenExit(isFullscreen)
 
   const enter = useCallback(async () => {
     const element = ref.current as FullscreenElement | null

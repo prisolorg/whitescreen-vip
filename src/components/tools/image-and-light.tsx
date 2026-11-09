@@ -1,6 +1,7 @@
 'use client'
 
 import { tx } from '@/lib/tx'
+import { signalToolUsed } from '@/lib/ratings'
 import { useEffect, useState, useSyncExternalStore } from 'react'
 import { Download } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -36,6 +37,7 @@ export function downloadSolidImage(hex: string, width: number, height: number, f
       link.href = url
       link.download = `screen-${hex.slice(1).toLowerCase()}-${width}x${height}.${format}`
       link.click()
+      signalToolUsed()
       URL.revokeObjectURL(url)
     },
     type,

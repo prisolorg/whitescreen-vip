@@ -2,7 +2,7 @@
 
 import { tx } from '@/lib/tx'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Pause, Play, RotateCcw, Volume2, VolumeX } from 'lucide-react'
+import { Download, Pause, Play, RotateCcw, Volume2, VolumeX } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
 import { ActionButton, ColorInput, ControlRow, Segmented, Slider, TextInput, Toggle } from '@/components/tool-kit/controls'
 import { useAnimationFrame, useCanvasSize, usePrefersReducedMotion } from '@/components/tool-kit/hooks'
@@ -145,10 +145,13 @@ export function NoSignalScreen() {
 
 /* ---------------- Broken screen ---------------- */
 
-type Impact = { x: number; y: number; seed: number; size: number }
 type Pt = { x: number; y: number }
+type Impact = { x: number; y: number; seed: number; size: number }
+type CrackStyle = 'spider' | 'corner' | 'shattered' | 'hairline' | 'lcd' | 'lines'
+type BrokenBackground = 'wallpaper' | 'lock' | 'black' | 'white'
+type Random = () => number
 
-function seededRandom(seed: number) {
+function seededRandom(seed: number): Random {
   let value = seed
   return () => {
     value = (value * 16807) % 2147483647
@@ -156,157 +159,338 @@ function seededRandom(seed: number) {
   }
 }
 
-/** Strokes one crack with a dark refraction edge, a faint glow and a bright core, like real broken glass. */
-function strokeCrack(ctx: CanvasRenderingContext2D, points: Pt[], weight: number) {
-  if (points.length < 2) return
-  const path = new Path2D()
-  path.moveTo(points[0].x, points[0].y)
-  for (const p of points.slice(1)) path.lineTo(p.x, p.y)
-  ctx.save()
-  ctx.lineCap = 'round'
-  ctx.lineJoin = 'round'
-  ctx.strokeStyle = 'rgba(255,255,255,0.08)'
-  ctx.lineWidth = weight * 5
-  ctx.stroke(path)
-  ctx.translate(0.8, 0.8)
-  ctx.strokeStyle = 'rgba(0,0,0,0.55)'
-  ctx.lineWidth = weight * 1.8
-  ctx.stroke(path)
-  ctx.translate(-0.8, -0.8)
-  ctx.strokeStyle = 'rgba(255,255,255,0.9)'
-  ctx.lineWidth = weight
-  ctx.stroke(path)
-  ctx.restore()
+/** Splits every segment into a few slightly offset pieces, so cracks look like fractured glass, not ruled lines. */
+function jagged(points: Pt[], random: Random, roughness = 0.07): Pt[] {
+  const out: Pt[] = [points[0]]
+  for (let i = 1; i < points.length; i++) {
+    const a = points[i - 1]
+    const b = points[i]
+    const length = Math.hypot(b.x - a.x, b.y - a.y)
+    const pieces = length > 40 ? 3 + Math.floor(random() * 2) : 2
+    const nx = -(b.y - a.y) / (length || 1)
+    const ny = (b.x - a.x) / (length || 1)
+    for (let p = 1; p < pieces; p++) {
+      const t = p / pieces
+      const offset = (random() - 0.5) * 2 * length * roughness
+      out.push({ x: a.x + (b.x - a.x) * t + nx * offset, y: a.y + (b.y - a.y) * t + ny * offset })
+    }
+    out.push(b)
+  }
+  return out
 }
 
 /**
- * Draws one impact: a crushed centre, radial cracks (some branching, the longest reaching the
- * edges), concentric rings of short cracks between them, and a few lifted shards catching light.
+ * Strokes one crack: a soft halo, a dark refraction edge and a bright core that thins along the
+ * crack, with the odd glint where a fracture catches the light. On a white screen the cracks are dark.
  */
-function drawImpact(ctx: CanvasRenderingContext2D, impact: Impact, width: number, height: number, lcdDamage: boolean) {
+function strokeCrack(ctx: CanvasRenderingContext2D, points: Pt[], weight: number, random: Random, onLight: boolean) {
+  if (points.length < 2) return
+  const core = onLight ? '20,20,24' : '255,255,255'
+  const edge = onLight ? '255,255,255' : '0,0,0'
+  ctx.save()
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+  const path = new Path2D()
+  path.moveTo(points[0].x, points[0].y)
+  for (const p of points.slice(1)) path.lineTo(p.x, p.y)
+  ctx.strokeStyle = `rgba(${core},0.05)`
+  ctx.lineWidth = weight * 4.5
+  ctx.stroke(path)
+  ctx.translate(0.7, 0.7)
+  ctx.strokeStyle = `rgba(${edge},0.45)`
+  ctx.lineWidth = weight * 1.6
+  ctx.stroke(path)
+  ctx.translate(-0.7, -0.7)
+  const segments = points.length - 1
+  for (let i = 0; i < segments; i++) {
+    const taper = 1 - (i / segments) * 0.55
+    const glint = random() < 0.12
+    ctx.strokeStyle = `rgba(${core},${glint ? 0.98 : 0.55 + random() * 0.35})`
+    ctx.lineWidth = Math.max(0.45, weight * taper * (glint ? 1.7 : 1))
+    ctx.beginPath()
+    ctx.moveTo(points[i].x, points[i].y)
+    ctx.lineTo(points[i + 1].x, points[i + 1].y)
+    ctx.stroke()
+  }
+  ctx.restore()
+}
+
+/** One impact point: a crushed centre, radial cracks with branches, rings of short cracks and loose shards. */
+function drawImpact(ctx: CanvasRenderingContext2D, impact: Impact, width: number, height: number, onLight: boolean) {
   const random = seededRandom(impact.seed)
   const cx = impact.x * width
   const cy = impact.y * height
-  const scale = Math.max(0.6, Math.min(width, height) / 700) * impact.size
-  const base = 12 * scale
-  const rayCount = 14 + Math.floor(random() * 9)
+  const scale = Math.max(0.55, Math.min(width, height) / 720) * impact.size
+  const base = 11 * scale
   const reach = Math.hypot(width, height)
+  const rayCount = 16 + Math.floor(random() * 12)
 
-  // Rays: vertices at growing distances, with a little wobble in direction.
   const rays: Pt[][] = []
   for (let r = 0; r < rayCount; r++) {
-    let angle = (r / rayCount) * Math.PI * 2 + (random() - 0.5) * 0.35
-    const isLong = random() < 0.45
-    const vertices = isLong ? 14 : 4 + Math.floor(random() * 6)
+    let angle = (r / rayCount) * Math.PI * 2 + (random() - 0.5) * 0.4
+    const isLong = random() < 0.5
+    const vertices = isLong ? 30 : 5 + Math.floor(random() * 8)
     const points: Pt[] = [{ x: cx, y: cy }]
     let x = cx
     let y = cy
-    let step = base * (0.7 + random() * 0.6)
+    let step = base * (0.6 + random() * 0.5)
     for (let v = 0; v < vertices; v++) {
-      angle += (random() - 0.5) * 0.28
+      angle += (random() - 0.5) * 0.22
       x += Math.cos(angle) * step
       y += Math.sin(angle) * step
       points.push({ x, y })
-      step *= 1.32 + random() * 0.18
+      step *= 1.16 + random() * 0.14
       if (Math.hypot(x - cx, y - cy) > reach) break
     }
     rays.push(points)
   }
 
-  // Lifted shards: cells between neighbouring rays and rings, lightly tinted.
+  // Loose shards between rays and rings, only near the impact: some catch light, some sit in shadow.
+  const shardReach = Math.min(width, height) * 0.22
   for (let r = 0; r < rays.length; r++) {
     const a = rays[r]
     const b = rays[(r + 1) % rays.length]
-    for (let k = 1; k < 5; k++) {
-      if (!a[k + 1] || !b[k + 1] || random() > 0.38) continue
+    for (let k = 1; k < 10; k++) {
+      if (!a[k + 1] || !b[k + 1] || random() > 0.3 || Math.hypot(a[k + 1].x - cx, a[k + 1].y - cy) > shardReach) continue
       ctx.beginPath()
       ctx.moveTo(a[k].x, a[k].y)
       ctx.lineTo(a[k + 1].x, a[k + 1].y)
       ctx.lineTo(b[k + 1].x, b[k + 1].y)
       ctx.lineTo(b[k].x, b[k].y)
       ctx.closePath()
-      ctx.fillStyle = random() < 0.7 ? `rgba(255,255,255,${0.03 + random() * 0.11})` : `rgba(0,0,0,${0.08 + random() * 0.14})`
+      const light = random() < 0.65
+      ctx.fillStyle = light !== onLight ? `rgba(255,255,255,${0.02 + random() * 0.09})` : `rgba(0,0,0,${0.05 + random() * 0.12})`
       ctx.fill()
     }
   }
 
-  // Concentric rings: short, slightly bowed cracks joining neighbouring rays.
-  for (let k = 1; k < 6; k++) {
-    const chance = [0, 0.95, 0.8, 0.6, 0.38, 0.2][k]
+  // Rings: short bowed cracks joining neighbouring rays, dense near the centre.
+  for (let k = 1; k < 16; k++) {
+    const chance = Math.max(0.06, 1 - k * 0.07)
     for (let r = 0; r < rays.length; r++) {
       const a = rays[r][k]
       const b = rays[(r + 1) % rays.length][k]
       if (!a || !b || random() > chance) continue
       const mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }
-      const bow = 0.88 + random() * 0.2
-      const bent = { x: cx + (mid.x - cx) * bow, y: cy + (mid.y - cy) * bow }
-      strokeCrack(ctx, [a, bent, b], Math.max(0.6, 0.9 * scale - k * 0.08))
+      const bow = 0.86 + random() * 0.22
+      strokeCrack(ctx, jagged([a, { x: cx + (mid.x - cx) * bow, y: cy + (mid.y - cy) * bow }, b], random, 0.05), Math.max(0.5, 0.85 * scale - k * 0.04), random, onLight)
     }
   }
 
-  // Radial cracks and their branches.
+  // Radial cracks and branches.
   for (const ray of rays) {
-    strokeCrack(ctx, ray, Math.max(0.7, 1.25 * scale))
+    strokeCrack(ctx, jagged(ray, random), Math.max(0.65, 1.2 * scale), random, onLight)
     for (let v = 2; v < ray.length - 1; v++) {
-      if (random() > 0.22) continue
+      if (random() > 0.24) continue
       const from = ray[v]
-      const dir = Math.atan2(ray[v + 1].y - from.y, ray[v + 1].x - from.x) + (random() < 0.5 ? -1 : 1) * (0.35 + random() * 0.45)
+      let angle = Math.atan2(ray[v + 1].y - from.y, ray[v + 1].x - from.x) + (random() < 0.5 ? -1 : 1) * (0.35 + random() * 0.5)
+      let step = Math.hypot(ray[v + 1].x - from.x, ray[v + 1].y - from.y) * 0.55
       const branch: Pt[] = [from]
-      let x = from.x
-      let y = from.y
-      let step = Math.hypot(ray[v + 1].x - from.x, ray[v + 1].y - from.y) * 0.6
-      let angle = dir
-      for (let s = 0; s < 3 + Math.floor(random() * 4); s++) {
-        angle += (random() - 0.5) * 0.4
+      let { x, y } = from
+      for (let s = 0; s < 2 + Math.floor(random() * 4); s++) {
+        angle += (random() - 0.5) * 0.45
         x += Math.cos(angle) * step
         y += Math.sin(angle) * step
         branch.push({ x, y })
-        step *= 1.15
+        step *= 1.1
       }
-      strokeCrack(ctx, branch, Math.max(0.5, 0.8 * scale))
+      strokeCrack(ctx, jagged(branch, random), Math.max(0.45, 0.75 * scale), random, onLight)
     }
   }
 
-  // Crushed centre: a bright, powdery spot full of tiny fractures.
-  const crush = base * 2.2
+  // Crushed centre: powdered glass, tiny fractures and a few missing chips.
+  const crush = base * 2.4
   const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, crush)
-  glow.addColorStop(0, 'rgba(255,255,255,0.75)')
-  glow.addColorStop(0.35, 'rgba(255,255,255,0.28)')
-  glow.addColorStop(1, 'rgba(255,255,255,0)')
+  const dust = onLight ? '60,60,66' : '255,255,255'
+  glow.addColorStop(0, `rgba(${dust},0.7)`)
+  glow.addColorStop(0.4, `rgba(${dust},0.25)`)
+  glow.addColorStop(1, `rgba(${dust},0)`)
   ctx.fillStyle = glow
   ctx.beginPath()
   ctx.arc(cx, cy, crush, 0, Math.PI * 2)
   ctx.fill()
-  for (let i = 0; i < 70; i++) {
+  for (let i = 0; i < 90; i++) {
     const angle = random() * Math.PI * 2
-    const dist = Math.pow(random(), 1.6) * crush
+    const dist = Math.pow(random(), 1.5) * crush * 1.2
     const x = cx + Math.cos(angle) * dist
     const y = cy + Math.sin(angle) * dist
-    const len = (2 + random() * 7) * scale
+    const len = (2 + random() * 8) * scale
     const turn = random() * Math.PI
-    strokeCrack(ctx, [{ x, y }, { x: x + Math.cos(turn) * len, y: y + Math.sin(turn) * len }], 0.6)
+    strokeCrack(ctx, [{ x, y }, { x: x + Math.cos(turn) * len, y: y + Math.sin(turn) * len }], 0.55, random, onLight)
   }
+  for (let i = 0; i < 6; i++) {
+    const angle = random() * Math.PI * 2
+    const dist = random() * crush * 0.6
+    const x = cx + Math.cos(angle) * dist
+    const y = cy + Math.sin(angle) * dist
+    const size = (1.5 + random() * 3) * scale
+    ctx.fillStyle = onLight ? 'rgba(30,30,34,0.8)' : 'rgba(0,0,0,0.75)'
+    ctx.beginPath()
+    ctx.moveTo(x, y - size)
+    ctx.lineTo(x + size, y + size * 0.6)
+    ctx.lineTo(x - size * 0.8, y + size * 0.4)
+    ctx.closePath()
+    ctx.fill()
+  }
+}
 
-  // Damaged LCD under the glass: an ink-like dead patch and stuck columns of color.
-  if (lcdDamage) {
-    const ink = ctx.createRadialGradient(cx, cy, 0, cx, cy, base * 5)
-    ink.addColorStop(0, 'rgba(0,0,0,0.85)')
-    ink.addColorStop(0.5, 'rgba(0,0,0,0.45)')
+/** A long hairline crack running in from an edge, wandering and splitting as it goes. */
+function drawHairline(ctx: CanvasRenderingContext2D, random: Random, width: number, height: number, onLight: boolean) {
+  const edge = Math.floor(random() * 4)
+  let x = edge === 0 ? random() * width : edge === 1 ? width : edge === 2 ? random() * width : 0
+  let y = edge === 0 ? 0 : edge === 1 ? random() * height : edge === 2 ? height : random() * height
+  let angle = Math.atan2(height / 2 - y, width / 2 - x) + (random() - 0.5) * 1.2
+  const step = Math.min(width, height) / 18
+  const points: Pt[] = [{ x, y }]
+  for (let i = 0; i < 26; i++) {
+    angle += (random() - 0.5) * 0.5
+    x += Math.cos(angle) * step * (0.6 + random() * 0.8)
+    y += Math.sin(angle) * step * (0.6 + random() * 0.8)
+    points.push({ x, y })
+    if (x < -20 || y < -20 || x > width + 20 || y > height + 20) break
+    if (i > 2 && random() < 0.16) {
+      let bx = x
+      let by = y
+      let bangle = angle + (random() < 0.5 ? -1 : 1) * (0.5 + random() * 0.6)
+      const branch: Pt[] = [{ x: bx, y: by }]
+      for (let s = 0; s < 3 + Math.floor(random() * 5); s++) {
+        bangle += (random() - 0.5) * 0.5
+        bx += Math.cos(bangle) * step * 0.7
+        by += Math.sin(bangle) * step * 0.7
+        branch.push({ x: bx, y: by })
+      }
+      strokeCrack(ctx, jagged(branch, random), 0.7, random, onLight)
+    }
+  }
+  strokeCrack(ctx, jagged(points, random, 0.05), 1, random, onLight)
+}
+
+/** Liquid crystal leaking from the damaged panel: irregular dark ink, a faint tinted edge and a few drips. */
+function drawInk(ctx: CanvasRenderingContext2D, random: Random, x: number, y: number, size: number) {
+  for (let i = 0; i < 10; i++) {
+    const bx = x + (random() - 0.5) * size * 1.5
+    const by = y + (random() - 0.5) * size * 1.1
+    const radius = size * (0.22 + random() * 0.45)
+    const rim = ctx.createRadialGradient(bx, by, radius * 0.7, bx, by, radius * 1.15)
+    rim.addColorStop(0, 'rgba(0,0,0,0)')
+    rim.addColorStop(0.5, `rgba(${random() < 0.5 ? '110,50,220' : '20,150,220'},0.09)`)
+    rim.addColorStop(1, 'rgba(0,0,0,0)')
+    ctx.fillStyle = rim
+    ctx.beginPath()
+    ctx.arc(bx, by, radius * 1.15, 0, Math.PI * 2)
+    ctx.fill()
+    const ink = ctx.createRadialGradient(bx, by, 0, bx, by, radius)
+    ink.addColorStop(0, 'rgba(0,0,0,0.97)')
+    ink.addColorStop(0.75, 'rgba(0,0,0,0.88)')
     ink.addColorStop(1, 'rgba(0,0,0,0)')
-    ctx.globalCompositeOperation = 'multiply'
     ctx.fillStyle = ink
     ctx.beginPath()
-    ctx.ellipse(cx, cy, base * 5, base * 3.4, random() * Math.PI, 0, Math.PI * 2)
+    ctx.ellipse(bx, by, radius, radius * (0.55 + random() * 0.6), random() * Math.PI, 0, Math.PI * 2)
     ctx.fill()
-    ctx.globalCompositeOperation = 'source-over'
-    const columns = ['#ff00ff', '#00ff66', '#00e5ff', '#ffffff', '#ff2d55']
-    for (let i = 0; i < 3 + Math.floor(random() * 4); i++) {
-      ctx.globalAlpha = 0.55 + random() * 0.35
-      ctx.fillStyle = columns[Math.floor(random() * columns.length)]
-      ctx.fillRect(cx + (random() - 0.5) * base * 12, 0, 1 + Math.floor(random() * 3), height)
-    }
-    ctx.globalAlpha = 1
   }
+  // Drips: the leak runs down the panel in thin, fading streaks.
+  for (let i = 0; i < 3 + Math.floor(random() * 3); i++) {
+    const dx = x + (random() - 0.5) * size * 1.2
+    const top = y + size * (0.1 + random() * 0.3)
+    const length = size * (0.6 + random() * 1.6)
+    const drip = ctx.createLinearGradient(0, top, 0, top + length)
+    drip.addColorStop(0, 'rgba(0,0,0,0.9)')
+    drip.addColorStop(1, 'rgba(0,0,0,0)')
+    ctx.fillStyle = drip
+    ctx.fillRect(dx, top, size * (0.02 + random() * 0.05), length)
+  }
+}
+
+/** Dead rows and columns: thin colored lines and wider bands, the way a cracked panel loses its drivers. */
+function drawDeadLines(ctx: CanvasRenderingContext2D, random: Random, width: number, height: number, count: number, around?: number) {
+  const colors = ['#ff00ff', '#00ff66', '#00e5ff', '#ffffff', '#ff2d55', '#000000', '#ffee00']
+  for (let i = 0; i < count; i++) {
+    const x = around === undefined ? random() * width : around + (random() - 0.5) * width * 0.35
+    const wide = random() < 0.18
+    ctx.globalAlpha = 0.65 + random() * 0.35
+    ctx.fillStyle = colors[Math.floor(random() * colors.length)]
+    ctx.fillRect(Math.round(x), 0, wide ? 4 + Math.floor(random() * 10) : 1 + Math.floor(random() * 2), height)
+  }
+  ctx.globalAlpha = 1
+}
+
+function drawBrokenBackground(ctx: CanvasRenderingContext2D, background: BrokenBackground, width: number, height: number) {
+  if (background === 'black' || background === 'white') {
+    ctx.fillStyle = background === 'black' ? '#030303' : '#ffffff'
+    ctx.fillRect(0, 0, width, height)
+    return
+  }
+  if (background === 'lock') {
+    // Same as a 160° CSS gradient: mostly top to bottom, leaning right.
+    const dx = Math.sin((160 * Math.PI) / 180)
+    const dy = -Math.cos((160 * Math.PI) / 180)
+    const half = (Math.abs(width * dx) + Math.abs(height * dy)) / 2
+    const gradient = ctx.createLinearGradient(width / 2 - dx * half, height / 2 - dy * half, width / 2 + dx * half, height / 2 + dy * half)
+    gradient.addColorStop(0, '#1e3a8a')
+    gradient.addColorStop(0.45, '#7c3aed')
+    gradient.addColorStop(0.75, '#db2777')
+    gradient.addColorStop(1, '#f59e0b')
+    ctx.fillStyle = gradient
+    ctx.fillRect(0, 0, width, height)
+    return
+  }
+  ctx.fillStyle = '#0f172a'
+  ctx.fillRect(0, 0, width, height)
+  const size = Math.max(width, height)
+  for (const [x, y, color, radius] of [
+    [0.2, 0.15, '96,165,250', 0.42],
+    [0.85, 0.8, '168,85,247', 0.45],
+    [0.6, 0.4, '244,114,182', 0.3],
+  ] as const) {
+    const glow = ctx.createRadialGradient(x * width, y * height, 0, x * width, y * height, radius * size)
+    glow.addColorStop(0, `rgba(${color},0.95)`)
+    glow.addColorStop(0.55, `rgba(${color},0.35)`)
+    glow.addColorStop(1, `rgba(${color},0)`)
+    ctx.fillStyle = glow
+    ctx.fillRect(0, 0, width, height)
+  }
+}
+
+/** The whole broken screen for a style: deterministic for a seed, so redraws and downloads match. */
+function drawBrokenScene(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  options: { style: CrackStyle; seed: number; background: BrokenBackground; impacts: Impact[]; withBackground: boolean },
+) {
+  const { style, seed, background, impacts, withBackground } = options
+  const onLight = background === 'white'
+  const random = seededRandom(seed)
+  if (withBackground) drawBrokenBackground(ctx, background, width, height)
+  const impact = (x: number, y: number, size: number) => drawImpact(ctx, { x, y, size, seed: Math.floor(random() * 2_000_000) + 1 }, width, height, onLight)
+
+  if (style === 'spider') impact(0.42 + random() * 0.18, 0.4 + random() * 0.2, 1.25)
+  if (style === 'corner') {
+    const right = random() < 0.5
+    const bottom = random() < 0.6
+    impact(right ? 0.9 + random() * 0.07 : 0.03 + random() * 0.07, bottom ? 0.88 + random() * 0.08 : 0.04 + random() * 0.08, 1.7)
+  }
+  if (style === 'shattered') {
+    for (let i = 0; i < 3; i++) impact(0.15 + random() * 0.7, 0.15 + random() * 0.7, 0.8 + random() * 0.45)
+    for (let i = 0; i < 3; i++) drawHairline(ctx, random, width, height, onLight)
+  }
+  if (style === 'hairline') for (let i = 0; i < 3 + Math.floor(random() * 3); i++) drawHairline(ctx, random, width, height, onLight)
+  if (style === 'lcd') {
+    const x = 0.3 + random() * 0.4
+    const y = 0.3 + random() * 0.4
+    drawInk(ctx, random, x * width, y * height, Math.min(width, height) * 0.22)
+    drawDeadLines(ctx, random, width, height, 3 + Math.floor(random() * 3), x * width)
+    impact(x, y, 1.1)
+  }
+  if (style === 'lines') {
+    // Lines bunch up around where the panel was hit, with a dead patch in the corner.
+    const hit = width * (0.2 + random() * 0.6)
+    drawDeadLines(ctx, random, width, height, 10 + Math.floor(random() * 8), hit)
+    drawDeadLines(ctx, random, width, height, 4 + Math.floor(random() * 4))
+    drawInk(ctx, random, width * (0.82 + random() * 0.12), height * (0.82 + random() * 0.12), Math.min(width, height) * 0.16)
+    drawHairline(ctx, random, width, height, onLight)
+  }
+  for (const extra of impacts) drawImpact(ctx, extra, width, height, onLight)
 }
 
 function LockScreenClock() {
@@ -319,27 +503,21 @@ function LockScreenClock() {
   return (
     <div className="pointer-events-none absolute inset-x-0 top-[14%] text-center text-white drop-shadow">
       <p className="text-sm font-medium opacity-90 sm:text-base">
-        {now ? now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }) : ' '}
+        {now ? now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }) : ' '}
       </p>
       <p className="text-6xl font-semibold leading-none tracking-tight sm:text-8xl">
-        {now ? now.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }).replace(/\s?[AP]M/i, '') : ' '}
+        {now ? now.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }).replace(/\s?[AP]M/i, '') : ' '}
       </p>
     </div>
   )
 }
 
-const BROKEN_BACKGROUNDS = {
-  wallpaper:
-    'radial-gradient(ellipse at 20% 15%, #60a5fa 0%, transparent 50%), radial-gradient(ellipse at 85% 80%, #a855f7 0%, transparent 55%), radial-gradient(ellipse at 60% 40%, #f472b6 0%, transparent 45%), #0f172a',
-  lock: 'linear-gradient(160deg, #1e3a8a 0%, #7c3aed 45%, #db2777 75%, #f59e0b 100%)',
-  black: '#030303',
-}
-
 export function BrokenScreen() {
-  const [background, setBackground] = useState<keyof typeof BROKEN_BACKGROUNDS>('wallpaper')
-  const [impacts, setImpacts] = useState<Impact[]>([{ x: 0.62, y: 0.58, seed: 48271, size: 1 }])
+  const [style, setStyle] = useState<CrackStyle>('spider')
+  const [background, setBackground] = useState<BrokenBackground>('wallpaper')
+  const [seed, setSeed] = useState(48271)
+  const [impacts, setImpacts] = useState<Impact[]>([])
   const [withSound, setWithSound] = useState(true)
-  const [lcdDamage, setLcdDamage] = useState(true)
   const { canvasRef, width, height, dpr } = useCanvasSize(2)
 
   useEffect(() => {
@@ -348,8 +526,8 @@ export function BrokenScreen() {
     if (!canvas || !ctx || !width) return
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     ctx.clearRect(0, 0, width, height)
-    impacts.forEach((impact, index) => drawImpact(ctx, impact, width, height, lcdDamage && index === 0))
-  }, [impacts, width, height, dpr, lcdDamage, canvasRef])
+    drawBrokenScene(ctx, width, height, { style, seed, background, impacts, withBackground: true })
+  }, [style, seed, background, impacts, width, height, dpr, canvasRef])
 
   const addImpact = (event: React.MouseEvent<HTMLDivElement>) => {
     if ((event.target as HTMLElement).closest('button')) return
@@ -360,21 +538,64 @@ export function BrokenScreen() {
         x: (event.clientX - rect.left) / rect.width,
         y: (event.clientY - rect.top) / rect.height,
         seed: Math.floor(Math.random() * 2_000_000) + 1,
-        size: 0.75 + Math.random() * 0.5,
+        size: 0.75 + Math.random() * 0.45,
       },
     ])
     if (withSound) playCrackSound()
   }
 
+  const newCrack = () => {
+    setImpacts([])
+    setSeed(Math.floor(Math.random() * 2_000_000) + 1)
+  }
+
+  /** A PNG at this device's full screen resolution, ready to set as a wallpaper or show on another screen. */
+  const download = () => {
+    const ratio = window.devicePixelRatio || 1
+    const scale = Math.min(1, 4096 / Math.max(window.screen.width * ratio, window.screen.height * ratio))
+    const canvas = document.createElement('canvas')
+    canvas.width = Math.round(window.screen.width * ratio * scale)
+    canvas.height = Math.round(window.screen.height * ratio * scale)
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    drawBrokenScene(ctx, canvas.width, canvas.height, { style, seed, background, impacts, withBackground: true })
+    if (background === 'lock') {
+      const now = new Date()
+      ctx.fillStyle = '#fff'
+      ctx.textAlign = 'center'
+      ctx.font = `600 ${Math.round(canvas.height * 0.12)}px -apple-system, "Segoe UI", Roboto, sans-serif`
+      ctx.fillText(now.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }).replace(/\s?[AP]M/i, ''), canvas.width / 2, canvas.height * 0.28)
+      ctx.font = `500 ${Math.round(canvas.height * 0.025)}px -apple-system, "Segoe UI", Roboto, sans-serif`
+      ctx.fillText(now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }), canvas.width / 2, canvas.height * 0.16)
+    }
+    downloadCanvas(canvas, `broken-screen-${style}-${canvas.width}x${canvas.height}.png`)
+  }
+
   return (
     <ToolStage
       label="Broken screen effect"
-      tone="dark"
-      style={{ background: BROKEN_BACKGROUNDS[background] }}
+      tone={background === 'white' ? 'light' : 'dark'}
+      style={{ background: '#030303' }}
       onStageClick={addImpact}
       badge="Simulation"
       controls={
         <ControlRow>
+          <Segmented
+            label="Crack style"
+            value={style}
+            onChange={(value) => {
+              setStyle(value)
+              setImpacts([])
+            }}
+            options={[
+              { value: 'spider', label: 'Spider web' },
+              { value: 'corner', label: 'Corner hit' },
+              { value: 'shattered', label: 'Shattered' },
+              { value: 'hairline', label: 'Hairline' },
+              { value: 'lcd', label: 'Bleeding LCD' },
+              { value: 'lines', label: 'Dead lines' },
+            ]}
+          />
           <Segmented
             label="Background"
             value={background}
@@ -383,26 +604,25 @@ export function BrokenScreen() {
               { value: 'wallpaper', label: 'Wallpaper' },
               { value: 'lock', label: 'Lock screen' },
               { value: 'black', label: 'Screen off' },
+              { value: 'white', label: 'White' },
             ]}
           />
           <Toggle label="Crack sound" checked={withSound} onChange={setWithSound} />
-          <Toggle label="Damaged display" checked={lcdDamage} onChange={setLcdDamage} />
-          <ActionButton onClick={() => setImpacts([])}>
+          <ActionButton onClick={newCrack}>
             <RotateCcw aria-hidden="true" />
-            {tx('Clear')}
+            {tx('New crack')}
+          </ActionButton>
+          <ActionButton onClick={download}>
+            <Download aria-hidden="true" />
+            {tx('Download PNG')}
           </ActionButton>
         </ControlRow>
       }
     >
-      {background === 'lock' && <LockScreenClock />}
       <div className="absolute inset-0 cursor-crosshair">
         <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 size-full" />
       </div>
-      {impacts.length === 0 && (
-        <p className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-black/50 px-3 py-1 text-xs text-white/85">
-          {tx('Tap anywhere to crack the screen')}
-        </p>
-      )}
+      {background === 'lock' && <LockScreenClock />}
     </ToolStage>
   )
 }

@@ -53,10 +53,19 @@ export function extractLocaleAndPath(pathname: string): { lang: LanguageCode; cl
 
 /**
  * Pages that exist only in English (the legal pages, kept in one language so there is one
- * authoritative version, and the author page). They have a single English URL: links from
+ * authoritative version, the author page, and guides not translated yet). They have a single English URL: links from
  * other languages point there, and the old /es/terms/… style addresses 301 to it.
  */
-export const ENGLISH_ONLY_PREFIXES = ['/author-whitson-rao', '/privacy-policy', '/terms', '/disclaimer']
+export const ENGLISH_ONLY_PREFIXES = [
+  '/author-whitson-rao',
+  '/privacy-policy',
+  '/terms',
+  '/disclaimer',
+  // Guides not translated yet: remove a path once guide-i18n has it in every language.
+  '/guides/max-brightness',
+  '/guides/browser-fullscreen',
+  '/guides/multi-monitor-setup',
+]
 
 export function isEnglishOnlyPath(cleanPath: string): boolean {
   return ENGLISH_ONLY_PREFIXES.some((prefix) => cleanPath === prefix || cleanPath.startsWith(`${prefix}/`))

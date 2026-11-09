@@ -1,6 +1,7 @@
 'use client'
 
 import { tx } from '@/lib/tx'
+import { signalToolUsed, useSignalOnFullscreenExit } from '@/lib/ratings'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Maximize,
@@ -112,6 +113,7 @@ export function HomeTool() {
   const wakeLockRef = useRef<WakeLockSentinel | null>(null)
 
   const isFullscreen = isNativeFullscreen || isFallbackFullscreen
+  useSignalOnFullscreenExit(isFullscreen)
   const preset = SCREEN_COLORS.find((color) => color.id === selectedId)
   const activeHex = preset ? preset.hex : customHex
   const activeName = uploadedImage
@@ -333,6 +335,7 @@ export function HomeTool() {
           link.download = filename
           document.body.appendChild(link)
           link.click()
+          signalToolUsed()
           document.body.removeChild(link)
 
           setTimeout(() => URL.revokeObjectURL(blobUrl), 1500)
@@ -531,17 +534,22 @@ export function HomeTool() {
                       goToColor(color.id)
                     }}
                     title={`${name} (${index + 1})`}
-                    aria-label={name}
                     aria-current={isSelected ? 'page' : undefined}
-                    className={cn(
-                      'flex size-9 shrink-0 items-center justify-center rounded-full ring-1 ring-inset ring-black/15 transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 lg:size-8',
-                      isSelected && 'ring-2 ring-offset-2 ring-blue-600 ring-offset-background',
-                    )}
-                    style={{ backgroundColor: color.hex }}
+                    className="group flex w-12 shrink-0 flex-col items-center gap-1 focus-visible:outline-none"
                   >
-                    {isSelected && (
-                      <Check className={cn('size-4', isLightColor(color.hex) ? 'text-black' : 'text-white')} aria-hidden="true" />
-                    )}
+                    <span
+                      aria-hidden="true"
+                      className={cn(
+                        'flex size-9 shrink-0 items-center justify-center rounded-full ring-1 ring-inset ring-black/15 transition-transform group-hover:scale-110 group-focus-visible:outline-2 group-focus-visible:outline-offset-2 lg:size-8',
+                        isSelected && 'ring-2 ring-offset-2 ring-blue-600 ring-offset-background',
+                      )}
+                      style={{ backgroundColor: color.hex }}
+                    >
+                      {isSelected && (
+                        <Check className={cn('size-4', isLightColor(color.hex) ? 'text-black' : 'text-white')} aria-hidden="true" />
+                      )}
+                    </span>
+                    <span className={cn('max-w-12 truncate text-[11px] font-medium leading-none', isSelected ? 'text-foreground' : 'text-muted-foreground')}>{name}</span>
                   </a>
                 )
               })}

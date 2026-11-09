@@ -124,7 +124,7 @@ export function ToolStage({
         >
           {/* Always the same wrapper, so entering fullscreen never remounts the tool (camera
               streams and canvases would otherwise be lost); it only drops the title padding. */}
-          <div className={reserveHeadingSpace && heading && !isFullscreen ? 'size-full pt-20 sm:pt-24' : 'contents'}>
+          <div className={reserveHeadingSpace && heading && !isFullscreen ? 'size-full pt-12 sm:pt-14' : 'contents'}>
             {typeof children === 'function' ? children({ isFullscreen, exit: exitStage }) : children}
           </div>
 
@@ -135,7 +135,7 @@ export function ToolStage({
               className={cn(
                 'pointer-events-none absolute z-20 rounded px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider ring-1 opacity-70',
                 // With a reserved title band the badge sits in it, clear of the tool's own controls.
-                reserveHeadingSpace && heading && !isFullscreen ? 'right-3 top-14' : 'bottom-2 left-2',
+                reserveHeadingSpace && heading && !isFullscreen ? 'right-3 top-12' : 'bottom-2 left-2',
                 chipClass,
               )}
             >

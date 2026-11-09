@@ -1,6 +1,7 @@
 'use client'
 
 import { tx } from '@/lib/tx'
+import { signalToolUsed } from '@/lib/ratings'
 import { useState } from 'react'
 import { Download, Check, AlertCircle, RefreshCw, Sparkles } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n'
@@ -110,6 +111,7 @@ export function ResolutionControls({ activeHex, activeName, uploadedImageUrl, cl
           link.download = filename
           document.body.appendChild(link)
           link.click()
+          signalToolUsed()
           document.body.removeChild(link)
 
           setTimeout(() => {

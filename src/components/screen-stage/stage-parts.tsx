@@ -1,6 +1,7 @@
 'use client'
 
 import { tx } from '@/lib/tx'
+import { RatingBadge } from '@/components/tool-rating'
 import { createContext, useContext, type ReactNode } from 'react'
 import { ChevronLeft, ChevronRight, Maximize } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -11,9 +12,12 @@ import { useTranslation } from '@/lib/i18n'
  * title, its controls and the gallery below always sit in the same place and at the same size.
  */
 
-/** Stage size: tall enough to feel immersive, short enough to keep the dock and gallery above the fold. */
+/**
+ * Stage size: tall enough to feel immersive, short enough to keep the dock and gallery above the fold.
+ * The shadow (a faint glow in dark mode) keeps a white or black screen visible against the page.
+ */
 export const STAGE_SIZE =
-  'h-[40svh] min-h-[260px] w-full rounded-2xl border sm:h-[50vh] md:h-[56vh] md:max-h-[640px] lg:h-[calc(100svh-440px)] lg:min-h-[360px] lg:max-h-[600px]'
+  'h-[36svh] min-h-[240px] w-full rounded-2xl border border-black/10 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_10px_30px_-8px_rgba(0,0,0,0.22)] dark:border-white/10 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_0_36px_-6px_rgba(255,255,255,0.14)] sm:h-[46vh] md:h-[52vh] md:max-h-[600px] lg:h-[calc(100svh-480px)] lg:min-h-[340px] lg:max-h-[560px]'
 
 /** Page heading that the stage shows on top of itself. Tool pages provide it; ToolStage reads it. */
 export type StageHeading = { title: string; intro?: string }
@@ -41,24 +45,27 @@ export function StageTitle({
   return (
     <div
       className={cn(
-        'pointer-events-none absolute left-0 top-0 flex items-start justify-between gap-3 rounded-tl-2xl px-4 pb-10 pt-4 sm:px-7 sm:pt-6',
+        'pointer-events-none absolute left-0 top-0 flex items-start justify-between gap-3 rounded-tl-2xl px-4 pb-6 pt-3 sm:px-6 sm:pt-4',
         // Leave the top-right corner free for the stage's own fullscreen button when there is no aside.
         aside ? 'right-0 rounded-tr-2xl' : 'right-14',
         tone === 'light' ? 'text-neutral-900' : 'text-white',
         scrim && (tone === 'light' ? 'bg-gradient-to-b from-white/80 to-transparent' : 'bg-gradient-to-b from-black/60 to-transparent'),
       )}
     >
-      <div className="flex min-w-0 flex-col gap-1.5">
+      <div className="flex min-w-0 flex-col gap-1">
+        <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
         <h1
           id="screen-heading"
           className={cn(
             'text-balance font-extrabold tracking-tight',
-            compact ? 'text-xl leading-7 sm:text-3xl sm:leading-9 lg:text-4xl lg:leading-10' : 'text-2xl sm:text-4xl lg:text-[44px] lg:leading-tight',
+            compact ? 'text-base leading-6 sm:text-xl sm:leading-7' : 'text-lg leading-6 sm:text-2xl sm:leading-8',
           )}
         >
           {title}
         </h1>
-        {intro && <p className="hidden max-w-md text-pretty text-sm leading-relaxed opacity-90 sm:line-clamp-2 lg:text-[15px]">{intro}</p>}
+        <RatingBadge tone={tone} />
+        </div>
+        {intro && <p className="hidden max-w-md text-pretty text-xs leading-snug opacity-85 sm:line-clamp-1 lg:text-[13px]">{intro}</p>}
       </div>
       {aside && <div className="flex shrink-0 flex-col items-end gap-2">{aside}</div>}
     </div>

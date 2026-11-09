@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useRef, useEffect, useCallback } from 'react'
+import { signalToolUsed, useSignalOnFullscreenExit } from '@/lib/ratings'
 import Link from 'next/link'
 import { Download, X, Check, ChevronRight, Copy } from 'lucide-react'
 import { ToolWithAds } from '@/components/tool-ads'
@@ -15,6 +16,7 @@ import type { BackgroundToolProps } from '@/lib/article-i18n/background-props'
 export function BackgroundDetailPage({ item, more, categories, text }: BackgroundToolProps) {
   const { t } = useTranslation()
   const [isFullscreen, setIsFullscreen] = useState(false)
+  useSignalOnFullscreenExit(isFullscreen)
   const [isCopied, setIsCopied] = useState(false)
   const [width, setWidth] = useState(1920)
   const [height, setHeight] = useState(1080)
@@ -88,6 +90,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
           link.download = `${item.slug}-${customW}x${customH}.png`
           document.body.appendChild(link)
           link.click()
+          signalToolUsed()
           document.body.removeChild(link)
           setTimeout(() => URL.revokeObjectURL(url), 1000)
           setIsDownloading(false)

@@ -689,6 +689,337 @@ export const GUIDES: readonly GuideArticle[] = [
     ],
     relatedSlugs: ['monitor-test', 'dead-pixel-test', 'screen-uniformity-test'],
   },
+  // 11. Maximum brightness on every device
+  {
+    slug: 'max-brightness',
+    path: '/guides/max-brightness/',
+    navLabel: 'Max Brightness',
+    title: 'How to Turn Screen Brightness All the Way Up on iPhone, Android, Windows and Mac',
+    metaTitle: 'Max Screen Brightness on iPhone, Android, Windows & Mac',
+    metaDescription:
+      'Step-by-step ways to set full brightness on iPhone, Android, Windows and Mac, plus the hidden settings (power saving, auto-dimming, white point) that keep a screen dim.',
+    readingTime: '7 min read',
+    updatedAt: '2026-11-09',
+    category: 'Device Setup',
+    intro:
+      'A white screen only works as a light, a tracing table or a test pattern if your display is actually at full brightness. Moving the slider to the top is the first step, but every system also has settings that quietly hold brightness back: battery savers, automatic dimming, reduced white point and heat protection. This guide covers both for iPhone, Android, Windows and Mac.',
+    warning:
+      'Full brightness drains the battery faster and makes phones warm. If a phone gets hot, it will dim itself to protect the battery no matter what the slider says.',
+    primaryTool: {
+      label: 'Open the White Screen',
+      path: '/',
+      description: 'A pure white fullscreen page to check your brightness and use as a light.',
+    },
+    sections: [
+      {
+        id: 'iphone-brightness',
+        title: 'iPhone and iPad',
+        content: [
+          'The quickest way is Control Center. The same slider is also in Settings, next to the options that can limit it.',
+        ],
+        steps: [
+          'Open Control Center: swipe down from the top-right corner (on iPhones with a Home button, swipe up from the bottom edge).',
+          'Drag the brightness slider (the sun icon) all the way up.',
+          'Or open Settings > Display & Brightness and move the Brightness slider to the right end.',
+          'Turn off Low Power Mode in Settings > Battery, because it lowers display brightness.',
+          'Check Settings > Accessibility > Display & Text Size: switch off Reduce White Point, which makes whites dimmer.',
+        ],
+        tips: [
+          'On recent iPhones the very highest brightness, used outdoors in sunlight, is only reached when Auto-Brightness is on (Settings > Accessibility > Display & Text Size). For a fixed level indoors, turn Auto-Brightness off instead.',
+          'Night Shift and True Tone (in Display & Brightness) change the color of white, not the brightness. Turn them off when you need neutral white.',
+        ],
+      },
+      {
+        id: 'android-brightness',
+        title: 'Android phones and tablets',
+        content: [
+          'Menu names differ slightly between brands, but every Android phone has the brightness slider in Quick Settings and in the Display settings.',
+        ],
+        steps: [
+          'Swipe down from the top of the screen twice to open Quick Settings.',
+          'Drag the brightness slider fully to the right.',
+          'Or go to Settings > Display and set Brightness level to the maximum.',
+          'Turn off Battery Saver or Power saving mode, which can cap brightness.',
+          'If your phone has Extra dim (on Pixel phones, under Settings > Accessibility), make sure it is off.',
+        ],
+        tips: [
+          'Some Samsung Galaxy models have an Extra brightness switch under Settings > Display that raises the manual maximum.',
+          'Like iPhones, many Android phones only reach their peak outdoor brightness with Adaptive brightness on. Turn it off if you want the level to stay put.',
+        ],
+      },
+      {
+        id: 'windows-brightness',
+        title: 'Windows laptops and monitors',
+        content: [
+          'On a laptop, Windows controls the built-in screen. An external monitor is different: its brightness is usually set with the buttons on the monitor itself.',
+        ],
+        steps: [
+          'Press Windows + A to open Quick Settings and drag the brightness slider to the right.',
+          'Or use the brightness keys on the keyboard (often Fn plus a sun key).',
+          'In Settings > System > Display > Brightness, turn off the options that change brightness automatically with the lighting or with the content shown.',
+          'In Settings > System > Power & battery, turn off Battery saver or the option that lowers screen brightness while it is on.',
+          'For an external monitor, open its on-screen menu (OSD) with the buttons on the monitor and raise Brightness there.',
+        ],
+        tips: [
+          'With HDR on, Windows shows normal (SDR) content dimmer by default. Raise SDR content brightness under Settings > System > Display > HDR.',
+          'Plugging the laptop in often allows a brighter screen than running on battery.',
+        ],
+      },
+      {
+        id: 'mac-brightness',
+        title: 'Mac',
+        content: [
+          'MacBooks and Apple displays respond to the brightness keys. Other external monitors usually need their own buttons.',
+        ],
+        steps: [
+          'Press the brightness up key (F2 or the sun key) until the level is full, or open Control Center > Display and drag the slider to the right.',
+          'Or open System Settings > Displays and move the Brightness slider to the end.',
+          'In System Settings > Displays, turn off Automatically adjust brightness if you want the level to stay fixed.',
+          'In System Settings > Battery > Options, turn off Slightly dim the display on battery.',
+          'Turn off Low Power Mode in System Settings > Battery, because it can lower brightness.',
+        ],
+        tips: [
+          'Night Shift and True Tone (System Settings > Displays) tint white towards yellow. Turn them off for neutral white.',
+          'MacBook Pro models with an XDR display can show HDR content brighter than the normal maximum; a plain white page uses the standard (SDR) level.',
+        ],
+      },
+      {
+        id: 'still-dim',
+        title: 'Still too dim? Check these',
+        content: ['If the slider is already at the top and the screen still looks dim, one of these is usually the reason.'],
+        checklist: [
+          'A battery saver or Low Power Mode is on.',
+          'The device is hot and is protecting itself; let it cool down.',
+          'A reduce white point, extra dim or eye comfort setting is on.',
+          'Automatic or content-based brightness is lowering it in a dark room.',
+          'On an external monitor, the brightness is set in the monitor menu, not in the system.',
+          'A screen protector or a dirty screen is scattering light.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: 'Does the white screen tool make my display brighter?',
+        answer:
+          'No website can go past your device’s brightness setting. A white screen shows the brightest color your display can produce, so it is the easiest way to see your current maximum.',
+      },
+      {
+        question: 'Why does my phone get dimmer after a few minutes at full brightness?',
+        answer:
+          'Phones lower brightness when they get warm, and some lower it after a while to save power. Keep the phone cool, out of direct sun and unplugged from fast charging if you need full brightness for long.',
+      },
+      {
+        question: 'Is it bad to keep a screen at full brightness?',
+        answer:
+          'It uses more power and, on OLED screens, ages the pixels faster, especially when the same image stays on screen. For lighting or tracing it is fine; turn it down again when you are done.',
+      },
+    ],
+    relatedSlugs: ['browser-fullscreen', 'multi-monitor-setup', 'white-screen-for-video-calls-and-zoom'],
+  },
+
+  // 12. Fullscreen in every browser
+  {
+    slug: 'browser-fullscreen',
+    path: '/guides/browser-fullscreen/',
+    navLabel: 'Fullscreen in Any Browser',
+    title: 'How to Go Fullscreen in Chrome, Safari, Edge and Firefox on Any Device',
+    metaTitle: 'How to Go Fullscreen in Chrome, Safari, Edge & Firefox',
+    metaDescription:
+      'Keyboard shortcuts and steps to make any page fill the whole screen in Chrome, Edge, Firefox and Safari on Windows, Mac, Android, iPhone and Chromebook, and how to exit.',
+    readingTime: '6 min read',
+    updatedAt: '2026-11-09',
+    category: 'Device Setup',
+    intro:
+      'There are two kinds of fullscreen. Browser fullscreen hides the browser’s tabs and toolbar for every page. Page fullscreen is what the Fullscreen button on WhiteScreen.vip uses: one page takes over the whole screen until you press Esc. Page fullscreen is the cleanest for color screens and tests, and it works in every desktop browser and on Android. This guide covers both, plus the workarounds for iPhone.',
+    primaryTool: {
+      label: 'Open the White Screen',
+      path: '/',
+      description: 'Press F or the Fullscreen button to try page fullscreen right away.',
+    },
+    sections: [
+      {
+        id: 'page-fullscreen',
+        title: 'The fastest way on WhiteScreen.vip',
+        content: ['Every screen and tool on this site has its own fullscreen mode, so you rarely need the browser shortcuts.'],
+        steps: [
+          'Click the Fullscreen button under the screen, or the icon in its corner.',
+          'Or press the F key on your keyboard.',
+          'Or double-click (on a phone, double-tap) the screen itself.',
+          'To exit, press Esc, press F again, or double-click.',
+        ],
+      },
+      {
+        id: 'windows-chromebook',
+        title: 'Windows and Chromebook',
+        content: ['Chrome, Edge, Firefox, Opera and Brave all use the same key on Windows.'],
+        steps: [
+          'Press F11 to make the browser fill the screen. On many laptops you need Fn + F11.',
+          'Press F11 again to exit. Moving the pointer to the top edge shows the tabs and an exit button.',
+          'On a Chromebook, press the fullscreen key in the top row of the keyboard (a rectangle with corners).',
+        ],
+        tips: ['If F11 changes the volume or brightness instead, hold Fn while pressing it, or turn on the function key setting in your laptop’s utilities.'],
+      },
+      {
+        id: 'mac',
+        title: 'Mac',
+        content: ['On a Mac, browsers use the same system shortcut for fullscreen.'],
+        steps: [
+          'Press Control + Command + F in Safari, Chrome, Edge or Firefox. On recent macOS versions, Fn + F (the Globe key + F) also works.',
+          'Or click the green button in the top-left corner of the window.',
+          'Press the same shortcut again to exit, or move the pointer to the top and click the green button.',
+        ],
+        tips: [
+          'If the toolbar stays visible in fullscreen, turn off View > Always Show Toolbar in Full Screen in Safari or Chrome.',
+          'The menu bar slides down when the pointer touches the top edge. Keep the pointer away from it, or use page fullscreen, which hides it.',
+        ],
+      },
+      {
+        id: 'android',
+        title: 'Android',
+        content: [
+          'Chrome, Samsung Internet, Firefox and Edge on Android all support page fullscreen, so the Fullscreen button hides the address bar and system bars.',
+        ],
+        steps: [
+          'Tap the Fullscreen button or double-tap the screen.',
+          'To exit, swipe in from an edge to show the system bars and press Back, or double-tap again.',
+        ],
+      },
+      {
+        id: 'iphone',
+        title: 'iPhone and iPad',
+        content: [
+          'iPad Safari supports page fullscreen, so the Fullscreen button works there. iPhone Safari only allows fullscreen for videos, so on an iPhone the page fills the browser window instead. These steps get close to true fullscreen.',
+        ],
+        steps: [
+          'Turn the iPhone to landscape: Safari shrinks its bars.',
+          'Tap the page settings button in the address bar and choose Hide Toolbar, where your iOS version offers it.',
+          'For the cleanest result, tap Share > Add to Home Screen. Opening WhiteScreen.vip from the Home Screen icon runs it without Safari’s address bar.',
+        ],
+        tips: ['Turn on Rotation Lock after positioning, so the screen does not flip while you use it as a light or for tracing.'],
+      },
+    ],
+    faqs: [
+      {
+        question: 'Why does pressing F do nothing?',
+        answer:
+          'The page needs keyboard focus. Click once anywhere on the page first, then press F. Browsers also block fullscreen that is not started by a click or key press, which is why it never opens on its own.',
+      },
+      {
+        question: 'What is the difference between F11 and the Fullscreen button?',
+        answer:
+          'F11 is browser fullscreen: it stays on as you move between pages. The Fullscreen button is page fullscreen: only that screen fills the display, and Esc exits it.',
+      },
+      {
+        question: 'How do I exit fullscreen if nothing is visible?',
+        answer: 'Press Esc. If that does not work, press F11 on Windows or Control + Command + F on a Mac. On a phone, swipe in from an edge.',
+      },
+    ],
+    relatedSlugs: ['max-brightness', 'multi-monitor-setup', 'fullscreen-white-screen-for-drawing-and-tracing'],
+  },
+
+  // 13. Multi-monitor setups
+  {
+    slug: 'multi-monitor-setup',
+    path: '/guides/multi-monitor-setup/',
+    navLabel: 'Multi-Monitor Setup',
+    title: 'Using White Screens and Screen Tests on Multiple Monitors',
+    metaTitle: 'White Screen & Screen Tests on Multiple Monitors',
+    metaDescription:
+      'Put a fullscreen color or test on any monitor, run screens on several displays at once, and match brightness and white point across monitors on Windows and Mac.',
+    readingTime: '7 min read',
+    updatedAt: '2026-11-09',
+    category: 'Device Setup',
+    intro:
+      'With two or more displays, fullscreen opens on whichever monitor the browser window is on. Once you know that, it is easy to light a video call from a second screen, check every monitor for dead pixels, or compare two displays side by side with the same white.',
+    primaryTool: {
+      label: 'Open the White Screen',
+      path: '/',
+      description: 'Move the window to any monitor, then press F to fill that screen.',
+    },
+    sections: [
+      {
+        id: 'extend-displays',
+        title: 'First, extend your desktop',
+        content: [
+          'To show different things on each screen, the displays must be extended, not mirrored. Mirroring shows the same image everywhere.',
+        ],
+        steps: [
+          'Windows: press Windows + P and choose Extend. Arrange the screens to match your desk in Settings > System > Display.',
+          'Mac: open System Settings > Displays, click Arrange, and make sure the displays are not set to mirror.',
+        ],
+      },
+      {
+        id: 'one-screen',
+        title: 'Fill one specific monitor',
+        content: ['Fullscreen always uses the monitor that holds the browser window.'],
+        steps: [
+          'Drag the browser window by its title bar onto the monitor you want.',
+          'Windows shortcut: press Windows + Shift + Left or Right arrow to move the active window to the next monitor.',
+          'Mac: drag the window, or use Window > Move to and pick the display, if your browser offers it.',
+          'Press F (or the Fullscreen button) to fill that monitor. The other screens stay usable.',
+        ],
+      },
+      {
+        id: 'several-screens',
+        title: 'Run screens on several monitors at once',
+        content: ['Each browser window can be fullscreen on its own monitor, so open one window per screen.'],
+        steps: [
+          'Open a new browser window with Ctrl + N (Command + N on a Mac).',
+          'Open the screen or test you want in each window and move each window to a different monitor.',
+          'Click inside each window and press F to make it fullscreen.',
+        ],
+        tips: [
+          'On a Mac, keep System Settings > Desktop & Dock > Displays have separate Spaces turned on (the default). Without it, only one display can show a fullscreen window at a time.',
+          'Press Esc in a window to exit its fullscreen without affecting the others.',
+        ],
+      },
+      {
+        id: 'match-monitors',
+        title: 'Match brightness and color across monitors',
+        content: [
+          'Two monitors rarely show exactly the same white. Showing the same white screen on both makes the difference obvious, so you can adjust them to match.',
+        ],
+        steps: [
+          'Let both monitors warm up for about 30 minutes.',
+          'Turn off Night Light (Windows) or Night Shift and True Tone (Mac) on every display.',
+          'Show the white screen fullscreen on both monitors.',
+          'In each monitor’s on-screen menu, choose the same color mode, such as sRGB or 6500K.',
+          'Adjust brightness on each monitor until the whites look equally bright, then fine-tune the color temperature or RGB settings to remove any tint.',
+          'Check gray too: the Screen Color Test shows mid-gray, where small tint differences are easier to see.',
+        ],
+        tips: ['Brightness percentages are not comparable between monitors: 50% on one can be far brighter than 50% on another. Match them by eye, not by the number.'],
+      },
+      {
+        id: 'tv-second-screen',
+        title: 'Using a TV as a second screen',
+        content: [
+          'TVs often crop the picture edges (overscan) and sharpen or tint the image, which spoils tests and makes text blurry.',
+        ],
+        checklist: [
+          'Set the TV’s picture size to Just Scan, Screen Fit or 1:1 Pixel Mapping.',
+          'Choose PC or Game mode to turn off extra processing.',
+          'Set the computer to the TV’s native resolution in the display settings.',
+          'Use the Screen Resolution Test to confirm the edges are not cut off.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: 'Why does fullscreen open on the wrong monitor?',
+        answer: 'Fullscreen uses the monitor the browser window is on. Exit fullscreen, move the window to the monitor you want, and press F again.',
+      },
+      {
+        question: 'Can I show a different color on each monitor?',
+        answer: 'Yes. Open a separate browser window for each monitor, choose a different color in each, and make each one fullscreen.',
+      },
+      {
+        question: 'Can I use a second monitor as a light for video calls?',
+        answer:
+          'Yes. Put the white screen fullscreen on the monitor beside or behind your camera and turn its brightness up. The Zoom Lighting tool lets you warm or cool the light to suit your skin tone.',
+      },
+    ],
+    relatedSlugs: ['browser-fullscreen', 'max-brightness', 'screen-color-test'],
+  },
 ] as const
 
 /**
@@ -740,9 +1071,9 @@ export function getGuideBySlug(slug: string, lang: LanguageCode = 'en'): GuideAr
   }
 }
 
-/** Every guide in `lang`. */
+/** Every guide available in `lang`. Guides not yet translated are listed only in English (their URLs are English-only too). */
 export function getGuides(lang: LanguageCode = 'en'): GuideArticle[] {
-  return GUIDES.map((guide) => getGuideBySlug(guide.slug, lang)!)
+  return GUIDES.filter((guide) => hasGuideTranslation(guide.slug, lang)).map((guide) => getGuideBySlug(guide.slug, lang)!)
 }
 
 /** Whether a guide has a translation in `lang` (English always does). */

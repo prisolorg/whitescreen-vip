@@ -44,7 +44,7 @@ const page = resolvePage(route)
 const slug = 'slug' in page ? page.slug : 'path' in page ? page.path : ''
 ---
 
-<Base seo={seo} url={url} hasTool={page.kind === 'home' || page.kind === 'color' || page.kind === 'tool'}>
+<Base seo={seo} url={url} hasTool={page.kind === 'home' || page.kind === 'color' || page.kind === 'tool' || page.kind === 'background'}>
   {page.kind === 'home' && <HomeIsland url={url} client:load />}
   {page.kind === 'home' && <StaticHomeBody url={url} />}
   {page.kind === 'color' && <ColorIsland url={url} colorId={page.colorId} client:load />}

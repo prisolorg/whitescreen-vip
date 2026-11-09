@@ -6066,8 +6066,38 @@
       "permanent": true
     },
     {
+      "source": "/es/guides/max-brightness/",
+      "destination": "/guides/max-brightness/",
+      "permanent": true
+    },
+    {
+      "source": "/es/guides/browser-fullscreen/",
+      "destination": "/guides/browser-fullscreen/",
+      "permanent": true
+    },
+    {
+      "source": "/es/guides/multi-monitor-setup/",
+      "destination": "/guides/multi-monitor-setup/",
+      "permanent": true
+    },
+    {
       "source": "/pt-br/author-whitson-rao/",
       "destination": "/author-whitson-rao/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/max-brightness/",
+      "destination": "/guides/max-brightness/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/browser-fullscreen/",
+      "destination": "/guides/browser-fullscreen/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/guides/multi-monitor-setup/",
+      "destination": "/guides/multi-monitor-setup/",
       "permanent": true
     },
     {
@@ -6076,8 +6106,38 @@
       "permanent": true
     },
     {
+      "source": "/de/guides/max-brightness/",
+      "destination": "/guides/max-brightness/",
+      "permanent": true
+    },
+    {
+      "source": "/de/guides/browser-fullscreen/",
+      "destination": "/guides/browser-fullscreen/",
+      "permanent": true
+    },
+    {
+      "source": "/de/guides/multi-monitor-setup/",
+      "destination": "/guides/multi-monitor-setup/",
+      "permanent": true
+    },
+    {
       "source": "/fr/author-whitson-rao/",
       "destination": "/author-whitson-rao/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/guides/max-brightness/",
+      "destination": "/guides/max-brightness/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/guides/browser-fullscreen/",
+      "destination": "/guides/browser-fullscreen/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/guides/multi-monitor-setup/",
+      "destination": "/guides/multi-monitor-setup/",
       "permanent": true
     },
     {
@@ -6091,6 +6151,21 @@
       "permanent": true
     },
     {
+      "source": "/it/guides/max-brightness/",
+      "destination": "/guides/max-brightness/",
+      "permanent": true
+    },
+    {
+      "source": "/it/guides/browser-fullscreen/",
+      "destination": "/guides/browser-fullscreen/",
+      "permanent": true
+    },
+    {
+      "source": "/it/guides/multi-monitor-setup/",
+      "destination": "/guides/multi-monitor-setup/",
+      "permanent": true
+    },
+    {
       "source": "/nl/author-whitson-rao/",
       "destination": "/author-whitson-rao/",
       "permanent": true
@@ -6101,13 +6176,58 @@
       "permanent": true
     },
     {
+      "source": "/nl/guides/max-brightness/",
+      "destination": "/guides/max-brightness/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/guides/browser-fullscreen/",
+      "destination": "/guides/browser-fullscreen/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/guides/multi-monitor-setup/",
+      "destination": "/guides/multi-monitor-setup/",
+      "permanent": true
+    },
+    {
       "source": "/id/author-whitson-rao/",
       "destination": "/author-whitson-rao/",
       "permanent": true
     },
     {
+      "source": "/id/guides/max-brightness/",
+      "destination": "/guides/max-brightness/",
+      "permanent": true
+    },
+    {
+      "source": "/id/guides/browser-fullscreen/",
+      "destination": "/guides/browser-fullscreen/",
+      "permanent": true
+    },
+    {
+      "source": "/id/guides/multi-monitor-setup/",
+      "destination": "/guides/multi-monitor-setup/",
+      "permanent": true
+    },
+    {
       "source": "/tr/author-whitson-rao/",
       "destination": "/author-whitson-rao/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/max-brightness/",
+      "destination": "/guides/max-brightness/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/browser-fullscreen/",
+      "destination": "/guides/browser-fullscreen/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/guides/multi-monitor-setup/",
+      "destination": "/guides/multi-monitor-setup/",
       "permanent": true
     }
   ]

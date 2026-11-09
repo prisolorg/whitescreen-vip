@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { RatingStrip } from '@/components/tool-rating'
 import { ADSENSE_CLIENT, AD_SLOTS } from '@/lib/ads'
 import { useTranslation } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
@@ -9,14 +10,28 @@ export const SHOW_ADS = Boolean(ADSENSE_CLIENT) || import.meta.env.DEV
  * One fixed-size AdSense unit. The `ins` is raw HTML so React never touches what Google injects,
  * and its exact size is set by CSS per screen width.
  */
-function AdUnit({ slot, sizeClass, label, className }: { slot: string; sizeClass: string; label: string; className?: string }) {
+function AdUnit({
+  slot,
+  sizeClass,
+  label,
+  className,
+  reserve = false,
+}: {
+  slot: string
+  sizeClass: string
+  label: string
+  className?: string
+  /** Keep the unit's space and label even before (or without) an ad, like the dedicated desktop rail. */
+  reserve?: boolean
+}) {
   const { t } = useTranslation()
   return (
-    // The unit stays closed (label included) until Google reports a real ad, so a slow, empty or blocked
-    // ad never leaves a blank space. Clipped rather than display:none, because AdSense needs its size.
+    // Units under the tool stay closed (label included) until Google reports a real ad, so a slow, empty
+    // or blocked ad never leaves a blank band. Clipped rather than display:none, because AdSense needs
+    // its size. The desktop rail is a dedicated column, so it always keeps its 300×600 space.
     <aside
       aria-label={t('advertisement', 'Advertisement')}
-      className={cn('flex-col items-center', ADSENSE_CLIENT && 'max-h-0 overflow-hidden has-[[data-ad-status=filled]]:max-h-none has-[[data-ad-status=filled]]:overflow-visible', className)}
+      className={cn('flex-col items-center', ADSENSE_CLIENT && !reserve && 'max-h-0 overflow-hidden has-[[data-ad-status=filled]]:max-h-none has-[[data-ad-status=filled]]:overflow-visible', className)}
     >
       <p className="mb-1 text-center text-[11px] uppercase tracking-wider text-muted-foreground">{t('advertisement', 'Advertisement')}</p>
       {ADSENSE_CLIENT ? (
@@ -48,15 +63,23 @@ export function UnderAd({ className }: { className?: string }) {
  * Native fullscreen covers everything, and the fallback fullscreen layer sits above these.
  * Without an AdSense client ID nothing extra is output.
  */
-export function ToolWithAds({ children, under = true }: { children: ReactNode; under?: boolean }) {
-  if (!SHOW_ADS) return <>{children}</>
+/** The tool column with its ads; `rating` adds the visitor rating row under the tool controls. */
+export function ToolWithAds({ children, under = true, rating = true }: { children: ReactNode; under?: boolean; rating?: boolean }) {
+  if (!SHOW_ADS)
+    return (
+      <>
+        {children}
+        {rating && <RatingStrip />}
+      </>
+    )
   return (
     <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
       <div className="flex min-w-0 flex-col gap-3">
         {children}
+        {rating && <RatingStrip />}
         {under && <UnderAd />}
       </div>
-      <AdUnit slot={AD_SLOTS.rail} sizeClass="h-[600px] w-[300px]" label="Ad 300×600" className="sticky top-20 hidden lg:flex" />
+      <AdUnit slot={AD_SLOTS.rail} sizeClass="h-[600px] w-[300px]" label="Ad 300×600" className="sticky top-20 hidden lg:flex" reserve />
     </div>
   )
 }

@@ -147,11 +147,13 @@ export function TryNextGallery({
     id === 'colors' ? t('colorsTab', 'Colors') : getLocalizedCategory(getCategory(id), language).navLabel
 
   return (
-    <section aria-labelledby={`${baseId}-heading`} className={cn('flex flex-col gap-3', className)}>
+    // A labelled navigation block with a styled label, not an H2: the same on every page, so each page's
+    // first H2 stays its own content. Screen readers still announce it as a named navigation landmark.
+    <nav aria-labelledby={`${baseId}-heading`} className={cn('flex flex-col gap-3', className)}>
       <div className="flex items-baseline justify-between gap-3">
-        <h2 id={`${baseId}-heading`} className="text-base font-bold tracking-tight sm:text-lg">
+        <p id={`${baseId}-heading`} className="text-base font-bold tracking-tight sm:text-lg">
           {defaultTabFor(currentSlug) === 'screen-tests' ? t('keepTesting', 'Keep testing your display') : t('tryNext', 'Try next')}
-        </h2>
+        </p>
         <Link href="/tools" className="shrink-0 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400">
           {t('allToolsLink', 'All 50+ tools →')}
         </Link>
@@ -203,6 +205,6 @@ export function TryNextGallery({
           ))}
         </ul>
       </div>
-    </section>
+    </nav>
   )
 }

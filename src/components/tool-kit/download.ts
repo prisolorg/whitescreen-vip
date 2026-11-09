@@ -1,3 +1,5 @@
+import { signalToolUsed } from '@/lib/ratings'
+
 export function downloadCanvas(canvas: HTMLCanvasElement, filename: string, type = 'image/png') {
   canvas.toBlob(
     (blob) => {
@@ -7,6 +9,7 @@ export function downloadCanvas(canvas: HTMLCanvasElement, filename: string, type
       link.href = url
       link.download = filename
       link.click()
+      signalToolUsed()
       URL.revokeObjectURL(url)
     },
     type,

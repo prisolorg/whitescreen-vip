@@ -204,7 +204,7 @@ export function BackgroundsIndexPage({ items, categories, categoryMeta, text }: 
         {/* Backgrounds Cards Grid: Every card links directly to its own unique URL */}
         {/* Ads: a sticky 300×600 beside the grid on desktop; on tablets and phones a banner after the
             first row of cards (dense flow fills the row on 3 columns), above the fold without pushing the grid down. */}
-        <ToolWithAds under={false}>
+        <ToolWithAds under={false} rating={false}>
         <div className={cn('grid grid-flow-row-dense grid-cols-2 gap-2.5 sm:gap-4 md:grid-cols-3', SHOW_ADS ? 'lg:grid-cols-3' : 'lg:grid-cols-4')}>
           {filteredItems.map((item, index) => {
             const isDownloading = downloadingSlug?.startsWith(item.slug)

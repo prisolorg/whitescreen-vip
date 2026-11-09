@@ -28,6 +28,7 @@ import {
   MonitorUp,
   Info,
   AudioLines,
+  RotateCcw,
 } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
 import { ControlRow, Segmented, Slider, Toggle, TextInput, ActionButton } from '@/components/tool-kit/controls'
@@ -40,7 +41,6 @@ import { cn } from '@/lib/utils'
 export type UpdateOS =
   | 'win10'
   | 'win11'
-  | 'mac'
   | 'android'
   | 'winxp-boot'
   | 'winxp-update'
@@ -77,17 +77,14 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
             {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
             {isPaused ? tx('Resume') : tx('Pause')}
           </ActionButton>
-          {/* A Windows blue screen makes no sense on a Mac update. */}
-          {os !== 'mac' && (
-            <ActionButton
-              variant="outline"
-              className="text-red-500 hover:text-red-600"
-              onClick={() => setIsBsod((b) => !b)}
-            >
-              <AlertTriangle aria-hidden="true" />
-              {isBsod ? tx('Restore Update') : tx('Trigger BSOD Prank')}
-            </ActionButton>
-          )}
+          <ActionButton
+            variant="outline"
+            className="text-red-500 hover:text-red-600"
+            onClick={() => setIsBsod((b) => !b)}
+          >
+            <AlertTriangle aria-hidden="true" />
+            {isBsod ? tx('Restore Update') : tx('Trigger BSOD Prank')}
+          </ActionButton>
         </ControlRow>
       }
     >
@@ -152,41 +149,6 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
                 <div className="mt-2 font-mono text-lg text-neutral-300">{percent}%</div>
                 <p className="mt-3 text-sm text-neutral-400">
                   {tx('Please keep your computer on and plugged in.')}
-                </p>
-              </div>
-            )}
-
-            {/* macOS: the Apple-silicon style update screen. Pure black, the logo, a thin rounded bar
-                and small grey system text, all scaled to the screen like the real one. */}
-            {os === 'mac' && (
-              <div
-                className="flex size-full flex-col items-center justify-center bg-black"
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                <svg
-                  aria-hidden="true"
-                  className="fill-white"
-                  style={{ height: 'clamp(52px, 10vmin, 116px)', width: 'auto' }}
-                  viewBox="0 0 170 170"
-                >
-                  <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.04-7.67-7.81-11.96-14.31-7.06-10.74-12.72-22.99-16.99-36.75-4.26-13.76-6.39-26.68-6.39-38.77 0-14.65 3.73-26.97 11.2-36.96 7.47-9.98 17.1-15.09 28.9-15.34 4.58 0 9.87 1.25 15.86 3.76 5.99 2.5 9.77 3.8 11.34 3.91 1.9-.22 5.86-1.55 11.89-4 6.03-2.45 11.19-3.61 15.49-3.48 10.96.65 19.86 4.7 26.71 12.16-9.67 5.86-14.39 14.19-14.16 24.99.23 8.35 3.37 15.39 9.42 21.13 6.05 5.74 13.25 9.07 21.6 10 1.2 5.1 1.96 10.27 2.28 15.52.32 5.25.05 10.51-.81 15.78zM119.22 33.64c0-7.05 2.5-13.73 7.51-20.04 5.01-6.31 11.23-10.36 18.66-12.14.77 7.05-1.46 13.77-6.68 20.15-5.22 6.38-11.71 10.39-19.49 12.03z" />
-                </svg>
-                <div
-                  role="progressbar"
-                  aria-valuenow={percent}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  className="overflow-hidden rounded-full bg-[#3a3a3c]"
-                  style={{ marginTop: 'clamp(44px, 9vmin, 100px)', width: 'clamp(150px, 24vmin, 280px)', height: 'clamp(4px, 0.62vmin, 7px)' }}
-                >
-                  <div className="h-full rounded-full bg-white transition-[width] duration-[1500ms] ease-linear" style={{ width: `${percent}%` }} />
-                </div>
-                <p className="text-[#8e8e93]" style={{ marginTop: 'clamp(14px, 2.4vmin, 26px)', fontSize: 'clamp(11px, 1.55vmin, 15px)' }}>
-                  {percent < 16
-                    ? tx('Calculating time remaining…')
-                    : percent >= 98
-                      ? tx('Less than a minute remaining')
-                      : tx('About {n} minutes remaining').replace('{n}', String(Math.max(1, Math.round((100 - percent) * 0.4))))}
                 </p>
               </div>
             )}
@@ -286,6 +248,166 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
                 </p>
               </div>
             )}
+          </>
+        )}
+      </div>
+    </ToolStage>
+  )
+}
+
+/* ---------------- macOS update ---------------- */
+
+const APPLE_LOGO = 'M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.04-7.67-7.81-11.96-14.31-7.06-10.74-12.72-22.99-16.99-36.75-4.26-13.76-6.39-26.68-6.39-38.77 0-14.65 3.73-26.97 11.2-36.96 7.47-9.98 17.1-15.09 28.9-15.34 4.58 0 9.87 1.25 15.86 3.76 5.99 2.5 9.77 3.8 11.34 3.91 1.9-.22 5.86-1.55 11.89-4 6.03-2.45 11.19-3.61 15.49-3.48 10.96.65 19.86 4.7 26.71 12.16-9.67 5.86-14.39 14.19-14.16 24.99.23 8.35 3.37 15.39 9.42 21.13 6.05 5.74 13.25 9.07 21.6 10 1.2 5.1 1.96 10.27 2.28 15.52.32 5.25.05 10.51-.81 15.78zM119.22 33.64c0-7.05 2.5-13.73 7.51-20.04 5.01-6.31 11.23-10.36 18.66-12.14.77 7.05-1.46 13.77-6.68 20.15-5.22 6.38-11.71 10.39-19.49 12.03z'
+
+type MacPhase = 'installing' | 'restarting' | 'booting'
+
+/**
+ * Progress over time like a real macOS install: it starts quickly, stalls for long stretches,
+ * then jumps. Fixed per seed, so a restart replays a fresh but believable run.
+ */
+function macProgressCurve(seed: number) {
+  let value = seed
+  const random = () => {
+    value = (value * 16807) % 2147483647
+    return (value - 1) / 2147483646
+  }
+  const segments = Array.from({ length: 14 }, (_, index) => {
+    const stall = index > 1 && random() < 0.35
+    return { time: stall ? 1.4 + random() * 2 : 0.5 + random(), gain: stall ? 0.05 + random() * 0.1 : 0.6 + random() * 1.2 }
+  })
+  const totalTime = segments.reduce((sum, segment) => sum + segment.time, 0)
+  const totalGain = segments.reduce((sum, segment) => sum + segment.gain, 0)
+  return (fraction: number) => {
+    let time = 0
+    let gain = 0
+    for (const segment of segments) {
+      const share = segment.time / totalTime
+      if (fraction <= time + share) return (gain + (segment.gain / totalGain) * ((fraction - time) / share)) * 100
+      time += share
+      gain += segment.gain / totalGain
+    }
+    return 100
+  }
+}
+
+/**
+ * The Apple silicon software update screen: the logo, a thin rounded bar and the time estimate,
+ * sized from the stage itself (container units) so the preview matches fullscreen.
+ */
+export function FakeMacUpdate() {
+  const [minutes, setMinutes] = useState(30)
+  const [startAt, setStartAt] = useState(5)
+  const [theme, setTheme] = useState<'black' | 'white'>('black')
+  const [showEstimate, setShowEstimate] = useState(true)
+  const [run, setRun] = useState({ startedAt: 0, seed: 1 })
+  const [now, setNow] = useState(0)
+  const [phase, setPhase] = useState<MacPhase>('installing')
+
+  const restart = useCallback(() => {
+    setPhase('installing')
+    setRun({ startedAt: Date.now(), seed: Math.floor(Math.random() * 2_000_000) + 1 })
+  }, [])
+
+  // Any change to the length or starting point begins a new run.
+  useEffect(() => restart(), [minutes, startAt, restart])
+
+  useEffect(() => {
+    const id = window.setInterval(() => setNow(Date.now()), 250)
+    return () => window.clearInterval(id)
+  }, [])
+
+  const curve = useRef(macProgressCurve(1))
+  useEffect(() => {
+    curve.current = macProgressCurve(run.seed)
+  }, [run.seed])
+
+  const totalMs = minutes * 60_000 * (1 - startAt / 100)
+  const elapsed = run.startedAt ? Math.max(0, now - run.startedAt) : 0
+  const fraction = Math.min(1, totalMs ? elapsed / totalMs : 1)
+  const percent = startAt + (100 - startAt) * (curve.current(fraction) / 100)
+
+  // When the bar fills, the Mac goes dark, shows the logo alone, then the install starts again.
+  useEffect(() => {
+    if (phase === 'installing' && fraction >= 1) setPhase('restarting')
+  }, [fraction, phase])
+
+  useEffect(() => {
+    if (phase === 'installing') return
+    const id = window.setTimeout(phase === 'restarting' ? () => setPhase('booting') : restart, phase === 'restarting' ? 2500 : 4000)
+    return () => window.clearTimeout(id)
+  }, [phase, restart])
+
+  const remainingMinutes = Math.ceil((totalMs - elapsed) / 60_000)
+  const estimate =
+    elapsed < 8000
+      ? tx('Calculating time remaining…')
+      : remainingMinutes <= 1
+        ? tx('Less than a minute remaining')
+        : tx('About {n} minutes remaining').replace('{n}', String(remainingMinutes))
+
+  const isWhite = theme === 'white'
+
+  return (
+    <ToolStage
+      label="Fake Mac update screen"
+      tone={isWhite ? 'light' : 'dark'}
+      badge="Simulation"
+      reserveHeadingSpace
+      style={{ background: isWhite ? '#ffffff' : '#000000' }}
+      controls={
+        <ControlRow>
+          <Slider label="Update time" value={minutes} min={5} max={120} step={5} onChange={setMinutes} format={(value) => `${value} min`} />
+          <Slider label="Start at" value={startAt} min={0} max={90} step={5} onChange={setStartAt} format={(value) => `${value}%`} />
+          <Segmented
+            label="Screen"
+            value={theme}
+            onChange={setTheme}
+            options={[
+              { value: 'black', label: 'Black' },
+              { value: 'white', label: 'White' },
+            ]}
+          />
+          <Toggle label="Time remaining" checked={showEstimate} onChange={setShowEstimate} />
+          <ActionButton onClick={restart}>
+            <RotateCcw aria-hidden="true" />
+            {tx('Restart')}
+          </ActionButton>
+        </ControlRow>
+      }
+    >
+      <div
+        className="flex size-full select-none flex-col items-center justify-center"
+        style={{ containerType: 'size', fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif' }}
+      >
+        {phase !== 'restarting' && (
+          <svg aria-hidden="true" viewBox="0 0 170 170" className={isWhite ? 'fill-black' : 'fill-white'} style={{ height: 'clamp(40px, 13cqmin, 140px)', width: 'auto' }}>
+            <path d={APPLE_LOGO} />
+          </svg>
+        )}
+        {phase === 'installing' && (
+          <>
+            <div
+              role="progressbar"
+              aria-label={tx('Update progress')}
+              aria-valuenow={Math.round(percent)}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              className="overflow-hidden rounded-full"
+              style={{
+                marginTop: 'clamp(28px, 11cqmin, 110px)',
+                width: 'clamp(120px, 30cqmin, 300px)',
+                height: 'clamp(4px, 0.8cqmin, 7px)',
+                background: isWhite ? '#d1d1d6' : '#3a3a3c',
+              }}
+            >
+              <div className="h-full rounded-full transition-[width] duration-300 ease-linear" style={{ width: `${percent}%`, background: isWhite ? '#1d1d1f' : '#ffffff' }} />
+            </div>
+            <p
+              className={showEstimate ? '' : 'invisible'}
+              style={{ marginTop: 'clamp(10px, 3cqmin, 26px)', fontSize: 'clamp(10px, 2cqmin, 15px)', color: isWhite ? '#6e6e73' : '#8e8e93' }}
+            >
+              {estimate}
+            </p>
           </>
         )}
       </div>

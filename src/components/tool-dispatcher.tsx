@@ -76,7 +76,7 @@ const FakeScreens = lazy(() => import('@/components/tools/fake-screens').then(m 
   default: ({ slug }: { slug: string }) => {
     if (slug === 'fake-windows-10-update') return <m.FakeUpdateScreen os="win10" />
     if (slug === 'fake-windows-11-update') return <m.FakeUpdateScreen os="win11" />
-    if (slug === 'fake-mac-update') return <m.FakeUpdateScreen os="mac" />
+    if (slug === 'fake-mac-update') return <m.FakeMacUpdate />
     if (slug === 'fake-android-update') return <m.FakeUpdateScreen os="android" />
     if (slug === 'fake-windows-xp-update') return <m.FakeUpdateScreen os="winxp-update" />
     if (slug === 'fake-windows-xp-boot') return <m.FakeUpdateScreen os="winxp-boot" />
