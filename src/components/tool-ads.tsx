@@ -26,16 +26,19 @@ function AdUnit({
 }) {
   const { t } = useTranslation()
   return (
-    // Units under the tool stay closed (label included) until Google reports a real ad, so a slow, empty
-    // or blocked ad never leaves a blank band. Clipped rather than display:none, because AdSense needs
-    // its size. The desktop rail is a dedicated column, so it always keeps its 300×600 space.
+    // Reserved units keep their exact size from the first paint, so the ad arriving seconds later never
+    // pushes the page down (no layout shift); with no ad to show, the space stays but Google's blank frame is hidden. Unreserved units stay closed until Google reports a real ad;
+    // clipped rather than display:none, because AdSense needs their size.
     <aside
       aria-label={t('advertisement', 'Advertisement')}
-      className={cn('flex-col items-center', ADSENSE_CLIENT && !reserve && 'max-h-0 overflow-hidden has-[[data-ad-status=filled]]:max-h-none has-[[data-ad-status=filled]]:overflow-visible', className)}
+      className={cn('flex-col items-center', reserve && '[&_ins[data-ad-status=unfilled]]:opacity-0', ADSENSE_CLIENT && !reserve && 'max-h-0 overflow-hidden has-[[data-ad-status=filled]]:max-h-none has-[[data-ad-status=filled]]:overflow-visible', className)}
     >
       <p className="mb-1 text-center text-[11px] uppercase tracking-wider text-muted-foreground">{t('advertisement', 'Advertisement')}</p>
       {ADSENSE_CLIENT ? (
         <div
+          // Reserved units: the holder has the ad's exact size, so Google resizing its own box (e.g. 90px to 63px
+          // when it collapses an unfilled slot) can never move the page.
+          className={cn(reserve && 'overflow-hidden', reserve && sizeClass)}
           dangerouslySetInnerHTML={{
             __html: `<ins class="adsbygoogle block ${sizeClass}" data-ad-client="${ADSENSE_CLIENT}"${slot ? ` data-ad-slot="${slot}"` : ''}></ins>`,
           }}
@@ -49,10 +52,13 @@ function AdUnit({
   )
 }
 
-/** The tablet / phone unit (hidden on desktop, where the rail takes over). Placed by ToolWithAds, or by hand inside a grid. */
+/**
+ * The tablet / phone unit (hidden on desktop, where the rail takes over). Placed by ToolWithAds, or by hand inside a grid.
+ * Its space is reserved: it filled in about 5 s on phones and, when it opened then, shifted everything below it by ~120px.
+ */
 export function UnderAd({ className }: { className?: string }) {
   if (!SHOW_ADS) return null
-  return <AdUnit slot={AD_SLOTS.under} sizeClass="h-[100px] w-[320px] min-[800px]:h-[90px] min-[800px]:w-[728px]" label="Ad 728×90 / 320×100" className={cn('flex lg:hidden', className)} />
+  return <AdUnit slot={AD_SLOTS.under} sizeClass="h-[100px] w-[320px] min-[800px]:h-[90px] min-[800px]:w-[728px]" label="Ad 728×90 / 320×100" className={cn('flex lg:hidden', className)} reserve />
 }
 
 /**
