@@ -179,3 +179,12 @@
     animation: none;
   }
 }
+
+/* Visitors with an ad blocker: no empty ad spaces, and the tool takes the rail's column too.
+   html.ad-blocked is set before first paint from the last visit, then confirmed by a quick check (Base.astro). */
+html.ad-blocked [data-ad-unit] {
+  display: none !important;
+}
+html.ad-blocked [data-ad-grid] {
+  grid-template-columns: minmax(0, 1fr) !important;
+}

@@ -14,9 +14,11 @@ interface Props {
   url: string
   /** The page shows an interactive tool, so it needs the tool text dictionary. */
   hasTool?: boolean
+  /** Pages with ad units (tools, colors, home, backgrounds): only they run the ad-blocker check. */
+  hasAds?: boolean
 }
 
-const { seo, url, hasTool = false } = Astro.props
+const { seo, url, hasTool = false, hasAds = false } = Astro.props
 const htmlLang = seo.lang === 'pt-br' ? 'pt-BR' : seo.lang
 ---
 
@@ -48,6 +50,37 @@ const htmlLang = seo.lang === 'pt-br' ? 'pt-BR' : seo.lang
         } catch (e) {}
       })()
     </script>
+    {
+      ADSENSE_CLIENT && hasAds && !seo.notFound && (
+        <script is:inline>
+          // Ad blockers: hide ad spaces instead of leaving empty boxes. The last visit's answer applies before
+          // first paint (no layout shift on later pages); a light HEAD request to the ad script confirms it now,
+          // since blockers refuse that request within milliseconds.
+          ;(function () {
+            var root = document.documentElement
+            function mark(blocked) {
+              root.classList.toggle('ad-blocked', blocked)
+              try {
+                localStorage.setItem('ws-adblock', blocked ? '1' : '0')
+              } catch (e) {}
+            }
+            try {
+              if (localStorage.getItem('ws-adblock') === '1') root.classList.add('ad-blocked')
+            } catch (e) {}
+            window.__wsAdBlocked = mark
+            if (!window.fetch) return
+            fetch('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', { method: 'HEAD', mode: 'no-cors', cache: 'no-store' }).then(
+              function () {
+                mark(false)
+              },
+              function () {
+                mark(true)
+              },
+            )
+          })()
+        </script>
+      )
+    }
   </head>
   <body>
     <div class="flex min-h-screen flex-col bg-background text-foreground">
@@ -71,6 +104,9 @@ const htmlLang = seo.lang === 'pt-br' ? 'pt-BR' : seo.lang
               script.async = true
               script.crossOrigin = 'anonymous'
               script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + client
+              script.onerror = function () {
+                if (window.__wsAdBlocked) window.__wsAdBlocked(true)
+              }
               document.head.appendChild(script)
               // Only units shown at this screen width get an ad. AdSense fills the first unfilled
               // ins.adsbygoogle in page order, so hidden ones (the desktop rail on a phone) drop the class.

@@ -30,6 +30,7 @@ function AdUnit({
     // pushes the page down (no layout shift); with no ad to show, the space stays but Google's blank frame is hidden. Unreserved units stay closed until Google reports a real ad;
     // clipped rather than display:none, because AdSense needs their size.
     <aside
+      data-ad-unit=""
       aria-label={t('advertisement', 'Advertisement')}
       className={cn('flex-col items-center', reserve && '[&_ins[data-ad-status=unfilled]]:opacity-0', ADSENSE_CLIENT && !reserve && 'max-h-0 overflow-hidden has-[[data-ad-status=filled]]:max-h-none has-[[data-ad-status=filled]]:overflow-visible', className)}
     >
@@ -53,19 +54,29 @@ function AdUnit({
 }
 
 /**
- * The tablet / phone unit (hidden on desktop, where the rail takes over). Placed by ToolWithAds, or by hand inside a grid.
- * Its space is reserved: it filled in about 5 s on phones and, when it opened then, shifted everything below it by ~120px.
+ * The unit straight under the tool, on every screen: 320×100 on phones, 728×90 from 800px, 468×60 on small desktops
+ * where the tool column beside the rail is narrower than 728px (1024–1099px), and 728×90 again from 1100px.
+ * Placed by ToolWithAds, or by hand inside a grid. Its space is reserved, so the ad arriving never moves the page.
  */
 export function UnderAd({ className }: { className?: string }) {
   if (!SHOW_ADS) return null
-  return <AdUnit slot={AD_SLOTS.under} sizeClass="h-[100px] w-[320px] min-[800px]:h-[90px] min-[800px]:w-[728px]" label="Ad 728×90 / 320×100" className={cn('flex lg:hidden', className)} reserve />
+  return (
+    <AdUnit
+      slot={AD_SLOTS.under}
+      sizeClass="h-[100px] w-[320px] min-[800px]:h-[90px] min-[800px]:w-[728px] min-[1024px]:h-[60px] min-[1024px]:w-[468px] min-[1100px]:h-[90px] min-[1100px]:w-[728px]"
+      label="Ad 728×90 / 468×60 / 320×100"
+      className={cn('flex', className)}
+      reserve
+    />
+  )
 }
 
 /**
  * Puts a tool's ads around it without ever moving the tool down:
  * - desktop (≥1024px): a 300×600 half-page unit to the right, sticky while the page scrolls
  *   (allowed for units ≤300px wide, and it is the page's only sticky ad);
- * - tablet: a 728×90 straight under the tool's controls; phones: a 320×100 there.
+ * - every screen: a unit straight under the tool's controls (see UnderAd for its sizes).
+ * With an ad blocker the units and their space are removed (html.ad-blocked, set in Base.astro).
  * Native fullscreen covers everything, and the fallback fullscreen layer sits above these.
  * Without an AdSense client ID nothing extra is output.
  */
@@ -79,11 +90,11 @@ export function ToolWithAds({ children, under = true, rating = true }: { childre
       </>
     )
   return (
-    <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
+    <div data-ad-grid="" className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
       <div className="flex min-w-0 flex-col gap-3">
         {children}
-        {rating && <RatingStrip />}
         {under && <UnderAd />}
+        {rating && <RatingStrip />}
       </div>
       <AdUnit slot={AD_SLOTS.rail} sizeClass="h-[600px] w-[300px]" label="Ad 300×600" className="sticky top-20 hidden lg:flex" reserve />
     </div>
