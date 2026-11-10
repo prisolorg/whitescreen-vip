@@ -208,4 +208,5 @@ export const fr: readonly string[] = [
   "{average} sur 5 · {count} avis",
   "Soyez parmi les premiers à noter cet outil",
   "Impossible d’enregistrer votre note. Veuillez réessayer.",
+  "Merci pour votre note !",
 ]

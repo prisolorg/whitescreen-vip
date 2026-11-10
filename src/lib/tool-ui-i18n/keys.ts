@@ -421,4 +421,5 @@ export const TOOL_UI_KEYS = [
   "{average} out of 5 · {count} ratings",
   "Be one of the first to rate this tool",
   "Couldn't save your rating. Please try again.",
+  "Thanks for rating!",
 ] as const

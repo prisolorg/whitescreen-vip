@@ -208,4 +208,5 @@ export const ptBr: readonly string[] = [
   "{average} de 5 · {count} avaliações",
   "Seja um dos primeiros a avaliar esta ferramenta",
   "Não foi possível salvar sua avaliação. Tente novamente.",
+  "Obrigado pela avaliação!",
 ]

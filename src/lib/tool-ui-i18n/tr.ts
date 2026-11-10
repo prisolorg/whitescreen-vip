@@ -208,4 +208,5 @@ export const tr: readonly string[] = [
   "5 üzerinden {average} · {count} değerlendirme",
   "Bu aracı ilk değerlendirenlerden biri olun",
   "Değerlendirmeniz kaydedilemedi. Lütfen tekrar deneyin.",
+  "Değerlendirdiğiniz için teşekkürler!",
 ]

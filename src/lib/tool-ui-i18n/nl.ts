@@ -208,4 +208,5 @@ export const nl: readonly string[] = [
   "{average} van 5 · {count} beoordelingen",
   "Wees een van de eersten die deze tool beoordeelt",
   "Je beoordeling kon niet worden opgeslagen. Probeer het opnieuw.",
+  "Bedankt voor je beoordeling!",
 ]

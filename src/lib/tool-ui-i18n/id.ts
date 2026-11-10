@@ -208,4 +208,5 @@ export const id: readonly string[] = [
   "{average} dari 5 · {count} penilaian",
   "Jadilah salah satu yang pertama menilai alat ini",
   "Penilaian Anda tidak dapat disimpan. Silakan coba lagi.",
+  "Terima kasih atas penilaiannya!",
 ]

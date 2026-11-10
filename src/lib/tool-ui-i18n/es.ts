@@ -208,4 +208,5 @@ export const es: readonly string[] = [
   "{average} de 5 · {count} valoraciones",
   "Sé de los primeros en valorar esta herramienta",
   "No se pudo guardar tu valoración. Inténtalo de nuevo.",
+  "¡Gracias por valorar!",
 ]

@@ -111,17 +111,21 @@ export function RatingBadge({ tone }: { tone: 'light' | 'dark' }) {
           onPointerDown={() => setPinned(true)}
           onFocus={() => setPinned(true)}
         >
-          <RatingCard />
+          <RatingCard
+            onRated={() => {
+              setOpen(false)
+              setPinned(false)
+            }}
+          />
         </div>
       )}
     </span>
   )
 }
 
-/** The rating card inside the badge's tooltip: stars and the average (or an invitation). */
-function RatingCard() {
+/** The rating card inside the badge's tooltip: stars and the average (or an invitation). It closes once someone rates. */
+function RatingCard({ onRated }: { onRated: () => void }) {
   const rating = useRating()
-  const [error, setError] = useState(false)
   if (!rating) return null
   const mine = rating.mine
   const shown = rating.count >= MIN_RATINGS_SHOWN
@@ -132,9 +136,9 @@ function RatingCard() {
       <StarPicker
         value={mine}
         disabled={Boolean(mine)}
-        onPick={async (stars) => {
-          setError(false)
-          if (!(await submitRating(rating.tool, stars))) setError(true)
+        onPick={(stars) => {
+          onRated()
+          rateAndThank(rating.tool, stars)
         }}
       />
       <p className="flex items-center gap-1.5 text-xs text-muted-foreground" aria-live="polite">
@@ -147,7 +151,6 @@ function RatingCard() {
           tx('Be one of the first to rate this tool')
         )}
       </p>
-      {error && <p className="text-sm text-destructive" role="alert">{tx("Couldn't save your rating. Please try again.")}</p>}
     </div>
   )
 }
@@ -194,12 +197,37 @@ function StarPicker({
   )
 }
 
+/**
+ * A small note at the bottom of the screen for ~2 s: "Thanks for rating!" (or the error if saving failed).
+ * It never takes clicks or covers controls, so it does not interrupt whatever the visitor does next.
+ */
+function showToast(message: string) {
+  document.getElementById('ws-rating-toast')?.remove()
+  const toast = document.createElement('div')
+  toast.id = 'ws-rating-toast'
+  toast.setAttribute('role', 'status')
+  toast.className =
+    'pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background shadow-lg transition-opacity duration-300 opacity-0'
+  toast.textContent = message
+  document.body.appendChild(toast)
+  requestAnimationFrame(() => toast.classList.replace('opacity-0', 'opacity-100'))
+  window.setTimeout(() => toast.classList.replace('opacity-100', 'opacity-0'), 2000)
+  window.setTimeout(() => toast.remove(), 2400)
+}
+
+/** Saves the rating, then thanks the visitor (the card or prompt has already closed). */
+function rateAndThank(tool: string, stars: number) {
+  showToast(tx('Thanks for rating!'))
+  void submitRating(tool, stars).then((saved) => {
+    if (!saved) showToast(tx("Couldn't save your rating. Please try again."))
+  })
+}
+
 /** One-time prompt after someone finishes using a tool (left fullscreen or downloaded). Never shown again once answered or dismissed. */
 function RatingPrompt() {
   const rating = useRating()
   const titleId = useId()
   const [open, setOpen] = useState(false)
-  const [picked, setPicked] = useState(0)
   const [toolName, setToolName] = useState('')
 
   const ready = rating?.status === 'ready' && !rating.mine
@@ -259,26 +287,17 @@ function RatingPrompt() {
           <X aria-hidden="true" className="size-4" />
         </button>
       </div>
-      {picked ? (
-        <p className="text-sm text-muted-foreground" role="status">
-          {fill(tx('You rated this tool {n} out of 5'), { n: picked })}
-        </p>
-      ) : (
-        <>
-          <StarPicker
-            size="lg"
-            value={0}
-            onPick={(stars) => {
-              setPicked(stars)
-              void submitRating(rating.tool, stars)
-              window.setTimeout(() => setOpen(false), 1600)
-            }}
-          />
-          <button type="button" onClick={close} className="self-start px-1 text-sm text-muted-foreground underline underline-offset-2 hover:text-foreground">
-            {tx('Not now')}
-          </button>
-        </>
-      )}
+      <StarPicker
+        size="lg"
+        value={0}
+        onPick={(stars) => {
+          setOpen(false)
+          rateAndThank(rating.tool, stars)
+        }}
+      />
+      <button type="button" onClick={close} className="self-start px-1 text-sm text-muted-foreground underline underline-offset-2 hover:text-foreground">
+        {tx('Not now')}
+      </button>
     </div>
   )
 }
