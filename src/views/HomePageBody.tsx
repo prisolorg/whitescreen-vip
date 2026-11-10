@@ -12,6 +12,7 @@ import { useTranslation } from '@/lib/i18n'
 import { getLocalizedPath } from '@/lib/locale-routing'
 import { ColorImage } from '@/components/color-image'
 import { ToolGlanceBlock } from '@/components/tool-glance'
+import { aggregateRating, ratingFor } from '@/lib/rating-snapshot'
 import { getToolGlance } from '@/lib/tool-content/glance'
 import { SCREEN_COLORS } from '@/lib/screen-colors'
 
@@ -36,6 +37,7 @@ export function HomePageBody() {
     operatingSystem: 'Any',
     browserRequirements: 'Requires a modern web browser',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    ...aggregateRating('/'),
   }
 
   const faqSchema = {
@@ -56,7 +58,7 @@ export function HomePageBody() {
         <HomeSections />
       ) : (
         <>
-          {glance && <ToolGlanceBlock name={t('homeTitle', 'White Screen')} glance={glance} />}
+          {glance && <ToolGlanceBlock name={t('homeTitle', 'White Screen')} glance={glance} rating={ratingFor('/')} />}
           <ColorImage color={SCREEN_COLORS[0]} name={t('homeTitle', 'White Screen')} />
           <Benefits />
           <UseCases />

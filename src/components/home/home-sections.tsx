@@ -1,5 +1,6 @@
 import { ColorImage } from '@/components/color-image'
 import { ToolGlanceBlock } from '@/components/tool-glance'
+import { ratingFor } from '@/lib/rating-snapshot'
 import { TOOL_GLANCE } from '@/lib/tool-content/glance'
 import { SCREEN_COLORS } from '@/lib/screen-colors'
 import Link from 'next/link'
@@ -200,7 +201,7 @@ export function HomeSections() {
     <div className="space-y-12 sm:space-y-16 pb-16">
       {/* 1. What Is a White Screen? Answer first, then the image and the first ad. */}
       <div>
-        <ToolGlanceBlock name="White Screen" heading="What Is a White Screen?" glance={TOOL_GLANCE['white-screen']} />
+        <ToolGlanceBlock name="White Screen" heading="What Is a White Screen?" glance={TOOL_GLANCE['white-screen']} rating={ratingFor('/')} />
         <ColorImage color={SCREEN_COLORS[0]} name="White Screen" />
       </div>
 

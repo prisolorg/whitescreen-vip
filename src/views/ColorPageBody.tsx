@@ -10,6 +10,7 @@ import { COLOR_GUIDES } from '@/lib/color-guides'
 import { FaqList } from '@/components/faq-list'
 import { RichText, plainText } from '@/components/rich-text'
 import { ToolGlanceBlock, ToolSources } from '@/components/tool-glance'
+import { aggregateRating, ratingFor } from '@/lib/rating-snapshot'
 import { ColorImage } from '@/components/color-image'
 import { getToolGlance } from '@/lib/tool-content/glance'
 import { getLocalizedPath } from '@/lib/locale-routing'
@@ -44,6 +45,7 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
     isAccessibleForFree: true,
     creator: { '@type': 'Person', '@id': `${absoluteUrl(AUTHOR.path)}#person`, name: AUTHOR.name },
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+    ...aggregateRating(color.path),
   }
 
   // Long-form copy is English-only; other languages keep the translated intro and use cases.
@@ -62,7 +64,7 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
     <>
       <JsonLd data={schema} />
       {faqSchema && <JsonLd data={faqSchema} />}
-      {glance && <ToolGlanceBlock name={localizedName} glance={glance} />}
+      {glance && <ToolGlanceBlock name={localizedName} glance={glance} rating={ratingFor(color.path)} />}
       <ColorImage color={color} name={localizedName} />
       <Section
         id="use-cases"

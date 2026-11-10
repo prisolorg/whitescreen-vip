@@ -9,6 +9,7 @@ import { getTool, toolPath } from '@/lib/tools'
 import { getCategory } from '@/lib/tool-categories'
 import { getToolContent } from '@/lib/tool-content'
 import { getToolGlance } from '@/lib/tool-content/glance'
+import { aggregateRating, ratingFor } from '@/lib/rating-snapshot'
 import { toolContentTranslations } from '@/lib/tool-content/i18n'
 import { TOOL_META } from '@/lib/tool-content/meta'
 import { AUTHOR } from '@/lib/author'
@@ -64,6 +65,8 @@ export function ToolPageBody({ slug }: { slug: string }) {
     creator: { '@type': 'Person', '@id': `${absoluteUrl(AUTHOR.path)}#person`, name: AUTHOR.name, url: absoluteUrl(AUTHOR.path) },
     publisher: { '@type': 'Organization', '@id': `${absoluteUrl('/')}#organization`, name: siteConfig.name, url: absoluteUrl('/') },
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+    // Real visitor ratings (snapshot at build), only once a tool has enough of them.
+    ...aggregateRating(toolPath(slug)),
     ...(glance?.sources?.some((source) => source.url.includes('wikipedia.org')) && {
       about: glance.sources.filter((source) => source.url.includes('wikipedia.org')).map((source) => ({ '@type': 'Thing', name: source.label.replace(' (Wikipedia)', ''), sameAs: source.url })),
     }),
@@ -85,7 +88,7 @@ export function ToolPageBody({ slug }: { slug: string }) {
     <>
       <JsonLd data={appSchema} />
       {faqSchema && <JsonLd data={faqSchema} />}
-      {glance && <ToolGlanceBlock name={localizedTool.name} glance={glance} />}
+      {glance && <ToolGlanceBlock name={localizedTool.name} glance={glance} rating={ratingFor(toolPath(slug))} />}
       {language === 'en' && (
         <section aria-labelledby="about-heading" className="border-t py-14">
           <div className="mx-auto max-w-3xl px-4 sm:px-6">

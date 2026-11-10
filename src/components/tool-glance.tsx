@@ -1,14 +1,27 @@
-import { Check, Sparkles } from 'lucide-react'
+import { Check, Sparkles, Star } from 'lucide-react'
 import Link from 'next/link'
 import type { ToolGlance } from '@/lib/tool-content/glance'
 import { AUTHOR } from '@/lib/author'
 import { useTranslation } from '@/lib/i18n'
+import type { RatingSummary } from '@/lib/rating-snapshot'
+import { tx } from '@/lib/tx'
 
 /**
  * The answer-first block directly under a tool: what it is in a few sentences, its key features
  * and why to use it. Written so a reader (or a search engine) gets the answer without scrolling.
  */
-export function ToolGlanceBlock({ name, glance, heading }: { name: string; glance: ToolGlance; heading?: string }) {
+export function ToolGlanceBlock({
+  name,
+  glance,
+  heading,
+  rating,
+}: {
+  name: string
+  glance: ToolGlance
+  heading?: string
+  /** Visitor rating at build time; shown here (on every screen) to match the page's AggregateRating data. */
+  rating?: RatingSummary
+}) {
   const { t } = useTranslation()
   return (
     <section aria-labelledby="answer-heading" className="pb-4 pt-8">
@@ -17,6 +30,14 @@ export function ToolGlanceBlock({ name, glance, heading }: { name: string; glanc
         <h2 id="answer-heading" className="mt-1 text-2xl font-semibold tracking-tight">
           {heading ?? t('whatIsTool', 'What is the {tool}?').replace('{tool}', name)}
         </h2>
+        {rating && (
+          <p className="mt-2 flex items-center gap-1.5 text-sm text-muted-foreground">
+            <Star aria-hidden="true" className="size-4 fill-amber-400 text-amber-400" />
+            {tx('{average} out of 5 · {count} ratings')
+              .replace('{average}', rating.average.toFixed(1))
+              .replace('{count}', rating.count.toLocaleString('en-US'))}
+          </p>
+        )}
         <p className="mt-3 max-w-3xl text-pretty text-lg leading-relaxed text-foreground/90">{glance.answer}</p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           <div className="rounded-xl border bg-card p-5">
