@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { RatingStrip } from '@/components/tool-rating'
+import { ToolRatingPrompt } from '@/components/tool-rating'
 import { ADSENSE_CLIENT, AD_SLOTS } from '@/lib/ads'
 import { useTranslation } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
@@ -80,13 +80,13 @@ export function UnderAd({ className }: { className?: string }) {
  * Native fullscreen covers everything, and the fallback fullscreen layer sits above these.
  * Without an AdSense client ID nothing extra is output.
  */
-/** The tool column with its ads; `rating` adds the visitor rating row under the tool controls. */
+/** The tool column with its ads; `rating` mounts the one-time rating prompt (the rating itself is the title badge's tooltip). */
 export function ToolWithAds({ children, under = true, rating = true }: { children: ReactNode; under?: boolean; rating?: boolean }) {
   if (!SHOW_ADS)
     return (
       <>
         {children}
-        {rating && <RatingStrip />}
+        {rating && <ToolRatingPrompt />}
       </>
     )
   return (
@@ -94,7 +94,7 @@ export function ToolWithAds({ children, under = true, rating = true }: { childre
       <div className="flex min-w-0 flex-col gap-3">
         {children}
         {under && <UnderAd />}
-        {rating && <RatingStrip />}
+        {rating && <ToolRatingPrompt />}
       </div>
       <AdUnit slot={AD_SLOTS.rail} sizeClass="h-[600px] w-[300px]" label="Ad 300×600" className="sticky top-20 hidden lg:flex" reserve />
     </div>

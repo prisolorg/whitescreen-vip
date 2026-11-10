@@ -107,19 +107,6 @@ export async function submitRating(tool: string, stars: number): Promise<boolean
   }
 }
 
-export async function submitComment(tool: string, comment: string): Promise<boolean> {
-  try {
-    const response = await fetch(ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ tool, comment }),
-    })
-    return response.ok
-  } catch {
-    return false
-  }
-}
-
 /** The "how did it work" prompt shows at most until it is answered or dismissed once, on any tool. */
 export function isPromptDone(): boolean {
   return storageGet(PROMPT_KEY) === 'done'

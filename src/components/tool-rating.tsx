@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { Star, X } from 'lucide-react'
 import {
   MIN_RATINGS_SHOWN,
@@ -6,7 +6,6 @@ import {
   TOOL_USED_EVENT,
   isPromptDone,
   markPromptDone,
-  submitComment,
   submitRating,
   useRating,
 } from '@/lib/ratings'
@@ -19,32 +18,137 @@ const DESKTOP_QUERY = '(min-width: 1024px)'
 const fill = (template: string, values: Record<string, string | number>) =>
   template.replace(/\{(\w+)\}/g, (_, key: string) => String(values[key] ?? ''))
 
+const stop = (event: { stopPropagation(): void }) => event.stopPropagation()
+
 const formatAverage = (average: number) => {
   const lang = typeof document === 'undefined' ? 'en' : document.documentElement.lang || 'en'
   return average.toLocaleString(lang, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
 }
 
-/** Small badge beside the page title: the average once enough people rated, otherwise an invitation. Links to #rating. */
+/**
+ * Badge beside the page title: the average once enough people rated, otherwise "Rate this tool".
+ * Hovering (or clicking / tapping, or Enter) opens a small rating card under it, like a tooltip.
+ */
 export function RatingBadge({ tone }: { tone: 'light' | 'dark' }) {
   const rating = useRating()
+  const panelId = useId()
+  const [open, setOpen] = useState(false)
+  const [pinned, setPinned] = useState(false)
+  const wrapper = useRef<HTMLSpanElement>(null)
+  const closeTimer = useRef(0)
+
+  // Clicking outside or pressing Escape closes the card.
+  useEffect(() => {
+    if (!open) return
+    const onPointer = (event: PointerEvent) => {
+      if (!wrapper.current?.contains(event.target as Node)) {
+        setOpen(false)
+        setPinned(false)
+      }
+    }
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false)
+        setPinned(false)
+      }
+    }
+    document.addEventListener('pointerdown', onPointer)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('pointerdown', onPointer)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
   if (!RATINGS_ENABLED || !rating || rating.status !== 'ready') return null
   const shown = rating.count >= MIN_RATINGS_SHOWN
 
   return (
-    <a
-      href="#rating"
-      className={cn(
-        'pointer-events-auto hidden h-7 shrink-0 lg:inline-flex items-center gap-1 rounded-full px-2.5 text-xs font-semibold ring-1 transition-colors',
-        tone === 'light'
-          ? 'bg-amber-50/90 text-amber-950 ring-amber-300 hover:bg-amber-100'
-          : 'bg-black/35 text-white ring-white/25 hover:bg-black/50',
-      )}
+    <span
+      ref={wrapper}
+      className="pointer-events-auto relative hidden shrink-0 lg:inline-flex"
+      // Keep clicks and typing here away from the stage (tap = next color, double-click / F = fullscreen, arrows).
+      onClick={stop}
+      onDoubleClick={stop}
+      onPointerDown={stop}
+      onKeyDown={stop}
+      onMouseEnter={() => {
+        window.clearTimeout(closeTimer.current)
+        setOpen(true)
+      }}
+      onMouseLeave={() => {
+        // A short grace period so the pointer can travel from the badge into the card.
+        if (!pinned) closeTimer.current = window.setTimeout(() => setOpen(false), 250)
+      }}
     >
-      <Star aria-hidden="true" className={cn('size-3.5', shown ? 'fill-amber-400 text-amber-400' : tone === 'light' ? 'text-amber-600' : 'text-amber-300')} />
-      {shown
-        ? fill(tx('{average} · {count} ratings'), { average: formatAverage(rating.average), count: rating.count.toLocaleString() })
-        : tx('Rate this tool')}
-    </a>
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={panelId}
+        onClick={() => {
+          setPinned(!(open && pinned))
+          setOpen(!(open && pinned))
+        }}
+        className={cn(
+          'inline-flex h-7 items-center gap-1 rounded-full px-2.5 text-xs font-semibold ring-1 transition-colors',
+          tone === 'light'
+            ? 'bg-amber-50/90 text-amber-950 ring-amber-300 hover:bg-amber-100'
+            : 'bg-black/35 text-white ring-white/25 hover:bg-black/50',
+        )}
+      >
+        <Star aria-hidden="true" className={cn('size-3.5', shown ? 'fill-amber-400 text-amber-400' : tone === 'light' ? 'text-amber-600' : 'text-amber-300')} />
+        {shown
+          ? fill(tx('{average} · {count} ratings'), { average: formatAverage(rating.average), count: rating.count.toLocaleString() })
+          : tx('Rate this tool')}
+      </button>
+      {open && (
+        <div
+          id={panelId}
+          role="dialog"
+          aria-label={tx('Rate this tool')}
+          className="absolute left-0 top-full z-30 pt-2"
+          // Once someone clicks or tabs into the card it stays open until they close it (click outside or Escape).
+          onPointerDown={() => setPinned(true)}
+          onFocus={() => setPinned(true)}
+        >
+          <RatingCard />
+        </div>
+      )}
+    </span>
+  )
+}
+
+/** The rating card inside the badge's tooltip: stars and the average (or an invitation). */
+function RatingCard() {
+  const rating = useRating()
+  const [error, setError] = useState(false)
+  if (!rating) return null
+  const mine = rating.mine
+  const shown = rating.count >= MIN_RATINGS_SHOWN
+
+  return (
+    <div className="flex w-[320px] flex-col gap-2 rounded-xl border border-border bg-card p-3.5 text-left text-card-foreground shadow-xl">
+      <p className="text-sm font-semibold">{mine ? fill(tx('You rated this tool {n} out of 5'), { n: mine }) : tx('Was this tool useful?')}</p>
+      <StarPicker
+        value={mine}
+        disabled={Boolean(mine)}
+        onPick={async (stars) => {
+          setError(false)
+          if (!(await submitRating(rating.tool, stars))) setError(true)
+        }}
+      />
+      <p className="flex items-center gap-1.5 text-xs text-muted-foreground" aria-live="polite">
+        {shown ? (
+          <>
+            <Star aria-hidden="true" className="size-3.5 fill-amber-400 text-amber-400" />
+            {fill(tx('{average} out of 5 · {count} ratings'), { average: formatAverage(rating.average), count: rating.count.toLocaleString() })}
+          </>
+        ) : (
+          tx('Be one of the first to rate this tool')
+        )}
+      </p>
+      {error && <p className="text-sm text-destructive" role="alert">{tx("Couldn't save your rating. Please try again.")}</p>}
+    </div>
   )
 }
 
@@ -87,51 +191,6 @@ function StarPicker({
         </button>
       ))}
     </div>
-  )
-}
-
-/** "Thanks, anything to improve?" with an optional comment, shown right after someone rates. */
-function CommentForm({ tool, onDone }: { tool: string; onDone?: () => void }) {
-  const id = useId()
-  const [text, setText] = useState('')
-  const [state, setState] = useState<'idle' | 'sending' | 'sent'>('idle')
-
-  if (state === 'sent') return <p className="text-sm text-muted-foreground" role="status">{tx('Thanks, your comment was sent.')}</p>
-
-  return (
-    <form
-      className="flex flex-col gap-2"
-      onSubmit={async (event) => {
-        event.preventDefault()
-        if (!text.trim()) return onDone?.()
-        setState('sending')
-        await submitComment(tool, text)
-        setState('sent')
-        if (onDone) window.setTimeout(onDone, 1500)
-      }}
-    >
-      <label htmlFor={id} className="text-sm font-medium">
-        {tx('Thanks for rating! Anything we could improve?')}
-      </label>
-      <div className="flex gap-2">
-        <input
-          id={id}
-          type="text"
-          maxLength={500}
-          value={text}
-          onInput={(event) => setText((event.target as HTMLInputElement).value)}
-          placeholder={tx('Optional comment')}
-          className="h-10 min-w-0 flex-1 rounded-xl border border-border bg-background px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        />
-        <button
-          type="submit"
-          disabled={state === 'sending'}
-          className="h-10 shrink-0 rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-60"
-        >
-          {tx('Send')}
-        </button>
-      </div>
-    </form>
   )
 }
 
@@ -201,7 +260,9 @@ function RatingPrompt() {
         </button>
       </div>
       {picked ? (
-        <CommentForm tool={rating.tool} onDone={() => setOpen(false)} />
+        <p className="text-sm text-muted-foreground" role="status">
+          {fill(tx('You rated this tool {n} out of 5'), { n: picked })}
+        </p>
       ) : (
         <>
           <StarPicker
@@ -210,6 +271,7 @@ function RatingPrompt() {
             onPick={(stars) => {
               setPicked(stars)
               void submitRating(rating.tool, stars)
+              window.setTimeout(() => setOpen(false), 1600)
             }}
           />
           <button type="button" onClick={close} className="self-start px-1 text-sm text-muted-foreground underline underline-offset-2 hover:text-foreground">
@@ -221,56 +283,8 @@ function RatingPrompt() {
   )
 }
 
-/** Rating row under the tool controls (the badge links here), plus the one-time prompt. */
-export function RatingStrip({ className }: { className?: string }) {
-  const rating = useRating()
-  const [justRated, setJustRated] = useState(false)
-  const [error, setError] = useState(false)
-  if (!RATINGS_ENABLED || rating?.status === 'off') return null
-
-  const mine = rating?.mine ?? 0
-  const shown = rating && rating.count >= MIN_RATINGS_SHOWN
-
-  return (
-    <section id="rating" aria-label={tx('Rate this tool')} className={cn('hidden scroll-mt-24 rounded-2xl lg:block border border-border bg-muted/30 px-4 py-3', className)}>
-      <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <span className="text-sm font-semibold">
-            {mine ? fill(tx('You rated this tool {n} out of 5'), { n: mine }) : tx('Was this tool useful?')}
-          </span>
-          <StarPicker
-            value={mine}
-            disabled={!rating || rating.status !== 'ready' || Boolean(mine)}
-            onPick={async (stars) => {
-              setError(false)
-              setJustRated(true)
-              if (!rating) return
-              const saved = await submitRating(rating.tool, stars)
-              if (!saved) {
-                setJustRated(false)
-                setError(true)
-              }
-            }}
-          />
-        </div>
-        <p className="flex items-center gap-1.5 text-sm" aria-live="polite">
-          {shown ? (
-            <>
-              <Star aria-hidden="true" className="size-4 fill-amber-400 text-amber-400" />
-              {fill(tx('{average} out of 5 · {count} ratings'), { average: formatAverage(rating.average), count: rating.count.toLocaleString() })}
-            </>
-          ) : (
-            <span className="text-muted-foreground">{tx('Be one of the first to rate this tool')}</span>
-          )}
-        </p>
-      </div>
-      {error && <p className="mt-2 text-sm text-destructive" role="alert">{tx("Couldn't save your rating. Please try again.")}</p>}
-      {justRated && rating && (
-        <div className="mt-3 border-t border-border pt-3">
-          <CommentForm tool={rating.tool} />
-        </div>
-      )}
-      <RatingPrompt />
-    </section>
-  )
+/** The one-time "how did it work" prompt, mounted once per tool page (by ToolWithAds) so it is there after fullscreen. */
+export function ToolRatingPrompt() {
+  if (!RATINGS_ENABLED) return null
+  return <RatingPrompt />
 }

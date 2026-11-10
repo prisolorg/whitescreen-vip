@@ -196,14 +196,10 @@ export const nl: readonly string[] = [
   "Resterende tijd",
   "Herstarten",
   "Updatevoortgang",
-  // Visitor ratings (badge, rating row, one-time prompt)
+  // Visitor ratings (title badge tooltip, one-time prompt)
   "{average} · {count} beoordelingen",
   "Beoordeel deze tool",
   "Beoordeel met {n} van 5",
-  "Bedankt, je opmerking is verzonden.",
-  "Bedankt voor je beoordeling! Wat kunnen we verbeteren?",
-  "Optionele opmerking",
-  "Verzenden",
   "Hoe werkte {tool} voor jou?",
   "Was deze tool nuttig?",
   "Sluiten",

@@ -196,14 +196,10 @@ export const tr: readonly string[] = [
   "Kalan süre",
   "Yeniden başlat",
   "Güncelleme ilerlemesi",
-  // Visitor ratings (badge, rating row, one-time prompt)
+  // Visitor ratings (title badge tooltip, one-time prompt)
   "{average} · {count} değerlendirme",
   "Bu aracı değerlendirin",
   "5 üzerinden {n} ver",
-  "Teşekkürler, yorumunuz gönderildi.",
-  "Değerlendirdiğiniz için teşekkürler! Neyi geliştirebiliriz?",
-  "İsteğe bağlı yorum",
-  "Gönder",
   "{tool} sizin için nasıl çalıştı?",
   "Bu araç işinize yaradı mı?",
   "Kapat",

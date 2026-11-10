@@ -196,14 +196,10 @@ export const it: readonly string[] = [
   "Tempo rimanente",
   "Riavvia",
   "Avanzamento dell’aggiornamento",
-  // Visitor ratings (badge, rating row, one-time prompt)
+  // Visitor ratings (title badge tooltip, one-time prompt)
   "{average} · {count} valutazioni",
   "Valuta questo strumento",
   "Valuta {n} su 5",
-  "Grazie, il tuo commento è stato inviato.",
-  "Grazie per la valutazione! Cosa potremmo migliorare?",
-  "Commento facoltativo",
-  "Invia",
   "Come ha funzionato {tool} per te?",
   "Questo strumento ti è stato utile?",
   "Chiudi",

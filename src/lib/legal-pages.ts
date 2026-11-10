@@ -44,7 +44,7 @@ export const PRIVACY_POLICY: LegalPage = {
         'Usage data: like every website, our host receives standard request data (IP address, browser type, pages visited, time of visit) to deliver pages and protect against abuse.',
         'Analytics: we use Microsoft Clarity to see which tools are useful and where pages cause problems. Clarity captures how you use the site, including clicks, scrolling, heatmaps and session replays, along with device details and approximate location. See the [Microsoft Privacy Statement](https://privacy.microsoft.com/privacystatement).',
         'Messages you send: if you use the contact or feedback form, we receive what you write and the email address you give, and use it only to reply.',
-        'Tool ratings: if you rate a tool, we store the stars, the page, and any optional comment you add, so we can show an average and improve the tools. To count one rating per person, we keep a one-way hash of your IP address (never the address itself) for up to a year. Your browser also remembers your rating locally so you are not asked again.',
+        'Tool ratings: if you rate a tool, we store the stars and the page, so we can show an average and improve the tools. To count one rating per person, we keep a one-way hash of your IP address (never the address itself) for up to a year. Your browser also remembers your rating locally so you are not asked again.',
       ],
     },
     {

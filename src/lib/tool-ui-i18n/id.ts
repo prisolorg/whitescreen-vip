@@ -196,14 +196,10 @@ export const id: readonly string[] = [
   "Sisa waktu",
   "Mulai ulang",
   "Kemajuan pembaruan",
-  // Visitor ratings (badge, rating row, one-time prompt)
+  // Visitor ratings (title badge tooltip, one-time prompt)
   "{average} · {count} penilaian",
   "Nilai alat ini",
   "Beri nilai {n} dari 5",
-  "Terima kasih, komentar Anda telah terkirim.",
-  "Terima kasih atas penilaiannya! Apa yang bisa kami tingkatkan?",
-  "Komentar opsional",
-  "Kirim",
   "Bagaimana {tool} bekerja untuk Anda?",
   "Apakah alat ini bermanfaat?",
   "Tutup",

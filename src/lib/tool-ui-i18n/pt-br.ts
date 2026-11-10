@@ -196,14 +196,10 @@ export const ptBr: readonly string[] = [
   "Tempo restante",
   "Reiniciar",
   "Progresso da atualização",
-  // Visitor ratings (badge, rating row, one-time prompt)
+  // Visitor ratings (title badge tooltip, one-time prompt)
   "{average} · {count} avaliações",
   "Avalie esta ferramenta",
   "Avaliar com {n} de 5",
-  "Obrigado, seu comentário foi enviado.",
-  "Obrigado pela avaliação! O que podemos melhorar?",
-  "Comentário opcional",
-  "Enviar",
   "Como {tool} funcionou para você?",
   "Esta ferramenta foi útil?",
   "Fechar",

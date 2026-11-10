@@ -1,6 +1,6 @@
 /**
  * Tool ratings: GET /api/rating/?tool=/white-screen returns { count, average };
- * POST { tool, stars } stores a rating, POST { tool, comment } adds an optional comment.
+ * POST { tool, stars } stores a rating.
  *
  * Storage is an Upstash Redis database connected to the Vercel project (Vercel → Storage), which
  * sets KV_REST_API_URL / KV_REST_API_TOKEN (or UPSTASH_REDIS_REST_URL / _TOKEN). Without it, every
@@ -16,8 +16,6 @@ const REDIS_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_R
 const TOOL_PATTERN = /^\/[a-z0-9][a-z0-9/-]{0,119}$|^\/$/
 const VOTE_TTL = 60 * 60 * 24 * 365
 const DAILY_WRITES_PER_VISITOR = 60
-const MAX_COMMENT = 500
-const KEEP_COMMENTS = 2000
 
 type Command = (string | number)[]
 
@@ -85,7 +83,7 @@ export async function GET(request: Request): Promise<Response> {
 
 export async function POST(request: Request): Promise<Response> {
   if (!REDIS_URL || !REDIS_TOKEN) return json({ configured: false }, 503)
-  let body: { tool?: unknown; stars?: unknown; comment?: unknown }
+  let body: { tool?: unknown; stars?: unknown }
   try {
     body = await request.json()
   } catch {
@@ -102,19 +100,6 @@ export async function POST(request: Request): Promise<Response> {
     if (Number(writes) > DAILY_WRITES_PER_VISITOR) return json({ error: 'too many' }, 429)
 
     const voteKey = `rv:${tool}:${visitor}`
-
-    if (typeof body.comment === 'string') {
-      const comment = body.comment.replace(/\s+/g, ' ').trim().slice(0, MAX_COMMENT)
-      if (!comment) return json({ ok: true })
-      // Comments are only taken from someone who rated this tool, with the stars they gave.
-      const [stars] = await redis([['GET', voteKey]])
-      if (!stars) return json({ error: 'rate first' }, 409)
-      await redis([
-        ['LPUSH', 'rating-comments', JSON.stringify({ tool, stars: Number(stars), comment, at: new Date().toISOString() })],
-        ['LTRIM', 'rating-comments', 0, KEEP_COMMENTS - 1],
-      ])
-      return json({ ok: true })
-    }
 
     const stars = Number(body.stars)
     if (!Number.isInteger(stars) || stars < 1 || stars > 5) return json({ error: 'bad stars' }, 400)

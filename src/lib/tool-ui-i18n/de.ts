@@ -196,14 +196,10 @@ export const de: readonly string[] = [
   "Restzeit",
   "Neu starten",
   "Update-Fortschritt",
-  // Visitor ratings (badge, rating row, one-time prompt)
+  // Visitor ratings (title badge tooltip, one-time prompt)
   "{average} · {count} Bewertungen",
   "Tool bewerten",
   "Mit {n} von 5 bewerten",
-  "Danke, dein Kommentar wurde gesendet.",
-  "Danke für deine Bewertung! Was könnten wir verbessern?",
-  "Optionaler Kommentar",
-  "Senden",
   "Wie hat {tool} für dich funktioniert?",
   "War dieses Tool hilfreich?",
   "Schließen",

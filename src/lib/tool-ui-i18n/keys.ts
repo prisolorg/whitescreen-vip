@@ -409,14 +409,10 @@ export const TOOL_UI_KEYS = [
   "Time remaining",
   "Restart",
   "Update progress",
-  // Visitor ratings (badge, rating row, one-time prompt)
+  // Visitor ratings (title badge tooltip, one-time prompt)
   "{average} · {count} ratings",
   "Rate this tool",
   "Rate {n} out of 5",
-  "Thanks, your comment was sent.",
-  "Thanks for rating! Anything we could improve?",
-  "Optional comment",
-  "Send",
   "How did the {tool} work for you?",
   "Was this tool useful?",
   "Close",
