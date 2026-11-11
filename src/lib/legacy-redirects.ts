@@ -15,6 +15,15 @@ function localized(path: string, lang: (typeof SUPPORTED_LOCALES)[number]) {
  * URLs from the previous WordPress site (whitescreen.vip page, post and category sitemaps) that
  * have no page with the same path here. Each gets a 301 to its closest equivalent.
  */
+/**
+ * Image files from the previous site (still linked from other sites and image search). They only get
+ * real 301s (vercel.json / _redirects), not Astro redirect pages, since those would become folders.
+ */
+export const ASSET_REDIRECTS: Record<string, string> = {
+  '/images/white-screen.webp': '/images/colors/white-screen.png',
+  '/images/white-screen-logo.png': '/icon-512.png',
+}
+
 export const LEGACY_REDIRECTS: Record<string, string> = {
   '/contact-us/': '/contact/',
   '/about-us/': '/about/',

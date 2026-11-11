@@ -4,13 +4,15 @@ import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'astro/config'
 import preact from '@astrojs/preact'
 import tailwindcss from '@tailwindcss/vite'
-import { LEGACY_REDIRECTS } from './src/lib/legacy-redirects'
+import { ASSET_REDIRECTS, LEGACY_REDIRECTS } from './src/lib/legacy-redirects'
 import { loadEnv } from 'vite'
 
 const adsenseClient = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), 'PUBLIC_').PUBLIC_ADSENSE_CLIENT?.trim()
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url))
 const redirects = Object.entries(LEGACY_REDIRECTS)
+// Page redirects plus old image URLs; only the 301 rule files get the image ones.
+const ruleRedirects = [...redirects, ...Object.entries(ASSET_REDIRECTS)]
 
 export default defineConfig({
   site: 'https://whitescreen.vip',
@@ -32,12 +34,12 @@ export default defineConfig({
           if (adsenseClient) {
             await writeFile(path.join(out, 'ads.txt'), `google.com, ${adsenseClient.replace(/^ca-/, '')}, DIRECT, f08c47fec0942fa0\n`)
           }
-          await writeFile(path.join(out, '_redirects'), redirects.map(([from, to]) => `${from} ${to} 301`).join('\n') + '\n')
+          await writeFile(path.join(out, '_redirects'), ruleRedirects.map(([from, to]) => `${from} ${to} 301`).join('\n') + '\n')
           // Vercel reads vercel.json from the project root before building, so this file is committed:
           // when the redirects change, a local build updates it.
           await writeFile(
             path.join(rootDir, 'vercel.json'),
-            JSON.stringify({ framework: 'astro', installCommand: 'npm ci', buildCommand: 'npm run build', outputDirectory: 'dist', trailingSlash: true, redirects: redirects.map(([source, destination]) => ({ source, destination, permanent: true })) }, null, 2),
+            JSON.stringify({ framework: 'astro', installCommand: 'npm ci', buildCommand: 'npm run build', outputDirectory: 'dist', trailingSlash: true, redirects: ruleRedirects.map(([source, destination]) => ({ source, destination, permanent: true })) }, null, 2),
           )
         },
       },

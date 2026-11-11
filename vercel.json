@@ -6229,6 +6229,16 @@
       "source": "/tr/guides/multi-monitor-setup/",
       "destination": "/guides/multi-monitor-setup/",
       "permanent": true
+    },
+    {
+      "source": "/images/white-screen.webp",
+      "destination": "/images/colors/white-screen.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/white-screen-logo.png",
+      "destination": "/icon-512.png",
+      "permanent": true
     }
   ]
 }
