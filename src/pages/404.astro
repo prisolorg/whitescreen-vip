@@ -1,0 +1,12 @@
+---
+import Base from '@/layouts/Base.astro'
+import { StaticPage } from '@/islands/StaticPages'
+import { getPageSeo } from '@/lib/seo'
+
+// Hosts serve this for unknown paths; it is noindex (see getPageSeo).
+const seo = getPageSeo('/__page-not-found__', '', 'en')
+---
+
+<Base seo={seo} url="/404/">
+  <StaticPage url="/404/" kind="notFound" />
+</Base>
