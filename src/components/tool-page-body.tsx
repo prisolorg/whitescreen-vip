@@ -14,6 +14,7 @@ import { getToolGlance } from '@/lib/tool-content/glance'
 import { aggregateRating, ratingFor } from '@/lib/rating-snapshot'
 import { toolContentTranslations } from '@/lib/tool-content/i18n'
 import { TOOL_META } from '@/lib/tool-content/meta'
+import { TOOL_KEYWORD_GUIDES } from '@/lib/tool-content/keyword-guides'
 import { AUTHOR } from '@/lib/author'
 import { getLocalizedPath } from '@/lib/locale-routing'
 import { absoluteUrl, siteConfig } from '@/lib/site'
@@ -37,7 +38,12 @@ export function ToolPageBody({ slug }: { slug: string }) {
   const english = getToolContent(slug)
   // Other languages show only text that has been translated; untranslated pages are noindexed.
   const translated = language === 'en' ? undefined : toolContentTranslations(language)?.[slug]
-  const content = language === 'en' ? english : { ...english, steps: translated?.steps ?? [], useCases: translated?.useCases ?? [], faqs: translated?.faqs ?? [] }
+  // Keyword-led English pages: the guide replaces About, How-to and Common uses, with their own FAQs.
+  const keywordGuide = language === 'en' ? TOOL_KEYWORD_GUIDES[slug] : undefined
+  const content =
+    language === 'en'
+      ? { ...english, ...(keywordGuide && { faqs: keywordGuide.faqs }) }
+      : { ...english, steps: translated?.steps ?? [], useCases: translated?.useCases ?? [], faqs: translated?.faqs ?? [] }
   const category = getCategory(tool.category)
   const localizedCat = getLocalizedCategory(category, language)
   // Articles are English-only, so the cross-links only appear on English pages.
@@ -93,7 +99,8 @@ export function ToolPageBody({ slug }: { slug: string }) {
       {glance && <ToolGlanceBlock name={localizedTool.name} glance={glance} rating={ratingFor(toolPath(slug))} />}
       {/* Studio layout: the phone's first ad comes after this first content section. */}
       {STUDIO_TOOL_PAGES && <InlineAd className="mx-auto my-6 px-3 md:hidden" />}
-      {language === 'en' && (
+      {keywordGuide && <keywordGuide.Guide />}
+      {language === 'en' && !keywordGuide && (
         <section aria-labelledby="about-heading" className="border-t py-14">
           <div className="mx-auto max-w-3xl px-4 sm:px-6">
             <h2 id="about-heading" className="text-2xl font-semibold tracking-tight">
@@ -116,7 +123,7 @@ export function ToolPageBody({ slug }: { slug: string }) {
         </section>
       )}
 
-      {content.steps.length > 0 && (
+      {content.steps.length > 0 && !keywordGuide && (
         <section aria-labelledby="how-heading" className="border-y bg-muted/40 py-14">
           <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2">
             <div>
@@ -155,11 +162,13 @@ export function ToolPageBody({ slug }: { slug: string }) {
 
       {content.faqs.length > 0 && (
         <section aria-labelledby="faq-heading" className="py-14">
-          <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <div className={keywordGuide ? 'mx-auto max-w-6xl px-4 sm:px-6' : 'mx-auto max-w-3xl px-4 sm:px-6'}>
             <h2 id="faq-heading" className="mb-6 text-2xl font-semibold tracking-tight">
-              {t('faqTitle', 'Frequently asked questions')}
+              {keywordGuide ? `${localizedTool.name} FAQ` : t('faqTitle', 'Frequently asked questions')}
             </h2>
-            <FaqList faqs={content.faqs} />
+            <div className={keywordGuide ? 'max-w-3xl' : undefined}>
+              <FaqList faqs={content.faqs} />
+            </div>
           </div>
         </section>
       )}

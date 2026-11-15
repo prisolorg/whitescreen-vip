@@ -481,7 +481,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   'fake-zoom-meeting': {
     answer:
       'A fake Zoom meeting screen shows a Zoom-style video call with a grid of participants, a toolbar and your own camera preview. It is for pranks, film props, screenshots and practising on camera. Your camera feed stays on your device and is never recorded or uploaded.',
-    features: ['Participant grid with names and mute icons', 'Your live camera preview, also in fullscreen', 'Meeting timer and toolbar', 'Editable meeting title'],
+    features: ['Participant grid with names and mute icons', 'Your live camera preview, also in fullscreen', 'Recording badge and Zoom-style toolbar', 'Editable meeting title'],
     benefits: ['Realistic call prop for videos', 'Practise presenting on camera', 'Private: nothing leaves your device'],
     sources: [MDN('MediaDevices/getUserMedia', 'getUserMedia()')],
   },
