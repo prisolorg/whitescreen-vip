@@ -4,6 +4,7 @@ import { tx } from '@/lib/tx'
 import { useEffect, useRef, useState } from 'react'
 import { Play, Pause } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
+import { MoreMenu } from '@/components/tool-kit/compact'
 import {
   ControlRow,
   Slider,
@@ -105,6 +106,17 @@ export function MatrixScreensaver() {
         <>
           <ControlRow>
             <Segmented
+              label="Color"
+              value={color}
+              onChange={setColor}
+              options={(Object.keys(MATRIX_COLORS) as (keyof typeof MATRIX_COLORS)[]).map((key) => ({ value: key, label: MATRIX_COLORS[key].label }))}
+            />
+            <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
+              {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
+              {isPaused ? tx('Resume') : tx('Pause')}
+            </ActionButton>
+            <MoreMenu>
+            <Segmented
               label="Characters"
               value={charSet}
               onChange={setCharSet}
@@ -114,21 +126,10 @@ export function MatrixScreensaver() {
                 { value: 'cyber', label: 'Alphanumeric' },
               ]}
             />
-            <Segmented
-              label="Color"
-              value={color}
-              onChange={setColor}
-              options={(Object.keys(MATRIX_COLORS) as (keyof typeof MATRIX_COLORS)[]).map((key) => ({ value: key, label: MATRIX_COLORS[key].label }))}
-            />
-          </ControlRow>
-          <ControlRow>
             <Slider label="Speed" value={speed} min={1} max={10} onChange={setSpeed} />
             <Slider label="Density" value={density} min={1} max={5} onChange={setDensity} />
             <Slider label="Character size" value={fontSize} min={12} max={32} step={2} onChange={setFontSize} format={(v) => `${v}px`} />
-            <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
-              {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
-              {isPaused ? tx('Resume') : tx('Pause')}
-            </ActionButton>
+            </MoreMenu>
           </ControlRow>
         </>
       }
@@ -270,9 +271,6 @@ export function FlipClockScreensaver() {
       className={theme === 'dark' ? 'bg-neutral-950' : 'bg-neutral-200'}
       controls={
         <ControlRow>
-          <Toggle label="24-Hour Format" checked={is24Hour} onChange={setIs24Hour} />
-          <Toggle label="Show Seconds" checked={showSeconds} onChange={setShowSeconds} />
-          <Toggle label="Show Date" checked={showDate} onChange={setShowDate} />
           <Segmented
             label="Theme"
             value={theme}
@@ -282,6 +280,11 @@ export function FlipClockScreensaver() {
               { value: 'light', label: 'Light' },
             ]}
           />
+          <Toggle label="24-Hour Format" checked={is24Hour} onChange={setIs24Hour} />
+          <MoreMenu>
+            <Toggle label="Show Seconds" checked={showSeconds} onChange={setShowSeconds} />
+            <Toggle label="Show Date" checked={showDate} onChange={setShowDate} />
+          </MoreMenu>
         </ControlRow>
       }
     >
@@ -424,9 +427,7 @@ export function DvdScreensaver() {
       className="bg-black"
       controls={
         <ControlRow>
-          <Slider label="Speed" value={speed} min={1} max={10} onChange={setSpeed} />
-          <Slider label="Logo Size" value={logoSize} min={1} max={10} onChange={setLogoSize} />
-          <div className="flex items-center gap-4 pb-2 font-mono text-xs text-muted-foreground">
+          <div className="flex items-center gap-4 font-mono text-xs text-muted-foreground">
             <span>
               {tx('Bounces:')}{' '}<strong className="text-foreground">{bounces}</strong>
             </span>
@@ -438,6 +439,10 @@ export function DvdScreensaver() {
             {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
             {isPaused ? tx('Resume') : tx('Pause')}
           </ActionButton>
+          <MoreMenu>
+            <Slider label="Speed" value={speed} min={1} max={10} onChange={setSpeed} />
+            <Slider label="Logo Size" value={logoSize} min={1} max={10} onChange={setLogoSize} />
+          </MoreMenu>
         </ControlRow>
       }
     >
@@ -563,13 +568,15 @@ export function MotivationalQuoteScreensaver() {
             onChange={setTheme}
             options={(Object.keys(QUOTE_THEMES) as QuoteTheme[]).map((key) => ({ value: key, label: QUOTE_THEMES[key].label }))}
           />
-          <Slider label="Seconds per quote" value={seconds} min={5} max={60} onChange={setSeconds} />
-          <Toggle label="Shuffle" checked={shuffle} onChange={setShuffle} />
-          <Toggle label="Show Clock" checked={showClock} onChange={setShowClock} />
           <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
             {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
             {isPaused ? tx('Resume') : tx('Pause')}
           </ActionButton>
+          <MoreMenu>
+            <Slider label="Seconds per quote" value={seconds} min={5} max={60} onChange={setSeconds} />
+            <Toggle label="Shuffle" checked={shuffle} onChange={setShuffle} />
+            <Toggle label="Show Clock" checked={showClock} onChange={setShowClock} />
+          </MoreMenu>
         </ControlRow>
       }
     >

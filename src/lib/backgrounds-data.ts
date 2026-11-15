@@ -998,6 +998,82 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     ],
   },
 
+  // Light Pink Background (English only: not in the article translations yet)
+  {
+    slug: 'light-pink-background',
+    title: 'Light Pink Background',
+    h1: 'Light Pink Background (#FFB6C1) — Baby Pink Wallpaper & PNG',
+    metaTitle: 'Light Pink Background (#FFB6C1 Baby Pink, Fullscreen & 4K PNG)',
+    metaDescription:
+      'A soft light pink background (#FFB6C1). Show it fullscreen as a gentle pink light or download a light pink wallpaper PNG in 1080p, 4K or a phone size.',
+    category: 'solid',
+    categoryLabel: 'Solid Color',
+    shortDescription: 'Soft, airy light pink (#FFB6C1) for wallpapers, designs and gentle fill light.',
+    dominantColorName: 'Light Pink',
+    primaryHex: '#FFB6C1',
+    type: 'solid',
+    cssBackground: '#FFB6C1',
+    isDark: false,
+    tags: ['pink', 'light-pink', 'baby-pink', 'pastel', 'wallpaper', 'cute'],
+    about: {
+      overview:
+        'A flat light pink background (hex #FFB6C1, RGB 255, 182, 193) with no texture, noise or watermark. It is the classic light pink: pale enough to stay calm behind text, warm enough to feel friendly.',
+      colorCharacteristics:
+        'Full red with plenty of green and blue mixed in, so it reads as a soft baby pink rather than a bright hot pink.',
+      aestheticTone: 'Soft, sweet and calm.',
+    },
+    fullscreenGuide: {
+      instruction:
+        'Go fullscreen to turn your screen into a light pink screen: a gentle pink light for selfies, makeup or a cozy room glow.',
+      bestUsedFor: 'Phone and laptop wallpapers, invitations, social posts and soft fill light.',
+      inspectionTip: 'Pale colors show uneven backlighting well, so darker corners or a tint stand out on light pink.',
+    },
+    useCases: [
+      {
+        title: 'Phone and laptop wallpaper',
+        description: 'Download a phone-size or 4K PNG for a clean, minimal light pink wallpaper.',
+      },
+      {
+        title: 'Design base',
+        description: 'Use the light pink background behind text, product photos and invitations. Dark text stays easy to read.',
+      },
+      {
+        title: 'Soft selfie and makeup light',
+        description: 'A light pink screen gives a gentler glow than hot pink, which keeps skin tones natural.',
+        linkText: 'Pink screen',
+        linkHref: '/pink-screen/',
+      },
+    ],
+    selectionAdvice: {
+      whenToChoose: 'Choose light pink when you want something soft and pretty that never overpowers what sits on top of it.',
+      contrastAndReadability: 'Black, charcoal or deep plum text reads clearly. White text does not, so avoid it on light pink.',
+      alternativeConsiderations: 'For a bolder pink, use the Pink Background or the hot pink Pink Screen; for mixed pastels, try the Pastel Background.',
+    },
+    contextualLinks: [
+      { label: 'Pink Screen', href: '/pink-screen/', description: 'Fullscreen hot pink with color controls.' },
+      { label: 'Pink Background', href: '/backgrounds/pink-background/', description: 'A brighter plain pink.' },
+      { label: 'Pastel Background', href: '/backgrounds/pastel-background/', description: 'Soft mint, lavender and peach.' },
+    ],
+    faqs: [
+      {
+        question: 'What is the hex code for light pink?',
+        answer: 'This light pink background is #FFB6C1 (RGB 255, 182, 193), the standard web color named "light pink".',
+      },
+      {
+        question: 'What other light pink shades are there?',
+        answer: 'Baby pink is often #F4C2C2, pastel pink #FFD1DC and pale pink #FADADD. All are softer than hot pink (#FF69B4).',
+      },
+      {
+        question: 'Can I use it as a phone or laptop wallpaper?',
+        answer: 'Yes. Choose a phone size or 4K in the download options, or enter your exact screen size, then save the PNG.',
+      },
+    ],
+    relatedTools: [
+      { name: 'Pink Screen', path: '/pink-screen/', description: 'Fullscreen hot pink light.' },
+      { name: 'White Screen', path: '/', description: 'Bright white light for calls and tracing.' },
+    ],
+  },
+
   // Green Background
   {
     slug: 'green-background',

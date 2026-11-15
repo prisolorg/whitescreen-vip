@@ -3,11 +3,14 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { signalToolUsed, useSignalOnFullscreenExit } from '@/lib/ratings'
 import Link from 'next/link'
-import { Download, X, Check, ChevronRight, Copy } from 'lucide-react'
-import { ToolWithAds } from '@/components/tool-ads'
+import { Download, X, Check, ChevronRight, Copy, Maximize } from 'lucide-react'
+import { InlineAd, RailAd, ToolWithAds } from '@/components/tool-ads'
+import { RatingRow, ToolRatingPrompt } from '@/components/tool-rating'
+import { STUDIO_BACKGROUND_PAGES } from '@/lib/studio-layout'
+import { tx } from '@/lib/tx'
 import { paintBackground } from '@/lib/background-paint'
 import { isLightColor } from '@/lib/screen-colors'
-import { DoubleTapHint, STAGE_SIZE, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
+import { DoubleTapHint, STAGE_SIZE, STUDIO_BAND, TOOL_FIXED_WIDTH, TOOL_STAGE_FIXED, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
 import { useTranslation } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
 import type { BackgroundToolProps } from '@/lib/article-i18n/background-props'
@@ -123,11 +126,14 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
   const size = SIZES.find((option) => option.id === sizeId) ?? SIZES[2]
   const tone = isLightColor(item.primaryHex) ? 'light' : 'dark'
 
+  const studio = STUDIO_BACKGROUND_PAGES
+
   return (
-    <div className="bg-background pt-3 sm:pt-4">
+    <div className={cn('bg-background', !studio && 'pt-3 sm:pt-4')}>
       {/* Same layout as the screen pages: breadcrumbs, the preview with its title, a control dock,
           then more backgrounds, so the tool and the next links are above the fold. */}
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-3 sm:px-6">
+      <div data-wide-page={studio ? '' : undefined} className={cn('mx-auto flex flex-col gap-3 px-3 sm:px-6', studio ? 'max-w-[1316px]' : 'max-w-7xl')}>
+        {!studio && (
         <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
           <Link href="/" className="hover:text-foreground transition-colors">
             {t('homeTitle', 'White Screen')}
@@ -143,8 +149,9 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
           <ChevronRight className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
           <span className="truncate font-medium text-foreground">{item.title}</span>
         </nav>
+        )}
 
-        <ToolWithAds>
+        <StudioFrame studio={studio} title={item.title}>
         <div className="relative">
           <div
             ref={screenRef}
@@ -154,7 +161,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
             style={{ background: item.cssBackground }}
             className={cn(
               'relative touch-manipulation select-none overflow-hidden',
-              isFullscreen ? 'fixed inset-0 z-50 h-dvh w-full' : STAGE_SIZE,
+              isFullscreen ? 'fixed inset-0 z-50 h-dvh w-full' : studio ? TOOL_STAGE_FIXED : STAGE_SIZE,
             )}
           >
             {isFullscreen ? (
@@ -167,10 +174,25 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
                 <X className="size-5" />
               </button>
             ) : (
-              <DoubleTapHint tone={tone} />
+              <>
+                <DoubleTapHint tone={tone} />
+                {studio && (
+                  <button
+                    type="button"
+                    onClick={enterFullscreen}
+                    aria-label={t('fullscreen', 'Fullscreen')}
+                    className={cn(
+                      'absolute bottom-3 right-3 inline-flex size-11 items-center justify-center rounded-xl ring-1 backdrop-blur transition-colors',
+                      tone === 'light' ? 'bg-black/5 text-neutral-900 ring-black/15 hover:bg-black/10' : 'bg-white/10 text-white ring-white/25 hover:bg-white/20',
+                    )}
+                  >
+                    <Maximize className="size-5" aria-hidden="true" />
+                  </button>
+                )}
+              </>
             )}
           </div>
-          {!isFullscreen && (
+          {!isFullscreen && !studio && (
             <StageTitle
               title={item.title}
               intro={item.shortDescription}
@@ -190,8 +212,8 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
         </div>
 
         {!isFullscreen && (
-          <StageDock onFullscreen={enterFullscreen}>
-            <div className="flex flex-wrap items-center gap-2">
+          <BackgroundDock studio={studio} onFullscreen={enterFullscreen}>
+            <div className="contents">
               <label htmlFor="bg-size" className="sr-only">
                 {text.imageSize}
               </label>
@@ -257,9 +279,9 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
                 <span>{isCopied ? text.cssCopied : text.copyCss}</span>
               </button>
             </div>
-          </StageDock>
+          </BackgroundDock>
         )}
-        </ToolWithAds>
+        </StudioFrame>
 
         <section aria-labelledby="more-backgrounds" className="mt-2 flex flex-col gap-3">
           <div className="flex items-baseline justify-between gap-3">
@@ -289,17 +311,70 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
               <li key={bg.slug}>
                 <Link
                   href={`/backgrounds/${bg.slug}`}
-                  className="flex h-full flex-col gap-1.5 rounded-xl border bg-card p-1.5 transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md"
+                  className={cn(
+                    'group flex h-full flex-col transition-all',
+                    studio ? 'gap-2 rounded-xl' : 'gap-1.5 rounded-xl border bg-card p-1.5 hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md',
+                  )}
                 >
-                  <span aria-hidden="true" className="h-12 w-full rounded-lg ring-1 ring-inset ring-black/10 sm:h-14" style={{ background: bg.cssBackground }} />
-                  <span className="line-clamp-2 px-1 pb-0.5 text-xs font-semibold leading-snug sm:text-[13px]">{bg.title}</span>
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      'w-full ring-1 ring-inset ring-black/10',
+                      studio ? 'aspect-video rounded-xl shadow-sm transition-transform group-hover:-translate-y-0.5 group-hover:shadow-md' : 'h-12 rounded-lg sm:h-14',
+                    )}
+                    style={{ background: bg.cssBackground }}
+                  />
+                  <span className={cn('line-clamp-2 text-xs font-semibold leading-snug sm:text-[13px]', studio ? 'px-0.5' : 'px-1 pb-0.5')}>{bg.title}</span>
                 </Link>
               </li>
             ))}
           </ul>
         </section>
+        {/* Studio layout: the first ad on desktop and tablet comes after the related backgrounds. */}
+        {studio && <InlineAd className="mt-4 hidden md:flex" />}
       </div>
 
+    </div>
+  )
+}
+
+/** Studio layout: band, centered title and one actionable line above the stage; classic: the old ad column. */
+function StudioFrame({ studio, title, children }: { studio: boolean; title: string; children: React.ReactNode }) {
+  if (!studio) return <ToolWithAds>{children}</ToolWithAds>
+  // Same as the colour and tool pages: tool on the left at the fixed size, 300×600 ad beside it on desktop.
+  return (
+    <div className={cn('grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_300px]', STUDIO_BAND)}>
+      <div className="flex min-w-0 flex-col gap-3">
+        <header className="flex flex-col items-center gap-1 text-center">
+          <h1 id="screen-heading" className="text-balance text-2xl font-extrabold tracking-tight sm:text-3xl">
+            {title}
+          </h1>
+          <p className="text-pretty text-[13px] text-foreground/80 sm:text-[15px]">{tx('Click Fullscreen to show this background.')}</p>
+        </header>
+        {children}
+        <RatingRow className={cn('mx-auto w-full', TOOL_FIXED_WIDTH)} />
+        <ToolRatingPrompt />
+      </div>
+      <RailAd />
+    </div>
+  )
+}
+
+/** Studio: one compact row under the stage (size, download, copy CSS, Fullscreen at the end); classic: the old dock. */
+function BackgroundDock({ studio, onFullscreen, children }: { studio: boolean; onFullscreen: () => void; children: React.ReactNode }) {
+  const { t } = useTranslation()
+  if (!studio) return <StageDock onFullscreen={onFullscreen}><div className="flex flex-wrap items-center gap-2">{children}</div></StageDock>
+  return (
+    <div className={cn('mx-auto flex w-full flex-wrap items-center gap-x-2 gap-y-2.5 rounded-2xl bg-card px-3 py-2.5 text-card-foreground shadow-sm ring-1 ring-black/5 sm:px-4 sm:py-3 dark:ring-white/10', TOOL_FIXED_WIDTH)}>
+      {children}
+      <button
+        type="button"
+        onClick={onFullscreen}
+        className="ml-auto inline-flex h-10 shrink-0 items-center gap-2 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+      >
+        <Maximize className="size-4" aria-hidden="true" />
+        {t('fullscreen', 'Fullscreen')}
+      </button>
     </div>
   )
 }

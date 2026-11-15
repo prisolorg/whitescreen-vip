@@ -28,12 +28,12 @@ const FLASH_GUIDELINE = {
 
 function colorGlance(name: string, hex: string, answerTail: string, features: string, benefit: string, sources: ToolSource[] = []): ToolGlance {
   return {
-    answer: `A ${name.toLowerCase()} screen fills your entire display with solid ${name.toLowerCase()} (${hex}). Click Fullscreen or press F and every pixel shows the same color, with no toolbars or distractions. ${answerTail}`,
+    answer: `A ${name.toLowerCase()} screen fills your entire display with solid ${name.toLowerCase()} (${hex}). Double-tap the screen or press F and every pixel shows the same color, with no toolbars or distractions. ${answerTail}`,
     features: [
-      `Pure ${name.toLowerCase()} at ${hex}, or any custom hex color`,
-      'One-click fullscreen with brightness control',
+      `Pure ${name.toLowerCase()} at ${hex}`,
+      'Double-tap fullscreen with brightness and warmth control',
       features,
-      'Free PNG download from 720p up to 8K',
+      'Free PNG download from 1080p to 8K, plus phone and custom sizes',
     ],
     benefits: [benefit, 'Works instantly on phones, laptops, monitors and smart TVs', 'No app, no sign-up and nothing to install'],
     sources: [WIKI('RGB_color_model'), ...sources],
@@ -60,8 +60,8 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   'red-screen': colorGlance(
     'Red',
     '#FF0000',
-    'Only the red subpixels light up, which makes dead or stuck green and blue subpixels easy to spot. It also works as a soft red night light that preserves dark adaptation.',
-    'Arrow keys switch between red, green and blue',
+    'It works as a soft red night light that preserves dark adaptation, and because only the red subpixels light up, a stuck green or blue subpixel is easy to spot.',
+    'Arrow keys step through every screen color',
     'Finds stuck green or blue subpixels in seconds',
     [WIKI('Defective_pixel', 'Defective pixel')],
   ),
@@ -84,9 +84,9 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   'yellow-screen': colorGlance(
     'Yellow',
     '#FFFF00',
-    'Yellow lights the red and green subpixels together, so a dead blue subpixel or a tinted area shows up clearly. It is also a warm, cheerful light for photos.',
+    'Yellow lights the red and green subpixels together with blue switched off, so it works as a warm light with no blue and quickly shows a dead red or green subpixel.',
     'Exact yellow mixing red and green at full strength',
-    'Spots dead blue subpixels and uneven color tint',
+    'Warm, blue-free light for reading, calls and evenings',
   ),
   'orange-screen': colorGlance(
     'Orange',
@@ -100,7 +100,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
     'Pink',
     '#FF69B4',
     'Hot pink gives flattering, soft light for selfies and makeup and sets a fun mood for parties, streams and room ambience.',
-    'Hot pink by default, with lighter or deeper custom shades',
+    'Hot pink, plus coral, rose and darker pinks with the controls',
     'Soft, flattering light for selfies and makeup',
   ),
   'purple-screen': colorGlance(

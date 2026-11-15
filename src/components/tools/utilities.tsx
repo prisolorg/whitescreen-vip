@@ -4,6 +4,7 @@ import { tx } from '@/lib/tx'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { Play, Pause, RotateCcw, Flag, Copy, Check, Volume2, VolumeX, SkipForward } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
+import { CompactSelect, MoreMenu } from '@/components/tool-kit/compact'
 import { ControlRow, ActionButton, Slider, Toggle } from '@/components/tool-kit/controls'
 import { playTone } from '@/components/tool-kit/audio'
 import { cn } from '@/lib/utils'
@@ -122,44 +123,28 @@ export function CountdownTimer() {
         isFinished ? 'bg-red-950/80 animate-pulse text-white' : 'bg-neutral-950 text-white',
       )}
       controls={
-        <div className="flex flex-col gap-4 w-full">
-          {/* Preset Buttons */}
-          <div className="flex flex-wrap gap-2">
-            {PRESETS.map((p) => (
-              <button
-                key={p.label}
-                type="button"
-                onClick={() => setPreset(p.seconds)}
-                className={cn(
-                  'rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors',
-                  totalSeconds === p.seconds && !isRunning
-                    ? 'border-primary bg-primary/10 text-primary'
-                    : 'border-border bg-background hover:bg-muted text-foreground',
-                )}
-              >
-                {tx(p.label)}
-              </button>
-            ))}
-          </div>
-
-          <ControlRow className="justify-between">
-            <div className="flex items-center gap-3">
-              <ActionButton
-                variant="primary"
-                onClick={isRunning ? handlePause : handleStart}
-                className="w-28"
-              >
-                {isRunning ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
-                {isRunning ? tx('Pause') : tx('Start')}
-              </ActionButton>
-              <ActionButton onClick={handleReset}>
-                <RotateCcw aria-hidden="true" />
-                {tx('Reset')}
-              </ActionButton>
-            </div>
+        <>
+          <CompactSelect
+            label="Timer"
+            value={PRESETS.some((p) => p.seconds === totalSeconds) ? String(totalSeconds) : 'custom'}
+            onChange={(value) => value !== 'custom' && setPreset(Number(value))}
+            options={[
+              ...PRESETS.map((p) => ({ value: String(p.seconds), label: p.label })),
+              ...(PRESETS.some((p) => p.seconds === totalSeconds) ? [] : [{ value: 'custom', label: 'Custom' }]),
+            ]}
+          />
+          <ActionButton variant="primary" onClick={isRunning ? handlePause : handleStart} className="w-28">
+            {isRunning ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
+            {isRunning ? tx('Pause') : tx('Start')}
+          </ActionButton>
+          <ActionButton onClick={handleReset}>
+            <RotateCcw aria-hidden="true" />
+            {tx('Reset')}
+          </ActionButton>
+          <MoreMenu>
             <Toggle label="Chime Alert" checked={hasSound} onChange={setHasSound} />
-          </ControlRow>
-        </div>
+          </MoreMenu>
+        </>
       }
     >
       <div className="relative flex size-full flex-col items-center justify-center p-6 select-none">
@@ -299,9 +284,9 @@ export function Stopwatch() {
       tone="dark"
       className="bg-neutral-950 text-white"
       controls={
-        <div className="flex flex-col gap-4 w-full">
-          <ControlRow className="justify-between">
-            <div className="flex items-center gap-3">
+        <>
+          <ControlRow>
+            <>
               <ActionButton
                 variant="primary"
                 onClick={isRunning ? handlePause : handleStart}
@@ -318,7 +303,7 @@ export function Stopwatch() {
                 <RotateCcw aria-hidden="true" />
                 {tx('Reset')}
               </ActionButton>
-            </div>
+            </>
             {laps.length > 0 && (
               <ActionButton onClick={copyLaps}>
                 {copied ? <Check aria-hidden="true" className="text-green-500" /> : <Copy aria-hidden="true" />}
@@ -326,7 +311,7 @@ export function Stopwatch() {
               </ActionButton>
             )}
           </ControlRow>
-        </div>
+        </>
       }
     >
       <div className="flex size-full flex-col items-center justify-center p-6 select-none">
@@ -491,17 +476,17 @@ export function PomodoroTimer() {
               <RotateCcw aria-hidden="true" />
               {tx('Reset')}
             </ActionButton>
+            <MoreMenu>
             <Toggle label="Auto-start next" checked={autoStart} onChange={setAutoStart} />
             <ActionButton onClick={() => setHasSound((value) => !value)} aria-pressed={hasSound}>
               {hasSound ? <Volume2 aria-hidden="true" /> : <VolumeX aria-hidden="true" />}
               {hasSound ? tx('Chime on') : tx('Chime off')}
             </ActionButton>
-          </ControlRow>
-          <ControlRow>
             <Slider label="Focus" value={minutes.focus} min={5} max={90} step={5} onChange={(v) => setLength('focus', v)} format={(v) => `${v} min`} />
             <Slider label="Short break" value={minutes.short} min={1} max={20} onChange={(v) => setLength('short', v)} format={(v) => `${v} min`} />
             <Slider label="Long break" value={minutes.long} min={5} max={45} step={5} onChange={(v) => setLength('long', v)} format={(v) => `${v} min`} />
             <Slider label="Sessions before long break" value={rounds} min={2} max={8} onChange={setRounds} />
+            </MoreMenu>
           </ControlRow>
         </>
       }

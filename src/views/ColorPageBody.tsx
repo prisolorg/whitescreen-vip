@@ -1,4 +1,7 @@
+import type { ComponentType } from 'react'
 import { Section } from '@/components/section'
+import { InlineAd } from '@/components/tool-ads'
+import { usesStudioLayout } from '@/lib/studio-layout'
 import { ColorScreenLinks } from '@/components/color-screen-links'
 import { JsonLd } from '@/components/json-ld'
 import type { ScreenColor } from '@/lib/screen-colors'
@@ -15,6 +18,12 @@ import { ColorImage } from '@/components/color-image'
 import { getToolGlance } from '@/lib/tool-content/glance'
 import { getLocalizedPath } from '@/lib/locale-routing'
 import { AUTHOR } from '@/lib/author'
+import { BlackScreenGuide } from '@/components/home/black-screen-guide'
+import { YellowScreenGuide } from '@/components/home/yellow-screen-guide'
+import { GreenScreenGuide } from '@/components/home/green-screen-guide'
+import { BlueScreenGuide } from '@/components/home/blue-screen-guide'
+import { RedScreenGuide } from '@/components/home/red-screen-guide'
+import { PinkScreenGuide } from '@/components/home/pink-screen-guide'
 
 /** The reading part of a color page, rendered to static HTML with no JavaScript. */
 export function ColorPageBody({ color }: { color: ScreenColor }) {
@@ -50,6 +59,8 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
 
   // Long-form copy is English-only; other languages keep the translated intro and use cases.
   const guide = language === 'en' ? COLOR_GUIDES[color.id] : undefined
+  // Keyword-led English pages replace the generic use-case grid, guide and colour links (the gallery above has them).
+  const KeywordGuide = language === 'en' ? ({ black: BlackScreenGuide, yellow: YellowScreenGuide, green: GreenScreenGuide, blue: BlueScreenGuide, red: RedScreenGuide, pink: PinkScreenGuide } as Record<string, ComponentType | undefined>)[color.id] : undefined
   const faqSchema = guide && {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -65,7 +76,10 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
       <JsonLd data={schema} />
       {faqSchema && <JsonLd data={faqSchema} />}
       {glance && <ToolGlanceBlock name={localizedName} glance={glance} rating={ratingFor(color.path)} />}
+      {usesStudioLayout(color.id) && <InlineAd className="mx-auto my-6 px-3 md:hidden" />}
       <ColorImage color={color} name={localizedName} />
+      {KeywordGuide && <KeywordGuide />}
+      {!KeywordGuide && (
       <Section
         id="use-cases"
         eyebrow={t('useCasesEyebrow', 'Use cases')}
@@ -83,7 +97,8 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
           ))}
         </ul>
       </Section>
-      {guide && (
+      )}
+      {guide && guide.sections.length > 0 && (
         <Section id="guide" eyebrow={`${localizedName} guide`} title={`Getting the most from a ${color.name.toLowerCase()} screen`}>
           <div className="grid max-w-3xl gap-10">
             {guide.sections.map((section) => (
@@ -107,7 +122,7 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
         </Section>
       )}
       {glance?.sources && <ToolSources sources={glance.sources} />}
-      <ColorScreenLinks currentId={color.id} />
+      {!KeywordGuide && <ColorScreenLinks currentId={color.id} />}
     </>
   )
 }

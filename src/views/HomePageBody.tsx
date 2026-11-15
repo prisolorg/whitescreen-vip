@@ -1,4 +1,6 @@
 import { HomeSections, HOMEPAGE_FAQS } from '@/components/home/home-sections'
+import { InlineAd } from '@/components/tool-ads'
+import { usesStudioLayout } from '@/lib/studio-layout'
 import { Benefits } from '@/components/home/benefits'
 import { UseCases } from '@/components/home/use-cases'
 import { HowToUse } from '@/components/home/how-to-use'
@@ -59,6 +61,7 @@ export function HomePageBody() {
       ) : (
         <>
           {glance && <ToolGlanceBlock name={t('homeTitle', 'White Screen')} glance={glance} rating={ratingFor('/')} />}
+          {usesStudioLayout('white') && <InlineAd className="mx-auto my-6 px-3 md:hidden" />}
           <ColorImage color={SCREEN_COLORS[0]} name={t('homeTitle', 'White Screen')} />
           <Benefits />
           <UseCases />

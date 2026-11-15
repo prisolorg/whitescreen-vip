@@ -4,6 +4,7 @@ import { tx } from '@/lib/tx'
 import { useEffect, useRef, useState } from 'react'
 import { Pause, Play, RotateCcw } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
+import { CompactSelect, MoreMenu } from '@/components/tool-kit/compact'
 import { ActionButton, ControlRow, Segmented, Slider, Toggle } from '@/components/tool-kit/controls'
 import { useAnimationFrame, useCanvasSize, usePrefersReducedMotion } from '@/components/tool-kit/hooks'
 import { StageArrows } from '@/components/screen-stage/stage-parts'
@@ -199,11 +200,15 @@ export function TouchScreenTest() {
               { value: 'points', label: 'Multi-touch' },
             ]}
           />
-          {mode === 'draw' && <Slider label="Line width" value={lineWidth} min={2} max={30} onChange={setLineWidth} format={(v) => `${v}px`} />}
           <ActionButton onClick={reset}>
             <RotateCcw aria-hidden="true" />
             {tx('Clear')}
           </ActionButton>
+          {mode === 'draw' && (
+            <MoreMenu>
+              <Slider label="Line width" value={lineWidth} min={2} max={30} onChange={setLineWidth} format={(v) => `${v}px`} />
+            </MoreMenu>
+          )}
         </ControlRow>
       }
     >
@@ -314,9 +319,11 @@ export function RefreshRateTest() {
               {range ? tx('Seen: {low}–{high} Hz').replace('{low}', String(range.low)).replace('{high}', String(range.high)) : tx('Measuring…')}
             </p>
           </ControlRow>
-          <p className="text-xs text-muted-foreground sm:text-sm">
-            {tx('Browsers draw once per refresh, so frame timing shows your refresh rate. For a high-refresh reading, plug in a laptop, close heavy tabs and keep this window on the screen you are testing.')}
-          </p>
+          <MoreMenu>
+            <p className="text-sm text-muted-foreground">
+              {tx('Browsers draw once per refresh, so frame timing shows your refresh rate. For a high-refresh reading, plug in a laptop, close heavy tabs and keep this window on the screen you are testing.')}
+            </p>
+          </MoreMenu>
         </>
       }
     >
@@ -396,11 +403,13 @@ export function MonitorGhostingTest() {
       controls={
         <ControlRow>
           <Slider label="Speed" value={speed} min={240} max={2400} step={120} onChange={setSpeed} format={(v) => `${v} px/s`} />
-          <Toggle label="Reference grid" checked={grid} onChange={setGrid} />
           <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
             {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
             {isPaused ? tx('Resume') : tx('Pause')}
           </ActionButton>
+          <MoreMenu>
+            <Toggle label="Reference grid" checked={grid} onChange={setGrid} />
+          </MoreMenu>
         </ControlRow>
       }
     >
@@ -596,37 +605,39 @@ export function ScreenBurnInTest() {
             />
             {mode === 'check' ? (
               <>
-                <Segmented
+                <CompactSelect
                   label="Field"
                   value={String(field)}
                   onChange={(value) => setField(Number(value))}
                   options={BURN_FIELDS.map((f, i) => ({ value: String(i), label: f.label }))}
                 />
-                <Toggle label="Auto-cycle (4 s)" checked={autoCycle} onChange={setAutoCycle} />
+                <MoreMenu>
+                  <Toggle label="Auto-cycle (4 s)" checked={autoCycle} onChange={setAutoCycle} />
+                </MoreMenu>
               </>
             ) : (
               <>
-                <Segmented
-                  label="Fixer pattern"
-                  value={fixMode}
-                  onChange={setFixMode}
-                  options={[
-                    { value: 'sweep', label: 'White sweep' },
-                    { value: 'colors', label: 'Color cycle' },
-                    { value: 'noise', label: 'Color noise' },
-                  ]}
-                />
-                <Slider label="Run for" value={minutes} min={1} max={60} onChange={setMinutes} format={(v) => `${v} min`} />
                 <ActionButton variant="primary" onClick={() => setFixEndsAt(fixing ? null : Date.now() + minutes * 60_000)}>
                   {fixing ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
                   {fixing ? tx('Stop') : tx('Start fixer')}
                 </ActionButton>
+                <MoreMenu>
+                  <Segmented
+                    label="Fixer pattern"
+                    value={fixMode}
+                    onChange={setFixMode}
+                    options={[
+                      { value: 'sweep', label: 'White sweep' },
+                      { value: 'colors', label: 'Color cycle' },
+                      { value: 'noise', label: 'Color noise' },
+                    ]}
+                  />
+                  <Slider label="Run for" value={minutes} min={1} max={60} onChange={setMinutes} format={(v) => `${v} min`} />
+                  {fixMode !== 'sweep' && <p className="text-xs text-muted-foreground">{tx('Photosensitivity warning: this pattern flashes. Use White sweep if flashing bothers you.')}</p>}
+                </MoreMenu>
               </>
             )}
           </ControlRow>
-          {mode === 'fix' && fixMode !== 'sweep' && (
-            <p className="text-xs text-muted-foreground">{tx('Photosensitivity warning: this pattern flashes. Use White sweep if flashing bothers you.')}</p>
-          )}
         </>
       }
     >

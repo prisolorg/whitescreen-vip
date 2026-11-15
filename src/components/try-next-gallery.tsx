@@ -133,10 +133,13 @@ export function TryNextGallery({
   currentSlug,
   defaultTab,
   className,
+  video = false,
 }: {
   currentSlug: string
   defaultTab?: GalleryTabId
   className?: string
+  /** YouTube-style tiles: a 16:9 rounded thumbnail with the title under it (studio layout test). */
+  video?: boolean
 }) {
   const { t, language } = useTranslation()
   const [tab, setTab] = useState<GalleryTabId>(defaultTab ?? defaultTabFor(currentSlug))
@@ -194,10 +197,16 @@ export function TryNextGallery({
             <li key={tool.slug}>
               <Link
                 href={toolPath(tool.slug)}
-                className="group flex h-full flex-col gap-1.5 rounded-xl border bg-card p-1.5 transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                className={cn(
+                  'group flex h-full flex-col transition-all focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+                  video ? 'gap-2 rounded-xl' : 'gap-1.5 rounded-xl border bg-card p-1.5 hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md',
+                )}
               >
-                <ToolThumb tool={tool} className="h-12 w-full sm:h-14" />
-                <span className="line-clamp-2 px-1 pb-0.5 text-xs font-semibold leading-snug sm:text-[13px]">
+                <ToolThumb
+                  tool={tool}
+                  className={video ? 'aspect-video w-full rounded-xl shadow-sm transition-transform group-hover:-translate-y-0.5 group-hover:shadow-md' : 'h-12 w-full sm:h-14'}
+                />
+                <span className={cn('line-clamp-2 text-xs font-semibold leading-snug sm:text-[13px]', video ? 'px-0.5' : 'px-1 pb-0.5')}>
                   {getLocalizedTool(tool, language).name}
                 </span>
               </Link>

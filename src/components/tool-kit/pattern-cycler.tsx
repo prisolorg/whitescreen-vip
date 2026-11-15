@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ToolStage } from './tool-stage'
+import { MoreMenu } from './compact'
 import { StageArrows } from '@/components/screen-stage/stage-parts'
 import { ActionButton, ControlRow, Slider, Toggle } from './controls'
 import { isTypingTarget } from './use-fullscreen'
@@ -78,7 +79,7 @@ export function PatternCycler({ label, patterns, autoCycle, showGridOption, note
       style={{ background: current.background, backgroundSize: current.backgroundSize }}
       controls={
         <>
-          <div className="-mx-1 flex items-center gap-2 overflow-x-auto px-1 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:shrink-0" role="group" aria-label={tx('Patterns')}>
+          <div className="-mx-1 flex min-w-0 flex-1 basis-[300px] items-center gap-2 overflow-x-auto px-1 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:shrink-0" role="group" aria-label={tx('Patterns')}>
             <ActionButton onClick={() => step(-1)} aria-label={t('prevPattern', 'Previous pattern')} className="px-2.5">
               <ChevronLeft aria-hidden="true" />
             </ActionButton>
@@ -107,14 +108,15 @@ export function PatternCycler({ label, patterns, autoCycle, showGridOption, note
               <ChevronRight aria-hidden="true" />
             </ActionButton>
           </div>
-          {(autoCycle || showGridOption) && (
-            <ControlRow>
+          {autoCycle && (
+            <ActionButton onClick={() => setIsCycling((value) => !value)} aria-pressed={isCycling}>
+              {isCycling ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
+              {isCycling ? t('stopAutoCycle', 'Stop auto-cycle') : t('autoCycle', 'Auto-cycle')}
+            </ActionButton>
+          )}
+          <MoreMenu>
               {autoCycle && (
                 <>
-                  <ActionButton onClick={() => setIsCycling((value) => !value)} aria-pressed={isCycling}>
-                    {isCycling ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
-                    {isCycling ? t('stopAutoCycle', 'Stop auto-cycle') : t('autoCycle', 'Auto-cycle')}
-                  </ActionButton>
                   <Slider
                     label={t('interval', 'Interval')}
                     value={seconds}
@@ -128,11 +130,10 @@ export function PatternCycler({ label, patterns, autoCycle, showGridOption, note
                 </>
               )}
               {showGridOption && <Toggle label={t('gridOverlay', 'Grid overlay')} checked={showGrid} onChange={setShowGrid} />}
-            </ControlRow>
-          )}
-          <p className="hidden text-sm text-muted-foreground sm:block">
-            {note ? tx(note) : t('patternCyclerHint', 'Click the screen or use the arrow keys to switch patterns.')}
-          </p>
+              <p className="text-sm text-muted-foreground">
+                {note ? tx(note) : t('patternCyclerHint', 'Click the screen or use the arrow keys to switch patterns.')}
+              </p>
+          </MoreMenu>
         </>
       }
     >

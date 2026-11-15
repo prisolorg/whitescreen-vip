@@ -302,6 +302,35 @@ function RatingPrompt() {
   )
 }
 
+/**
+ * Rating row under the tool (studio layout test pages, desktop only): stars on the left, the real
+ * average (10+ ratings) or an invitation on the right. Tapping a star saves it and shows the thank-you note.
+ */
+export function RatingRow({ className }: { className?: string }) {
+  const rating = useRating()
+  if (!RATINGS_ENABLED || rating?.status === 'off') return null
+  const mine = rating?.mine ?? 0
+  const shown = rating && rating.count >= MIN_RATINGS_SHOWN
+  return (
+    <section aria-label={tx('Rate this tool')} className={cn('hidden min-h-12 flex-wrap items-center justify-between gap-x-6 gap-y-1 px-1 lg:flex', className)}>
+      <div className="flex items-center gap-3">
+        <span className="text-sm font-semibold">{mine ? fill(tx('You rated this tool {n} out of 5'), { n: mine }) : tx('Was this tool useful?')}</span>
+        <StarPicker value={mine} disabled={!rating || rating.status !== 'ready' || Boolean(mine)} onPick={(stars) => rating && rateAndThank(rating.tool, stars)} />
+      </div>
+      <p className="flex items-center gap-1.5 text-sm text-muted-foreground" aria-live="polite">
+        {shown ? (
+          <>
+            <Star aria-hidden="true" className="size-4 fill-amber-400 text-amber-400" />
+            {fill(tx('{average} out of 5 · {count} ratings'), { average: formatAverage(rating.average), count: rating.count.toLocaleString() })}
+          </>
+        ) : (
+          tx('Be one of the first to rate this tool')
+        )}
+      </p>
+    </section>
+  )
+}
+
 /** The one-time "how did it work" prompt, mounted once per tool page (by ToolWithAds) so it is there after fullscreen. */
 export function ToolRatingPrompt() {
   if (!RATINGS_ENABLED) return null

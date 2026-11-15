@@ -5,8 +5,9 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties, type Reac
 import { Maximize, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { isTypingTarget, useFullscreen } from './use-fullscreen'
+import { InRowContext } from './controls'
 import { useTranslation } from '@/lib/i18n'
-import { DoubleTapHint, STAGE_SIZE, StageDock, StageTitle, useStageHeading } from '@/components/screen-stage/stage-parts'
+import { DoubleTapHint, STAGE_SIZE, TOOL_FIT_WIDTH, TOOL_STAGE, TOOL_STAGE_FIXED, StageDock, StageTitle, useStageHeading } from '@/components/screen-stage/stage-parts'
 
 const HINT_DURATION_MS = 2500
 
@@ -32,6 +33,8 @@ type ToolStageProps = {
   reserveHeadingSpace?: boolean
   /** Double-click or double-tap toggles fullscreen; a single click still reaches onStageClick. */
   doubleClickFullscreen?: boolean
+  /** Compact layout: fixed stage size (same for every tool) and the controls on one row; extras go in a MoreMenu. */
+  compact?: boolean
   children: ReactNode | ((state: StageState) => ReactNode)
 }
 
@@ -46,11 +49,51 @@ export function ToolStage({
   onStageClick,
   reserveHeadingSpace,
   doubleClickFullscreen,
+  compact: compactProp,
   children,
 }: ToolStageProps) {
   const { t } = useTranslation()
   const heading = useStageHeading()
+  // Studio layout: the title sits above the stage (drawn by the page), so no title band or overlay here.
+  const studio = Boolean(heading?.studio)
+  // Every tool page uses the compact layout (fixed stage size, one row of controls, extras in More).
+  const compact = compactProp ?? studio
+  const titleBand = Boolean(reserveHeadingSpace && heading && !studio)
+  // Tools with their own toolbars (meeting screens): in the studio layout keep the stage clear of our overlays.
+  const clearStage = studio && Boolean(reserveHeadingSpace)
   const { ref, isFullscreen, isFallback, enter, exit, toggle } = useFullscreen()
+  // Measure the control dock so the stage can leave room for it above the fold (see TOOL_STAGE).
+  const dockRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const dock = dockRef.current
+    if (!studio || compact || !dock || typeof ResizeObserver === 'undefined') return
+    const root = document.documentElement
+    const update = () => root.style.setProperty('--dock-h', `${Math.ceil(dock.getBoundingClientRect().height) + 12}px`)
+    const observer = new ResizeObserver(update)
+    observer.observe(dock)
+    update()
+    return () => {
+      observer.disconnect()
+      root.style.removeProperty('--dock-h')
+    }
+  }, [studio, compact])
+
+  // The rating row under the tool matches the stage width (--tool-w).
+  useEffect(() => {
+    const stage = ref.current as HTMLElement | null
+    if (!studio || !stage || typeof ResizeObserver === 'undefined') return
+    const root = document.documentElement
+    const update = () => {
+      if (!document.fullscreenElement) root.style.setProperty('--tool-w', `${Math.round(stage.getBoundingClientRect().width)}px`)
+    }
+    const observer = new ResizeObserver(update)
+    observer.observe(stage)
+    update()
+    return () => {
+      observer.disconnect()
+      root.style.removeProperty('--tool-w')
+    }
+  }, [studio, ref])
   const [isHintVisible, setIsHintVisible] = useState(false)
   const hintTimerRef = useRef<number | undefined>(undefined)
 
@@ -116,7 +159,7 @@ export function ToolStage({
           className={cn(
             'relative isolate overflow-hidden',
             doubleClickFullscreen && 'touch-manipulation select-none',
-            isFullscreen ? 'h-full w-full' : STAGE_SIZE,
+            isFullscreen ? 'h-full w-full' : studio ? (compact ? TOOL_STAGE_FIXED : TOOL_STAGE) : STAGE_SIZE,
             isFallback && 'fixed inset-0 z-[100] h-dvh max-h-none rounded-none border-0',
             isFullscreen && !isHintVisible && 'cursor-none',
             className,
@@ -124,18 +167,18 @@ export function ToolStage({
         >
           {/* Always the same wrapper, so entering fullscreen never remounts the tool (camera
               streams and canvases would otherwise be lost); it only drops the title padding. */}
-          <div className={reserveHeadingSpace && heading && !isFullscreen ? 'size-full pt-12 sm:pt-14' : 'contents'}>
+          <div className={titleBand && !isFullscreen ? 'size-full pt-12 sm:pt-14' : 'contents'}>
             {typeof children === 'function' ? children({ isFullscreen, exit: exitStage }) : children}
           </div>
 
           {doubleClickFullscreen && !isFullscreen && <DoubleTapHint tone={tone} />}
 
-          {badge && (
+          {badge && !(clearStage && !isFullscreen) && (
             <span
               className={cn(
                 'pointer-events-none absolute z-20 rounded px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider ring-1 opacity-70',
                 // With a reserved title band the badge sits in it, clear of the tool's own controls.
-                reserveHeadingSpace && heading && !isFullscreen ? 'right-3 top-12' : 'bottom-2 left-2',
+                titleBand && !isFullscreen ? 'right-3 top-12' : 'bottom-2 left-2',
                 chipClass,
               )}
             >
@@ -145,8 +188,11 @@ export function ToolStage({
 
           <div
             className={cn(
-              'absolute right-3 top-3 z-30 flex items-center gap-2 transition-opacity duration-300',
+              // Studio: the fullscreen icon sits bottom right, like the color screens.
+              'absolute right-3 z-30 flex items-center gap-2 transition-opacity duration-300',
+              studio && !isFullscreen ? 'bottom-3' : 'top-3',
               isFullscreen && !isHintVisible && 'pointer-events-none opacity-0',
+              clearStage && !isFullscreen && 'hidden',
             )}
           >
             {isFullscreen && (
@@ -172,12 +218,37 @@ export function ToolStage({
         </div>
 
         {/* Same title placement as the color screens; it sits outside the stage so fullscreen stays clean. */}
-        {heading && !isFullscreen && (
+        {heading && !studio && !isFullscreen && (
           <StageTitle title={tx(heading.title)} intro={reserveHeadingSpace ? undefined : heading.intro} tone={tone} scrim={!reserveHeadingSpace} compact={reserveHeadingSpace} />
         )}
       </div>
 
-      <StageDock onFullscreen={toggle}>{controls}</StageDock>
+      {compact && studio ? (
+        // Compact: one row, same width as the stage; Fullscreen is the main action, at the end.
+        <div className="mx-auto mt-3 flex w-full max-w-[min(100%,calc(59vh*16/9))] flex-wrap items-center gap-x-3 gap-y-2.5 rounded-2xl bg-card px-3 py-2.5 text-card-foreground shadow-sm ring-1 ring-black/5 sm:px-4 sm:py-3 dark:ring-white/10">
+          <InRowContext.Provider value={true}>{controls}</InRowContext.Provider>
+          {badge && clearStage && (
+            <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground max-sm:hidden">{typeof badge === 'string' ? tx(badge) : badge}</span>
+          )}
+          <button
+            type="button"
+            onClick={toggle}
+            className="ml-auto inline-flex h-10 shrink-0 items-center gap-2 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+          >
+            <Maximize className="size-4" aria-hidden="true" />
+            {t('fullscreen', 'Fullscreen')}
+          </button>
+        </div>
+      ) : (
+        <div ref={dockRef} className={studio ? cn('mx-auto w-full [--stage-chrome:186px] sm:[--stage-chrome:196px]', TOOL_FIT_WIDTH) : undefined}>
+          <StageDock onFullscreen={toggle} iconOnPhone={studio && !clearStage}>
+            {clearStage && badge && (
+              <span className="self-start rounded bg-muted px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">{typeof badge === 'string' ? tx(badge) : badge}</span>
+            )}
+            {controls}
+          </StageDock>
+        </div>
+      )}
     </div>
   )
 }

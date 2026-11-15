@@ -19,8 +19,45 @@ import { useTranslation } from '@/lib/i18n'
 export const STAGE_SIZE =
   'h-[36svh] min-h-[240px] w-full rounded-2xl border border-black/10 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_10px_30px_-8px_rgba(0,0,0,0.22)] dark:border-white/10 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_0_36px_-6px_rgba(255,255,255,0.14)] sm:h-[46vh] md:h-[52vh] md:max-h-[600px] lg:h-[calc(100svh-480px)] lg:min-h-[340px] lg:max-h-[560px]'
 
+/**
+ * Studio layout (see src/lib/studio-layout.ts): the soft band behind the tool (full width, no overflow), the
+ * width shared by the preview and its controls (YouTube-style, at most 1024px and never taller than ~58vh),
+ * and the preview box itself (16:9 from small tablets up; phones keep a usable height for tool controls).
+ */
+export const STUDIO_BAND =
+  'bg-[var(--band)] py-5 shadow-[0_0_0_100vmax_var(--band)] [--band:#e8ecf1] [clip-path:inset(0_-100vmax)] sm:py-6 dark:[--band:#171a20]'
+export const STUDIO_WIDTH = 'max-w-[min(1024px,calc(58vh*16/9))]'
+export const STUDIO_STAGE =
+  'mx-auto h-[36svh] min-h-[240px] w-full max-w-[min(1024px,calc(58vh*16/9))] rounded-2xl border border-black/10 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_16px_40px_-12px_rgba(0,0,0,0.28)] dark:border-white/15 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_16px_40px_-12px_rgba(0,0,0,0.7)] sm:aspect-video sm:h-auto sm:min-h-0'
+
+/**
+ * Tool pages (ad beside the tool): the stage shrinks to leave room for its own control dock, so the tool
+ * and its controls both stay above the fold. --dock-h is the measured dock height (set by ToolStage) and
+ * --stage-chrome everything else above the fold (header, band padding, title, gaps).
+ */
+// The floor (720px or the column) stops a loop where a narrower stage makes the dock wrap taller and shrink the stage again.
+export const TOOL_FIT_WIDTH =
+  'max-w-[max(min(100%,720px),min(100%,calc((100svh-var(--stage-chrome)-var(--dock-h,72px))*16/9)))]'
+export const TOOL_STAGE =
+  'mx-auto w-full rounded-2xl border border-black/10 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_16px_40px_-12px_rgba(0,0,0,0.28)] dark:border-white/15 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_16px_40px_-12px_rgba(0,0,0,0.7)] [--stage-chrome:186px] h-[max(190px,min(48svh,calc(100svh-var(--stage-chrome)-var(--dock-h,72px))))] sm:aspect-video sm:h-auto sm:min-h-[240px] sm:[--stage-chrome:196px] ' +
+  // Same width as the dock; when the dock needs its 720px floor the stage gets a little less tall instead of pushing the dock below the fold.
+  'sm:max-h-[calc(100svh-var(--stage-chrome)-var(--dock-h,72px))] ' +
+  'sm:max-w-[max(min(100%,720px),min(100%,calc((100svh-var(--stage-chrome)-var(--dock-h,72px))*16/9)))]'
+
+/** Width of the fixed-size stage, its control bar and the rating row (same on colour, tool and background pages). */
+export const TOOL_FIXED_WIDTH = 'max-w-[min(100%,calc(59vh*16/9))]'
+
+/** Compact tools: one fixed size for every tool, the same as the colour screens (4:3 on phones, 16:9 from small tablets up). */
+export const TOOL_STAGE_FIXED =
+  'mx-auto aspect-[4/3] w-full max-w-[min(100%,calc(59vh*16/9))] rounded-2xl border border-black/10 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_16px_40px_-12px_rgba(0,0,0,0.28)] sm:aspect-video dark:border-white/15 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_16px_40px_-12px_rgba(0,0,0,0.7)]'
+
 /** Page heading that the stage shows on top of itself. Tool pages provide it; ToolStage reads it. */
-export type StageHeading = { title: string; intro?: string }
+export type StageHeading = {
+  title: string
+  intro?: string
+  /** Studio layout: the page draws the title above the stage, so the stage shows none of its own. */
+  studio?: boolean
+}
 export const StageHeadingContext = createContext<StageHeading | null>(null)
 export const useStageHeading = () => useContext(StageHeadingContext)
 
@@ -73,15 +110,15 @@ export function StageTitle({
 }
 
 /** Controls row under the stage, always ending with the Fullscreen button. */
-export function StageDock({ children, onFullscreen }: { children?: ReactNode; onFullscreen: () => void }) {
+export function StageDock({ children, onFullscreen, className, iconOnPhone }: { children?: ReactNode; onFullscreen: () => void; className?: string; /** Phones use the fullscreen icon on the stage instead of this button. */ iconOnPhone?: boolean }) {
   const { t } = useTranslation()
   return (
-    <div className="mt-3 flex flex-wrap items-center gap-3 rounded-2xl border bg-card p-2.5 shadow-sm sm:px-4">
+    <div className={cn('mt-3 flex flex-wrap items-center gap-3 rounded-2xl border bg-card p-2.5 shadow-sm sm:px-4', className)}>
       {children && <div className="flex min-w-0 flex-1 flex-col gap-3">{children}</div>}
       <button
         type="button"
         onClick={onFullscreen}
-        className="ml-auto inline-flex h-10 shrink-0 items-center gap-2 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2"
+        className={cn(iconOnPhone && 'max-sm:hidden', 'ml-auto inline-flex h-10 shrink-0 items-center gap-2 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2')}
       >
         <Maximize className="size-4" aria-hidden="true" />
         {t('fullscreen', 'Fullscreen')}

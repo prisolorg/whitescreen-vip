@@ -269,14 +269,16 @@ const SECTION_NAMES: Record<string, string> = {
 function breadcrumbTrail(path: string, title: string, language: LanguageCode): { name: string; path: string }[] | undefined {
   const home = { name: translationsFor(language).homeTitle || 'White Screen', path: '/' }
   const hub = getHub(path)
-  if (hub) return [home, { name: title.split(/\s[–|]\s/)[0].trim(), path }]
+  // Hub pages render their own visible breadcrumb (with its markup), so none is added here.
+  if (hub) return undefined
   const section = Object.keys(SECTION_NAMES).find((prefix) => path === prefix || path.startsWith(`${prefix}/`))
   if (!section) return undefined
   const sectionCrumb = { name: (section === '/guides' && translationsFor(language).guides) || (section === '/screen-problems' && translationsFor(language).screenProblems) || (section === '/glossary' && translationsFor(language).glossary) || (section === '/backgrounds' && translationsFor(language).backgrounds) || SECTION_NAMES[section], path: section }
   if (path === section) return [home, sectionCrumb]
-  // The page's own title without the "– tagline" or "| site" part.
-  const name = title.split(/\s[–|]\s/)[0].trim()
-  return [home, sectionCrumb, { name, path }]
+  // Article pages (a background, problem, term or guide) get no breadcrumb markup. Google shows a trail
+  // without its last step, so it would only ever show the section ("› Backgrounds"); without it Google
+  // shows the URL, which carries the page keyword ("› backgrounds › graph-paper").
+  return undefined
 }
 
 /** Old guide and background slugs still resolve; they point their canonical at the real URL. */
@@ -341,7 +343,7 @@ export function getPageSeo(cleanPath: string, search: string, language: Language
     )
   }
 
-  // Breadcrumbs for pages whose own markup doesn't add them (tool and color pages render theirs).
+  // Breadcrumbs for section and hub pages only (see breadcrumbTrail); tool, color and article pages send none.
   const crumbs = breadcrumbTrail(canonicalPath, resolved.title, language)
   if (crumbs) {
     jsonLd.push({

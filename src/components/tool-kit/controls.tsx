@@ -1,11 +1,16 @@
 'use client'
 
-import { Children, useId, type ReactNode } from 'react'
+import { Children, createContext, useContext, useId, type ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 import { tx } from '@/lib/tx'
 
+/** True inside the compact one-row control bar: controls render as slim single-line versions. */
+export const InRowContext = createContext(false)
+const useInRow = () => useContext(InRowContext)
+
 export function ControlRow({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn('flex flex-wrap items-end gap-4', className)}>{children}</div>
+  const inRow = useInRow()
+  return <div className={cn(inRow ? 'contents' : 'flex flex-wrap items-end gap-4', !inRow && className)}>{children}</div>
 }
 
 type SliderProps = {
@@ -21,6 +26,28 @@ type SliderProps = {
 
 export function Slider({ label, value, min, max, step = 1, onChange, format, className }: SliderProps) {
   const id = useId()
+  const inRow = useInRow()
+  if (inRow)
+    return (
+      <div className={cn('flex min-w-[180px] flex-1 items-center gap-2.5 text-sm', className)}>
+        <label htmlFor={id} className="whitespace-nowrap font-semibold">
+          {tx(label)}
+        </label>
+        <input
+          id={id}
+          type="range"
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          onChange={(event) => onChange(Number(event.target.value))}
+          className="h-2 min-w-0 flex-1 cursor-pointer accent-foreground"
+        />
+        <output htmlFor={id} className="whitespace-nowrap font-mono text-xs text-muted-foreground">
+          {format ? format(value) : value}
+        </output>
+      </div>
+    )
   return (
     <div className={cn('flex min-w-40 flex-1 flex-col gap-1.5', className)}>
       <div className="flex items-center justify-between gap-2 text-sm">
@@ -53,10 +80,11 @@ type SegmentedProps<T extends string> = {
 }
 
 export function Segmented<T extends string>({ label, value, options, onChange }: SegmentedProps<T>) {
+  const inRow = useInRow()
   return (
     <fieldset className="flex flex-col gap-1.5">
-      <legend className="mb-1.5 text-sm font-medium">{tx(label)}</legend>
-      <div className="flex flex-wrap gap-1 rounded-lg border bg-muted/50 p-1">
+      <legend className={inRow ? 'sr-only' : 'mb-1.5 text-sm font-medium'}>{tx(label)}</legend>
+      <div className={cn('flex flex-wrap gap-1 rounded-lg p-1', inRow ? 'rounded-xl bg-muted' : 'border bg-muted/50')}>
         {options.map((option) => (
           <button
             key={option.value}
@@ -82,9 +110,10 @@ type ColorInputProps = { label: string; value: string; onChange: (value: string)
 
 export function ColorInput({ label, value, onChange }: ColorInputProps) {
   const id = useId()
+  const inRow = useInRow()
   return (
-    <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-sm font-medium">
+    <div className={cn('flex gap-1.5', inRow ? 'items-center gap-2' : 'flex-col')}>
+      <label htmlFor={id} className={cn('text-sm', inRow ? 'whitespace-nowrap font-semibold' : 'font-medium')}>
         {tx(label)}
       </label>
       <div className="flex h-10 items-center gap-2 rounded-lg border bg-background pl-1.5 pr-3">
@@ -112,9 +141,10 @@ type TextInputProps = {
 
 export function TextInput({ label, value, onChange, maxLength, placeholder, className }: TextInputProps) {
   const id = useId()
+  const inRow = useInRow()
   return (
-    <div className={cn('flex min-w-48 flex-1 flex-col gap-1.5', className)}>
-      <label htmlFor={id} className="text-sm font-medium">
+    <div className={cn('flex min-w-48 flex-1 gap-1.5', inRow ? 'items-center gap-2' : 'flex-col', className)}>
+      <label htmlFor={id} className={cn('text-sm', inRow ? 'whitespace-nowrap font-semibold' : 'font-medium')}>
         {tx(label)}
       </label>
       <input

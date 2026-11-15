@@ -31,6 +31,7 @@ import {
   RotateCcw,
 } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
+import { CompactSelect, MoreMenu } from '@/components/tool-kit/compact'
 import { ControlRow, Segmented, Slider, Toggle, TextInput, ActionButton } from '@/components/tool-kit/controls'
 import { useAnimationFrame, useCanvasSize } from '@/components/tool-kit/hooks'
 import { playTone } from '@/components/tool-kit/audio'
@@ -72,7 +73,6 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
       badge="Simulation"
       controls={
         <ControlRow>
-          <Slider label="Update Speed" value={speed} min={1} max={10} onChange={setSpeed} />
           <ActionButton onClick={() => setIsPaused((p) => !p)} aria-pressed={isPaused}>
             {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
             {isPaused ? tx('Resume') : tx('Pause')}
@@ -85,6 +85,9 @@ export function FakeUpdateScreen({ os = 'win10' }: { os?: UpdateOS }) {
             <AlertTriangle aria-hidden="true" />
             {isBsod ? tx('Restore Update') : tx('Trigger BSOD Prank')}
           </ActionButton>
+          <MoreMenu>
+            <Slider label="Update Speed" value={speed} min={1} max={10} onChange={setSpeed} />
+          </MoreMenu>
         </ControlRow>
       }
     >
@@ -356,8 +359,6 @@ export function FakeMacUpdate() {
       style={{ background: isWhite ? '#ffffff' : '#000000' }}
       controls={
         <ControlRow>
-          <Slider label="Update time" value={minutes} min={5} max={120} step={5} onChange={setMinutes} format={(value) => `${value} min`} />
-          <Slider label="Start at" value={startAt} min={0} max={90} step={5} onChange={setStartAt} format={(value) => `${value}%`} />
           <Segmented
             label="Screen"
             value={theme}
@@ -367,11 +368,15 @@ export function FakeMacUpdate() {
               { value: 'white', label: 'White' },
             ]}
           />
-          <Toggle label="Time remaining" checked={showEstimate} onChange={setShowEstimate} />
           <ActionButton onClick={restart}>
             <RotateCcw aria-hidden="true" />
             {tx('Restart')}
           </ActionButton>
+          <MoreMenu>
+            <Slider label="Update time" value={minutes} min={5} max={120} step={5} onChange={setMinutes} format={(value) => `${value} min`} />
+            <Slider label="Start at" value={startAt} min={0} max={90} step={5} onChange={setStartAt} format={(value) => `${value}%`} />
+            <Toggle label="Time remaining" checked={showEstimate} onChange={setShowEstimate} />
+          </MoreMenu>
         </ControlRow>
       }
     >
@@ -502,17 +507,19 @@ export function FakeCallScreen({ appType = 'zoom' }: { appType?: AppType }) {
       badge="Simulation"
       controls={
         <ControlRow>
-          <TextInput
-            label="Meeting Title"
-            value={meetingTitle}
-            onChange={setMeetingTitle}
-            maxLength={40}
-          />
           <Toggle
             label="Enable Camera Preview"
             checked={isVideoOn}
             onChange={setIsVideoOn}
           />
+          <MoreMenu>
+            <TextInput
+              label="Meeting Title"
+              value={meetingTitle}
+              onChange={setMeetingTitle}
+              maxLength={40}
+            />
+          </MoreMenu>
         </ControlRow>
       }
     >
@@ -1187,10 +1194,12 @@ export function FakeRadarScreen() {
             onChange={setPalette}
             options={(Object.keys(RADAR_COLORS) as (keyof typeof RADAR_COLORS)[]).map((key) => ({ value: key, label: RADAR_COLORS[key].label }))}
           />
-          <Slider label="Sweep speed" value={rpm} min={4} max={40} onChange={setRpm} format={(v) => `${v} rpm`} />
-          <Slider label="Contacts" value={count} min={0} max={24} onChange={setCount} />
-          <Toggle label="Contact labels" checked={labels} onChange={setLabels} />
           <Toggle label="Ping sound" checked={ping} onChange={setPing} />
+          <MoreMenu>
+            <Slider label="Sweep speed" value={rpm} min={4} max={40} onChange={setRpm} format={(v) => `${v} rpm`} />
+            <Slider label="Contacts" value={count} min={0} max={24} onChange={setCount} />
+            <Toggle label="Contact labels" checked={labels} onChange={setLabels} />
+          </MoreMenu>
         </ControlRow>
       }
     >
@@ -1277,15 +1286,25 @@ export function FakeBlueScreen() {
       reserveHeadingSpace
       doubleClickFullscreen
       badge="Simulation"
+      compact
       style={{ background: look.background }}
       controls={
-        <ControlRow>
-          <Segmented
+        <>
+          <CompactSelect
             label="Style"
             value={style}
             onChange={setStyle}
             options={(Object.keys(BSOD_STYLES) as (keyof typeof BSOD_STYLES)[]).map((key) => ({ value: key, label: BSOD_STYLES[key].label }))}
           />
+          <ActionButton
+            onClick={() => {
+              setProgress(0)
+              setIsRunning(true)
+            }}
+          >
+            {tx('Restart counter')}
+          </ActionButton>
+          <MoreMenu>
           <label className="flex flex-col gap-1.5 text-sm font-medium">
             {tx('Stop code')}
             <select value={stopCode} onChange={(e) => setStopCode(e.target.value)} className="h-10 rounded-xl border bg-background px-2.5 text-sm">
@@ -1297,15 +1316,8 @@ export function FakeBlueScreen() {
             </select>
           </label>
           <Slider label="Reach 100% in" value={seconds} min={10} max={120} step={5} onChange={setSeconds} format={(v) => `~${v} s`} />
-          <ActionButton
-            onClick={() => {
-              setProgress(0)
-              setIsRunning(true)
-            }}
-          >
-            {tx('Restart counter')}
-          </ActionButton>
-        </ControlRow>
+          </MoreMenu>
+        </>
       }
     >
       <div className="size-full select-none text-white" style={{ containerType: 'size' }}>

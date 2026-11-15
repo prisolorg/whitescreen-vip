@@ -1,4 +1,6 @@
 import React from 'react'
+import { InlineAd } from '@/components/tool-ads'
+import { STUDIO_BACKGROUND_PAGES } from '@/lib/studio-layout'
 import { WhiteScreenCta } from '@/components/white-screen-cta'
 import Link from 'next/link'
 import { ArrowRight, ExternalLink, HelpCircle, Eye, Palette, Lightbulb, ShieldCheck, Monitor } from 'lucide-react'
@@ -61,6 +63,9 @@ export function BackgroundBody({ slug }: { slug: string }) {
             <p className="text-muted-foreground italic">{item.about.aestheticTone}</p>
           </div>
         </section>
+
+        {/* Studio layout: the phone's first ad comes after this first content section. */}
+        {STUDIO_BACKGROUND_PAGES && <InlineAd className="mx-auto mt-6 md:hidden" />}
 
         {/* Section 2: View in Full Screen */}
         <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">

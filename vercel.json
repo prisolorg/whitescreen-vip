@@ -6081,6 +6081,11 @@
       "permanent": true
     },
     {
+      "source": "/es/backgrounds/light-pink-background/",
+      "destination": "/backgrounds/light-pink-background/",
+      "permanent": true
+    },
+    {
       "source": "/pt-br/author-whitson-rao/",
       "destination": "/author-whitson-rao/",
       "permanent": true
@@ -6098,6 +6103,11 @@
     {
       "source": "/pt-br/guides/multi-monitor-setup/",
       "destination": "/guides/multi-monitor-setup/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/backgrounds/light-pink-background/",
+      "destination": "/backgrounds/light-pink-background/",
       "permanent": true
     },
     {
@@ -6121,6 +6131,11 @@
       "permanent": true
     },
     {
+      "source": "/de/backgrounds/light-pink-background/",
+      "destination": "/backgrounds/light-pink-background/",
+      "permanent": true
+    },
+    {
       "source": "/fr/author-whitson-rao/",
       "destination": "/author-whitson-rao/",
       "permanent": true
@@ -6138,6 +6153,11 @@
     {
       "source": "/fr/guides/multi-monitor-setup/",
       "destination": "/guides/multi-monitor-setup/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/backgrounds/light-pink-background/",
+      "destination": "/backgrounds/light-pink-background/",
       "permanent": true
     },
     {
@@ -6166,6 +6186,11 @@
       "permanent": true
     },
     {
+      "source": "/it/backgrounds/light-pink-background/",
+      "destination": "/backgrounds/light-pink-background/",
+      "permanent": true
+    },
+    {
       "source": "/nl/author-whitson-rao/",
       "destination": "/author-whitson-rao/",
       "permanent": true
@@ -6191,6 +6216,11 @@
       "permanent": true
     },
     {
+      "source": "/nl/backgrounds/light-pink-background/",
+      "destination": "/backgrounds/light-pink-background/",
+      "permanent": true
+    },
+    {
       "source": "/id/author-whitson-rao/",
       "destination": "/author-whitson-rao/",
       "permanent": true
@@ -6211,6 +6241,11 @@
       "permanent": true
     },
     {
+      "source": "/id/backgrounds/light-pink-background/",
+      "destination": "/backgrounds/light-pink-background/",
+      "permanent": true
+    },
+    {
       "source": "/tr/author-whitson-rao/",
       "destination": "/author-whitson-rao/",
       "permanent": true
@@ -6228,6 +6263,11 @@
     {
       "source": "/tr/guides/multi-monitor-setup/",
       "destination": "/guides/multi-monitor-setup/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/backgrounds/light-pink-background/",
+      "destination": "/backgrounds/light-pink-background/",
       "permanent": true
     },
     {

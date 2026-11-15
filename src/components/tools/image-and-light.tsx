@@ -7,6 +7,7 @@ import { Download } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { SCREEN_COLORS, normalizeHex } from '@/lib/screen-colors'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
+import { MoreMenu } from '@/components/tool-kit/compact'
 import { ActionButton, ControlRow, Segmented, Slider } from '@/components/tool-kit/controls'
 
 const RESOLUTIONS = [
@@ -235,9 +236,11 @@ export function ResolutionTest() {
       reserveHeadingSpace
       className="bg-neutral-100"
       controls={
+        <MoreMenu>
         <p className="text-sm text-muted-foreground">
           {tx('Values update live as you resize or rotate. The checkerboard square should look like even gray at 100% zoom; visible stripes or moiré mean the image is being scaled.')}
         </p>
+        </MoreMenu>
       }
     >
       <div className="flex size-full flex-col items-center justify-center gap-3 px-3 pb-3 text-neutral-900 sm:gap-4">

@@ -4,6 +4,7 @@ import { tx } from '@/lib/tx'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Download, Pause, Play, RotateCcw, Volume2, VolumeX } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
+import { CompactSelect, MoreMenu } from '@/components/tool-kit/compact'
 import { ActionButton, ColorInput, ControlRow, Segmented, Slider, TextInput, Toggle } from '@/components/tool-kit/controls'
 import { useAnimationFrame, useCanvasSize, usePrefersReducedMotion } from '@/components/tool-kit/hooks'
 import { isTypingTarget } from '@/components/tool-kit/use-fullscreen'
@@ -91,11 +92,11 @@ export function NoSignalScreen() {
                 { value: 'blue', label: 'Blue input' },
               ]}
             />
-            <TextInput label="Message" value={message} onChange={setMessage} maxLength={24} />
-            <TextInput label="Input name" value={input} onChange={setInput} maxLength={16} />
-          </ControlRow>
-          <ControlRow>
             <SoundButton isPlaying={isToneOn} onToggle={toggleTone} label="1 kHz tone" />
+            <MoreMenu>
+              <TextInput label="Message" value={message} onChange={setMessage} maxLength={24} />
+              <TextInput label="Input name" value={input} onChange={setInput} maxLength={16} />
+            </MoreMenu>
           </ControlRow>
         </>
       }
@@ -578,9 +579,10 @@ export function BrokenScreen() {
       style={{ background: '#030303' }}
       onStageClick={addImpact}
       badge="Simulation"
+      compact
       controls={
-        <ControlRow>
-          <Segmented
+        <>
+          <CompactSelect
             label="Crack style"
             value={style}
             onChange={(value) => {
@@ -596,27 +598,29 @@ export function BrokenScreen() {
               { value: 'lines', label: 'Dead lines' },
             ]}
           />
-          <Segmented
-            label="Background"
-            value={background}
-            onChange={setBackground}
-            options={[
-              { value: 'wallpaper', label: 'Wallpaper' },
-              { value: 'lock', label: 'Lock screen' },
-              { value: 'black', label: 'Screen off' },
-              { value: 'white', label: 'White' },
-            ]}
-          />
-          <Toggle label="Crack sound" checked={withSound} onChange={setWithSound} />
           <ActionButton onClick={newCrack}>
             <RotateCcw aria-hidden="true" />
             {tx('New crack')}
           </ActionButton>
-          <ActionButton onClick={download}>
-            <Download aria-hidden="true" />
-            {tx('Download PNG')}
-          </ActionButton>
-        </ControlRow>
+          <MoreMenu>
+            <Segmented
+              label="Background"
+              value={background}
+              onChange={setBackground}
+              options={[
+                { value: 'wallpaper', label: 'Wallpaper' },
+                { value: 'lock', label: 'Lock screen' },
+                { value: 'black', label: 'Screen off' },
+                { value: 'white', label: 'White' },
+              ]}
+            />
+            <Toggle label="Crack sound" checked={withSound} onChange={setWithSound} />
+            <ActionButton onClick={download}>
+              <Download aria-hidden="true" />
+              {tx('Download PNG')}
+            </ActionButton>
+          </MoreMenu>
+        </>
       }
     >
       <div className="absolute inset-0 cursor-crosshair">
@@ -767,16 +771,18 @@ export function HackerTyper() {
       controls={
         <>
           <ControlRow>
-            <Slider label="Characters per key" value={speed} min={1} max={12} onChange={setSpeed} />
-            <ColorInput label="Text color" value={color} onChange={setColor} />
             <ActionButton onClick={() => setLength(0)}>
               <RotateCcw aria-hidden="true" />
               {tx('Clear')}
             </ActionButton>
+            <MoreMenu>
+              <Slider label="Characters per key" value={speed} min={1} max={12} onChange={setSpeed} />
+              <ColorInput label="Text color" value={color} onChange={setColor} />
+              <p className="text-sm text-muted-foreground">
+                {tx('Click the terminal, then type anything. Press Alt 3× for access granted, Caps Lock 3× for access denied. This only prints harmless text.')}
+              </p>
+            </MoreMenu>
           </ControlRow>
-          <p className="text-sm text-muted-foreground">
-            {tx('Click the terminal, then type anything. Press Alt 3× for access granted, Caps Lock 3× for access denied. This only prints harmless text.')}
-          </p>
         </>
       }
     >
@@ -916,9 +922,11 @@ export function HackedScreen() {
               { value: 'green', label: 'Green terminal' },
             ]}
           />
-          <TextInput label="Headline" value={headline} onChange={setHeadline} maxLength={24} />
           <Toggle label="Siren sound" checked={siren} onChange={setSiren} />
-          <Toggle label="Show “just kidding” note" checked={showNote} onChange={setShowNote} />
+          <MoreMenu>
+            <TextInput label="Headline" value={headline} onChange={setHeadline} maxLength={24} />
+            <Toggle label="Show “just kidding” note" checked={showNote} onChange={setShowNote} />
+          </MoreMenu>
         </ControlRow>
       }
     >
@@ -989,20 +997,8 @@ export function ZoomLighting() {
       style={{ background: color }}
       controls={
         <>
-          <ControlRow>
-            <Slider
-              label="Color temperature"
-              value={kelvin}
-              min={2700}
-              max={6500}
-              step={100}
-              onChange={(value) => {
-                setKelvin(value)
-                setUseCustom(false)
-              }}
-              format={(v) => (useCustom ? 'Custom color' : `${v} K`)}
-            />
-            <div className="flex flex-wrap items-end gap-1.5">
+          <Slider label="Brightness" value={brightness} min={20} max={100} onChange={setBrightness} format={(v) => `${v}%`} />
+          <div className="flex flex-wrap items-center gap-1.5">
               {LIGHT_PRESETS.map((preset) => (
                 <ActionButton
                   key={preset.kelvin}
@@ -1017,12 +1013,22 @@ export function ZoomLighting() {
                   {tx(preset.label)}
                 </ActionButton>
               ))}
-              <Toggle label="Custom color" checked={useCustom} onChange={setUseCustom} />
-              {useCustom && <ColorInput label="Light color" value={custom} onChange={setCustom} />}
-            </div>
-          </ControlRow>
-          <ControlRow>
-            <Slider label="Brightness" value={brightness} min={20} max={100} onChange={setBrightness} format={(v) => `${v}%`} />
+          </div>
+          <MoreMenu>
+            <Slider
+              label="Color temperature"
+              value={kelvin}
+              min={2700}
+              max={6500}
+              step={100}
+              onChange={(value) => {
+                setKelvin(value)
+                setUseCustom(false)
+              }}
+              format={(v) => (useCustom ? 'Custom color' : `${v} K`)}
+            />
+            <Toggle label="Custom color" checked={useCustom} onChange={setUseCustom} />
+            {useCustom && <ColorInput label="Light color" value={custom} onChange={setCustom} />}
             <Segmented
               label="Mode"
               value={mode}
@@ -1033,7 +1039,7 @@ export function ZoomLighting() {
               ]}
             />
             {mode === 'frame' && <Slider label="Frame width" value={frame} min={6} max={30} onChange={setFrame} format={(v) => `${v}%`} />}
-          </ControlRow>
+          </MoreMenu>
         </>
       }
     >
@@ -1081,13 +1087,11 @@ export function RingLight() {
       className={surround === 'black' ? 'bg-black' : 'bg-neutral-800'}
       controls={
         <>
-          <ControlRow>
+          <Slider label="Brightness" value={brightness} min={20} max={100} onChange={setBrightness} format={(v) => `${v}%`} />
+          <Segmented label="Color" value={tint} onChange={setTint} options={RING_TINTS} />
+          <MoreMenu>
             <Slider label="Ring size" value={size} min={30} max={98} onChange={setSize} format={(v) => `${v}%`} />
             <Slider label="Thickness" value={thickness} min={3} max={30} onChange={setThickness} format={(v) => `${v}%`} />
-            <Slider label="Brightness" value={brightness} min={20} max={100} onChange={setBrightness} format={(v) => `${v}%`} />
-          </ControlRow>
-          <ControlRow>
-            <Segmented label="Color" value={tint} onChange={setTint} options={RING_TINTS} />
             {tint === 'temp' && (
               <Slider label="Color temperature" value={kelvin} min={2700} max={6500} step={100} onChange={setKelvin} format={(v) => `${v} K`} />
             )}
@@ -1101,7 +1105,7 @@ export function RingLight() {
                 { value: 'dim', label: 'Gray' },
               ]}
             />
-          </ControlRow>
+          </MoreMenu>
         </>
       }
     >
@@ -1226,24 +1230,24 @@ export function VisualNoise() {
                 { value: 'grain', label: 'Grain' },
               ]}
             />
-            <Segmented
-              label="Palette"
-              value={palette}
-              onChange={setPalette}
-              options={[
-                { value: 'aurora', label: 'Aurora' },
-                { value: 'ember', label: 'Ember' },
-                { value: 'mono', label: 'Mono' },
-              ]}
-            />
-          </ControlRow>
-          <ControlRow>
-            <Slider label="Scale" value={scale} min={1} max={5} onChange={setScale} />
-            <Slider label="Speed" value={speed} min={1} max={10} onChange={setSpeed} />
             <ActionButton onClick={() => setIsPaused((value) => !value)} aria-pressed={isPaused}>
               {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
               {isPaused ? tx('Resume') : tx('Pause')}
             </ActionButton>
+            <MoreMenu>
+              <Segmented
+                label="Palette"
+                value={palette}
+                onChange={setPalette}
+                options={[
+                  { value: 'aurora', label: 'Aurora' },
+                  { value: 'ember', label: 'Ember' },
+                  { value: 'mono', label: 'Mono' },
+                ]}
+              />
+              <Slider label="Scale" value={scale} min={1} max={5} onChange={setScale} />
+              <Slider label="Speed" value={speed} min={1} max={10} onChange={setSpeed} />
+            </MoreMenu>
           </ControlRow>
         </>
       }
@@ -1390,13 +1394,11 @@ export function GradientScreen() {
               </button>
             ))}
           </div>
-          <ControlRow>
+          <MoreMenu>
             <ColorInput label="Start" value={colors[0]} onChange={setColor(0)} />
             {useMiddle && <ColorInput label="Middle" value={colors[1]} onChange={setColor(1)} />}
             <ColorInput label="End" value={colors[2]} onChange={setColor(2)} />
             <Toggle label="Middle color" checked={useMiddle} onChange={setUseMiddle} />
-          </ControlRow>
-          <ControlRow>
             <Segmented
               label="Type"
               value={type}
@@ -1409,7 +1411,7 @@ export function GradientScreen() {
             {type === 'linear' && <Slider label="Angle" value={angle} min={0} max={360} onChange={setAngle} format={(v) => `${v}°`} />}
             <Toggle label="Animate" checked={isAnimated} onChange={setIsAnimated} />
             <ActionButton onClick={download}>{tx('Download PNG')}</ActionButton>
-          </ControlRow>
+          </MoreMenu>
         </>
       }
     >

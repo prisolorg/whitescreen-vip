@@ -65,6 +65,8 @@ export const ENGLISH_ONLY_PREFIXES = [
   '/guides/max-brightness',
   '/guides/browser-fullscreen',
   '/guides/multi-monitor-setup',
+  // Backgrounds not in the article translations yet.
+  '/backgrounds/light-pink-background',
 ]
 
 export function isEnglishOnlyPath(cleanPath: string): boolean {

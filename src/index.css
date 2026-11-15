@@ -188,3 +188,10 @@ html.ad-blocked [data-ad-unit] {
 html.ad-blocked [data-ad-grid] {
   grid-template-columns: minmax(0, 1fr) !important;
 }
+
+/* Layout B trial: the White Screen page is a little wider (screen +10%), so its header matches those edges. */
+@media (min-width: 1280px) {
+  body:has([data-wide-page]) .site-header-inner {
+    max-width: 1316px;
+  }
+}

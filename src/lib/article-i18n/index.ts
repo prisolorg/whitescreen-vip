@@ -69,7 +69,8 @@ function localized<T extends { slug: string }>(kind: string, items: readonly T[]
   const key = `${kind}/${lang}`
   let list = caches.get(key) as T[] | undefined
   if (!list) {
-    list = items.map((item) => applyStrings(item, strings[item.slug] ?? [], `${lang}/${item.slug}`))
+    // Articles without translated strings yet are English-only (see ENGLISH_ONLY_PREFIXES), so they are left out here.
+    list = items.filter((item) => strings[item.slug]).map((item) => applyStrings(item, strings[item.slug], `${lang}/${item.slug}`))
     caches.set(key, list)
   }
   return list

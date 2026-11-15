@@ -1,4 +1,6 @@
 import { ToolGlanceBlock, ToolSources } from '@/components/tool-glance'
+import { InlineAd } from '@/components/tool-ads'
+import { STUDIO_TOOL_PAGES } from '@/lib/studio-layout'
 import { FaqList } from '@/components/faq-list'
 import { JsonLd } from '@/components/json-ld'
 import { RichText, plainText } from '@/components/rich-text'
@@ -89,6 +91,8 @@ export function ToolPageBody({ slug }: { slug: string }) {
       <JsonLd data={appSchema} />
       {faqSchema && <JsonLd data={faqSchema} />}
       {glance && <ToolGlanceBlock name={localizedTool.name} glance={glance} rating={ratingFor(toolPath(slug))} />}
+      {/* Studio layout: the phone's first ad comes after this first content section. */}
+      {STUDIO_TOOL_PAGES && <InlineAd className="mx-auto my-6 px-3 md:hidden" />}
       {language === 'en' && (
         <section aria-labelledby="about-heading" className="border-t py-14">
           <div className="mx-auto max-w-3xl px-4 sm:px-6">

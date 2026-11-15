@@ -53,6 +53,29 @@ function AdUnit({
   )
 }
 
+/** The 300×600 half-page beside a tool (desktop only, sticky while scrolling, space always reserved). */
+export function RailAd({ className }: { className?: string }) {
+  if (!SHOW_ADS) return null
+  return <AdUnit slot={AD_SLOTS.rail} sizeClass="h-[600px] w-[300px]" label="Ad 300×600" className={cn('sticky top-20 hidden lg:flex', className)} reserve />
+}
+
+/**
+ * An ad between content sections (studio layout test pages): 320×100 on phones, 728×90 from 800px.
+ * Space reserved from the first paint; `className` decides on which screens it shows.
+ */
+export function InlineAd({ className }: { className?: string }) {
+  if (!SHOW_ADS) return null
+  return (
+    <AdUnit
+      slot={AD_SLOTS.under}
+      sizeClass="h-[100px] w-[320px] min-[800px]:h-[90px] min-[800px]:w-[728px]"
+      label="Ad 728×90 / 320×100"
+      className={cn('flex', className)}
+      reserve
+    />
+  )
+}
+
 /**
  * The unit straight under the tool, on every screen: 320×100 on phones, 728×90 from 800px, 468×60 on small desktops
  * where the tool column beside the rail is narrower than 728px (1024–1099px), and 728×90 again from 1100px.

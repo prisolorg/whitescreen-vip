@@ -4,6 +4,7 @@ import { tx } from '@/lib/tx'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Play, Square } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
+import { CompactSelect, MoreMenu } from '@/components/tool-kit/compact'
 import { ControlRow, Segmented, Slider } from '@/components/tool-kit/controls'
 import { useAnimationFrame, useCanvasSize, usePrefersReducedMotion } from '@/components/tool-kit/hooks'
 import { isTypingTarget } from '@/components/tool-kit/use-fullscreen'
@@ -347,6 +348,18 @@ export function NoiseGenerator({ initialColor }: { initialColor: NoiseColor }) {
               onChange={setVolumeDb}
               format={(v) => (v <= -60 ? 'Muted' : `${v} dB`)}
             />
+            <CompactSelect
+              label="Sleep timer"
+              value={String(sleepMinutes)}
+              onChange={(value) => {
+                const minutes = Number(value) as (typeof SLEEP_MINUTES)[number]
+                setSleepMinutes(minutes)
+                if (isPlaying) setEndsAt(minutes ? Date.now() + minutes * 60_000 : null)
+                if (!minutes) setRemaining(null)
+              }}
+              options={SLEEP_MINUTES.map((m) => ({ value: String(m), label: m ? `${m} min` : tx('Off') }))}
+            />
+            <MoreMenu>
             <Segmented
               label="Filter"
               value={filterMode}
@@ -360,8 +373,6 @@ export function NoiseGenerator({ initialColor }: { initialColor: NoiseColor }) {
             {filterMode !== 'none' && (
               <Slider label="Cutoff" value={cutoffPosition} min={0} max={100} onChange={setCutoffPosition} format={() => formatHz(cutoff)} />
             )}
-          </ControlRow>
-          <ControlRow>
             <Segmented
               label="Visual"
               value={visual}
@@ -372,21 +383,9 @@ export function NoiseGenerator({ initialColor }: { initialColor: NoiseColor }) {
                 { value: 'dark', label: 'Dark' },
               ]}
             />
-            <Segmented
-              label="Sleep timer"
-              value={String(sleepMinutes)}
-              onChange={(value) => {
-                const minutes = Number(value) as (typeof SLEEP_MINUTES)[number]
-                setSleepMinutes(minutes)
-                if (isPlaying) setEndsAt(minutes ? Date.now() + minutes * 60_000 : null)
-                if (!minutes) setRemaining(null)
-              }}
-              options={SLEEP_MINUTES.map((m) => ({ value: String(m), label: m ? `${m} min` : tx('Off') }))}
-            />
+              {visual === 'static' && <p className="text-xs text-muted-foreground">{tx('Photosensitivity warning: the TV static visual flickers quickly.')}</p>}
+            </MoreMenu>
           </ControlRow>
-          {visual === 'static' && (
-            <p className="text-xs text-muted-foreground">{tx('Photosensitivity warning: the TV static visual flickers quickly.')}</p>
-          )}
         </>
       }
     >

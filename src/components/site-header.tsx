@@ -13,7 +13,7 @@ export function SiteHeader() {
   return (
     // Solid background on purpose: a backdrop-filter here would trap the fixed menu panels inside the header.
     <header className="sticky top-0 z-40 w-full border-b border-border/80 bg-background">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-3 sm:gap-4 sm:px-6">
+      <div className="site-header-inner mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-3 sm:gap-4 sm:px-6">
         <div className="flex min-w-0 items-center gap-5 lg:gap-8">
           <Logo />
           <div className="hidden md:block">
