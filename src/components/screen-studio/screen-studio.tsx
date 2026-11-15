@@ -822,7 +822,7 @@ export function ScreenStudio({
   )
 
   // A soft band behind the tool (full width, no overflow) so a white or black screen stands out from the page.
-  const band = 'flex flex-col gap-3 bg-[var(--band)] py-5 shadow-[0_0_0_100vmax_var(--band)] [--band:#e8ecf1] [clip-path:inset(0_-100vmax)] sm:py-6 dark:[--band:#171a20]'
+  const band = 'flex flex-col gap-3 studio-band bg-[var(--band)] py-5 shadow-[0_0_0_100vmax_var(--band)] [--band:#e8ecf1] [clip-path:inset(0_-100vmax)] sm:py-6 dark:[--band:#171a20]'
   if (!rail) return <div className={cn('flex flex-col gap-3', band.replace('flex flex-col gap-3 ', ''))}>{body}</div>
   return (
     <div className={cn('grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_300px]', band.replace('flex flex-col gap-3 ', ''))}>

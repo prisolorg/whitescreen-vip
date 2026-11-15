@@ -25,7 +25,7 @@ export const STAGE_SIZE =
  * and the preview box itself (16:9 from small tablets up; phones keep a usable height for tool controls).
  */
 export const STUDIO_BAND =
-  'bg-[var(--band)] py-5 shadow-[0_0_0_100vmax_var(--band)] [--band:#e8ecf1] [clip-path:inset(0_-100vmax)] sm:py-6 dark:[--band:#171a20]'
+  'studio-band bg-[var(--band)] py-5 shadow-[0_0_0_100vmax_var(--band)] [--band:#e8ecf1] [clip-path:inset(0_-100vmax)] sm:py-6 dark:[--band:#171a20]'
 export const STUDIO_WIDTH = 'max-w-[min(1024px,calc(58vh*16/9))]'
 export const STUDIO_STAGE =
   'mx-auto h-[36svh] min-h-[240px] w-full max-w-[min(1024px,calc(58vh*16/9))] rounded-2xl border border-black/10 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_16px_40px_-12px_rgba(0,0,0,0.28)] dark:border-white/15 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_16px_40px_-12px_rgba(0,0,0,0.7)] sm:aspect-video sm:h-auto sm:min-h-0'

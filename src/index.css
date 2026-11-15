@@ -195,3 +195,12 @@ html.ad-blocked [data-ad-grid] {
     max-width: 1316px;
   }
 }
+
+/*
+ * In-page fullscreen (iPhone Safari has no element Fullscreen API): the band's clip-path would clip the
+ * fixed, full-screen stage and trap it under the header, so the band drops it while a stage is fullscreen.
+ */
+.studio-band:has([role='region'].fixed) {
+  clip-path: none;
+  box-shadow: none;
+}
