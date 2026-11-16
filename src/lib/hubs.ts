@@ -123,9 +123,9 @@ export const HUBS: Hub[] = [
     name: 'Prank Screens',
     metaTitle: 'Prank Screens – Fake Update, BSOD & Meeting Screens (Free)',
     metaDescription:
-      'Harmless prank screens: fake Windows and Mac updates, blue screen of death, hacked screen and fake meetings. Fullscreen, free, nothing is installed.',
+      'Harmless prank screens: fake Windows and Mac updates, blue screen of death, broken and hacked screens and fake meetings. Fullscreen, free, nothing installed.',
     intro:
-      'Prank screens are realistic, harmless fake screens that run in your browser: Windows, macOS, ChromeOS and Android update screens, the blue screen of death, a fake hacked screen and fake video meetings. Open one, go fullscreen and press Esc when the joke is over. Nothing is installed or changed on the device.',
+      'Prank screens are realistic, harmless fake screens that run in your browser: Windows, macOS, ChromeOS and Android update screens, the blue screen of death, a broken screen, a hacked screen with a hacker typer, TV color bars and fake video meetings. Open one, go fullscreen and press Esc when the joke is over. Nothing is installed or changed on the device.',
     details: [
       {
         heading: 'Prank responsibly',
@@ -151,15 +151,15 @@ export const HUBS: Hub[] = [
     path: '/visual-effects',
     group: 'effects',
     name: 'Visual Effects',
-    metaTitle: 'Visual Effects – Static, Noise & Lighting Screens (Free)',
+    metaTitle: 'Visual Effects – Animated Noise, Color Cycles & Gradients (Free)',
     metaDescription:
-      'Free fullscreen visual effects: white, pink and brown noise, broken screen, hacker typer, ring light and gradients. Runs in any browser, no app.',
+      'Free fullscreen visual effects: animated pixel noise, a color changing screen and moving gradients. Runs in any browser on phones, computers and TVs.',
     intro:
-      'Visual effects turn your screen into something other than a picture: a noise generator with TV static, a ring light or video call light, a cracked screen, a hacker terminal, animated noise, gradients and color cycles. Each one runs fullscreen in the browser and works on phones, computers and TVs.',
+      'Visual effects turn your screen into moving color: animated pixel noise, a screen that cycles through every color, and smooth gradients you design yourself. Each one runs fullscreen in the browser and works on phones, computers and TVs.',
     details: [
       {
-        heading: 'Light, sound and fun in one place',
-        text: 'Use the ring light and Zoom lighting to light your face, the noise generators to focus or sleep, and the broken screen and hacker typer for pranks and videos.',
+        heading: 'Ambient color for any screen',
+        text: 'Use the color changing screen for mood lighting or parties, a gradient as a moving backdrop, and visual noise for a retro TV look.',
       },
     ],
     faqs: [
@@ -168,8 +168,34 @@ export const HUBS: Hub[] = [
         answer: 'Fast flicker can trigger seizures in people with photosensitive epilepsy. Lower the speed or choose a calm effect if you are sensitive.',
       },
       {
+        question: 'Can I change the speed and colors?',
+        answer: 'Yes. Each effect has its own controls, such as speed, colors or grain, and runs fullscreen with F.',
+      },
+    ],
+  },
+  {
+    path: '/light-and-sound',
+    group: 'light-sound',
+    name: 'Light & Sound',
+    metaTitle: 'Light & Sound – Ring Light, Video Call Light & Noise (Free)',
+    metaDescription:
+      'Free screen lights and sounds: an online ring light, Zoom lighting for video calls, and white, pink and brown noise generators with a sleep timer. No app.',
+    intro:
+      'Light and sound tools turn your screen and speakers into something useful: a ring light or soft key light for video calls and selfies, and white, pink or brown noise to help you focus or fall asleep. Everything runs in your browser, on phones, laptops and TVs.',
+    details: [
+      {
+        heading: 'Light your face, then set the mood',
+        text: 'Use the ring light for a round catchlight and Zoom lighting for soft, adjustable light on calls. The noise generators mask background sound for study, work or sleep, and each has a sleep timer.',
+      },
+    ],
+    faqs: [
+      {
         question: 'Do the noise generators use data?',
         answer: 'No. The sound is generated on your device, so nothing is streamed.',
+      },
+      {
+        question: 'Can a screen replace a real ring light?',
+        answer: 'For video calls, selfies and makeup, a bright screen works well. A real LED light is brighter for filming in a dark room or from far away.',
       },
     ],
   },
@@ -225,12 +251,12 @@ export const COLOR_HUB_NAMES: Record<LanguageCode, [name: string, description: s
 
 /** Translated URL slugs for the hubs. */
 export const HUB_SLUGS: Partial<Record<LanguageCode, Record<string, string>>> = {
-  es: { 'color-screens': 'pantallas-de-colores', 'screen-tests': 'pruebas-de-pantalla', screensavers: 'salvapantallas', 'prank-screens': 'pantallas-de-broma', 'visual-effects': 'efectos-visuales', 'online-timers': 'temporizadores-online' },
-  'pt-br': { 'color-screens': 'telas-coloridas', 'screen-tests': 'testes-de-tela', screensavers: 'protetores-de-tela', 'prank-screens': 'telas-de-pegadinha', 'visual-effects': 'efeitos-visuais', 'online-timers': 'temporizadores-online' },
-  de: { 'color-screens': 'farbbildschirme', 'screen-tests': 'bildschirmtests', screensavers: 'bildschirmschoner', 'prank-screens': 'scherz-bildschirme', 'visual-effects': 'visuelle-effekte', 'online-timers': 'online-timer' },
-  fr: { 'color-screens': 'ecrans-de-couleur', 'screen-tests': 'tests-ecran', screensavers: 'economiseurs-ecran', 'prank-screens': 'ecrans-blagues', 'visual-effects': 'effets-visuels', 'online-timers': 'minuteurs-en-ligne' },
-  it: { 'color-screens': 'schermi-colorati', 'screen-tests': 'test-schermo', screensavers: 'salvaschermi', 'prank-screens': 'schermi-scherzo', 'visual-effects': 'effetti-visivi', 'online-timers': 'timer-online' },
-  nl: { 'color-screens': 'kleurschermen', 'screen-tests': 'schermtests', screensavers: 'schermbeveiligingen', 'prank-screens': 'grapschermen', 'visual-effects': 'visuele-effecten', 'online-timers': 'online-timers' },
-  id: { 'color-screens': 'layar-warna', 'screen-tests': 'tes-layar', screensavers: 'screensaver-online', 'prank-screens': 'layar-prank', 'visual-effects': 'efek-visual', 'online-timers': 'timer-online' },
-  tr: { 'color-screens': 'renkli-ekranlar', 'screen-tests': 'ekran-testleri', screensavers: 'ekran-koruyucular', 'prank-screens': 'saka-ekranlari', 'visual-effects': 'gorsel-efektler', 'online-timers': 'online-zamanlayicilar' },
+  es: { 'color-screens': 'pantallas-de-colores', 'screen-tests': 'pruebas-de-pantalla', screensavers: 'salvapantallas', 'prank-screens': 'pantallas-de-broma', 'visual-effects': 'efectos-visuales', 'online-timers': 'temporizadores-online', 'light-and-sound': 'luz-y-sonido' },
+  'pt-br': { 'color-screens': 'telas-coloridas', 'screen-tests': 'testes-de-tela', screensavers: 'protetores-de-tela', 'prank-screens': 'telas-de-pegadinha', 'visual-effects': 'efeitos-visuais', 'online-timers': 'temporizadores-online', 'light-and-sound': 'luz-e-som' },
+  de: { 'color-screens': 'farbbildschirme', 'screen-tests': 'bildschirmtests', screensavers: 'bildschirmschoner', 'prank-screens': 'scherz-bildschirme', 'visual-effects': 'visuelle-effekte', 'online-timers': 'online-timer', 'light-and-sound': 'licht-und-klang' },
+  fr: { 'color-screens': 'ecrans-de-couleur', 'screen-tests': 'tests-ecran', screensavers: 'economiseurs-ecran', 'prank-screens': 'ecrans-blagues', 'visual-effects': 'effets-visuels', 'online-timers': 'minuteurs-en-ligne', 'light-and-sound': 'lumiere-et-son' },
+  it: { 'color-screens': 'schermi-colorati', 'screen-tests': 'test-schermo', screensavers: 'salvaschermi', 'prank-screens': 'schermi-scherzo', 'visual-effects': 'effetti-visivi', 'online-timers': 'timer-online', 'light-and-sound': 'luce-e-suono' },
+  nl: { 'color-screens': 'kleurschermen', 'screen-tests': 'schermtests', screensavers: 'schermbeveiligingen', 'prank-screens': 'grapschermen', 'visual-effects': 'visuele-effecten', 'online-timers': 'online-timers', 'light-and-sound': 'licht-en-geluid' },
+  id: { 'color-screens': 'layar-warna', 'screen-tests': 'tes-layar', screensavers: 'screensaver-online', 'prank-screens': 'layar-prank', 'visual-effects': 'efek-visual', 'online-timers': 'timer-online', 'light-and-sound': 'cahaya-dan-suara' },
+  tr: { 'color-screens': 'renkli-ekranlar', 'screen-tests': 'ekran-testleri', screensavers: 'ekran-koruyucular', 'prank-screens': 'saka-ekranlari', 'visual-effects': 'gorsel-efektler', 'online-timers': 'online-zamanlayicilar', 'light-and-sound': 'isik-ve-ses' },
 }

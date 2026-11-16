@@ -56,7 +56,7 @@ export const es: TopicTranslation = {
     },
     '/prank-screens': {
       intro:
-        'Las pantallas de broma son pantallas falsas, realistas e inofensivas que funcionan en el navegador: actualizaciones de Windows, macOS, ChromeOS y Android, la pantalla azul de la muerte, una pantalla hackeada y reuniones falsas. Abre una, ponla a pantalla completa y pulsa Esc cuando acabe la broma. No se instala ni se cambia nada.',
+        'Las pantallas de broma son pantallas falsas, realistas e inofensivas que funcionan en el navegador: actualizaciones de Windows, macOS, ChromeOS y Android, la pantalla azul de la muerte, una pantalla hackeada y reuniones falsas. Abre una, ponla a pantalla completa y pulsa Esc cuando acabe la broma. No se instala ni se cambia nada. También hay una pantalla rota, una pantalla hackeada con Hacker Typer y barras de color de TV.',
       details: [
         {
           heading: 'Bromas con responsabilidad',
@@ -74,16 +74,30 @@ export const es: TopicTranslation = {
     },
     '/visual-effects': {
       intro:
-        'Los efectos visuales convierten tu pantalla en algo más que una imagen: un generador de ruido con estática de TV, un aro de luz o luz para videollamadas, una pantalla rota, un terminal hacker, ruido animado, degradados y ciclos de color. Todos funcionan a pantalla completa en el navegador, en móviles, ordenadores y televisores.',
+        'Los efectos visuales convierten tu pantalla en color en movimiento: ruido de píxeles animado, una pantalla que pasa por todos los colores y degradados suaves que diseñas tú. Todos funcionan a pantalla completa en el navegador, en móviles, ordenadores y televisores.',
       details: [
         {
-          heading: 'Luz, sonido y diversión en un solo sitio',
-          text: 'Usa el aro de luz y la luz para Zoom para iluminarte la cara, los generadores de ruido para concentrarte o dormir, y la pantalla rota y el Hacker Typer para bromas y vídeos.',
+          heading: 'Color ambiental para cualquier pantalla',
+          text: 'Usa la pantalla que cambia de color para ambientar o para fiestas, un degradado como fondo en movimiento y el ruido visual para un look de TV retro.',
         },
       ],
       faqs: [
         { question: '¿Son seguros los efectos con parpadeo?', answer: 'El parpadeo rápido puede provocar crisis en personas con epilepsia fotosensible. Baja la velocidad o elige un efecto tranquilo si eres sensible.' },
+        { question: '¿Puedo cambiar la velocidad y los colores?', answer: 'Sí. Cada efecto tiene sus propios controles, como velocidad, colores o grano, y se pone a pantalla completa con F.' },
+      ],
+    },
+    '/light-and-sound': {
+      intro:
+        'Las herramientas de luz y sonido convierten tu pantalla y tus altavoces en algo útil: un aro de luz o una luz suave para videollamadas y selfies, y ruido blanco, rosa o marrón para concentrarte o dormir. Todo funciona en el navegador, en móviles, portátiles y televisores.',
+      details: [
+        {
+          heading: 'Ilumina tu cara y crea ambiente',
+          text: 'Usa el aro de luz para un brillo redondo en los ojos y la luz para Zoom para una luz suave y ajustable en las llamadas. Los generadores de ruido tapan el sonido de fondo para estudiar, trabajar o dormir, y cada uno tiene temporizador de apagado.',
+        },
+      ],
+      faqs: [
         { question: '¿Los generadores de ruido gastan datos?', answer: 'No. El sonido se genera en tu dispositivo, así que no se transmite nada.' },
+        { question: '¿Puede una pantalla sustituir a un aro de luz real?', answer: 'Para videollamadas, selfies y maquillaje, una pantalla brillante funciona bien. Una luz LED real es más potente para grabar en una habitación oscura o desde lejos.' },
       ],
     },
     '/online-timers': {

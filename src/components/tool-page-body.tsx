@@ -30,6 +30,7 @@ const APP_CATEGORY: Record<string, string> = {
   screensavers: 'MultimediaApplication',
   'fake-screens': 'EntertainmentApplication',
   utilities: 'UtilitiesApplication',
+  'light-sound': 'MultimediaApplication',
 }
 
 /** The reading part of a tool page, rendered to static HTML with no JavaScript: schema, about, how-to, links and FAQ. */

@@ -56,7 +56,7 @@ export const de: TopicTranslation = {
     },
     '/prank-screens': {
       intro:
-        'Scherz-Bildschirme sind realistische, harmlose Fake-Screens im Browser: Update-Bildschirme von Windows, macOS, ChromeOS und Android, der Bluescreen, ein gehackter Bildschirm und gefälschte Videomeetings. Öffne einen, wechsle ins Vollbild und drücke Esc, wenn der Spaß vorbei ist. Es wird nichts installiert oder verändert.',
+        'Scherz-Bildschirme sind realistische, harmlose Fake-Screens im Browser: Update-Bildschirme von Windows, macOS, ChromeOS und Android, der Bluescreen, ein gehackter Bildschirm und gefälschte Videomeetings. Öffne einen, wechsle ins Vollbild und drücke Esc, wenn der Spaß vorbei ist. Es wird nichts installiert oder verändert. Außerdem gibt es einen kaputten Bildschirm, einen gehackten Bildschirm mit Hacker Typer und TV-Farbbalken.',
       details: [
         {
           heading: 'Streiche mit Verantwortung',
@@ -74,16 +74,30 @@ export const de: TopicTranslation = {
     },
     '/visual-effects': {
       intro:
-        'Visuelle Effekte machen aus deinem Bildschirm mehr als ein Bild: einen Rauschgenerator mit TV-Rauschen, ein Ringlicht oder Videocall-Licht, einen kaputten Bildschirm, ein Hacker-Terminal, animiertes Rauschen, Farbverläufe und Farbwechsel. Alle laufen im Vollbild im Browser, auf Handys, Computern und Fernsehern.',
+        'Visuelle Effekte machen deinen Bildschirm zu bewegter Farbe: animiertes Pixelrauschen, ein Bildschirm, der alle Farben durchläuft, und weiche Farbverläufe, die du selbst gestaltest. Alle laufen im Vollbild im Browser, auf Handys, Computern und Fernsehern.',
       details: [
         {
-          heading: 'Licht, Klang und Spaß an einem Ort',
-          text: 'Nutze Ringlicht und Zoom-Beleuchtung, um dein Gesicht auszuleuchten, die Rauschgeneratoren zum Konzentrieren oder Schlafen und den kaputten Bildschirm und Hacker Typer für Streiche und Videos.',
+          heading: 'Stimmungsfarbe für jeden Bildschirm',
+          text: 'Nutze den Farbwechsel-Bildschirm als Stimmungslicht oder für Partys, einen Farbverlauf als bewegten Hintergrund und das visuelle Rauschen für einen Retro-TV-Look.',
         },
       ],
       faqs: [
         { question: 'Sind blinkende Effekte sicher?', answer: 'Schnelles Flackern kann bei Menschen mit fotosensitiver Epilepsie Anfälle auslösen. Verringere die Geschwindigkeit oder wähle einen ruhigen Effekt, wenn du empfindlich bist.' },
+        { question: 'Kann ich Tempo und Farben ändern?', answer: 'Ja. Jeder Effekt hat eigene Einstellungen wie Tempo, Farben oder Körnung und läuft mit F im Vollbild.' },
+      ],
+    },
+    '/light-and-sound': {
+      intro:
+        'Licht- und Klang-Tools machen Bildschirm und Lautsprecher nützlich: ein Ringlicht oder weiches Licht für Videoanrufe und Selfies und weißes, rosa oder braunes Rauschen, das beim Konzentrieren oder Einschlafen hilft. Alles läuft im Browser, auf Handys, Laptops und Fernsehern.',
+      details: [
+        {
+          heading: 'Gesicht ausleuchten, Stimmung setzen',
+          text: 'Nutze das Ringlicht für einen runden Lichtreflex in den Augen und die Zoom-Beleuchtung für weiches, einstellbares Licht bei Anrufen. Die Rauschgeneratoren überdecken Hintergrundgeräusche beim Lernen, Arbeiten oder Schlafen, und jeder hat einen Sleep-Timer.',
+        },
+      ],
+      faqs: [
         { question: 'Verbrauchen die Rauschgeneratoren Daten?', answer: 'Nein. Der Klang wird auf deinem Gerät erzeugt, es wird nichts gestreamt.' },
+        { question: 'Kann ein Bildschirm ein echtes Ringlicht ersetzen?', answer: 'Für Videoanrufe, Selfies und Make-up funktioniert ein heller Bildschirm gut. Ein echtes LED-Licht ist heller, wenn du im dunklen Raum oder aus größerer Entfernung filmst.' },
       ],
     },
     '/online-timers': {

@@ -56,7 +56,7 @@ export const ptBr: TopicTranslation = {
     },
     '/prank-screens': {
       intro:
-        'Telas de pegadinha são telas falsas, realistas e inofensivas que rodam no navegador: atualizações do Windows, macOS, ChromeOS e Android, a tela azul da morte, uma tela hackeada e reuniões falsas. Abra uma, coloque em tela cheia e aperte Esc quando a brincadeira acabar. Nada é instalado nem alterado.',
+        'Telas de pegadinha são telas falsas, realistas e inofensivas que rodam no navegador: atualizações do Windows, macOS, ChromeOS e Android, a tela azul da morte, uma tela hackeada e reuniões falsas. Abra uma, coloque em tela cheia e aperte Esc quando a brincadeira acabar. Nada é instalado nem alterado. Também há uma tela quebrada, uma tela hackeada com Hacker Typer e barras de cores de TV.',
       details: [
         {
           heading: 'Pegadinha com responsabilidade',
@@ -74,16 +74,30 @@ export const ptBr: TopicTranslation = {
     },
     '/visual-effects': {
       intro:
-        'Efeitos visuais transformam sua tela em algo além de uma imagem: um gerador de ruído com chuvisco de TV, um ring light ou luz para chamadas de vídeo, uma tela quebrada, um terminal hacker, ruído animado, degradês e ciclos de cor. Todos rodam em tela cheia no navegador, em celulares, computadores e TVs.',
+        'Os efeitos visuais transformam sua tela em cor em movimento: ruído de pixels animado, uma tela que passa por todas as cores e degradês suaves que você mesmo cria. Todos funcionam em tela cheia no navegador, em celulares, computadores e TVs.',
       details: [
         {
-          heading: 'Luz, som e diversão em um só lugar',
-          text: 'Use o ring light e a luz para Zoom para iluminar o rosto, os geradores de ruído para focar ou dormir, e a tela quebrada e o Hacker Typer para pegadinhas e vídeos.',
+          heading: 'Cor ambiente para qualquer tela',
+          text: 'Use a tela que muda de cor para criar clima ou em festas, um degradê como fundo em movimento e o ruído visual para um visual de TV retrô.',
         },
       ],
       faqs: [
         { question: 'Efeitos que piscam são seguros?', answer: 'Piscadas rápidas podem provocar crises em pessoas com epilepsia fotossensível. Diminua a velocidade ou escolha um efeito calmo se for sensível.' },
+        { question: 'Posso mudar a velocidade e as cores?', answer: 'Sim. Cada efeito tem seus próprios controles, como velocidade, cores ou granulação, e fica em tela cheia com F.' },
+      ],
+    },
+    '/light-and-sound': {
+      intro:
+        'As ferramentas de luz e som transformam sua tela e seus alto-falantes em algo útil: um ring light ou uma luz suave para videochamadas e selfies, e ruído branco, rosa ou marrom para ajudar a focar ou dormir. Tudo funciona no navegador, em celulares, notebooks e TVs.',
+      details: [
+        {
+          heading: 'Ilumine o rosto e crie o clima',
+          text: 'Use o ring light para um brilho redondo nos olhos e a iluminação para Zoom para uma luz suave e ajustável nas chamadas. Os geradores de ruído abafam o som ambiente para estudar, trabalhar ou dormir, e cada um tem timer para desligar.',
+        },
+      ],
+      faqs: [
         { question: 'Os geradores de ruído gastam dados?', answer: 'Não. O som é gerado no seu aparelho, então nada é transmitido.' },
+        { question: 'Uma tela substitui um ring light de verdade?', answer: 'Para videochamadas, selfies e maquiagem, uma tela clara funciona bem. Uma luz LED de verdade é mais forte para gravar em um quarto escuro ou de longe.' },
       ],
     },
     '/online-timers': {

@@ -56,7 +56,7 @@ export const tr: TopicTranslation = {
     },
     '/prank-screens': {
       intro:
-        'Şaka ekranları, tarayıcıda çalışan gerçekçi ve zararsız sahte ekranlardır: Windows, macOS, ChromeOS ve Android güncelleme ekranları, mavi ölüm ekranı, hacklenmiş ekran ve sahte toplantılar. Birini açın, tam ekrana geçin ve şaka bitince Esc’ye basın. Hiçbir şey kurulmaz veya değiştirilmez.',
+        'Şaka ekranları, tarayıcıda çalışan gerçekçi ve zararsız sahte ekranlardır: Windows, macOS, ChromeOS ve Android güncelleme ekranları, mavi ölüm ekranı, hacklenmiş ekran ve sahte toplantılar. Birini açın, tam ekrana geçin ve şaka bitince Esc’ye basın. Hiçbir şey kurulmaz veya değiştirilmez. Ayrıca kırık ekran, Hacker Typer ile hacklenmiş ekran ve TV renk çubukları da var.',
       details: [
         {
           heading: 'Sorumlu şaka',
@@ -74,16 +74,30 @@ export const tr: TopicTranslation = {
     },
     '/visual-effects': {
       intro:
-        'Görsel efektler ekranınızı bir görüntüden fazlasına dönüştürür: TV karıncalanmalı gürültü üreteci, halka ışık veya görüntülü görüşme ışığı, kırık ekran, hacker terminali, hareketli gürültü, renk geçişleri ve renk döngüleri. Hepsi tarayıcıda tam ekran çalışır; telefon, bilgisayar ve TV’de.',
+        'Görsel efektler ekranınızı hareketli renge dönüştürür: hareketli piksel paraziti, tüm renkler arasında geçiş yapan bir ekran ve kendi tasarladığınız yumuşak gradyanlar. Hepsi tarayıcıda tam ekran çalışır; telefonda, bilgisayarda ve TV’de.',
       details: [
         {
-          heading: 'Işık, ses ve eğlence tek yerde',
-          text: 'Yüzünüzü aydınlatmak için halka ışığı ve Zoom ışığını, odaklanmak veya uyumak için gürültü üreteçlerini, şakalar ve videolar için kırık ekranı ve Hacker Typer’ı kullanın.',
+          heading: 'Her ekran için ortam rengi',
+          text: 'Renk değiştiren ekranı ortam ışığı ya da partiler için, gradyanı hareketli arka plan olarak ve görsel paraziti retro TV görünümü için kullanın.',
         },
       ],
       faqs: [
         { question: 'Yanıp sönen efektler güvenli mi?', answer: 'Hızlı titreme ışığa duyarlı epilepsisi olanlarda nöbet tetikleyebilir. Hassassanız hızı düşürün veya sakin bir efekt seçin.' },
+        { question: 'Hızı ve renkleri değiştirebilir miyim?', answer: 'Evet. Her efektin hız, renk veya grenlilik gibi kendi ayarları vardır ve F ile tam ekrana geçer.' },
+      ],
+    },
+    '/light-and-sound': {
+      intro:
+        'Işık ve ses araçları ekranınızı ve hoparlörlerinizi işe yarar hale getirir: görüntülü aramalar ve selfie için halka ışık ya da yumuşak ışık, odaklanmanıza veya uykuya dalmanıza yardımcı olan beyaz, pembe ya da kahverengi gürültü. Hepsi tarayıcıda çalışır; telefonda, dizüstü bilgisayarda ve TV’de.',
+      details: [
+        {
+          heading: 'Yüzünüzü aydınlatın, sonra atmosferi kurun',
+          text: 'Gözlerde yuvarlak bir ışık yansıması için halka ışığı, aramalarda yumuşak ve ayarlanabilir ışık için Zoom aydınlatmasını kullanın. Gürültü üreteçleri ders, iş veya uyku için arka plan sesini bastırır ve her birinin uyku zamanlayıcısı vardır.',
+        },
+      ],
+      faqs: [
         { question: 'Gürültü üreteçleri veri harcar mı?', answer: 'Hayır. Ses cihazınızda üretilir, hiçbir şey akış olarak gelmez.' },
+        { question: 'Ekran gerçek bir halka ışığın yerini tutar mı?', answer: 'Görüntülü aramalar, selfie ve makyaj için parlak bir ekran yeterlidir. Gerçek bir LED ışık, karanlık bir odada veya uzaktan çekim için daha güçlüdür.' },
       ],
     },
     '/online-timers': {

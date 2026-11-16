@@ -1046,6 +1046,11 @@
       "permanent": true
     },
     {
+      "source": "/es/light-and-sound/",
+      "destination": "/es/luz-y-sonido/",
+      "permanent": true
+    },
+    {
       "source": "/es/black-screen/",
       "destination": "/es/pantalla-negra/",
       "permanent": true
@@ -1643,6 +1648,11 @@
     {
       "source": "/pt-br/online-timers/",
       "destination": "/pt-br/temporizadores-online/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/light-and-sound/",
+      "destination": "/pt-br/luz-e-som/",
       "permanent": true
     },
     {
@@ -2246,6 +2256,11 @@
       "permanent": true
     },
     {
+      "source": "/de/light-and-sound/",
+      "destination": "/de/licht-und-klang/",
+      "permanent": true
+    },
+    {
       "source": "/de/black-screen/",
       "destination": "/de/schwarzer-bildschirm/",
       "permanent": true
@@ -2828,6 +2843,11 @@
     {
       "source": "/fr/online-timers/",
       "destination": "/fr/minuteurs-en-ligne/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/light-and-sound/",
+      "destination": "/fr/lumiere-et-son/",
       "permanent": true
     },
     {
@@ -3416,6 +3436,11 @@
       "permanent": true
     },
     {
+      "source": "/it/light-and-sound/",
+      "destination": "/it/luce-e-suono/",
+      "permanent": true
+    },
+    {
       "source": "/it/black-screen/",
       "destination": "/it/schermo-nero/",
       "permanent": true
@@ -3988,6 +4013,11 @@
     {
       "source": "/nl/visual-effects/",
       "destination": "/nl/visuele-effecten/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/light-and-sound/",
+      "destination": "/nl/licht-en-geluid/",
       "permanent": true
     },
     {
@@ -4568,6 +4598,11 @@
     {
       "source": "/id/online-timers/",
       "destination": "/id/timer-online/",
+      "permanent": true
+    },
+    {
+      "source": "/id/light-and-sound/",
+      "destination": "/id/cahaya-dan-suara/",
       "permanent": true
     },
     {
@@ -5173,6 +5208,11 @@
     {
       "source": "/tr/online-timers/",
       "destination": "/tr/online-zamanlayicilar/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/light-and-sound/",
+      "destination": "/tr/isik-ve-ses/",
       "permanent": true
     },
     {

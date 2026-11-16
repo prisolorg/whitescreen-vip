@@ -56,7 +56,7 @@ export const nl: TopicTranslation = {
     },
     '/prank-screens': {
       intro:
-        'Grapschermen zijn realistische, onschuldige nepschermen in je browser: updateschermen van Windows, macOS, ChromeOS en Android, het blue screen of death, een gehackt scherm en nepvergaderingen. Open er een, zet volledig scherm aan en druk op Esc als de grap voorbij is. Er wordt niets geïnstalleerd of gewijzigd.',
+        'Grapschermen zijn realistische, onschuldige nepschermen in je browser: updateschermen van Windows, macOS, ChromeOS en Android, het blue screen of death, een gehackt scherm en nepvergaderingen. Open er een, zet volledig scherm aan en druk op Esc als de grap voorbij is. Er wordt niets geïnstalleerd of gewijzigd. Er is ook een gebroken scherm, een gehackt scherm met Hacker Typer en tv-kleurbalken.',
       details: [
         {
           heading: 'Verantwoord grappen maken',
@@ -74,16 +74,30 @@ export const nl: TopicTranslation = {
     },
     '/visual-effects': {
       intro:
-        'Visuele effecten maken van je scherm meer dan een plaatje: een ruisgenerator met tv-ruis, een ringlamp of videobellicht, een kapot scherm, een hackerterminal, bewegende ruis, kleurverlopen en kleurwisselingen. Alles draait op volledig scherm in de browser, op telefoons, computers en tv’s.',
+        'Visuele effecten maken van uw scherm bewegende kleur: geanimeerde pixelruis, een scherm dat alle kleuren doorloopt en zachte kleurverlopen die u zelf ontwerpt. Ze werken allemaal op volledig scherm in de browser, op telefoons, computers en tv’s.',
       details: [
         {
-          heading: 'Licht, geluid en plezier op één plek',
-          text: 'Gebruik de ringlamp en Zoom-verlichting om je gezicht te belichten, de ruisgeneratoren om te focussen of te slapen, en het kapotte scherm en de Hacker Typer voor grappen en video’s.',
+          heading: 'Sfeerkleur voor elk scherm',
+          text: 'Gebruik het kleurwisselende scherm als sfeerlicht of op feestjes, een kleurverloop als bewegende achtergrond en visuele ruis voor een retro tv-look.',
         },
       ],
       faqs: [
         { question: 'Zijn knipperende effecten veilig?', answer: 'Snel flikkeren kan aanvallen uitlokken bij mensen met fotosensitieve epilepsie. Verlaag de snelheid of kies een rustig effect als je gevoelig bent.' },
+        { question: 'Kan ik snelheid en kleuren aanpassen?', answer: 'Ja. Elk effect heeft eigen instellingen, zoals snelheid, kleuren of korrel, en gaat met F naar volledig scherm.' },
+      ],
+    },
+    '/light-and-sound': {
+      intro:
+        'Licht- en geluidstools maken uw scherm en speakers nuttig: een ringlamp of zacht licht voor videogesprekken en selfies, en witte, roze of bruine ruis om te focussen of in slaap te vallen. Alles werkt in de browser, op telefoons, laptops en tv’s.',
+      details: [
+        {
+          heading: 'Belicht uw gezicht en zet de sfeer',
+          text: 'Gebruik de ringlamp voor een ronde lichtreflectie in de ogen en Zoom-verlichting voor zacht, instelbaar licht tijdens gesprekken. De ruisgeneratoren dempen achtergrondgeluid bij studeren, werken of slapen, en elk heeft een slaaptimer.',
+        },
+      ],
+      faqs: [
         { question: 'Gebruiken de ruisgeneratoren data?', answer: 'Nee. Het geluid wordt op je apparaat gemaakt, er wordt niets gestreamd.' },
+        { question: 'Kan een scherm een echte ringlamp vervangen?', answer: 'Voor videogesprekken, selfies en make-up werkt een fel scherm goed. Een echte ledlamp is sterker als u filmt in een donkere kamer of van ver weg.' },
       ],
     },
     '/online-timers': {

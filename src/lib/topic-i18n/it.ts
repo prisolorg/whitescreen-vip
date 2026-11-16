@@ -56,7 +56,7 @@ export const it: TopicTranslation = {
     },
     '/prank-screens': {
       intro:
-        'Gli schermi scherzo sono schermate false, realistiche e innocue che girano nel browser: aggiornamenti di Windows, macOS, ChromeOS e Android, la schermata blu della morte, uno schermo hackerato e finte riunioni. Aprine uno, passa a schermo intero e premi Esc quando lo scherzo è finito. Non si installa né si modifica nulla.',
+        'Gli schermi scherzo sono schermate false, realistiche e innocue che girano nel browser: aggiornamenti di Windows, macOS, ChromeOS e Android, la schermata blu della morte, uno schermo hackerato e finte riunioni. Aprine uno, passa a schermo intero e premi Esc quando lo scherzo è finito. Non si installa né si modifica nulla. Ci sono anche uno schermo rotto, uno schermo hackerato con Hacker Typer e le barre colore della TV.',
       details: [
         {
           heading: 'Scherzi responsabili',
@@ -74,16 +74,30 @@ export const it: TopicTranslation = {
     },
     '/visual-effects': {
       intro:
-        'Gli effetti visivi trasformano lo schermo in qualcosa di più di un’immagine: un generatore di rumore con neve TV, una ring light o luce per videochiamate, uno schermo rotto, un terminale da hacker, rumore animato, sfumature e cicli di colore. Tutti funzionano a schermo intero nel browser, su smartphone, computer e TV.',
+        'Gli effetti visivi trasformano lo schermo in colore in movimento: rumore di pixel animato, uno schermo che passa per tutti i colori e sfumature morbide che crei tu. Funzionano tutti a schermo intero nel browser, su smartphone, computer e TV.',
       details: [
         {
-          heading: 'Luce, suono e divertimento in un unico posto',
-          text: 'Usa la ring light e la luce per Zoom per illuminarti il viso, i generatori di rumore per concentrarti o dormire, e lo schermo rotto e l’Hacker Typer per scherzi e video.',
+          heading: 'Colore d’atmosfera per ogni schermo',
+          text: 'Usa lo schermo che cambia colore per creare atmosfera o alle feste, una sfumatura come sfondo in movimento e il rumore visivo per un look da TV retrò.',
         },
       ],
       faqs: [
         { question: 'Gli effetti lampeggianti sono sicuri?', answer: 'Lo sfarfallio veloce può scatenare crisi nelle persone con epilessia fotosensibile. Riduci la velocità o scegli un effetto tranquillo se sei sensibile.' },
+        { question: 'Posso cambiare velocità e colori?', answer: 'Sì. Ogni effetto ha i suoi controlli, come velocità, colori o grana, e va a schermo intero con F.' },
+      ],
+    },
+    '/light-and-sound': {
+      intro:
+        'Gli strumenti di luce e suono rendono utili schermo e altoparlanti: una ring light o una luce morbida per videochiamate e selfie, e rumore bianco, rosa o marrone per concentrarti o addormentarti. Tutto funziona nel browser, su smartphone, laptop e TV.',
+      details: [
+        {
+          heading: 'Illumina il viso, poi crea l’atmosfera',
+          text: 'Usa la ring light per un riflesso tondo negli occhi e l’illuminazione per Zoom per una luce morbida e regolabile durante le chiamate. I generatori di rumore coprono i suoni di fondo per studiare, lavorare o dormire, e ognuno ha un timer di spegnimento.',
+        },
+      ],
+      faqs: [
         { question: 'I generatori di rumore consumano dati?', answer: 'No. Il suono viene generato sul tuo dispositivo, quindi non c’è streaming.' },
+        { question: 'Uno schermo può sostituire una vera ring light?', answer: 'Per videochiamate, selfie e trucco, uno schermo luminoso funziona bene. Una vera luce LED è più potente per filmare in una stanza buia o da lontano.' },
       ],
     },
     '/online-timers': {

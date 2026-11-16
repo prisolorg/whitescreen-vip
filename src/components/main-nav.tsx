@@ -24,7 +24,7 @@ import { byKeywordVolume, linkLabelEn } from '@/lib/link-priority'
 type GroupId = 'colors' | ToolCategoryId
 
 /** Menu columns, one per category hub, ordered so the highest-demand categories come first. */
-const MENU_GROUPS: GroupId[] = ['colors', 'utilities', 'screen-tests', 'screensavers', 'effects', 'fake-screens']
+const MENU_GROUPS: GroupId[] = ['colors', 'utilities', 'screen-tests', 'screensavers', 'fake-screens', 'light-sound', 'effects']
 
 /** Tools shown per column; the rest are one click away on the category hub. */
 const MENU_ITEMS_PER_GROUP = 4
@@ -42,8 +42,9 @@ const MOBILE_CATEGORIES: { id: 'colors' | ToolCategoryId; thumb: string }[] = [
   { id: 'utilities', thumb: 'stopwatch' },
   { id: 'screen-tests', thumb: 'dead-pixel-test' },
   { id: 'screensavers', thumb: 'dvd-screensaver' },
-  { id: 'effects', thumb: 'broken-screen' },
-  { id: 'fake-screens', thumb: 'fake-windows-10-update' },
+  { id: 'fake-screens', thumb: 'broken-screen' },
+  { id: 'light-sound', thumb: 'ring-light' },
+  { id: 'effects', thumb: 'color-cycle' },
 ]
 
 const categoryCount = (id: 'colors' | ToolCategoryId) =>
@@ -93,9 +94,7 @@ export function DesktopNav() {
   const close = () => setOpenId(null)
   const groupLabel = (id: GroupId) =>
     language === 'en'
-      ? id === 'utilities'
-        ? 'Timers & Utilities'
-        : (hubFor(id)?.name ?? id)
+      ? (hubFor(id)?.name ?? id)
       : id === 'colors'
         ? t('navColorScreens', 'Color screens')
         : getLocalizedCategory(getCategory(id), language).name
@@ -139,7 +138,7 @@ export function DesktopNav() {
           >
             {openId === 'tools' ? (
               <div className="mx-auto max-w-7xl px-6">
-                <div className="grid grid-cols-3 gap-x-6 gap-y-5 pt-6">
+                <div className="grid grid-cols-4 gap-x-6 gap-y-5 pt-6">
                   {MENU_GROUPS.map((id) => {
                     const hub = hubFor(id)
                     const href = hub?.path ?? '/tools'

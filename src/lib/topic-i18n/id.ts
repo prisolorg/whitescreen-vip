@@ -56,7 +56,7 @@ export const id: TopicTranslation = {
     },
     '/prank-screens': {
       intro:
-        'Layar prank adalah layar palsu yang realistis dan aman di browser: layar update Windows, macOS, ChromeOS, dan Android, layar biru kematian, layar diretas, dan rapat video palsu. Buka satu, jadikan layar penuh, lalu tekan Esc saat lelucon selesai. Tidak ada yang diinstal atau diubah.',
+        'Layar prank adalah layar palsu yang realistis dan aman di browser: layar update Windows, macOS, ChromeOS, dan Android, layar biru kematian, layar diretas, dan rapat video palsu. Buka satu, jadikan layar penuh, lalu tekan Esc saat lelucon selesai. Tidak ada yang diinstal atau diubah. Ada juga layar pecah, layar diretas dengan Hacker Typer, dan color bar TV.',
       details: [
         {
           heading: 'Prank dengan bertanggung jawab',
@@ -74,16 +74,30 @@ export const id: TopicTranslation = {
     },
     '/visual-effects': {
       intro:
-        'Efek visual mengubah layar Anda menjadi lebih dari sekadar gambar: generator noise dengan semut TV, ring light atau lampu panggilan video, layar retak, terminal hacker, noise animasi, gradasi, dan siklus warna. Semuanya berjalan layar penuh di browser, di ponsel, komputer, dan TV.',
+        'Efek visual mengubah layar Anda menjadi warna yang bergerak: noise piksel animasi, layar yang berganti ke semua warna, dan gradien halus yang Anda rancang sendiri. Semuanya berjalan layar penuh di browser, di ponsel, komputer, dan TV.',
       details: [
         {
-          heading: 'Cahaya, suara, dan hiburan di satu tempat',
-          text: 'Gunakan ring light dan lampu Zoom untuk menerangi wajah, generator noise untuk fokus atau tidur, serta layar retak dan Hacker Typer untuk prank dan video.',
+          heading: 'Warna suasana untuk layar apa pun',
+          text: 'Gunakan layar ganti warna untuk lampu suasana atau pesta, gradien sebagai latar bergerak, dan visual noise untuk tampilan TV retro.',
         },
       ],
       faqs: [
         { question: 'Apakah efek berkedip aman?', answer: 'Kedipan cepat bisa memicu kejang pada penderita epilepsi fotosensitif. Turunkan kecepatan atau pilih efek yang tenang jika Anda sensitif.' },
+        { question: 'Bisakah saya mengubah kecepatan dan warna?', answer: 'Bisa. Setiap efek punya kontrolnya sendiri, seperti kecepatan, warna, atau butiran, dan masuk layar penuh dengan F.' },
+      ],
+    },
+    '/light-and-sound': {
+      intro:
+        'Alat cahaya dan suara membuat layar dan speaker Anda berguna: ring light atau cahaya lembut untuk video call dan selfie, serta white, pink, atau brown noise untuk membantu fokus atau tidur. Semuanya berjalan di browser, di ponsel, laptop, dan TV.',
+      details: [
+        {
+          heading: 'Terangi wajah, lalu atur suasana',
+          text: 'Gunakan ring light untuk pantulan cahaya bulat di mata dan pencahayaan Zoom untuk cahaya lembut yang bisa diatur saat panggilan. Generator noise meredam suara sekitar untuk belajar, bekerja, atau tidur, dan masing-masing punya timer tidur.',
+        },
+      ],
+      faqs: [
         { question: 'Apakah generator noise memakai kuota?', answer: 'Tidak. Suaranya dibuat di perangkat Anda, jadi tidak ada streaming.' },
+        { question: 'Bisakah layar menggantikan ring light sungguhan?', answer: 'Untuk video call, selfie, dan makeup, layar yang terang sudah cukup. Lampu LED sungguhan lebih terang untuk merekam di ruangan gelap atau dari jauh.' },
       ],
     },
     '/online-timers': {

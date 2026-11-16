@@ -1,4 +1,4 @@
-export type ToolCategoryId = 'screen-tests' | 'effects' | 'screensavers' | 'fake-screens' | 'utilities'
+export type ToolCategoryId = 'screen-tests' | 'effects' | 'screensavers' | 'fake-screens' | 'utilities' | 'light-sound'
 
 export type ToolCategory = {
   id: ToolCategoryId
@@ -20,7 +20,7 @@ export const TOOL_CATEGORIES: readonly ToolCategory[] = [
     name: 'Visual Effects',
     navLabel: 'Effects',
     description:
-      'Animated static, noise, gradients and simulated effects that run right in your browser.',
+      'Animated noise, color cycles and gradients that run fullscreen in your browser.',
   },
   {
     id: 'screensavers',
@@ -33,13 +33,19 @@ export const TOOL_CATEGORIES: readonly ToolCategory[] = [
     name: 'Fake Screens',
     navLabel: 'Fake Screens',
     description:
-      'Clearly labeled, harmless simulations of update screens and video calls for pranks, props and film sets.',
+      'Harmless prank screens: fake updates and crashes, hacked and broken screens, TV color bars and fake video calls.',
   },
   {
     id: 'utilities',
-    name: 'Timers & Utilities',
-    navLabel: 'Other Tools',
-    description: 'Timers, a stopwatch, video-call lighting and a screen image generator.',
+    name: 'Online Timers',
+    navLabel: 'Timers',
+    description: 'A countdown timer, Pomodoro timer and stopwatch in big fullscreen digits.',
+  },
+  {
+    id: 'light-sound',
+    name: 'Light & Sound',
+    navLabel: 'Light & Sound',
+    description: 'Screen lights for video calls and selfies, plus white, pink and brown noise for focus and sleep.',
   },
 ]
 

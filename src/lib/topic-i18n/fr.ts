@@ -56,7 +56,7 @@ export const fr: TopicTranslation = {
     },
     '/prank-screens': {
       intro:
-        'Les écrans blagues sont de faux écrans réalistes et inoffensifs dans le navigateur : mises à jour Windows, macOS, ChromeOS et Android, écran bleu de la mort, écran piraté et fausses réunions vidéo. Ouvrez-en un, passez en plein écran et appuyez sur Échap quand la blague est finie. Rien n’est installé ni modifié.',
+        'Les écrans blagues sont de faux écrans réalistes et inoffensifs dans le navigateur : mises à jour Windows, macOS, ChromeOS et Android, écran bleu de la mort, écran piraté et fausses réunions vidéo. Ouvrez-en un, passez en plein écran et appuyez sur Échap quand la blague est finie. Rien n’est installé ni modifié. On y trouve aussi un écran cassé, un écran piraté avec Hacker Typer et des barres de couleur TV.',
       details: [
         {
           heading: 'Une blague responsable',
@@ -74,16 +74,30 @@ export const fr: TopicTranslation = {
     },
     '/visual-effects': {
       intro:
-        'Les effets visuels transforment votre écran en autre chose qu’une image : un générateur de bruit avec neige TV, un anneau lumineux ou une lumière pour visio, un écran cassé, un terminal de hacker, du bruit animé, des dégradés et des cycles de couleur. Tous tournent en plein écran dans le navigateur, sur téléphone, ordinateur et TV.',
+        'Les effets visuels transforment votre écran en couleur en mouvement : un bruit de pixels animé, un écran qui passe par toutes les couleurs et des dégradés fluides que vous créez vous-même. Tous fonctionnent en plein écran dans le navigateur, sur mobile, ordinateur et télévision.',
       details: [
         {
-          heading: 'Lumière, son et amusement au même endroit',
-          text: 'Utilisez l’anneau lumineux et l’éclairage pour Zoom pour éclairer votre visage, les générateurs de bruit pour vous concentrer ou dormir, et l’écran cassé et le Hacker Typer pour les blagues et les vidéos.',
+          heading: 'Une couleur d’ambiance pour tout écran',
+          text: 'Utilisez l’écran qui change de couleur pour l’ambiance ou les fêtes, un dégradé comme fond animé et le bruit visuel pour un look TV rétro.',
         },
       ],
       faqs: [
         { question: 'Les effets clignotants sont-ils sans danger ?', answer: 'Un scintillement rapide peut déclencher des crises chez les personnes atteintes d’épilepsie photosensible. Baissez la vitesse ou choisissez un effet calme si vous êtes sensible.' },
+        { question: 'Puis-je changer la vitesse et les couleurs ?', answer: 'Oui. Chaque effet a ses propres réglages, comme la vitesse, les couleurs ou le grain, et passe en plein écran avec F.' },
+      ],
+    },
+    '/light-and-sound': {
+      intro:
+        'Les outils lumière et son rendent votre écran et vos haut-parleurs utiles : une ring light ou une lumière douce pour les visios et les selfies, et du bruit blanc, rose ou brun pour vous concentrer ou vous endormir. Tout fonctionne dans le navigateur, sur mobile, ordinateur portable et télévision.',
+      details: [
+        {
+          heading: 'Éclairez votre visage, puis créez l’ambiance',
+          text: 'Utilisez la ring light pour un reflet rond dans les yeux et l’éclairage Zoom pour une lumière douce et réglable pendant les appels. Les générateurs de bruit masquent les sons ambiants pour étudier, travailler ou dormir, et chacun a une minuterie d’arrêt.',
+        },
+      ],
+      faqs: [
         { question: 'Les générateurs de bruit consomment-ils des données ?', answer: 'Non. Le son est généré sur votre appareil, rien n’est diffusé en streaming.' },
+        { question: 'Un écran peut-il remplacer une vraie ring light ?', answer: 'Pour les visios, les selfies et le maquillage, un écran lumineux fonctionne bien. Une vraie lampe LED est plus puissante pour filmer dans une pièce sombre ou de loin.' },
       ],
     },
     '/online-timers': {

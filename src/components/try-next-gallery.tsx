@@ -12,7 +12,7 @@ import { byKeywordVolume, linkLabelEn } from '@/lib/link-priority'
 /** Gallery tabs: solid colors get their own tab, split out of the screen-tests category. */
 export type GalleryTabId = 'colors' | ToolCategoryId
 
-const TAB_ORDER: readonly GalleryTabId[] = ['colors', 'screen-tests', 'effects', 'screensavers', 'fake-screens', 'utilities']
+const TAB_ORDER: readonly GalleryTabId[] = ['colors', 'screen-tests', 'utilities', 'fake-screens', 'screensavers', 'light-sound', 'effects']
 
 const BARS =
   'linear-gradient(90deg, #c0c0c0 0 14%, #c0c000 14% 28%, #00c0c0 28% 42%, #00c000 42% 57%, #c000c0 57% 71%, #c00000 71% 85%, #0000c0 85%)'
@@ -99,19 +99,14 @@ export function defaultTabFor(slug: string): GalleryTabId {
 }
 
 /**
- * On the page's own tab: its related tools first (from any category), then the rest of the tab.
- * Each group is ordered by the search volume of the page's H1 keyword, so high-demand pages get the most links.
+ * A tab only ever shows its own category. The current tool's related tools (same category) come first,
+ * then the rest of the category; each group ordered by the search volume of the page's H1 keyword.
  */
-function tilesFor(tab: GalleryTabId, currentSlug: string, homeTab: GalleryTabId = defaultTabFor(currentSlug)): Tool[] {
+function tilesFor(tab: GalleryTabId, currentSlug: string): Tool[] {
   const current = TOOLS.find((item) => item.slug === currentSlug)
-  const relatedSlugs = new Set((current?.related ?? []).map((slug) => getTool(slug).slug))
-  relatedSlugs.delete(currentSlug)
-  const related = tab === homeTab ? byKeywordVolume(TOOLS.filter((tool) => relatedSlugs.has(tool.slug))) : []
-  const shown = new Set(related.map((tool) => tool.slug))
-  const rest = byKeywordVolume(TOOLS.filter((tool) => tabOf(tool) === tab && tool.slug !== currentSlug && !shown.has(tool.slug)))
-  if (tab === homeTab) return [...related, ...rest]
-  // Other tabs: related tools of that tab first, then the rest, each by volume.
-  return [...rest.filter((tool) => relatedSlugs.has(tool.slug)), ...rest.filter((tool) => !relatedSlugs.has(tool.slug))]
+  const related = new Set((current?.related ?? []).map((slug) => getTool(slug).slug))
+  const inTab = byKeywordVolume(TOOLS.filter((tool) => tabOf(tool) === tab && tool.slug !== currentSlug))
+  return [...inTab.filter((tool) => related.has(tool.slug)), ...inTab.filter((tool) => !related.has(tool.slug))]
 }
 
 export function ToolThumb({ tool, className }: { tool: Tool; className?: string }) {
@@ -154,8 +149,7 @@ export function TryNextGallery({
   const { t, language } = useTranslation()
   const [tab, setTab] = useState<GalleryTabId>(defaultTab ?? defaultTabFor(currentSlug))
   const baseId = useId()
-  const homeTab = defaultTab ?? defaultTabFor(currentSlug)
-  const tiles = useMemo(() => tilesFor(tab, currentSlug, homeTab).slice(0, 12), [tab, currentSlug, homeTab])
+  const tiles = useMemo(() => tilesFor(tab, currentSlug).slice(0, 12), [tab, currentSlug])
 
   const tabLabel = (id: GalleryTabId) =>
     id === 'colors' ? t('colorsTab', 'Colors') : getLocalizedCategory(getCategory(id), language).navLabel
