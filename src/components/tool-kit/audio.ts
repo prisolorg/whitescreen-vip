@@ -98,18 +98,40 @@ export function useNoise(color: NoiseColor, volume: number) {
   return { isPlaying, start, stop }
 }
 
-/** Plays a short tone. Must be called from a user gesture at least once. */
-export function playTone(frequency = 880, durationMs = 300, volume = 0.15) {
-  const context = createContext()
+let toneContext: AudioContext | null = null
+
+/** One shared context for tones, so a context unlocked by a click keeps working later (even in a background tab). */
+function getToneContext() {
+  if (!toneContext || toneContext.state === 'closed') toneContext = createContext()
+  if (toneContext?.state === 'suspended') void toneContext.resume()
+  return toneContext
+}
+
+/** Call from a user gesture (e.g. a Start button) so a later tone can play without one. */
+export function unlockAudio() {
+  getToneContext()
+}
+
+/**
+ * Plays a short tone. Must be called from a user gesture at least once (see unlockAudio).
+ * delayMs schedules it on the audio clock, which keeps time in hidden tabs where setTimeout is throttled.
+ */
+export function playTone(frequency = 880, durationMs = 300, volume = 0.15, delayMs = 0) {
+  const context = getToneContext()
   if (!context) return
   const oscillator = context.createOscillator()
   const gain = context.createGain()
+  const startAt = context.currentTime + delayMs / 1000
+  const stopAt = startAt + durationMs / 1000
   oscillator.frequency.value = frequency
   oscillator.connect(gain)
   gain.connect(context.destination)
-  gain.gain.setValueAtTime(volume, context.currentTime)
-  gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + durationMs / 1000)
-  oscillator.start()
-  oscillator.stop(context.currentTime + durationMs / 1000)
-  oscillator.onended = () => void context.close()
+  gain.gain.setValueAtTime(volume, startAt)
+  gain.gain.exponentialRampToValueAtTime(0.0001, stopAt)
+  oscillator.start(startAt)
+  oscillator.stop(stopAt)
+  oscillator.onended = () => {
+    oscillator.disconnect()
+    gain.disconnect()
+  }
 }

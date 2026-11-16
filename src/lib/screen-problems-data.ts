@@ -563,7 +563,7 @@ export const SCREEN_PROBLEMS: readonly ScreenProblemItem[] = [
       {
         heading: 'The Fullscreen White & Color Exerciser Clearing Technique',
         paragraphs: [
-          'Because image retention is caused by residual electrical charge, you can rapidly neutralize the bias using simple stimulation techniques:',
+          'Because image retention is caused by residual electrical charge, you can rapidly neutralize the bias with a bright, even image such as the fullscreen [white screen](/), or with changing colors:',
         ],
         checklist: [
           'Launch our White Screen Tool in fullscreen mode.',
@@ -993,7 +993,7 @@ export const SCREEN_PROBLEMS: readonly ScreenProblemItem[] = [
       {
         heading: 'Uniform vs Patchy Yellow Tint: Identifying the Issue',
         paragraphs: [
-          'Before adjusting settings, determine whether the yellow discoloration covers the entire screen evenly or appears in localized patches:',
+          'Open the [white screen](/) in fullscreen, then, before adjusting settings, check whether the yellow discoloration covers the entire screen evenly or appears in localized patches:',
         ],
         bullets: [
           'Uniform yellowing across the entire display: 99% of the time, this is a software filter (Night Light, f.lux, True Tone) or an OSD color temperature setting set to "Warm" (5000K).',

@@ -234,7 +234,7 @@ export const fakeScreenContent: Record<string, ToolContent> = {
   'fake-radar-screen': {
     title: 'Fake Radar Screen – Sci-Fi Radar Sweep Simulator',
     intro:
-      'A fullscreen radar display straight out of a submarine or air-traffic movie: a green sweep line rotates around range rings, contacts light up as the beam passes and slowly fade, and the readouts show bearing, range and a running clock. Change the color, speed and number of contacts, and turn on the soft ping. It is a simulation only and shows no real data. For more screen props, try the [Hacked Screen Simulator](/hacked-screen/) or [Hacker Typer](/hacker-typer/).',
+      'A fullscreen radar display straight out of a submarine or air-traffic movie: a green sweep line rotates around range rings, contacts light up as the beam passes and slowly fade, and the readouts show bearing, range and a running clock. Change the color, speed and number of contacts, and turn on the soft ping. It is a simulation only and shows no real data. For more screen props, try the [Hacked Screen Prank](/hacked-screen/) or [Hacker Typer](/hacker-typer/).',
     steps: [
       'The radar starts sweeping straight away.',
       'Choose a color (green, amber or blue), sweep speed and number of contacts.',
@@ -263,7 +263,7 @@ export const fakeScreenContent: Record<string, ToolContent> = {
   'fake-blue-screen-of-death': {
     title: 'Fake Blue Screen of Death – Windows BSOD Prank',
     intro:
-      'A convincing Windows "Blue Screen of Death" for pranks, videos and training. It shows the sad :( face, the "Your PC ran into a problem and needs to restart" message, a percentage that climbs in uneven jumps, a QR block and a stop code such as CRITICAL_PROCESS_DIED. Pick the Windows 10 or 11 blue, the newer black crash screen, or the classic blue text screen from Windows XP and 7, then go fullscreen; the mouse pointer hides automatically. Nothing on your computer changes: it is a web page, and Esc ends it. For more fake system screens, try the [Fake Windows 10 Update](/fake-windows-10-update/) or the [Hacked Screen Simulator](/hacked-screen/).',
+      'A convincing Windows "Blue Screen of Death" for pranks, videos and training. It shows the sad :( face, the "Your PC ran into a problem and needs to restart" message, a percentage that climbs in uneven jumps, a QR block and a stop code such as CRITICAL_PROCESS_DIED. Pick the Windows 10 or 11 blue, the newer black crash screen, or the classic blue text screen from Windows XP and 7, then go fullscreen; the mouse pointer hides automatically. Nothing on your computer changes: it is a web page, and Esc ends it. For more fake system screens, try the [Fake Windows Update Screen](/fake-windows-10-update/) or the [Hacked Screen Prank](/hacked-screen/).',
     steps: [
       'Choose a style: Windows 10, Windows 11, the new black screen, or classic XP/7.',
       'Pick a stop code and how long the counter takes to reach 100%.',

@@ -1,5 +1,6 @@
 import React from 'react'
 import { WhiteScreenCta } from '@/components/white-screen-cta'
+import { RichText, plainText } from '@/components/rich-text'
 import Link from 'next/link'
 import {
   ChevronRight,
@@ -131,7 +132,7 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
           </div>
           <div className="space-y-3.5 text-sm sm:text-base leading-relaxed text-foreground/90">
             {item.howItWorks.map((para, idx) => (
-              <p key={idx}>{para}</p>
+              <p key={idx}><RichText text={para} /></p>
             ))}
           </div>
         </section>

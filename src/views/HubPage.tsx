@@ -80,7 +80,7 @@ export function HubPage({ path }: { path: string }) {
             </div>
           ))}
           <h2 className="mb-6 mt-4 text-2xl font-semibold tracking-tight">
-            {isEnglish ? `${hub.name} FAQ` : t('faqTitle', 'Frequently asked questions')}
+            {isEnglish ? 'FAQ' : t('faqTitle', 'Frequently asked questions')}
           </h2>
           <FaqList faqs={content.faqs} />
         </section>

@@ -12,6 +12,7 @@ import { TOOLS } from './tools'
 import { TOOL_TRANSLATIONS } from './tool-translations'
 import { getLocalizedCategory, getLocalizedTool } from './localized-tools'
 import { TOOL_META } from './tool-content/meta'
+import { toolH1 } from './tool-content/h1'
 import { DISCLAIMER, PRIVACY_POLICY, TERMS_OF_USE } from './legal-pages'
 import { hasToolTranslation } from './tool-content/i18n'
 import { COLOR_HUB_NAMES, HUBS, getHub } from './hubs'
@@ -232,7 +233,7 @@ function resolveMeta(cleanPath: string, search: string, language: LanguageCode):
     // English tool pages have hand-written titles; other languages use the translated tool name.
     const english = language === 'en' ? TOOL_META[slug] : undefined
     if (english) return { title: english[0], description: english[1] }
-    const title = t('toolMetaTitle', '{name} – Free Online Screen Tool').replace('{name}', localized.name)
+    const title = t('toolMetaTitle', '{name} – Free Online Screen Tool').replace('{name}', toolH1(slug, language, localized.name))
     return { title: withSuffix(title), description: localized.description }
   }
 

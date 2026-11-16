@@ -35,7 +35,7 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
       },
       {
         question: 'Is black or white better for cleaning a monitor?',
-        answer: 'Black shows fingerprints, streaks and smudges clearly, especially with a light at an angle. For dust, a white screen works better. Turn the display off before you wipe it.',
+        answer: 'Black shows fingerprints, streaks and smudges clearly, especially with a light at an angle. For dust, a [white screen](/) works better. Turn the display off before you wipe it.',
       },
     ],
   },
@@ -122,13 +122,13 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
       {
         heading: 'Spotting burn-in and image retention',
         paragraphs: [
-          'Faint outlines of taskbars, logos or keyboard shortcuts on a gray screen are signs of [image retention](/screen-problems/image-retention), which fades, or [burn-in](/screen-problems/screen-burn-in), which does not. OLED owners should also run the [OLED gray test](/oled-gray-test), which steps through darker grays where OLED tinting appears, and the [OLED burn-in test](/oled-burn-in-test).',
+          'Faint outlines of taskbars, logos or keyboard shortcuts on a gray screen are signs of [image retention](/screen-problems/image-retention), which fades, or [burn-in](/screen-problems/screen-burn-in), which does not. OLED owners should also run the [OLED test](/oled-gray-test), which steps through darker grays where OLED tinting appears, and the [OLED burn-in test](/oled-burn-in-test).',
         ],
       },
       {
         heading: 'A neutral backdrop',
         paragraphs: [
-          'Gray is also a calm, neutral background for checking prints against the screen, photographing products without color casts, or as a low-distraction second screen. If you need a whole set of test patterns, the [monitor test](/monitor-test) covers gray levels, gradients and sharpness in one place.',
+          'Gray is also a calm, neutral background for checking prints against the screen, photographing products without color casts, or as a low-distraction second screen. If you need a whole set of test patterns, the [screen test](/monitor-test) covers gray levels, gradients and sharpness in one place.',
         ],
       },
     ],

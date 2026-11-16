@@ -9,7 +9,8 @@ import { JsonLd } from '@/components/json-ld'
 export function ColorImage({ color, name }: { color: ScreenColor; name: string }) {
   const slug = color.path === '/' ? 'white-screen' : color.path.slice(1)
   const src = `/images/colors/${slug}.png`
-  const alt = `${name}: solid ${color.name.toLowerCase()} (${color.hex}) full HD 1920×1080 image`
+  // Built from the page's own (translated) name so the alt text and schema match the page language.
+  const alt = `${name} (${color.hex}) · 1920×1080 PNG`
   return (
     <figure className="mx-auto max-w-5xl px-4 pt-2 sm:px-6">
       <JsonLd
@@ -17,7 +18,7 @@ export function ColorImage({ color, name }: { color: ScreenColor; name: string }
           '@context': 'https://schema.org',
           '@type': 'ImageObject',
           contentUrl: absoluteUrl(src),
-          name: `${color.name} screen image (${color.hex})`,
+          name: `${name} (${color.hex})`,
           description: alt,
           width: 1920,
           height: 1080,

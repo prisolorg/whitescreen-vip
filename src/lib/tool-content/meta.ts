@@ -61,12 +61,12 @@ export const TOOL_META: Record<string, [title: string, description: string]> = {
     'Check your display for backlight bleed, clouding, IPS glow and vignetting with fullscreen gray and black fields. Free test, takes two minutes.',
   ],
   'monitor-test': [
-    'Monitor Test – Check Colors, Sharpness & Gamma (Free)',
-    'Test your monitor in minutes: gradients, gamma, sharpness, contrast and color patterns in fullscreen. Find faults before they cost you. Free.',
+    'Screen Test – Monitor & Display Test Online (Free)',
+    'Free online screen test: 7 fullscreen patterns check your monitor or laptop display for color, gamma, sharpness and banding. No download.',
   ],
   'oled-gray-test': [
-    'OLED Gray Test – Check Near-Black Banding (Free)',
-    'Test OLED panels for near-black banding, mura and uneven gray with dark fullscreen gray steps. Catch panel faults early. Free, any OLED screen.',
+    'OLED Test – Near-Black Gray, Banding & Mura Check (Free)',
+    'Free OLED test: dark gray steps from 1% to 20% and a near-black ramp reveal banding, mura and black crush on any OLED phone, TV or monitor.',
   ],
   'oled-burn-in-test': [
     'OLED Burn-In Test – See Retention Before It Sets (Free)',
@@ -89,8 +89,8 @@ export const TOOL_META: Record<string, [title: string, description: string]> = {
     'See ghosting, smearing and overdrive artifacts on your monitor with moving targets at adjustable speeds. Tune overdrive settings. Free test.',
   ],
   'frame-rate-test': [
-    'Frame Rate Test – Compare 15, 24, 30 & 60 FPS Side by Side',
-    'Watch the same motion at 15, 24, 30, 60 FPS and your screen’s max rate side by side. See why higher FPS looks smoother. Free, in-browser.',
+    'FPS Test – Compare 15, 24, 30 & 60 FPS Side by Side (Free)',
+    'Free online FPS test: watch the same motion at 15, 24, 30, 60 FPS and your screen’s max frame rate side by side. No download needed.',
   ],
   'screen-color-test': [
     'Screen Color Test – Check RGB, Ramps & Saturation (Free)',
@@ -101,8 +101,8 @@ export const TOOL_META: Record<string, [title: string, description: string]> = {
     'See your screen resolution, browser viewport, pixel ratio and color depth instantly. Find out if you are really running 1080p, 1440p or 4K.',
   ],
   'no-signal-screen': [
-    'No Signal Screen – Fullscreen Fake TV "No Signal" (Free)',
-    'Show a realistic "No Signal" TV screen in fullscreen with color bars and a bouncing box. Great for pranks, props and film sets. Free.',
+    'TV Color Bars & No Signal Screen – Fullscreen (Free)',
+    'Show TV color bars with a NO SIGNAL box, a bouncing message or a blue input screen in fullscreen, with an optional 1 kHz tone. Free.',
   ],
   'white-noise-generator': [
     'White Noise Generator – Free Online White Noise for Focus',
@@ -126,7 +126,7 @@ export const TOOL_META: Record<string, [title: string, description: string]> = {
   ],
   'hacked-screen': [
     'Hacked Screen Prank – Fake "You Have Been Hacked" Screen',
-    'Show a fake hacked screen with glitch text, scrolling logs and a countdown. Harmless and clearly a joke when it ends. Free fullscreen prank.',
+    'Show a fake hacked screen with glitch text, scrolling logs and a countdown. Harmless, with an optional “just kidding” note. Free fullscreen prank.',
   ],
   'zoom-lighting': [
     'Zoom Lighting – Use Your Screen as a Video Call Light',
@@ -168,6 +168,10 @@ export const TOOL_META: Record<string, [title: string, description: string]> = {
     'Countdown Timer – Big Fullscreen Online Timer (Free)',
     'Start a big fullscreen countdown timer for classes, meetings, workouts or exams. Set minutes and seconds, get an alarm at zero. Free, no app.',
   ],
+  'contrast-checker': [
+    'Color Contrast Checker – WCAG AA & AAA Contrast Ratio (Free)',
+    'Free color contrast checker: pick text and background colors to see the WCAG contrast ratio, AA and AAA pass or fail, and a passing color.',
+  ],
   'pomodoro-timer': [
     'Pomodoro Timer – 25/5 Focus Timer Online (Free)',
     'Stay focused with a free Pomodoro timer: 25-minute focus, short and long breaks, auto-start and a chime. Big fullscreen display, no sign-up.',
@@ -177,8 +181,8 @@ export const TOOL_META: Record<string, [title: string, description: string]> = {
     'Start a big fullscreen online stopwatch with lap times to the hundredth of a second. Use it for workouts, races and classes. Free, no app.',
   ],
   'fake-windows-10-update': [
-    'Fake Windows 10 Update Screen – Prank in Fullscreen',
-    'Show a realistic fake Windows 10 update screen in fullscreen. Prank coworkers or take a break without anyone noticing. Free and harmless.',
+    'Fake Windows Update Screen – Windows 10 Update Prank (Free)',
+    'Open a realistic fake Windows update screen in fullscreen: "Working on updates", a climbing percentage and a BSOD twist. Free, harmless prank.',
   ],
   'fake-windows-11-update': [
     'Fake Windows 11 Update Screen – Realistic Prank (Free)',

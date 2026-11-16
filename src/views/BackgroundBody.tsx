@@ -2,6 +2,7 @@ import React from 'react'
 import { InlineAd } from '@/components/tool-ads'
 import { STUDIO_BACKGROUND_PAGES } from '@/lib/studio-layout'
 import { WhiteScreenCta } from '@/components/white-screen-cta'
+import { RichText, plainText } from '@/components/rich-text'
 import Link from 'next/link'
 import { ArrowRight, ExternalLink, HelpCircle, Eye, Palette, Lightbulb, ShieldCheck, Monitor } from 'lucide-react'
 import { getBackground, getBackgrounds } from '@/lib/article-i18n'
@@ -39,7 +40,7 @@ export function BackgroundBody({ slug }: { slug: string }) {
             name: faq.question,
             acceptedAnswer: {
               '@type': 'Answer',
-              text: faq.answer,
+              text: plainText(faq.answer),
             },
           })),
         }
@@ -196,7 +197,7 @@ export function BackgroundBody({ slug }: { slug: string }) {
               {item.faqs.map((faq, i) => (
                 <div key={i} className="rounded-xl border border-border/70 p-4 bg-muted/20">
                   <h3 className="font-semibold text-xs sm:text-sm text-foreground">{faq.question}</h3>
-                  <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
+                  <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground leading-relaxed"><RichText text={faq.answer} /></p>
                 </div>
               ))}
             </div>

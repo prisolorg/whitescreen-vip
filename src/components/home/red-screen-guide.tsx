@@ -27,7 +27,7 @@ export function RedScreenGuide() {
         />
         <h3 className={h3}>Is a Red Screen Good for Sleep?</h3>
         <p className={p}>
-          A dim red light screen is gentler before bed than a bright white or blue one, because it has no blue light. It&apos;s still a light,
+          A dim red light screen is gentler before bed than a bright <Link href="/" className={link}>white screen</Link> or a blue one, because it has no blue light. It&apos;s still a light,
           so keep it low and turn it off once you&apos;re ready to sleep. A screen is not a red light therapy device: those use specific
           wavelengths and much higher power.
         </p>

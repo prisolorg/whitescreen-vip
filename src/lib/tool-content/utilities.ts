@@ -97,6 +97,24 @@ export const utilitiesContent: Record<string, ToolContent> = {
       },
     ],
   },
+  'contrast-checker': {
+    title: 'Color Contrast Checker – WCAG AA & AAA Contrast Ratio',
+    intro:
+      'Pick a text color and a background color to see their contrast ratio and whether they pass WCAG AA and AAA for normal text, large text and UI components.',
+    steps: [
+      'Choose the text color with the picker, or type or paste a hex code.',
+      'Choose the background color the same way.',
+      'Read the contrast ratio and the pass or fail result for each WCAG level.',
+      'If it fails, use the suggested color, or press Swap to flip text and background.',
+    ],
+    useCases: [
+      { title: 'Web design', description: 'Check text, links and buttons before they ship.' },
+      { title: 'Accessibility audits', description: 'Confirm color pairs meet WCAG 2 contrast requirements.' },
+      { title: 'Brand colors', description: 'Find which brand colors work for text and which only for decoration.' },
+      { title: 'Slides and documents', description: 'Make presentations readable on projectors and screens.' },
+    ],
+    faqs: [],
+  },
   'pomodoro-timer': {
     title: 'Pomodoro Timer – Online Focus Timer (25/5)',
     intro:

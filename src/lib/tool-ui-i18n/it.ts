@@ -239,4 +239,16 @@ export const it: readonly string[] = [
   "Tocca due volte lo schermo per lo schermo intero.",
   "Calore",
   "Timer",
+  // Countdown timer: custom time and date countdown
+  "Tempo personalizzato",
+  "Conto alla rovescia fino a una data",
+  "Cambia data",
+  "Fai clic o tocca i numeri per impostare qualsiasi tempo.",
+  "Giorni",
+  "Conto alla rovescia fino a",
+  "Nome dell’evento",
+  "Nome dell’evento (facoltativo)",
+  "Data e ora",
+  "Mostra giorni, ore, minuti e secondi. Premi Avvia.",
+  "Scegli una data e un’ora nel futuro.",
 ]

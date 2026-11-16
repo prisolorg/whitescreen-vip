@@ -7,6 +7,7 @@ import { TOOLS, getTool, toolPath, type Tool } from '@/lib/tools'
 import { getCategory, type ToolCategoryId } from '@/lib/tool-categories'
 import { getLocalizedCategory, getLocalizedTool } from '@/lib/localized-tools'
 import { useTranslation } from '@/lib/i18n'
+import { byKeywordVolume, linkLabelEn } from '@/lib/link-priority'
 
 /** Gallery tabs: solid colors get their own tab, split out of the screen-tests category. */
 export type GalleryTabId = 'colors' | ToolCategoryId
@@ -35,6 +36,7 @@ const THUMBS: Record<string, string> = {
   'ring-light': 'radial-gradient(circle, transparent 0 30%, #fff7ea 32% 46%, transparent 48%), #111',
   'hacked-screen': 'repeating-linear-gradient(0deg, #1a0000 0 3px, #2a0000 3px 4px)',
   'pomodoro-timer': '#b91c1c',
+  'contrast-checker': 'linear-gradient(135deg, #111 0 50%, #fff 50%)',
   'fake-blue-screen-of-death': '#0078d7',
   'fake-radar-screen': 'radial-gradient(circle, transparent 0 20%, #14532d 21% 22%, transparent 23% 45%, #14532d 46% 47%, transparent 48%), conic-gradient(from 0deg, #22c55e88, transparent 25%), #021007',
   'visual-noise': 'repeating-linear-gradient(-45deg, #5a5a5a 0 1px, #1f1f1f 1px 2px)',
@@ -96,13 +98,20 @@ export function defaultTabFor(slug: string): GalleryTabId {
   return tool.category
 }
 
-/** Related tools first, then the rest of the tab, without the current tool. */
-function tilesFor(tab: GalleryTabId, currentSlug: string): Tool[] {
+/**
+ * On the page's own tab: its related tools first (from any category), then the rest of the tab.
+ * Each group is ordered by the search volume of the page's H1 keyword, so high-demand pages get the most links.
+ */
+function tilesFor(tab: GalleryTabId, currentSlug: string, homeTab: GalleryTabId = defaultTabFor(currentSlug)): Tool[] {
   const current = TOOLS.find((item) => item.slug === currentSlug)
-  const related = new Set((current?.related ?? []).map((slug) => getTool(slug).slug))
-  return TOOLS.filter((tool) => tabOf(tool) === tab && tool.slug !== currentSlug).sort(
-    (a, b) => Number(related.has(b.slug)) - Number(related.has(a.slug)),
-  )
+  const relatedSlugs = new Set((current?.related ?? []).map((slug) => getTool(slug).slug))
+  relatedSlugs.delete(currentSlug)
+  const related = tab === homeTab ? byKeywordVolume(TOOLS.filter((tool) => relatedSlugs.has(tool.slug))) : []
+  const shown = new Set(related.map((tool) => tool.slug))
+  const rest = byKeywordVolume(TOOLS.filter((tool) => tabOf(tool) === tab && tool.slug !== currentSlug && !shown.has(tool.slug)))
+  if (tab === homeTab) return [...related, ...rest]
+  // Other tabs: related tools of that tab first, then the rest, each by volume.
+  return [...rest.filter((tool) => relatedSlugs.has(tool.slug)), ...rest.filter((tool) => !relatedSlugs.has(tool.slug))]
 }
 
 export function ToolThumb({ tool, className }: { tool: Tool; className?: string }) {
@@ -121,7 +130,8 @@ export function ToolThumb({ tool, className }: { tool: Tool; className?: string 
       style={background ? { background } : undefined}
     >
       {glyph ? (
-        <span className="font-mono text-[11px] font-bold text-white/90">{glyph}</span>
+        // Drawn with CSS content so the glyph never becomes part of the link text.
+        <span data-glyph={glyph} className="font-mono text-[11px] font-bold text-white/90 before:content-[attr(data-glyph)]" />
       ) : !background ? (
         <Icon className="size-5" />
       ) : null}
@@ -144,7 +154,8 @@ export function TryNextGallery({
   const { t, language } = useTranslation()
   const [tab, setTab] = useState<GalleryTabId>(defaultTab ?? defaultTabFor(currentSlug))
   const baseId = useId()
-  const tiles = useMemo(() => tilesFor(tab, currentSlug).slice(0, 12), [tab, currentSlug])
+  const homeTab = defaultTab ?? defaultTabFor(currentSlug)
+  const tiles = useMemo(() => tilesFor(tab, currentSlug, homeTab).slice(0, 12), [tab, currentSlug, homeTab])
 
   const tabLabel = (id: GalleryTabId) =>
     id === 'colors' ? t('colorsTab', 'Colors') : getLocalizedCategory(getCategory(id), language).navLabel
@@ -207,7 +218,7 @@ export function TryNextGallery({
                   className={video ? 'aspect-video w-full rounded-xl shadow-sm transition-transform group-hover:-translate-y-0.5 group-hover:shadow-md' : 'h-12 w-full sm:h-14'}
                 />
                 <span className={cn('line-clamp-2 text-xs font-semibold leading-snug sm:text-[13px]', video ? 'px-0.5' : 'px-1 pb-0.5')}>
-                  {getLocalizedTool(tool, language).name}
+                  {language === 'en' ? linkLabelEn(tool.slug, tool.name) : getLocalizedTool(tool, language).name}
                 </span>
               </Link>
             </li>

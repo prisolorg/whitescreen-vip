@@ -166,7 +166,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   },
   'monitor-test': {
     answer:
-      'A monitor test is a set of fullscreen test patterns that checks how well your display shows color, contrast, sharpness and gamma. Step through gradients, black and white levels, text sharpness and geometry patterns to find faults or set the right picture settings.',
+      'A screen test (or monitor test) is a set of fullscreen test patterns that checks how well your display shows color, contrast, sharpness and gamma. Step through gradients, black and white levels, text sharpness and geometry patterns to find faults or set the right picture settings.',
     features: [
       'Gradient, gamma, contrast and sharpness patterns',
       'Black level and white level steps',
@@ -182,7 +182,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   },
   'oled-gray-test': {
     answer:
-      'An OLED gray test shows very dark gray steps near black, where OLED panels most often show problems. It reveals near-black banding, mura (blotchy patches), vertical lines and uneven shading that bright content hides on OLED TVs, monitors and phones.',
+      'An OLED test shows very dark gray steps near black, where OLED panels most often show problems. It reveals near-black banding, mura (blotchy patches), vertical lines and uneven shading that bright content hides on OLED TVs, monitors and phones.',
     features: [
       'Near-black gray steps from 1% to 20%, plus a ramp',
       'Full-screen fields with no overlays',
@@ -258,7 +258,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   },
   'frame-rate-test': {
     answer:
-      'A frame rate test shows the same motion at different frames per second (FPS) side by side: 15, 24, 30, 60 and your screen’s maximum. It makes the difference between choppy and smooth motion visible and shows why 24 FPS films and 60 FPS games feel so different.',
+      'An FPS test (frame rate test) shows the same motion at different frames per second (FPS) side by side: 15, 24, 30, 60 and your screen’s maximum. It makes the difference between choppy and smooth motion visible and shows why 24 FPS films and 60 FPS games feel so different.',
     features: [
       'Five lanes at 15, 24, 30, 60 FPS and max',
       'Adjustable speed to exaggerate or soften motion',
@@ -284,7 +284,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   },
   'no-signal-screen': {
     answer:
-      'A no signal screen shows the familiar TV message that appears when a television or monitor gets no input from its HDMI or cable source. Shown in fullscreen with color bars and a drifting message box, it makes a convincing prank, film prop or placeholder for a spare display.',
+      'TV color bars are the striped test pattern broadcasters used to line up pictures; a no signal screen is the message a TV shows when its HDMI or cable input is empty. Shown fullscreen, with color bars or a drifting message box, they make a convincing prank, film prop or placeholder for a spare display.',
     features: ['Classic color bars or plain blue background', 'Drifting "No Signal" box like a real TV', 'Optional 1 kHz test tone and custom input name', 'Fullscreen with hidden cursor'],
     benefits: ['Easy, harmless prank', 'Prop for films, escape rooms and sets', 'Works on smart TVs through the browser'],
     sources: [WIKI('SMPTE_color_bars', 'SMPTE color bars'), WIKI('Test_card', 'Test card')],
@@ -337,9 +337,9 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   },
   'ring-light': {
     answer:
-      'An online ring light displays a bright ring on your screen that lights your face evenly from the front, like a photographer’s ring light. Adjust the ring size, thickness, warmth and brightness, then go fullscreen for selfies, video calls, makeup or product photos.',
+      'An online ring light displays a bright ring on your screen that lights your face evenly from the front, like the lights photographers use. Adjust the ring size, thickness, warmth and brightness, then go fullscreen for selfies, video calls, makeup or product photos.',
     features: ['Adjustable ring size and thickness', 'Warm to cool color temperature', 'Brightness control and fullscreen', 'Works on phones, tablets and laptops'],
-    benefits: ['Even, shadow-free light for free', 'Catchlights in the eyes like a real ring light', 'Use any spare screen as a light'],
+    benefits: ['Even, shadow-free light for free', 'Round catchlights in the eyes', 'Use any spare screen as a light'],
     sources: [WIKI('Ring_light', 'Ring light'), WIKI('Color_temperature', 'Color temperature')],
   },
   'visual-noise': {
@@ -398,6 +398,16 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
     benefits: ['Keeps meetings and classes on schedule', 'Readable from the back of a room', 'Free, no app'],
     sources: [WIKI('Timer')],
   },
+  'contrast-checker': {
+    answer:
+      'A color contrast checker compares a text color with its background and gives the contrast ratio, from 1:1 (no contrast) to 21:1 (black on white). WCAG 2 asks for at least 4.5:1 for normal text and 3:1 for large text and UI components at level AA, and 7:1 and 4.5:1 at level AAA.',
+    features: ['Color pickers and hex input', 'Contrast ratio with AA and AAA results', 'Live text, large text and button preview', 'Suggested passing color'],
+    benefits: ['Meet WCAG contrast requirements', 'Readable text for everyone', 'Free, no sign-up'],
+    sources: [
+      { label: 'Understanding SC 1.4.3 Contrast (Minimum) (W3C)', url: 'https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html' },
+      { label: 'Understanding SC 1.4.11 Non-text Contrast (W3C)', url: 'https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html' },
+    ],
+  },
   'pomodoro-timer': {
     answer:
       'A Pomodoro timer splits work into 25-minute focus sessions separated by 5-minute breaks, with a longer break after four sessions. The method, created by Francesco Cirillo in the late 1980s, helps you start tasks, avoid burnout and track how many focused blocks you finish.',
@@ -409,7 +419,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
     answer:
       'An online stopwatch measures elapsed time from start to stop, to the hundredth of a second, in big fullscreen digits. Record laps for running, swimming, workouts and experiments, and the time stays accurate because it is measured against your device clock.',
     features: ['Start, stop, lap and reset', 'Hundredths of a second precision', 'Lap list with split times', 'Space bar and keyboard shortcuts'],
-    benefits: ['Large display for gyms and classrooms', 'Accurate lap timing', 'Free, works offline'],
+    benefits: ['Large display for gyms and classrooms', 'Accurate lap timing', 'Free, no sign-up'],
     sources: [WIKI('Stopwatch')],
   },
   'fake-windows-10-update': {

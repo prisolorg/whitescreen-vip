@@ -239,4 +239,16 @@ export const nl: readonly string[] = [
   "Tik twee keer op het scherm voor volledig scherm.",
   "Warmte",
   "Timer",
+  // Countdown timer: custom time and date countdown
+  "Eigen tijd",
+  "Aftellen tot een datum",
+  "Datum wijzigen",
+  "Klik of tik op de cijfers om elke tijd in te stellen.",
+  "Dagen",
+  "Aftellen tot",
+  "Naam van het evenement",
+  "Naam van het evenement (optioneel)",
+  "Datum en tijd",
+  "Toont dagen, uren, minuten en seconden. Druk op Start.",
+  "Kies een datum en tijd in de toekomst.",
 ]

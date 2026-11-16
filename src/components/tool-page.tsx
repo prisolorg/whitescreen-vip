@@ -4,6 +4,7 @@ import { STUDIO_BAND, StageHeadingContext } from '@/components/screen-stage/stag
 import { RatingRow, ToolRatingPrompt } from '@/components/tool-rating'
 import { STUDIO_TOOL_PAGES } from '@/lib/studio-layout'
 import { tx } from '@/lib/tx'
+import { TOOL_SUBTITLE_EN, localizedSubtitle } from '@/lib/subtitles'
 import { cn } from '@/lib/utils'
 import { RailAd, ToolWithAds } from '@/components/tool-ads'
 import { getTool, toolPath } from '@/lib/tools'
@@ -12,6 +13,7 @@ import { getToolContent } from '@/lib/tool-content'
 import { COLOR_HUB_NAMES, hubForTool } from '@/lib/hubs'
 import { useTranslation } from '@/lib/i18n'
 import { getLocalizedCategory, getLocalizedTool } from '@/lib/localized-tools'
+import { toolH1 } from '@/lib/tool-content/h1'
 
 export function toolMetadata(slug: string): Record<string, unknown> {
   const tool = getTool(slug)
@@ -37,6 +39,9 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
   const hub = hubForTool(tool)
   const hubName = language === 'en' && hub ? hub.name : hub?.group === 'colors' ? COLOR_HUB_NAMES[language][0] : localizedCat.name
 
+  // English pages can lead with a broader keyword than the tool name (see TOOL_H1_EN).
+  const heading = toolH1(slug, language, localizedTool.name)
+
   if (STUDIO_TOOL_PAGES) {
     // Studio layout: same as the colour screens: title on top, the tool sized so its controls stay above
     // the fold, and the 300×600 ad beside it on desktop. No breadcrumbs.
@@ -47,11 +52,11 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
             <div className="flex min-w-0 flex-col gap-3">
               <header className="flex flex-col items-center gap-1 text-center">
                 <h1 id="screen-heading" className="text-balance text-2xl font-extrabold tracking-tight sm:text-3xl">
-                  {localizedTool.name}
+                  {heading}
                 </h1>
-                <p className="text-pretty text-[13px] text-foreground/80 sm:text-[15px]">{tx('Click Fullscreen to start.')}</p>
+                <p className="text-pretty text-[13px] text-foreground/80 sm:text-[15px]">{(language === 'en' ? TOOL_SUBTITLE_EN[slug] : localizedSubtitle(language, slug)) || tx('Click Fullscreen to start.')}</p>
               </header>
-              <StageHeadingContext.Provider value={{ title: localizedTool.name, studio: true }}>{children}</StageHeadingContext.Provider>
+              <StageHeadingContext.Provider value={{ title: heading, studio: true }}>{children}</StageHeadingContext.Provider>
               <RatingRow className="mx-auto w-full max-w-[var(--tool-w,100%)]" />
               <ToolRatingPrompt />
             </div>

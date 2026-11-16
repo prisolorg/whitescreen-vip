@@ -14,7 +14,11 @@ export function SiteHeader() {
     // Solid background on purpose: a backdrop-filter here would trap the fixed menu panels inside the header.
     <header className="sticky top-0 z-40 w-full border-b border-border/80 bg-background">
       <div className="site-header-inner mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-3 sm:gap-4 sm:px-6">
-        <div className="flex min-w-0 items-center gap-5 lg:gap-8">
+        <div className="flex min-w-0 items-center gap-1.5 md:gap-5 lg:gap-8">
+          {/* Phones: the menu sits on the left, beside the logo. */}
+          <div className="md:hidden">
+            <MobileNav />
+          </div>
           <Logo />
           <div className="hidden md:block">
             <DesktopNav />
@@ -40,20 +44,11 @@ export function SiteHeader() {
           <LanguageSelector />
         </div>
 
-        {/* Phones: search, theme, language and the menu */}
-        <div className="flex shrink-0 items-center gap-0.5 md:hidden">
+        {/* Phones: search, language and the light/dark toggle on the right; feedback lives inside the menu. */}
+        <div className="flex shrink-0 items-center gap-1 md:hidden">
           <HeaderSearchButton />
-          <Link
-            href="/feedback"
-            aria-label={t('feedback', 'Feedback')}
-            title={t('feedback', 'Feedback')}
-            className="inline-flex size-9 items-center justify-center rounded-lg transition-colors hover:bg-accent"
-          >
-            <MessageSquarePlus className="size-5" aria-hidden="true" />
-          </Link>
-          <ThemeToggle className="size-9" />
           <LanguageSelector compact />
-          <MobileNav />
+          <ThemeToggle className="size-9" />
         </div>
       </div>
     </header>

@@ -13,50 +13,37 @@ import { ToolSearch } from './tool-search'
 import { ToolThumb } from './try-next-gallery'
 import { GLOSSARY_NAV_LINKS, HEADER_GUIDES, PROBLEM_NAV_LINKS } from '@/lib/nav-links'
 import { getMessages } from '@/lib/messages'
+import { HUBS } from '@/lib/hubs'
+import { byKeywordVolume, linkLabelEn } from '@/lib/link-priority'
 
 /**
  * Header navigation: two menus (Tools and Learn) plus a Backgrounds link. Tools opens a
  * full-width panel of tool columns; Learn groups guides, screen problems and the glossary.
  */
 
-type ToolColumn = { titleKey: string; defaultTitle: string; href: string; slugs: string[]; more?: { key: string; label: string; href: string } }
+type GroupId = 'colors' | ToolCategoryId
 
-const TOOL_COLUMNS: ToolColumn[] = [
-  {
-    titleKey: 'navColorScreens',
-    defaultTitle: 'Color screens',
-    href: '/color-screens',
-    slugs: ['white-screen', 'black-screen', 'red-screen', 'green-screen', 'blue-screen'],
-    more: { key: 'navAllColors', label: 'All 12 colors →', href: '/color-screens' },
-  },
-  {
-    titleKey: 'screenTests',
-    defaultTitle: 'Screen tests',
-    href: '/screen-tests',
-    slugs: ['dead-pixel-test', 'screen-refresh-rate-test', 'touch-screen-test', 'monitor-ghosting-test', 'screen-burn-in-test', 'monitor-test'],
-  },
-  {
-    titleKey: 'navEffectsSavers',
-    defaultTitle: 'Effects & screensavers',
-    href: '/tools#effects',
-    slugs: ['dvd-screensaver', 'flip-clock-screensaver', 'motivational-quote-screensaver', 'white-noise-generator', 'hacked-screen', 'broken-screen'],
-  },
-  {
-    titleKey: 'navFakeTimers',
-    defaultTitle: 'Fake screens & timers',
-    href: '/tools#fake-screens',
-    slugs: ['fake-blue-screen-of-death', 'fake-windows-10-update', 'fake-zoom-meeting', 'fake-teams-meeting', 'fake-google-meet', 'pomodoro-timer', 'ring-light'],
-  },
-]
+/** Menu columns, one per category hub, ordered so the highest-demand categories come first. */
+const MENU_GROUPS: GroupId[] = ['colors', 'utilities', 'screen-tests', 'screensavers', 'effects', 'fake-screens']
+
+/** Tools shown per column; the rest are one click away on the category hub. */
+const MENU_ITEMS_PER_GROUP = 4
+
+const toolsInGroup = (id: GroupId) => TOOLS.filter((tool) => (id === 'colors' ? tool.swatch : tool.category === id && !tool.swatch))
+
+/** The category's tools with the highest-volume H1 keywords first. */
+const topToolsIn = (id: GroupId) => byKeywordVolume(toolsInGroup(id)).slice(0, MENU_ITEMS_PER_GROUP)
+
+const hubFor = (id: GroupId) => HUBS.find((hub) => hub.group === id)
 
 /** Categories for the mobile menu, each shown with a representative tool's thumbnail. */
 const MOBILE_CATEGORIES: { id: 'colors' | ToolCategoryId; thumb: string }[] = [
   { id: 'colors', thumb: 'color-cycle' },
+  { id: 'utilities', thumb: 'stopwatch' },
   { id: 'screen-tests', thumb: 'dead-pixel-test' },
-  { id: 'effects', thumb: 'white-noise-generator' },
   { id: 'screensavers', thumb: 'dvd-screensaver' },
+  { id: 'effects', thumb: 'broken-screen' },
   { id: 'fake-screens', thumb: 'fake-windows-10-update' },
-  { id: 'utilities', thumb: 'countdown-timer' },
 ]
 
 const categoryCount = (id: 'colors' | ToolCategoryId) =>
@@ -89,7 +76,7 @@ function ToolLink({ tool, onNavigate }: { tool: Tool; onNavigate: () => void }) 
       className="flex min-h-10 items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors hover:bg-accent"
     >
       <ToolThumb tool={tool} className="h-5 w-7 shrink-0 rounded-[5px] [&_span]:text-[8px]" />
-      <span className="truncate">{getLocalizedTool(tool, language).name}</span>
+      <span className="truncate">{language === 'en' ? linkLabelEn(tool.slug, tool.name) : getLocalizedTool(tool, language).name}</span>
     </Link>
   )
 }
@@ -104,6 +91,14 @@ export function DesktopNav() {
   const { t, language } = useTranslation()
   const navRef = useRef<HTMLElement>(null)
   const close = () => setOpenId(null)
+  const groupLabel = (id: GroupId) =>
+    language === 'en'
+      ? id === 'utilities'
+        ? 'Timers & Utilities'
+        : (hubFor(id)?.name ?? id)
+      : id === 'colors'
+        ? t('navColorScreens', 'Color screens')
+        : getLocalizedCategory(getCategory(id), language).name
 
   useEffect(() => setOpenId(null), [pathname])
   useCloseOnOutside(openId !== null, navRef, close)
@@ -144,24 +139,28 @@ export function DesktopNav() {
           >
             {openId === 'tools' ? (
               <div className="mx-auto max-w-7xl px-6">
-                <div className="grid grid-cols-4 gap-6 pt-6">
-                  {TOOL_COLUMNS.map((column) => (
-                    <div key={column.titleKey} className="flex flex-col">
-                      <ColumnTitle>
-                        <Link href={column.href} onClick={close} className="hover:text-foreground">
-                          {t(column.titleKey, column.defaultTitle)}
-                        </Link>
-                      </ColumnTitle>
-                      {column.slugs.map((slug) => (
-                        <ToolLink key={slug} tool={getTool(slug)} onNavigate={close} />
-                      ))}
-                      {column.more && (
-                        <Link href={column.more.href} onClick={close} className="px-2.5 py-2 text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400">
-                          {t(column.more.key, column.more.label)}
-                        </Link>
-                      )}
-                    </div>
-                  ))}
+                <div className="grid grid-cols-3 gap-x-6 gap-y-5 pt-6">
+                  {MENU_GROUPS.map((id) => {
+                    const hub = hubFor(id)
+                    const href = hub?.path ?? '/tools'
+                    return (
+                      <div key={id} className="flex flex-col">
+                        <ColumnTitle>
+                          <Link href={href} onClick={close} className="hover:text-foreground">
+                            {groupLabel(id)}
+                          </Link>
+                        </ColumnTitle>
+                        {topToolsIn(id).map((tool) => (
+                          <ToolLink key={tool.slug} tool={tool} onNavigate={close} />
+                        ))}
+                        {toolsInGroup(id).length > MENU_ITEMS_PER_GROUP && (
+                          <Link href={href} onClick={close} className="px-2.5 py-1.5 text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400">
+                            {t('navViewAll', 'View all ({n}) →').replace('{n}', String(toolsInGroup(id).length))}
+                          </Link>
+                        )}
+                      </div>
+                    )
+                  })}
                 </div>
                 <div className="mt-4 flex items-center justify-between border-t py-3.5 text-sm">
                   <span className="text-muted-foreground">{t('navTagline', '50+ free tools. No sign-up, runs in your browser.')}</span>
@@ -280,7 +279,7 @@ export function MobileNav() {
                   return (
                     <li key={item.id}>
                       <Link
-                        href={item.id === 'colors' ? '/color-screens' : `/tools#${item.id}`}
+                        href={hubFor(item.id)?.path ?? '/tools'}
                         onClick={close}
                         className="flex min-h-12 items-center gap-3 rounded-xl px-1.5 hover:bg-accent"
                       >

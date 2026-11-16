@@ -111,7 +111,9 @@ export function BlackScreenGuide() {
 
       {/* Supporting: display checks (no search volume in this set, kept short) */}
       <Section wide id="check-heading" title="Black Screen Test: Bleed, Glow and Stuck Pixels">
-        <p className={p}>In a dark room, a full black screen makes a few common faults easy to spot:</p>
+        <p className={p}>
+          In a dark room, a full black screen makes a few common faults easy to spot. For dead pixels and dust, check the <Link href="/" className={link}>white screen</Link> too:
+        </p>
         <Table
           caption="Display problems a black screen reveals"
           head={['What you see', 'What it is', 'Learn more']}
@@ -119,7 +121,7 @@ export function BlackScreenGuide() {
             ['Light leaking at the edges', 'Backlight bleed', <Link key="b" href="/screen-problems/backlight-bleed" className={link}>Backlight bleed</Link>],
             ['Glow that shifts as you move', 'IPS glow', <Link key="g" href="/screen-problems/ips-glow" className={link}>IPS glow</Link>],
             ['A dot that stays lit', 'Stuck or hot pixel', <Link key="d" href="/dead-pixel-test" className={link}>Dead pixel test</Link>],
-            ['Banding or tint in near-black', 'OLED uniformity', <Link key="o" href="/oled-gray-test" className={link}>OLED gray test</Link>],
+            ['Banding or tint in near-black', 'OLED uniformity', <Link key="o" href="/oled-gray-test" className={link}>OLED test</Link>],
           ]}
         />
       </Section>

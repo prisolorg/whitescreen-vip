@@ -239,4 +239,16 @@ export const de: readonly string[] = [
   "Tippe zweimal auf den Bildschirm für den Vollbildmodus.",
   "Wärme",
   "Timer",
+  // Countdown timer: custom time and date countdown
+  "Eigene Zeit",
+  "Countdown bis zu einem Datum",
+  "Datum ändern",
+  "Klicke oder tippe auf die Zahlen, um eine beliebige Zeit einzustellen.",
+  "Tage",
+  "Countdown bis",
+  "Name des Ereignisses",
+  "Name des Ereignisses (optional)",
+  "Datum und Uhrzeit",
+  "Zeigt Tage, Stunden, Minuten und Sekunden. Drücke Start.",
+  "Wähle ein Datum und eine Uhrzeit in der Zukunft.",
 ]

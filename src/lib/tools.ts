@@ -75,7 +75,7 @@ export const TOOLS: readonly Tool[] = [
       'A clean fullscreen white screen for lighting, cleaning your monitor, tracing and spotting dead pixels.',
     icon: Square,
     keywords: [...colorKeywords('white'), 'blank screen', 'light source', 'lightbox'],
-    related: ['black-screen', 'dead-pixel-test', 'zoom-lighting', 'screen-uniformity-test'],
+    related: ['black-screen', 'dead-pixel-test', 'monitor-test', 'ring-light'],
     swatch: '#FFFFFF',
   },
   {
@@ -86,7 +86,7 @@ export const TOOLS: readonly Tool[] = [
       'A pure fullscreen black screen for finding stuck pixels, checking backlight bleed and dimming a display.',
     icon: Square,
     keywords: [...colorKeywords('black'), 'backlight bleed', 'ips glow', 'dark screen'],
-    related: ['white-screen', 'oled-gray-test', 'dead-pixel-test', 'screen-uniformity-test'],
+    related: ['white-screen', 'dead-pixel-test', 'monitor-test', 'oled-gray-test'],
     swatch: '#000000',
   },
   {
@@ -97,7 +97,7 @@ export const TOOLS: readonly Tool[] = [
       'A solid fullscreen red screen for testing red subpixels, night-friendly light and color backdrops.',
     icon: Square,
     keywords: [...colorKeywords('red'), 'red subpixel', 'night light'],
-    related: ['green-screen', 'blue-screen', 'dead-pixel-test', 'screen-color-test'],
+    related: ['pink-screen', 'dead-pixel-test', 'green-screen', 'blue-screen'],
     swatch: '#FF0000',
   },
   {
@@ -108,7 +108,7 @@ export const TOOLS: readonly Tool[] = [
       'A bright fullscreen green screen for chroma key backdrops, green subpixel checks and uniformity tests.',
     icon: Square,
     keywords: [...colorKeywords('green'), 'chroma key', 'green subpixel'],
-    related: ['blue-screen', 'red-screen', 'dead-pixel-test', 'screen-uniformity-test'],
+    related: ['black-screen', 'dead-pixel-test', 'red-screen', 'blue-screen'],
     swatch: '#00FF00',
   },
   {
@@ -119,7 +119,7 @@ export const TOOLS: readonly Tool[] = [
       'A saturated fullscreen blue screen for blue subpixel tests, chroma keying and cool ambient light.',
     icon: Square,
     keywords: [...colorKeywords('blue'), 'blue subpixel', 'chroma key'],
-    related: ['red-screen', 'green-screen', 'cyan-screen', 'screen-color-test'],
+    related: ['fake-blue-screen-of-death', 'red-screen', 'dead-pixel-test', 'green-screen'],
     swatch: '#0000FF',
   },
   {
@@ -130,7 +130,7 @@ export const TOOLS: readonly Tool[] = [
       'A fullscreen yellow screen that lights red and green subpixels together, or works as a warm light.',
     icon: Square,
     keywords: [...colorKeywords('yellow'), 'warm light'],
-    related: ['orange-screen', 'red-screen', 'green-screen', 'dead-pixel-test'],
+    related: ['red-screen', 'dead-pixel-test', 'orange-screen', 'green-screen'],
     swatch: '#FFFF00',
   },
   {
@@ -141,7 +141,7 @@ export const TOOLS: readonly Tool[] = [
       'A warm fullscreen orange screen for cozy ambient light, sunset-toned photos and color comparisons.',
     icon: Square,
     keywords: [...colorKeywords('orange'), 'warm light', 'sunset'],
-    related: ['yellow-screen', 'red-screen', 'pink-screen', 'zoom-lighting'],
+    related: ['red-screen', 'pink-screen', 'ring-light', 'yellow-screen'],
     swatch: '#FF8000',
   },
   {
@@ -152,7 +152,7 @@ export const TOOLS: readonly Tool[] = [
       'A soft fullscreen pink screen for flattering selfie light, mood lighting and pastel backdrops.',
     icon: Square,
     keywords: [...colorKeywords('pink'), 'selfie light', 'pastel'],
-    related: ['magenta-screen', 'purple-screen', 'zoom-lighting', 'orange-screen'],
+    related: ['red-screen', 'ring-light', 'magenta-screen', 'purple-screen'],
     swatch: '#FF69B4',
   },
   {
@@ -196,7 +196,7 @@ export const TOOLS: readonly Tool[] = [
       'A neutral fullscreen gray screen for spotting clouding, banding and dirty screen effect on panels.',
     icon: Square,
     keywords: [...colorKeywords('gray'), 'grey screen', 'dirty screen effect', 'banding'],
-    related: ['screen-uniformity-test', 'oled-gray-test', 'black-screen', 'monitor-test'],
+    related: ['black-screen', 'monitor-test', 'oled-gray-test', 'screen-uniformity-test'],
     swatch: '#808080',
   },
   {
@@ -207,7 +207,7 @@ export const TOOLS: readonly Tool[] = [
       'Cycle full-screen solid colors to inspect your display for dead, stuck or hot pixels by eye.',
     icon: ScanEye,
     keywords: ['dead pixel', 'stuck pixel', 'hot pixel', 'pixel test', 'monitor check'],
-    related: ['screen-uniformity-test', 'monitor-test', 'black-screen', 'white-screen'],
+    related: ['black-screen', 'white-screen', 'monitor-test', 'touch-screen-test', 'screen-uniformity-test'],
   },
   {
     slug: 'screen-uniformity-test',
@@ -217,7 +217,7 @@ export const TOOLS: readonly Tool[] = [
       'Even gray fields with an optional grid overlay to reveal clouding, vignetting and backlight bleed.',
     icon: Grid3x3,
     keywords: ['uniformity', 'clouding', 'backlight bleed', 'dirty screen effect', 'vignetting'],
-    related: ['gray-screen', 'oled-gray-test', 'dead-pixel-test', 'monitor-test'],
+    related: ['black-screen', 'dead-pixel-test', 'monitor-test', 'gray-screen'],
   },
   {
     slug: 'monitor-test',
@@ -227,7 +227,7 @@ export const TOOLS: readonly Tool[] = [
       'A full set of monitor test patterns: gradients, grids, gamma, sharpness, checkerboards and color bars.',
     icon: MonitorCheck,
     keywords: ['monitor test', 'test pattern', 'gamma', 'sharpness', 'calibration', 'display test'],
-    related: ['screen-color-test', 'screen-resolution-test', 'dead-pixel-test', 'screen-uniformity-test'],
+    related: ['dead-pixel-test', 'frame-rate-test', 'screen-refresh-rate-test', 'screen-color-test', 'screen-resolution-test'],
   },
   {
     slug: 'oled-gray-test',
@@ -237,7 +237,7 @@ export const TOOLS: readonly Tool[] = [
       'Near-black gray steps that expose OLED banding, near-black flicker and uneven low-light uniformity.',
     icon: Contrast,
     keywords: ['oled', 'near black', 'gray uniformity', 'banding', 'black crush'],
-    related: ['oled-burn-in-test', 'screen-uniformity-test', 'gray-screen', 'black-screen'],
+    related: ['black-screen', 'dead-pixel-test', 'screen-burn-in-test', 'oled-burn-in-test'],
   },
   {
     slug: 'oled-burn-in-test',
@@ -247,7 +247,7 @@ export const TOOLS: readonly Tool[] = [
       'Solid color fields and an auto-cycle mode to help you see image retention and burn-in on OLED panels.',
     icon: Flame,
     keywords: ['burn in', 'image retention', 'oled', 'ghosting', 'screen burn'],
-    related: ['oled-gray-test', 'dead-pixel-test', 'color-cycle', 'gray-screen'],
+    related: ['black-screen', 'dead-pixel-test', 'screen-burn-in-test', 'oled-gray-test'],
   },  {
     slug: 'screen-burn-in-test',
     name: 'Screen Burn-In Test',
@@ -256,7 +256,7 @@ export const TOOLS: readonly Tool[] = [
       'Check any LCD, OLED or plasma screen for burn-in and image retention, then run a white-sweep or color fixer to clear it.',
     icon: Flame,
     keywords: ['screen burn test', 'burn in test', 'image retention', 'burn in fixer', 'ghost image'],
-    related: ['oled-burn-in-test', 'oled-gray-test', 'dead-pixel-test', 'screen-uniformity-test'],
+    related: ['dead-pixel-test', 'monitor-test', 'oled-gray-test', 'oled-burn-in-test'],
   },
   {
     slug: 'touch-screen-test',
@@ -266,7 +266,7 @@ export const TOOLS: readonly Tool[] = [
       'Find dead zones and test multi-touch: fill a grid with your finger, draw freely, or see every touch point live.',
     icon: Hand,
     keywords: ['touch screen test', 'touchscreen test', 'dead zone', 'multi touch test', 'digitizer test'],
-    related: ['dead-pixel-test', 'screen-refresh-rate-test', 'screen-resolution-test', 'screen-color-test'],
+    related: ['dead-pixel-test', 'monitor-test', 'screen-refresh-rate-test', 'screen-resolution-test'],
   },
   {
     slug: 'screen-refresh-rate-test',
@@ -276,7 +276,7 @@ export const TOOLS: readonly Tool[] = [
       'Measure your display\'s refresh rate in Hz live in the browser, with frame times, late frames and a motion check.',
     icon: Gauge,
     keywords: ['refresh rate test', 'hz test', 'monitor hz', '144hz test', 'screen refresh rate'],
-    related: ['frame-rate-test', 'monitor-ghosting-test', 'monitor-test', 'dead-pixel-test'],
+    related: ['monitor-test', 'frame-rate-test', 'monitor-ghosting-test', 'dead-pixel-test'],
   },
   {
     slug: 'monitor-ghosting-test',
@@ -286,7 +286,7 @@ export const TOOLS: readonly Tool[] = [
       'Moving targets on dark, mid-gray and light backgrounds reveal ghosting, smearing and overshoot on your monitor.',
     icon: Ghost,
     keywords: ['ghosting test', 'monitor ghosting', 'response time test', 'motion blur test', 'overdrive test'],
-    related: ['screen-refresh-rate-test', 'frame-rate-test', 'monitor-test', 'oled-burn-in-test'],
+    related: ['monitor-test', 'frame-rate-test', 'screen-refresh-rate-test', 'dead-pixel-test'],
   },
   {
     slug: 'frame-rate-test',
@@ -296,7 +296,7 @@ export const TOOLS: readonly Tool[] = [
       'Compare 15, 24, 30, 60 FPS and your display\'s maximum side by side to see how frame rate changes motion.',
     icon: Film,
     keywords: ['frame rate test', 'fps test', '30 vs 60 fps', 'fps comparison', 'framerate'],
-    related: ['screen-refresh-rate-test', 'monitor-ghosting-test', 'monitor-test', 'stopwatch'],
+    related: ['monitor-test', 'screen-refresh-rate-test', 'monitor-ghosting-test', 'stopwatch'],
   },
 
   {
@@ -307,7 +307,7 @@ export const TOOLS: readonly Tool[] = [
       'Color bars, RGB ramps and saturation steps for checking color accuracy, banding and tint.',
     icon: Palette,
     keywords: ['color test', 'color bars', 'rgb', 'gradient', 'color accuracy', 'banding'],
-    related: ['monitor-test', 'red-screen', 'gradient-screen', 'screen-uniformity-test'],
+    related: ['dead-pixel-test', 'monitor-test', 'contrast-checker', 'red-screen'],
   },
   {
     slug: 'screen-resolution-test',
@@ -317,7 +317,7 @@ export const TOOLS: readonly Tool[] = [
       'See your screen resolution, viewport size, pixel ratio and color depth, plus a 1-pixel sharpness pattern.',
     icon: Ruler,
     keywords: ['resolution', 'screen size', 'pixel ratio', 'viewport', 'dpi', 'what is my resolution'],
-    related: ['monitor-test', 'white-screen-image', 'dead-pixel-test', 'screen-color-test'],
+    related: ['dead-pixel-test', 'monitor-test', 'screen-refresh-rate-test', 'screen-color-test'],
   },
 
   // Effects
@@ -329,7 +329,7 @@ export const TOOLS: readonly Tool[] = [
       'A retro "No Signal" display with color bars or a floating message box, with your own custom text.',
     icon: WifiOff,
     keywords: ['no signal', 'color bars', 'test card', 'tv', 'input not found'],
-    related: ['white-noise-generator', 'dvd-screensaver', 'broken-screen', 'screen-color-test'],
+    related: ['broken-screen', 'dvd-screensaver', 'fake-blue-screen-of-death', 'white-noise-generator'],
   },
   {
     slug: 'white-noise-generator',
@@ -339,7 +339,7 @@ export const TOOLS: readonly Tool[] = [
       'Free online white noise generator with filters, volume, a sleep timer and a live waveform or TV static visual.',
     icon: AudioWaveform,
     keywords: ['white noise', 'white noise generator', 'tv static', 'static noise', 'sleep sound', 'focus', 'noise generator'],
-    related: ['pink-noise-generator', 'brown-noise-generator', 'pomodoro-timer', 'no-signal-screen'],
+    related: ['pomodoro-timer', 'countdown-timer', 'brown-noise-generator', 'pink-noise-generator'],
   },
   {
     slug: 'brown-noise-generator',
@@ -349,7 +349,7 @@ export const TOOLS: readonly Tool[] = [
       'Deep, rumbling brown noise generated live in your browser, with filters, volume, a sleep timer and a live waveform.',
     icon: Waves,
     keywords: ['brown noise', 'brown noise generator', 'brownian noise', 'red noise', 'sleep', 'focus', 'adhd'],
-    related: ['pink-noise-generator', 'white-noise-generator', 'pomodoro-timer', 'matrix-screensaver'],
+    related: ['pomodoro-timer', 'countdown-timer', 'white-noise-generator', 'pink-noise-generator'],
   },
   {
     slug: 'pink-noise-generator',
@@ -359,7 +359,7 @@ export const TOOLS: readonly Tool[] = [
       'Balanced pink noise that sounds like steady rain, with filters, volume, a sleep timer and a live waveform.',
     icon: AudioWaveform,
     keywords: ['pink noise', 'pink noise generator', 'rain sound', 'sleep', 'noise generator', 'relax'],
-    related: ['brown-noise-generator', 'white-noise-generator', 'pomodoro-timer', 'countdown-timer'],
+    related: ['pomodoro-timer', 'countdown-timer', 'brown-noise-generator', 'white-noise-generator'],
   },
   {
     slug: 'broken-screen',
@@ -369,7 +369,7 @@ export const TOOLS: readonly Tool[] = [
       'Tap to shatter a realistic glass screen, with spider-web cracks, glass shards and a crack sound. A harmless prank.',
     icon: Zap,
     keywords: ['broken screen', 'cracked screen', 'prank', 'shattered glass', 'effect'],
-    related: ['hacked-screen', 'fake-windows-10-update', 'no-signal-screen', 'hacker-typer'],
+    related: ['fake-windows-10-update', 'fake-blue-screen-of-death', 'hacked-screen', 'hacker-typer'],
   },
   {
     slug: 'hacker-typer',
@@ -379,7 +379,7 @@ export const TOOLS: readonly Tool[] = [
       'Mash any key to "type" convincing code like a movie hacker, or let it auto-type at your chosen speed.',
     icon: Terminal,
     keywords: ['hacker typer', 'fake code', 'hacker screen', 'typing prank', 'terminal'],
-    related: ['hacked-screen', 'matrix-screensaver', 'fake-radar-screen', 'broken-screen'],
+    related: ['broken-screen', 'fake-blue-screen-of-death', 'hacked-screen', 'matrix-screensaver'],
   },
   {
     slug: 'hacked-screen',
@@ -389,7 +389,7 @@ export const TOOLS: readonly Tool[] = [
       'A fake "system breached" screen with glitching text, scrolling logs, a fake progress bar and a warning siren. A harmless prank.',
     icon: ShieldAlert,
     keywords: ['hacked screen', 'hacked screen prank', 'fake virus screen', 'hacker screen', 'system breached'],
-    related: ['hacker-typer', 'broken-screen', 'fake-radar-screen', 'matrix-screensaver'],
+    related: ['broken-screen', 'fake-blue-screen-of-death', 'hacker-typer', 'matrix-screensaver'],
   },
   {
     slug: 'zoom-lighting',
@@ -399,7 +399,7 @@ export const TOOLS: readonly Tool[] = [
       'Turn your screen into a soft key light for video calls, with color temperature in Kelvin, brightness and a frame mode.',
     icon: Lightbulb,
     keywords: ['zoom lighting', 'video call light', 'webcam light', 'fill light', 'screen light'],
-    related: ['ring-light', 'white-screen', 'fake-zoom-meeting', 'pink-screen'],
+    related: ['white-screen', 'ring-light', 'pink-screen', 'fake-zoom-meeting'],
   },
   {
     slug: 'ring-light',
@@ -409,7 +409,7 @@ export const TOOLS: readonly Tool[] = [
       'A free online ring light: a glowing ring on your screen with adjustable size, thickness, brightness and color temperature.',
     icon: CircleDot,
     keywords: ['ring light', 'ring light online', 'online ring light', 'selfie light', 'webcam light'],
-    related: ['zoom-lighting', 'white-screen', 'fake-zoom-meeting', 'pink-screen'],
+    related: ['white-screen', 'pink-screen', 'zoom-lighting', 'fake-zoom-meeting'],
   },
   {
     slug: 'visual-noise',
@@ -451,7 +451,7 @@ export const TOOLS: readonly Tool[] = [
       'Cascading digital rain with adjustable speed, color, character set and font size.',
     icon: Binary,
     keywords: ['matrix', 'digital rain', 'code rain', 'falling characters', 'screensaver'],
-    related: ['hacker-typer', 'dvd-screensaver', 'flip-clock-screensaver', 'motivational-quote-screensaver'],
+    related: ['dvd-screensaver', 'flip-clock-screensaver', 'hacker-typer', 'motivational-quote-screensaver'],
   },
   {
     slug: 'flip-clock-screensaver',
@@ -461,7 +461,7 @@ export const TOOLS: readonly Tool[] = [
       'A large live flip clock with 12- or 24-hour time, optional seconds and light or dark themes.',
     icon: Clock,
     keywords: ['flip clock', 'clock', 'desk clock', 'fullscreen clock', 'time'],
-    related: ['countdown-timer', 'stopwatch', 'dvd-screensaver', 'matrix-screensaver'],
+    related: ['stopwatch', 'pomodoro-timer', 'countdown-timer', 'dvd-screensaver'],
   },
   {
     slug: 'dvd-screensaver',
@@ -471,7 +471,7 @@ export const TOOLS: readonly Tool[] = [
       'The classic bouncing DVD logo that changes color on every bounce, with a corner-hit counter.',
     icon: Disc3,
     keywords: ['dvd', 'bouncing logo', 'screensaver', 'corner hit', 'retro'],
-    related: ['motivational-quote-screensaver', 'matrix-screensaver', 'no-signal-screen', 'flip-clock-screensaver'],
+    related: ['flip-clock-screensaver', 'matrix-screensaver', 'no-signal-screen', 'motivational-quote-screensaver'],
   },
   {
     slug: 'motivational-quote-screensaver',
@@ -481,7 +481,7 @@ export const TOOLS: readonly Tool[] = [
       'Rotating inspirational quotes in large type on calm backgrounds, with a timer, shuffle and an optional clock.',
     icon: Quote,
     keywords: ['motivational quotes', 'inspirational quotes', 'quote screensaver', 'quote of the day', 'office display'],
-    related: ['flip-clock-screensaver', 'dvd-screensaver', 'countdown-timer', 'matrix-screensaver'],
+    related: ['pomodoro-timer', 'countdown-timer', 'flip-clock-screensaver', 'dvd-screensaver'],
   },
 
 
@@ -494,7 +494,7 @@ export const TOOLS: readonly Tool[] = [
       'A big fullscreen countdown timer with presets, pause and resume, and a sound and visual alert.',
     icon: Hourglass,
     keywords: ['countdown', 'timer', 'fullscreen timer', 'presentation timer', 'alarm'],
-    related: ['pomodoro-timer', 'stopwatch', 'flip-clock-screensaver', 'white-noise-generator'],
+    related: ['stopwatch', 'pomodoro-timer', 'flip-clock-screensaver', 'white-noise-generator'],
   },
   {
     slug: 'pomodoro-timer',
@@ -504,7 +504,17 @@ export const TOOLS: readonly Tool[] = [
       'A fullscreen Pomodoro timer: 25-minute focus sessions, short and long breaks, a session counter and gentle alerts.',
     icon: Timer,
     keywords: ['pomodoro', 'pomodoro timer', 'focus timer', 'study timer', 'tomato timer', 'productivity'],
-    related: ['countdown-timer', 'white-noise-generator', 'brown-noise-generator', 'stopwatch'],
+    related: ['stopwatch', 'countdown-timer', 'flip-clock-screensaver', 'brown-noise-generator', 'white-noise-generator'],
+  },
+  {
+    slug: 'contrast-checker',
+    name: 'Color Contrast Checker',
+    category: 'utilities',
+    description:
+      'Check the contrast ratio between text and background colors against WCAG AA and AAA, with a passing color suggestion.',
+    icon: Contrast,
+    keywords: ['contrast checker', 'color contrast checker', 'wcag contrast', 'contrast ratio', 'accessibility colors'],
+    related: ['screen-color-test', 'monitor-test', 'gradient-screen', 'white-screen-image'],
   },
   {
     slug: 'stopwatch',
@@ -514,7 +524,7 @@ export const TOOLS: readonly Tool[] = [
       'A precise fullscreen stopwatch with start, stop, reset and lap times you can review.',
     icon: Timer,
     keywords: ['stopwatch', 'lap timer', 'chronometer', 'timer', 'split times'],
-    related: ['countdown-timer', 'flip-clock-screensaver', 'hacker-typer', 'monitor-test'],
+    related: ['pomodoro-timer', 'countdown-timer', 'flip-clock-screensaver', 'frame-rate-test'],
   },
 
   // Fake screens
@@ -526,7 +536,7 @@ export const TOOLS: readonly Tool[] = [
       'A harmless simulation of a classic blue "working on updates" screen with a configurable progress.',
     icon: Monitor,
     keywords: ['fake windows update', 'windows 10', 'update prank', 'fake update', 'blue update screen'],
-    related: ['fake-windows-11-update', 'fake-windows-xp-update', 'broken-screen', 'fake-mac-update'],
+    related: ['broken-screen', 'fake-blue-screen-of-death', 'fake-windows-11-update', 'fake-mac-update'],
   },
   {
     slug: 'fake-windows-11-update',
@@ -536,7 +546,7 @@ export const TOOLS: readonly Tool[] = [
       'A simulated modern dark update screen with spinning dots and a progress percentage you control.',
     icon: Monitor,
     keywords: ['fake windows 11 update', 'windows 11', 'update prank', 'fake update'],
-    related: ['fake-windows-10-update', 'fake-mac-update', 'fake-chrome-os-update', 'hacker-typer'],
+    related: ['broken-screen', 'fake-windows-10-update', 'fake-blue-screen-of-death', 'fake-mac-update'],
   },  {
     slug: 'fake-blue-screen-of-death',
     name: 'Fake Blue Screen of Death',
@@ -545,7 +555,7 @@ export const TOOLS: readonly Tool[] = [
       'A realistic Windows Blue Screen of Death prank with the :( face, a rising percentage, stop codes, and Windows 10, 11, black and classic XP styles.',
     icon: Frown,
     keywords: ['fake blue screen of death', 'fake bsod', 'blue screen prank', 'windows crash screen', 'bsod simulator'],
-    related: ['fake-windows-10-update', 'fake-windows-11-update', 'hacked-screen', 'broken-screen'],
+    related: ['broken-screen', 'fake-windows-10-update', 'hacked-screen', 'blue-screen'],
   },
 
   {
@@ -556,7 +566,7 @@ export const TOOLS: readonly Tool[] = [
       'A simulated minimalist desktop update screen with a slim progress bar and time remaining.',
     icon: Laptop,
     keywords: ['fake mac update', 'macos', 'update prank', 'fake update', 'apple'],
-    related: ['fake-windows-11-update', 'fake-ubuntu-update', 'fake-android-update', 'broken-screen'],
+    related: ['broken-screen', 'fake-windows-10-update', 'fake-windows-11-update', 'fake-android-update'],
   },
   {
     slug: 'fake-android-update',
@@ -566,7 +576,7 @@ export const TOOLS: readonly Tool[] = [
       'A simulated phone system update screen with installing steps and a progress you can configure.',
     icon: Smartphone,
     keywords: ['fake android update', 'phone update', 'update prank', 'system update'],
-    related: ['fake-mac-update', 'fake-chrome-os-update', 'broken-screen', 'fake-windows-11-update'],
+    related: ['broken-screen', 'fake-windows-10-update', 'fake-mac-update', 'fake-chrome-os-update'],
   },
   {
     slug: 'fake-windows-xp-update',
@@ -576,7 +586,7 @@ export const TOOLS: readonly Tool[] = [
       'A nostalgic simulation of a 2000s-era install screen with a blocky progress bar and setup messages.',
     icon: Monitor,
     keywords: ['windows xp update', 'xp', 'retro update', 'nostalgia', 'fake update'],
-    related: ['fake-windows-xp-boot', 'fake-windows-10-update', 'dvd-screensaver', 'no-signal-screen'],
+    related: ['fake-windows-10-update', 'fake-blue-screen-of-death', 'fake-windows-xp-boot', 'dvd-screensaver'],
   },
   {
     slug: 'fake-windows-xp-boot',
@@ -586,7 +596,7 @@ export const TOOLS: readonly Tool[] = [
       'A retro boot screen simulation with the iconic sliding progress blocks on a black background.',
     icon: Loader,
     keywords: ['windows xp boot', 'boot screen', 'startup screen', 'retro', 'nostalgia'],
-    related: ['fake-windows-xp-update', 'fake-windows-10-update', 'no-signal-screen', 'white-noise-generator'],
+    related: ['fake-windows-10-update', 'fake-blue-screen-of-death', 'fake-windows-xp-update', 'no-signal-screen'],
   },
   {
     slug: 'fake-chrome-os-update',
@@ -596,7 +606,7 @@ export const TOOLS: readonly Tool[] = [
       'A simulated light, friendly laptop update screen with a progress bar and changing status steps.',
     icon: Laptop,
     keywords: ['chrome os update', 'chromebook update', 'fake update', 'update prank'],
-    related: ['fake-android-update', 'fake-mac-update', 'fake-windows-11-update', 'fake-ubuntu-update'],
+    related: ['broken-screen', 'fake-windows-10-update', 'fake-android-update', 'fake-mac-update'],
   },
   {
     slug: 'fake-ubuntu-update',
@@ -606,7 +616,7 @@ export const TOOLS: readonly Tool[] = [
       'A simulated Linux terminal upgrade that prints package logs and a text progress bar.',
     icon: Terminal,
     keywords: ['ubuntu update', 'linux update', 'apt upgrade', 'terminal', 'fake update'],
-    related: ['hacker-typer', 'matrix-screensaver', 'fake-chrome-os-update', 'fake-windows-10-update'],
+    related: ['fake-windows-10-update', 'hacker-typer', 'matrix-screensaver', 'fake-chrome-os-update'],
   },
   {
     slug: 'fake-zoom-meeting',
@@ -616,7 +626,7 @@ export const TOOLS: readonly Tool[] = [
       'A gallery-view meeting simulation in a dark theme with a toolbar, timer, webcam preview and active-speaker outline.',
     icon: Users,
     keywords: ['fake zoom meeting', 'fake zoom call', 'zoom meeting screen', 'gallery view', 'film prop', 'meeting simulation'],
-    related: ['fake-teams-meeting', 'fake-google-meet', 'fake-slack-huddle', 'zoom-lighting'],
+    related: ['ring-light', 'fake-teams-meeting', 'fake-google-meet', 'zoom-lighting'],
   },
   {
     slug: 'fake-teams-meeting',
@@ -626,7 +636,7 @@ export const TOOLS: readonly Tool[] = [
       'A Teams-style meeting simulation with a dark stage, participant tiles, a top control bar with a Leave button and a running meeting timer.',
     icon: Users,
     keywords: ['fake teams meeting', 'fake teams call', 'teams meeting screen', 'microsoft teams', 'film prop', 'meeting simulation'],
-    related: ['fake-zoom-meeting', 'fake-google-meet', 'fake-slack-huddle', 'zoom-lighting'],
+    related: ['ring-light', 'fake-zoom-meeting', 'fake-google-meet', 'fake-slack-huddle'],
   },
   {
     slug: 'fake-google-meet',
@@ -636,7 +646,7 @@ export const TOOLS: readonly Tool[] = [
       'A Google Meet-style meeting simulation with rounded participant tiles, initial avatars, a blue speaking outline and round call controls.',
     icon: Users,
     keywords: ['fake google meet', 'google meet screen', 'fake meet call', 'meeting screen', 'film prop', 'meeting simulation'],
-    related: ['fake-zoom-meeting', 'fake-teams-meeting', 'fake-slack-huddle', 'zoom-lighting'],
+    related: ['ring-light', 'fake-zoom-meeting', 'fake-teams-meeting', 'fake-slack-huddle'],
   },
   {
     slug: 'fake-slack-huddle',
@@ -646,7 +656,7 @@ export const TOOLS: readonly Tool[] = [
       'A compact audio huddle simulation with Slack-styled avatars, live speaking rings and an active huddle timer.',
     icon: MessagesSquare,
     keywords: ['fake slack huddle', 'huddle', 'audio call', 'film prop', 'call simulation'],
-    related: ['fake-zoom-meeting', 'fake-teams-meeting', 'zoom-lighting', 'countdown-timer'],
+    related: ['countdown-timer', 'fake-zoom-meeting', 'fake-teams-meeting', 'fake-google-meet'],
   },
   {
     slug: 'fake-radar-screen',
@@ -656,7 +666,7 @@ export const TOOLS: readonly Tool[] = [
       'A fullscreen sci-fi radar with a rotating sweep, fading blips, range rings and live coordinates. Pure simulation.',
     icon: Radar,
     keywords: ['fake radar', 'radar screen', 'radar sweep', 'sonar screen', 'sci-fi display'],
-    related: ['hacked-screen', 'hacker-typer', 'matrix-screensaver', 'fake-windows-10-update'],
+    related: ['broken-screen', 'hacked-screen', 'hacker-typer', 'matrix-screensaver'],
   },
 
 ]

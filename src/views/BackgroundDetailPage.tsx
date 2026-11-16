@@ -8,6 +8,7 @@ import { InlineAd, RailAd, ToolWithAds } from '@/components/tool-ads'
 import { RatingRow, ToolRatingPrompt } from '@/components/tool-rating'
 import { STUDIO_BACKGROUND_PAGES } from '@/lib/studio-layout'
 import { tx } from '@/lib/tx'
+import { BACKGROUND_SUBTITLE_EN, localizedBackgroundSubtitle } from '@/lib/subtitles'
 import { paintBackground } from '@/lib/background-paint'
 import { isLightColor } from '@/lib/screen-colors'
 import { DoubleTapHint, STAGE_SIZE, STUDIO_BAND, TOOL_FIXED_WIDTH, TOOL_STAGE_FIXED, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
@@ -17,7 +18,7 @@ import type { BackgroundToolProps } from '@/lib/article-i18n/background-props'
 
 /** The interactive part of a background page: preview, downloads and next links. The article below it is static (BackgroundBody). */
 export function BackgroundDetailPage({ item, more, categories, text }: BackgroundToolProps) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [isFullscreen, setIsFullscreen] = useState(false)
   useSignalOnFullscreenExit(isFullscreen)
   const [isCopied, setIsCopied] = useState(false)
@@ -151,7 +152,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
         </nav>
         )}
 
-        <StudioFrame studio={studio} title={item.title}>
+        <StudioFrame studio={studio} title={item.title} subtitle={language === 'en' ? BACKGROUND_SUBTITLE_EN[item.slug] : localizedBackgroundSubtitle(language, item.slug)}>
         <div className="relative">
           <div
             ref={screenRef}
@@ -339,7 +340,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
 }
 
 /** Studio layout: band, centered title and one actionable line above the stage; classic: the old ad column. */
-function StudioFrame({ studio, title, children }: { studio: boolean; title: string; children: React.ReactNode }) {
+function StudioFrame({ studio, title, subtitle, children }: { studio: boolean; title: string; subtitle?: string; children: React.ReactNode }) {
   if (!studio) return <ToolWithAds>{children}</ToolWithAds>
   // Same as the colour and tool pages: tool on the left at the fixed size, 300×600 ad beside it on desktop.
   return (
@@ -349,7 +350,7 @@ function StudioFrame({ studio, title, children }: { studio: boolean; title: stri
           <h1 id="screen-heading" className="text-balance text-2xl font-extrabold tracking-tight sm:text-3xl">
             {title}
           </h1>
-          <p className="text-pretty text-[13px] text-foreground/80 sm:text-[15px]">{tx('Click Fullscreen to show this background.')}</p>
+          <p className="text-pretty text-[13px] text-foreground/80 sm:text-[15px]">{subtitle || tx('Click Fullscreen to show this background.')}</p>
         </header>
         {children}
         <RatingRow className={cn('mx-auto w-full', TOOL_FIXED_WIDTH)} />

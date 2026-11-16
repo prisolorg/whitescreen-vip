@@ -239,4 +239,16 @@ export const fr: readonly string[] = [
   "Touchez deux fois l’écran pour passer en plein écran.",
   "Chaleur",
   "Minuteur",
+  // Countdown timer: custom time and date countdown
+  "Durée personnalisée",
+  "Compte à rebours jusqu’à une date",
+  "Changer la date",
+  "Cliquez ou touchez les chiffres pour régler n’importe quelle durée.",
+  "Jours",
+  "Compte à rebours jusqu’au",
+  "Nom de l’événement",
+  "Nom de l’événement (facultatif)",
+  "Date et heure",
+  "Affiche les jours, heures, minutes et secondes. Appuyez sur Démarrer.",
+  "Choisissez une date et une heure à venir.",
 ]

@@ -357,7 +357,7 @@ export const screenTestContent: Record<string, ToolContent> = {
   'screen-burn-in-test': {
     title: 'Screen Burn-In Test – Check & Fix Image Retention',
     intro:
-      'Check any screen (OLED, LCD or plasma) for burn-in and image retention, then try to clear it. In Check mode, step through 50% gray, dark gray, white, black and pure red, green and blue fields; faint taskbars, logos, keyboards or game HUDs that stay visible are burn-in or retention. In Fixer mode, run a white bar sweep, a color cycle or color noise for a set time, which often clears temporary retention on LCDs and OLEDs. For OLED-specific checks, see the [OLED Burn-In Test](/oled-burn-in-test/) and the [OLED Gray Test](/oled-gray-test/).',
+      'Check any screen (OLED, LCD or plasma) for burn-in and image retention, then try to clear it. In Check mode, step through 50% gray, dark gray, white, black and pure red, green and blue fields; faint taskbars, logos, keyboards or game HUDs that stay visible are burn-in or retention. In Fixer mode, run a white bar sweep, a color cycle or color noise for a set time, which often clears temporary retention on LCDs and OLEDs. For OLED-specific checks, see the [OLED Burn-In Test](/oled-burn-in-test/) and the [OLED Test](/oled-gray-test/).',
     steps: [
       'Turn the brightness up and go fullscreen in a dim room.',
       'In Check mode, use the arrows or field buttons to step through each color. 50% gray shows burn-in best.',
@@ -421,7 +421,7 @@ export const screenTestContent: Record<string, ToolContent> = {
   'screen-refresh-rate-test': {
     title: 'Screen Refresh Rate Test – Check Your Monitor Hz',
     intro:
-      'Find out how many times per second your screen refreshes. Browsers draw one frame per refresh, so timing those frames shows your real refresh rate in Hz: 60, 120, 144, 165, 240 or more. You also see the time per frame, how many frames arrived late, and a moving block that looks smoother at higher rates. Compare frame rates side by side with the [Frame Rate Test](/frame-rate-test/), or check motion clarity with the [Monitor Ghosting Test](/monitor-ghosting-test/).',
+      'Find out how many times per second your screen refreshes. Browsers draw one frame per refresh, so timing those frames shows your real refresh rate in Hz: 60, 120, 144, 165, 240 or more. You also see the time per frame, how many frames arrived late, and a moving block that looks smoother at higher rates. Compare frame rates side by side with the [FPS Test](/frame-rate-test/), or check motion clarity with the [Monitor Ghosting Test](/monitor-ghosting-test/).',
     steps: [
       'Open the page and wait a second or two for the reading to settle.',
       'Read the Hz value and the nearest standard rate.',

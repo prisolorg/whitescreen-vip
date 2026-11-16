@@ -93,6 +93,8 @@ const FakeScreens = lazy(() => import('@/components/tools/fake-screens').then(m 
   }
 })))
 
+const Contrast = lazy(() => import('@/components/tools/contrast').then(m => ({ default: m.ContrastChecker })))
+
 function ToolLoadingFallback() {
   return (
     <div
@@ -163,6 +165,14 @@ export function renderToolComponent(slug: string): React.ReactNode {
     return (
       <Suspense fallback={<ToolLoadingFallback />}>
         <Utilities slug={slug} />
+      </Suspense>
+    )
+  }
+
+  if (slug === 'contrast-checker') {
+    return (
+      <Suspense fallback={<ToolLoadingFallback />}>
+        <Contrast />
       </Suspense>
     )
   }

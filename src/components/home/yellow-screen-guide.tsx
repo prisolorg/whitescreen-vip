@@ -62,7 +62,7 @@ export function YellowScreenGuide() {
           <Link href="/green-screen" className={link}>green</Link> and <Link href="/blue-screen" className={link}>blue</Link> screens.
         </p>
         <p className={p}>
-          If your white screen looks yellow instead, see the{' '}
+          If your <Link href="/" className={link}>white screen</Link> looks yellow instead, see the{' '}
           <Link href="/screen-problems/yellow-tint-on-screen" className={link}>
             yellow tint guide
           </Link>

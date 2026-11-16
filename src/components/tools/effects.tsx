@@ -948,12 +948,12 @@ export function HackedScreen() {
         />
         <div className="relative flex size-full flex-col items-center justify-center gap-3 px-4 pb-10 text-center sm:gap-4">
           <p className="hack-blink text-xs font-bold tracking-[0.3em] sm:text-sm">{tx('⚠ WARNING ⚠ SECURITY BREACH DETECTED ⚠')}</p>
-          <h2
+          <p
             className="hack-glitch text-4xl font-black uppercase leading-none tracking-tight text-white sm:text-6xl md:text-7xl"
             style={{ textShadow: `0 0 24px ${accent}` }}
           >
             {headline || tx('SYSTEM HACKED')}
-          </h2>
+          </p>
           <div className="w-full max-w-md rounded border px-3 py-2 text-left text-xs sm:text-sm" style={{ borderColor: accent, background: 'rgba(0,0,0,0.75)' }}>
             <p className="truncate">&gt; {tx(step)}…</p>
             <div className="mt-2 h-3 w-full overflow-hidden rounded-sm border" style={{ borderColor: accent }}>

@@ -2,6 +2,7 @@ import { AUTHOR } from '@/lib/author'
 'use client'
 
 import { WhiteScreenCta } from '@/components/white-screen-cta'
+import { RichText, plainText } from '@/components/rich-text'
 import Link from 'next/link'
 import {
   ChevronRight,
@@ -76,7 +77,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
           name: faq.question,
           acceptedAnswer: {
             '@type': 'Answer',
-            text: faq.answer,
+            text: plainText(faq.answer),
           },
         })),
       }
@@ -191,7 +192,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
 
               <div className="mt-4 space-y-3.5 text-sm sm:text-base leading-relaxed text-foreground/90">
                 {section.content.map((p, pIdx) => (
-                  <p key={pIdx}>{p}</p>
+                  <p key={pIdx}><RichText text={p} /></p>
                 ))}
               </div>
 
@@ -269,7 +270,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
                     {faq.question}
                   </h3>
                   <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                    {faq.answer}
+                    <RichText text={faq.answer} />
                   </p>
                 </div>
               ))}

@@ -6066,6 +6066,11 @@
       "permanent": true
     },
     {
+      "source": "/es/contrast-checker/",
+      "destination": "/contrast-checker/",
+      "permanent": true
+    },
+    {
       "source": "/es/guides/max-brightness/",
       "destination": "/guides/max-brightness/",
       "permanent": true
@@ -6088,6 +6093,11 @@
     {
       "source": "/pt-br/author-whitson-rao/",
       "destination": "/author-whitson-rao/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/contrast-checker/",
+      "destination": "/contrast-checker/",
       "permanent": true
     },
     {
@@ -6116,6 +6126,11 @@
       "permanent": true
     },
     {
+      "source": "/de/contrast-checker/",
+      "destination": "/contrast-checker/",
+      "permanent": true
+    },
+    {
       "source": "/de/guides/max-brightness/",
       "destination": "/guides/max-brightness/",
       "permanent": true
@@ -6138,6 +6153,11 @@
     {
       "source": "/fr/author-whitson-rao/",
       "destination": "/author-whitson-rao/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/contrast-checker/",
+      "destination": "/contrast-checker/",
       "permanent": true
     },
     {
@@ -6171,6 +6191,11 @@
       "permanent": true
     },
     {
+      "source": "/it/contrast-checker/",
+      "destination": "/contrast-checker/",
+      "permanent": true
+    },
+    {
       "source": "/it/guides/max-brightness/",
       "destination": "/guides/max-brightness/",
       "permanent": true
@@ -6201,6 +6226,11 @@
       "permanent": true
     },
     {
+      "source": "/nl/contrast-checker/",
+      "destination": "/contrast-checker/",
+      "permanent": true
+    },
+    {
       "source": "/nl/guides/max-brightness/",
       "destination": "/guides/max-brightness/",
       "permanent": true
@@ -6226,6 +6256,11 @@
       "permanent": true
     },
     {
+      "source": "/id/contrast-checker/",
+      "destination": "/contrast-checker/",
+      "permanent": true
+    },
+    {
       "source": "/id/guides/max-brightness/",
       "destination": "/guides/max-brightness/",
       "permanent": true
@@ -6248,6 +6283,11 @@
     {
       "source": "/tr/author-whitson-rao/",
       "destination": "/author-whitson-rao/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/contrast-checker/",
+      "destination": "/contrast-checker/",
       "permanent": true
     },
     {

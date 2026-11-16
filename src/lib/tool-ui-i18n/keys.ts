@@ -452,4 +452,16 @@ export const TOOL_UI_KEYS = [
   "Double-tap the screen to go fullscreen.",
   "Warmth",
   "Timer",
+  // Countdown timer: custom time and date countdown
+  "Custom time",
+  "Count down to a date",
+  "Change date",
+  "Click or tap the numbers to set any time.",
+  "Days",
+  "Count down to",
+  "Event name",
+  "Event name (optional)",
+  "Date and time",
+  "Shows days, hours, minutes and seconds. Press Start.",
+  "Pick a date and time in the future.",
 ] as const

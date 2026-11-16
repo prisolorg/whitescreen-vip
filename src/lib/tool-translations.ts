@@ -294,6 +294,7 @@ export const TOOL_TRANSLATIONS: Record<LanguageCode, Record<string, ToolText>> =
     'motivational-quote-screensaver': { name: 'Motivational Quote Screensaver', description: 'Rotating inspirational quotes in large type on calm backgrounds, with a timer, shuffle and an optional clock.' },
     'countdown-timer': { name: 'Countdown Timer', description: 'A big fullscreen countdown timer with presets, pause and resume, and a sound and visual alert.' },
     'stopwatch': { name: 'Stopwatch', description: 'A precise fullscreen stopwatch with start, stop, reset and lap times you can review.' },
+    'contrast-checker': { name: 'Color Contrast Checker', description: 'Check the contrast ratio between text and background colors against WCAG AA and AAA.' },
     'fake-windows-10-update': { name: 'Fake Windows 10 Update', description: 'A harmless simulation of a classic blue "working on updates" screen with configurable progress.' },
     'fake-windows-11-update': { name: 'Fake Windows 11 Update', description: 'A simulated modern dark update screen with spinning dots and a progress percentage you control.' },
     'fake-mac-update': { name: 'Fake Mac Update', description: 'A simulated minimalist desktop update screen with a slim progress bar and time remaining.' },

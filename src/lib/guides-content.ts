@@ -315,7 +315,7 @@ export const GUIDES: readonly GuideArticle[] = [
         title: 'Why a White Screen is the Best Pre-Cleaning Inspection Tool',
         content: [
           'When a laptop screen is turned off or displaying a dark desktop background, fingerprint oils, keyboard key rub marks, and fine airborne dust easily blend into the black matrix of the panel.',
-          'Launching WhiteScreen.vip in fullscreen illuminates the panel with uniform, high-contrast light. Dust specks and oily smudges cast distinct dark silhouettes against the bright backdrop, giving you a precise visual map of where your screen needs attention before you wipe.',
+          'Launching the [white screen](/) in fullscreen illuminates the panel with uniform, high-contrast light. Dust specks and oily smudges cast distinct dark silhouettes against the bright backdrop, giving you a precise visual map of where your screen needs attention before you wipe.',
         ],
       },
       {
@@ -531,7 +531,7 @@ export const GUIDES: readonly GuideArticle[] = [
         title: 'Why Large Display Lighting Beats Small Ring Lights',
         content: [
           'In photography physics, the larger the light source relative to the subject, the softer and more flattering the shadows. A dedicated 10-inch ring light produces harsh specular reflections in glasses and pinpoints sharp facial shadows.',
-          'A 24-inch or 27-inch computer monitor displaying a solid white screen creates an expansive light emitter that fills in eye sockets, softens skin texture, and reflects natural catchlights in your eyes.',
+          'A 24-inch or 27-inch computer monitor displaying a solid [white screen](/) creates an expansive light emitter that fills in eye sockets, softens skin texture, and reflects natural catchlights in your eyes.',
         ],
       },
       {
@@ -801,7 +801,7 @@ export const GUIDES: readonly GuideArticle[] = [
       {
         question: 'Does the white screen tool make my display brighter?',
         answer:
-          'No website can go past your device’s brightness setting. A white screen shows the brightest color your display can produce, so it is the easiest way to see your current maximum.',
+          'No website can go past your device’s brightness setting. A [white screen](/) shows the brightest color your display can produce, so it is the easiest way to see your current maximum.',
       },
       {
         question: 'Why does my phone get dimmer after a few minutes at full brightness?',
@@ -977,7 +977,7 @@ export const GUIDES: readonly GuideArticle[] = [
         id: 'match-monitors',
         title: 'Match brightness and color across monitors',
         content: [
-          'Two monitors rarely show exactly the same white. Showing the same white screen on both makes the difference obvious, so you can adjust them to match.',
+          'Two monitors rarely show exactly the same white. Showing the same [white screen](/) on both makes the difference obvious, so you can adjust them to match.',
         ],
         steps: [
           'Let both monitors warm up for about 30 minutes.',

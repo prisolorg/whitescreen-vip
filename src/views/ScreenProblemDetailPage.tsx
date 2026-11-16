@@ -1,5 +1,6 @@
 import React from 'react'
 import { WhiteScreenCta } from '@/components/white-screen-cta'
+import { RichText, plainText } from '@/components/rich-text'
 import Link from 'next/link'
 import {
   ChevronRight,
@@ -66,7 +67,7 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
             name: faq.question,
             acceptedAnswer: {
               '@type': 'Answer',
-              text: faq.answer,
+              text: plainText(faq.answer),
             },
           })),
         }
@@ -149,7 +150,7 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
               {/* Paragraphs */}
               {section.paragraphs.map((p, pIdx) => (
                 <p key={pIdx} className="text-xs sm:text-sm text-foreground/90 leading-relaxed">
-                  {p}
+                  <RichText text={p} />
                 </p>
               ))}
 
@@ -306,7 +307,7 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
               {item.faqs.map((faq, i) => (
                 <div key={i} className="rounded-xl border border-border/70 p-4 bg-muted/20">
                   <h3 className="font-semibold text-xs sm:text-sm text-foreground">{faq.question}</h3>
-                  <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
+                  <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground leading-relaxed"><RichText text={faq.answer} /></p>
                 </div>
               ))}
             </div>

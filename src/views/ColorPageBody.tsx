@@ -10,6 +10,7 @@ import { absoluteUrl } from '@/lib/site'
 import { useTranslation } from '@/lib/i18n'
 import { localizedToolName } from '@/lib/localized-tools'
 import { COLOR_GUIDES } from '@/lib/color-guides'
+import { localizedColorGuide, localizedGlanceHeading } from '@/lib/tool-content/localized-guides'
 import { FaqList } from '@/components/faq-list'
 import { RichText, plainText } from '@/components/rich-text'
 import { ToolGlanceBlock, ToolSources } from '@/components/tool-glance'
@@ -58,9 +59,13 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
   }
 
   // Long-form copy is English-only; other languages keep the translated intro and use cases.
-  const guide = language === 'en' ? COLOR_GUIDES[color.id] : undefined
+  const localized = language === 'en' ? undefined : localizedColorGuide(language, color.id)
+  const guide = language === 'en' ? COLOR_GUIDES[color.id] : localized && { sections: [], faqs: localized.faqs }
   // Keyword-led English pages replace the generic use-case grid, guide and colour links (the gallery above has them).
-  const KeywordGuide = language === 'en' ? ({ black: BlackScreenGuide, yellow: YellowScreenGuide, green: GreenScreenGuide, blue: BlueScreenGuide, red: RedScreenGuide, pink: PinkScreenGuide } as Record<string, ComponentType | undefined>)[color.id] : undefined
+  const KeywordGuide =
+    language === 'en'
+      ? ({ black: BlackScreenGuide, yellow: YellowScreenGuide, green: GreenScreenGuide, blue: BlueScreenGuide, red: RedScreenGuide, pink: PinkScreenGuide } as Record<string, ComponentType | undefined>)[color.id]
+      : localized?.Guide
   const faqSchema = guide && {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -75,7 +80,7 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
     <>
       <JsonLd data={schema} />
       {faqSchema && <JsonLd data={faqSchema} />}
-      {glance && <ToolGlanceBlock name={localizedName} glance={glance} rating={ratingFor(color.path)} />}
+      {glance && <ToolGlanceBlock name={localizedName} heading={language === 'en' ? undefined : localizedGlanceHeading(language, `${color.id}-screen`)} glance={glance} rating={ratingFor(color.path)} />}
       {usesStudioLayout(color.id) && <InlineAd className="mx-auto my-6 px-3 md:hidden" />}
       <ColorImage color={color} name={localizedName} />
       {KeywordGuide && <KeywordGuide />}
@@ -115,7 +120,7 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
         </Section>
       )}
       {guide && (
-        <Section id="faq" title={`${localizedName} FAQ`} className="border-t">
+        <Section id="faq" title="FAQ" className="border-t">
           <div className="max-w-3xl">
             <FaqList faqs={guide.faqs} />
           </div>

@@ -143,6 +143,9 @@ export function WhiteScreenGuide() {
             ['Specks that move when you wipe', 'Dust or smudges, not pixels', 'Clean the screen and check again'],
           ]}
         />
+        <p className={p}>
+          Then switch to the <Link href="/black-screen" className={link}>black screen</Link>: stuck pixels and backlight bleed show up best on black.
+        </p>
       </Section>
     </>
   )

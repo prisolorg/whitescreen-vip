@@ -61,6 +61,8 @@ export const ENGLISH_ONLY_PREFIXES = [
   '/privacy-policy',
   '/terms',
   '/disclaimer',
+  // Tools not translated yet.
+  '/contrast-checker',
   // Guides not translated yet: remove a path once guide-i18n has it in every language.
   '/guides/max-brightness',
   '/guides/browser-fullscreen',

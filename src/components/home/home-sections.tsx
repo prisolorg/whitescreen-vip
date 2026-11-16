@@ -169,7 +169,7 @@ export function HomeSections() {
             id="faq-heading"
             className="text-xl sm:text-2xl font-bold tracking-tight text-foreground"
           >
-            White Screen FAQ
+            FAQ
           </h2>
         </div>
 

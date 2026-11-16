@@ -239,4 +239,16 @@ export const es: readonly string[] = [
   "Toca dos veces la pantalla para verla a pantalla completa.",
   "Calidez",
   "Temporizador",
+  // Countdown timer: custom time and date countdown
+  "Tiempo personalizado",
+  "Cuenta regresiva hasta una fecha",
+  "Cambiar fecha",
+  "Haz clic o toca los números para elegir cualquier tiempo.",
+  "Días",
+  "Cuenta regresiva hasta",
+  "Nombre del evento",
+  "Nombre del evento (opcional)",
+  "Fecha y hora",
+  "Muestra días, horas, minutos y segundos. Pulsa Iniciar.",
+  "Elige una fecha y hora futuras.",
 ]

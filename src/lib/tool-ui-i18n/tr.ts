@@ -239,4 +239,16 @@ export const tr: readonly string[] = [
   "Tam ekran için ekrana iki kez dokunun.",
   "Sıcaklık",
   "Zamanlayıcı",
+  // Countdown timer: custom time and date countdown
+  "Özel süre",
+  "Bir tarihe geri sayım",
+  "Tarihi değiştir",
+  "İstediğiniz süreyi ayarlamak için sayılara tıklayın veya dokunun.",
+  "Gün",
+  "Geri sayım:",
+  "Etkinlik adı",
+  "Etkinlik adı (isteğe bağlı)",
+  "Tarih ve saat",
+  "Gün, saat, dakika ve saniyeyi gösterir. Başlat'a basın.",
+  "Gelecekte bir tarih ve saat seçin.",
 ]

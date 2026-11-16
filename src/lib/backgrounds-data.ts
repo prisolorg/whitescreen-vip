@@ -151,7 +151,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     faqs: [
       {
         question: 'Does running a full white screen consume more battery?',
-        answer: 'On OLED and AMOLED displays, yes. Pure white requires every subpixel to emit light at maximum power. On traditional LCD panels with LED backlights, energy consumption remains roughly constant regardless of the displayed color.',
+        answer: 'On OLED and AMOLED displays, yes. Pure white requires every subpixel to emit light at maximum power. On traditional LCD panels with LED backlights, energy consumption remains roughly constant regardless of the displayed color. If you use the [white screen](/) as a light on a phone, lower the brightness to save battery.',
       },
       {
         question: 'Can I use this white background for physical paper tracing?',
@@ -620,7 +620,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     faqs: [
       {
         question: 'Why does my white screen look like this yellow background?',
-        answer: 'You may have Windows Night Light, macOS True Tone, or a third-party app like f.lux active, or your monitor color temperature preset may be set to "Warm" (5000K).',
+        answer: 'You may have Windows Night Light, macOS True Tone, or a third-party app like f.lux active, or your monitor color temperature preset may be set to "Warm" (5000K). Open the [white screen](/) to check: if it looks yellow too, a warm setting is on.',
       },
     ],
     relatedTools: [
@@ -1499,7 +1499,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
       {
         question: 'Is beige better for my eyes than white?',
         answer:
-          'Many people find a warm, slightly darker background more comfortable for long reading, but brightness and room lighting matter more than the exact color.',
+          'Many people find a warm, slightly darker background more comfortable for long reading, but brightness and room lighting matter more than the exact color. Compare this background with the [white screen](/) at the same brightness to see which suits you.',
       },
     ],
     relatedTools: [

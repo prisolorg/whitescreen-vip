@@ -18,6 +18,7 @@ import { CustomColorPicker } from '@/components/screen-tool/custom-color-picker'
 import { RESOLUTION_PRESETS, MAX_DIM, MIN_DIM } from '@/components/home/home-tool'
 import { RatingRow, ToolRatingPrompt } from '@/components/tool-rating'
 import { RailAd } from '@/components/tool-ads'
+import { TOOL_SUBTITLE_EN, localizedSubtitle } from '@/lib/subtitles'
 
 type FullscreenDocument = Document & { webkitFullscreenElement?: Element | null; webkitExitFullscreen?: () => Promise<void> | void }
 type FullscreenElement = HTMLElement & { webkitRequestFullscreen?: () => Promise<void> | void }
@@ -415,7 +416,7 @@ export function ScreenStudio({
           {title}
         </h1>
         {focus ? (
-          <p className="text-pretty text-[13px] text-foreground/80 sm:text-[15px]">{rail ? tx('Double-tap the screen to go fullscreen.') : tx('Click Fullscreen to turn your screen {color}.').replace('{color}', t(initialColorId, preset?.name ?? initialColorId).toLocaleLowerCase(language))}</p>
+          <p className="text-pretty text-[13px] text-foreground/80 sm:text-[15px]">{rail ? ((language === 'en' ? TOOL_SUBTITLE_EN[`${initialColorId}-screen`] : localizedSubtitle(language, `${initialColorId}-screen`)) || tx('Double-tap the screen to go fullscreen.')) : tx('Click Fullscreen to turn your screen {color}.').replace('{color}', t(initialColorId, preset?.name ?? initialColorId).toLocaleLowerCase(language))}</p>
         ) : (
           <>
             <p className="text-pretty text-sm text-foreground/80 sm:text-[15px]">{tx('Go fullscreen in one click, switch colors, or download an image.')}</p>

@@ -2,11 +2,12 @@
 
 import { tx } from '@/lib/tx'
 import { useEffect, useRef, useState, useCallback } from 'react'
-import { Play, Pause, RotateCcw, Flag, Copy, Check, Volume2, VolumeX, SkipForward } from 'lucide-react'
+import { Play, Pause, RotateCcw, Flag, Copy, Check, Volume2, VolumeX, SkipForward, CalendarDays } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
 import { CompactSelect, MoreMenu } from '@/components/tool-kit/compact'
 import { ControlRow, ActionButton, Slider, Toggle } from '@/components/tool-kit/controls'
-import { playTone } from '@/components/tool-kit/audio'
+import { playTone, unlockAudio } from '@/components/tool-kit/audio'
+import { isTypingTarget } from '@/components/tool-kit/use-fullscreen'
 import { cn } from '@/lib/utils'
 
 /* ---------------- Countdown Timer ---------------- */
@@ -21,98 +22,358 @@ const PRESETS = [
   { label: '60 min', seconds: 3600 },
 ]
 
+const MAX_TIMER_SECONDS = 99 * 3600 + 59 * 60 + 59
+/** setTimeout fires at once for delays over 2^31-1 ms (~24.8 days), so long countdowns re-arm in steps. */
+const MAX_TIMEOUT_MS = 2_000_000_000
+const COUNTDOWN_STORAGE_KEY = 'wsv:countdown-timer'
+
+type CountdownMode = 'timer' | 'date'
+type SavedCountdown = { mode?: CountdownMode; total?: number; date?: string; name?: string; running?: boolean }
+
+const pad2 = (value: number) => String(value).padStart(2, '0')
+
+/** "YYYY-MM-DDTHH:mm" in local time, the value format of <input type="datetime-local">. */
+function toLocalInputValue(date: Date) {
+  return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())}T${pad2(date.getHours())}:${pad2(date.getMinutes())}`
+}
+
+/** A datetime-local value without an offset is parsed as local time. */
+function parseLocalInputValue(value: string) {
+  const time = value ? new Date(value).getTime() : NaN
+  return Number.isFinite(time) ? time : null
+}
+
+function readSavedCountdown(): SavedCountdown {
+  try {
+    return JSON.parse(window.localStorage.getItem(COUNTDOWN_STORAGE_KEY) ?? '{}') as SavedCountdown
+  } catch {
+    return {}
+  }
+}
+
+/** "1:30:05", "90:00" or "013005" → seconds (right-aligned: the last pair is seconds). Null if not a time. */
+function parseTypedTime(text: string) {
+  const groups = text.includes(':') ? text.split(':').map((g) => g.replace(/\D/g, '')) : (text.replace(/\D/g, '').match(/\d{1,2}(?=(?:\d{2})*$)/g) ?? [])
+  if (!groups.length || groups.length > 3 || groups.some((g) => !g)) return null
+  const [s = 0, m = 0, h = 0] = groups.map(Number).reverse()
+  return h * 3600 + m * 60 + s
+}
+
+function playChime() {
+  playTone(880, 200, 0.2)
+  playTone(880, 200, 0.2, 250)
+  playTone(1174, 500, 0.25, 500)
+}
+
+/** Two editable digits on the stage (hours, minutes or seconds). Typing two digits moves to the next field. */
+function DigitField({
+  label,
+  value,
+  max,
+  onCommit,
+  onCommitAll,
+  onEnter,
+  inputRef,
+  nextRef,
+}: {
+  label: string
+  value: number
+  max: number
+  onCommit: (value: number) => void
+  /** A whole time typed or pasted at once ("1:30:05") sets all three fields. */
+  onCommitAll: (seconds: number) => void
+  onEnter: () => void
+  inputRef: { current: HTMLInputElement | null }
+  nextRef?: { current: HTMLInputElement | null }
+}) {
+  const [draft, setDraft] = useState<string | null>(null)
+  return (
+    <input
+      ref={(element) => {
+        inputRef.current = element
+      }}
+      type="text"
+      inputMode="numeric"
+      autoComplete="off"
+      aria-label={tx(label)}
+      value={draft ?? pad2(value)}
+      onFocus={(event) => {
+        setDraft(pad2(value))
+        event.currentTarget.select()
+      }}
+      onBlur={() => setDraft(null)}
+      onInput={(event) => {
+        const inserted = (event as unknown as InputEvent).data ?? ''
+        const whole = inserted.length > 2 || inserted.includes(':') ? parseTypedTime(inserted) : null
+        if (whole !== null) {
+          setDraft(null)
+          onCommitAll(whole)
+          event.currentTarget.blur()
+          return
+        }
+        const digits = event.currentTarget.value.replace(/\D/g, '').slice(-2)
+        setDraft(digits)
+        onCommit(Math.min(max, Number(digits || 0)))
+        if (digits.length === 2 && nextRef?.current) nextRef.current.focus()
+      }}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault()
+          event.currentTarget.blur()
+          onEnter()
+        } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+          event.preventDefault()
+          const next = Math.max(0, Math.min(max, value + (event.key === 'ArrowUp' ? 1 : -1)))
+          setDraft(pad2(next))
+          onCommit(next)
+        }
+      }}
+      className="w-[1.2em] cursor-text rounded-[0.12em] bg-transparent p-0 text-center text-inherit outline-none transition-colors hover:bg-white/10 focus:bg-white/15 focus:ring-2 focus:ring-primary"
+    />
+  )
+}
+
 export function CountdownTimer() {
+  const [mode, setMode] = useState<CountdownMode>('timer')
   const [totalSeconds, setTotalSeconds] = useState(300)
   const [timeLeft, setTimeLeft] = useState(300)
   const [isRunning, setIsRunning] = useState(false)
   const [hasSound, setHasSound] = useState(true)
   const [isFinished, setIsFinished] = useState(false)
+  const [dateValue, setDateValue] = useState('')
+  const [eventName, setEventName] = useState('')
+  const [now, setNow] = useState(() => Date.now())
+  const [restored, setRestored] = useState(false)
 
-  const endTimeRef = useRef<number | null>(null)
-  const timerRef = useRef<number | null>(null)
+  // Wall-clock end time (Date.now based, so it survives sleep and background tabs).
+  const endAtRef = useRef<number | null>(null)
+  const finishedRef = useRef(false)
+  const hasSoundRef = useRef(hasSound)
+  hasSoundRef.current = hasSound
+  // Latest time left, updated synchronously so quick typing across the digit fields never reads a stale value.
+  const timeLeftRef = useRef(timeLeft)
+  timeLeftRef.current = timeLeft
+  const hoursRef = useRef<HTMLInputElement | null>(null)
+  const minutesRef = useRef<HTMLInputElement | null>(null)
+  const secondsRef = useRef<HTMLInputElement | null>(null)
 
-  const handleStart = useCallback(() => {
-    if (timeLeft <= 0) return
-    setIsRunning(true)
-    setIsFinished(false)
-    endTimeRef.current = performance.now() + timeLeft * 1000
-  }, [timeLeft])
+  const targetTime = parseLocalInputValue(dateValue)
+  const dateIsValid = targetTime !== null && targetTime > now
 
-  const handlePause = useCallback(() => {
-    setIsRunning(false)
-    if (timerRef.current) cancelAnimationFrame(timerRef.current)
+  // Restore the last countdown; a date countdown that is still ahead keeps running.
+  useEffect(() => {
+    const saved = readSavedCountdown()
+    const nextYear = new Date(new Date().getFullYear() + 1, 0, 1, 0, 0)
+    setDateValue(saved.date && parseLocalInputValue(saved.date) !== null ? saved.date : toLocalInputValue(nextYear))
+    if (saved.name) setEventName(saved.name.slice(0, 60))
+    if (saved.total && saved.total > 0 && saved.total <= MAX_TIMER_SECONDS) {
+      setTotalSeconds(saved.total)
+      setTimeLeft(saved.total)
+    }
+    if (saved.mode === 'date') {
+      setMode('date')
+      const target = saved.date ? parseLocalInputValue(saved.date) : null
+      if (saved.running && target && target > Date.now()) {
+        endAtRef.current = target
+        finishedRef.current = false
+        setTimeLeft(Math.ceil((target - Date.now()) / 1000))
+        setIsRunning(true)
+      }
+    }
+    setRestored(true)
   }, [])
 
-  const handleReset = useCallback(() => {
-    setIsRunning(false)
-    setIsFinished(false)
-    setTimeLeft(totalSeconds)
-    if (timerRef.current) cancelAnimationFrame(timerRef.current)
-  }, [totalSeconds])
+  useEffect(() => {
+    if (!restored) return
+    try {
+      const saved: SavedCountdown = { mode, total: totalSeconds, date: dateValue, name: eventName, running: mode === 'date' && isRunning }
+      window.localStorage.setItem(COUNTDOWN_STORAGE_KEY, JSON.stringify(saved))
+    } catch {
+      /* storage unavailable: nothing to remember */
+    }
+  }, [restored, mode, totalSeconds, dateValue, eventName, isRunning])
 
-  const setPreset = (sec: number) => {
+  // While editing a date, keep "now" fresh so a time that has just passed can't be started.
+  useEffect(() => {
+    if (mode !== 'date' || isRunning) return
+    const interval = window.setInterval(() => setNow(Date.now()), 15_000)
+    return () => window.clearInterval(interval)
+  }, [mode, isRunning])
+
+  const stopTimer = () => {
     setIsRunning(false)
-    setIsFinished(false)
-    setTotalSeconds(sec)
-    setTimeLeft(sec)
-    if (timerRef.current) cancelAnimationFrame(timerRef.current)
+    endAtRef.current = null
   }
 
-  useEffect(() => {
-    if (!isRunning) return
-
-    const tick = () => {
-      if (!endTimeRef.current) return
-      const remainingMs = Math.max(0, endTimeRef.current - performance.now())
-      const remainingSec = Math.ceil(remainingMs / 1000)
-      setTimeLeft(remainingSec)
-
-      if (remainingSec <= 0) {
-        setIsRunning(false)
-        setIsFinished(true)
-        if (hasSound) {
-          playTone(880, 200, 0.2)
-          setTimeout(() => playTone(880, 200, 0.2), 250)
-          setTimeout(() => playTone(1174, 500, 0.25), 500)
-        }
+  const handleStart = useCallback(() => {
+    if (isRunning) return
+    unlockAudio()
+    let endAt: number
+    if (mode === 'date') {
+      const target = parseLocalInputValue(dateValue)
+      if (target === null || target <= Date.now()) {
+        setNow(Date.now())
         return
       }
-      timerRef.current = requestAnimationFrame(tick)
+      endAt = target
+    } else {
+      if (timeLeft <= 0) return
+      endAt = Date.now() + timeLeft * 1000
+    }
+    endAtRef.current = endAt
+    finishedRef.current = false
+    setIsFinished(false)
+    setTimeLeft(Math.ceil((endAt - Date.now()) / 1000))
+    setIsRunning(true)
+  }, [isRunning, mode, dateValue, timeLeft])
+
+  // Timer: pause keeps the time left. Date: the date doesn't stop, so this goes back to editing it.
+  const handlePause = useCallback(() => {
+    stopTimer()
+    if (mode === 'date') {
+      setIsFinished(false)
+      setNow(Date.now())
+    }
+  }, [mode])
+
+  const handleReset = useCallback(() => {
+    stopTimer()
+    setIsFinished(false)
+    setTimeLeft(totalSeconds)
+  }, [totalSeconds])
+
+  const setTimerLength = (sec: number) => {
+    const clamped = Math.max(0, Math.min(MAX_TIMER_SECONDS, sec))
+    timeLeftRef.current = clamped
+    stopTimer()
+    setIsFinished(false)
+    setTotalSeconds(clamped)
+    setTimeLeft(clamped)
+  }
+
+  const handleSelect = (value: string) => {
+    if (value === 'date') {
+      stopTimer()
+      setIsFinished(false)
+      setNow(Date.now())
+      setMode('date')
+      return
+    }
+    if (mode === 'date') {
+      stopTimer()
+      setIsFinished(false)
+      setTimeLeft(totalSeconds)
+      setMode('timer')
+    }
+    if (value === 'custom') {
+      // Focus after the stage has re-rendered with the editable digits.
+      window.setTimeout(() => hoursRef.current?.focus(), 0)
+    } else {
+      setTimerLength(Number(value))
+    }
+  }
+
+  // Tick: an interval updates the display, and one timeout aimed at the end time fires the chime. Browsers
+  // pause requestAnimationFrame in hidden tabs and throttle chained timers, but a single timeout still fires.
+  useEffect(() => {
+    if (!isRunning || endAtRef.current === null) return
+    const endAt = endAtRef.current
+    let alarm: number | undefined
+
+    const update = () => {
+      const remaining = Math.max(0, Math.ceil((endAt - Date.now()) / 1000))
+      setTimeLeft(remaining)
+      if (remaining > 0 || finishedRef.current) return
+      finishedRef.current = true
+      endAtRef.current = null
+      setIsRunning(false)
+      setIsFinished(true)
+      if (hasSoundRef.current) playChime()
+    }
+    const arm = () => {
+      const wait = endAt - Date.now()
+      alarm = window.setTimeout(
+        () => {
+          update()
+          if (!finishedRef.current) arm()
+        },
+        Math.min(MAX_TIMEOUT_MS, Math.max(0, wait) + 20),
+      )
     }
 
-    timerRef.current = requestAnimationFrame(tick)
+    update()
+    arm()
+    const interval = window.setInterval(update, 250)
+    document.addEventListener('visibilitychange', update)
     return () => {
-      if (timerRef.current) cancelAnimationFrame(timerRef.current)
+      window.clearTimeout(alarm)
+      window.clearInterval(interval)
+      document.removeEventListener('visibilitychange', update)
     }
-  }, [isRunning, hasSound])
+  }, [isRunning])
+
+  // Show the time left in the tab title, so it can be read from a background tab.
+  const baseTitleRef = useRef<string | null>(null)
+  useEffect(() => {
+    if (baseTitleRef.current === null) baseTitleRef.current = document.title
+    const base = baseTitleRef.current
+    if (!isRunning) {
+      document.title = isFinished ? `${tx('Time is up!')} · ${base}` : base
+      return
+    }
+    const d = Math.floor(timeLeft / 86400)
+    const h = Math.floor((timeLeft % 86400) / 3600)
+    const clock = `${h > 0 || d > 0 ? `${pad2(h)}:` : ''}${pad2(Math.floor((timeLeft % 3600) / 60))}:${pad2(timeLeft % 60)}`
+    document.title = `${d > 0 ? `${d}d ` : ''}${clock} · ${base}`
+  }, [isRunning, isFinished, timeLeft])
+  useEffect(
+    () => () => {
+      if (baseTitleRef.current !== null) document.title = baseTitleRef.current
+    },
+    [],
+  )
 
   // Keyboard controls
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement) return
+      if (isTypingTarget(e.target) || e.metaKey || e.ctrlKey || e.altKey) return
       if (e.key === ' ' || e.code === 'Space') {
         e.preventDefault()
-        if (isRunning) handlePause()
+        if (isRunning || (mode === 'date' && isFinished)) handlePause()
         else handleStart()
-      } else if (e.key === 'r' || e.key === 'R') {
+      } else if ((e.key === 'r' || e.key === 'R') && mode === 'timer') {
         e.preventDefault()
         handleReset()
       }
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [isRunning, handlePause, handleStart, handleReset])
+  }, [isRunning, isFinished, mode, handlePause, handleStart, handleReset])
 
-  const hours = Math.floor(timeLeft / 3600)
+  const days = Math.floor(timeLeft / 86400)
+  const hours = mode === 'date' ? Math.floor((timeLeft % 86400) / 3600) : Math.floor(timeLeft / 3600)
   const minutes = Math.floor((timeLeft % 3600) / 60)
   const seconds = timeLeft % 60
-
-  const timeFormatted =
-    hours > 0
-      ? `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
-      : `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
-
   const progress = totalSeconds > 0 ? (timeLeft / totalSeconds) * 100 : 0
+  const isPreset = PRESETS.some((p) => p.seconds === totalSeconds)
+  const selectValue = mode === 'date' ? 'date' : isPreset ? String(totalSeconds) : 'custom'
+  const canEditDigits = mode === 'timer' && !isRunning
+
+  const setPart = (part: 'h' | 'm' | 's', value: number) => {
+    const current = timeLeftRef.current
+    const h = part === 'h' ? value : Math.floor(current / 3600)
+    const m = part === 'm' ? value : Math.floor((current % 3600) / 60)
+    const s = part === 's' ? value : current % 60
+    setTimerLength(h * 3600 + m * 60 + s)
+  }
+
+  const targetLabel =
+    targetTime !== null
+      ? new Intl.DateTimeFormat(document.documentElement.lang || undefined, { dateStyle: 'full', timeStyle: 'short' }).format(targetTime)
+      : ''
+
+  const stageInput =
+    'h-11 rounded-xl bg-white/10 px-3 text-base text-white ring-1 ring-white/20 outline-none [color-scheme:dark] placeholder:text-white/40 focus:ring-2 focus:ring-primary'
 
   return (
     <ToolStage
@@ -126,51 +387,132 @@ export function CountdownTimer() {
         <>
           <CompactSelect
             label="Timer"
-            value={PRESETS.some((p) => p.seconds === totalSeconds) ? String(totalSeconds) : 'custom'}
-            onChange={(value) => value !== 'custom' && setPreset(Number(value))}
+            value={selectValue}
+            onChange={handleSelect}
             options={[
               ...PRESETS.map((p) => ({ value: String(p.seconds), label: p.label })),
-              ...(PRESETS.some((p) => p.seconds === totalSeconds) ? [] : [{ value: 'custom', label: 'Custom' }]),
+              { value: 'custom', label: 'Custom time' },
+              { value: 'date', label: 'Count down to a date' },
             ]}
           />
-          <ActionButton variant="primary" onClick={isRunning ? handlePause : handleStart} className="w-28">
-            {isRunning ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
-            {isRunning ? tx('Pause') : tx('Start')}
-          </ActionButton>
-          <ActionButton onClick={handleReset}>
-            <RotateCcw aria-hidden="true" />
-            {tx('Reset')}
-          </ActionButton>
+          {mode === 'date' && (isRunning || isFinished) ? (
+            <ActionButton variant="primary" onClick={handlePause}>
+              <CalendarDays aria-hidden="true" />
+              {tx('Change date')}
+            </ActionButton>
+          ) : (
+            <ActionButton
+              variant="primary"
+              onClick={isRunning ? handlePause : handleStart}
+              disabled={mode === 'date' ? !dateIsValid : !isRunning && timeLeft <= 0}
+              className="w-28"
+            >
+              {isRunning ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
+              {isRunning ? tx('Pause') : tx('Start')}
+            </ActionButton>
+          )}
+          {mode === 'timer' && (
+            <ActionButton onClick={handleReset}>
+              <RotateCcw aria-hidden="true" />
+              {tx('Reset')}
+            </ActionButton>
+          )}
           <MoreMenu>
             <Toggle label="Chime Alert" checked={hasSound} onChange={setHasSound} />
           </MoreMenu>
         </>
       }
     >
-      <div className="relative flex size-full flex-col items-center justify-center p-6 select-none">
-        {/* Progress bar line */}
-        <div className="absolute top-0 inset-x-0 h-1.5 bg-neutral-800">
-          <div
-            className="h-full bg-primary transition-all duration-300"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-
-        <div className="flex flex-col items-center">
-          <div
-            className={cn(
-              'font-mono font-bold tracking-tighter text-6xl sm:text-8xl md:text-9xl transition-transform duration-200',
-              isFinished && 'scale-105 text-red-400',
-            )}
-          >
-            {timeFormatted}
+      <div className="@container relative flex size-full flex-col items-center justify-center p-4 select-none sm:p-6">
+        {mode === 'timer' && (
+          <div className="absolute top-0 inset-x-0 h-1.5 bg-neutral-800">
+            <div className="h-full bg-primary transition-all duration-300" style={{ width: `${progress}%` }} />
           </div>
-          {isFinished && (
-            <div className="mt-4 text-xl sm:text-2xl font-bold tracking-wide uppercase text-red-300">
-              {tx('Time is up!')}
+        )}
+
+        {mode === 'timer' ? (
+          <div className="flex flex-col items-center">
+            <div
+              className={cn(
+                'flex items-center font-mono font-bold tracking-tighter tabular-nums leading-none text-[min(15cqw,34cqh)] transition-transform duration-200',
+                isFinished && 'scale-105 text-red-400',
+              )}
+            >
+              {canEditDigits ? (
+                <>
+                  <DigitField label="Hours" value={Math.floor(timeLeft / 3600)} max={99} onCommit={(v) => setPart('h', v)} onCommitAll={setTimerLength} onEnter={handleStart} inputRef={hoursRef} nextRef={minutesRef} />
+                  <span aria-hidden="true">:</span>
+                  <DigitField label="Minutes" value={minutes} max={59} onCommit={(v) => setPart('m', v)} onCommitAll={setTimerLength} onEnter={handleStart} inputRef={minutesRef} nextRef={secondsRef} />
+                  <span aria-hidden="true">:</span>
+                  <DigitField label="Seconds" value={seconds} max={59} onCommit={(v) => setPart('s', v)} onCommitAll={setTimerLength} onEnter={handleStart} inputRef={secondsRef} />
+                </>
+              ) : (
+                <span role="timer">{`${pad2(Math.floor(timeLeft / 3600))}:${pad2(minutes)}:${pad2(seconds)}`}</span>
+              )}
             </div>
-          )}
-        </div>
+            {isFinished ? (
+              <div className="mt-4 text-xl sm:text-2xl font-bold tracking-wide uppercase text-red-300">{tx('Time is up!')}</div>
+            ) : (
+              canEditDigits && <div className="mt-3 text-xs text-white/50 sm:mt-4 sm:text-sm">{tx('Click or tap the numbers to set any time.')}</div>
+            )}
+          </div>
+        ) : isRunning || isFinished ? (
+          <div className="flex w-full flex-col items-center gap-[2cqh]">
+            {eventName && <div className="max-w-full truncate text-center text-[min(5cqw,9cqh)] font-semibold text-white/85">{eventName}</div>}
+            {isFinished ? (
+              <div className="text-[min(8cqw,16cqh)] font-bold tracking-wide uppercase text-red-300">{tx('Time is up!')}</div>
+            ) : (
+              <div role="timer" className="flex items-start justify-center gap-[3cqw] font-mono tabular-nums">
+                {[
+                  { value: String(days), label: 'Days' },
+                  { value: pad2(hours), label: 'Hours' },
+                  { value: pad2(minutes), label: 'Minutes' },
+                  { value: pad2(seconds), label: 'Seconds' },
+                ].map((part) => (
+                  <div key={part.label} className="flex flex-col items-center">
+                    <span className="text-[min(11cqw,28cqh)] font-bold leading-none tracking-tighter">{part.value}</span>
+                    <span className="mt-[1cqh] font-sans text-[min(2.4cqw,4.5cqh)] font-semibold uppercase tracking-widest text-white/55">{tx(part.label)}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div className="max-w-full truncate text-center text-[min(2.6cqw,5cqh)] text-white/55">{targetLabel}</div>
+          </div>
+        ) : (
+          <form
+            className="flex w-full max-w-sm flex-col gap-3 select-text"
+            onSubmit={(event) => {
+              event.preventDefault()
+              handleStart()
+            }}
+          >
+            <div className="text-center text-lg font-bold sm:text-2xl">{tx('Count down to')}</div>
+            <input
+              type="text"
+              value={eventName}
+              maxLength={60}
+              aria-label={tx('Event name')}
+              placeholder={tx('Event name (optional)')}
+              onInput={(event) => setEventName(event.currentTarget.value)}
+              className={stageInput}
+            />
+            <input
+              type="datetime-local"
+              required
+              value={dateValue}
+              aria-label={tx('Date and time')}
+              onInput={(event) => {
+                setDateValue(event.currentTarget.value)
+                setNow(Date.now())
+              }}
+              className={cn(stageInput, 'w-full')}
+            />
+            <p className={cn('text-center text-xs sm:text-sm', dateIsValid ? 'text-white/50' : 'text-red-300')}>
+              {dateIsValid ? tx('Shows days, hours, minutes and seconds. Press Start.') : tx('Pick a date and time in the future.')}
+            </p>
+            <button type="submit" hidden />
+          </form>
+        )}
       </div>
     </ToolStage>
   )

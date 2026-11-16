@@ -78,7 +78,8 @@ export function GreenScreenGuide() {
           Green carries most of the brightness we see, so darker corners or cloudy patches stand out on it. A dark dot is a dead green
           subpixel, while a yellow or cyan dot means a red or blue subpixel is stuck on. Run the{' '}
           <Link href="/screen-uniformity-test" className={link}>uniformity test</Link> or read the{' '}
-          <Link href="/screen-problems/stuck-pixel" className={link}>stuck pixel guide</Link> for next steps.
+          <Link href="/screen-problems/stuck-pixel" className={link}>stuck pixel guide</Link> for next steps. A black dot that shows on the{' '}
+          <Link href="/" className={link}>white screen</Link> as well is a fully dead pixel.
         </p>
       </Section>
     </div>

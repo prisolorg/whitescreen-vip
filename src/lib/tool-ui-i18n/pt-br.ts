@@ -239,4 +239,16 @@ export const ptBr: readonly string[] = [
   "Toque duas vezes na tela para abrir em tela cheia.",
   "Tom",
   "Timer",
+  // Countdown timer: custom time and date countdown
+  "Tempo personalizado",
+  "Contagem regressiva até uma data",
+  "Mudar data",
+  "Clique ou toque nos números para definir qualquer tempo.",
+  "Dias",
+  "Contagem regressiva até",
+  "Nome do evento",
+  "Nome do evento (opcional)",
+  "Data e hora",
+  "Mostra dias, horas, minutos e segundos. Toque em Iniciar.",
+  "Escolha uma data e hora no futuro.",
 ]

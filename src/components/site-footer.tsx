@@ -3,7 +3,9 @@ import { Logo } from './logo'
 import { useTranslation } from '@/lib/i18n'
 import { COLOR_HUB_NAMES, HUBS } from '@/lib/hubs'
 import { getCategory } from '@/lib/tool-categories'
-import { getLocalizedCategory } from '@/lib/localized-tools'
+import { getLocalizedCategory, getLocalizedTool } from '@/lib/localized-tools'
+import { TOOLS, toolPath } from '@/lib/tools'
+import { byKeywordVolume, linkLabelEn } from '@/lib/link-priority'
 import { getMessages } from '@/lib/messages'
 import { backgroundText } from '@/lib/article-i18n/background-text'
 
@@ -21,14 +23,13 @@ export function SiteFooter() {
     href: hub.path,
   }))
 
-  const screenTestLinks = [
-    { name: 'Dead Pixel Test', href: '/dead-pixel-test' },
-    { name: 'Screen Uniformity Test', href: '/screen-uniformity-test' },
-    { name: 'Screen Color Test', href: '/screen-color-test' },
-    { name: 'Monitor Test', href: '/monitor-test' },
-    { name: 'OLED Gray Test', href: '/oled-gray-test' },
-    { name: 'OLED Burn-In Test', href: '/oled-burn-in-test' },
-  ]
+  // The pages whose H1 keyword has the most search demand, linked from every page (the white screen is the home link above).
+  const popularLinks = byKeywordVolume(TOOLS.filter((tool) => tool.slug !== 'white-screen'))
+    .slice(0, 10)
+    .map((tool) => ({
+      name: language === 'en' ? linkLabelEn(tool.slug, tool.name) : getLocalizedTool(tool, language).name,
+      href: toolPath(tool.slug),
+    }))
 
   // "Backgrounds Library" removed per instructions; individual background collections preserved
   const backgroundCategories = backgroundText(language).categories
@@ -89,13 +90,13 @@ export function SiteFooter() {
 
         {/* 6 Clean Columns: Screen Tests, Backgrounds, Screen Problems, Glossary, About Us, Legal */}
         <div className="grid gap-8 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
-          {/* Group 1: Screen Tests */}
+          {/* Group 1: Popular tools, by search demand */}
           <div>
             <h2 className="mb-3 text-xs sm:text-sm font-semibold tracking-wide uppercase text-foreground">
-              {t('screenTests', 'Screen Tests')}
+              {t('popularTools', 'Popular Tools')}
             </h2>
             <ul className="flex flex-col gap-2 text-xs sm:text-sm">
-              {screenTestLinks.map((item) => (
+              {popularLinks.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}

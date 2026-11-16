@@ -15,7 +15,7 @@ export const effectsContent: Record<string, ToolContent> = {
       {
         heading: "Fixing a real no-signal message",
         paragraphs: [
-          "Check that the source device is on and awake, that the cable is firmly seated at both ends, and that the TV or monitor is set to the same input you plugged into. Try another cable or port, and for laptops press the display-switch shortcut. If the screen itself seems faulty, the [Monitor Test](/monitor-test/) helps check the panel once a picture is back.",
+          "Check that the source device is on and awake, that the cable is firmly seated at both ends, and that the TV or monitor is set to the same input you plugged into. Try another cable or port, and for laptops press the display-switch shortcut. If the screen itself seems faulty, the [Screen Test](/monitor-test/) helps check the panel once a picture is back.",
         ],
       },
     ],
@@ -163,7 +163,7 @@ export const effectsContent: Record<string, ToolContent> = {
   'broken-screen': {
     title: 'Broken Screen Prank – Realistic Cracked Glass Effect',
     intro:
-      'Tap anywhere and the screen "shatters": a spider-web of cracks spreads from the impact point, with glass shards that catch the light, a crushed centre and a sharp crack sound. Pick a wallpaper, lock screen or black background, go fullscreen and hand over the phone or laptop. Nothing is actually broken; it is a picture drawn in your browser. For a different scare, try the [Hacked Screen Simulator](/hacked-screen/).',
+      'Tap anywhere and the screen "shatters": a spider-web of cracks spreads from the impact point, with glass shards that catch the light, a crushed centre and a sharp crack sound. Pick a wallpaper, lock screen or black background, go fullscreen and hand over the phone or laptop. Nothing is actually broken; it is a picture drawn in your browser. For a different scare, try the [Hacked Screen Prank](/hacked-screen/).',
     steps: [
       'Pick a background: wallpaper, phone lock screen or black.',
       'Tap or click anywhere on the screen to crack the glass at that point. Each tap adds another impact.',
@@ -204,7 +204,7 @@ export const effectsContent: Record<string, ToolContent> = {
       {
         heading: "Making the effect convincing",
         paragraphs: [
-          "Go fullscreen, dim the room and type steadily rather than mashing keys. The three-press Alt and Caps Lock shortcuts bring up 'ACCESS GRANTED' and 'ACCESS DENIED' banners for the big moment. For a screen that looks like a breach in progress, switch to the [Hacked Screen Simulator](/hacked-screen/).",
+          "Go fullscreen, dim the room and type steadily rather than mashing keys. The three-press Alt and Caps Lock shortcuts bring up 'ACCESS GRANTED' and 'ACCESS DENIED' banners for the big moment. For a screen that looks like a breach in progress, switch to the [Hacked Screen Prank](/hacked-screen/).",
         ],
       },
     ],
@@ -460,7 +460,7 @@ export const screensaverContent: Record<string, ToolContent> = {
       {
         heading: "Using it on a TV or second monitor",
         paragraphs: [
-          "Set the character size larger for TVs viewed from a distance, and lower the density for a calmer look. Katakana gives the classic film style, while binary and alphanumeric suit hacker-themed parties or streams. For more effects, try [Hacker Typer](/hacker-typer/) or the [Hacked Screen Simulator](/hacked-screen/).",
+          "Set the character size larger for TVs viewed from a distance, and lower the density for a calmer look. Katakana gives the classic film style, while binary and alphanumeric suit hacker-themed parties or streams. For more effects, try [Hacker Typer](/hacker-typer/) or the [Hacked Screen Prank](/hacked-screen/).",
         ],
       },
     ],

@@ -239,4 +239,16 @@ export const id: readonly string[] = [
   "Ketuk layar dua kali untuk layar penuh.",
   "Kehangatan",
   "Pengatur waktu",
+  // Countdown timer: custom time and date countdown
+  "Waktu khusus",
+  "Hitung mundur ke tanggal",
+  "Ubah tanggal",
+  "Klik atau ketuk angka untuk mengatur waktu apa pun.",
+  "Hari",
+  "Hitung mundur ke",
+  "Nama acara",
+  "Nama acara (opsional)",
+  "Tanggal dan waktu",
+  "Menampilkan hari, jam, menit, dan detik. Tekan Mulai.",
+  "Pilih tanggal dan waktu di masa depan.",
 ]
