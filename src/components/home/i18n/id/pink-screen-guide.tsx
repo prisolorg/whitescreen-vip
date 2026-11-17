@@ -53,10 +53,10 @@ export function PinkScreenGuideId() {
         </p>
         <ul className={ul}>
           <li>
-            <strong className="text-foreground">Laptop dan desktop:</strong> 1080p, 1440p, 4K, atau 8K.
+            <strong className="text-foreground">Laptop dan desktop:</strong> 1080p, 2K atau 4K.
           </li>
           <li>
-            <strong className="text-foreground">Wallpaper HP:</strong> iPhone (1179×2556) atau Android (1080×2400).
+            <strong className="text-foreground">Wallpaper HP:</strong> Ponsel (1080×2400).
           </li>
           <li>
             <strong className="text-foreground">Lainnya:</strong> lebar dan tinggi kustom, seperti 1080×1920 untuk TikTok dan Reels.

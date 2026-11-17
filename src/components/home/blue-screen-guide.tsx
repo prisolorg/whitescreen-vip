@@ -49,7 +49,7 @@ export function BlueScreenGuide() {
           ]}
         />
         <p className={p}>
-          Need a file? Download saves a blue PNG from 1080p to 8K, or phone and custom sizes. More options are in the{' '}
+          Need a file? Download saves a blue PNG at 1080p, 2K, 4K or phone size, or any custom size up to 8K. More options are in the{' '}
           <Link href="/backgrounds/blue-background" className={link}>blue background</Link> collection.
         </p>
       </Section>

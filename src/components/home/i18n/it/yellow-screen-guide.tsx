@@ -47,7 +47,7 @@ export function YellowScreenGuideIt() {
           </li>
         </ul>
         <p className={p}>
-          Ti serve un file? «Scarica» salva un PNG giallo da 1080p a 8K, o in formati per telefono e personalizzati. Per tonalità pastello e
+          Ti serve un file? «Scarica» salva un PNG giallo in 1080p, 2K, 4K o formato telefono, o in qualsiasi dimensione personalizzata fino a 8K. Per tonalità pastello e
           giallo chiaro, sfoglia la raccolta di <Link href="/backgrounds/yellow-background" className={link}>sfondi gialli</Link>.
         </p>
       </Section>

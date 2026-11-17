@@ -101,13 +101,10 @@ export function WhiteScreenGuideId() {
         </p>
         <ul className={ul}>
           <li>
-            <strong className="text-foreground">Layar Anda:</strong> sama persis dengan perangkat ini.
+            <strong className="text-foreground">Desktop & TV:</strong> 1080p, 2K dan 4K.
           </li>
           <li>
-            <strong className="text-foreground">Desktop & TV:</strong> 1080p, 1440p, 4K, dan 8K.
-          </li>
-          <li>
-            <strong className="text-foreground">Ponsel dan tablet:</strong> iPhone (1179×2556), Android (1080×2400), dan iPad (2048×2732).
+            <strong className="text-foreground">Ponsel dan tablet:</strong> Ponsel (1080×2400).
           </li>
           <li>
             <strong className="text-foreground">Ukuran khusus:</strong> lebar dan tinggi berapa pun.

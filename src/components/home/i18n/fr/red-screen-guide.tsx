@@ -61,7 +61,7 @@ export function RedScreenGuideFr() {
           ]}
         />
         <p className={p}>
-          Besoin d&apos;un fichier ? « Télécharger » enregistre un PNG rouge de 1080p à 8K, ou aux tailles téléphone et personnalisées.
+          Besoin d&apos;un fichier ? « Télécharger » enregistre un PNG rouge en 1080p, 2K, 4K ou au format téléphone, ou à toute taille personnalisée jusqu’à 8K.
           D&apos;autres nuances se trouvent dans la collection <Link href="/backgrounds/red-background" className={link}>fond rouge</Link>.
         </p>
       </Section>

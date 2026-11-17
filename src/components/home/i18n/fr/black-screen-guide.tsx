@@ -28,12 +28,10 @@ export function BlackScreenGuideFr() {
           caption="Tailles d'image d'écran noir à télécharger"
           head={['Taille', 'Pixels', 'Idéal pour']}
           rows={[
-            ['Full HD 1080p', '1920 × 1080', 'Vidéos YouTube, diapositives, la plupart des moniteurs'],
-            ['QHD 1440p', '2560 × 1440', 'Moniteurs gaming et PC portables'],
-            ['4K UHD', '3840 × 2160', 'Timelines vidéo 4K et TV'],
-            ['8K UHD', '7680 × 4320', 'Projets 8K et très grands écrans'],
-            ['iPhone / Android', '1179 × 2556 / 1080 × 2400', 'Fond d’écran de téléphone, écran d’accueil et écran verrouillé'],
-            ['iPad', '2048 × 2732', 'Fond d’écran de tablette'],
+            ['1080p', '1920 × 1080', 'Vidéos YouTube, diapositives, la plupart des moniteurs'],
+            ['2K', '2560 × 1440', 'Moniteurs gaming et PC portables'],
+            ['4K', '3840 × 2160', 'Timelines vidéo 4K et TV'],
+            ['Téléphone', '1080 × 2400', 'Fond d’écran de téléphone, écran d’accueil et écran verrouillé'],
             ['Personnalisé', 'Toute taille, par ex. 1080 × 1920', 'Vidéo verticale pour Stories, Reels et Shorts'],
           ]}
         />

@@ -1074,25 +1074,18 @@ const EXTRA_COLORS: readonly (readonly [string, string])[] = [
 ]
 
 
-/** Download sizes for the Ad C layout: the visitor's own screen, common desktop/TV, phone and tablet sizes. */
-const DOWNLOAD_SIZES: { group: string; items: { label: string; w?: number; h?: number }[] }[] = [
-  { group: 'Your screen', items: [{ label: 'Match this device' }] },
-  {
-    group: 'Desktop & TV',
-    items: [
-      { label: 'Full HD 1080p', w: 1920, h: 1080 },
-      { label: 'QHD 1440p', w: 2560, h: 1440 },
-      { label: '4K UHD', w: 3840, h: 2160 },
-      { label: '8K UHD', w: 7680, h: 4320 },
-    ],
-  },
-  { group: 'Mobile', items: [{ label: 'iPhone', w: 1179, h: 2556 }, { label: 'Android phone', w: 1080, h: 2400 }] },
-  { group: 'Tablet', items: [{ label: 'iPad', w: 2048, h: 2732 }] },
+/** Download sizes: the same short list as the background pages' Download menu. */
+const DOWNLOAD_SIZES = [
+  { id: '1080p', label: '1080p', w: 1920, h: 1080 },
+  { id: '2k', label: '2K', w: 2560, h: 1440 },
+  { id: '4k', label: '4K', w: 3840, h: 2160 },
+  { id: 'phone', label: 'Phone', w: 1080, h: 2400 },
 ]
 
-function DownloadSizeMenu({ onPick, onClose, below = false }: { onPick: (size?: { w: number; h: number }) => void; onClose: () => void; below?: boolean }) {
+function DownloadSizeMenu({ onPick, onClose, below = false }: { onPick: (size: { w: number; h: number }) => void; onClose: () => void; below?: boolean }) {
   const ref = useRef<HTMLDivElement>(null)
   const [custom, setCustom] = useState({ w: 1920, h: 1080 })
+  const clamp = (n: number) => Math.min(MAX_DIM, Math.max(MIN_DIM, Math.round(n) || MIN_DIM))
 
   useEffect(() => {
     const onPointer = (event: PointerEvent) => {
@@ -1112,43 +1105,44 @@ function DownloadSizeMenu({ onPick, onClose, below = false }: { onPick: (size?: 
     <div
       ref={ref}
       role="menu"
-      aria-label={tx('Download size')}
-      className={cn('absolute right-0 z-40 flex w-72', below ? 'top-full mt-2' : 'bottom-full mb-2', 'flex-col gap-0.5 rounded-2xl border bg-popover p-2 text-popover-foreground shadow-2xl')}
+      aria-label={tx('Image size')}
+      className={cn('absolute right-0 z-40 flex w-64', below ? 'top-full mt-2' : 'bottom-full mb-2', 'flex-col gap-0.5 rounded-2xl border bg-popover p-2 text-popover-foreground shadow-2xl')}
     >
-      {DOWNLOAD_SIZES.map((group) => (
-        <div key={group.group} className="flex flex-col gap-0.5">
-          <span className="px-2.5 pb-1 pt-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">{tx(group.group)}</span>
-          {group.items.map((item) => (
-            <button
-              key={item.label}
-              type="button"
-              role="menuitem"
-              onClick={() => onPick(item.w && item.h ? { w: item.w, h: item.h } : undefined)}
-              className="flex h-9 items-center justify-between rounded-lg px-2.5 text-sm hover:bg-accent"
-            >
-              <span className="font-medium">{tx(item.label)}</span>
-              <span className="font-mono text-xs text-muted-foreground">{item.w ? `${item.w}×${item.h}` : tx('auto')}</span>
-            </button>
-          ))}
-        </div>
+      <span className="px-2.5 pb-1 pt-1.5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">{tx('Image size')}</span>
+      {DOWNLOAD_SIZES.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          role="menuitem"
+          onClick={() => onPick({ w: item.w, h: item.h })}
+          className="flex h-10 items-center justify-between rounded-lg px-2.5 text-sm hover:bg-accent"
+        >
+          <span className="font-semibold">{tx(item.label)}</span>
+          <span className="font-mono text-xs text-muted-foreground">
+            {item.w}×{item.h}
+          </span>
+        </button>
       ))}
       <form
-        className="mt-1 flex items-end gap-1.5 border-t px-1.5 pt-2.5"
+        className="mt-1 flex flex-col gap-2 border-t px-1.5 pb-0.5 pt-2.5"
         onSubmit={(event) => {
           event.preventDefault()
-          onPick(custom)
+          onPick({ w: clamp(custom.w), h: clamp(custom.h) })
         }}
       >
-        <label className="flex flex-col gap-0.5 text-[10px] font-medium text-muted-foreground">
-          {tx('Width')}
-          <input type="number" min={MIN_DIM} max={MAX_DIM} value={custom.w} onChange={(e) => setCustom((c) => ({ ...c, w: Number(e.target.value) || 0 }))} className="h-8 w-20 rounded-md border bg-background px-2 font-mono text-xs text-foreground" />
-        </label>
-        <span className="pb-2 text-muted-foreground">×</span>
-        <label className="flex flex-col gap-0.5 text-[10px] font-medium text-muted-foreground">
-          {tx('Height')}
-          <input type="number" min={MIN_DIM} max={MAX_DIM} value={custom.h} onChange={(e) => setCustom((c) => ({ ...c, h: Number(e.target.value) || 0 }))} className="h-8 w-20 rounded-md border bg-background px-2 font-mono text-xs text-foreground" />
-        </label>
-        <button type="submit" className="ml-auto h-8 rounded-md bg-foreground px-3 text-xs font-semibold text-background">
+        <div className="flex items-end gap-1.5">
+          <label className="flex min-w-0 flex-1 flex-col gap-0.5 text-[10px] font-medium text-muted-foreground">
+            {tx('Width (px)')}
+            <input type="number" min={MIN_DIM} max={MAX_DIM} value={custom.w} onChange={(e) => setCustom((c) => ({ ...c, w: Number(e.target.value) || 0 }))} className="h-9 w-full min-w-0 rounded-md border bg-background px-2 font-mono text-xs text-foreground" />
+          </label>
+          <span className="pb-2 text-muted-foreground">×</span>
+          <label className="flex min-w-0 flex-1 flex-col gap-0.5 text-[10px] font-medium text-muted-foreground">
+            {tx('Height (px)')}
+            <input type="number" min={MIN_DIM} max={MAX_DIM} value={custom.h} onChange={(e) => setCustom((c) => ({ ...c, h: Number(e.target.value) || 0 }))} className="h-9 w-full min-w-0 rounded-md border bg-background px-2 font-mono text-xs text-foreground" />
+          </label>
+        </div>
+        <button type="submit" className="inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-md bg-foreground px-2.5 text-xs font-semibold text-background">
+          <Download className="size-3.5" aria-hidden="true" />
           {tx('Custom size')}
         </button>
       </form>

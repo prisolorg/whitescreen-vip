@@ -60,7 +60,7 @@ export function RedScreenGuidePtBr() {
           ]}
         />
         <p className={p}>
-          Precisa de um arquivo? Baixar salva um PNG vermelho de 1080p a 8K, ou em tamanhos de celular e personalizados. Há mais tons na
+          Precisa de um arquivo? Baixar salva um PNG vermelho em 1080p, 2K, 4K ou tamanho de celular, ou em qualquer tamanho personalizado até 8K. Há mais tons na
           coleção de <Link href="/backgrounds/red-background" className={link}>fundo vermelho</Link>.
         </p>
       </Section>

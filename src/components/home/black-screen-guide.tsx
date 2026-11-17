@@ -29,13 +29,11 @@ export function BlackScreenGuide() {
           caption="Black screen image sizes you can download"
           head={['Size', 'Pixels', 'Good for']}
           rows={[
-            ['Full HD 1080p', '1920 × 1080', 'YouTube videos, slides, most monitors'],
-            ['QHD 1440p', '2560 × 1440', 'Gaming monitors and laptops'],
-            ['4K UHD', '3840 × 2160', '4K video timelines and TVs'],
-            ['8K UHD', '7680 × 4320', '8K projects and very large screens'],
-            ['iPhone / Android', '1179 × 2556 / 1080 × 2400', 'Phone wallpaper, home and lock screen'],
-            ['iPad', '2048 × 2732', 'Tablet wallpaper'],
-            ['Custom', 'Any size, e.g. 1080 × 1920', 'Vertical video for Stories, Reels and Shorts'],
+            ['1080p', '1920 × 1080', 'YouTube videos, slides, most monitors'],
+            ['2K', '2560 × 1440', 'Gaming monitors and laptops'],
+            ['4K', '3840 × 2160', '4K video timelines and TVs'],
+            ['Phone', '1080 × 2400', 'Phone wallpaper, home and lock screen'],
+            ['Custom size', 'Any size up to 8K, e.g. 1080 × 1920', 'Vertical video for Stories, Reels and Shorts, 8K projects'],
           ]}
         />
         <h3 className={h3}>Black Screen Video and Editing</h3>

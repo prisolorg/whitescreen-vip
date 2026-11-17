@@ -515,7 +515,7 @@ function LockScreenClock() {
 
 export function BrokenScreen() {
   const [style, setStyle] = useState<CrackStyle>('spider')
-  const [background, setBackground] = useState<BrokenBackground>('wallpaper')
+  const [background, setBackground] = useState<BrokenBackground>('black')
   const [seed, setSeed] = useState(48271)
   const [impacts, setImpacts] = useState<Impact[]>([])
   const [withSound, setWithSound] = useState(true)

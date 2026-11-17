@@ -33,7 +33,7 @@ function colorGlance(name: string, hex: string, answerTail: string, features: st
       `Pure ${name.toLowerCase()} at ${hex}`,
       'Double-tap fullscreen with brightness and warmth control',
       features,
-      'Free PNG download from 1080p to 8K, plus phone and custom sizes',
+      'Free PNG download at 1080p, 2K, 4K or phone size, plus custom sizes up to 8K',
     ],
     benefits: [benefit, 'Works instantly on phones, laptops, monitors and smart TVs', 'No app, no sign-up and nothing to install'],
     sources: [WIKI('RGB_color_model'), ...sources],

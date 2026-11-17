@@ -49,7 +49,7 @@ export function YellowScreenGuideFr() {
           </li>
         </ul>
         <p className={p}>
-          Besoin d&apos;un fichier ? « Télécharger » enregistre un PNG jaune de 1080p à 8K, ou aux tailles téléphone et personnalisées. Pour des
+          Besoin d&apos;un fichier ? « Télécharger » enregistre un PNG jaune en 1080p, 2K, 4K ou au format téléphone, ou à toute taille personnalisée jusqu’à 8K. Pour des
           jaunes pastel et clairs, parcourez la collection{' '}
           <Link href="/backgrounds/yellow-background" className={link}>fond jaune</Link>.
         </p>

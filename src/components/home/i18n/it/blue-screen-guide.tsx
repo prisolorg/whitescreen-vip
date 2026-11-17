@@ -47,7 +47,7 @@ export function BlueScreenGuideIt() {
           ]}
         />
         <p className={p}>
-          Ti serve un file? «Scarica» salva un PNG blu da 1080p a 8K, o in formati per telefono e personalizzati. Altre opzioni nella raccolta
+          Ti serve un file? «Scarica» salva un PNG blu in 1080p, 2K, 4K o formato telefono, o in qualsiasi dimensione personalizzata fino a 8K. Altre opzioni nella raccolta
           di <Link href="/backgrounds/blue-background" className={link}>sfondi blu</Link>.
         </p>
       </Section>

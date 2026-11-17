@@ -554,7 +554,7 @@ export const tr: LanguageGuides = {
         },
         {
           question: 'Telefonumda siyah bir ana ekran veya kilit ekranı ayarlayabilir miyim?',
-          answer: 'Evet. İndir menüsünden iPhone veya Android boyutunu indirin ve ana ekran ya da kilit ekranı duvar kâğıdı olarak ayarlayın.',
+          answer: 'Evet. İndir menüsünden Telefon’u seçin ya da Özel boyut alanına telefonunuzun tam boyutunu yazın, ardından görseli ana ekran ya da kilit ekranı duvar kâğıdı olarak ayarlayın.',
         },
         {
           question: 'Siyah ekran videosu nasıl yapılır?',
@@ -635,7 +635,7 @@ export const tr: LanguageGuides = {
         },
         {
           question: 'Sarı ekran görseli indirebilir miyim?',
-          answer: 'Evet. 1080p, 1440p, 4K veya 8K’da, telefon ve tablet boyutlarında ya da özel boyutta sarı bir PNG kaydetmek için önizlemenin altındaki İndir’i kullanın.',
+          answer: 'Evet. 1080p, 2K, 4K veya telefon boyutunda ya da 8K’ya kadar özel boyutta sarı bir PNG kaydetmek için önizlemenin altındaki İndir’i kullanın.',
         },
       ],
     },

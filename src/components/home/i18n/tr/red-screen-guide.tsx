@@ -58,7 +58,7 @@ export function RedScreenGuideTr() {
           ]}
         />
         <p className={p}>
-          Dosya mı lazım? İndir, 1080p’den 8K’ya veya telefon ve özel boyutlarda kırmızı bir PNG kaydeder. Daha fazla ton{' '}
+          Dosya mı lazım? İndir, 1080p, 2K, 4K veya telefon boyutunda ya da 8K’ya kadar özel boyutta kırmızı bir PNG kaydeder. Daha fazla ton{' '}
           <Link href="/backgrounds/red-background" className={link}>kırmızı arka plan</Link> koleksiyonunda.
         </p>
       </Section>

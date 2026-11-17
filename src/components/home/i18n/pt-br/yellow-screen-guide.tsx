@@ -48,7 +48,7 @@ export function YellowScreenGuidePtBr() {
           </li>
         </ul>
         <p className={p}>
-          Precisa de um arquivo? Baixar salva um PNG amarelo de 1080p a 8K, ou em tamanhos de celular e personalizados. Para tons pastel e
+          Precisa de um arquivo? Baixar salva um PNG amarelo em 1080p, 2K, 4K ou tamanho de celular, ou em qualquer tamanho personalizado até 8K. Para tons pastel e
           amarelo-claro, veja a coleção de <Link href="/backgrounds/yellow-background" className={link}>fundo amarelo</Link>.
         </p>
       </Section>

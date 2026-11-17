@@ -55,10 +55,10 @@ export function PinkScreenGuidePtBr() {
         </p>
         <ul className={ul}>
           <li>
-            <strong className="text-foreground">Notebook e computador:</strong> 1080p, 1440p, 4K ou 8K.
+            <strong className="text-foreground">Notebook e computador:</strong> 1080p, 2K ou 4K.
           </li>
           <li>
-            <strong className="text-foreground">Papel de parede do celular:</strong> iPhone (1179×2556) ou Android (1080×2400).
+            <strong className="text-foreground">Papel de parede do celular:</strong> Celular (1080×2400).
           </li>
           <li>
             <strong className="text-foreground">Qualquer outro:</strong> largura e altura personalizadas, como 1080×1920 para TikTok e Reels.

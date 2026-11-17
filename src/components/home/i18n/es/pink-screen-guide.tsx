@@ -54,10 +54,10 @@ export function PinkScreenGuideEs() {
         </p>
         <ul className={ul}>
           <li>
-            <strong className="text-foreground">Portátil y escritorio:</strong> 1080p, 1440p, 4K u 8K.
+            <strong className="text-foreground">Portátil y escritorio:</strong> 1080p, 2K u 4K.
           </li>
           <li>
-            <strong className="text-foreground">Fondo del móvil:</strong> iPhone (1179×2556) o Android (1080×2400).
+            <strong className="text-foreground">Fondo del móvil:</strong> Teléfono (1080×2400).
           </li>
           <li>
             <strong className="text-foreground">Cualquier otro:</strong> un ancho y alto personalizados, como 1080×1920 para TikTok y Reels.

@@ -49,7 +49,7 @@ export function YellowScreenGuide() {
           </li>
         </ul>
         <p className={p}>
-          Need a file? Download saves a yellow PNG from 1080p to 8K, or phone and custom sizes. For pastel and light yellow shades, browse
+          Need a file? Download saves a yellow PNG at 1080p, 2K, 4K or phone size, or any custom size up to 8K. For pastel and light yellow shades, browse
           the <Link href="/backgrounds/yellow-background" className={link}>yellow background</Link> collection.
         </p>
       </Section>

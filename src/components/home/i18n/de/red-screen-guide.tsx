@@ -60,7 +60,7 @@ export function RedScreenGuideDe() {
           ]}
         />
         <p className={p}>
-          Brauchst du eine Datei? „Herunterladen“ speichert ein rotes PNG von 1080p bis 8K oder in Handy- und eigenen Größen. Mehr Töne gibt es in
+          Brauchst du eine Datei? „Herunterladen“ speichert ein rotes PNG in 1080p, 2K, 4K oder Handygröße oder in einer eigenen Größe bis 8K. Mehr Töne gibt es in
           der Sammlung <Link href="/backgrounds/red-background" className={link}>roter Hintergrund</Link>.
         </p>
       </Section>

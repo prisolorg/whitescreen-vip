@@ -28,12 +28,10 @@ export function BlackScreenGuideDe() {
           caption="Bildgrößen für den schwarzen Bildschirm"
           head={['Größe', 'Pixel', 'Geeignet für']}
           rows={[
-            ['Full HD 1080p', '1920 × 1080', 'YouTube-Videos, Präsentationen, die meisten Monitore'],
-            ['QHD 1440p', '2560 × 1440', 'Gaming-Monitore und Laptops'],
-            ['4K UHD', '3840 × 2160', '4K-Videoschnitt und Fernseher'],
-            ['8K UHD', '7680 × 4320', '8K-Projekte und sehr große Bildschirme'],
-            ['iPhone / Android', '1179 × 2556 / 1080 × 2400', 'Handy-Hintergrund, Start- und Sperrbildschirm'],
-            ['iPad', '2048 × 2732', 'Tablet-Hintergrund'],
+            ['1080p', '1920 × 1080', 'YouTube-Videos, Präsentationen, die meisten Monitore'],
+            ['2K', '2560 × 1440', 'Gaming-Monitore und Laptops'],
+            ['4K', '3840 × 2160', '4K-Videoschnitt und Fernseher'],
+            ['Smartphone', '1080 × 2400', 'Handy-Hintergrund, Start- und Sperrbildschirm'],
             ['Eigene Größe', 'Beliebig, z. B. 1080 × 1920', 'Hochformat-Videos für Stories, Reels und Shorts'],
           ]}
         />

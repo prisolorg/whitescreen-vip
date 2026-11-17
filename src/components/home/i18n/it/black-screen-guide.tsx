@@ -28,12 +28,10 @@ export function BlackScreenGuideIt() {
           caption="Dimensioni dell’immagine schermo nero che puoi scaricare"
           head={['Dimensione', 'Pixel', 'Ideale per']}
           rows={[
-            ['Full HD 1080p', '1920 × 1080', 'Video YouTube, slide, la maggior parte dei monitor'],
-            ['QHD 1440p', '2560 × 1440', 'Monitor da gaming e portatili'],
-            ['4K UHD', '3840 × 2160', 'Timeline video 4K e TV'],
-            ['8K UHD', '7680 × 4320', 'Progetti 8K e schermi molto grandi'],
-            ['iPhone / Android', '1179 × 2556 / 1080 × 2400', 'Sfondo del telefono, schermata home e di blocco'],
-            ['iPad', '2048 × 2732', 'Sfondo del tablet'],
+            ['1080p', '1920 × 1080', 'Video YouTube, slide, la maggior parte dei monitor'],
+            ['2K', '2560 × 1440', 'Monitor da gaming e portatili'],
+            ['4K', '3840 × 2160', 'Timeline video 4K e TV'],
+            ['Telefono', '1080 × 2400', 'Sfondo del telefono, schermata home e di blocco'],
             ['Dimensione personalizzata', 'Qualsiasi dimensione, ad es. 1080 × 1920', 'Video verticali per Storie, Reel e Shorts'],
           ]}
         />

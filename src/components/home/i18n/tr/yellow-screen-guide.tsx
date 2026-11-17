@@ -47,7 +47,7 @@ export function YellowScreenGuideTr() {
           </li>
         </ul>
         <p className={p}>
-          Dosya mı lazım? İndir, 1080p’den 8K’ya veya telefon ve özel boyutlarda sarı bir PNG kaydeder. Pastel ve açık sarı tonlar için{' '}
+          Dosya mı lazım? İndir, 1080p, 2K, 4K veya telefon boyutunda ya da 8K’ya kadar özel boyutta sarı bir PNG kaydeder. Pastel ve açık sarı tonlar için{' '}
           <Link href="/backgrounds/yellow-background" className={link}>sarı arka plan</Link> koleksiyonuna göz atın.
         </p>
       </Section>

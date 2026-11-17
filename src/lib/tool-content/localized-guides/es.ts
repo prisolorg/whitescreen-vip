@@ -556,7 +556,7 @@ export const es: LanguageGuides = {
         },
         {
           question: '¿Puedo poner una pantalla de inicio o de bloqueo negra en el móvil?',
-          answer: 'Sí. Descarga el tamaño de iPhone o Android desde el menú Descargar y ponlo como fondo de la pantalla de inicio o de bloqueo.',
+          answer: 'Sí. Elige Teléfono en el menú Descargar, o escribe el tamaño exacto de tu móvil en Tamaño personalizado, y ponlo como fondo de la pantalla de inicio o de bloqueo.',
         },
         {
           question: '¿Cómo hago un vídeo de pantalla negra?',
@@ -584,7 +584,7 @@ export const es: LanguageGuides = {
         {
           question: '¿Puedo descargar una imagen de pantalla amarilla?',
           answer:
-            'Sí. Usa Descargar debajo de la vista previa para guardar un PNG amarillo en 1080p, 1440p, 4K u 8K, en tamaños de móvil y tableta o en un tamaño personalizado.',
+            'Sí. Usa Descargar debajo de la vista previa para guardar un PNG amarillo en 1080p, 2K, 4K o tamaño de móvil, o en un tamaño personalizado hasta 8K.',
         },
       ],
     },

@@ -257,7 +257,7 @@ export const id: LanguageGuides = {
         { question: 'Apakah layar hitam menghemat baterai?', answer: 'Di HP, tablet, dan laptop OLED, ya: piksel hitam dimatikan. Di layar LCD lampu latar tetap menyala, jadi penghematannya sangat kecil. Menurunkan kecerahan lebih menghemat daya di LCD.' },
         { question: 'Apakah layar hitam membuat komputer saya tetap menyala?', answer: 'Ya, selama halaman terbuka dan Biarkan layar tetap menyala aktif, di browser yang mendukungnya. Pengaturan tidur normal Anda kembali saat halaman ditutup atau opsinya dimatikan.' },
         { question: 'Apakah layar hitam sama dengan mematikan monitor?', answer: 'Tidak. Monitor tetap menyala dan komputer tetap berjalan; layar hanya menampilkan hitam murni. Di OLED layar tampak mati karena pikselnya gelap, sedangkan LCD tetap menyalakan lampu latarnya.' },
-        { question: 'Bisakah saya memasang layar utama atau layar kunci hitam di HP?', answer: 'Bisa. Unduh ukuran iPhone atau Android dari menu Unduh dan pasang sebagai wallpaper layar utama atau layar kunci.' },
+        { question: 'Bisakah saya memasang layar utama atau layar kunci hitam di HP?', answer: 'Bisa. Pilih Ponsel di menu Unduh, atau ketik ukuran pas HP Anda di Ukuran khusus, lalu pasang sebagai wallpaper layar utama atau layar kunci.' },
         { question: 'Bagaimana cara membuat video layar hitam?', answer: 'Unduh PNG hitam 1080p atau 4K dan letakkan di timeline editor video Anda, lalu rentangkan sesuai durasi yang dibutuhkan.' },
         { question: 'Mana yang lebih baik untuk membersihkan monitor, hitam atau putih?', answer: 'Hitam menampakkan sidik jari, goresan, dan noda dengan jelas, terutama dengan cahaya dari samping. Untuk debu, [layar putih](/) lebih cocok. Matikan layar sebelum mengelapnya.' },
       ],
@@ -291,7 +291,7 @@ export const id: LanguageGuides = {
       faqs: [
         { question: 'Apakah layar kuning lebih nyaman untuk mata?', answer: 'Kuning tidak mengandung cahaya biru, yang bagi banyak orang terasa lebih santai di malam hari. Kuning dengan kecerahan penuh tetap terang, jadi turunkan penggeser Kecerahan untuk cahaya hangat yang lebih lembut.' },
         { question: 'Bisakah layar kuning dibuat lebih hangat atau lebih lembut?', answer: 'Bisa. Pilih Hangat untuk kuning keemasan dan turunkan penggeser Kecerahan untuk cahaya yang lebih redup dan lembut.' },
-        { question: 'Bisakah saya mengunduh gambar layar kuning?', answer: 'Bisa. Gunakan Unduh di bawah pratinjau untuk menyimpan PNG kuning dalam 1080p, 1440p, 4K, atau 8K, dalam ukuran HP dan tablet, atau ukuran kustom.' },
+        { question: 'Bisakah saya mengunduh gambar layar kuning?', answer: 'Bisa. Gunakan Unduh di bawah pratinjau untuk menyimpan PNG kuning dalam 1080p, 2K, 4K, atau ukuran HP, atau ukuran kustom hingga 8K.' },
       ],
     },
     pink: {

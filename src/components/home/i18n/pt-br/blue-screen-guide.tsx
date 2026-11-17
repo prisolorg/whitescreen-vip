@@ -47,7 +47,7 @@ export function BlueScreenGuidePtBr() {
           ]}
         />
         <p className={p}>
-          Precisa de um arquivo? Baixar salva um PNG azul de 1080p a 8K, ou em tamanhos de celular e personalizados. Há mais opções na
+          Precisa de um arquivo? Baixar salva um PNG azul em 1080p, 2K, 4K ou tamanho de celular, ou em qualquer tamanho personalizado até 8K. Há mais opções na
           coleção de <Link href="/backgrounds/blue-background" className={link}>fundo azul</Link>.
         </p>
       </Section>

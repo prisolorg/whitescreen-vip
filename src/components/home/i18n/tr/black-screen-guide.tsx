@@ -27,12 +27,10 @@ export function BlackScreenGuideTr() {
           caption="İndirebileceğiniz siyah ekran resmi boyutları"
           head={['Boyut', 'Piksel', 'Uygun olduğu']}
           rows={[
-            ['Full HD 1080p', '1920 × 1080', 'YouTube videoları, sunumlar, çoğu monitör'],
-            ['QHD 1440p', '2560 × 1440', 'Oyuncu monitörleri ve laptoplar'],
-            ['4K UHD', '3840 × 2160', '4K video zaman çizelgeleri ve televizyonlar'],
-            ['8K UHD', '7680 × 4320', '8K projeler ve çok büyük ekranlar'],
-            ['iPhone / Android', '1179 × 2556 / 1080 × 2400', 'Telefon duvar kâğıdı, ana ekran ve kilit ekranı'],
-            ['iPad', '2048 × 2732', 'Tablet duvar kâğıdı'],
+            ['1080p', '1920 × 1080', 'YouTube videoları, sunumlar, çoğu monitör'],
+            ['2K', '2560 × 1440', 'Oyuncu monitörleri ve laptoplar'],
+            ['4K', '3840 × 2160', '4K video zaman çizelgeleri ve televizyonlar'],
+            ['Telefon', '1080 × 2400', 'Telefon duvar kâğıdı, ana ekran ve kilit ekranı'],
             ['Özel', 'Herhangi bir boyut, ör. 1080 × 1920', 'Hikâyeler, Reels ve Shorts için dikey video'],
           ]}
         />

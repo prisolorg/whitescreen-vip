@@ -60,7 +60,7 @@ export function RedScreenGuideNl() {
           ]}
         />
         <p className={p}>
-          Een bestand nodig? Downloaden slaat een rode PNG op van 1080p tot 8K, of in telefoon- en eigen formaten. Meer tinten vind je in de
+          Een bestand nodig? Downloaden slaat een rode PNG op in 1080p, 2K, 4K of telefoonformaat, of in elk eigen formaat tot 8K. Meer tinten vind je in de
           collectie <Link href="/backgrounds/red-background" className={link}>rode achtergronden</Link>.
         </p>
       </Section>

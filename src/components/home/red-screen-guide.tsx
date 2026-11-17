@@ -64,7 +64,7 @@ export function RedScreenGuide() {
           ]}
         />
         <p className={p}>
-          Need a file? Download saves a red PNG from 1080p to 8K, or phone and custom sizes. More shades are in the{' '}
+          Need a file? Download saves a red PNG at 1080p, 2K, 4K or phone size, or any custom size up to 8K. More shades are in the{' '}
           <Link href="/backgrounds/red-background" className={link}>red background</Link> collection.
         </p>
       </Section>

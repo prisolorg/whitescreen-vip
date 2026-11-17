@@ -96,13 +96,10 @@ export function WhiteScreenGuideTr() {
         </p>
         <ul className={ul}>
           <li>
-            <strong className="text-foreground">Ekranınız:</strong> bu cihazla birebir aynı.
+            <strong className="text-foreground">Masaüstü ve TV:</strong> 1080p, 2K ve 4K.
           </li>
           <li>
-            <strong className="text-foreground">Masaüstü ve TV:</strong> 1080p, 1440p, 4K ve 8K.
-          </li>
-          <li>
-            <strong className="text-foreground">Telefon ve tablet:</strong> iPhone (1179×2556), Android (1080×2400) ve iPad (2048×2732).
+            <strong className="text-foreground">Telefon ve tablet:</strong> Telefon (1080×2400).
           </li>
           <li>
             <strong className="text-foreground">Özel:</strong> herhangi bir genişlik ve yükseklik.

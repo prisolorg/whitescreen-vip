@@ -27,7 +27,7 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
       },
       {
         question: 'Can I set a black home screen or lock screen on my phone?',
-        answer: 'Yes. Download the iPhone or Android size from the Download menu and set it as your home or lock screen wallpaper.',
+        answer: 'Yes. Pick Phone in the Download menu, or type your phone’s exact size under Custom size, and set it as your home or lock screen wallpaper.',
       },
       {
         question: 'How do I make a black screen video?',
@@ -107,7 +107,7 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
       },
       {
         question: 'Can I download a yellow screen image?',
-        answer: 'Yes. Use Download under the preview to save a yellow PNG at 1080p, 1440p, 4K or 8K, in phone and tablet sizes, or at a custom size.',
+        answer: 'Yes. Use Download under the preview to save a yellow PNG at 1080p, 2K, 4K or phone size, or at any custom size up to 8K.',
       },
     ],
   },
@@ -263,7 +263,7 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
       },
       {
         question: 'Can I download a cyan image?',
-        answer: 'Yes. Choose a size with the download button above to save a cyan PNG from 480p up to 8K.',
+        answer: 'Yes. Choose 1080p, 2K, 4K or Phone in the Download menu above to save a cyan PNG, or type any custom size up to 8K.',
       },
     ],
   },

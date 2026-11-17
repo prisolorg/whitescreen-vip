@@ -53,10 +53,10 @@ export function PinkScreenGuideTr() {
         </p>
         <ul className={ul}>
           <li>
-            <strong className="text-foreground">Laptop ve masaüstü:</strong> 1080p, 1440p, 4K veya 8K.
+            <strong className="text-foreground">Laptop ve masaüstü:</strong> 1080p, 2K veya 4K.
           </li>
           <li>
-            <strong className="text-foreground">Telefon duvar kâğıdı:</strong> iPhone (1179×2556) veya Android (1080×2400).
+            <strong className="text-foreground">Telefon duvar kâğıdı:</strong> Telefon (1080×2400).
           </li>
           <li>
             <strong className="text-foreground">Diğer her şey:</strong> TikTok ve Reels için 1080×1920 gibi özel bir genişlik ve yükseklik.

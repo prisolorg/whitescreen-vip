@@ -47,7 +47,7 @@ export function BlueScreenGuideId() {
           ]}
         />
         <p className={p}>
-          Butuh file? Unduh menyimpan PNG biru dari 1080p hingga 8K, atau ukuran HP dan kustom. Pilihan lain ada di koleksi{' '}
+          Butuh file? Unduh menyimpan PNG biru dalam 1080p, 2K, 4K, atau ukuran HP, atau ukuran kustom apa pun hingga 8K. Pilihan lain ada di koleksi{' '}
           <Link href="/backgrounds/blue-background" className={link}>latar belakang biru</Link>.
         </p>
       </Section>

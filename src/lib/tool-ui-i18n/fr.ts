@@ -251,4 +251,9 @@ export const fr: readonly string[] = [
   "Date et heure",
   "Affiche les jours, heures, minutes et secondes. Appuyez sur Démarrer.",
   "Choisissez une date et une heure à venir.",
+  // Download size menu (same as the background pages)
+  "Taille de l’image",
+  "Téléphone",
+  "Largeur (px)",
+  "Hauteur (px)",
 ]

@@ -98,13 +98,10 @@ export function WhiteScreenGuideNl() {
         </p>
         <ul className={ul}>
           <li>
-            <strong className="text-foreground">Jouw scherm:</strong> past precies bij dit apparaat.
+            <strong className="text-foreground">Desktop en tv:</strong> 1080p, 2K en 4K.
           </li>
           <li>
-            <strong className="text-foreground">Desktop en tv:</strong> 1080p, 1440p, 4K en 8K.
-          </li>
-          <li>
-            <strong className="text-foreground">Telefoon en tablet:</strong> iPhone (1179×2556), Android (1080×2400) en iPad (2048×2732).
+            <strong className="text-foreground">Telefoon en tablet:</strong> Telefoon (1080×2400).
           </li>
           <li>
             <strong className="text-foreground">Eigen formaat:</strong> elke breedte en hoogte.

@@ -28,12 +28,10 @@ export function BlackScreenGuideNl() {
           caption="Formaten van het zwarte scherm die je kunt downloaden"
           head={['Formaat', 'Pixels', 'Goed voor']}
           rows={[
-            ['Full HD 1080p', '1920 × 1080', 'YouTube-video’s, presentaties, de meeste monitoren'],
-            ['QHD 1440p', '2560 × 1440', 'Gamingmonitoren en laptops'],
-            ['4K UHD', '3840 × 2160', '4K-videotijdlijnen en tv’s'],
-            ['8K UHD', '7680 × 4320', '8K-projecten en heel grote schermen'],
-            ['iPhone / Android', '1179 × 2556 / 1080 × 2400', 'Achtergrond voor telefoon, start- en vergrendelscherm'],
-            ['iPad', '2048 × 2732', 'Achtergrond voor tablet'],
+            ['1080p', '1920 × 1080', 'YouTube-video’s, presentaties, de meeste monitoren'],
+            ['2K', '2560 × 1440', 'Gamingmonitoren en laptops'],
+            ['4K', '3840 × 2160', '4K-videotijdlijnen en tv’s'],
+            ['Telefoon', '1080 × 2400', 'Achtergrond voor telefoon, start- en vergrendelscherm'],
             ['Eigen formaat', 'Elk formaat, bijv. 1080 × 1920', 'Verticale video voor Stories, Reels en Shorts'],
           ]}
         />

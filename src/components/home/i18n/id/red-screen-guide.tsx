@@ -59,7 +59,7 @@ export function RedScreenGuideId() {
           ]}
         />
         <p className={p}>
-          Butuh file? Unduh menyimpan PNG merah dari 1080p hingga 8K, atau ukuran HP dan kustom. Nuansa lain ada di koleksi{' '}
+          Butuh file? Unduh menyimpan PNG merah dalam 1080p, 2K, 4K, atau ukuran HP, atau ukuran kustom apa pun hingga 8K. Nuansa lain ada di koleksi{' '}
           <Link href="/backgrounds/red-background" className={link}>latar belakang merah</Link>.
         </p>
       </Section>

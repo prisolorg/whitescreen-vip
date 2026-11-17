@@ -554,7 +554,7 @@ export const it: LanguageGuides = {
         },
         {
           question: 'Posso impostare una schermata home o di blocco nera sul telefono?',
-          answer: 'Sì. Scarica il formato iPhone o Android dal menu «Scarica» e impostalo come sfondo della schermata home o di blocco.',
+          answer: 'Sì. Scegli «Telefono» nel menu «Scarica», o inserisci le dimensioni esatte del tuo telefono in «Dimensione personalizzata», e impostalo come sfondo della schermata home o di blocco.',
         },
         {
           question: 'Come faccio un video con lo schermo nero?',
@@ -642,7 +642,7 @@ export const it: LanguageGuides = {
         {
           question: 'Posso scaricare un’immagine dello schermo giallo?',
           answer:
-            'Sì. Usa «Scarica» sotto l’anteprima per salvare un PNG giallo in 1080p, 1440p, 4K o 8K, in formati per telefono e tablet o in una dimensione personalizzata.',
+            'Sì. Usa «Scarica» sotto l’anteprima per salvare un PNG giallo in 1080p, 2K, 4K o formato telefono, o in una dimensione personalizzata fino a 8K.',
         },
       ],
     },

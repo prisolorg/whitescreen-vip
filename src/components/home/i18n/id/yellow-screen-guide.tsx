@@ -47,7 +47,7 @@ export function YellowScreenGuideId() {
           </li>
         </ul>
         <p className={p}>
-          Butuh file? Unduh menyimpan PNG kuning dari 1080p hingga 8K, atau ukuran HP dan kustom. Untuk nuansa kuning pastel dan muda, lihat
+          Butuh file? Unduh menyimpan PNG kuning dalam 1080p, 2K, 4K, atau ukuran HP, atau ukuran kustom apa pun hingga 8K. Untuk nuansa kuning pastel dan muda, lihat
           koleksi <Link href="/backgrounds/yellow-background" className={link}>latar belakang kuning</Link>.
         </p>
       </Section>

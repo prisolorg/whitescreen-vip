@@ -45,7 +45,7 @@ export function BlueScreenGuideDe() {
           ]}
         />
         <p className={p}>
-          Brauchst du eine Datei? „Herunterladen“ speichert ein blaues PNG von 1080p bis 8K oder in Handy- und eigenen Größen. Mehr Auswahl gibt es
+          Brauchst du eine Datei? „Herunterladen“ speichert ein blaues PNG in 1080p, 2K, 4K oder Handygröße oder in einer eigenen Größe bis 8K. Mehr Auswahl gibt es
           in der Sammlung <Link href="/backgrounds/blue-background" className={link}>blauer Hintergrund</Link>.
         </p>
       </Section>

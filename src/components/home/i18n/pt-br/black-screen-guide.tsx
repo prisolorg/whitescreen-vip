@@ -27,12 +27,10 @@ export function BlackScreenGuidePtBr() {
           caption="Tamanhos de imagem de tela preta para baixar"
           head={['Tamanho', 'Pixels', 'Bom para']}
           rows={[
-            ['Full HD 1080p', '1920 × 1080', 'Vídeos do YouTube, slides, a maioria dos monitores'],
-            ['QHD 1440p', '2560 × 1440', 'Monitores gamer e notebooks'],
-            ['4K UHD', '3840 × 2160', 'Linhas do tempo de vídeo 4K e TVs'],
-            ['8K UHD', '7680 × 4320', 'Projetos 8K e telas muito grandes'],
-            ['iPhone / Android', '1179 × 2556 / 1080 × 2400', 'Papel de parede do celular, tela inicial e de bloqueio'],
-            ['iPad', '2048 × 2732', 'Papel de parede do tablet'],
+            ['1080p', '1920 × 1080', 'Vídeos do YouTube, slides, a maioria dos monitores'],
+            ['2K', '2560 × 1440', 'Monitores gamer e notebooks'],
+            ['4K', '3840 × 2160', 'Linhas do tempo de vídeo 4K e TVs'],
+            ['Celular', '1080 × 2400', 'Papel de parede do celular, tela inicial e de bloqueio'],
             ['Personalizado', 'Qualquer tamanho, por ex. 1080 × 1920', 'Vídeo vertical para Stories, Reels e Shorts'],
           ]}
         />

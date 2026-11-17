@@ -580,7 +580,7 @@ export const ptbr: LanguageGuides = {
         },
         {
           question: 'Posso colocar uma tela inicial ou tela de bloqueio preta no celular?',
-          answer: 'Sim. Baixe o tamanho de iPhone ou Android no menu Baixar e defina como papel de parede da tela inicial ou de bloqueio.',
+          answer: 'Sim. Escolha Celular no menu Baixar, ou digite o tamanho exato do seu celular em Tamanho personalizado, e defina como papel de parede da tela inicial ou de bloqueio.',
         },
         {
           question: 'Como faço um vídeo de tela preta?',
@@ -608,7 +608,7 @@ export const ptbr: LanguageGuides = {
         {
           question: 'Posso baixar uma imagem de tela amarela?',
           answer:
-            'Sim. Use Baixar, abaixo da prévia, para salvar um PNG amarelo em 1080p, 1440p, 4K ou 8K, em tamanhos de celular e tablet ou em um tamanho personalizado.',
+            'Sim. Use Baixar, abaixo da prévia, para salvar um PNG amarelo em 1080p, 2K, 4K ou tamanho de celular, ou em um tamanho personalizado até 8K.',
         },
       ],
     },

@@ -57,13 +57,13 @@ export function PinkScreenGuide() {
         </p>
         <ul className={ul}>
           <li>
-            <strong className="text-foreground">Laptop and desktop:</strong> 1080p, 1440p, 4K or 8K.
+            <strong className="text-foreground">Laptop and desktop:</strong> 1080p, 2K or 4K.
           </li>
           <li>
-            <strong className="text-foreground">Phone wallpaper:</strong> iPhone (1179×2556) or Android (1080×2400).
+            <strong className="text-foreground">Phone wallpaper:</strong> Phone (1080×2400), or your phone&apos;s exact size as a custom size.
           </li>
           <li>
-            <strong className="text-foreground">Anything else:</strong> a custom width and height, like 1080×1920 for TikTok and Reels.
+            <strong className="text-foreground">Anything else:</strong> a custom width and height up to 8K, like 1080×1920 for TikTok and Reels.
           </li>
         </ul>
         <p className={p}>

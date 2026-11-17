@@ -47,7 +47,7 @@ export function BlueScreenGuideEs() {
           ]}
         />
         <p className={p}>
-          ¿Necesitas un archivo? Descargar guarda un PNG azul de 1080p a 8K, o en tamaños de móvil y personalizados. Hay más opciones en la
+          ¿Necesitas un archivo? Descargar guarda un PNG azul en 1080p, 2K, 4K o tamaño de móvil, o en cualquier tamaño personalizado hasta 8K. Hay más opciones en la
           colección de <Link href="/backgrounds/blue-background" className={link}>fondos azules</Link>.
         </p>
       </Section>

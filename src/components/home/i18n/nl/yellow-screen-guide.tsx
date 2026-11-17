@@ -48,7 +48,7 @@ export function YellowScreenGuideNl() {
           </li>
         </ul>
         <p className={p}>
-          Een bestand nodig? Downloaden slaat een gele PNG op van 1080p tot 8K, of in telefoon- en eigen formaten. Voor pastel- en lichtgele
+          Een bestand nodig? Downloaden slaat een gele PNG op in 1080p, 2K, 4K of telefoonformaat, of in elk eigen formaat tot 8K. Voor pastel- en lichtgele
           tinten bekijk je de collectie <Link href="/backgrounds/yellow-background" className={link}>gele achtergronden</Link>.
         </p>
       </Section>

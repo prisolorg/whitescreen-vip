@@ -570,7 +570,7 @@ export const nl: LanguageGuides = {
         },
         {
           question: 'Kan ik een zwart start- of vergrendelscherm instellen op mijn telefoon?',
-          answer: 'Ja. Download het iPhone- of Android-formaat via het menu Downloaden en stel het in als achtergrond voor je start- of vergrendelscherm.',
+          answer: 'Ja. Kies Telefoon in het menu Downloaden, of typ de exacte maat van je telefoon bij Eigen formaat, en stel het in als achtergrond voor je start- of vergrendelscherm.',
         },
         {
           question: 'Hoe maak ik een zwarte video?',
@@ -657,7 +657,7 @@ export const nl: LanguageGuides = {
         {
           question: 'Kan ik een afbeelding van een geel scherm downloaden?',
           answer:
-            'Ja. Gebruik Downloaden onder het voorbeeld om een gele PNG op te slaan in 1080p, 1440p, 4K of 8K, in telefoon- en tabletformaten of in een eigen formaat.',
+            'Ja. Gebruik Downloaden onder het voorbeeld om een gele PNG op te slaan in 1080p, 2K, 4K of telefoonformaat, of in een eigen formaat tot 8K.',
         },
       ],
     },

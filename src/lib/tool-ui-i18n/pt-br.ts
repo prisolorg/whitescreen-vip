@@ -251,4 +251,9 @@ export const ptBr: readonly string[] = [
   "Data e hora",
   "Mostra dias, horas, minutos e segundos. Toque em Iniciar.",
   "Escolha uma data e hora no futuro.",
+  // Download size menu (same as the background pages)
+  "Tamanho da imagem",
+  "Celular",
+  "Largura (px)",
+  "Altura (px)",
 ]

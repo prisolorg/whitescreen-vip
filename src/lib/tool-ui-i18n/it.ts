@@ -251,4 +251,9 @@ export const it: readonly string[] = [
   "Data e ora",
   "Mostra giorni, ore, minuti e secondi. Premi Avvia.",
   "Scegli una data e un’ora nel futuro.",
+  // Download size menu (same as the background pages)
+  "Dimensione immagine",
+  "Telefono",
+  "Larghezza (px)",
+  "Altezza (px)",
 ]

@@ -251,4 +251,9 @@ export const de: readonly string[] = [
   "Datum und Uhrzeit",
   "Zeigt Tage, Stunden, Minuten und Sekunden. Drücke Start.",
   "Wähle ein Datum und eine Uhrzeit in der Zukunft.",
+  // Download size menu (same as the background pages)
+  "Bildgröße",
+  "Smartphone",
+  "Breite (px)",
+  "Höhe (px)",
 ]

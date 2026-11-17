@@ -519,7 +519,7 @@ export const de: LanguageGuides = {
         },
         {
           question: 'Kann ich einen schwarzen Start- oder Sperrbildschirm am Handy einstellen?',
-          answer: 'Ja. Lade die iPhone- oder Android-Größe über „Herunterladen“ und lege sie als Hintergrund für Start- oder Sperrbildschirm fest.',
+          answer: 'Ja. Wähle „Smartphone“ im Menü „Herunterladen“ oder gib unter „Eigene Größe“ die genaue Größe deines Handys ein, und lege das Bild als Hintergrund für Start- oder Sperrbildschirm fest.',
         },
         {
           question: 'Wie mache ich ein schwarzes Video?',
@@ -596,7 +596,7 @@ export const de: LanguageGuides = {
         {
           question: 'Kann ich ein Bild vom gelben Bildschirm herunterladen?',
           answer:
-            'Ja. Nutze „Herunterladen“ unter der Vorschau, um ein gelbes PNG in 1080p, 1440p, 4K oder 8K, in Handy- und Tablet-Größen oder in einer eigenen Größe zu speichern.',
+            'Ja. Nutze „Herunterladen“ unter der Vorschau, um ein gelbes PNG in 1080p, 2K, 4K oder Handygröße oder in einer eigenen Größe bis 8K zu speichern.',
         },
       ],
     },

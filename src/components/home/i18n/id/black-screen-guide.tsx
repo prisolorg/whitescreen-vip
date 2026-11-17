@@ -27,12 +27,10 @@ export function BlackScreenGuideId() {
           caption="Ukuran gambar layar hitam yang bisa diunduh"
           head={['Ukuran', 'Piksel', 'Cocok untuk']}
           rows={[
-            ['Full HD 1080p', '1920 × 1080', 'Video YouTube, slide, sebagian besar monitor'],
-            ['QHD 1440p', '2560 × 1440', 'Monitor gaming dan laptop'],
-            ['4K UHD', '3840 × 2160', 'Timeline video 4K dan TV'],
-            ['8K UHD', '7680 × 4320', 'Proyek 8K dan layar yang sangat besar'],
-            ['iPhone / Android', '1179 × 2556 / 1080 × 2400', 'Wallpaper HP, layar utama dan layar kunci'],
-            ['iPad', '2048 × 2732', 'Wallpaper tablet'],
+            ['1080p', '1920 × 1080', 'Video YouTube, slide, sebagian besar monitor'],
+            ['2K', '2560 × 1440', 'Monitor gaming dan laptop'],
+            ['4K', '3840 × 2160', 'Timeline video 4K dan TV'],
+            ['Ponsel', '1080 × 2400', 'Wallpaper HP, layar utama dan layar kunci'],
             ['Kustom', 'Ukuran apa pun, mis. 1080 × 1920', 'Video vertikal untuk Stories, Reels, dan Shorts'],
           ]}
         />

@@ -47,7 +47,7 @@ export function YellowScreenGuideDe() {
           </li>
         </ul>
         <p className={p}>
-          Brauchst du eine Datei? „Herunterladen“ speichert ein gelbes PNG von 1080p bis 8K oder in Handy- und eigenen Größen. Für Pastell- und
+          Brauchst du eine Datei? „Herunterladen“ speichert ein gelbes PNG in 1080p, 2K, 4K oder Handygröße oder in einer eigenen Größe bis 8K. Für Pastell- und
           hellgelbe Töne stöbere in der Sammlung <Link href="/backgrounds/yellow-background" className={link}>gelber Hintergrund</Link>.
         </p>
       </Section>

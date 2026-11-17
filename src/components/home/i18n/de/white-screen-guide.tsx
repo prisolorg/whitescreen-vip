@@ -102,13 +102,10 @@ export function WhiteScreenGuideDe() {
         </p>
         <ul className={ul}>
           <li>
-            <strong className="text-foreground">Dein Bildschirm:</strong> passt genau zu diesem Gerät.
+            <strong className="text-foreground">Desktop & TV:</strong> 1080p, 2K und 4K.
           </li>
           <li>
-            <strong className="text-foreground">Desktop & TV:</strong> 1080p, 1440p, 4K und 8K.
-          </li>
-          <li>
-            <strong className="text-foreground">Handy und Tablet:</strong> iPhone (1179×2556), Android (1080×2400) und iPad (2048×2732).
+            <strong className="text-foreground">Handy und Tablet:</strong> Smartphone (1080×2400).
           </li>
           <li>
             <strong className="text-foreground">Eigene Größe:</strong> jede Breite und Höhe.

@@ -43,7 +43,7 @@ export function BlueScreenGuideTr() {
           ]}
         />
         <p className={p}>
-          Dosya mı lazım? İndir, 1080p’den 8K’ya veya telefon ve özel boyutlarda mavi bir PNG kaydeder. Daha fazla seçenek{' '}
+          Dosya mı lazım? İndir, 1080p, 2K, 4K veya telefon boyutunda ya da 8K’ya kadar özel boyutta mavi bir PNG kaydeder. Daha fazla seçenek{' '}
           <Link href="/backgrounds/blue-background" className={link}>mavi arka plan</Link> koleksiyonunda.
         </p>
       </Section>

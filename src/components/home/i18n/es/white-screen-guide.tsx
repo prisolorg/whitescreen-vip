@@ -102,13 +102,10 @@ export function WhiteScreenGuideEs() {
         </p>
         <ul className={ul}>
           <li>
-            <strong className="text-foreground">Tu pantalla:</strong> igual que este dispositivo.
+            <strong className="text-foreground">Escritorio y TV:</strong> 1080p, 2K y 4K.
           </li>
           <li>
-            <strong className="text-foreground">Escritorio y TV:</strong> 1080p, 1440p, 4K y 8K.
-          </li>
-          <li>
-            <strong className="text-foreground">Móvil y tableta:</strong> iPhone (1179×2556), Android (1080×2400) y iPad (2048×2732).
+            <strong className="text-foreground">Móvil y tableta:</strong> Teléfono (1080×2400).
           </li>
           <li>
             <strong className="text-foreground">Personalizado:</strong> cualquier ancho y alto.

@@ -251,4 +251,9 @@ export const nl: readonly string[] = [
   "Datum en tijd",
   "Toont dagen, uren, minuten en seconden. Druk op Start.",
   "Kies een datum en tijd in de toekomst.",
+  // Download size menu (same as the background pages)
+  "Afbeeldingsgrootte",
+  "Telefoon",
+  "Breedte (px)",
+  "Hoogte (px)",
 ]

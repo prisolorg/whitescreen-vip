@@ -28,12 +28,10 @@ export function BlackScreenGuideEs() {
           caption="Tamaños de imagen de pantalla negra que puedes descargar"
           head={['Tamaño', 'Píxeles', 'Ideal para']}
           rows={[
-            ['Full HD 1080p', '1920 × 1080', 'Vídeos de YouTube, diapositivas, la mayoría de monitores'],
-            ['QHD 1440p', '2560 × 1440', 'Monitores gaming y portátiles'],
-            ['4K UHD', '3840 × 2160', 'Líneas de tiempo de vídeo 4K y televisores'],
-            ['8K UHD', '7680 × 4320', 'Proyectos 8K y pantallas muy grandes'],
-            ['iPhone / Android', '1179 × 2556 / 1080 × 2400', 'Fondo del móvil, pantalla de inicio y de bloqueo'],
-            ['iPad', '2048 × 2732', 'Fondo de tableta'],
+            ['1080p', '1920 × 1080', 'Vídeos de YouTube, diapositivas, la mayoría de monitores'],
+            ['2K', '2560 × 1440', 'Monitores gaming y portátiles'],
+            ['4K', '3840 × 2160', 'Líneas de tiempo de vídeo 4K y televisores'],
+            ['Teléfono', '1080 × 2400', 'Fondo del móvil, pantalla de inicio y de bloqueo'],
             ['Personalizado', 'Cualquier tamaño, p. ej. 1080 × 1920', 'Vídeo vertical para Stories, Reels y Shorts'],
           ]}
         />

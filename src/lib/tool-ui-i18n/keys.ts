@@ -464,4 +464,9 @@ export const TOOL_UI_KEYS = [
   "Date and time",
   "Shows days, hours, minutes and seconds. Press Start.",
   "Pick a date and time in the future.",
+  // Download size menu (same as the background pages)
+  "Image size",
+  "Phone",
+  "Width (px)",
+  "Height (px)",
 ] as const

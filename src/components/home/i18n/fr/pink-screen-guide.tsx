@@ -55,10 +55,10 @@ export function PinkScreenGuideFr() {
         </p>
         <ul className={ul}>
           <li>
-            <strong className="text-foreground">PC portable et ordinateur :</strong> 1080p, 1440p, 4K ou 8K.
+            <strong className="text-foreground">PC portable et ordinateur :</strong> 1080p, 2K ou 4K.
           </li>
           <li>
-            <strong className="text-foreground">Fond d&apos;écran de téléphone :</strong> iPhone (1179×2556) ou Android (1080×2400).
+            <strong className="text-foreground">Fond d&apos;écran de téléphone :</strong> Téléphone (1080×2400).
           </li>
           <li>
             <strong className="text-foreground">Tout le reste :</strong> une largeur et une hauteur personnalisées, comme 1080×1920 pour

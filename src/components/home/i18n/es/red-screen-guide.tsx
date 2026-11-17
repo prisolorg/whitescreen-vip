@@ -60,7 +60,7 @@ export function RedScreenGuideEs() {
           ]}
         />
         <p className={p}>
-          ¿Necesitas un archivo? Descargar guarda un PNG rojo de 1080p a 8K, o en tamaños de móvil y personalizados. Hay más tonos en la
+          ¿Necesitas un archivo? Descargar guarda un PNG rojo en 1080p, 2K, 4K o tamaño de móvil, o en cualquier tamaño personalizado hasta 8K. Hay más tonos en la
           colección de <Link href="/backgrounds/red-background" className={link}>fondos rojos</Link>.
         </p>
       </Section>

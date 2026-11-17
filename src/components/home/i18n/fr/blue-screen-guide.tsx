@@ -48,7 +48,7 @@ export function BlueScreenGuideFr() {
           ]}
         />
         <p className={p}>
-          Besoin d&apos;un fichier ? « Télécharger » enregistre un PNG bleu de 1080p à 8K, ou aux tailles téléphone et personnalisées.
+          Besoin d&apos;un fichier ? « Télécharger » enregistre un PNG bleu en 1080p, 2K, 4K ou au format téléphone, ou à toute taille personnalisée jusqu’à 8K.
           D&apos;autres options se trouvent dans la collection <Link href="/backgrounds/blue-background" className={link}>fond bleu</Link>.
         </p>
       </Section>

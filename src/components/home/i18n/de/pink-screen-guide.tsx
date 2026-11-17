@@ -55,10 +55,10 @@ export function PinkScreenGuideDe() {
         </p>
         <ul className={ul}>
           <li>
-            <strong className="text-foreground">Laptop und Desktop:</strong> 1080p, 1440p, 4K oder 8K.
+            <strong className="text-foreground">Laptop und Desktop:</strong> 1080p, 2K oder 4K.
           </li>
           <li>
-            <strong className="text-foreground">Handy-Hintergrund:</strong> iPhone (1179×2556) oder Android (1080×2400).
+            <strong className="text-foreground">Handy-Hintergrund:</strong> Smartphone (1080×2400).
           </li>
           <li>
             <strong className="text-foreground">Alles andere:</strong> eine eigene Breite und Höhe, etwa 1080×1920 für TikTok und Reels.

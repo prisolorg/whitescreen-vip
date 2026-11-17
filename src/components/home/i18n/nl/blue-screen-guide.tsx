@@ -48,7 +48,7 @@ export function BlueScreenGuideNl() {
           ]}
         />
         <p className={p}>
-          Een bestand nodig? Downloaden slaat een blauwe PNG op van 1080p tot 8K, of in telefoon- en eigen formaten. Meer opties vind je in de
+          Een bestand nodig? Downloaden slaat een blauwe PNG op in 1080p, 2K, 4K of telefoonformaat, of in elk eigen formaat tot 8K. Meer opties vind je in de
           collectie <Link href="/backgrounds/blue-background" className={link}>blauwe achtergronden</Link>.
         </p>
       </Section>

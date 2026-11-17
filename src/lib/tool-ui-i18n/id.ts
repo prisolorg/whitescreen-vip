@@ -251,4 +251,9 @@ export const id: readonly string[] = [
   "Tanggal dan waktu",
   "Menampilkan hari, jam, menit, dan detik. Tekan Mulai.",
   "Pilih tanggal dan waktu di masa depan.",
+  // Download size menu (same as the background pages)
+  "Ukuran gambar",
+  "Ponsel",
+  "Lebar (px)",
+  "Tinggi (px)",
 ]

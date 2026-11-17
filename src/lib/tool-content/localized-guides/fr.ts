@@ -592,7 +592,7 @@ export const fr: LanguageGuides = {
         {
           question: 'Puis-je mettre un écran d’accueil ou un écran verrouillé noir sur mon téléphone ?',
           answer:
-            'Oui. Téléchargez la taille iPhone ou Android depuis le menu « Télécharger » et définissez-la comme fond d’écran d’accueil ou d’écran verrouillé.',
+            'Oui. Choisissez « Téléphone » dans le menu « Télécharger », ou saisissez la taille exacte de votre téléphone dans « Taille personnalisée », et définissez l’image comme fond d’écran d’accueil ou d’écran verrouillé.',
         },
         {
           question: 'Comment faire une vidéo d’écran noir ?',
@@ -681,7 +681,7 @@ export const fr: LanguageGuides = {
         {
           question: 'Puis-je télécharger une image d’écran jaune ?',
           answer:
-            'Oui. Utilisez « Télécharger » sous l’aperçu pour enregistrer un PNG jaune en 1080p, 1440p, 4K ou 8K, aux tailles téléphone et tablette, ou à une taille personnalisée.',
+            'Oui. Utilisez « Télécharger » sous l’aperçu pour enregistrer un PNG jaune en 1080p, 2K, 4K ou au format téléphone, ou à une taille personnalisée jusqu’à 8K.',
         },
       ],
     },

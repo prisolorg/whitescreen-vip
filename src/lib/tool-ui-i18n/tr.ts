@@ -251,4 +251,9 @@ export const tr: readonly string[] = [
   "Tarih ve saat",
   "Gün, saat, dakika ve saniyeyi gösterir. Başlat'a basın.",
   "Gelecekte bir tarih ve saat seçin.",
+  // Download size menu (same as the background pages)
+  "Görsel boyutu",
+  "Telefon",
+  "Genişlik (px)",
+  "Yükseklik (px)",
 ]

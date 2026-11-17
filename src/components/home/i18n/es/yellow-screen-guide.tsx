@@ -49,7 +49,7 @@ export function YellowScreenGuideEs() {
           </li>
         </ul>
         <p className={p}>
-          ¿Necesitas un archivo? Descargar guarda un PNG amarillo de 1080p a 8K, o en tamaños de móvil y personalizados. Para tonos pastel y
+          ¿Necesitas un archivo? Descargar guarda un PNG amarillo en 1080p, 2K, 4K o tamaño de móvil, o en cualquier tamaño personalizado hasta 8K. Para tonos pastel y
           amarillo claro, mira la colección de <Link href="/backgrounds/yellow-background" className={link}>fondos amarillos</Link>.
         </p>
       </Section>

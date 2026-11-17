@@ -60,7 +60,7 @@ export function RedScreenGuideIt() {
           ]}
         />
         <p className={p}>
-          Ti serve un file? «Scarica» salva un PNG rosso da 1080p a 8K, o in formati per telefono e personalizzati. Altre tonalità nella
+          Ti serve un file? «Scarica» salva un PNG rosso in 1080p, 2K, 4K o formato telefono, o in qualsiasi dimensione personalizzata fino a 8K. Altre tonalità nella
           raccolta di <Link href="/backgrounds/red-background" className={link}>sfondi rossi</Link>.
         </p>
       </Section>
