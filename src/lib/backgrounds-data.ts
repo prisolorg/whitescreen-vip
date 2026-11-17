@@ -150,16 +150,16 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     },
     faqs: [
       {
-        question: 'Does running a full white screen consume more battery?',
-        answer: 'On OLED and AMOLED displays, yes. Pure white requires every subpixel to emit light at maximum power. On traditional LCD panels with LED backlights, energy consumption remains roughly constant regardless of the displayed color. If you use the [white screen](/) as a light on a phone, lower the brightness to save battery.',
+        question: 'Is the white background image free to use?',
+        answer: 'Yes. The PNG is made in your browser when you pick a size under Download PNG, with no watermark and no sign-up.',
       },
       {
-        question: 'Can I use this white background for physical paper tracing?',
-        answer: 'Yes. Set your screen brightness to maximum, lock screen rotation on tablets, and place your tracing sheet directly against the glass.',
+        question: 'Is the white background transparent?',
+        answer: 'No. Every pixel is solid white (#FFFFFF). For a transparent background, use an empty layer in your image editor instead.',
       },
       {
-        question: 'What is the color code for pure white?',
-        answer: 'The hex code is #FFFFFF, RGB is rgb(255, 255, 255), and HSL is hsl(0, 0%, 100%).',
+        question: 'How do I set a white background as my phone wallpaper?',
+        answer: 'Press Download PNG, choose Phone (1080 × 2400), then pick the image in your phone\'s wallpaper settings.',
       },
     ],
     relatedTools: [
@@ -241,16 +241,16 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     },
     faqs: [
       {
-        question: 'Does a black background actually save battery on laptops?',
-        answer: 'Only if your laptop features an OLED or mini-LED display with local dimming. Standard IPS and TN laptop screens keep their backlight lamps on regardless of what color is on screen.',
+        question: 'Is the black background image free to use?',
+        answer: 'Yes. The PNG is made in your browser when you pick a size under Download PNG, with no watermark and no sign-up.',
       },
       {
-        question: 'Why does my black screen look glowing blue or gray from an angle?',
-        answer: 'That is known as IPS glow, an inherent optical behavior of in-plane switching panels. When viewed from wide oblique angles, unpolarized light scatters through the liquid crystals.',
+        question: 'Why does my black background look gray?',
+        answer: 'Your screen is likely an LCD, whose backlight stays on behind black. Lower the brightness and the room lights, or view it on an OLED screen for true black.',
       },
       {
-        question: 'What is the color code for true black?',
-        answer: 'The hex code is #000000, RGB is rgb(0, 0, 0), and HSL is hsl(0, 0%, 0%).',
+        question: 'How do I set a black background as my phone wallpaper?',
+        answer: 'Press Download PNG, choose Phone (1080 × 2400), then pick the image in your phone\'s wallpaper settings.',
       },
     ],
     relatedTools: [
@@ -326,12 +326,12 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     },
     faqs: [
       {
-        question: 'Does orange light interfere with sleep like blue light?',
-        answer: 'No. Amber and orange wavelengths suppress melatonin release far less than short-wavelength blue light, making orange a popular choice for evening screen sessions.',
+        question: 'Is the orange background image free to use?',
+        answer: 'Yes. The PNG is made in your browser when you pick a size under Download PNG, with no watermark and no sign-up.',
       },
       {
-        question: 'What is the exact color code for this orange background?',
-        answer: 'Hex code is #FF7A00, RGB is rgb(255, 122, 0), and HSL is hsl(29, 100%, 50%).',
+        question: 'What is the color code of this orange background?',
+        answer: 'The default orange is #FF7A00, or rgb(255, 122, 0). Pick another shade and Copy CSS gives you its code.',
       },
     ],
     relatedTools: [
@@ -557,8 +557,8 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     ],
     faqs: [
       {
-        question: 'Why is red used in dead pixel testing?',
-        answer: 'Modern LCD and OLED panels use independent red, green, and blue subpixels to form pixels. Testing red individually isolates the red subpixel transistors.',
+        question: 'Is the red background image free to use?',
+        answer: 'Yes. The PNG is made in your browser when you pick a size under Download PNG, with no watermark and no sign-up.',
       },
     ],
     relatedTools: [
@@ -619,8 +619,8 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     ],
     faqs: [
       {
-        question: 'Why does my white screen look like this yellow background?',
-        answer: 'You may have Windows Night Light, macOS True Tone, or a third-party app like f.lux active, or your monitor color temperature preset may be set to "Warm" (5000K). Open the [white screen](/) to check: if it looks yellow too, a warm setting is on.',
+        question: 'Is the yellow background image free to use?',
+        answer: 'Yes. The PNG is made in your browser when you pick a size under Download PNG, with no watermark and no sign-up.',
       },
     ],
     relatedTools: [
@@ -689,12 +689,12 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     ],
     faqs: [
       {
-        question: 'What is the color code for this blue background?',
-        answer: 'The hex code is #0066FF, RGB is rgb(0, 102, 255), and HSL is hsl(216, 100%, 50%).',
+        question: 'Is the blue background image free to use?',
+        answer: 'Yes. The PNG is made in your browser when you pick a size under Download PNG, with no watermark and no sign-up.',
       },
       {
-        question: 'Can I download this blue background in 4K resolution?',
-        answer: 'Yes. Use the download buttons above to export lossless 3840×2160 (4K UHD) PNG files generated directly in your browser without compression.',
+        question: 'What is the color code of this blue background?',
+        answer: 'The default blue is #0066FF, or rgb(0, 102, 255). Pick another shade and Copy CSS gives you its code.',
       },
     ],
     relatedTools: [
@@ -844,11 +844,11 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
   {
     slug: 'graph-paper',
     aliases: ['graph-paper-background'],
-    title: 'Graph Paper Background',
-    h1: 'Graph Paper Background — Blue Grid Paper Wallpaper & PNG',
-    metaTitle: 'Graph Paper Background (Blue Grid, Fullscreen & PNG)',
+    title: 'Graph Paper',
+    h1: 'Graph Paper — Free Printable Grid Paper & PNG',
+    metaTitle: 'Graph Paper (Free Printable Grid Paper, Fullscreen & PNG)',
     metaDescription:
-      'Free graph paper background with a light blue 5×5 grid on white. Use it fullscreen for sketching, tracing and alignment, or download a crisp PNG up to 8K.',
+      'Free graph paper with a bold line every 5 squares, in blue, green, gray and more. Show it full screen or download a PNG to print on Letter or A4.',
     category: 'minimal',
     categoryLabel: 'Aesthetic & Minimal',
     shortDescription: 'Classic white graph paper with light blue squares and darker lines every fifth square.',
@@ -905,19 +905,16 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     ],
     faqs: [
       {
-        question: 'What size are the squares?',
-        answer:
-          'In the preview each small square is 20 × 20 px, grouped into 100 px major squares (5 × 5). Downloads scale the grid with the image so it looks the same at 1080p and 4K.',
+        question: 'Is this graph paper free to print?',
+        answer: 'Yes. Press Download PNG, pick a size and print it. There is no watermark and no sign-up.',
       },
       {
-        question: 'Can I print it?',
-        answer:
-          'Yes. Download the PNG and print it to fit the page. Printed square size depends on the paper size and scaling, so it is not a precise millimetre grid.',
+        question: 'Can I get the graph paper as a PDF?',
+        answer: 'There is no PDF download. Open the PNG, print it and choose Save as PDF in the print dialog instead of a printer.',
       },
       {
-        question: 'Can I check my monitor for distortion with it?',
-        answer:
-          'Yes. Straight, evenly spaced lines across the whole screen mean the image is not being stretched. Bent or uneven lines usually mean scaling, overscan or projector keystone settings need adjusting.',
+        question: 'How big are the squares?',
+        answer: 'About 54 small squares fit across the short side of any image, with a bold line every 5. Printed on Letter or A4, each small square is about 4 mm.',
       },
     ],
     relatedTools: [
@@ -984,12 +981,12 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     ],
     faqs: [
       {
-        question: 'What is the hex code of this pink?',
-        answer: 'It is #F472B6 (RGB 244, 114, 182).',
+        question: 'Is the pink background image free to use?',
+        answer: 'Yes. The PNG is made in your browser when you pick a size under Download PNG, with no watermark and no sign-up.',
       },
       {
-        question: 'Can I use it as a phone wallpaper?',
-        answer: 'Yes. Pick the phone size (1080 × 2400) or enter your exact screen size, then download the PNG.',
+        question: 'What is the color code of this pink background?',
+        answer: 'The default pink is #F472B6, or rgb(244, 114, 182). Pick another shade and Copy CSS gives you its code.',
       },
     ],
     relatedTools: [

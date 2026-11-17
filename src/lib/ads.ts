@@ -14,4 +14,6 @@ export const AD_SLOTS = {
   rail: env(import.meta.env.PUBLIC_ADSENSE_SLOT_RAIL),
   /** 728×90 (tablet) / 320×100 (phone) straight under the tool's controls. */
   under: env(import.meta.env.PUBLIC_ADSENSE_SLOT_UNDER),
+  /** 300×250 under the controls panel of the color screen tools (desktop). Falls back to the rail unit's ID. */
+  panel: env(import.meta.env.PUBLIC_ADSENSE_SLOT_PANEL) || env(import.meta.env.PUBLIC_ADSENSE_SLOT_RAIL),
 } as const

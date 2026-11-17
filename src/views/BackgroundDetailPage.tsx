@@ -3,13 +3,14 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { signalToolUsed, useSignalOnFullscreenExit } from '@/lib/ratings'
 import Link from 'next/link'
-import { Download, X, Check, ChevronRight, Copy, Maximize } from 'lucide-react'
+import { Download, X, Check, ChevronDown, ChevronRight, Copy, Maximize } from 'lucide-react'
 import { InlineAd, RailAd, ToolWithAds } from '@/components/tool-ads'
 import { RatingRow, ToolRatingPrompt } from '@/components/tool-rating'
 import { STUDIO_BACKGROUND_PAGES } from '@/lib/studio-layout'
 import { tx } from '@/lib/tx'
 import { BACKGROUND_SUBTITLE_EN, localizedBackgroundSubtitle } from '@/lib/subtitles'
 import { paintBackground } from '@/lib/background-paint'
+import { BACKGROUND_SHADES, shadeCss, shadeSwatch } from '@/lib/background-shades'
 import { isLightColor } from '@/lib/screen-colors'
 import { DoubleTapHint, STAGE_SIZE, STUDIO_BAND, TOOL_FIXED_WIDTH, TOOL_STAGE_FIXED, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
 import { useTranslation } from '@/lib/i18n'
@@ -26,7 +27,15 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
   const [height, setHeight] = useState(1080)
   const [isDownloading, setIsDownloading] = useState(false)
   const [downloadSuccess, setDownloadSuccess] = useState(false)
-  const [sizeId, setSizeId] = useState('4k')
+  const [downloadMenu, setDownloadMenu] = useState(false)
+  // Shade menu (solid pages) or Style menu (gradients, patterns). The first entry is the page's own color, shown exactly as before.
+  const shades = BACKGROUND_SHADES[item.slug]
+  const [shadeIndex, setShadeIndex] = useState(0)
+  const shade = shades?.[shadeIndex]
+  const isDefault = !shade || shadeIndex === 0
+  const cssBackground = isDefault ? item.cssBackground : shadeCss(item.slug, shade)
+  const paintItem = isDefault ? item : { ...item, primaryHex: shade.hex, secondaryHex: shade.secondary, accentHex: shade.accent }
+  const shadeLabel = item.type === 'solid' ? tx('Shade') : tx('Style')
   const screenRef = useRef<HTMLDivElement>(null)
 
   const exitFullscreen = useCallback(async () => {
@@ -80,7 +89,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
       const ctx = canvas.getContext('2d')
       if (!ctx) return
 
-      paintBackground(ctx, item, customW, customH)
+      paintBackground(ctx, paintItem, customW, customH)
 
       canvas.toBlob(
         (blob) => {
@@ -91,7 +100,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
           const url = URL.createObjectURL(blob)
           const link = document.createElement('a')
           link.href = url
-          link.download = `${item.slug}-${customW}x${customH}.png`
+          link.download = `${isDefault ? item.slug : shade.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}-${customW}x${customH}.png`
           document.body.appendChild(link)
           link.click()
           signalToolUsed()
@@ -111,21 +120,19 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
 
   const copyCss = async () => {
     try {
-      await navigator.clipboard.writeText(`background: ${item.cssBackground};`)
+      await navigator.clipboard.writeText(`background: ${cssBackground};`)
       setIsCopied(true)
       setTimeout(() => setIsCopied(false), 2000)
     } catch {}
   }
 
   const SIZES = [
-    { id: '1080p', label: '1080p · 1920×1080', w: 1920, h: 1080 },
-    { id: '2k', label: '2K · 2560×1440', w: 2560, h: 1440 },
-    { id: '4k', label: '4K · 3840×2160', w: 3840, h: 2160 },
-    { id: 'phone', label: text.sizePhone, w: 1080, h: 2400 },
-    { id: 'custom', label: text.sizeCustom, w: width, h: height },
+    { id: '1080p', label: '1080p', w: 1920, h: 1080 },
+    { id: '2k', label: '2K', w: 2560, h: 1440 },
+    { id: '4k', label: '4K', w: 3840, h: 2160 },
+    { id: 'phone', label: text.sizePhone.split(' · ')[0], w: 1080, h: 2400 },
   ]
-  const size = SIZES.find((option) => option.id === sizeId) ?? SIZES[2]
-  const tone = isLightColor(item.primaryHex) ? 'light' : 'dark'
+  const tone = isLightColor(paintItem.primaryHex) ? 'light' : 'dark'
 
   const studio = STUDIO_BACKGROUND_PAGES
 
@@ -159,7 +166,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
             role="region"
             aria-label={text.preview.replace('{title}', item.title)}
             onDoubleClick={() => void (isFullscreen ? exitFullscreen() : enterFullscreen())}
-            style={{ background: item.cssBackground }}
+            style={{ background: cssBackground }}
             className={cn(
               'relative touch-manipulation select-none overflow-hidden',
               isFullscreen ? 'fixed inset-0 z-50 h-dvh w-full' : studio ? TOOL_STAGE_FIXED : STAGE_SIZE,
@@ -205,7 +212,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
                     tone === 'light' ? 'bg-black/5 text-neutral-900 ring-black/10' : 'bg-white/10 text-white ring-white/20',
                   )}
                 >
-                  {item.primaryHex}
+                  {paintItem.primaryHex}
                 </span>
               }
             />
@@ -214,71 +221,88 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
 
         {!isFullscreen && (
           <BackgroundDock studio={studio} onFullscreen={enterFullscreen}>
-            <div className="contents">
-              <label htmlFor="bg-size" className="sr-only">
-                {text.imageSize}
-              </label>
-              <select
-                id="bg-size"
-                value={sizeId}
-                onChange={(e) => setSizeId(e.target.value)}
-                className="h-10 rounded-xl border bg-background px-2.5 text-sm font-semibold"
-              >
-                {SIZES.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-              {sizeId === 'custom' && (
-                <span className="flex items-center gap-1.5 text-sm">
-                  <label htmlFor="bg-w" className="sr-only">
-                    {text.width}
-                  </label>
-                  <input
-                    id="bg-w"
-                    type="number"
-                    min={1}
-                    max={8192}
-                    value={width}
-                    onChange={(e) => setWidth(Math.min(8192, Math.max(1, parseInt(e.target.value, 10) || 1)))}
-                    className="h-10 w-24 rounded-xl border bg-background px-2.5 font-mono text-sm"
-                  />
-                  ×
-                  <label htmlFor="bg-h" className="sr-only">
-                    {text.height}
-                  </label>
-                  <input
-                    id="bg-h"
-                    type="number"
-                    min={1}
-                    max={8192}
-                    value={height}
-                    onChange={(e) => setHeight(Math.min(8192, Math.max(1, parseInt(e.target.value, 10) || 1)))}
-                    className="h-10 w-24 rounded-xl border bg-background px-2.5 font-mono text-sm"
-                  />
-                </span>
+            {/* One line on every device: Shade (when the page has shades), Copy CSS, Download with its size menu, and
+                Fullscreen from tablets up (phones use the stage icon or double-tap). */}
+            <div className="flex w-full items-center gap-2">
+              {shades && (
+                <MenuField
+                  id="bg-shade"
+                  label={shadeLabel}
+                  value={String(shadeIndex)}
+                  onChange={(value) => setShadeIndex(Number(value))}
+                  display={
+                    <>
+                      <span aria-hidden="true" className="size-4 shrink-0 rounded-full ring-1 ring-black/15 dark:ring-white/25" style={{ background: shadeSwatch(item.slug, shade ?? shades[0]) }} />
+                      <span className="truncate">{tx(shade?.name ?? '')}</span>
+                    </>
+                  }
+                >
+                  {shades.map((option, i) => (
+                    <option key={option.name} value={i}>
+                      {item.type === 'solid' ? `${tx(option.name)} · ${option.hex}` : tx(option.name)}
+                    </option>
+                  ))}
+                </MenuField>
               )}
               <button
                 type="button"
-                onClick={() => handleDownload(size.w, size.h)}
-                disabled={isDownloading}
+                onClick={copyCss}
+                aria-label={isCopied ? text.cssCopied : text.copyCss}
                 className={cn(
-                  'inline-flex h-10 items-center gap-2 rounded-xl px-4 text-sm font-semibold text-white transition-colors',
-                  downloadSuccess ? 'bg-emerald-600' : 'bg-blue-600 hover:bg-blue-700',
+                  'inline-flex h-11 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border bg-background text-sm font-medium transition-colors hover:bg-accent',
+                  shades ? 'w-11 sm:w-auto sm:px-3' : 'px-3',
+                  !shades && 'flex-1 sm:flex-none',
+                  !shades && 'sm:ml-auto',
                 )}
               >
-                {downloadSuccess ? <Check className="size-4" /> : <Download className="size-4" />}
-                <span>{isDownloading ? text.generating : downloadSuccess ? text.downloaded : text.downloadPng}</span>
+                {isCopied ? <Check className="size-4 text-emerald-500" aria-hidden="true" /> : <Copy className="size-4" aria-hidden="true" />}
+                <span className={shades ? 'hidden sm:inline' : ''}>{isCopied ? text.cssCopied : text.copyCss}</span>
               </button>
-              <button
-                type="button"
-                onClick={copyCss}
-                className="inline-flex h-10 items-center gap-1.5 rounded-xl border bg-background px-3 text-sm font-medium transition-colors hover:bg-accent"
-              >
-                {isCopied ? <Check className="size-4 text-emerald-500" /> : <Copy className="size-4" />}
-                <span>{isCopied ? text.cssCopied : text.copyCss}</span>
-              </button>
+              <div className={cn('relative shrink-0', !shades && 'flex-1 sm:flex-none')}>
+                <button
+                  type="button"
+                  onClick={() => setDownloadMenu((open) => !open)}
+                  aria-label={text.downloadPng}
+                  aria-haspopup="menu"
+                  aria-expanded={downloadMenu}
+                  disabled={isDownloading}
+                  className={cn(
+                    'inline-flex h-11 w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-xl px-3 sm:px-3.5 text-sm font-semibold text-white transition-colors',
+                    downloadSuccess ? 'bg-emerald-600' : 'bg-blue-600 hover:bg-blue-700',
+                  )}
+                >
+                  {downloadSuccess ? <Check className="size-4" aria-hidden="true" /> : <Download className="size-4" aria-hidden="true" />}
+                  <span className={shades ? 'hidden sm:inline' : ''}>{isDownloading ? text.generating : downloadSuccess ? text.downloaded : text.downloadPng}</span>
+                  <ChevronDown className="size-4 opacity-80" aria-hidden="true" />
+                </button>
+                {downloadMenu && (
+                  <BackgroundSizeMenu
+                    label={text.imageSize}
+                    sizes={SIZES}
+                    custom={{ w: width, h: height }}
+                    customLabel={text.sizeCustom}
+                    widthLabel={text.width}
+                    heightLabel={text.height}
+                    onPick={(w, h) => {
+                      setDownloadMenu(false)
+                      setWidth(w)
+                      setHeight(h)
+                      handleDownload(w, h)
+                    }}
+                    onClose={() => setDownloadMenu(false)}
+                  />
+                )}
+              </div>
+              {studio && (
+                <button
+                  type="button"
+                  onClick={enterFullscreen}
+                  className="hidden h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-opacity hover:opacity-90 sm:inline-flex"
+                >
+                  <Maximize className="size-4" aria-hidden="true" />
+                  {t('fullscreen', 'Fullscreen')}
+                </button>
+              )}
             </div>
           </BackgroundDock>
         )}
@@ -361,21 +385,109 @@ function StudioFrame({ studio, title, subtitle, children }: { studio: boolean; t
   )
 }
 
-/** Studio: one compact row under the stage (size, download, copy CSS, Fullscreen at the end); classic: the old dock. */
+/** Studio: the card under the stage (menus, then Copy CSS, Download and Fullscreen); classic: the old dock. */
 function BackgroundDock({ studio, onFullscreen, children }: { studio: boolean; onFullscreen: () => void; children: React.ReactNode }) {
-  const { t } = useTranslation()
-  if (!studio) return <StageDock onFullscreen={onFullscreen}><div className="flex flex-wrap items-center gap-2">{children}</div></StageDock>
+  if (!studio) return <StageDock onFullscreen={onFullscreen}>{children}</StageDock>
   return (
-    <div className={cn('mx-auto flex w-full flex-wrap items-center gap-x-2 gap-y-2.5 rounded-2xl bg-card px-3 py-2.5 text-card-foreground shadow-sm ring-1 ring-black/5 sm:px-4 sm:py-3 dark:ring-white/10', TOOL_FIXED_WIDTH)}>
+    <div className={cn('mx-auto w-full rounded-2xl bg-card px-3 py-2.5 text-card-foreground shadow-sm ring-1 ring-black/5 sm:px-4 sm:py-3 dark:ring-white/10', TOOL_FIXED_WIDTH)}>
       {children}
-      <button
-        type="button"
-        onClick={onFullscreen}
-        className="ml-auto inline-flex h-10 shrink-0 items-center gap-2 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+    </div>
+  )
+}
+
+/**
+ * A menu that stays readable at any width: a small caption over the chosen value, with the native select laid invisibly on
+ * top so tapping opens the phone's own picker and the keyboard works as usual.
+ */
+function MenuField({ id, label, value, onChange, display, children }: { id: string; label: string; value: string; onChange: (value: string) => void; display: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <div className="relative min-w-0 flex-1 rounded-xl border bg-background transition-colors hover:bg-accent has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring">
+      <div aria-hidden="true" className="pointer-events-none flex h-11 flex-col justify-center pl-3 pr-8 leading-tight">
+        <span className="text-[11px] font-medium text-muted-foreground">{label}</span>
+        <span className="flex min-w-0 items-center gap-1.5 text-sm font-semibold">{display}</span>
+      </div>
+      <ChevronDown aria-hidden="true" className="pointer-events-none absolute right-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+      <select id={id} aria-label={label} value={value} onChange={(e) => onChange(e.target.value)} className="absolute inset-0 size-full cursor-pointer appearance-none rounded-xl opacity-0">
+        {children}
+      </select>
+    </div>
+  )
+}
+
+/** The Download button's menu, same pattern as the screen tools: preset sizes, then a custom width × height. */
+function BackgroundSizeMenu({ label, sizes, custom, customLabel, widthLabel, heightLabel, onPick, onClose }: {
+  label: string
+  sizes: { id: string; label: string; w: number; h: number }[]
+  custom: { w: number; h: number }
+  customLabel: string
+  widthLabel: string
+  heightLabel: string
+  onPick: (w: number, h: number) => void
+  onClose: () => void
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [size, setSize] = useState(custom)
+  const clamp = (n: number) => Math.min(8192, Math.max(1, Math.round(n) || 1))
+
+  useEffect(() => {
+    const onPointer = (event: PointerEvent) => {
+      // Clicks on the Download button toggle the menu there; anything else outside closes it.
+      if (!ref.current?.parentElement?.contains(event.target as Node)) onClose()
+    }
+    const onKey = (event: KeyboardEvent) => event.key === 'Escape' && onClose()
+    document.addEventListener('pointerdown', onPointer)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('pointerdown', onPointer)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [onClose])
+
+  return (
+    <div
+      ref={ref}
+      role="menu"
+      aria-label={label}
+      className="absolute bottom-full right-0 z-40 mb-2 flex w-64 flex-col gap-0.5 rounded-2xl border bg-popover p-2 text-popover-foreground shadow-2xl"
+    >
+      <span className="px-2.5 pb-1 pt-1.5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">{label}</span>
+      {sizes.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          role="menuitem"
+          onClick={() => onPick(item.w, item.h)}
+          className="flex h-10 items-center justify-between rounded-lg px-2.5 text-sm hover:bg-accent"
+        >
+          <span className="font-semibold">{item.label}</span>
+          <span className="font-mono text-xs text-muted-foreground">
+            {item.w}×{item.h}
+          </span>
+        </button>
+      ))}
+      <form
+        className="mt-1 flex flex-col gap-2 border-t px-1.5 pb-0.5 pt-2.5"
+        onSubmit={(event) => {
+          event.preventDefault()
+          onPick(clamp(size.w), clamp(size.h))
+        }}
       >
-        <Maximize className="size-4" aria-hidden="true" />
-        {t('fullscreen', 'Fullscreen')}
-      </button>
+        <div className="flex items-end gap-1.5">
+          <label className="flex min-w-0 flex-1 flex-col gap-0.5 text-[10px] font-medium text-muted-foreground">
+            {widthLabel}
+            <input type="number" min={1} max={8192} value={size.w} onChange={(e) => setSize((c) => ({ ...c, w: Number(e.target.value) || 0 }))} className="h-9 w-full min-w-0 rounded-md border bg-background px-2 font-mono text-xs text-foreground" />
+          </label>
+          <span className="pb-2 text-muted-foreground">×</span>
+          <label className="flex min-w-0 flex-1 flex-col gap-0.5 text-[10px] font-medium text-muted-foreground">
+            {heightLabel}
+            <input type="number" min={1} max={8192} value={size.h} onChange={(e) => setSize((c) => ({ ...c, h: Number(e.target.value) || 0 }))} className="h-9 w-full min-w-0 rounded-md border bg-background px-2 font-mono text-xs text-foreground" />
+          </label>
+        </div>
+        <button type="submit" className="inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-md bg-foreground px-2.5 text-xs font-semibold text-background">
+          <Download className="size-3.5" aria-hidden="true" />
+          {customLabel}
+        </button>
+      </form>
     </div>
   )
 }

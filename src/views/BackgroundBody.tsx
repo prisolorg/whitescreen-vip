@@ -11,6 +11,7 @@ import { getLocalizedPath } from '@/lib/locale-routing'
 import { useTranslation } from '@/lib/i18n'
 import { absoluteUrl } from '@/lib/site'
 import { JsonLd } from '@/components/json-ld'
+import { BACKGROUND_KEYWORD_GUIDES } from '@/components/home/background-guides'
 
 /** The article under a background's preview. Static: rendered to HTML with no page JavaScript. */
 export function BackgroundBody({ slug }: { slug: string }) {
@@ -18,6 +19,7 @@ export function BackgroundBody({ slug }: { slug: string }) {
   const item = getBackground(slug, language)
   if (!item) return null
   const text = backgroundText(language).body
+  const Guide = language === 'en' ? BACKGROUND_KEYWORD_GUIDES[item.slug] : undefined
   const related = getBackgrounds(language).filter((b) => b.slug !== item.slug && b.category === item.category).slice(0, 3)
 
   const imageSchema = {
@@ -51,7 +53,11 @@ export function BackgroundBody({ slug }: { slug: string }) {
       <JsonLd data={imageSchema} />
       {faqSchema && <JsonLd data={faqSchema} />}
 
+      {Guide && <Guide />}
+      {Guide && STUDIO_BACKGROUND_PAGES && <InlineAd className="mx-auto mt-2 md:hidden" />}
       <div className="mx-auto max-w-5xl px-3 sm:px-6">
+        {!Guide && (
+        <>
         {/* Section 1: About This Background */}
         <section className="mt-6 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
           <div className="flex items-center gap-2">
@@ -140,8 +146,11 @@ export function BackgroundBody({ slug }: { slug: string }) {
           </div>
         </section>
 
+        </>
+        )}
+
         {/* Authoritative Reference Link (When applicable) */}
-        {item.authoritativeLink && (
+        {!Guide && item.authoritativeLink && (
           <section className="mt-8 rounded-2xl border border-primary/30 bg-primary/5 p-5 shadow-xs">
             <div className="flex items-start gap-3">
               <ExternalLink className="size-5 text-primary shrink-0 mt-0.5" />
@@ -165,6 +174,7 @@ export function BackgroundBody({ slug }: { slug: string }) {
         )}
 
         {/* Section 5: Contextual Internal Links */}
+        {!Guide && (
         <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-3">
           <h2 className="text-base sm:text-lg font-bold text-foreground">{text.relatedGuides}</h2>
           <div className="grid gap-2.5 sm:grid-cols-2">
@@ -185,6 +195,7 @@ export function BackgroundBody({ slug }: { slug: string }) {
             ))}
           </div>
         </section>
+        )}
 
         {/* Section 6: Frequently Asked Questions */}
         {item.faqs && item.faqs.length > 0 && (
@@ -205,7 +216,7 @@ export function BackgroundBody({ slug }: { slug: string }) {
         )}
 
         {/* Section 7: Related Tools */}
-        {item.relatedTools && item.relatedTools.length > 0 && (
+        {!Guide && item.relatedTools && item.relatedTools.length > 0 && (
           <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-xs space-y-4">
             <div className="flex items-center gap-2">
               <Monitor className="size-5 text-primary" />
@@ -232,7 +243,7 @@ export function BackgroundBody({ slug }: { slug: string }) {
         )}
 
         {/* Section 8: More Backgrounds in this Collection */}
-        {related.length > 0 && (
+        {!Guide && related.length > 0 && (
           <section className="mt-10">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base sm:text-lg font-bold text-foreground">
@@ -276,7 +287,7 @@ export function BackgroundBody({ slug }: { slug: string }) {
           </section>
         )}
       </div>
-      <WhiteScreenCta className="mt-12" />
+      {!Guide && <WhiteScreenCta className="mt-12" />}
     </article>
   )
 }

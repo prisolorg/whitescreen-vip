@@ -59,6 +59,12 @@ export function RailAd({ className }: { className?: string }) {
   return <AdUnit slot={AD_SLOTS.rail} sizeClass="h-[600px] w-[300px]" label="Ad 300×600" className={cn('sticky top-20 hidden lg:flex', className)} reserve />
 }
 
+/** The 300×250 under the color screen tools' controls panel (desktop only, space always reserved). */
+export function PanelAd({ className }: { className?: string }) {
+  if (!SHOW_ADS) return null
+  return <AdUnit slot={AD_SLOTS.panel} sizeClass="h-[250px] w-[300px]" label="Ad 300×250" className={cn('hidden lg:flex', className)} reserve />
+}
+
 /**
  * An ad between content sections (studio layout test pages): 320×100 on phones, 728×90 from 800px.
  * Space reserved from the first paint; `className` decides on which screens it shows.

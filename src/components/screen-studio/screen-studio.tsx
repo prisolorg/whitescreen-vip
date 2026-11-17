@@ -6,7 +6,7 @@
  * color temperature, and no ads in the first viewport. Other pages keep HomeTool / ScreenTool.
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { AlertCircle, Check, ChevronDown, Coffee, Download, Sun, Image as ImageIcon, Lamp, Maximize, RefreshCw, ScanSearch, Sliders, Sparkles, Trash2, X } from 'lucide-react'
+import { AlertCircle, Check, ChevronDown, ChevronLeft, ChevronRight, Coffee, Download, Sun, Image as ImageIcon, Lamp, Maximize, RefreshCw, ScanSearch, Sliders, Sparkles, Trash2, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { tx } from '@/lib/tx'
 import { SCREEN_COLORS, isLightColor } from '@/lib/screen-colors'
@@ -409,14 +409,13 @@ export function ScreenStudio({
   const hintText =
     mode === 'pixel' ? tx('Click the screen for the next color · Esc to exit') : t('exitHintCycle', 'Press Esc or double-click to exit · ← → to cycle color')
 
-  const body = (
-    <>
+  const header = (
       <header className="flex flex-col items-center gap-1 text-center">
-        <h1 id="screen-heading" className="text-balance text-2xl font-extrabold tracking-tight sm:text-3xl">
+        <h1 id="screen-heading" className={cn("text-balance font-extrabold tracking-tight", rail ? "text-[28px] sm:text-[34px]" : "text-2xl sm:text-3xl")}>
           {title}
         </h1>
         {focus ? (
-          <p className="text-pretty text-[13px] text-foreground/80 sm:text-[15px]">{rail ? ((language === 'en' ? TOOL_SUBTITLE_EN[`${initialColorId}-screen`] : localizedSubtitle(language, `${initialColorId}-screen`)) || tx('Double-tap the screen to go fullscreen.')) : tx('Click Fullscreen to turn your screen {color}.').replace('{color}', t(initialColorId, preset?.name ?? initialColorId).toLocaleLowerCase(language))}</p>
+          <p className={cn("text-pretty text-foreground/80", rail ? "text-[15px] sm:text-[17px]" : "text-[13px] sm:text-[15px]")}>{rail ? ((language === 'en' ? TOOL_SUBTITLE_EN[`${initialColorId}-screen`] : localizedSubtitle(language, `${initialColorId}-screen`)) || tx('Double-tap the screen to go fullscreen.')) : tx('Click Fullscreen to turn your screen {color}.').replace('{color}', t(initialColorId, preset?.name ?? initialColorId).toLocaleLowerCase(language))}</p>
         ) : (
           <>
             <p className="text-pretty text-sm text-foreground/80 sm:text-[15px]">{tx('Go fullscreen in one click, switch colors, or download an image.')}</p>
@@ -425,7 +424,9 @@ export function ScreenStudio({
           </>
         )}
       </header>
+  )
 
+  const screen = (
       <div
         ref={screenRef}
         role="region"
@@ -439,11 +440,18 @@ export function ScreenStudio({
           'relative flex touch-manipulation select-none items-center justify-center overflow-hidden transition-colors duration-150',
           isFullscreen
             ? 'h-full w-full'
-            : cn('mx-auto w-full rounded-2xl border', rail ? 'aspect-[4/3] sm:aspect-video' : 'aspect-video', 'border-black/10 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_16px_40px_-12px_rgba(0,0,0,0.28)] dark:border-white/15 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_16px_40px_-12px_rgba(0,0,0,0.7)]', boxWidth),
+            : cn('mx-auto w-full rounded-2xl border', rail ? 'aspect-[4/3] sm:aspect-video' : 'aspect-video', 'border-black/10 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_16px_40px_-12px_rgba(0,0,0,0.28)] dark:border-white/15 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_16px_40px_-12px_rgba(0,0,0,0.7)]', !rail && boxWidth),
           isFallback && 'fixed inset-0 z-[100] h-dvh rounded-none border-0',
           isFullscreen && (mode === 'clean' || !hintVisible) && 'cursor-none',
         )}
       >
+        {rail && !isFullscreen && (
+          // Rail layout: the page title sits inside the screen, top left, in a tone that reads on the current color.
+          <div className={cn('pointer-events-none absolute left-4 top-3 right-16 text-left sm:left-5 sm:top-4', isLight ? 'text-neutral-900' : 'text-white')}>
+            <h1 id="screen-heading" className="text-balance text-xl font-extrabold tracking-tight sm:text-[26px] sm:leading-tight">{title}</h1>
+            <p className={cn('mt-0.5 text-pretty text-xs sm:text-sm', isLight ? 'text-neutral-600' : 'text-white/75')}>{((language === 'en' ? TOOL_SUBTITLE_EN[`${initialColorId}-screen`] : localizedSubtitle(language, `${initialColorId}-screen`)) || tx('Double-tap the screen to go fullscreen.'))}</p>
+          </div>
+        )}
         {uploadedImage && !inMode && (
           <img
             src={uploadedImage}
@@ -481,7 +489,7 @@ export function ScreenStudio({
                 type="button"
                 onClick={() => void enterFullscreen()}
                 aria-label={t('fullscreen', 'Fullscreen')}
-                className={cn(rail && 'lg:hidden', 'absolute bottom-3 right-3 inline-flex size-11 items-center justify-center rounded-xl ring-1 backdrop-blur transition-colors', chipTone)}
+                className={cn('absolute bottom-3 right-3 inline-flex size-11 items-center justify-center rounded-xl ring-1 backdrop-blur transition-colors', chipTone)}
               >
                 <Maximize className="size-5" aria-hidden="true" />
               </button>
@@ -489,6 +497,12 @@ export function ScreenStudio({
           </>
         )}
       </div>
+  )
+
+  const body = (
+    <>
+      {header}
+      {screen}
 
       {!isFullscreen && (
         <section aria-label={tx('Screen controls')} className={cn("mx-auto flex w-full flex-col gap-3", !focus && "rounded-2xl border bg-card p-3 text-card-foreground shadow-sm sm:p-4", boxWidth)}>
@@ -825,13 +839,197 @@ export function ScreenStudio({
   // A soft band behind the tool (full width, no overflow) so a white or black screen stands out from the page.
   const band = 'flex flex-col gap-3 studio-band bg-[var(--band)] py-5 shadow-[0_0_0_100vmax_var(--band)] [--band:#e8ecf1] [clip-path:inset(0_-100vmax)] sm:py-6 dark:[--band:#171a20]'
   if (!rail) return <div className={cn('flex flex-col gap-3', band.replace('flex flex-col gap-3 ', ''))}>{body}</div>
+
+  // Rail layout: screen with a swipeable color row under it on the left; controls panel and a 300×250 ad on the right.
+  const applyCustom = (hex: string) => {
+    clearImage()
+    setCustomHex(hex.toUpperCase())
+    setSelectedId('custom')
+  }
+  const scrollSwatches = (direction: 1 | -1) => {
+    const row = swatchRowRef.current
+    if (row) row.scrollBy({ left: direction * row.clientWidth * 0.8, behavior: 'smooth' })
+  }
+  // Color tiles like a video site's related videos: a 16:9 thumbnail with the name under it.
+  const tileClass = 'group flex w-[112px] shrink-0 snap-start flex-col gap-1.5 text-left focus-visible:outline-none sm:w-[124px]'
+  const tile = (hex: string, name: string, selected: boolean) => (
+    <>
+      <span
+        aria-hidden="true"
+        className={cn(
+          'flex aspect-video w-full items-center justify-center rounded-xl shadow-sm ring-1 ring-inset ring-black/15 transition-transform group-hover:-translate-y-0.5 group-focus-visible:outline-2 group-focus-visible:outline-offset-2 dark:ring-white/20',
+          selected && 'ring-[3px] ring-blue-600 dark:ring-blue-500',
+        )}
+        style={{ backgroundColor: hex }}
+      >
+        {selected && <Check className={cn('size-5', isLightColor(hex) ? 'text-black' : 'text-white')} aria-hidden="true" />}
+      </span>
+      <span className={cn('truncate text-[13px] leading-tight', selected ? 'font-semibold text-foreground' : 'font-medium text-muted-foreground group-hover:text-foreground')}>{name}</span>
+    </>
+  )
+
+  const swatchRail = (
+    <div className="relative min-w-0">
+      <div
+        ref={swatchRowRef}
+        role="group"
+        aria-label={t('screenColors', 'Screen Colors')}
+        onScroll={updateSwatchScroll}
+        className="flex min-w-0 snap-x gap-2.5 overflow-x-auto scroll-smooth px-1 pb-1 pt-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {swatchColors.map((color) => {
+          const selected = selectedId === color.id && !uploadedImage
+          return (
+            <a
+              key={color.id}
+              href={getLocalizedPath(color.path, language)}
+              onClick={(event) => {
+                event.preventDefault()
+                goToColor(color.id)
+              }}
+              aria-current={selected ? 'page' : undefined}
+              title={localizedToolName(`${color.id}-screen`, language) ?? undefined}
+              className={tileClass}
+            >
+              {tile(color.hex, t(color.id, color.name), selected)}
+            </a>
+          )
+        })}
+        {EXTRA_COLORS.map(([name, hex]) => {
+          const selected = !preset && !uploadedImage && customHex === hex
+          return (
+            <button key={hex} type="button" aria-pressed={selected} onClick={() => applyCustom(hex)} className={tileClass}>
+              {tile(hex, tx(name), selected)}
+            </button>
+          )
+        })}
+      </div>
+      {/* Arrows on faded edges, as on a video site's chip bar; on touch screens people swipe the row. */}
+      {swatchScroll.left && (
+        <div className="absolute inset-y-0 left-0 flex w-16 items-center bg-gradient-to-r from-[var(--band)] from-40% to-transparent">
+          <button type="button" onClick={() => scrollSwatches(-1)} aria-label={tx('Previous colors')} className="inline-flex size-9 items-center justify-center rounded-full bg-background shadow-sm ring-1 ring-black/10 hover:bg-accent dark:ring-white/15">
+            <ChevronLeft className="size-5" aria-hidden="true" />
+          </button>
+        </div>
+      )}
+      {swatchScroll.right && (
+        <div className="absolute inset-y-0 right-0 flex w-16 items-center justify-end bg-gradient-to-l from-[var(--band)] from-40% to-transparent">
+          <button type="button" onClick={() => scrollSwatches(1)} aria-label={tx('More colors')} className="inline-flex size-9 items-center justify-center rounded-full bg-background shadow-sm ring-1 ring-black/10 hover:bg-accent dark:ring-white/15">
+            <ChevronRight className="size-5" aria-hidden="true" />
+          </button>
+        </div>
+      )}
+    </div>
+  )
+
+  // Control bar under the screen: brightness, warmth, keep awake and Download in one row (two rows when narrow).
+  const controlsPanel = (
+    <section aria-label={tx('Screen controls')} className="@container rounded-2xl bg-card px-4 py-3 text-card-foreground shadow-sm ring-1 ring-black/5 max-sm:px-3 dark:ring-white/10">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-3 @max-[519px]:gap-x-2.5 @[520px]:flex-nowrap">
+        <label className="flex w-full items-center gap-2.5 text-sm font-semibold @[520px]:w-auto @[520px]:min-w-0 @[520px]:flex-1">
+          <Sun className="size-4 shrink-0" aria-hidden="true" />
+          <span className="sr-only">{tx('Brightness')}</span>
+          <input type="range" min={10} max={100} value={brightness} onChange={(e) => setBrightness(Number(e.target.value))} className="min-w-0 flex-1 cursor-pointer accent-blue-600" />
+          <span className="w-9 text-right font-mono text-xs text-muted-foreground">{brightness}%</span>
+        </label>
+
+        <div role="radiogroup" aria-label={tx('Warmth')} className="grid shrink-0 grid-cols-3 rounded-lg bg-muted p-1 text-xs font-semibold @max-[519px]:min-w-0 @max-[519px]:flex-1">
+          {(
+            [
+              [t('cool', 'Cool'), 8000],
+              [tx('Neutral'), NEUTRAL_K],
+              [t('warm', 'Warm'), 3500],
+            ] as const
+          ).map(([label, value]) => (
+            <button
+              key={value}
+              type="button"
+              role="radio"
+              aria-checked={kelvin === value}
+              onClick={() => setKelvin(value)}
+              className={cn('h-8 rounded-md px-2.5 transition-colors', kelvin === value ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground')}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        <label className={cn('flex shrink-0 items-center gap-1.5', wakeSupported ? 'cursor-pointer' : 'cursor-not-allowed opacity-60')} title={wakeSupported ? tx('Keep screen awake') : tx('Not supported in this browser')}>
+          <Coffee className="size-4 text-muted-foreground" aria-hidden="true" />
+          <span className="sr-only">{tx('Keep screen awake')}</span>
+          <input type="checkbox" role="switch" checked={keepAwake} disabled={!wakeSupported} onChange={(event) => setKeepAwake(event.target.checked)} className="peer sr-only" />
+          <span aria-hidden="true" className="relative h-5 w-9 shrink-0 rounded-full bg-muted-foreground/30 transition-colors after:absolute after:left-0.5 after:top-0.5 after:size-4 after:rounded-full after:bg-white after:shadow after:transition-transform peer-checked:bg-blue-600 peer-checked:after:translate-x-4 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue-600" />
+        </label>
+
+        <div className="relative shrink-0">
+          <button
+            type="button"
+            onClick={() => setDownloadMenu((open) => !open)}
+            aria-haspopup="menu"
+            aria-expanded={downloadMenu}
+            disabled={downloadState === 'busy'}
+            className={cn('inline-flex h-10 items-center justify-center gap-1.5 rounded-xl px-3.5 text-sm font-semibold whitespace-nowrap text-white shadow-sm transition-colors @max-[519px]:px-2.5', downloadState === 'done' ? 'bg-emerald-600' : 'bg-blue-600 hover:bg-blue-700')}
+          >
+            {downloadState === 'busy' ? <RefreshCw className="size-4 animate-spin" aria-hidden="true" /> : downloadState === 'done' ? <Check className="size-4" aria-hidden="true" /> : <Download className="size-4" aria-hidden="true" />}
+            <span className="@max-[599px]:sr-only">{downloadState === 'done' ? t('downloaded', 'Downloaded!') : tx('Download PNG')}</span>
+            <ChevronDown className="size-4 opacity-80" aria-hidden="true" />
+          </button>
+          {downloadMenu && (
+            <DownloadSizeMenu
+              onPick={(size) => {
+                setDownloadMenu(false)
+                handleDownload(size)
+              }}
+              onClose={() => setDownloadMenu(false)}
+            />
+          )}
+        </div>
+      </div>
+
+      {errorMsg && (
+        <p className="mt-2 flex items-center gap-1.5 text-xs text-destructive" role="alert">
+          <AlertCircle className="size-3.5" aria-hidden="true" />
+          {errorMsg}
+        </p>
+      )}
+    </section>
+  )
+
   return (
-    <div className={cn('grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_300px]', band.replace('flex flex-col gap-3 ', ''))}>
-      <div className="flex min-w-0 flex-col gap-3">{body}</div>
-      {!isFullscreen && <RailAd />}
+    <div className={cn('flex flex-col gap-3', band.replace('flex flex-col gap-3 ', ''))}>
+      {/* Desktop: the tool on the left (title, screen, color row, control bar) with a sticky 300×600 ad beside it.
+          Up to 1200px wide, narrower on short screens so the control bar stays above the fold (e.g. 1366×768).
+          Tablets and phones: the tool alone, full width. */}
+      <div className="mx-auto grid w-full items-start gap-4 lg:max-w-[min(1200px,calc((100vh-290px)*16/9+320px))] lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-5">
+        <div className="flex min-w-0 flex-col gap-3">
+          {screen}
+          {!isFullscreen && swatchRail}
+          {!isFullscreen && controlsPanel}
+        </div>
+        {!isFullscreen && <RailAd />}
+      </div>
+      <RatingRow className="w-full" />
+      <ToolRatingPrompt />
     </div>
   )
 }
+
+/** Extra colors in the rail layout's color row, after the twelve color pages: they paint the screen in place. */
+const EXTRA_COLORS: readonly (readonly [string, string])[] = [
+  ['Warm white', '#FFF4E5'],
+  ['Cool white', '#F0F6FF'],
+  ['Navy', '#000080'],
+  ['Teal', '#008080'],
+  ['Lime', '#BFFF00'],
+  ['Brown', '#8B5A2B'],
+  ['Beige', '#F5F5DC'],
+  ['Gold', '#FFD700'],
+  ['Maroon', '#800000'],
+  ['Lavender', '#E6E6FA'],
+  ['Mint', '#98FF98'],
+  ['Sky blue', '#87CEEB'],
+]
+
 
 /** Download sizes for the Ad C layout: the visitor's own screen, common desktop/TV, phone and tablet sizes. */
 const DOWNLOAD_SIZES: { group: string; items: { label: string; w?: number; h?: number }[] }[] = [
@@ -849,7 +1047,7 @@ const DOWNLOAD_SIZES: { group: string; items: { label: string; w?: number; h?: n
   { group: 'Tablet', items: [{ label: 'iPad', w: 2048, h: 2732 }] },
 ]
 
-function DownloadSizeMenu({ onPick, onClose }: { onPick: (size?: { w: number; h: number }) => void; onClose: () => void }) {
+function DownloadSizeMenu({ onPick, onClose, below = false }: { onPick: (size?: { w: number; h: number }) => void; onClose: () => void; below?: boolean }) {
   const ref = useRef<HTMLDivElement>(null)
   const [custom, setCustom] = useState({ w: 1920, h: 1080 })
 
@@ -872,7 +1070,7 @@ function DownloadSizeMenu({ onPick, onClose }: { onPick: (size?: { w: number; h:
       ref={ref}
       role="menu"
       aria-label={tx('Download size')}
-      className="absolute bottom-full right-0 z-40 mb-2 flex w-72 flex-col gap-0.5 rounded-2xl border bg-popover p-2 text-popover-foreground shadow-2xl"
+      className={cn('absolute right-0 z-40 flex w-72', below ? 'top-full mt-2' : 'bottom-full mb-2', 'flex-col gap-0.5 rounded-2xl border bg-popover p-2 text-popover-foreground shadow-2xl')}
     >
       {DOWNLOAD_SIZES.map((group) => (
         <div key={group.group} className="flex flex-col gap-0.5">
