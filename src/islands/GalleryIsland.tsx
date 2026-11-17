@@ -9,7 +9,8 @@ export default function GalleryIsland({ url, slug }: { url: string; slug: string
     <Providers url={url}>
       <section className="pb-8 pt-1">
         <div className="mx-auto max-w-7xl px-3 sm:px-6">
-          <TryNextGallery currentSlug={slug} video={STUDIO_TOOL_PAGES} className={STUDIO_TOOL_PAGES ? 'mt-4' : undefined} />
+          {/* Studio layout: the gallery sits inside the tool column (ToolPage); only the ad is left here. */}
+          {!STUDIO_TOOL_PAGES && <TryNextGallery currentSlug={slug} />}
           {/* Studio layout: the first ad on desktop and tablet comes after the gallery; phones get theirs later. */}
           {STUDIO_TOOL_PAGES && <InlineAd className="mt-6 hidden md:flex" />}
         </div>

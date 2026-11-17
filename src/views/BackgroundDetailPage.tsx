@@ -5,14 +5,13 @@ import { signalToolUsed, useSignalOnFullscreenExit } from '@/lib/ratings'
 import Link from 'next/link'
 import { Download, X, Check, ChevronDown, ChevronRight, Copy, Maximize } from 'lucide-react'
 import { InlineAd, RailAd, ToolWithAds } from '@/components/tool-ads'
-import { RatingRow, ToolRatingPrompt } from '@/components/tool-rating'
+import { ToolRatingPrompt } from '@/components/tool-rating'
 import { STUDIO_BACKGROUND_PAGES } from '@/lib/studio-layout'
 import { tx } from '@/lib/tx'
-import { BACKGROUND_SUBTITLE_EN, localizedBackgroundSubtitle } from '@/lib/subtitles'
 import { paintBackground } from '@/lib/background-paint'
 import { BACKGROUND_SHADES, shadeCss, shadeSwatch } from '@/lib/background-shades'
 import { isLightColor } from '@/lib/screen-colors'
-import { DoubleTapHint, STAGE_SIZE, STUDIO_BAND, TOOL_FIXED_WIDTH, TOOL_STAGE_FIXED, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
+import { STAGE_SIZE, STUDIO_BAND, TOOL_PAGE_STAGE, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
 import { useTranslation } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
 import type { BackgroundToolProps } from '@/lib/article-i18n/background-props'
@@ -136,11 +135,111 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
 
   const studio = STUDIO_BACKGROUND_PAGES
 
+  // Related backgrounds. Studio layout (same as tool pages): under the tool beside the ad, tiles first, then the
+  // category buttons, the all-backgrounds link last.
+  const relatedSection = studio ? (
+    <section aria-labelledby="more-backgrounds" className="mt-3 flex flex-col gap-3">
+      <h2 id="more-backgrounds" className="text-base font-bold tracking-tight sm:text-lg">
+              {text.moreBackgrounds}
+            </h2>
+          <ul className="grid grid-cols-3 gap-2 sm:gap-3 lg:grid-cols-6">
+            {more.map((bg) => (
+              <li key={bg.slug}>
+                <Link
+                  href={`/backgrounds/${bg.slug}`}
+                  className={cn(
+                    'group flex h-full flex-col transition-all',
+                    studio ? 'gap-2 rounded-xl' : 'gap-1.5 rounded-xl border bg-card p-1.5 hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md',
+                  )}
+                >
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      'w-full ring-1 ring-inset ring-black/10',
+                      studio ? 'aspect-video rounded-xl shadow-sm transition-transform group-hover:-translate-y-0.5 group-hover:shadow-md' : 'h-12 rounded-lg sm:h-14',
+                    )}
+                    style={{ background: bg.cssBackground }}
+                  />
+                  <span className={cn('line-clamp-2 text-xs font-semibold leading-snug sm:text-[13px]', studio ? 'px-0.5' : 'px-1 pb-0.5')}>{bg.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <nav aria-label={text.categoriesLabel} className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {categories.map((cat) => (
+              <Link
+                key={cat.id}
+                href={`/backgrounds?category=${cat.id}`}
+                className={cn(
+                  'h-10 shrink-0 content-center rounded-full px-4 text-sm font-semibold transition-colors',
+                  cat.id === item.category ? 'bg-foreground text-background' : 'border bg-background text-foreground/80 hover:bg-accent',
+                )}
+              >
+                {cat.label}
+              </Link>
+            ))}
+          </nav>
+      <div className="flex justify-end">
+            <Link href="/backgrounds" className="shrink-0 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400">
+              {text.allBackgroundsLink}
+            </Link>
+      </div>
+    </section>
+  ) : (
+        <section aria-labelledby="more-backgrounds" className="mt-2 flex flex-col gap-3">
+          <div className="flex items-baseline justify-between gap-3">
+            <h2 id="more-backgrounds" className="text-base font-bold tracking-tight sm:text-lg">
+              {text.moreBackgrounds}
+            </h2>
+            <Link href="/backgrounds" className="shrink-0 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400">
+              {text.allBackgroundsLink}
+            </Link>
+          </div>
+          <nav aria-label={text.categoriesLabel} className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {categories.map((cat) => (
+              <Link
+                key={cat.id}
+                href={`/backgrounds?category=${cat.id}`}
+                className={cn(
+                  'h-10 shrink-0 content-center rounded-full px-4 text-sm font-semibold transition-colors',
+                  cat.id === item.category ? 'bg-foreground text-background' : 'border bg-background text-foreground/80 hover:bg-accent',
+                )}
+              >
+                {cat.label}
+              </Link>
+            ))}
+          </nav>
+          <ul className="grid grid-cols-3 gap-2 sm:gap-3 lg:grid-cols-6">
+            {more.map((bg) => (
+              <li key={bg.slug}>
+                <Link
+                  href={`/backgrounds/${bg.slug}`}
+                  className={cn(
+                    'group flex h-full flex-col transition-all',
+                    studio ? 'gap-2 rounded-xl' : 'gap-1.5 rounded-xl border bg-card p-1.5 hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md',
+                  )}
+                >
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      'w-full ring-1 ring-inset ring-black/10',
+                      studio ? 'aspect-video rounded-xl shadow-sm transition-transform group-hover:-translate-y-0.5 group-hover:shadow-md' : 'h-12 rounded-lg sm:h-14',
+                    )}
+                    style={{ background: bg.cssBackground }}
+                  />
+                  <span className={cn('line-clamp-2 text-xs font-semibold leading-snug sm:text-[13px]', studio ? 'px-0.5' : 'px-1 pb-0.5')}>{bg.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+  )
+
   return (
     <div className={cn('bg-background', !studio && 'pt-3 sm:pt-4')}>
       {/* Same layout as the screen pages: breadcrumbs, the preview with its title, a control dock,
           then more backgrounds, so the tool and the next links are above the fold. */}
-      <div data-wide-page={studio ? '' : undefined} className={cn('mx-auto flex flex-col gap-3 px-3 sm:px-6', studio ? 'max-w-[1316px]' : 'max-w-7xl')}>
+      <div data-wide-page={studio ? '' : undefined} data-compact-header={studio ? '' : undefined} className={cn('mx-auto flex flex-col gap-3 px-3 sm:px-6', studio ? 'max-w-[1316px]' : 'max-w-7xl')}>
         {!studio && (
         <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
           <Link href="/" className="hover:text-foreground transition-colors">
@@ -159,7 +258,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
         </nav>
         )}
 
-        <StudioFrame studio={studio} title={item.title} subtitle={language === 'en' ? BACKGROUND_SUBTITLE_EN[item.slug] : localizedBackgroundSubtitle(language, item.slug)}>
+        <StudioFrame studio={studio} title={item.title} related={relatedSection}>
         <div className="relative">
           <div
             ref={screenRef}
@@ -169,7 +268,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
             style={{ background: cssBackground }}
             className={cn(
               'relative touch-manipulation select-none overflow-hidden',
-              isFullscreen ? 'fixed inset-0 z-50 h-dvh w-full' : studio ? TOOL_STAGE_FIXED : STAGE_SIZE,
+              isFullscreen ? 'fixed inset-0 z-50 h-dvh w-full' : studio ? cn(TOOL_PAGE_STAGE, 'rounded-b-none border-b-0 shadow-none') : STAGE_SIZE,
             )}
           >
             {isFullscreen ? (
@@ -183,8 +282,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
               </button>
             ) : (
               <>
-                <DoubleTapHint tone={tone} />
-                {studio && (
+                {(
                   <button
                     type="button"
                     onClick={enterFullscreen}
@@ -308,53 +406,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
         )}
         </StudioFrame>
 
-        <section aria-labelledby="more-backgrounds" className="mt-2 flex flex-col gap-3">
-          <div className="flex items-baseline justify-between gap-3">
-            <h2 id="more-backgrounds" className="text-base font-bold tracking-tight sm:text-lg">
-              {text.moreBackgrounds}
-            </h2>
-            <Link href="/backgrounds" className="shrink-0 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400">
-              {text.allBackgroundsLink}
-            </Link>
-          </div>
-          <nav aria-label={text.categoriesLabel} className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {categories.map((cat) => (
-              <Link
-                key={cat.id}
-                href={`/backgrounds?category=${cat.id}`}
-                className={cn(
-                  'h-10 shrink-0 content-center rounded-full px-4 text-sm font-semibold transition-colors',
-                  cat.id === item.category ? 'bg-foreground text-background' : 'border bg-background text-foreground/80 hover:bg-accent',
-                )}
-              >
-                {cat.label}
-              </Link>
-            ))}
-          </nav>
-          <ul className="grid grid-cols-3 gap-2 sm:gap-3 lg:grid-cols-6">
-            {more.map((bg) => (
-              <li key={bg.slug}>
-                <Link
-                  href={`/backgrounds/${bg.slug}`}
-                  className={cn(
-                    'group flex h-full flex-col transition-all',
-                    studio ? 'gap-2 rounded-xl' : 'gap-1.5 rounded-xl border bg-card p-1.5 hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md',
-                  )}
-                >
-                  <span
-                    aria-hidden="true"
-                    className={cn(
-                      'w-full ring-1 ring-inset ring-black/10',
-                      studio ? 'aspect-video rounded-xl shadow-sm transition-transform group-hover:-translate-y-0.5 group-hover:shadow-md' : 'h-12 rounded-lg sm:h-14',
-                    )}
-                    style={{ background: bg.cssBackground }}
-                  />
-                  <span className={cn('line-clamp-2 text-xs font-semibold leading-snug sm:text-[13px]', studio ? 'px-0.5' : 'px-1 pb-0.5')}>{bg.title}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {!studio && relatedSection}
         {/* Studio layout: the first ad on desktop and tablet comes after the related backgrounds. */}
         {studio && <InlineAd className="mt-4 hidden md:flex" />}
       </div>
@@ -363,22 +415,21 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
   )
 }
 
-/** Studio layout: band, centered title and one actionable line above the stage; classic: the old ad column. */
-function StudioFrame({ studio, title, subtitle, children }: { studio: boolean; title: string; subtitle?: string; children: React.ReactNode }) {
+/** Studio layout: same as the tool pages: centred title, the stage with its controls joined under it, the related
+ *  backgrounds below, and the 300×600 ad beside it on desktop. Classic: the old ad column. */
+function StudioFrame({ studio, title, related, children }: { studio: boolean; title: string; related?: React.ReactNode; children: React.ReactNode }) {
   if (!studio) return <ToolWithAds>{children}</ToolWithAds>
-  // Same as the colour and tool pages: tool on the left at the fixed size, 300×600 ad beside it on desktop.
   return (
-    <div className={cn('grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_300px]', STUDIO_BAND)}>
-      <div className="flex min-w-0 flex-col gap-3">
-        <header className="flex flex-col items-center gap-1 text-center">
+    <div className={cn('grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_300px]', STUDIO_BAND, 'pt-2.5 sm:pt-3')}>
+      <div className="flex min-w-0 flex-col gap-2">
+        <header className="flex flex-col items-center text-center">
           <h1 id="screen-heading" className="text-balance text-2xl font-extrabold tracking-tight sm:text-3xl">
             {title}
           </h1>
-          <p className="text-pretty text-[13px] text-foreground/80 sm:text-[15px]">{subtitle || tx('Click Fullscreen to show this background.')}</p>
         </header>
-        {children}
-        <RatingRow className={cn('mx-auto w-full', TOOL_FIXED_WIDTH)} />
+        <div className="flex flex-col">{children}</div>
         <ToolRatingPrompt />
+        {related}
       </div>
       <RailAd />
     </div>
@@ -389,7 +440,8 @@ function StudioFrame({ studio, title, subtitle, children }: { studio: boolean; t
 function BackgroundDock({ studio, onFullscreen, children }: { studio: boolean; onFullscreen: () => void; children: React.ReactNode }) {
   if (!studio) return <StageDock onFullscreen={onFullscreen}>{children}</StageDock>
   return (
-    <div className={cn('mx-auto w-full rounded-2xl bg-card px-3 py-2.5 text-card-foreground shadow-sm ring-1 ring-black/5 sm:px-4 sm:py-3 dark:ring-white/10', TOOL_FIXED_WIDTH)}>
+    // Joined to the bottom of the stage as one card, at the stage's width.
+    <div className="mx-auto w-full max-w-[min(100%,calc(53vh*16/9))] rounded-b-2xl border border-black/10 bg-card px-3 py-2.5 text-card-foreground shadow-[0_16px_40px_-12px_rgba(0,0,0,0.28)] sm:px-4 sm:py-3 dark:border-white/15">
       {children}
     </div>
   )

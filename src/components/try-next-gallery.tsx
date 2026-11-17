@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useMemo, useState } from 'react'
+import { useId, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { TOOLS, getTool, toolPath, type Tool } from '@/lib/tools'
@@ -8,6 +8,7 @@ import { getCategory, type ToolCategoryId } from '@/lib/tool-categories'
 import { getLocalizedCategory, getLocalizedTool } from '@/lib/localized-tools'
 import { useTranslation } from '@/lib/i18n'
 import { byKeywordVolume, linkLabelEn } from '@/lib/link-priority'
+import { LiveThumb, hasLiveThumb } from './live-thumb'
 
 /** Gallery tabs: solid colors get their own tab, split out of the screen-tests category. */
 export type GalleryTabId = 'colors' | ToolCategoryId
@@ -134,21 +135,34 @@ export function ToolThumb({ tool, className }: { tool: Tool; className?: string 
   )
 }
 
+const VIDEO_THUMB = 'aspect-video w-full rounded-xl shadow-sm transition-transform group-hover:-translate-y-0.5 group-hover:shadow-md'
+
 export function TryNextGallery({
   currentSlug,
   defaultTab,
   className,
   video = false,
+  toolLayout = false,
 }: {
   currentSlug: string
   defaultTab?: GalleryTabId
   className?: string
   /** YouTube-style tiles: a 16:9 rounded thumbnail with the title under it (studio layout test). */
   video?: boolean
+  /** Tool pages: animated thumbnails, category buttons under the tiles and the all-tools link last. */
+  toolLayout?: boolean
 }) {
   const { t, language } = useTranslation()
   const [tab, setTab] = useState<GalleryTabId>(defaultTab ?? defaultTabFor(currentSlug))
   const baseId = useId()
+  // Tool pages put the category buttons under the tiles: keep the tallest panel height seen so far, so a
+  // category with fewer tools never pulls the buttons up from under the pointer.
+  const panelRef = useRef<HTMLDivElement>(null)
+  const [panelMinHeight, setPanelMinHeight] = useState(0)
+  const selectTab = (id: GalleryTabId) => {
+    if (toolLayout) setPanelMinHeight((height) => Math.max(height, panelRef.current?.offsetHeight ?? 0))
+    setTab(id)
+  }
   const tiles = useMemo(() => tilesFor(tab, currentSlug).slice(0, 12), [tab, currentSlug])
 
   const tabLabel = (id: GalleryTabId) =>
@@ -158,6 +172,70 @@ export function TryNextGallery({
     // A labelled navigation block with a styled label, not an H2: the same on every page, so each page's
     // first H2 stays its own content. Screen readers still announce it as a named navigation landmark.
     <nav aria-labelledby={`${baseId}-heading`} className={cn('flex flex-col gap-3', className)}>
+      {toolLayout ? (
+        <>
+        <p id={`${baseId}-heading`} className="text-base font-bold tracking-tight sm:text-lg">
+          {defaultTabFor(currentSlug) === 'screen-tests' ? t('keepTesting', 'Keep testing your display') : t('tryNext', 'Try next')}
+        </p>
+      <div ref={panelRef} id={`${baseId}-panel`} role="tabpanel" aria-labelledby={`${baseId}-tab-${tab}`} style={panelMinHeight ? { minHeight: panelMinHeight } : undefined}>
+        <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-3 lg:grid-cols-6 max-sm:[&>li:nth-child(n+10)]:hidden">
+          {tiles.map((tool) => (
+            <li key={tool.slug}>
+              <Link
+                href={toolPath(tool.slug)}
+                className={cn(
+                  'group flex h-full flex-col transition-all focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+                  video ? 'gap-2 rounded-xl' : 'gap-1.5 rounded-xl border bg-card p-1.5 hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md',
+                )}
+              >
+                {toolLayout && hasLiveThumb(tool.slug) ? <LiveThumb tool={tool} className={VIDEO_THUMB} /> : (
+                  <ToolThumb tool={tool} className={video ? VIDEO_THUMB : 'h-12 w-full sm:h-14'} />
+                )}
+                <span className={cn('line-clamp-2 text-xs font-semibold leading-snug sm:text-[13px]', video ? 'px-0.5' : 'px-1 pb-0.5')}>
+                  {language === 'en' ? linkLabelEn(tool.slug, tool.name) : getLocalizedTool(tool, language).name}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div
+        role="tablist"
+        aria-label={t('toolCategories', 'Tool categories')}
+        className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {TAB_ORDER.map((id) => {
+          const selected = id === tab
+          return (
+            <button
+              key={id}
+              type="button"
+              role="tab"
+              id={`${baseId}-tab-${id}`}
+              aria-selected={selected}
+              aria-controls={`${baseId}-panel`}
+              onClick={() => selectTab(id)}
+              className={cn(
+                'h-10 shrink-0 rounded-full px-4 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2',
+                selected
+                  ? 'bg-foreground text-background'
+                  : 'border border-border bg-background text-foreground/80 hover:bg-accent',
+              )}
+            >
+              {tabLabel(id)}
+            </button>
+          )
+        })}
+      </div>
+
+          <div className="flex justify-end">
+        <Link href="/tools" className="shrink-0 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400">
+          {t('allToolsLink', 'All 50+ tools →')}
+        </Link>
+          </div>
+        </>
+      ) : (
+        <>
       <div className="flex items-baseline justify-between gap-3">
         <p id={`${baseId}-heading`} className="text-base font-bold tracking-tight sm:text-lg">
           {defaultTabFor(currentSlug) === 'screen-tests' ? t('keepTesting', 'Keep testing your display') : t('tryNext', 'Try next')}
@@ -182,7 +260,7 @@ export function TryNextGallery({
               id={`${baseId}-tab-${id}`}
               aria-selected={selected}
               aria-controls={`${baseId}-panel`}
-              onClick={() => setTab(id)}
+              onClick={() => selectTab(id)}
               className={cn(
                 'h-10 shrink-0 rounded-full px-4 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2',
                 selected
@@ -196,7 +274,7 @@ export function TryNextGallery({
         })}
       </div>
 
-      <div id={`${baseId}-panel`} role="tabpanel" aria-labelledby={`${baseId}-tab-${tab}`}>
+      <div ref={panelRef} id={`${baseId}-panel`} role="tabpanel" aria-labelledby={`${baseId}-tab-${tab}`} style={panelMinHeight ? { minHeight: panelMinHeight } : undefined}>
         <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-3 lg:grid-cols-6 max-sm:[&>li:nth-child(n+10)]:hidden">
           {tiles.map((tool) => (
             <li key={tool.slug}>
@@ -207,10 +285,9 @@ export function TryNextGallery({
                   video ? 'gap-2 rounded-xl' : 'gap-1.5 rounded-xl border bg-card p-1.5 hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md',
                 )}
               >
-                <ToolThumb
-                  tool={tool}
-                  className={video ? 'aspect-video w-full rounded-xl shadow-sm transition-transform group-hover:-translate-y-0.5 group-hover:shadow-md' : 'h-12 w-full sm:h-14'}
-                />
+                {toolLayout && hasLiveThumb(tool.slug) ? <LiveThumb tool={tool} className={VIDEO_THUMB} /> : (
+                  <ToolThumb tool={tool} className={video ? VIDEO_THUMB : 'h-12 w-full sm:h-14'} />
+                )}
                 <span className={cn('line-clamp-2 text-xs font-semibold leading-snug sm:text-[13px]', video ? 'px-0.5' : 'px-1 pb-0.5')}>
                   {language === 'en' ? linkLabelEn(tool.slug, tool.name) : getLocalizedTool(tool, language).name}
                 </span>
@@ -219,6 +296,8 @@ export function TryNextGallery({
           ))}
         </ul>
       </div>
+        </>
+      )}
     </nav>
   )
 }

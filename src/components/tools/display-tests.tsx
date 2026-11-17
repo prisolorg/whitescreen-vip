@@ -4,7 +4,7 @@ import { tx } from '@/lib/tx'
 import { useEffect, useRef, useState } from 'react'
 import { Pause, Play, RotateCcw } from 'lucide-react'
 import { ToolStage } from '@/components/tool-kit/tool-stage'
-import { CompactSelect, MoreMenu } from '@/components/tool-kit/compact'
+import { CompactSelect } from '@/components/tool-kit/compact'
 import { ActionButton, ControlRow, Segmented, Slider, Toggle } from '@/components/tool-kit/controls'
 import { useAnimationFrame, useCanvasSize, usePrefersReducedMotion } from '@/components/tool-kit/hooks'
 import { StageArrows } from '@/components/screen-stage/stage-parts'
@@ -188,6 +188,8 @@ export function TouchScreenTest() {
       tone="dark"
       reserveHeadingSpace
       className="bg-[#0b0f14]"
+      test
+      testOptions={mode === 'draw' && <Slider label="Line width" value={lineWidth} min={2} max={30} onChange={setLineWidth} format={(v) => `${v}px`} />}
       controls={
         <ControlRow>
           <Segmented
@@ -204,11 +206,6 @@ export function TouchScreenTest() {
             <RotateCcw aria-hidden="true" />
             {tx('Clear')}
           </ActionButton>
-          {mode === 'draw' && (
-            <MoreMenu>
-              <Slider label="Line width" value={lineWidth} min={2} max={30} onChange={setLineWidth} format={(v) => `${v}px`} />
-            </MoreMenu>
-          )}
         </ControlRow>
       }
     >
@@ -308,6 +305,12 @@ export function RefreshRateTest() {
       reserveHeadingSpace
       doubleClickFullscreen
       className="bg-[#0a0a0a]"
+      test
+      testOptions={
+        <p className="basis-full text-center text-xs text-muted-foreground">
+          {tx('Browsers draw once per refresh, so frame timing shows your refresh rate. For a high-refresh reading, plug in a laptop, close heavy tabs and keep this window on the screen you are testing.')}
+        </p>
+      }
       controls={
         <>
           <ControlRow>
@@ -319,11 +322,6 @@ export function RefreshRateTest() {
               {range ? tx('Seen: {low}–{high} Hz').replace('{low}', String(range.low)).replace('{high}', String(range.high)) : tx('Measuring…')}
             </p>
           </ControlRow>
-          <MoreMenu>
-            <p className="text-sm text-muted-foreground">
-              {tx('Browsers draw once per refresh, so frame timing shows your refresh rate. For a high-refresh reading, plug in a laptop, close heavy tabs and keep this window on the screen you are testing.')}
-            </p>
-          </MoreMenu>
         </>
       }
     >
@@ -400,6 +398,8 @@ export function MonitorGhostingTest() {
       reserveHeadingSpace
       doubleClickFullscreen
       className="bg-[#1f1f1f]"
+      test
+      testOptions={<Toggle label="Reference grid" checked={grid} onChange={setGrid} />}
       controls={
         <ControlRow>
           <Slider label="Speed" value={speed} min={240} max={2400} step={120} onChange={setSpeed} format={(v) => `${v} px/s`} />
@@ -407,9 +407,6 @@ export function MonitorGhostingTest() {
             {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
             {isPaused ? tx('Resume') : tx('Pause')}
           </ActionButton>
-          <MoreMenu>
-            <Toggle label="Reference grid" checked={grid} onChange={setGrid} />
-          </MoreMenu>
         </ControlRow>
       }
     >
@@ -476,6 +473,7 @@ export function FrameRateTest() {
       reserveHeadingSpace
       doubleClickFullscreen
       className="bg-[#0b0b0f]"
+      test
       controls={
         <ControlRow>
           <Slider label="Speed" value={speed} min={120} max={1800} step={60} onChange={setSpeed} format={(v) => `${v} px/s`} />
@@ -588,6 +586,27 @@ export function ScreenBurnInTest() {
       tone={tone}
       doubleClickFullscreen
       style={{ background: mode === 'check' ? current.color : '#000' }}
+      test
+      testOptions={
+        mode === 'check' ? (
+          <Toggle label="Auto-cycle (4 s)" checked={autoCycle} onChange={setAutoCycle} />
+        ) : (
+          <>
+            <Segmented
+              label="Fixer pattern"
+              value={fixMode}
+              onChange={setFixMode}
+              options={[
+                { value: 'sweep', label: 'White sweep' },
+                { value: 'colors', label: 'Color cycle' },
+                { value: 'noise', label: 'Color noise' },
+              ]}
+            />
+            <Slider label="Run for" value={minutes} min={1} max={60} onChange={setMinutes} format={(v) => `${v} min`} />
+            {fixMode !== 'sweep' && <p className="basis-full text-center text-xs text-muted-foreground">{tx('Photosensitivity warning: this pattern flashes. Use White sweep if flashing bothers you.')}</p>}
+          </>
+        )
+      }
       controls={
         <>
           <ControlRow>
@@ -611,9 +630,6 @@ export function ScreenBurnInTest() {
                   onChange={(value) => setField(Number(value))}
                   options={BURN_FIELDS.map((f, i) => ({ value: String(i), label: f.label }))}
                 />
-                <MoreMenu>
-                  <Toggle label="Auto-cycle (4 s)" checked={autoCycle} onChange={setAutoCycle} />
-                </MoreMenu>
               </>
             ) : (
               <>
@@ -621,20 +637,6 @@ export function ScreenBurnInTest() {
                   {fixing ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
                   {fixing ? tx('Stop') : tx('Start fixer')}
                 </ActionButton>
-                <MoreMenu>
-                  <Segmented
-                    label="Fixer pattern"
-                    value={fixMode}
-                    onChange={setFixMode}
-                    options={[
-                      { value: 'sweep', label: 'White sweep' },
-                      { value: 'colors', label: 'Color cycle' },
-                      { value: 'noise', label: 'Color noise' },
-                    ]}
-                  />
-                  <Slider label="Run for" value={minutes} min={1} max={60} onChange={setMinutes} format={(v) => `${v} min`} />
-                  {fixMode !== 'sweep' && <p className="text-xs text-muted-foreground">{tx('Photosensitivity warning: this pattern flashes. Use White sweep if flashing bothers you.')}</p>}
-                </MoreMenu>
               </>
             )}
           </ControlRow>

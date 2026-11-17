@@ -29,8 +29,8 @@ export function Slider({ label, value, min, max, step = 1, onChange, format, cla
   const inRow = useInRow()
   if (inRow)
     return (
-      <div className={cn('flex min-w-[180px] flex-1 items-center gap-2.5 text-sm', className)}>
-        <label htmlFor={id} className="whitespace-nowrap font-semibold">
+      <div className={cn('tb-slider flex min-w-[180px] flex-1 items-center gap-2.5 text-sm', className)}>
+        <label htmlFor={id} className="tb-slider-label whitespace-nowrap font-semibold">
           {tx(label)}
         </label>
         <input
@@ -43,7 +43,7 @@ export function Slider({ label, value, min, max, step = 1, onChange, format, cla
           onChange={(event) => onChange(Number(event.target.value))}
           className="h-2 min-w-0 flex-1 cursor-pointer accent-foreground"
         />
-        <output htmlFor={id} className="whitespace-nowrap font-mono text-xs text-muted-foreground">
+        <output htmlFor={id} className="tb-slider-out whitespace-nowrap font-mono text-xs text-muted-foreground">
           {format ? format(value) : value}
         </output>
       </div>
@@ -124,7 +124,7 @@ export function ColorInput({ label, value, onChange }: ColorInputProps) {
           onChange={(event) => onChange(event.target.value)}
           className="size-7 cursor-pointer rounded-md border-0 bg-transparent p-0"
         />
-        <span className="font-mono text-xs uppercase text-muted-foreground">{value}</span>
+        <span className="tb-hex font-mono text-xs uppercase text-muted-foreground">{value}</span>
       </div>
     </div>
   )

@@ -21,7 +21,7 @@ import { cn } from '@/lib/utils'
 import { SCREEN_COLORS, isLightColor } from '@/lib/screen-colors'
 import { CustomColorPicker } from '@/components/screen-tool/custom-color-picker'
 import { useTranslation } from '@/lib/i18n'
-import { DoubleTapHint, STAGE_SIZE, StageArrows, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
+import { STAGE_SIZE, StageArrows, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
 import { getLocalizedPath } from '@/lib/locale-routing'
 import { ToolWithAds } from '@/components/tool-ads'
 
@@ -478,9 +478,15 @@ export function HomeTool() {
                 </div>
               </div>
             ) : (
-              <>
-                <DoubleTapHint tone={isLight ? 'light' : 'dark'} />
-              </>
+              <button
+                type="button"
+                onClick={() => void enterFullscreen()}
+                onDoubleClick={(event) => event.stopPropagation()}
+                aria-label={t('fullscreen', 'Fullscreen')}
+                className={cn('absolute bottom-3 right-3 z-10 inline-flex size-10 items-center justify-center rounded-xl ring-1 backdrop-blur transition-colors', overlayChipClass)}
+              >
+                <Maximize className="size-5" aria-hidden="true" />
+              </button>
             )}
 
             <StageArrows

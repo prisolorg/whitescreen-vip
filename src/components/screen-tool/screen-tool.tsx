@@ -10,7 +10,7 @@ import { SCREEN_COLORS, isLightColor } from '@/lib/screen-colors'
 import { CustomColorPicker } from './custom-color-picker'
 import { ResolutionControls } from './resolution-controls'
 import { useTranslation } from '@/lib/i18n'
-import { DoubleTapHint, STAGE_SIZE, StageArrows, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
+import { STAGE_SIZE, StageArrows, StageDock, StageTitle } from '@/components/screen-stage/stage-parts'
 import { getLocalizedPath } from '@/lib/locale-routing'
 
 type FullscreenDocument = Document & {
@@ -284,7 +284,15 @@ export function ScreenTool({ initialColorId = 'white', title, intro }: ScreenToo
             </div>
           </div>
         ) : (
-          <DoubleTapHint tone={isLight ? 'light' : 'dark'} />
+          <button
+            type="button"
+            onClick={() => void enterFullscreen()}
+            onDoubleClick={(event) => event.stopPropagation()}
+            aria-label={t('fullscreen', 'Fullscreen')}
+            className={cn('absolute bottom-3 right-3 z-10 inline-flex size-10 items-center justify-center rounded-xl ring-1 backdrop-blur transition-colors', overlayChipClass)}
+          >
+            <Maximize className="size-5" aria-hidden="true" />
+          </button>
         )}
 
         {/* Previous / next color. Outside fullscreen these open the neighbouring color page. */}

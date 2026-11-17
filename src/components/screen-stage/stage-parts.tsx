@@ -51,12 +51,17 @@ export const TOOL_FIXED_WIDTH = 'max-w-[min(100%,calc(59vh*16/9))]'
 export const TOOL_STAGE_FIXED =
   'mx-auto aspect-[4/3] w-full max-w-[min(100%,calc(59vh*16/9))] rounded-2xl border border-black/10 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_16px_40px_-12px_rgba(0,0,0,0.28)] sm:aspect-video dark:border-white/15 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_16px_40px_-12px_rgba(0,0,0,0.7)]'
 
+/** Tool pages only: 10% smaller than TOOL_STAGE_FIXED so the related tools under it start above the fold. */
+export const TOOL_PAGE_STAGE = TOOL_STAGE_FIXED.replace('calc(59vh*16/9)', 'calc(53vh*16/9)')
+
 /** Page heading that the stage shows on top of itself. Tool pages provide it; ToolStage reads it. */
 export type StageHeading = {
   title: string
   intro?: string
   /** Studio layout: the page draws the title above the stage, so the stage shows none of its own. */
   studio?: boolean
+  /** Controls bar joined to the bottom of the stage as one piece (tool pages). */
+  attached?: boolean
 }
 export const StageHeadingContext = createContext<StageHeading | null>(null)
 export const useStageHeading = () => useContext(StageHeadingContext)
@@ -176,17 +181,3 @@ export function StageArrows({
   )
 }
 
-/** Small hint at the bottom of the stage, replacing the old center "Open fullscreen" button. */
-export function DoubleTapHint({ tone }: { tone: 'light' | 'dark' }) {
-  const { t } = useTranslation()
-  return (
-    <span
-      className={cn(
-        'pointer-events-none absolute bottom-3 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1 text-xs font-medium ring-1',
-        tone === 'light' ? 'bg-black/5 text-neutral-800 ring-black/10' : 'bg-white/10 text-white ring-white/20',
-      )}
-    >
-      {t('doubleTapHint', 'Double-tap for fullscreen')}
-    </span>
-  )
-}

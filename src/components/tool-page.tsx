@@ -1,10 +1,9 @@
 import type { ReactNode } from 'react'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { STUDIO_BAND, StageHeadingContext } from '@/components/screen-stage/stage-parts'
-import { RatingRow, ToolRatingPrompt } from '@/components/tool-rating'
+import { ToolRatingPrompt } from '@/components/tool-rating'
+import { TryNextGallery } from '@/components/try-next-gallery'
 import { STUDIO_TOOL_PAGES } from '@/lib/studio-layout'
-import { tx } from '@/lib/tx'
-import { TOOL_SUBTITLE_EN, localizedSubtitle } from '@/lib/subtitles'
 import { cn } from '@/lib/utils'
 import { RailAd, ToolWithAds } from '@/components/tool-ads'
 import { getTool, toolPath } from '@/lib/tools'
@@ -44,21 +43,22 @@ export function ToolPage({ slug, children }: { slug: string; children: ReactNode
 
   if (STUDIO_TOOL_PAGES) {
     // Studio layout: same as the colour screens: title on top, the tool sized so its controls stay above
-    // the fold, and the 300×600 ad beside it on desktop. No breadcrumbs.
+    // the fold, and the 300×600 ad beside it on desktop. No breadcrumbs, subtitle or rating row, so the
+    // related tools start right under the tool, around the fold.
     return (
       <section aria-labelledby="screen-heading" className="pb-2">
-        <div data-wide-page="" className="mx-auto max-w-[1316px] px-3 sm:px-6">
-          <div className={cn('grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_300px]', STUDIO_BAND)}>
-            <div className="flex min-w-0 flex-col gap-3">
+        <div data-wide-page="" data-compact-header="" className="mx-auto max-w-[1316px] px-3 sm:px-6">
+          <div className={cn('grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_300px]', STUDIO_BAND, 'pt-2.5 sm:pt-3')}>
+            <div className="flex min-w-0 flex-col gap-2">
               <header className="flex flex-col items-center gap-1 text-center">
                 <h1 id="screen-heading" className="text-balance text-2xl font-extrabold tracking-tight sm:text-3xl">
                   {heading}
                 </h1>
-                <p className="text-pretty text-[13px] text-foreground/80 sm:text-[15px]">{(language === 'en' ? TOOL_SUBTITLE_EN[slug] : localizedSubtitle(language, slug)) || tx('Click Fullscreen to start.')}</p>
               </header>
-              <StageHeadingContext.Provider value={{ title: heading, studio: true }}>{children}</StageHeadingContext.Provider>
-              <RatingRow className="mx-auto w-full max-w-[var(--tool-w,100%)]" />
+              <StageHeadingContext.Provider value={{ title: heading, studio: true, attached: true }}>{children}</StageHeadingContext.Provider>
               <ToolRatingPrompt />
+              {/* Related tools right under the controls, beside the ad, so they start above the fold. */}
+              <TryNextGallery currentSlug={slug} video toolLayout className="mt-3" />
             </div>
             <RailAd />
           </div>

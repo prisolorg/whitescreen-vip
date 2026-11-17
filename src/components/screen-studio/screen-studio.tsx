@@ -5,7 +5,7 @@
  * full-width preview, one controls card under it, working preset modes, keep-awake, brightness and
  * color temperature, and no ads in the first viewport. Other pages keep HomeTool / ScreenTool.
  */
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { AlertCircle, Check, ChevronDown, ChevronLeft, ChevronRight, Coffee, Download, Sun, Image as ImageIcon, Lamp, Maximize, RefreshCw, ScanSearch, Sliders, Sparkles, Trash2, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { tx } from '@/lib/tx'
@@ -65,6 +65,9 @@ export function ScreenStudio({
   focus = false,
   rail = false,
   grown = false,
+  attached = false,
+  swatches = true,
+  belowTool,
 }: {
   initialColorId?: string
   title: string
@@ -73,6 +76,12 @@ export function ScreenStudio({
   rail?: boolean
   /** Layout B (trial on White Screen): taller screen cap and a one-row control bar; the page gives it a wider column. */
   grown?: boolean
+  /** Rail layout trial: the controls bar joined under the screen as one card, the colour row below it. */
+  attached?: boolean
+  /** Rail layout: show the colour row (homepage trial hides it). */
+  swatches?: boolean
+  /** Rail layout: content under the tool in the left column, beside the ad (e.g. the related screens). */
+  belowTool?: ReactNode
 }) {
   // Same width for the preview, controls card and rating row (full literal classes so Tailwind keeps them).
   const boxWidth = rail ? (grown ? 'max-w-[min(100%,calc(59vh*16/9))]' : 'max-w-[min(100%,calc(56vh*16/9))]') : focus ? 'max-w-[min(1024px,calc(58vh*16/9))]' : 'max-w-[min(854px,calc(52vh*16/9))]'
@@ -441,11 +450,12 @@ export function ScreenStudio({
           isFullscreen
             ? 'h-full w-full'
             : cn('mx-auto w-full rounded-2xl border', rail ? 'aspect-[4/3] sm:aspect-video' : 'aspect-video', 'border-black/10 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_16px_40px_-12px_rgba(0,0,0,0.28)] dark:border-white/15 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_16px_40px_-12px_rgba(0,0,0,0.7)]', !rail && boxWidth),
+          attached && rail && !isFullscreen && 'rounded-b-none border-b-0 shadow-none',
           isFallback && 'fixed inset-0 z-[100] h-dvh rounded-none border-0',
           isFullscreen && (mode === 'clean' || !hintVisible) && 'cursor-none',
         )}
       >
-        {rail && !isFullscreen && (
+        {rail && !attached && !isFullscreen && (
           // Rail layout: the page title sits inside the screen, top left, in a tone that reads on the current color.
           <div className={cn('pointer-events-none absolute left-4 top-3 right-16 text-left sm:left-5 sm:top-4', isLight ? 'text-neutral-900' : 'text-white')}>
             <h1 id="screen-heading" className="text-balance text-xl font-extrabold tracking-tight sm:text-[26px] sm:leading-tight">{title}</h1>
@@ -481,9 +491,6 @@ export function ScreenStudio({
           )
         ) : (
           <>
-            <span className={cn('pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1 text-xs ring-1', chipTone)}>
-              {t('doubleTapHint', 'Double-tap for fullscreen')}
-            </span>
             {(
               <button
                 type="button"
@@ -924,16 +931,32 @@ export function ScreenStudio({
 
   // Control bar under the screen: brightness, warmth, keep awake and Download in one row (two rows when narrow).
   const controlsPanel = (
-    <section aria-label={tx('Screen controls')} className="@container rounded-2xl bg-card px-4 py-3 text-card-foreground shadow-sm ring-1 ring-black/5 max-sm:px-3 dark:ring-white/10">
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-3 @max-[519px]:gap-x-2.5 @[520px]:flex-nowrap">
-        <label className="flex w-full items-center gap-2.5 text-sm font-semibold @[520px]:w-auto @[520px]:min-w-0 @[520px]:flex-1">
-          <Sun className="size-4 shrink-0" aria-hidden="true" />
+    <section aria-label={tx('Screen controls')} className={cn(
+        '@container bg-card px-4 py-3 text-card-foreground max-sm:px-3',
+        attached
+          ? 'rounded-b-2xl border border-black/10 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.28)] dark:border-white/15'
+          : 'rounded-2xl shadow-sm ring-1 ring-black/5 dark:ring-white/10',
+      )}>
+      <div className="flex items-center gap-x-4 @max-[699px]:gap-x-3 @max-[519px]:gap-x-2 @max-[339px]:gap-x-1.5">
+        <label className="flex min-w-0 flex-1 items-center gap-2.5 text-sm font-semibold @max-[519px]:gap-1.5">
+          <Sun className="size-4 shrink-0 @max-[519px]:hidden" aria-hidden="true" />
           <span className="sr-only">{tx('Brightness')}</span>
           <input type="range" min={10} max={100} value={brightness} onChange={(e) => setBrightness(Number(e.target.value))} className="min-w-0 flex-1 cursor-pointer accent-blue-600" />
-          <span className="w-9 text-right font-mono text-xs text-muted-foreground">{brightness}%</span>
+          <span className="w-9 text-right font-mono text-xs text-muted-foreground @max-[659px]:hidden">{brightness}%</span>
         </label>
 
-        <div role="radiogroup" aria-label={tx('Warmth')} className="grid shrink-0 grid-cols-3 rounded-lg bg-muted p-1 text-xs font-semibold @max-[519px]:min-w-0 @max-[519px]:flex-1">
+        {/* Phones: the same three warmths as a compact menu, so Fullscreen keeps its label on one row. */}
+        <select
+          aria-label={tx('Warmth')}
+          value={kelvin}
+          onChange={(event) => setKelvin(Number(event.target.value))}
+          className="hidden h-10 shrink-0 cursor-pointer rounded-lg bg-muted px-2 text-xs font-semibold @max-[519px]:block"
+        >
+          <option value={8000}>{t('cool', 'Cool')}</option>
+          <option value={NEUTRAL_K}>{tx('Neutral')}</option>
+          <option value={3500}>{t('warm', 'Warm')}</option>
+        </select>
+        <div role="radiogroup" aria-label={tx('Warmth')} className="grid shrink-0 grid-cols-3 rounded-lg bg-muted p-1 text-xs font-semibold @max-[519px]:hidden">
           {(
             [
               [t('cool', 'Cool'), 8000],
@@ -954,13 +977,6 @@ export function ScreenStudio({
           ))}
         </div>
 
-        <label className={cn('flex shrink-0 items-center gap-1.5', wakeSupported ? 'cursor-pointer' : 'cursor-not-allowed opacity-60')} title={wakeSupported ? tx('Keep screen awake') : tx('Not supported in this browser')}>
-          <Coffee className="size-4 text-muted-foreground" aria-hidden="true" />
-          <span className="sr-only">{tx('Keep screen awake')}</span>
-          <input type="checkbox" role="switch" checked={keepAwake} disabled={!wakeSupported} onChange={(event) => setKeepAwake(event.target.checked)} className="peer sr-only" />
-          <span aria-hidden="true" className="relative h-5 w-9 shrink-0 rounded-full bg-muted-foreground/30 transition-colors after:absolute after:left-0.5 after:top-0.5 after:size-4 after:rounded-full after:bg-white after:shadow after:transition-transform peer-checked:bg-blue-600 peer-checked:after:translate-x-4 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue-600" />
-        </label>
-
         <div className="relative shrink-0">
           <button
             type="button"
@@ -971,8 +987,8 @@ export function ScreenStudio({
             className={cn('inline-flex h-10 items-center justify-center gap-1.5 rounded-xl px-3.5 text-sm font-semibold whitespace-nowrap text-white shadow-sm transition-colors @max-[519px]:px-2.5', downloadState === 'done' ? 'bg-emerald-600' : 'bg-blue-600 hover:bg-blue-700')}
           >
             {downloadState === 'busy' ? <RefreshCw className="size-4 animate-spin" aria-hidden="true" /> : downloadState === 'done' ? <Check className="size-4" aria-hidden="true" /> : <Download className="size-4" aria-hidden="true" />}
-            <span className="@max-[599px]:sr-only">{downloadState === 'done' ? t('downloaded', 'Downloaded!') : tx('Download PNG')}</span>
-            <ChevronDown className="size-4 opacity-80" aria-hidden="true" />
+            <span>{downloadState === 'done' ? t('downloaded', 'Downloaded!') : tx('Download')}</span>
+            <ChevronDown className="size-4 opacity-80 @max-[519px]:hidden" aria-hidden="true" />
           </button>
           {downloadMenu && (
             <DownloadSizeMenu
@@ -984,6 +1000,16 @@ export function ScreenStudio({
             />
           )}
         </div>
+
+        {/* Same main action as the tool pages' control bar, with its label; hidden on phones, where the in-screen button and Download take the space. Fullscreen also keeps the screen awake. */}
+        <button
+          type="button"
+          onClick={() => void enterFullscreen()}
+          className="inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-xl bg-foreground px-4 text-sm font-semibold whitespace-nowrap text-background transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 @max-[519px]:hidden"
+        >
+          <Maximize className="size-4" aria-hidden="true" />
+          <span>{t('fullscreen', 'Fullscreen')}</span>
+        </button>
       </div>
 
       {errorMsg && (
@@ -996,15 +1022,32 @@ export function ScreenStudio({
   )
 
   return (
-    <div className={cn('flex flex-col gap-3', band.replace('flex flex-col gap-3 ', ''))}>
+    <div className={cn('flex flex-col gap-3', band.replace('flex flex-col gap-3 ', ''), attached && 'pt-2.5 sm:pt-3')}>
       {/* Desktop: the tool on the left (title, screen, color row, control bar) with a sticky 300×600 ad beside it.
           Up to 1200px wide, narrower on short screens so the control bar stays above the fold (e.g. 1366×768).
           Tablets and phones: the tool alone, full width. */}
-      <div className="mx-auto grid w-full items-start gap-4 lg:max-w-[min(1200px,calc((100vh-290px)*16/9+320px))] lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-5">
+      <div className={cn('mx-auto grid w-full items-start lg:grid-cols-[minmax(0,1fr)_300px]', attached ? 'gap-6' : 'gap-4 lg:max-w-[min(1200px,calc((100vh-290px)*16/9+320px))] lg:gap-5')}>
         <div className="flex min-w-0 flex-col gap-3">
-          {screen}
-          {!isFullscreen && swatchRail}
-          {!isFullscreen && controlsPanel}
+          {attached ? (
+            // Same as the tool pages: the title centred above, then the screen with its controls joined
+            // under it as one card, at the tool pages' stage width.
+            <div className="flex flex-col gap-2">
+              {!isFullscreen && (
+                <header className="flex flex-col items-center text-center">
+                  <h1 id="screen-heading" className="text-balance text-2xl font-extrabold tracking-tight sm:text-3xl">{title}</h1>
+                </header>
+              )}
+              <div className={cn('flex flex-col', !isFullscreen && 'mx-auto w-full max-w-[min(100%,calc(53vh*16/9))]')}>
+                {screen}
+                {!isFullscreen && controlsPanel}
+              </div>
+            </div>
+          ) : (
+            screen
+          )}
+          {!isFullscreen && swatches && swatchRail}
+          {!isFullscreen && !attached && controlsPanel}
+          {!isFullscreen && belowTool}
         </div>
         {!isFullscreen && <RailAd />}
       </div>

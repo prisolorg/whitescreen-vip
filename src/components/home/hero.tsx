@@ -34,6 +34,7 @@ export function Hero({ colorId = "white", title, intro }: HeroProps) {
     >
       <div
         data-wide-page={usesStudioLayout(colorId) ? "" : undefined}
+        data-compact-header={usesStudioLayout(colorId) ? "" : undefined}
         className={cn(
           "mx-auto flex flex-col gap-3 px-3 sm:px-6",
           usesStudioLayout(colorId) ? "max-w-[1316px]" : "max-w-7xl",
@@ -58,12 +59,18 @@ export function Hero({ colorId = "white", title, intro }: HeroProps) {
               focus
               rail
               grown
-            />
-            <TryNextGallery
-              currentSlug={`${colorId}-screen`}
-              className="mt-4"
-              defaultTab="colors"
-              video
+              attached
+              swatches={false}
+              belowTool={
+                // Same as the tool pages: the related screens under the tool, beside the ad.
+                <TryNextGallery
+                  currentSlug={`${colorId}-screen`}
+                  className="mt-3"
+                  defaultTab="colors"
+                  video
+                  toolLayout
+                />
+              }
             />
             {/* First ad on desktop and tablet, after the gallery; phones get theirs after the first content section. */}
             <InlineAd className="mt-6 hidden md:flex" />

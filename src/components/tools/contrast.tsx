@@ -78,10 +78,10 @@ function HexField({ label, value, onChange }: { label: string; value: string; on
   const isValid = normalizeHex(draft) !== null
   return (
     <div className="flex items-center gap-2">
-      <label htmlFor={id} className="whitespace-nowrap text-sm font-semibold">
+      <label htmlFor={id} className="tb-field-label whitespace-nowrap text-sm font-semibold">
         {tx(label)}
       </label>
-      <div className={cn('flex h-10 items-center gap-1.5 rounded-lg border bg-background pl-1.5 pr-2', !isValid && 'border-destructive')}>
+      <div title={tx(label)} className={cn('flex h-10 items-center gap-1.5 rounded-lg border bg-background pl-1.5 pr-2', !isValid && 'border-destructive')}>
         <input
           type="color"
           aria-label={`${tx(label)}: ${tx('color picker')}`}

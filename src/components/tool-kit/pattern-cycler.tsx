@@ -5,7 +5,6 @@ import { useCallback, useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ToolStage } from './tool-stage'
-import { MoreMenu } from './compact'
 import { StageArrows } from '@/components/screen-stage/stage-parts'
 import { ActionButton, ControlRow, Slider, Toggle } from './controls'
 import { isTypingTarget } from './use-fullscreen'
@@ -76,6 +75,34 @@ export function PatternCycler({ label, patterns, autoCycle, showGridOption, note
       tone={current.tone ?? 'dark'}
       onStageClick={() => step(1)}
       doubleClickFullscreen
+      test
+      testOptions={
+        // Advanced options: only in the fullscreen test (the bar keeps the patterns and Start test).
+        <>
+          {autoCycle && (
+            <>
+              <ActionButton onClick={() => setIsCycling((value) => !value)} aria-pressed={isCycling}>
+                {isCycling ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
+                {isCycling ? t('stopAutoCycle', 'Stop auto-cycle') : t('autoCycle', 'Auto-cycle')}
+              </ActionButton>
+              <Slider
+                label={t('interval', 'Interval')}
+                value={seconds}
+                min={autoCycle.min}
+                max={autoCycle.max}
+                step={autoCycle.step ?? 1}
+                onChange={setSeconds}
+                format={(value) => `${value}s`}
+                className="max-w-72"
+              />
+            </>
+          )}
+          {showGridOption && <Toggle label={t('gridOverlay', 'Grid overlay')} checked={showGrid} onChange={setShowGrid} />}
+          <p className="basis-full text-center text-xs text-muted-foreground">
+            {note ? tx(note) : t('patternCyclerHint', 'Click the screen or use the arrow keys to switch patterns.')}
+          </p>
+        </>
+      }
       style={{ background: current.background, backgroundSize: current.backgroundSize }}
       controls={
         <>
@@ -108,32 +135,6 @@ export function PatternCycler({ label, patterns, autoCycle, showGridOption, note
               <ChevronRight aria-hidden="true" />
             </ActionButton>
           </div>
-          {autoCycle && (
-            <ActionButton onClick={() => setIsCycling((value) => !value)} aria-pressed={isCycling}>
-              {isCycling ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
-              {isCycling ? t('stopAutoCycle', 'Stop auto-cycle') : t('autoCycle', 'Auto-cycle')}
-            </ActionButton>
-          )}
-          <MoreMenu>
-              {autoCycle && (
-                <>
-                  <Slider
-                    label={t('interval', 'Interval')}
-                    value={seconds}
-                    min={autoCycle.min}
-                    max={autoCycle.max}
-                    step={autoCycle.step ?? 1}
-                    onChange={setSeconds}
-                    format={(value) => `${value}s`}
-                    className="max-w-72"
-                  />
-                </>
-              )}
-              {showGridOption && <Toggle label={t('gridOverlay', 'Grid overlay')} checked={showGrid} onChange={setShowGrid} />}
-              <p className="text-sm text-muted-foreground">
-                {note ? tx(note) : t('patternCyclerHint', 'Click the screen or use the arrow keys to switch patterns.')}
-              </p>
-          </MoreMenu>
         </>
       }
     >
