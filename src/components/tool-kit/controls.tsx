@@ -116,13 +116,13 @@ export function ColorInput({ label, value, onChange }: ColorInputProps) {
       <label htmlFor={id} className={cn('text-sm', inRow ? 'whitespace-nowrap font-semibold' : 'font-medium')}>
         {tx(label)}
       </label>
-      <div className="flex h-10 items-center gap-2 rounded-lg border bg-background pl-1.5 pr-3">
+      <div className="flex h-10 items-center gap-2 rounded-lg border bg-background pl-1.5 pr-3 pointer-coarse:h-12 pointer-coarse:pl-0.5">
         <input
           id={id}
           type="color"
           value={value}
           onChange={(event) => onChange(event.target.value)}
-          className="size-7 cursor-pointer rounded-md border-0 bg-transparent p-0"
+          className="size-7 cursor-pointer rounded-md border-0 bg-transparent p-0 pointer-coarse:size-11"
         />
         <span className="tb-hex font-mono text-xs uppercase text-muted-foreground">{value}</span>
       </div>
@@ -163,20 +163,12 @@ export function TextInput({ label, value, onChange, maxLength, placeholder, clas
 type ToggleProps = { label: string; checked: boolean; onChange: (checked: boolean) => void }
 
 export function Toggle({ label, checked, onChange }: ToggleProps) {
-  const id = useId()
+  // The whole row is the label, so the tap target is the full row (44px tall on touch screens), not the 16px box.
   return (
-    <div className="flex h-10 items-center gap-2">
-      <input
-        id={id}
-        type="checkbox"
-        checked={checked}
-        onChange={(event) => onChange(event.target.checked)}
-        className="size-4 cursor-pointer accent-primary"
-      />
-      <label htmlFor={id} className="cursor-pointer text-sm font-medium">
-        {tx(label)}
-      </label>
-    </div>
+    <label className="flex h-10 cursor-pointer items-center gap-2 text-sm font-medium pointer-coarse:h-11">
+      <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} className="size-4 cursor-pointer accent-primary" />
+      {tx(label)}
+    </label>
   )
 }
 

@@ -81,13 +81,13 @@ function HexField({ label, value, onChange }: { label: string; value: string; on
       <label htmlFor={id} className="tb-field-label whitespace-nowrap text-sm font-semibold">
         {tx(label)}
       </label>
-      <div title={tx(label)} className={cn('flex h-10 items-center gap-1.5 rounded-lg border bg-background pl-1.5 pr-2', !isValid && 'border-destructive')}>
+      <div title={tx(label)} className={cn('flex h-10 items-center gap-1.5 rounded-lg border bg-background pl-1.5 pr-2 pointer-coarse:h-12 pointer-coarse:pl-0.5', !isValid && 'border-destructive')}>
         <input
           type="color"
           aria-label={`${tx(label)}: ${tx('color picker')}`}
           value={value}
           onChange={(event) => onChange(event.target.value)}
-          className="size-7 cursor-pointer rounded-md border-0 bg-transparent p-0"
+          className="size-7 cursor-pointer rounded-md border-0 bg-transparent p-0 pointer-coarse:size-11"
         />
         <input
           id={id}
@@ -113,7 +113,7 @@ function HexField({ label, value, onChange }: { label: string; value: string; on
           onKeyDown={(event) => {
             if (event.key === 'Enter') event.currentTarget.blur()
           }}
-          className="w-[4.5rem] bg-transparent font-mono text-sm uppercase outline-none"
+          className="w-[4.5rem] bg-transparent font-mono text-sm uppercase outline-none pointer-coarse:h-11"
         />
       </div>
     </div>

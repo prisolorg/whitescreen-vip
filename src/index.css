@@ -246,11 +246,18 @@ body:has([data-compact-header]) .site-header-inner {
   height: 3.5rem;
 }
 
+/* Touch screens: every button, menu and link in a control bar is at least 44×44px (comfortable tap target). */
+@media (pointer: coarse) {
+  :is([data-tight], [data-controls]) :is(button, select, a[href]):not([data-popover] *) {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+  }
+}
 /* Tool control bars stay on one row: ToolStage raises data-tight step by step, only as far as the row needs.
    ("Start test" on screen tests always keeps its label.)
    1 Fullscreen as an icon · 2 icon buttons drop their text · 3 smaller gaps · 4 phones: no Fullscreen button (the stage
    has its own icon) · 5 option groups scroll sideways inside the row. */
-:is([data-tight='1'], [data-tight='2'], [data-tight='3']) .tb-fs:not(.tb-start) .tb-fs-label {
+:is([data-tight='1'], [data-tight='2'], [data-tight='3']) .tb-fs:not(.tb-start) .tb-fs-label:not([data-popover] *) {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -258,10 +265,10 @@ body:has([data-compact-header]) .site-header-inner {
   clip-path: inset(50%);
   white-space: nowrap;
 }
-:is([data-tight='1'], [data-tight='2'], [data-tight='3']) .tb-fs:not(.tb-start) {
+:is([data-tight='1'], [data-tight='2'], [data-tight='3']) .tb-fs:not(.tb-start):not([data-popover] *) {
   padding-inline: 0.75rem;
 }
-:is([data-tight='2'], [data-tight='3'], [data-tight='4'], [data-tight='5']) button:has(> svg):not(.tb-fs) {
+:is([data-tight='2'], [data-tight='3'], [data-tight='4'], [data-tight='5']) button:has(> svg):not(.tb-fs):not([data-popover] *) {
   font-size: 0;
   gap: 0;
   padding-inline: 0.75rem;
@@ -270,33 +277,33 @@ body:has([data-compact-header]) .site-header-inner {
   column-gap: 0.5rem;
   padding-inline: 0.625rem;
 }
-:is([data-tight='4'], [data-tight='5']) .tb-fs:not(.tb-start) {
+:is([data-tight='4'], [data-tight='5']) .tb-fs:not(.tb-start):not([data-popover] *) {
   display: none;
 }
 [data-tight='5'] {
   flex-wrap: nowrap;
 }
-[data-tight='5'] fieldset {
+[data-tight='5'] fieldset:not([data-popover] *) {
   min-width: 0;
   flex: 1 1 0;
 }
-[data-tight='5'] fieldset > div {
+[data-tight='5'] fieldset > div:not([data-popover] *) {
   flex-wrap: nowrap;
   overflow-x: auto;
   scrollbar-width: none;
 }
-[data-tight='5'] fieldset > div::-webkit-scrollbar {
+[data-tight='5'] fieldset > div:not([data-popover] *)::-webkit-scrollbar {
   display: none;
 }
-[data-tight='5'] fieldset > div > * {
+[data-tight='5'] fieldset > div > *:not([data-popover] *) {
   flex-shrink: 0;
 }
 /* Colour pickers in a tight row keep the swatch and drop the hex code. */
-[data-tight='5'] .tb-hex {
+[data-tight='5'] .tb-hex:not([data-popover] *) {
   display: none;
 }
 /* Labelled colour fields in a tight phone row keep their box (named on hover and to screen readers), not the visible label. */
-[data-tight='5'] .tb-field-label {
+[data-tight='5'] .tb-field-label:not([data-popover] *) {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -305,24 +312,24 @@ body:has([data-compact-header]) .site-header-inner {
   white-space: nowrap;
 }
 /* Custom option groups and sliders in a tight phone row: one line that scrolls sideways, sliders may get shorter. */
-[data-tight='5'] .flex-wrap {
+[data-tight='5'] .flex-wrap:not([data-popover] *) {
   flex-wrap: nowrap;
   min-width: 0;
   overflow-x: auto;
   scrollbar-width: none;
 }
-[data-tight='5'] .flex-wrap > * {
+[data-tight='5'] .flex-wrap > *:not([data-popover] *) {
   flex-shrink: 0;
 }
-[data-tight='5'] [class*='min-w-['] {
+[data-tight='5'] [class*='min-w-[']:not([data-popover] *) {
   min-width: 6rem;
 }
 /* Sliders in a tight phone row keep a usable track: the visible label and value go (still read to screen readers). */
-:is([data-tight='4'], [data-tight='5']) .tb-slider {
+:is([data-tight='4'], [data-tight='5']) .tb-slider:not([data-popover] *) {
   min-width: 7rem;
   gap: 0;
 }
-:is([data-tight='4'], [data-tight='5']) :is(.tb-slider-label, .tb-slider-out) {
+:is([data-tight='4'], [data-tight='5']) :is(.tb-slider-label, .tb-slider-out):not([data-popover] *) {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -331,6 +338,6 @@ body:has([data-compact-header]) .site-header-inner {
   white-space: nowrap;
 }
 /* Readings written as text in the row ("Your display: 60 FPS") leave the tightest phone row; the fullscreen test panel still shows them. */
-[data-tight='5'] p {
+[data-tight='5'] p:not([data-popover] *) {
   display: none;
 }

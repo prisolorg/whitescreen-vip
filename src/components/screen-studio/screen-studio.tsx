@@ -512,7 +512,7 @@ export function ScreenStudio({
       {screen}
 
       {!isFullscreen && (
-        <section aria-label={tx('Screen controls')} className={cn("mx-auto flex w-full flex-col gap-3", !focus && "rounded-2xl border bg-card p-3 text-card-foreground shadow-sm sm:p-4", boxWidth)}>
+        <section aria-label={tx('Screen controls')} data-controls="" className={cn("mx-auto flex w-full flex-col gap-3", !focus && "rounded-2xl border bg-card p-3 text-card-foreground shadow-sm sm:p-4", boxWidth)}>
           <div className={cn("flex flex-col gap-3 lg:flex-row lg:items-center lg:gap-x-3", focus ? "lg:flex-nowrap" : "lg:flex-wrap")}>
             {!rail && (
             /* Phones and tablets: Fullscreen first and full width. Desktop: last in the row. */ 
@@ -931,7 +931,7 @@ export function ScreenStudio({
 
   // Control bar under the screen: brightness, warmth, keep awake and Download in one row (two rows when narrow).
   const controlsPanel = (
-    <section aria-label={tx('Screen controls')} className={cn(
+    <section aria-label={tx('Screen controls')} data-controls="" className={cn(
         '@container bg-card px-4 py-3 text-card-foreground max-sm:px-3',
         attached
           ? 'rounded-b-2xl border border-black/10 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.28)] dark:border-white/15'
@@ -950,7 +950,7 @@ export function ScreenStudio({
           aria-label={tx('Warmth')}
           value={kelvin}
           onChange={(event) => setKelvin(Number(event.target.value))}
-          className="hidden h-10 shrink-0 cursor-pointer rounded-lg bg-muted px-2 text-xs font-semibold @max-[519px]:block"
+          className="hidden h-10 shrink-0 cursor-pointer rounded-lg bg-muted px-2 text-xs font-semibold pointer-coarse:h-11 @max-[519px]:block"
         >
           <option value={8000}>{t('cool', 'Cool')}</option>
           <option value={NEUTRAL_K}>{tx('Neutral')}</option>

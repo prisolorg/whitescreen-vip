@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { ChevronDown, SlidersHorizontal } from 'lucide-react'
 import { tx } from '@/lib/tx'
 import { cn } from '@/lib/utils'
@@ -51,8 +51,30 @@ export function CompactSelect<T extends string>({
 /** "More" button with a pop-up panel above it for the less used options. */
 export function MoreMenu({ children, label = 'More options' }: { children: ReactNode; label?: string }) {
   const [open, setOpen] = useState(false)
+  // Which edge of the button the panel lines up with, so it opens towards the room on screen.
+  const [alignRight, setAlignRight] = useState(false)
+  // Sideways nudge (px) that keeps the open panel inside the screen.
+  const [shift, setShift] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
   const panelId = useId()
+
+  useLayoutEffect(() => {
+    const panel = panelRef.current
+    if (!open || !panel) return setShift(0)
+    const box = panel.getBoundingClientRect()
+    const left = box.left - shift
+    const right = box.right - shift
+    const margin = 8
+    setShift(left < margin ? margin - left : right > window.innerWidth - margin ? window.innerWidth - margin - right : 0)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, alignRight])
+
+  const toggle = () => {
+    const box = ref.current?.getBoundingClientRect()
+    if (box) setAlignRight(box.left + box.width / 2 > window.innerWidth / 2)
+    setOpen((value) => !value)
+  }
 
   useEffect(() => {
     if (!open) return
@@ -76,7 +98,7 @@ export function MoreMenu({ children, label = 'More options' }: { children: React
         type="button"
         aria-expanded={open}
         aria-controls={panelId}
-        onClick={() => setOpen((value) => !value)}
+        onClick={toggle}
         className={cn('inline-flex h-10 items-center gap-1.5 rounded-xl border px-3 text-sm font-semibold whitespace-nowrap transition-colors', open ? 'bg-accent' : 'bg-background hover:bg-accent')}
       >
         <SlidersHorizontal className="size-4" aria-hidden="true" />
@@ -85,9 +107,13 @@ export function MoreMenu({ children, label = 'More options' }: { children: React
       {open && (
         <div
           id={panelId}
+          ref={panelRef}
+          style={shift ? { transform: `translateX(${shift}px)` } : undefined}
           role="group"
           aria-label={tx(label)}
-          className="absolute bottom-full left-0 z-40 mb-2 flex w-72 max-w-[calc(100vw-2rem)] flex-col gap-4 rounded-2xl border bg-popover p-4 text-popover-foreground shadow-xl"
+          // data-popover: the control bar's one-row tightening (index.css, ToolStage) leaves this panel alone.
+          data-popover=""
+          className={cn('absolute bottom-full z-40 mb-2 flex w-72 max-w-[calc(100vw-2rem)]', alignRight ? 'right-0' : 'left-0', 'flex-col gap-4 rounded-2xl border bg-popover p-4 text-popover-foreground shadow-xl')}
         >
           <InRowContext.Provider value={false}>{children}</InRowContext.Provider>
         </div>

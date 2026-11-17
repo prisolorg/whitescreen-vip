@@ -57,6 +57,31 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
     setIsFullscreen(true)
   }, [])
 
+  // Keep the screen awake while the background is fullscreen (same as the tools and colour screens).
+  useEffect(() => {
+    if (!isFullscreen || !('wakeLock' in navigator)) return
+    let sentinel: WakeLockSentinel | null = null
+    let cancelled = false
+    const acquire = () => {
+      if (document.visibilityState !== 'visible') return
+      navigator.wakeLock
+        .request('screen')
+        .then((lock) => {
+          if (cancelled) void lock.release()
+          else sentinel = lock
+        })
+        .catch(() => {})
+    }
+    acquire()
+    // The browser drops the lock when the tab is hidden; take it again on return.
+    document.addEventListener('visibilitychange', acquire)
+    return () => {
+      cancelled = true
+      document.removeEventListener('visibilitychange', acquire)
+      void sentinel?.release()
+    }
+  }, [isFullscreen])
+
   useEffect(() => {
     const onFsChange = () => {
       setIsFullscreen(!!document.fullscreenElement)
@@ -441,7 +466,7 @@ function BackgroundDock({ studio, onFullscreen, children }: { studio: boolean; o
   if (!studio) return <StageDock onFullscreen={onFullscreen}>{children}</StageDock>
   return (
     // Joined to the bottom of the stage as one card, at the stage's width.
-    <div className="mx-auto w-full max-w-[min(100%,calc(53vh*16/9))] rounded-b-2xl border border-black/10 bg-card px-3 py-2.5 text-card-foreground shadow-[0_16px_40px_-12px_rgba(0,0,0,0.28)] sm:px-4 sm:py-3 dark:border-white/15">
+    <div data-controls="" className="mx-auto w-full max-w-[min(100%,calc(53vh*16/9))] rounded-b-2xl border border-black/10 bg-card px-3 py-2.5 text-card-foreground shadow-[0_16px_40px_-12px_rgba(0,0,0,0.28)] sm:px-4 sm:py-3 dark:border-white/15">
       {children}
     </div>
   )

@@ -48,15 +48,23 @@ export function useCanvasSize(maxDpr = 2) {
     const canvas = canvasRef.current
     const parent = canvas?.parentElement
     if (!canvas || !parent) return
+    // Resize the canvas in the next frame, not inside the observer callback (WebKit "ResizeObserver loop" error).
+    let frame = 0
     const observer = new ResizeObserver(([entry]) => {
-      const dpr = Math.min(window.devicePixelRatio || 1, maxDpr)
       const { width, height } = entry.contentRect
-      canvas.width = Math.max(1, Math.round(width * dpr))
-      canvas.height = Math.max(1, Math.round(height * dpr))
-      setSize({ width, height, dpr })
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const dpr = Math.min(window.devicePixelRatio || 1, maxDpr)
+        canvas.width = Math.max(1, Math.round(width * dpr))
+        canvas.height = Math.max(1, Math.round(height * dpr))
+        setSize({ width, height, dpr })
+      })
     })
     observer.observe(parent)
-    return () => observer.disconnect()
+    return () => {
+      cancelAnimationFrame(frame)
+      observer.disconnect()
+    }
   }, [maxDpr])
 
   return { canvasRef, ...size }

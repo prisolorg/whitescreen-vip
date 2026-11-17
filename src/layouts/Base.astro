@@ -107,15 +107,23 @@ const htmlLang = seo.lang === 'pt-br' ? 'pt-BR' : seo.lang
               script.onerror = function () {
                 if (window.__wsAdBlocked) window.__wsAdBlocked(true)
               }
+              // Request ads once the library is in: one push per shown unit that has no ad yet. Pushing before it
+              // loads queues them, and a surplus push then throws an uncaught TagError inside AdSense's own script.
+              script.onload = function () {
+                // Only units shown at this screen width get an ad. AdSense fills the first unfilled
+                // ins.adsbygoogle in page order, so hidden ones (the desktop rail on a phone) drop the class.
+                document.querySelectorAll('ins.adsbygoogle').forEach(function (ins) {
+                  if (!ins.offsetWidth) ins.classList.remove('adsbygoogle')
+                })
+                document.querySelectorAll('ins.adsbygoogle:not([data-adsbygoogle-status])').forEach(function () {
+                  try {
+                    ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+                  } catch (error) {
+                    // Every shown unit already has an ad.
+                  }
+                })
+              }
               document.head.appendChild(script)
-              // Only units shown at this screen width get an ad. AdSense fills the first unfilled
-              // ins.adsbygoogle in page order, so hidden ones (the desktop rail on a phone) drop the class.
-              document.querySelectorAll('ins.adsbygoogle').forEach(function (ins) {
-                if (!ins.offsetWidth) ins.classList.remove('adsbygoogle')
-              })
-              document.querySelectorAll('ins.adsbygoogle').forEach(function () {
-                ;(window.adsbygoogle = window.adsbygoogle || []).push({})
-              })
             }
             ;['scroll', 'pointerdown', 'keydown'].forEach(function (type) {
               addEventListener(type, start, { once: true, passive: true })

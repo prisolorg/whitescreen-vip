@@ -86,7 +86,11 @@ export function ToolStage({
         const box = el.getBoundingClientRect()
         return box.top + box.height / 2
       })
-      return (middles.length === 0 || Math.max(...middles) - Math.min(...middles) < 12) && bar.scrollWidth <= bar.clientWidth + 1 &&
+      // Overflow is judged from the row's own items, not scrollWidth, so an open pop-up (More) never counts as overflow.
+      const inner = bar.getBoundingClientRect()
+      const padRight = parseFloat(getComputedStyle(bar).paddingRight) || 0
+      const overflows = items(bar).some((el) => el.getBoundingClientRect().right > inner.right - padRight + 1)
+      return (middles.length === 0 || Math.max(...middles) - Math.min(...middles) < 12) && !overflows &&
         // A slider squeezed below a usable track counts as not fitting.
         [...bar.querySelectorAll<HTMLInputElement>('input[type=range]')].every((input) => input.offsetWidth >= 80)
     }
@@ -111,13 +115,35 @@ export function ToolStage({
       frame = requestAnimationFrame(() => check(true))
     }
     check(true)
-    const resize = new ResizeObserver(() => check())
+    // Web fonts change label widths after the first paint: fit again once they're in.
+    document.fonts?.ready.then(schedule)
+    // Re-fit in the next frame, not inside the observer callback: changing data-tight there resizes the bar again
+    // and WebKit reports "ResizeObserver loop completed with undelivered notifications".
+    let resizeFrame = 0
+    const resize = new ResizeObserver(() => {
+      cancelAnimationFrame(resizeFrame)
+      resizeFrame = requestAnimationFrame(() => check())
+    })
     resize.observe(bar)
+    // A rotation or window resize can show or hide labels (breakpoints) while the bar keeps its width: re-fit anyway.
+    window.addEventListener('resize', schedule)
     // Labels that change (Start → Pause) can change the fit.
-    const mutations = new MutationObserver(schedule)
+    const mutations = new MutationObserver((records) => {
+      // Opening or editing a pop-up panel doesn't change the row.
+      const inPopover = (record: MutationRecord) => {
+        if ((record.target instanceof Element ? record.target : record.target.parentElement)?.closest('[data-popover]')) return true
+        // The panel itself being added or removed (a text change has no added/removed nodes, so it still counts).
+        const nodes = [...record.addedNodes, ...record.removedNodes]
+        return nodes.length > 0 && nodes.every((node) => node instanceof Element && node.matches('[data-popover]'))
+      }
+      if (records.every(inPopover)) return
+      schedule()
+    })
     mutations.observe(bar, { subtree: true, childList: true, characterData: true })
     return () => {
       cancelAnimationFrame(frame)
+      cancelAnimationFrame(resizeFrame)
+      window.removeEventListener('resize', schedule)
       resize.disconnect()
       mutations.disconnect()
     }
@@ -129,10 +155,16 @@ export function ToolStage({
     if (!studio || compact || !dock || typeof ResizeObserver === 'undefined') return
     const root = document.documentElement
     const update = () => root.style.setProperty('--dock-h', `${Math.ceil(dock.getBoundingClientRect().height) + 12}px`)
-    const observer = new ResizeObserver(update)
+    // Next frame, so the CSS variable never changes layout inside the observer callback (WebKit loop warning).
+    let frame = 0
+    const observer = new ResizeObserver(() => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(update)
+    })
     observer.observe(dock)
     update()
     return () => {
+      cancelAnimationFrame(frame)
       observer.disconnect()
       root.style.removeProperty('--dock-h')
     }
@@ -146,10 +178,15 @@ export function ToolStage({
     const update = () => {
       if (!document.fullscreenElement) root.style.setProperty('--tool-w', `${Math.round(stage.getBoundingClientRect().width)}px`)
     }
-    const observer = new ResizeObserver(update)
+    let frame = 0
+    const observer = new ResizeObserver(() => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(update)
+    })
     observer.observe(stage)
     update()
     return () => {
+      cancelAnimationFrame(frame)
       observer.disconnect()
       root.style.removeProperty('--tool-w')
     }

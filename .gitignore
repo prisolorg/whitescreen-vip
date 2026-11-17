@@ -10,3 +10,6 @@ coverage/
 dist-ssr/
 .astro/
 .vercel
+
+# Playwright audit output
+tests/out/
