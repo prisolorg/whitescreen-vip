@@ -4,6 +4,11 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "trailingSlash": true,
+  "git": {
+    "deploymentEnabled": {
+      "astro-migration": false
+    }
+  },
   "redirects": [
     {
       "source": "/contact-us/",
