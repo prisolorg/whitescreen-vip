@@ -207,17 +207,7 @@ export const TOOLS: readonly Tool[] = [
       'Cycle full-screen solid colors to inspect your display for dead, stuck or hot pixels by eye.',
     icon: ScanEye,
     keywords: ['dead pixel', 'stuck pixel', 'hot pixel', 'pixel test', 'monitor check'],
-    related: ['monitor-test', 'screen-uniformity-test', 'touch-screen-test', 'screen-color-test'],
-  },
-  {
-    slug: 'screen-uniformity-test',
-    name: 'Screen Uniformity Test',
-    category: 'screen-tests',
-    description:
-      'Even gray fields with an optional grid overlay to reveal clouding, vignetting and backlight bleed.',
-    icon: Grid3x3,
-    keywords: ['uniformity', 'clouding', 'backlight bleed', 'dirty screen effect', 'vignetting'],
-    related: ['dead-pixel-test', 'monitor-test', 'oled-gray-test', 'screen-color-test'],
+    related: ['monitor-test', 'gray-screen', 'touch-screen-test', 'screen-color-test'],
   },
   {
     slug: 'monitor-test',
@@ -237,7 +227,7 @@ export const TOOLS: readonly Tool[] = [
       'Near-black gray steps that expose OLED banding, near-black flicker and uneven low-light uniformity.',
     icon: Contrast,
     keywords: ['oled', 'near black', 'gray uniformity', 'banding', 'black crush'],
-    related: ['oled-burn-in-test', 'screen-burn-in-test', 'screen-uniformity-test', 'dead-pixel-test'],
+    related: ['oled-burn-in-test', 'screen-burn-in-test', 'gray-screen', 'dead-pixel-test'],
   },
   {
     slug: 'oled-burn-in-test',
@@ -247,7 +237,7 @@ export const TOOLS: readonly Tool[] = [
       'Solid color fields and an auto-cycle mode to help you see image retention and burn-in on OLED panels.',
     icon: Flame,
     keywords: ['burn in', 'image retention', 'oled', 'ghosting', 'screen burn'],
-    related: ['screen-burn-in-test', 'oled-gray-test', 'dead-pixel-test', 'screen-uniformity-test'],
+    related: ['screen-burn-in-test', 'oled-gray-test', 'dead-pixel-test', 'gray-screen'],
   },  {
     slug: 'screen-burn-in-test',
     name: 'Screen Burn-In Test',
@@ -307,7 +297,7 @@ export const TOOLS: readonly Tool[] = [
       'Color bars, RGB ramps and saturation steps for checking color accuracy, banding and tint.',
     icon: Palette,
     keywords: ['color test', 'color bars', 'rgb', 'gradient', 'color accuracy', 'banding'],
-    related: ['contrast-checker', 'monitor-test', 'dead-pixel-test', 'screen-uniformity-test'],
+    related: ['contrast-checker', 'monitor-test', 'dead-pixel-test', 'gray-screen'],
   },
   {
     slug: 'screen-resolution-test',
@@ -376,7 +366,7 @@ export const TOOLS: readonly Tool[] = [
     name: 'Hacker Typer',
     category: 'fake-screens',
     description:
-      'Mash any key to "type" convincing code like a movie hacker, or let it auto-type at your chosen speed.',
+      'Mash any key to "type" convincing code like a movie hacker, then trigger Access Granted or Access Denied.',
     icon: Terminal,
     keywords: ['hacker typer', 'fake code', 'hacker screen', 'typing prank', 'terminal'],
     related: ['hacked-screen', 'broken-screen', 'fake-blue-screen-of-death', 'fake-ubuntu-update'],

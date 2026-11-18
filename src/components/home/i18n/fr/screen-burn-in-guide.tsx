@@ -81,7 +81,7 @@ export function ScreenBurnInGuideFr() {
         </ul>
         <p className={p}>
           Vous voyez des points plutôt que des formes ? Essayez le <Link href="/dead-pixel-test" className={link}>test de pixels morts</Link>,
-          ou le <Link href="/screen-uniformity-test" className={link}>test d&apos;uniformité d&apos;écran</Link> pour les taches et une luminosité
+          ou le <Link href="/gray-screen" className={link}>test d&apos;uniformité d&apos;écran</Link> pour les taches et une luminosité
           inégale.
         </p>
       </Section>

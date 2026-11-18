@@ -5,7 +5,6 @@ import { useTranslation } from '@/lib/i18n'
 
 const SCREEN_TEST_SLUGS = [
   'dead-pixel-test',
-  'screen-uniformity-test',
   'monitor-test',
   'oled-gray-test',
   'oled-burn-in-test',

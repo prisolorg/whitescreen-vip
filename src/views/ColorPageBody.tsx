@@ -9,6 +9,7 @@ import { getColorPageContent } from '@/lib/color-pages'
 import { absoluteUrl } from '@/lib/site'
 import { useTranslation } from '@/lib/i18n'
 import { localizedToolName } from '@/lib/localized-tools'
+import { TOOL_H1_EN } from '@/lib/tool-content/h1'
 import { COLOR_GUIDES } from '@/lib/color-guides'
 import { localizedColorGuide, localizedGlanceHeading } from '@/lib/tool-content/localized-guides'
 import { FaqList } from '@/components/faq-list'
@@ -25,6 +26,8 @@ import { GreenScreenGuide } from '@/components/home/green-screen-guide'
 import { BlueScreenGuide } from '@/components/home/blue-screen-guide'
 import { RedScreenGuide } from '@/components/home/red-screen-guide'
 import { PinkScreenGuide } from '@/components/home/pink-screen-guide'
+import { GreyScreenGuide } from '@/components/home/grey-screen-guide'
+import { PurpleScreenGuide } from '@/components/home/purple-screen-guide'
 
 /** The reading part of a color page, rendered to static HTML with no JavaScript. */
 export function ColorPageBody({ color }: { color: ScreenColor }) {
@@ -33,6 +36,7 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
 
   const toolSlug = `${color.id}-screen`
   const localizedName =
+    (language === 'en' ? TOOL_H1_EN[toolSlug] : undefined) ??
     localizedToolName(toolSlug, language) ??
     `${t(color.id, color.name)} ${t('colorScreenSuffix', 'Screen')}`
 
@@ -64,7 +68,7 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
   // Keyword-led English pages replace the generic use-case grid, guide and colour links (the gallery above has them).
   const KeywordGuide =
     language === 'en'
-      ? ({ black: BlackScreenGuide, yellow: YellowScreenGuide, green: GreenScreenGuide, blue: BlueScreenGuide, red: RedScreenGuide, pink: PinkScreenGuide } as Record<string, ComponentType | undefined>)[color.id]
+      ? ({ black: BlackScreenGuide, yellow: YellowScreenGuide, green: GreenScreenGuide, blue: BlueScreenGuide, red: RedScreenGuide, pink: PinkScreenGuide, gray: GreyScreenGuide, purple: PurpleScreenGuide } as Record<string, ComponentType | undefined>)[color.id]
       : localized?.Guide
   const faqSchema = guide && {
     '@context': 'https://schema.org',

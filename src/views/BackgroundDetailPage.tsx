@@ -287,6 +287,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
         <div className="relative">
           <div
             ref={screenRef}
+            data-rating-anchor=""
             role="region"
             aria-label={text.preview.replace('{title}', item.title)}
             onDoubleClick={() => void (isFullscreen ? exitFullscreen() : enterFullscreen())}

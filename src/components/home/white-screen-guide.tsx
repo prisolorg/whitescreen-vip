@@ -134,7 +134,7 @@ export function WhiteScreenGuide() {
           head={['What you see', 'What it may mean', 'Next step']}
           rows={[
             ['Black or dark dots', 'Dead pixels', <Link key="d" href="/dead-pixel-test" className={link}>Dead pixel test</Link>],
-            ['Patches, dark corners or clouds', 'Uneven backlight', <Link key="u" href="/screen-uniformity-test" className={link}>Uniformity test</Link>],
+            ['Patches, dark corners or clouds', 'Uneven backlight', <Link key="u" href="/gray-screen" className={link}>Grey screen</Link>],
             ['White looks yellow, blue or pink', 'Color settings or panel tint', <Link key="c" href="/screen-color-test" className={link}>Screen color test</Link>],
             ['Faint shapes of old images', 'Burn-in or image retention', <Link key="b" href="/screen-burn-in-test" className={link}>Burn-in test</Link>],
             ['Specks that move when you wipe', 'Dust or smudges, not pixels', 'Clean the screen and check again'],
@@ -164,5 +164,15 @@ export const WHITE_SCREEN_EXTRA_FAQS = [
     question: 'Does a white screen help me clean my monitor?',
     answer:
       'A white screen makes dust, fingerprints and streaks easy to spot. Turn the display off before wiping it, then open the white screen again to check for spots you missed.',
+  },
+  {
+    question: 'Can I use a white screen as a light for Zoom calls?',
+    answer:
+      'Yes. Put a laptop, tablet or second monitor in front of you at full brightness, just behind or beside your camera. Choose Warm for a softer, more natural skin tone.',
+  },
+  {
+    question: 'Can a white screen show cracks or damage on my phone?',
+    answer:
+      'It helps. Hairline cracks, pressure marks and dark spots stand out against bright white. Tilt the phone under a light as well, since some cracks only show at an angle.',
   },
 ] as const

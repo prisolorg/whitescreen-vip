@@ -256,4 +256,16 @@ export const it: readonly string[] = [
   "Telefono",
   "Larghezza (px)",
   "Altezza (px)",
+  // Rating card after using a tool (thumbs, reasons)
+  "Ha funzionato",
+  "Non proprio",
+  "Ottimo! Quante stelle?",
+  "Cosa non ha funzionato?",
+  "Grazie, ci aiuta a correggerlo.",
+  "Lo schermo intero non ha funzionato",
+  "Non si vedeva bene sul mio schermo",
+  "Difficile da usare",
+  "Manca un’opzione che mi serve",
+  "Altro",
+  "Livello di grigio",
 ]

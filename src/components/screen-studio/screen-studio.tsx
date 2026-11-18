@@ -88,6 +88,8 @@ export function ScreenStudio({
   const { t, language } = useTranslation()
   const [selectedId, setSelectedId] = useState(initialColorId)
   const [customHex, setCustomHex] = useState('#F5F5F0')
+  // Gray Screen only: the gray level (50% by default); the lighter and darker steps make it a uniformity test too.
+  const [grayHex, setGrayHex] = useState('#808080')
   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
   const [isNative, setIsNative] = useState(false)
   const [isFallback, setIsFallback] = useState(false)
@@ -118,7 +120,7 @@ export function ScreenStudio({
   const preset = SCREEN_COLORS.find((color) => color.id === selectedId)
   // Preset modes show their own look and leave the visitor's saved color, brightness and tone untouched.
   const inMode = isFullscreen && mode !== 'normal'
-  const baseHex = inMode && mode === 'pixel' ? PIXEL_TEST_COLORS[pixelIndex] : inMode ? '#FFFFFF' : preset ? preset.hex : customHex
+  const baseHex = inMode && mode === 'pixel' ? PIXEL_TEST_COLORS[pixelIndex] : inMode ? '#FFFFFF' : preset ? (preset.id === 'gray' ? grayHex : preset.hex) : customHex
   const shownKelvin = inMode ? (mode === 'zoom' ? 3500 : NEUTRAL_K) : kelvin
   const shownBrightness = inMode ? 100 : brightness
   const background = uploadedImage && !inMode ? '#000000' : shownColor(baseHex, shownKelvin, shownBrightness)
@@ -438,6 +440,7 @@ export function ScreenStudio({
   const screen = (
       <div
         ref={screenRef}
+        data-rating-anchor=""
         role="region"
         aria-label={t('screenPreview', '{color} screen preview').replace('{color}', title)}
         onMouseMove={isFullscreen && mode !== 'clean' ? revealHint : undefined}
@@ -937,6 +940,24 @@ export function ScreenStudio({
           ? 'rounded-b-2xl border border-black/10 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.28)] dark:border-white/15'
           : 'rounded-2xl shadow-sm ring-1 ring-black/5 dark:ring-white/10',
       )}>
+      {selectedId === 'gray' && (
+        <div role="radiogroup" aria-label={tx('Gray level')} className="mb-2.5 flex items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <span className="mr-1 shrink-0 text-xs font-semibold text-muted-foreground @max-[519px]:sr-only">{tx('Gray level')}</span>
+          {GRAY_LEVELS.map(([percent, hex]) => (
+            <button
+              key={hex}
+              type="button"
+              role="radio"
+              aria-checked={grayHex === hex}
+              onClick={() => setGrayHex(hex)}
+              className={cn('inline-flex h-8 shrink-0 items-center justify-center gap-1.5 rounded-lg border px-2.5 text-xs font-semibold transition-colors pointer-coarse:h-10 @max-[519px]:flex-1 @max-[519px]:gap-1 @max-[519px]:px-1', grayHex === hex ? 'border-foreground bg-accent' : 'hover:bg-accent')}
+            >
+              <span aria-hidden="true" className="size-3 rounded-full ring-1 ring-black/20" style={{ background: hex }} />
+              {percent}%
+            </button>
+          ))}
+        </div>
+      )}
       <div className="flex items-center gap-x-4 @max-[699px]:gap-x-3 @max-[519px]:gap-x-2 @max-[339px]:gap-x-1.5">
         <label className="flex min-w-0 flex-1 items-center gap-2.5 text-sm font-semibold @max-[519px]:gap-1.5">
           <Sun className="size-4 shrink-0 @max-[519px]:hidden" aria-hidden="true" />
@@ -1056,6 +1077,15 @@ export function ScreenStudio({
     </div>
   )
 }
+
+/** Gray Screen levels (percent of white): 50% is the uniformity standard, 5–25% show near-black clouding, 75% light gray. */
+const GRAY_LEVELS: readonly (readonly [number, string])[] = [
+  [5, '#0D0D0D'],
+  [10, '#1A1A1A'],
+  [25, '#404040'],
+  [50, '#808080'],
+  [75, '#BFBFBF'],
+]
 
 /** Extra colors in the rail layout's color row, after the twelve color pages: they paint the screen in place. */
 const EXTRA_COLORS: readonly (readonly [string, string])[] = [

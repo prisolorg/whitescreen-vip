@@ -469,4 +469,16 @@ export const TOOL_UI_KEYS = [
   "Phone",
   "Width (px)",
   "Height (px)",
+  // Rating card after using a tool (thumbs, reasons)
+  "It worked",
+  "Not really",
+  "Great! How many stars?",
+  "What went wrong?",
+  "Thanks, that helps us fix it.",
+  "Fullscreen didn't work",
+  "Didn't look right on my screen",
+  "Hard to use",
+  "Missing an option I need",
+  "Something else",
+  "Gray level",
 ] as const

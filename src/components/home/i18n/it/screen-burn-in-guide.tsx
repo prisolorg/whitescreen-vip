@@ -79,7 +79,7 @@ export function ScreenBurnInGuideIt() {
         </ul>
         <p className={p}>
           Vedi puntini invece di forme? Prova il <Link href="/dead-pixel-test" className={link}>test pixel bruciati</Link>, oppure il{' '}
-          <Link href="/screen-uniformity-test" className={link}>test uniformità schermo</Link> per macchie e luminosità non uniforme.
+          <Link href="/gray-screen" className={link}>test uniformità schermo</Link> per macchie e luminosità non uniforme.
         </p>
       </Section>
     </div>

@@ -130,7 +130,7 @@ export function WhiteScreenGuideEs() {
           head={['Lo que ves', 'Qué puede significar', 'Siguiente paso']}
           rows={[
             ['Puntos negros u oscuros', 'Píxeles muertos', <Link key="d" href="/dead-pixel-test" className={link}>Prueba de píxeles muertos</Link>],
-            ['Manchas, esquinas oscuras o nubes', 'Retroiluminación desigual', <Link key="u" href="/screen-uniformity-test" className={link}>Prueba de uniformidad</Link>],
+            ['Manchas, esquinas oscuras o nubes', 'Retroiluminación desigual', <Link key="u" href="/gray-screen" className={link}>Prueba de uniformidad</Link>],
             ['El blanco se ve amarillo, azul o rosa', 'Ajustes de color o tinte del panel', <Link key="c" href="/screen-color-test" className={link}>Prueba de color de pantalla</Link>],
             ['Formas tenues de imágenes anteriores', 'Quemado o retención de imagen', <Link key="b" href="/screen-burn-in-test" className={link}>Prueba de quemado de pantalla</Link>],
             ['Motas que se mueven al limpiar', 'Polvo o manchas, no píxeles', 'Limpia la pantalla y vuelve a revisarla'],

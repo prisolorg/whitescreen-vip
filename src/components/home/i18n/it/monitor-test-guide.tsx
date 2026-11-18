@@ -65,7 +65,7 @@ export function MonitorTestGuideIt() {
             ['Pixel morti o bloccati (test LCD)', <Link key="dp" href="/dead-pixel-test" className={link}>Test pixel bruciati</Link>],
             ['Frequenza di aggiornamento (Hz)', <Link key="hz" href="/screen-refresh-rate-test" className={link}>Test frequenza di aggiornamento</Link>],
             ['Tempo di risposta e scie', <Link key="gh" href="/monitor-ghosting-test" className={link}>Test ghosting monitor</Link>],
-            ['Fughe di retroilluminazione e uniformità del nero', <Link key="un" href="/screen-uniformity-test" className={link}>Test uniformità schermo</Link>],
+            ['Fughe di retroilluminazione e uniformità del nero', <Link key="un" href="/gray-screen" className={link}>Test uniformità schermo</Link>],
             ['Immagini fantasma rimaste sullo schermo', <Link key="bi" href="/screen-burn-in-test" className={link}>Test burn-in schermo</Link>],
             ['La risoluzione del tuo schermo', <Link key="rs" href="/screen-resolution-test" className={link}>Test risoluzione schermo</Link>],
           ]}

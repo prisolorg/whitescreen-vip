@@ -75,7 +75,7 @@ export function GreenScreenGuideIt() {
         <p className={p}>
           Il verde porta gran parte della luminosità che percepiamo, quindi angoli più scuri o macchie nuvolose risaltano. Un puntino scuro è un
           sottopixel verde morto, mentre un puntino giallo o ciano indica un sottopixel rosso o blu bloccato acceso. Fai il{' '}
-          <Link href="/screen-uniformity-test" className={link}>test uniformità schermo</Link> o leggi la{' '}
+          <Link href="/gray-screen" className={link}>test uniformità schermo</Link> o leggi la{' '}
           <Link href="/screen-problems/stuck-pixel" className={link}>guida ai pixel bloccati</Link> per i passi successivi. Un puntino nero che
           si vede anche sullo <Link href="/" className={link}>schermo bianco</Link> è un pixel completamente morto.
         </p>

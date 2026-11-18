@@ -453,7 +453,7 @@ export const de: LanguageGuides = {
         {
           question: 'Funktioniert der OLED-Grautest auf LCD-Bildschirmen?',
           answer:
-            'Ja, aber LCDs zeigen auf Dunkelgrau stattdessen Leuchten und Lichthöfe der Hintergrundbeleuchtung. Dafür passt der [Bildschirm-Homogenitätstest](/screen-uniformity-test) besser.',
+            'Ja, aber LCDs zeigen auf Dunkelgrau stattdessen Leuchten und Lichthöfe der Hintergrundbeleuchtung. Dafür passt der [Bildschirm-Homogenitätstest](/gray-screen) besser.',
         },
         {
           question: 'Welche Helligkeit sollte ich nutzen?',

@@ -74,7 +74,7 @@ export function ScreenBurnInGuideDe() {
         </ul>
         <p className={p}>
           Siehst du Punkte statt Formen? Probier den <Link href="/dead-pixel-test" className={link}>Pixelfehlertest</Link> oder den{' '}
-          <Link href="/screen-uniformity-test" className={link}>Bildschirm-Homogenitätstest</Link> für Flecken und ungleichmäßige Helligkeit.
+          <Link href="/gray-screen" className={link}>Bildschirm-Homogenitätstest</Link> für Flecken und ungleichmäßige Helligkeit.
         </p>
       </Section>
     </div>

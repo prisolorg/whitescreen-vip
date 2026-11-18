@@ -59,7 +59,7 @@ export function ScreenColorGuidePtBr() {
           rows={[
             ['Tom amarelado ou azulado em tudo', <Link key="y" href="/screen-problems/yellow-tint-on-screen" className={link}>Guia de tela amarelada</Link>],
             ['Degraus ou faixas nas rampas', <Link key="b" href="/screen-problems/color-banding" className={link}>Guia de banding de cor</Link>],
-            ['Manchas ou áreas desiguais (descoloração da tela)', <Link key="u" href="/screen-uniformity-test" className={link}>Teste de uniformidade</Link>],
+            ['Manchas ou áreas desiguais (descoloração da tela)', <Link key="u" href="/gray-screen" className={link}>Teste de uniformidade</Link>],
             ['Logos apagados ou imagens fantasma', <Link key="bi" href="/screen-burn-in-test" className={link}>Teste de burn-in de tela</Link>],
             ['Nitidez, gama e mais (checagem completa da tela)', <Link key="m" href="/monitor-test" className={link}>Teste de monitor</Link>],
           ]}

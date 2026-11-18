@@ -59,7 +59,7 @@ export function ScreenColorGuideDe() {
           rows={[
             ['Gelb- oder Blaustich überall', <Link key="y" href="/screen-problems/yellow-tint-on-screen" className={link}>Ratgeber zum Gelbstich</Link>],
             ['Stufen oder Streifen in den Verläufen', <Link key="b" href="/screen-problems/color-banding" className={link}>Ratgeber zu Color Banding</Link>],
-            ['Flecken oder ungleichmäßige Bereiche (Verfärbung)', <Link key="u" href="/screen-uniformity-test" className={link}>Bildschirm-Homogenitätstest</Link>],
+            ['Flecken oder ungleichmäßige Bereiche (Verfärbung)', <Link key="u" href="/gray-screen" className={link}>Bildschirm-Homogenitätstest</Link>],
             ['Verblasste Logos oder Geisterbilder', <Link key="bi" href="/screen-burn-in-test" className={link}>Bildschirm-Einbrenn-Test</Link>],
             ['Schärfe, Gamma und mehr (vollständiger Display-Check)', <Link key="m" href="/monitor-test" className={link}>Monitortest</Link>],
           ]}

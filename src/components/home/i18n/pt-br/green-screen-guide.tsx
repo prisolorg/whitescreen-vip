@@ -72,7 +72,7 @@ export function GreenScreenGuidePtBr() {
         <p className={p}>
           O verde carrega a maior parte do brilho que enxergamos, então cantos mais escuros ou manchas nubladas se destacam nele. Um ponto
           escuro é um subpixel verde morto, e um ponto amarelo ou ciano indica um subpixel vermelho ou azul preso aceso. Faça o{' '}
-          <Link href="/screen-uniformity-test" className={link}>teste de uniformidade</Link> ou leia o{' '}
+          <Link href="/gray-screen" className={link}>teste de uniformidade</Link> ou leia o{' '}
           <Link href="/screen-problems/stuck-pixel" className={link}>guia de pixel preso</Link> para os próximos passos. Um ponto preto que
           aparece também na <Link href="/" className={link}>tela branca</Link> é um pixel totalmente morto.
         </p>

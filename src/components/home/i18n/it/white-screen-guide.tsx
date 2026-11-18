@@ -127,7 +127,7 @@ export function WhiteScreenGuideIt() {
           head={['Cosa vedi', 'Cosa può significare', 'Passo successivo']}
           rows={[
             ['Puntini neri o scuri', 'Pixel morti', <Link key="d" href="/dead-pixel-test" className={link}>Test pixel bruciati</Link>],
-            ['Macchie, angoli scuri o nuvole', 'Retroilluminazione non uniforme', <Link key="u" href="/screen-uniformity-test" className={link}>Test uniformità schermo</Link>],
+            ['Macchie, angoli scuri o nuvole', 'Retroilluminazione non uniforme', <Link key="u" href="/gray-screen" className={link}>Test uniformità schermo</Link>],
             ['Il bianco sembra giallo, blu o rosa', 'Impostazioni colore o dominante del pannello', <Link key="c" href="/screen-color-test" className={link}>Test colori schermo</Link>],
             ['Forme sbiadite di vecchie immagini', 'Burn-in o ritenzione d’immagine', <Link key="b" href="/screen-burn-in-test" className={link}>Test burn-in schermo</Link>],
             ['Puntini che si spostano quando pulisci', 'Polvere o aloni, non pixel', 'Pulisci lo schermo e ricontrolla'],

@@ -120,7 +120,7 @@ export function WhiteScreenGuideTr() {
           head={['Ne görüyorsunuz', 'Ne anlama gelebilir', 'Sonraki adım']}
           rows={[
             ['Siyah veya koyu noktalar', 'Ölü pikseller', <Link key="d" href="/dead-pixel-test" className={link}>Ölü piksel testi</Link>],
-            ['Lekeler, koyu köşeler veya bulutlanma', 'Eşit olmayan arka ışık', <Link key="u" href="/screen-uniformity-test" className={link}>Ekran homojenlik testi</Link>],
+            ['Lekeler, koyu köşeler veya bulutlanma', 'Eşit olmayan arka ışık', <Link key="u" href="/gray-screen" className={link}>Ekran homojenlik testi</Link>],
             ['Beyaz sarı, mavi veya pembe görünüyor', 'Renk ayarları veya panel tonu', <Link key="c" href="/screen-color-test" className={link}>Ekran renk testi</Link>],
             ['Eski görüntülerin soluk şekilleri', 'Yanma veya görüntü tutulması', <Link key="b" href="/screen-burn-in-test" className={link}>Ekran yanma testi</Link>],
             ['Silince yer değiştiren lekeler', 'Toz veya leke, piksel değil', 'Ekranı temizleyin ve yeniden kontrol edin'],

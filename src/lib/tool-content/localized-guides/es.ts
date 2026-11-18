@@ -353,7 +353,7 @@ export const es: LanguageGuides = {
         {
           question: '¿Cómo pruebo un monitor nuevo?',
           answer:
-            'Pasa los patrones de prueba de monitor a pantalla completa en la resolución nativa y luego la [prueba de píxeles muertos](/dead-pixel-test) y la [prueba de uniformidad](/screen-uniformity-test). El mejor momento es mientras aún puedes devolverlo.',
+            'Pasa los patrones de prueba de monitor a pantalla completa en la resolución nativa y luego la [prueba de píxeles muertos](/dead-pixel-test) y la [prueba de uniformidad](/gray-screen). El mejor momento es mientras aún puedes devolverlo.',
         },
         {
           question: '¿Una prueba de monitor puede calibrar mi pantalla?',
@@ -444,7 +444,7 @@ export const es: LanguageGuides = {
         },
         {
           question: '¿La prueba gris para OLED funciona en pantallas LCD?',
-          answer: 'Sí, pero las LCD muestran en el gris oscuro el brillo y las fugas de la retroiluminación. Para ellas encaja mejor la [prueba de uniformidad](/screen-uniformity-test).',
+          answer: 'Sí, pero las LCD muestran en el gris oscuro el brillo y las fugas de la retroiluminación. Para ellas encaja mejor la [prueba de uniformidad](/gray-screen).',
         },
         {
           question: '¿Qué brillo debo usar?',

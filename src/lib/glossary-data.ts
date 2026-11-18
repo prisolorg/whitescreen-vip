@@ -239,8 +239,8 @@ export const GLOSSARY_ITEMS: readonly GlossaryItem[] = [
         description: 'Inspect near-black 5% and 10% dark gray uniformity to evaluate OLED panel banding.',
       },
       {
-        name: 'Screen Uniformity Test',
-        path: '/screen-uniformity-test',
+        name: 'Grey Screen',
+        path: '/gray-screen',
         description: 'Evaluate brightness consistency and corner vignetting across any monitor panel.',
       },
     ],

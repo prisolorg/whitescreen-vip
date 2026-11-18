@@ -374,7 +374,7 @@ export const fr: LanguageGuides = {
         {
           question: 'Comment tester un nouveau moniteur ?',
           answer:
-            'Lancez les mires de test en plein écran à la résolution native, puis le [test de pixels morts](/dead-pixel-test) et le [test d’uniformité d’écran](/screen-uniformity-test). Le meilleur moment, c’est tant que vous pouvez encore le retourner.',
+            'Lancez les mires de test en plein écran à la résolution native, puis le [test de pixels morts](/dead-pixel-test) et le [test d’uniformité d’écran](/gray-screen). Le meilleur moment, c’est tant que vous pouvez encore le retourner.',
         },
         {
           question: 'Une mire de test peut-elle étalonner mon écran ?',
@@ -472,7 +472,7 @@ export const fr: LanguageGuides = {
         {
           question: 'Le test gris foncé pour OLED fonctionne-t-il sur les écrans LCD ?',
           answer:
-            'Oui, mais les LCD montrent plutôt la lueur et les fuites du rétroéclairage sur le gris foncé. Pour eux, le [test d’uniformité d’écran](/screen-uniformity-test) est plus adapté.',
+            'Oui, mais les LCD montrent plutôt la lueur et les fuites du rétroéclairage sur le gris foncé. Pour eux, le [test d’uniformité d’écran](/gray-screen) est plus adapté.',
         },
         {
           question: 'Quelle luminosité utiliser ?',

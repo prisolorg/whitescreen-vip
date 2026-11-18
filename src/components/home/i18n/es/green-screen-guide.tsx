@@ -73,7 +73,7 @@ export function GreenScreenGuideEs() {
         <p className={p}>
           El verde aporta la mayor parte del brillo que percibimos, así que las esquinas más oscuras o las manchas nubosas destacan sobre él. Un
           punto oscuro es un subpíxel verde muerto, mientras que un punto amarillo o cian indica un subpíxel rojo o azul atascado encendido. Haz
-          la <Link href="/screen-uniformity-test" className={link}>prueba de uniformidad</Link> o lee la{' '}
+          la <Link href="/gray-screen" className={link}>prueba de uniformidad</Link> o lee la{' '}
           <Link href="/screen-problems/stuck-pixel" className={link}>guía del píxel atascado</Link> para los siguientes pasos. Un punto negro
           que también aparece en la <Link href="/" className={link}>pantalla blanca</Link> es un píxel completamente muerto.
         </p>

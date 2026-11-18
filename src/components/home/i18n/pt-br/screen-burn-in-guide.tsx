@@ -77,7 +77,7 @@ export function ScreenBurnInGuidePtBr() {
         </ul>
         <p className={p}>
           Vê pontos em vez de formas? Experimente o <Link href="/dead-pixel-test" className={link}>teste de dead pixel</Link> ou o{' '}
-          <Link href="/screen-uniformity-test" className={link}>teste de uniformidade</Link> para manchas e brilho desigual.
+          <Link href="/gray-screen" className={link}>teste de uniformidade</Link> para manchas e brilho desigual.
         </p>
       </Section>
     </div>

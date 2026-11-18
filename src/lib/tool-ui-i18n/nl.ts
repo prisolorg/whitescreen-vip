@@ -256,4 +256,16 @@ export const nl: readonly string[] = [
   "Telefoon",
   "Breedte (px)",
   "Hoogte (px)",
+  // Rating card after using a tool (thumbs, reasons)
+  "Het werkte",
+  "Niet echt",
+  "Top! Hoeveel sterren?",
+  "Wat ging er mis?",
+  "Bedankt, dat helpt ons het te verbeteren.",
+  "Volledig scherm werkte niet",
+  "Zag er niet goed uit op mijn scherm",
+  "Lastig te gebruiken",
+  "Ik mis een optie",
+  "Iets anders",
+  "Grijsniveau",
 ]

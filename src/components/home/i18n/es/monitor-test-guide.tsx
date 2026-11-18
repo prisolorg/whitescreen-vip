@@ -67,7 +67,7 @@ export function MonitorTestGuideEs() {
             ['Píxeles muertos o atascados (test LCD)', <Link key="dp" href="/dead-pixel-test" className={link}>Prueba de píxeles muertos</Link>],
             ['Frecuencia de actualización (Hz)', <Link key="hz" href="/screen-refresh-rate-test" className={link}>Prueba de frecuencia de actualización</Link>],
             ['Tiempo de respuesta y estelas', <Link key="gh" href="/monitor-ghosting-test" className={link}>Prueba de ghosting del monitor</Link>],
-            ['Fugas de luz y uniformidad del negro', <Link key="un" href="/screen-uniformity-test" className={link}>Prueba de uniformidad</Link>],
+            ['Fugas de luz y uniformidad del negro', <Link key="un" href="/gray-screen" className={link}>Prueba de uniformidad</Link>],
             ['Imágenes fantasma que se quedan en pantalla', <Link key="bi" href="/screen-burn-in-test" className={link}>Prueba de quemado de pantalla</Link>],
             ['Tu resolución de pantalla', <Link key="rs" href="/screen-resolution-test" className={link}>¿Cuál es mi resolución de pantalla?</Link>],
           ]}

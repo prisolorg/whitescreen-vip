@@ -74,7 +74,7 @@ export function ScreenBurnInGuideId() {
         </ul>
         <p className={p}>
           Melihat titik, bukan bentuk? Coba <Link href="/dead-pixel-test" className={link}>Tes Piksel Mati</Link>, atau{' '}
-          <Link href="/screen-uniformity-test" className={link}>Uji Keseragaman Layar</Link> untuk bercak dan kecerahan yang tidak merata.
+          <Link href="/gray-screen" className={link}>Uji Keseragaman Layar</Link> untuk bercak dan kecerahan yang tidak merata.
         </p>
       </Section>
     </div>

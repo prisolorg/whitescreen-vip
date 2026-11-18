@@ -62,7 +62,7 @@ export function ScreenColorGuideEs() {
           rows={[
             ['Tinte amarillo o azul en toda la pantalla', <Link key="y" href="/screen-problems/yellow-tint-on-screen" className={link}>Guía del tinte amarillo</Link>],
             ['Escalones o bandas en las rampas', <Link key="b" href="/screen-problems/color-banding" className={link}>Guía de las bandas de color</Link>],
-            ['Manchas o zonas desiguales (decoloración de la pantalla)', <Link key="u" href="/screen-uniformity-test" className={link}>Prueba de uniformidad</Link>],
+            ['Manchas o zonas desiguales (decoloración de la pantalla)', <Link key="u" href="/gray-screen" className={link}>Prueba de uniformidad</Link>],
             ['Logos desvaídos o imágenes fantasma', <Link key="bi" href="/screen-burn-in-test" className={link}>Prueba de quemado de pantalla</Link>],
             ['Nitidez, gamma y más (revisión completa)', <Link key="m" href="/monitor-test" className={link}>Prueba de monitor</Link>],
           ]}

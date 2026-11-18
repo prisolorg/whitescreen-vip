@@ -352,7 +352,7 @@ export const it: LanguageGuides = {
         {
           question: 'Come si testa un monitor nuovo?',
           answer:
-            'Fai le schermate di prova del monitor a schermo intero alla risoluzione nativa, poi il [test pixel bruciati](/dead-pixel-test) e il [test uniformità schermo](/screen-uniformity-test). Il momento migliore è finché puoi ancora restituirlo.',
+            'Fai le schermate di prova del monitor a schermo intero alla risoluzione nativa, poi il [test pixel bruciati](/dead-pixel-test) e il [test uniformità schermo](/gray-screen). Il momento migliore è finché puoi ancora restituirlo.',
         },
         {
           question: 'Un test del monitor può calibrare lo schermo?',
@@ -442,7 +442,7 @@ export const it: LanguageGuides = {
         },
         {
           question: 'Il test grigi per OLED funziona sugli schermi LCD?',
-          answer: 'Sì, ma sul grigio scuro gli LCD mostrano invece bagliore e fughe di retroilluminazione. Per quelli è più adatto il [test uniformità schermo](/screen-uniformity-test).',
+          answer: 'Sì, ma sul grigio scuro gli LCD mostrano invece bagliore e fughe di retroilluminazione. Per quelli è più adatto il [test uniformità schermo](/gray-screen).',
         },
         {
           question: 'Che luminosità dovrei usare?',

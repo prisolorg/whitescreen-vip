@@ -37,6 +37,14 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
         question: 'Is black or white better for cleaning a monitor?',
         answer: 'Black shows fingerprints, streaks and smudges clearly, especially with a light at an angle. For dust, a [white screen](/) works better. Turn the display off before you wipe it.',
       },
+      {
+        question: 'How do I download a black screen image?',
+        answer: 'Press Download under the preview and pick 1080p, 2K, 4K, Phone (1080×2400) or a custom size up to 8K. You get a pure black PNG you can use as a wallpaper, lock screen or a black frame in a video edit.',
+      },
+      {
+        question: 'How do I make my screen black on Windows, Mac or a phone?',
+        answer: 'Open this page and double-tap the preview or press F. The whole display turns black and stays awake until you press Esc or double-click. Nothing on the computer or phone is changed.',
+      },
     ],
   },
   red: {
@@ -54,6 +62,14 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
       {
         question: 'Can a red screen work as a darkroom safelight?',
         answer: 'No. Its red is not filtered narrowly enough and it is far too bright for film or photo paper. Use a proper safelight for light-sensitive materials.',
+      },
+      {
+        question: 'How do I get a dark red screen?',
+        answer: 'Lower the Brightness slider to 30–60%. The screen shows a deep, dark red that works as a dim night light. At 100% you get bright red (#FF0000).',
+      },
+      {
+        question: 'Is a red screen a good night light?',
+        answer: 'Yes. A dim red light disturbs dark-adapted vision less than white or blue light, which is why astronomers and pilots use red at night. Lower the brightness and turn on Keep screen awake.',
       },
     ],
   },
@@ -73,6 +89,14 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
         question: 'Does this green screen website remove my background?',
         answer: 'No. This page shows solid green and lets you download green images. The background removal happens in your video or streaming app, such as OBS, CapCut, Zoom or Teams.',
       },
+      {
+        question: 'What color is a green screen?',
+        answer: 'This page shows pure green (#00FF00). Studio chroma key green is a slightly darker, less saturated green, but any bright, even green keys well. Light your subject separately so no green spills onto them.',
+      },
+      {
+        question: 'How do I get a light green screen?',
+        answer: 'This screen only goes darker with the Brightness slider. For lighter greens such as mint, pick a shade on the [green background](/backgrounds/green-background) page.',
+      },
     ],
   },
   blue: {
@@ -90,6 +114,18 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
       {
         question: 'Why does a pure blue screen look so dark?',
         answer: 'Our eyes are least sensitive to blue, so pure blue looks much darker than green or red at the same brightness. That is normal and not a fault.',
+      },
+      {
+        question: 'How do I get a navy or dark blue screen?',
+        answer: 'Set the Brightness slider to 50% and the screen shows #000080, which is exactly navy blue. Go lower for an even darker blue.',
+      },
+      {
+        question: 'How do I get a light blue screen?',
+        answer: 'Open the [cyan screen](/cyan-screen) for a bright light blue, or pick a sky or baby blue shade on the [blue background](/backgrounds/blue-background) page.',
+      },
+      {
+        question: 'Does a blue screen give off harmful blue light?',
+        answer: 'No more than any bright screen. Blue light late at night can make it harder for some people to fall asleep, so use an orange or red screen in the evening instead.',
       },
     ],
   },
@@ -112,38 +148,24 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
     ],
   },
   gray: {
-    sections: [
-      {
-        heading: 'Why 50% gray is the best uniformity test',
-        paragraphs: [
-          'A mid gray (#808080) is where panel flaws are easiest to see. Darker patches, vertical bands, a dirty-screen effect on large TVs and a slightly colored tint in one area all stand out on gray in a way they never do on white or black. Look at the screen from a normal distance with the room lights dim. For a guided version with several gray levels, use the [screen uniformity test](/screen-uniformity-test).',
-        ],
-      },
-      {
-        heading: 'Spotting burn-in and image retention',
-        paragraphs: [
-          'Faint outlines of taskbars, logos or keyboard shortcuts on a gray screen are signs of [image retention](/screen-problems/image-retention), which fades, or [burn-in](/screen-problems/screen-burn-in), which does not. OLED owners should also run the [OLED test](/oled-gray-test), which steps through darker grays where OLED tinting appears, and the [OLED burn-in test](/oled-burn-in-test).',
-        ],
-      },
-      {
-        heading: 'A neutral backdrop',
-        paragraphs: [
-          'Gray is also a calm, neutral background for checking prints against the screen, photographing products without color casts, or as a low-distraction second screen. If you need a whole set of test patterns, the [screen test](/monitor-test) covers gray levels, gradients and sharpness in one place.',
-        ],
-      },
-    ],
+    // English page body comes from GreyScreenGuide (keyword-led); only the FAQs live here.
+    sections: [],
     faqs: [
       {
-        question: 'Why does my gray screen look blotchy?',
-        answer: 'Some unevenness is normal on large LCD and OLED panels. If patches are obvious in everyday content, such as sports or web pages, the panel may be outside its warranty tolerance.',
+        question: 'Is it grey screen or gray screen?',
+        answer: 'Both are right. Grey is the British spelling and gray the American one; the color is the same neutral #808080.',
       },
       {
-        question: 'What gray level should I use?',
-        answer: '50% gray is best for uniformity. Darker grays (5–20%) reveal OLED tinting and near-black banding; use the OLED gray test for those.',
+        question: 'Which gray level is best for a uniformity test?',
+        answer: 'Use 50% for dirty screen effect and tint, 5–10% in a dark room for backlight bleed and clouding, and 75% for dark corners.',
       },
       {
-        question: 'Can a gray screen fix burn-in?',
-        answer: 'No. Gray only makes it visible. Temporary image retention often fades after showing varied content for a while; permanent burn-in does not.',
+        question: 'Why does my grey screen look blotchy?',
+        answer: 'Some unevenness is normal on large LCD and OLED panels. If patches are also obvious in everyday content, such as sports or web pages, the panel may be outside its warranty tolerance.',
+      },
+      {
+        question: 'How do I get a light grey screen?',
+        answer: 'Choose the 75% gray level under the preview for a light gray (#BFBFBF). Raise Brightness to 100% if it looks too dim.',
       },
     ],
   },
@@ -181,6 +203,14 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
         question: 'Can I use an orange screen as a photo light?',
         answer: 'Yes, for close-up subjects. A tablet or monitor at full brightness gives a soft warm light; move it closer for more light rather than raising the brightness further.',
       },
+      {
+        question: 'How do I get an amber screen?',
+        answer: 'Open the [yellow screen](/yellow-screen) and choose Warm: it shows #FFC100, close to amber. On this page, lower the Brightness for a dimmer amber-orange glow.',
+      },
+      {
+        question: 'How do I get a light orange screen?',
+        answer: 'This screen only goes darker with the Brightness slider. For peach and pale orange, pick a shade on the [orange background](/backgrounds/orange-background) page.',
+      },
     ],
   },
   pink: {
@@ -199,41 +229,35 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
         question: 'Why does my pink screen look purple?',
         answer: 'The display is pushing blue too strongly. Choose Warm under the preview, or switch your display to a warmer color temperature or the sRGB mode.',
       },
+      {
+        question: 'How do I get a light or baby pink screen?',
+        answer: 'Use the [light pink background](/backgrounds/light-pink-background) page, which shows soft pink (#FFB6C1) in fullscreen and as a PNG. This page is hot pink and only gets darker with the Brightness slider.',
+      },
+      {
+        question: 'Why is my monitor showing a pink tint?',
+        answer: "If your real screen looks pink everywhere, check the video cable first, then reset the display's color settings and update the graphics driver. If the tint stays, test with a white screen; a pink cast on white points to a cable or panel fault.",
+      },
     ],
   },
   purple: {
-    sections: [
-      {
-        heading: 'Purple for ambient light',
-        paragraphs: [
-          'Purple (#8000FF) is full blue with half red and no green. It makes a rich ambient color for parties, gaming setups and backdrops in photos and videos. Combine it with the [color cycle](/color-cycle) or the [gradient screen](/gradient-screen) for light that changes slowly, or download a [purple background](/backgrounds/purple-background) to use as a wallpaper.',
-        ],
-      },
-      {
-        heading: 'A purple screen is not a black light',
-        paragraphs: [
-          'Screens cannot emit ultraviolet light, so a purple screen will not make fluorescent paint glow or reveal UV markings. It only looks similar to a black light. For real UV effects you need a UV lamp.',
-        ],
-      },
-      {
-        heading: 'What purple shows about your display',
-        paragraphs: [
-          'With green switched off, a stuck green subpixel shows as a bright pale-cyan dot on purple, and a dead blue subpixel as a dim red one. Uneven purple across the panel, such as bluer edges and a redder center, points to a color uniformity issue that the [screen uniformity test](/screen-uniformity-test) can confirm.',
-        ],
-      },
-    ],
+    // English page body comes from PurpleScreenGuide (keyword-led); only the FAQs live here.
+    sections: [],
     faqs: [
       {
         question: 'Can a purple screen work as a UV light?',
-        answer: 'No. Displays do not emit UV, so a purple screen cannot activate fluorescent materials.',
+        answer: 'No. Displays do not emit UV, so a purple light screen cannot make fluorescent paint glow or reveal UV ink.',
       },
       {
         question: 'What color code is this purple?',
-        answer: 'It is #8000FF, a vivid violet. Use the custom color picker to try a softer lavender or a deeper indigo.',
+        answer: 'It is #8000FF (RGB 128, 0, 255), a vivid violet. Choose Warm for a redder purple, Cool for a bluer violet, or lower Brightness for dark purple.',
       },
       {
         question: 'Why does purple look blue on my screen?',
         answer: 'Your display’s red is weaker than its blue, or a cool color temperature is set. Try a warmer or sRGB mode.',
+      },
+      {
+        question: 'How do I get a light purple screen?',
+        answer: 'For lilac, lavender or mauve, pick a shade on the [purple background](/backgrounds/purple-background) page. This screen is vivid purple and gets darker, not lighter, with the Brightness slider.',
       },
     ],
   },
@@ -270,31 +294,38 @@ export const COLOR_GUIDES: Record<string, ColorGuide> = {
   magenta: {
     sections: [
       {
-        heading: 'Magenta checks the green channel',
+        heading: 'Magenta, pink and purple are not the same',
         paragraphs: [
-          'Magenta (#FF00FF) is red and blue at full power with green switched off. A green subpixel stuck on shows up as a white-ish dot, a dead red subpixel as a blue dot and a dead blue one as a red dot. Because green is off, magenta is also the quickest way to see whether a display has a green tint: any green cast makes magenta look grayish or muddy. For a full check of every channel, run the [screen color test](/screen-color-test).',
+          'Magenta (#FF00FF) is red and blue at full power with green switched off, so it is brighter and more saturated than either neighbour. The [pink screen](/pink-screen) (#FF69B4) mixes in green and white for a softer, flattering light; the [purple screen](/purple-screen) (#8000FF) halves the red for a deeper, cooler violet. Pick magenta when you want the loudest color on the screen.',
         ],
       },
       {
-        heading: 'Magenta in video and design',
+        heading: 'Neon magenta light and backgrounds',
         paragraphs: [
-          'Magenta is the complement of green, which is why it shows up as a fringe around subjects when [chroma key](/glossary/chroma-key) spill suppression goes too far. Designers also use it as a placeholder color precisely because it rarely appears in real images. As a light, it gives a vivid, party-style glow; the [color cycle](/color-cycle) moves through it smoothly.',
+          'Turn Brightness to 100%, switch off the room lights and double-tap for fullscreen: a laptop or tablet becomes a neon magenta light for parties, gaming setups or a stream backdrop. Warm pulls it toward hot pink, Cool toward violet. For a wallpaper, use Download to save a solid magenta PNG at 1080p, 2K, 4K, Phone size or a custom size. To move through magenta and other colors automatically, open the [color cycle](/color-cycle).',
+        ],
+      },
+      {
+        heading: 'A quick green-channel check',
+        paragraphs: [
+          'Because magenta has no green, a green subpixel stuck on shows as a pale, whitish dot, and any green tint makes magenta look dull or grayish instead of electric. That makes it a fast check on a new phone or monitor; for every channel in one place, run the [screen color test](/screen-color-test). Designers rely on the same rarity: magenta marks placeholders and missing textures, and it is the color that fringes a subject when [chroma key](/glossary/chroma-key) spill suppression goes too far.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Why does magenta look purple on my display?',
-        answer: 'Blue is stronger than red on your panel, or a cool color temperature is set. A warmer or sRGB mode usually fixes it.',
-      },
-      {
         question: 'Is magenta the same as pink?',
-        answer: 'No. Magenta is equal red and blue with no green; pink mixes in some green and is lighter. Try the pink screen to compare.',
+        answer: 'No. Magenta is equal red and blue with no green; pink mixes in green and is lighter and softer. Open the pink screen to compare them side by side.',
       },
       {
-        question: 'Can magenta help find stuck pixels?',
-        answer: 'Yes, especially stuck green subpixels, which show up as bright dots. Confirm on the green screen.',
+        question: 'Why does magenta look purple on my display?',
+        answer: 'Blue is stronger than red on your panel, or a cool color temperature is set. Choose Warm under the preview, or switch the display to a warmer or sRGB mode.',
+      },
+      {
+        question: 'Is screen magenta the same as printer magenta?',
+        answer: 'No. A screen mixes light, so #FF00FF is far brighter than the magenta ink in a printer (CMYK). Printed magenta looks darker and slightly redder, so do not use the screen to judge print colors.',
       },
     ],
   },
+
 }

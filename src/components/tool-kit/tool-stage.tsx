@@ -249,6 +249,7 @@ export function ToolStage({
       <div className="relative">
         <div
           ref={ref}
+          data-rating-anchor=""
           role="region"
           aria-label={tx(label)}
           onMouseMove={isFullscreen ? revealHint : undefined}

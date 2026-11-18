@@ -1,6 +1,7 @@
 /**
  * Tool ratings: GET /api/rating/?tool=/white-screen returns { count, average };
- * POST { tool, stars } stores a rating.
+ * POST { tool, stars } stores a rating; POST { tool, reason } stores why a tool didn't work (👎 in the prompt),
+ * counted in the feedback:<tool> hash, once per visitor per tool.
  *
  * Storage is an Upstash Redis database connected to the Vercel project (Vercel → Storage), which
  * sets KV_REST_API_URL / KV_REST_API_TOKEN (or UPSTASH_REDIS_REST_URL / _TOKEN). Without it, every
@@ -16,6 +17,8 @@ const REDIS_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_R
 const TOOL_PATTERN = /^\/[a-z0-9][a-z0-9/-]{0,119}$|^\/$/
 const VOTE_TTL = 60 * 60 * 24 * 365
 const DAILY_WRITES_PER_VISITOR = 60
+/** Reasons the rating prompt offers after a thumbs down (src/components/tool-rating.tsx). */
+const REASONS = new Set(['fullscreen', 'display', 'controls', 'missing', 'other'])
 
 type Command = (string | number)[]
 
@@ -83,7 +86,7 @@ export async function GET(request: Request): Promise<Response> {
 
 export async function POST(request: Request): Promise<Response> {
   if (!REDIS_URL || !REDIS_TOKEN) return json({ configured: false }, 503)
-  let body: { tool?: unknown; stars?: unknown }
+  let body: { tool?: unknown; stars?: unknown; reason?: unknown }
   try {
     body = await request.json()
   } catch {
@@ -100,6 +103,15 @@ export async function POST(request: Request): Promise<Response> {
     if (Number(writes) > DAILY_WRITES_PER_VISITOR) return json({ error: 'too many' }, 429)
 
     const voteKey = `rv:${tool}:${visitor}`
+
+    if (body.reason !== undefined) {
+      const reason = String(body.reason)
+      if (!REASONS.has(reason)) return json({ error: 'bad reason' }, 400)
+      // One reason per visitor per tool; a second answer is ignored.
+      const [fresh] = await redis([['SET', `rf:${tool}:${visitor}`, reason, 'EX', VOTE_TTL, 'NX']])
+      if (fresh) await redis([['HINCRBY', `feedback:${tool}`, reason, 1]])
+      return json({ ok: true })
+    }
 
     const stars = Number(body.stars)
     if (!Number.isInteger(stars) || stars < 1 || stars > 5) return json({ error: 'bad stars' }, 400)

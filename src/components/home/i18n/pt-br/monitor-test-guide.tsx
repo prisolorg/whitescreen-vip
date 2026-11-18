@@ -65,7 +65,7 @@ export function MonitorTestGuidePtBr() {
             ['Pixels mortos ou presos (teste de LCD)', <Link key="dp" href="/dead-pixel-test" className={link}>Teste de dead pixel</Link>],
             ['Taxa de atualização (Hz)', <Link key="hz" href="/screen-refresh-rate-test" className={link}>Teste de taxa de atualização</Link>],
             ['Tempo de resposta e rastros', <Link key="gh" href="/monitor-ghosting-test" className={link}>Teste de ghosting do monitor</Link>],
-            ['Vazamento de luz e uniformidade do preto', <Link key="un" href="/screen-uniformity-test" className={link}>Teste de uniformidade</Link>],
+            ['Vazamento de luz e uniformidade do preto', <Link key="un" href="/gray-screen" className={link}>Teste de uniformidade</Link>],
             ['Imagens fantasma que ficam na tela', <Link key="bi" href="/screen-burn-in-test" className={link}>Teste de burn-in de tela</Link>],
             ['A resolução da sua tela', <Link key="rs" href="/screen-resolution-test" className={link}>Teste de resolução</Link>],
           ]}

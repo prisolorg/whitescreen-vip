@@ -62,6 +62,21 @@ const REMOVED_PAGES: Record<string, string> = {
   '/backgrounds/ocean-breeze/': '/backgrounds/gradient-background/',
   '/backgrounds/blurred-studio/': '/backgrounds/virtual-office/',
   '/backgrounds/matrix-code/': '/matrix-screensaver/',
+  // Screen uniformity test merged into the gray screen (it now has the 5–75% gray levels).
+  '/screen-uniformity-test/': '/gray-screen/',
+}
+
+/** Translated slugs of removed tool pages (taken from the tool's translated name), per language. */
+const REMOVED_TRANSLATED: [from: Record<string, string>, to: string][] = [
+  [
+    { es: 'prueba-de-uniformidad', 'pt-br': 'teste-de-uniformidade', de: 'bildschirm-homogenitaetstest', fr: 'test-d-uniformite-d-ecran', it: 'test-uniformita-schermo', nl: 'scherm-uniformiteitstest', id: 'uji-keseragaman-layar', tr: 'ekran-homojenlik-testi' },
+    '/gray-screen/',
+  ],
+]
+for (const [slugs, to] of REMOVED_TRANSLATED) {
+  for (const lang of SUPPORTED_LOCALES) {
+    if (slugs[lang]) LEGACY_REDIRECTS[`/${lang}/${slugs[lang]}/`] = localized(to, lang)
+  }
 }
 for (const [from, to] of Object.entries(REMOVED_PAGES)) {
   for (const lang of SUPPORTED_LOCALES) {

@@ -5,8 +5,8 @@
  */
 export const TOOL_META: Record<string, [title: string, description: string]> = {
   'white-screen': [
-    'White Screen – Open a Full White Screen in 1 Click (Free)',
-    'Open a pure white screen in fullscreen with one click. Use it as a light, to clean your monitor or find dead pixels. Free, no sign-up, any device.',
+    'White Screen Online – Bright Full White Screen Light (Free)',
+    'Open a bright white screen online in 1 click. Fullscreen, adjustable brightness and warm or cool tone. Use it as a light, for tracing or cleaning. Free.',
   ],
   'black-screen': [
     'Black Screen – Go Fullscreen Black Instantly (Free, 4K)',
@@ -37,7 +37,7 @@ export const TOOL_META: Record<string, [title: string, description: string]> = {
     'Turn your screen hot pink (#FF69B4) for flattering selfie light, room ambience or display tests. Free fullscreen color, works on phone and PC.',
   ],
   'purple-screen': [
-    'Purple Screen – Open Fullscreen Purple Instantly (Free)',
+    'Purple Screen – Fullscreen Purple Light in 1 Tap (Free)',
     'Fill your screen with vivid purple for mood lighting, streams or testing red and blue subpixels. One click to fullscreen, free and no sign-up.',
   ],
   'cyan-screen': [
@@ -45,12 +45,12 @@ export const TOOL_META: Record<string, [title: string, description: string]> = {
     'Open a pure cyan screen (#00FFFF) to test green and blue subpixels, spot stuck red pixels or add a cool light. Free fullscreen, no download.',
   ],
   'magenta-screen': [
-    'Magenta Screen – Fullscreen Magenta in 1 Click (Free)',
-    'Make your display pure magenta (#FF00FF) to expose stuck green pixels, test color or light a scene. Free fullscreen color tool for any device.',
+    'Magenta Screen – Neon Fullscreen Magenta Light (Free)',
+    'Turn your display pure magenta (#FF00FF) for neon party light, a bold wallpaper or a quick green-channel check. Free fullscreen, PNG download.',
   ],
   'gray-screen': [
-    'Gray Screen – Check Uniformity & Banding (Free)',
-    'Open a fullscreen 50% gray screen to spot dirty screen effect, clouding and banding on any monitor or TV. Free, instant, no sign-up needed.',
+    'Grey Screen – Dark, Light & 50% Gray Uniformity Test',
+    'Open a fullscreen grey screen in 5 gray levels, from dark grey to light gray. Check uniformity, clouding and backlight bleed, or download a PNG. Free.',
   ],
   'dead-pixel-test': [
     'Dead Pixel Test – Find Dead & Stuck Pixels in 1 Minute',
@@ -149,8 +149,8 @@ export const TOOL_META: Record<string, [title: string, description: string]> = {
     'Create a fullscreen gradient in any colors and angle. Use it as ambient light, a wallpaper or a banding test, and download it as an image. Free.',
   ],
   'matrix-screensaver': [
-    'Matrix Screensaver – Digital Rain Fullscreen (Free)',
-    'Run the classic green digital rain screensaver in your browser. Change color, speed and character size, then go fullscreen. Free, no install.',
+    'Matrix Screen – Online Matrix Screen Saver (Free)',
+    'Run the green Matrix screen saver online: falling code in fullscreen, in green, blue, red or gold. Change speed and characters. Free, no install.',
   ],
   'flip-clock-screensaver': [
     'Flip Clock Screensaver – Fullscreen Retro Clock (Free)',
@@ -161,8 +161,8 @@ export const TOOL_META: Record<string, [title: string, description: string]> = {
     'Watch the classic bouncing DVD logo change color on every wall and celebrate the corner hit. Adjust speed and size, go fullscreen. Free.',
   ],
   'motivational-quote-screensaver': [
-    'Motivational Quote Screensaver – Daily Inspiration (Free)',
-    'Show rotating motivational quotes in fullscreen with a clock and calm themes. Ideal for offices, classrooms and home screens. Free, no app.',
+    'Motivational Quotes Screensaver – Fullscreen Quotes (Free)',
+    'Show motivational quotes in fullscreen on a study table, desk or TV: 31 classic quotes, 5 backgrounds and an optional clock. Free, no app.',
   ],
   'countdown-timer': [
     'Countdown Timer – Big Fullscreen Online Timer (Free)',
@@ -209,8 +209,8 @@ export const TOOL_META: Record<string, [title: string, description: string]> = {
     'Play the nostalgic Windows XP startup screen with the moving loading bar in fullscreen. Great for retro props, videos and pranks. Free.',
   ],
   'fake-chrome-os-update': [
-    'Fake ChromeOS Update Screen – Chromebook Prank (Free)',
-    'Show a realistic fake ChromeOS update screen on any Chromebook or PC in fullscreen. A harmless prank or break cover. Free, press Esc to exit.',
+    'Fake Chromebook Update Screen – Chrome OS Prank (Free)',
+    'Show a fake Chromebook update screen that never finishes: a spinning ring and slow progress in fullscreen. Harmless prank, free, Esc to exit.',
   ],
   'fake-ubuntu-update': [
     'Fake Ubuntu Update Screen – Linux Prank (Free)',

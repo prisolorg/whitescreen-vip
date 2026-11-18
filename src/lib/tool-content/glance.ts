@@ -26,112 +26,94 @@ const FLASH_GUIDELINE = {
   url: 'https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html',
 }
 
-function colorGlance(name: string, hex: string, answerTail: string, features: string, benefit: string, sources: ToolSource[] = []): ToolGlance {
-  return {
-    answer: `A ${name.toLowerCase()} screen fills your entire display with solid ${name.toLowerCase()} (${hex}). Double-tap the screen or press F and every pixel shows the same color, with no toolbars or distractions. ${answerTail}`,
-    features: [
-      `Pure ${name.toLowerCase()} at ${hex}`,
-      'Double-tap fullscreen with brightness and warmth control',
-      features,
-      'Free PNG download at 1080p, 2K, 4K or phone size, plus custom sizes up to 8K',
-    ],
-    benefits: [benefit, 'Works instantly on phones, laptops, monitors and smart TVs', 'No app, no sign-up and nothing to install'],
-    sources: [WIKI('RGB_color_model'), ...sources],
-  }
-}
+/** Colour screens: every page has its own answer and lists; only the sources helper is shared. */
+const RGB = WIKI('RGB_color_model')
 
 export const TOOL_GLANCE: Record<string, ToolGlance> = {
-  'white-screen': colorGlance(
-    'White',
-    '#FFFFFF',
-    'At full brightness it is the brightest light your display can make, so people use it as a soft light for video calls and photos, to clean a dusty screen, to trace drawings and to find dark dead pixels.',
-    'Color temperature from warm 2700 K to cool 9300 K',
-    'An instant soft light source for calls, selfies and tracing',
-    [WIKI('Color_temperature', 'Color temperature'), FULLSCREEN_API],
-  ),
-  'black-screen': colorGlance(
-    'Black',
-    '#000000',
-    'On OLED screens the pixels switch off completely, so it is the quickest way to hide what is on screen, check backlight bleed or save power.',
-    'Keeps the screen awake in fullscreen (Screen Wake Lock)',
-    'Reveals backlight bleed, IPS glow and bright stuck pixels',
-    [WIKI('OLED'), WAKE_LOCK],
-  ),
-  'red-screen': colorGlance(
-    'Red',
-    '#FF0000',
-    'It works as a soft red night light that preserves dark adaptation, and because only the red subpixels light up, a stuck green or blue subpixel is easy to spot.',
-    'Arrow keys step through every screen color',
-    'Finds stuck green or blue subpixels in seconds',
-    [WIKI('Defective_pixel', 'Defective pixel')],
-  ),
-  'green-screen': colorGlance(
-    'Green',
-    '#00FF00',
-    'Creators use it as a quick chroma key backdrop, and it lights only the green subpixels, so faulty red or blue subpixels stand out during a pixel test.',
-    'Bright chroma key green for keying in OBS, Premiere or CapCut',
-    'A free chroma key backdrop when you have no green cloth',
-    [WIKI('Chroma_key', 'Chroma key')],
-  ),
-  'blue-screen': colorGlance(
-    'Blue',
-    '#0000FF',
-    'It lights only the blue subpixels for pixel tests and doubles as a blue chroma key backdrop or a calm, cool light source for photos.',
-    'Pure blue for subpixel testing and blue-screen keying',
-    'Checks the blue channel and makes stuck pixels obvious',
-    [WIKI('Chroma_key', 'Chroma key')],
-  ),
-  'yellow-screen': colorGlance(
-    'Yellow',
-    '#FFFF00',
-    'Yellow lights the red and green subpixels together with blue switched off, so it works as a warm light with no blue and quickly shows a dead red or green subpixel.',
-    'Exact yellow mixing red and green at full strength',
-    'Warm, blue-free light for reading, calls and evenings',
-  ),
-  'orange-screen': colorGlance(
-    'Orange',
-    '#FF8000',
-    'Its warm tone has less blue light than white, so many people use it as a gentle night light, a sunset-style mood light or a warm fill light for video.',
-    'Brightness slider for a dim, warm night light',
-    'A warm light with far less blue than a white screen',
-    [WIKI('Color_temperature', 'Color temperature')],
-  ),
-  'pink-screen': colorGlance(
-    'Pink',
-    '#FF69B4',
-    'Hot pink gives flattering, soft light for selfies and makeup and sets a fun mood for parties, streams and room ambience.',
-    'Hot pink, plus coral, rose and darker pinks with the controls',
-    'Soft, flattering light for selfies and makeup',
-  ),
-  'purple-screen': colorGlance(
-    'Purple',
-    '#8000FF',
-    'Purple mixes red and blue light, which makes it a striking mood light for streams, gaming setups and parties, and a quick check that the green channel is really off.',
-    'Vivid purple with custom shades from lavender to violet',
-    'Instant mood lighting for streams and parties',
-  ),
-  'cyan-screen': colorGlance(
-    'Cyan',
-    '#00FFFF',
-    'Cyan lights green and blue together, so a stuck red subpixel or a missing channel is easy to see. It is also a cool, crisp accent light.',
-    'Pure cyan for checking the green and blue channels',
-    'Exposes faulty red subpixels and color tint',
-  ),
-  'magenta-screen': colorGlance(
-    'Magenta',
-    '#FF00FF',
-    'Magenta lights red and blue while keeping green off, which makes stuck green subpixels and green tints obvious during display tests.',
-    'Pure magenta for the red and blue channels',
-    'Shows stuck green subpixels and green tint',
-  ),
-  'gray-screen': colorGlance(
-    'Gray',
-    '#808080',
-    'A mid-gray field is the standard way to spot dirty screen effect, clouding, vignetting and color banding that bright colors hide.',
-    'Switch between light, mid and dark gray levels',
-    'Reveals uniformity problems and dirty screen effect',
-    [WIKI('Color_banding', 'Color banding')],
-  ),
+  'white-screen': {
+    answer:
+      'A white screen turns your whole display pure white (#FFFFFF), the brightest light it can make. People use it as a soft light for video calls and selfies, to trace drawings, to spot dust while cleaning and to find dark dead pixels. Double-tap or press F for fullscreen.',
+    features: ['Pure white at full brightness, or dimmed down to 10%', 'Cool, Neutral or Warm white for daylight or cozy light', 'Keep screen awake for long lighting or tracing sessions', 'White PNG download from 1080p to 4K, phone size or custom up to 8K'],
+    benefits: ['The brightest free light source already in your hands', 'Shows smudges, dust and dark pixels at a glance', 'Works on any phone, laptop, monitor or smart TV'],
+    sources: [RGB, WIKI('Color_temperature', 'Color temperature'), FULLSCREEN_API],
+  },
+  'black-screen': {
+    answer:
+      'A black screen fills your display with pure black (#000000). On OLED phones and TVs the pixels switch off completely, so it saves power and looks like the screen is off. On LCDs it reveals backlight bleed. People also use it to hide the screen, rest their eyes or record a black video.',
+    features: ['True #000000, so OLED pixels turn fully off', 'Keeps the display awake in fullscreen while it looks off', 'Arrow keys jump to other screen colors', 'Black PNG download for wallpapers, lock screens and video edits'],
+    benefits: ['Hides what is on screen without closing anything', 'Shows backlight bleed, IPS glow and bright stuck pixels', 'Saves battery on OLED and AMOLED phones'],
+    sources: [RGB, WIKI('OLED'), WAKE_LOCK],
+  },
+  'red-screen': {
+    answer:
+      'A red screen fills your display with pure red (#FF0000), lighting only the red subpixels. It makes a dim red night light that keeps your eyes adjusted to the dark, a bold backdrop for photos and parties, and a quick check for stuck green or blue subpixels.',
+    features: ['Pure #FF0000 with only red subpixels lit', 'Brightness down to 10% for a dim red night light', 'Keep screen awake for an all-night red light', 'Red PNG download in common screen sizes'],
+    benefits: ['A red light that keeps night vision intact', 'Finds stuck green or blue subpixels in seconds', 'Instant bright red backdrop for photos and videos'],
+    sources: [RGB],
+  },
+  'green-screen': {
+    answer:
+      'A green screen fills your display with chroma key green (#00FF00). Creators put it behind a subject and remove it later in OBS, Premiere or CapCut, and because only the green subpixels light up, it also shows a dead red or blue subpixel during a pixel check.',
+    features: ['Bright #00FF00 chroma key green', 'Brightness and Warmth to match your camera and lights', 'Fullscreen on a monitor or TV as a keying backdrop', 'Green PNG download to key out in any video editor'],
+    benefits: ['A free backdrop when you have no green cloth', 'Even, flat color that keys cleanly', 'Checks the green channel and stuck pixels'],
+    sources: [RGB, WIKI('Chroma_key', 'Chroma key')],
+  },
+  'blue-screen': {
+    answer:
+      'A blue screen fills your display with pure blue (#0000FF), lighting only the blue subpixels. Use it as a calm blue light for photos and rooms, a blue chroma key backdrop, or to check the blue channel. It is just a color, not the Windows blue screen of death.',
+    features: ['Pure #0000FF with only blue subpixels lit', 'Brightness from 10% to 100% for a soft or bright blue light', 'Cool or Warm for a brighter or deeper blue', 'Blue PNG download for backgrounds and keying'],
+    benefits: ['Instant blue light for photos, streams and mood lighting', 'Backdrop for blue-screen keying', 'Shows stuck red or green subpixels'],
+    sources: [RGB, WIKI('Chroma_key', 'Chroma key')],
+  },
+  'yellow-screen': {
+    answer:
+      'A yellow screen fills your display with pure yellow (#FFFF00): red and green at full strength with blue switched off. That makes it a warm, blue-free light for reading, calls and evenings, a cheerful backdrop for photos, and a quick check for a dead red or green subpixel.',
+    features: ['Pure #FFFF00 with no blue light', 'Warm for a golden yellow, Cool for a lemon yellow', 'Brightness down to 10% for a soft reading light', 'Yellow PNG download for wallpapers and designs'],
+    benefits: ['Warm light without the blue of a white screen', 'Bright, cheerful backdrop for photos and videos', 'Shows dead red or green subpixels'],
+    sources: [RGB],
+  },
+  'orange-screen': {
+    answer:
+      'An orange screen fills your display with warm orange (#FF8000). With far less blue than white, it works as a gentle night light, a sunset-style mood light and a warm fill light for video calls. Turn the brightness down for an amber glow that is easy on the eyes after dark.',
+    features: ['Warm #FF8000 with no blue channel', 'Brightness slider for a dim amber night light', 'Warm for a deeper, redder orange', 'Orange PNG download for backgrounds'],
+    benefits: ['A night light with far less blue than white', 'Warm, flattering fill light for calls and photos', 'Sunset and autumn mood lighting in one tap'],
+    sources: [RGB],
+  },
+  'pink-screen': {
+    answer:
+      'A pink screen fills your display with hot pink (#FF69B4). It gives soft, flattering light for selfies, makeup and video calls, and a fun glow for parties, streams and TikTok videos. Warm turns it coral, Cool turns it rose, and lower brightness gives a darker pink.',
+    features: ['Hot pink #FF69B4 at full brightness', 'Coral (Warm) and rose (Cool) shades', 'Keep screen awake for long lighting sessions', 'Pink PNG download for wallpapers and posts'],
+    benefits: ['Flattering light that softens skin and shadows', 'Instant party and stream lighting', 'Ready-made hot pink background'],
+    sources: [RGB],
+  },
+  'purple-screen': {
+    answer:
+      'A purple screen fills your display with vivid purple (#8000FF): full blue, half red and no green. People use it as a purple light for rooms, gaming setups and TikTok videos, and as a bold backdrop. Screens give off no ultraviolet, so it looks like a black light but cannot act as one.',
+    features: ['Vivid #8000FF in fullscreen', 'Warm for a redder purple, Cool for a bluer violet', 'Brightness down to 10% for dark purple', 'Purple PNG download in common sizes'],
+    benefits: ['Instant purple light for rooms, streams and parties', 'Bold backdrop for photos and videos', 'Shows stuck green subpixels'],
+    sources: [RGB],
+  },
+  'cyan-screen': {
+    answer:
+      'A cyan screen fills your display with pure cyan (#00FFFF), lighting green and blue together with red switched off. That makes a stuck red subpixel or a missing color channel easy to see, and gives a crisp, cool accent light for desks and photos.',
+    features: ['Pure #00FFFF with no red light', 'Checks the green and blue channels together', 'Brightness and Warmth controls', 'Cyan PNG download'],
+    benefits: ['Exposes faulty red subpixels and color tint', 'Cool, modern accent light', 'Works on any screen with no app'],
+    sources: [RGB],
+  },
+  'magenta-screen': {
+    answer:
+      'A magenta screen fills your display with pure magenta (#FF00FF): red and blue at full power with no green, the most vivid color a screen can show. Use it as neon party light, a bold background or a quick check for stuck green subpixels.',
+    features: ['Pure #FF00FF in fullscreen', 'Warm leans hot pink, Cool leans violet', 'Brightness control from 10% to 100%', 'Magenta PNG download for wallpapers'],
+    benefits: ['Neon-style light for parties and streams', 'Loudest possible background color', 'Shows stuck green subpixels and green tint'],
+    sources: [RGB],
+  },
+  'gray-screen': {
+    answer:
+      'A grey screen fills your display with neutral gray. Pick a gray level from 5% (near black) to 75% (light gray) to check for clouding, backlight bleed, dirty screen effect and dark corners, or use mid gray (#808080) as a calm, blank backdrop with no color cast.',
+    features: ['Five gray levels: 5%, 10%, 25%, 50% and 75%', 'Brightness and Warmth to fine-tune the gray', 'Fullscreen for an even, blank gray field', 'Gray PNG download at the level you pick'],
+    benefits: ['The standard field for screen uniformity checks', 'Neutral backdrop with no color cast', 'Calmer than white for a second screen'],
+    sources: [RGB, WIKI('Color_banding', 'Color banding')],
+  },
   'dead-pixel-test': {
     answer:
       'A dead pixel test fills your screen with solid colors, one after another, so faulty pixels stand out. A dead pixel stays black on every color, a stuck pixel stays one bright color, and a hot pixel stays white. The full check takes about a minute on any monitor, laptop, TV or phone.',
@@ -291,23 +273,23 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   },
   'white-noise-generator': {
     answer:
-      'A white noise generator plays a steady hiss that contains every audible frequency at equal power. That even sound masks voices, traffic and sudden noises, which is why people use it for focus, studying, calming babies and sleep. Set the volume low and add a timer for bedtime.',
-    features: ['White, pink and brown noise in one player', 'Tone filter and volume control in decibels', 'Sleep timer with gentle fade', 'Optional TV static and waveform visuals'],
-    benefits: ['Masks distractions in open offices and dorms', 'Helps many people fall asleep faster', 'Free, endless and no app needed'],
+      'The white noise generator plays endless white noise in your browser with one tap: no app, no sign-up and no ads in the sound. Set the volume in decibels, add a sleep timer, soften the hiss with a filter and switch to pink or brown noise at any time.',
+    features: ['Volume from −60 dB to 0 dB', 'Sleep timer: 15, 30, 60 or 90 minutes with a fade', 'Low-pass and high-pass filter with adjustable cutoff', 'Waveform, TV static or dark screen visuals'],
+    benefits: ['Masks voices and sudden noises for focus or sleep', 'Turns any phone or laptop into a white noise machine', 'Free, with nothing to install'],
     sources: [WIKI('White_noise', 'White noise'), MDN('Web_Audio_API', 'Web Audio API')],
   },
   'brown-noise-generator': {
     answer:
-      'A brown noise generator plays a deep, rumbling sound whose power falls steeply at higher frequencies, like a waterfall or strong wind. It is softer than white noise, so many people prefer it for sleep, ADHD focus, and masking low-frequency noise such as traffic or snoring.',
-    features: ['True brown (Brownian) noise, generated live', 'Low-pass and high-pass tone shaping', 'Volume control and sleep timer', 'Switch to white or pink noise in one click'],
-    benefits: ['Gentle, bass-heavy sound for long sessions', 'Popular for focus and deep work', 'Free, works offline once loaded'],
+      'The brown noise generator plays deep, rumbling brown noise in your browser as soon as you press Start: free, no app and no ads in the sound. Set a sleep timer, choose a dark screen for the bedroom and shape the rumble with a filter.',
+    features: ['Brown noise generated in your browser, looping without clicks', 'Sleep timer up to 90 minutes with a gentle fade', 'Low-pass filter for an even deeper rumble', 'Space key to start and stop'],
+    benefits: ['Plays all night with no ads interrupting', 'Works on phones, tablets and computers', 'Switch to white or pink noise in one tap'],
     sources: [WIKI('Brownian_noise', 'Brownian noise'), MDN('Web_Audio_API', 'Web Audio API')],
   },
   'pink-noise-generator': {
     answer:
-      'A pink noise generator plays sound whose power drops evenly with each octave, so it sounds balanced and softer than white noise, like steady rain. It is used for sleep, relaxation and studying, and audio engineers use pink noise to check speaker balance.',
-    features: ['Real pink noise generated in your browser', 'Tone filter, volume in decibels and sleep timer', 'Live waveform or spectrum display', 'Keyboard control: Space to play or pause'],
-    benefits: ['Natural, rain-like sound that is easy to sleep to', 'Useful reference signal for speaker checks', 'Free and ad-light'],
+      'The pink noise generator plays soft, balanced pink noise in your browser with one tap: free, with no app and no ads in the sound. Keep it running all night or set a sleep timer, and shape the tone with a low-pass or high-pass filter.',
+    features: ['Pink noise generated live in your browser', 'Sleep timer: 15, 30, 60 or 90 minutes', 'Filter with cutoff from 30 Hz to 15 kHz', 'Waveform, TV static or dark screen visuals'],
+    benefits: ['Gentle masking sound for sleep and study', 'A pink noise machine on any device', 'Free, with nothing to install'],
     sources: [WIKI('Pink_noise', 'Pink noise'), MDN('Web_Audio_API', 'Web Audio API')],
   },
   'broken-screen': {
@@ -326,7 +308,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
     answer:
       'The hacked screen simulator shows a fake "your system has been hacked" warning with glitch text, scrolling logs, a progress bar and a countdown. It is a harmless prank: nothing is accessed or changed, and when the countdown ends a message reveals it was a joke.',
     features: ['Red alert and green terminal styles', 'Custom headline, logs and countdown', 'Optional siren sound', 'Ends with a clear "just kidding" message'],
-    benefits: ['Harmless prank that looks dramatic', 'Prop for films, streams and escape rooms', 'Runs fully offline in the browser'],
+    benefits: ['Harmless prank that looks dramatic', 'Prop for films, streams and escape rooms', 'Runs entirely in your browser'],
   },
   'zoom-lighting': {
     answer:
@@ -366,7 +348,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   'matrix-screensaver': {
     answer:
       'The Matrix screensaver shows columns of falling green characters, the "digital rain" made famous by the 1999 film The Matrix. It runs in your browser in fullscreen, and you can change the color, speed and character size for a desk, TV or streaming background.',
-    features: ['Falling katakana, digits and symbols', 'Color, speed and character size controls', 'Fullscreen with hidden cursor', 'Smooth on high-refresh screens'],
+    features: ['Katakana, binary or alphanumeric characters', 'Speed, density and character size controls', 'Fullscreen with hidden cursor', 'Green, blue, red or gold rain'],
     benefits: ['Iconic look for idle screens and streams', 'No screensaver install on Windows or macOS', 'Free'],
     sources: [WIKI('Digital_rain', 'Digital rain'), WIKI('Screensaver')],
   },
@@ -387,7 +369,7 @@ export const TOOL_GLANCE: Record<string, ToolGlance> = {
   'motivational-quote-screensaver': {
     answer:
       'A motivational quote screensaver shows a new inspirational quote every few seconds in large, readable type, with an optional clock. It suits office lobbies, classrooms, gyms and home screens where people glance at it during the day.',
-    features: ['Curated quotes from Seneca, Marcus Aurelius, Emerson and more', 'Rotation speed, themes and shuffle', 'Optional clock overlay', 'Fullscreen with keep-awake'],
+    features: ['31 classic quotes from Seneca, Marcus Aurelius, Emerson and more', 'Rotation speed, themes and shuffle', 'Optional clock overlay', 'Fullscreen with keep-awake'],
     benefits: ['Positive display for shared spaces', 'Zero setup on smart TVs', 'Free'],
     sources: [WIKI('Screensaver')],
   },

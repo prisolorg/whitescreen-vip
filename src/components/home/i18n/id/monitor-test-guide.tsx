@@ -64,7 +64,7 @@ export function MonitorTestGuideId() {
             ['Piksel mati atau macet (tes LCD)', <Link key="dp" href="/dead-pixel-test" className={link}>Tes Piksel Mati</Link>],
             ['Refresh rate (Hz)', <Link key="hz" href="/screen-refresh-rate-test" className={link}>Tes Refresh Rate Layar</Link>],
             ['Waktu respons dan jejak', <Link key="gh" href="/monitor-ghosting-test" className={link}>Tes Ghosting Monitor</Link>],
-            ['Kebocoran lampu latar dan keseragaman hitam', <Link key="un" href="/screen-uniformity-test" className={link}>Uji Keseragaman Layar</Link>],
+            ['Kebocoran lampu latar dan keseragaman hitam', <Link key="un" href="/gray-screen" className={link}>Uji Keseragaman Layar</Link>],
             ['Gambar bayangan yang tertinggal di layar', <Link key="bi" href="/screen-burn-in-test" className={link}>Tes Burn-in Layar</Link>],
             ['Resolusi layar Anda', <Link key="rs" href="/screen-resolution-test" className={link}>Berapa resolusi layar saya?</Link>],
           ]}

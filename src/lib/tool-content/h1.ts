@@ -17,6 +17,17 @@ export const TOOL_H1_EN: Record<string, string> = {
   'oled-gray-test': 'OLED Test',
   // "tv color bars" 1.3K; "no signal screen" has no measurable volume.
   'no-signal-screen': 'TV Color Bars & No Signal Screen',
+  // "grey screen" 5.5K vs "gray screen" 2.5K; the URL and menus keep Gray.
+  'gray-screen': 'Grey Screen',
+  // "matrix screen" 390 vs "matrix screensaver" 200; the tool keeps its Screensaver name elsewhere.
+  'matrix-screensaver': 'Matrix Screen',
+  // Plural is the natural search form ("motivational quotes"); the page also targets "motivational" (2.4K).
+  'motivational-quote-screensaver': 'Motivational Quotes Screensaver',
+  // Add "Screen": "update screen" and "android update screen" are how people search.
+  'fake-android-update': 'Fake Android Update Screen',
+  'fake-windows-xp-update': 'Fake Windows XP Update Screen',
+  // "fake chromebook" 140, "chromebook update/updating screen" 220 vs "fake chrome os update" ~0.
+  'fake-chrome-os-update': 'Fake Chromebook Update Screen',
 }
 
 /** English "Quick answer" headings where "What is the {H1}?" would read badly. */

@@ -71,7 +71,7 @@ export function GreenScreenGuideId() {
         <p className={p}>
           Hijau membawa sebagian besar kecerahan yang kita lihat, jadi sudut yang lebih gelap atau bercak berawan mudah terlihat. Titik gelap
           adalah subpiksel hijau yang mati, sedangkan titik kuning atau sian berarti subpiksel merah atau biru macet menyala. Jalankan{' '}
-          <Link href="/screen-uniformity-test" className={link}>Uji Keseragaman Layar</Link> atau baca{' '}
+          <Link href="/gray-screen" className={link}>Uji Keseragaman Layar</Link> atau baca{' '}
           <Link href="/screen-problems/stuck-pixel" className={link}>panduan piksel macet</Link> untuk langkah selanjutnya. Titik hitam yang juga
           terlihat di <Link href="/" className={link}>layar putih</Link> adalah piksel yang mati total.
         </p>

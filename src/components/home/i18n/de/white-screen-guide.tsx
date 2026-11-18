@@ -126,7 +126,7 @@ export function WhiteScreenGuideDe() {
           head={['Was du siehst', 'Was es bedeuten kann', 'Nächster Schritt']}
           rows={[
             ['Schwarze oder dunkle Punkte', 'Tote Pixel', <Link key="d" href="/dead-pixel-test" className={link}>Pixelfehlertest</Link>],
-            ['Flecken, dunkle Ecken oder Wolken', 'Ungleichmäßige Hintergrundbeleuchtung', <Link key="u" href="/screen-uniformity-test" className={link}>Bildschirm-Homogenitätstest</Link>],
+            ['Flecken, dunkle Ecken oder Wolken', 'Ungleichmäßige Hintergrundbeleuchtung', <Link key="u" href="/gray-screen" className={link}>Bildschirm-Homogenitätstest</Link>],
             ['Weiß wirkt gelb, blau oder rosa', 'Farbeinstellungen oder Farbstich des Panels', <Link key="c" href="/screen-color-test" className={link}>Bildschirm-Farbtest</Link>],
             ['Blasse Formen alter Bilder', 'Einbrennen oder Image Retention', <Link key="b" href="/screen-burn-in-test" className={link}>Bildschirm-Einbrenn-Test</Link>],
             ['Punkte, die sich beim Wischen bewegen', 'Staub oder Schlieren, keine Pixel', 'Reinige den Bildschirm und prüf noch einmal'],

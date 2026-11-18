@@ -128,7 +128,7 @@ export function WhiteScreenGuidePtBr() {
           head={['O que você vê', 'O que pode significar', 'Próximo passo']}
           rows={[
             ['Pontos pretos ou escuros', 'Dead pixels', <Link key="d" href="/dead-pixel-test" className={link}>Teste de dead pixel</Link>],
-            ['Manchas, cantos escuros ou nuvens', 'Luz de fundo desigual', <Link key="u" href="/screen-uniformity-test" className={link}>Teste de uniformidade</Link>],
+            ['Manchas, cantos escuros ou nuvens', 'Luz de fundo desigual', <Link key="u" href="/gray-screen" className={link}>Teste de uniformidade</Link>],
             ['Branco parece amarelado, azulado ou rosado', 'Configurações de cor ou tom do painel', <Link key="c" href="/screen-color-test" className={link}>Teste de cores do monitor</Link>],
             ['Formas fracas de imagens antigas', 'Burn-in ou retenção de imagem', <Link key="b" href="/screen-burn-in-test" className={link}>Teste de burn-in de tela</Link>],
             ['Pontinhos que se mexem quando você passa o pano', 'Poeira ou manchas, não pixels', 'Limpe a tela e confira de novo'],

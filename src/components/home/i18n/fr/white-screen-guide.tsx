@@ -132,7 +132,7 @@ export function WhiteScreenGuideFr() {
           head={['Ce que vous voyez', 'Ce que cela peut signifier', 'Étape suivante']}
           rows={[
             ['Des points noirs ou sombres', 'Des pixels morts', <Link key="d" href="/dead-pixel-test" className={link}>Test de pixels morts</Link>],
-            ['Des taches, coins sombres ou nuages', 'Un rétroéclairage inégal', <Link key="u" href="/screen-uniformity-test" className={link}>Test d’uniformité d’écran</Link>],
+            ['Des taches, coins sombres ou nuages', 'Un rétroéclairage inégal', <Link key="u" href="/gray-screen" className={link}>Test d’uniformité d’écran</Link>],
             ['Le blanc paraît jaune, bleu ou rose', 'Réglages de couleur ou teinte de la dalle', <Link key="c" href="/screen-color-test" className={link}>Test des couleurs d’écran</Link>],
             ['Des formes pâles d’anciennes images', 'Marquage ou rémanence', <Link key="b" href="/screen-burn-in-test" className={link}>Test de marquage d’écran</Link>],
             ['Des points qui bougent quand vous essuyez', 'De la poussière ou des traces, pas des pixels', 'Nettoyez l’écran et vérifiez à nouveau'],

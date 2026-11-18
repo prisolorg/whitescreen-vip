@@ -75,7 +75,7 @@ export function GreenScreenGuideFr() {
         <p className={p}>
           Le vert porte l&apos;essentiel de la luminosité que nous percevons : les coins plus sombres ou les taches nuageuses y ressortent. Un
           point sombre est un sous-pixel vert mort, tandis qu&apos;un point jaune ou cyan signale un sous-pixel rouge ou bleu bloqué allumé.
-          Lancez le <Link href="/screen-uniformity-test" className={link}>test d&apos;uniformité d&apos;écran</Link> ou lisez le{' '}
+          Lancez le <Link href="/gray-screen" className={link}>test d&apos;uniformité d&apos;écran</Link> ou lisez le{' '}
           <Link href="/screen-problems/stuck-pixel" className={link}>guide du pixel bloqué</Link> pour la suite. Un point noir visible aussi
           sur l&apos;<Link href="/" className={link}>écran blanc</Link> est un pixel entièrement mort.
         </p>

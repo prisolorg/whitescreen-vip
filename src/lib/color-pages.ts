@@ -127,19 +127,20 @@ export const colorPagesEn: Record<string, ColorPageContent> = {
   },
   magenta: {
     intro:
-      'Show a vivid, fullscreen magenta screen. Magenta lights red and blue subpixels with no green, making it great for spotting stuck green pixels and color tints.',
-    description: 'A fullscreen magenta screen that lights red and blue subpixels together, ideal for spotting tints.',
+      'Fill your screen with pure magenta (#FF00FF), the most vivid pink-purple a display can show. Use it as neon party light, a bold background or a quick green-channel check.',
+    description: 'A fullscreen pure magenta (#FF00FF) screen for neon light, bold backgrounds and green-channel checks.',
     uses: [
-      { title: 'Red + blue subpixel test', description: 'A failed red or blue subpixel turns into a colored dot on magenta.' },
-      { title: 'Stuck green detection', description: 'Magenta contains no green, so a stuck green subpixel appears as a white dot.' },
-      { title: 'Neon-style lighting', description: 'Add a bold neon magenta glow to photos, videos, or workspace backgrounds.' },
-      { title: 'Tint check', description: 'Compare how pinkish or purplish magenta looks across different displays.' },
+      { title: 'Neon party light', description: 'At full brightness in a dark room, magenta gives a hard neon glow for parties, gaming and streams.' },
+      { title: 'Bold wallpaper', description: 'Download a solid magenta PNG for a phone, desktop or social post background.' },
+      { title: 'Green channel check', description: 'Magenta has no green at all, so a stuck green subpixel or a green tint shows at once.' },
+      { title: 'Design placeholder', description: 'Designers use magenta for placeholders and missing textures because it rarely appears in real images.' },
     ],
   },
+
   gray: {
     intro:
-      'Show a neutral, fullscreen gray screen. Ideal for checking panel uniformity, clouding, banding, and dirty-screen effect on TVs and monitors.',
-    description: 'A neutral fullscreen gray screen for spotting clouding, banding and dirty screen effect on panels.',
+      'Show a neutral fullscreen grey screen in five gray levels, from dark grey to light gray. Use it as a blank gray screen or to check uniformity on any monitor or TV.',
+    description: 'A fullscreen grey screen in five gray levels for uniformity checks, neutral light and gray backgrounds.',
     uses: [
       { title: 'Dirty screen effect (DSE)', description: 'Mid-gray reveals blotchy patches and vertical bands across the panel.' },
       { title: 'Uniformity & clouding', description: 'Uneven backlighting and vignetting are easiest to see on a neutral gray.' },

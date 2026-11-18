@@ -256,4 +256,16 @@ export const ptBr: readonly string[] = [
   "Celular",
   "Largura (px)",
   "Altura (px)",
+  // Rating card after using a tool (thumbs, reasons)
+  "Funcionou",
+  "Não muito",
+  "Ótimo! Quantas estrelas?",
+  "O que deu errado?",
+  "Obrigado, isso nos ajuda a corrigir.",
+  "A tela cheia não funcionou",
+  "Não ficou certo na minha tela",
+  "Difícil de usar",
+  "Falta uma opção de que preciso",
+  "Outra coisa",
+  "Nível de cinza",
 ]

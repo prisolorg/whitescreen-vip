@@ -12,6 +12,7 @@ export const H1_KEYWORD_VOLUME: Record<string, number> = {
   'black-screen': 527000,
   'pomodoro-timer': 515350,
   'white-screen': 454000,
+  'hacker-typer': 158820,
   'countdown-timer': 144000,
   'broken-screen': 104000, // "broken screen"
   'dead-pixel-test': 86480,
@@ -31,6 +32,18 @@ export const H1_KEYWORD_VOLUME: Record<string, number> = {
   'screen-resolution-test': 7890, // "screen resolution"
   'fake-blue-screen-of-death': 6940, // "blue screen of death"
   'screen-burn-in-test': 4140, // "screen burn"
+  'oled-burn-in-test': 9600, // "oled burn in"
+  'gray-screen': 5460, // "grey screen"
+  'white-noise-generator': 385040, // "white noise"
+  'brown-noise-generator': 82390, // "brown noise"
+  'pink-noise-generator': 48890, // "pink noise"
+  'purple-screen': 11370, // "purple screen"
+  'motivational-quote-screensaver': 2450, // "motivational"
+  'matrix-screensaver': 390, // "matrix screen"
+  'fake-teams-meeting': 750, // "fake meeting screen"
+  'fake-chrome-os-update': 140, // "fake chromebook"
+  'fake-android-update': 90, // "update screen"
+  'fake-windows-xp-update': 140, // "windows update prank"
   'orange-screen': 3900,
   'oled-gray-test': 3320, // "oled test"
   'yellow-screen': 3100,

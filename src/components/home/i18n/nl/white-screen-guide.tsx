@@ -126,7 +126,7 @@ export function WhiteScreenGuideNl() {
           head={['Wat je ziet', 'Wat het kan betekenen', 'Volgende stap']}
           rows={[
             ['Zwarte of donkere puntjes', 'Dode pixels', <Link key="d" href="/dead-pixel-test" className={link}>Dode pixel test</Link>],
-            ['Vlekken, donkere hoeken of wolken', 'Ongelijke achtergrondverlichting', <Link key="u" href="/screen-uniformity-test" className={link}>Scherm uniformiteitstest</Link>],
+            ['Vlekken, donkere hoeken of wolken', 'Ongelijke achtergrondverlichting', <Link key="u" href="/gray-screen" className={link}>Scherm uniformiteitstest</Link>],
             ['Wit ziet er geel, blauw of roze uit', 'Kleurinstellingen of zweem van het paneel', <Link key="c" href="/screen-color-test" className={link}>Scherm kleurentest</Link>],
             ['Vage vormen van oude beelden', 'Inbranden of beeldretentie', <Link key="b" href="/screen-burn-in-test" className={link}>Scherm inbrand test</Link>],
             ['Spikkels die bewegen als je veegt', 'Stof of vegen, geen pixels', 'Maak het scherm schoon en kijk opnieuw'],

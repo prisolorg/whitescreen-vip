@@ -13,6 +13,19 @@ export const TOOL_USED_EVENT = 'ws:tool-used'
 
 const ENDPOINT = '/api/rating/'
 const PROMPT_KEY = 'ws-rating-prompt'
+/** After answering or closing the prompt on a tool, it isn't asked again there for this long. */
+const PROMPT_COOLDOWN_MS = 30 * 24 * 60 * 60 * 1000
+/** Fullscreen shorter than this (a quick look, an accidental tap) doesn't count as using the tool. */
+export const MIN_FULLSCREEN_MS = 10_000
+/** Why a tool didn't work, offered after a thumbs down (api/rating.ts accepts the same ids). */
+export const FEEDBACK_REASONS = [
+  { id: 'fullscreen', label: "Fullscreen didn't work" },
+  { id: 'display', label: "Didn't look right on my screen" },
+  { id: 'controls', label: 'Hard to use' },
+  { id: 'missing', label: 'Missing an option I need' },
+  { id: 'other', label: 'Something else' },
+] as const
+export type FeedbackReason = (typeof FEEDBACK_REASONS)[number]['id']
 
 export type RatingState = {
   status: 'loading' | 'ready' | 'off'
@@ -64,13 +77,14 @@ function load(tool: string) {
 }
 
 /** Rating summary for the current page; `null` on the server and before hydration. */
-export function useRating(): (RatingState & { tool: string }) | null {
+/** `anyScreen`: also on phones (the after-use rating card); the badge and rating row stay desktop only. */
+export function useRating(anyScreen = false): (RatingState & { tool: string }) | null {
   const [tool, setTool] = useState<string | null>(null)
   const [, force] = useState(0)
 
   useEffect(() => {
-    // Ratings show on desktop only, so phones never make the request.
-    if (!RATINGS_ENABLED || !window.matchMedia('(min-width: 1024px)').matches) return
+    // The badge and row show on desktop only, so phones make the request only for the after-use card.
+    if (!RATINGS_ENABLED || (!anyScreen && !window.matchMedia('(min-width: 1024px)').matches)) return
     const key = currentToolKey()
     setTool(key)
     const listener = () => force((n) => n + 1)
@@ -79,7 +93,7 @@ export function useRating(): (RatingState & { tool: string }) | null {
     return () => {
       listeners.delete(listener)
     }
-  }, [])
+  }, [anyScreen])
 
   if (!tool) return null
   const state = states.get(tool)
@@ -90,7 +104,7 @@ export async function submitRating(tool: string, stars: number): Promise<boolean
   const previous = states.get(tool)
   update(tool, { mine: stars })
   storageSet(`ws-rated:${tool}`, String(stars))
-  markPromptDone()
+  markPromptDone(tool)
   try {
     const response = await fetch(ENDPOINT, {
       method: 'POST',
@@ -107,13 +121,44 @@ export async function submitRating(tool: string, stars: number): Promise<boolean
   }
 }
 
-/** The "how did it work" prompt shows at most until it is answered or dismissed once, on any tool. */
-export function isPromptDone(): boolean {
-  return storageGet(PROMPT_KEY) === 'done'
+/** Sends why a tool didn't work (thumbs down). Fire and forget: the visitor sees thanks either way. */
+export async function submitReason(tool: string, reason: FeedbackReason): Promise<void> {
+  markPromptDone(tool)
+  storageSet(`ws-reason:${tool}`, reason)
+  try {
+    await fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tool, reason }) })
+  } catch {
+    // Offline or blocked: nothing to retry for a one-tap answer.
+  }
 }
 
-export function markPromptDone() {
-  storageSet(PROMPT_KEY, 'done')
+function sessionAsked(): boolean {
+  try {
+    return sessionStorage.getItem(PROMPT_KEY) === 'asked'
+  } catch {
+    return false
+  }
+}
+
+/**
+ * The "how did it work" prompt: at most once per visit, and once a visitor answers or closes it on a tool, not again
+ * on that tool for 30 days. Tools they already rated are never asked.
+ */
+export function isPromptDone(tool: string): boolean {
+  if (sessionAsked() || storageGet(`ws-rated:${tool}`) || storageGet(`ws-reason:${tool}`)) return true
+  const at = Number(storageGet(`${PROMPT_KEY}:${tool}`))
+  return Boolean(at) && Date.now() - at < PROMPT_COOLDOWN_MS
+}
+
+/** Called when the prompt opens: no second prompt this visit, on any tool. */
+export function markPromptShown() {
+  try {
+    sessionStorage.setItem(PROMPT_KEY, 'asked')
+  } catch {}
+}
+
+export function markPromptDone(tool: string) {
+  storageSet(`${PROMPT_KEY}:${tool}`, String(Date.now()))
 }
 
 /** Tools call this after someone finishes using them; the rating prompt may follow. */
@@ -122,11 +167,13 @@ export function signalToolUsed() {
   window.dispatchEvent(new Event(TOOL_USED_EVENT))
 }
 
-/** Signals "used" when the stage leaves fullscreen (native or in-page fallback). */
+/** Signals "used" when the stage leaves fullscreen (native or in-page fallback) after at least 10 seconds in it. */
 export function useSignalOnFullscreenExit(isFullscreen: boolean) {
   const [was, setWas] = useState(isFullscreen)
+  const [enteredAt, setEnteredAt] = useState(0)
   useEffect(() => {
-    if (was && !isFullscreen) signalToolUsed()
+    if (!was && isFullscreen) setEnteredAt(Date.now())
+    if (was && !isFullscreen && enteredAt && Date.now() - enteredAt >= MIN_FULLSCREEN_MS) signalToolUsed()
     if (was !== isFullscreen) setWas(isFullscreen)
-  }, [isFullscreen, was])
+  }, [isFullscreen, was, enteredAt])
 }

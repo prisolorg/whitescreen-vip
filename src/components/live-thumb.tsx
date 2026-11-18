@@ -143,11 +143,9 @@ function scene(slug: string, hacked: string): ReactNode {
           <span className="absolute block bg-lime-400" style={{ left: '62%', top: '40%', width: '1.4cqw', height: '1.4cqw' }} />
         </span>
       )
-    case 'screen-uniformity-test':
     case 'oled-gray-test':
       return (
         <span className="absolute inset-0" style={anim('lt-gray', 4, 'steps(1) infinite')}>
-          {slug === 'screen-uniformity-test' && <span className="absolute inset-0" style={{ background: 'radial-gradient(circle, transparent 45%, rgba(0,0,0,.35))' }} />}
         </span>
       )
     case 'monitor-test':

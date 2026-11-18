@@ -256,4 +256,16 @@ export const id: readonly string[] = [
   "Ponsel",
   "Lebar (px)",
   "Tinggi (px)",
+  // Rating card after using a tool (thumbs, reasons)
+  "Berhasil",
+  "Kurang",
+  "Bagus! Berapa bintang?",
+  "Apa yang salah?",
+  "Terima kasih, itu membantu kami memperbaikinya.",
+  "Layar penuh tidak berfungsi",
+  "Tampilannya tidak pas di layar saya",
+  "Sulit dipakai",
+  "Tidak ada opsi yang saya butuhkan",
+  "Lainnya",
+  "Tingkat abu-abu",
 ]

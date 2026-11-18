@@ -1,19 +1,19 @@
 import { useEffect, useId, useRef, useState } from 'react'
-import { Star, X } from 'lucide-react'
+import { Star, ThumbsDown, ThumbsUp, X } from 'lucide-react'
 import {
   MIN_RATINGS_SHOWN,
   RATINGS_ENABLED,
+  FEEDBACK_REASONS,
   TOOL_USED_EVENT,
   isPromptDone,
   markPromptDone,
+  markPromptShown,
   submitRating,
+  submitReason,
   useRating,
 } from '@/lib/ratings'
 import { tx } from '@/lib/tx'
 import { cn } from '@/lib/utils'
-
-/** Ratings show on desktop only (the width where the rail ad appears), to keep phones clean. */
-const DESKTOP_QUERY = '(min-width: 1024px)'
 
 const fill = (template: string, values: Record<string, string | number>) =>
   template.replace(/\{(\w+)\}/g, (_, key: string) => String(values[key] ?? ''))
@@ -223,17 +223,53 @@ function rateAndThank(tool: string, stars: number) {
   })
 }
 
-/** One-time prompt after someone finishes using a tool (left fullscreen or downloaded). Never shown again once answered or dismissed. */
+/** Only one prompt acts per page, even where a layout mounts ToolRatingPrompt twice. */
+let promptOwner: symbol | null = null
+/** The card hides itself after this long unless the visitor touches, hovers or focuses it. */
+const AUTO_HIDE_MS = 8000
+
+type Placement = { left: number; bottom: number; width: number } | null
+
+/** Where the card sits: over the bottom of the tool's screen (the stage), centred, while that screen is in view. */
+function placeOverStage(): Placement {
+  const anchor = [...document.querySelectorAll<HTMLElement>('[data-rating-anchor]')].find((el) => el.offsetWidth > 0)
+  if (!anchor) return null
+  const box = anchor.getBoundingClientRect()
+  // At least 140px of the screen must be on view for the card to sit on it.
+  if (box.bottom < 140 || box.top > window.innerHeight - 140) return null
+  const width = Math.min(340, box.width - 24)
+  if (width < 240) return null
+  const bottomEdge = Math.min(box.bottom, window.innerHeight)
+  return { left: box.left + (box.width - width) / 2, bottom: window.innerHeight - bottomEdge + 12, width }
+}
+
+/**
+ * "How did it work?" after someone really used a tool (10+ s in fullscreen, a finished download), on every device.
+ * It sits on the tool's own screen right where they were looking: 👍 / 👎 first (one tap), then stars after 👍 or a
+ * reason after 👎. At most once per visit, and not again on that tool for 30 days once answered or closed.
+ */
 function RatingPrompt() {
-  const rating = useRating()
+  const rating = useRating(true)
   const titleId = useId()
   const [open, setOpen] = useState(false)
+  const [step, setStep] = useState<'ask' | 'stars' | 'reasons'>('ask')
   const [toolName, setToolName] = useState('')
+  const [place, setPlace] = useState<Placement>(null)
+  const touched = useRef(false)
+  const [owner] = useState(() => Symbol('rating-prompt'))
 
   const ready = rating?.status === 'ready' && !rating.mine
+  const tool = rating?.tool ?? ''
 
-  function close() {
-    markPromptDone()
+  useEffect(() => {
+    if (!promptOwner) promptOwner = owner
+    return () => {
+      if (promptOwner === owner) promptOwner = null
+    }
+  }, [owner])
+
+  function close(answered: boolean) {
+    if (answered || touched.current) markPromptDone(tool)
     setOpen(false)
   }
 
@@ -241,63 +277,153 @@ function RatingPrompt() {
     if (!ready) return
     let timer = 0
     const show = () => {
-      // Desktop only: on phones the prompt would sit over the content and ads.
-      if (isPromptDone() || !window.matchMedia(DESKTOP_QUERY).matches) return
+      // Claimed here, not on mount: a layout that swaps after hydration may unmount the copy that mounted first.
+      if (!promptOwner) promptOwner = owner
+      if (promptOwner !== owner || isPromptDone(tool)) return
       window.clearTimeout(timer)
-      // A short pause so the prompt never appears during the exit animation or the download dialog.
+      // A short pause so the card never appears during the exit animation or the download dialog.
       timer = window.setTimeout(() => {
+        const spot = placeOverStage()
+        // Phones: only on the tool's screen, never floating over the page text or the ads.
+        if (!spot && !window.matchMedia('(min-width: 1024px)').matches) return
         setToolName(document.getElementById('screen-heading')?.textContent?.trim() || '')
+        setPlace(spot)
+        setStep('ask')
+        touched.current = false
+        markPromptShown()
         setOpen(true)
-      }, 900)
+      }, 700)
     }
     window.addEventListener(TOOL_USED_EVENT, show)
     return () => {
       window.removeEventListener(TOOL_USED_EVENT, show)
       window.clearTimeout(timer)
     }
-  }, [ready])
+  }, [ready, tool, owner])
 
+  // Follows the screen while the page scrolls or resizes; falls back to the corner when the screen leaves view.
   useEffect(() => {
     if (!open) return
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') close()
+    let frame = 0
+    const follow = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => setPlace(placeOverStage()))
     }
+    window.addEventListener('scroll', follow, { passive: true })
+    window.addEventListener('resize', follow)
+    const onKey = (event: KeyboardEvent) => event.key === 'Escape' && close(false)
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', follow)
+      window.removeEventListener('resize', follow)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
+  // Auto-hide unless the visitor engages with it.
+  useEffect(() => {
+    if (!open) return
+    const id = window.setTimeout(() => !touched.current && setOpen(false), AUTO_HIDE_MS)
+    return () => window.clearTimeout(id)
   }, [open])
 
   if (!open || !rating) return null
+
+  const engage = () => {
+    touched.current = true
+  }
 
   return (
     <div
       role="dialog"
       aria-labelledby={titleId}
-      className="fixed inset-x-4 bottom-4 z-50 flex flex-col gap-2.5 rounded-2xl border border-border bg-card p-4 text-card-foreground shadow-2xl sm:left-auto sm:right-6 sm:bottom-6 sm:w-[360px]"
+      onPointerEnter={engage}
+      onPointerDown={engage}
+      onFocusCapture={engage}
+      onClick={stop}
+      style={place ? { left: place.left, bottom: place.bottom, width: place.width } : undefined}
+      className={cn(
+        'fixed z-50 flex flex-col gap-3 rounded-2xl border border-border bg-card/95 p-4 text-card-foreground shadow-2xl backdrop-blur rating-pop',
+        !place && 'bottom-6 right-6 w-[340px]',
+      )}
     >
       <div className="flex items-start justify-between gap-3">
         <p id={titleId} className="text-[15px] font-bold leading-snug">
-          {toolName ? fill(tx('How did the {tool} work for you?'), { tool: toolName }) : tx('Was this tool useful?')}
+          {step === 'reasons'
+            ? tx('What went wrong?')
+            : step === 'stars'
+              ? tx('Great! How many stars?')
+              : toolName
+                ? fill(tx('How did the {tool} work for you?'), { tool: toolName })
+                : tx('Was this tool useful?')}
         </p>
         <button
           type="button"
-          onClick={close}
+          onClick={() => close(false)}
           aria-label={tx('Close')}
-          className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted hover:bg-muted/70"
+          className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted hover:bg-muted/70 pointer-coarse:size-11"
         >
           <X aria-hidden="true" className="size-4" />
         </button>
       </div>
-      <StarPicker
-        size="lg"
-        value={0}
-        onPick={(stars) => {
-          setOpen(false)
-          rateAndThank(rating.tool, stars)
-        }}
-      />
-      <button type="button" onClick={close} className="self-start px-1 text-sm text-muted-foreground underline underline-offset-2 hover:text-foreground">
-        {tx('Not now')}
-      </button>
+
+      {step === 'ask' && (
+        <div className="grid grid-cols-2 gap-2">
+          <button
+            type="button"
+            onClick={() => {
+              engage()
+              setStep('stars')
+            }}
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border bg-background text-sm font-semibold hover:bg-accent"
+          >
+            <ThumbsUp aria-hidden="true" className="size-4" />
+            {tx('It worked')}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              engage()
+              setStep('reasons')
+            }}
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border bg-background text-sm font-semibold hover:bg-accent"
+          >
+            <ThumbsDown aria-hidden="true" className="size-4" />
+            {tx('Not really')}
+          </button>
+        </div>
+      )}
+
+      {step === 'stars' && (
+        <StarPicker
+          size="lg"
+          value={0}
+          onPick={(stars) => {
+            close(true)
+            rateAndThank(tool, stars)
+          }}
+        />
+      )}
+
+      {step === 'reasons' && (
+        <div className="flex flex-wrap gap-2">
+          {FEEDBACK_REASONS.map((reason) => (
+            <button
+              key={reason.id}
+              type="button"
+              onClick={() => {
+                close(true)
+                void submitReason(tool, reason.id)
+                showToast(tx('Thanks, that helps us fix it.'))
+              }}
+              className="inline-flex min-h-10 items-center rounded-full border bg-background px-3 text-sm font-medium hover:bg-accent pointer-coarse:min-h-11"
+            >
+              {tx(reason.label)}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

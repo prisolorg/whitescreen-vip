@@ -75,7 +75,7 @@ export function ScreenBurnInGuideTr() {
         </ul>
         <p className={p}>
           Şekil yerine nokta mı görüyorsunuz? <Link href="/dead-pixel-test" className={link}>Ölü piksel testini</Link> ya da lekeler ve eşit olmayan
-          parlaklık için <Link href="/screen-uniformity-test" className={link}>ekran homojenlik testini</Link> deneyin.
+          parlaklık için <Link href="/gray-screen" className={link}>ekran homojenlik testini</Link> deneyin.
         </p>
       </Section>
     </div>

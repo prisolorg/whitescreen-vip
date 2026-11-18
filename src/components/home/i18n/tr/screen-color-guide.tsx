@@ -58,7 +58,7 @@ export function ScreenColorGuideTr() {
           rows={[
             ['Her yerde sarı veya mavi ton', <Link key="y" href="/screen-problems/yellow-tint-on-screen" className={link}>Sarı ton rehberi</Link>],
             ['Geçişlerde basamaklar veya şeritler', <Link key="b" href="/screen-problems/color-banding" className={link}>Renk şeritlenmesi rehberi</Link>],
-            ['Lekeler veya eşit olmayan alanlar (ekran renk bozulması)', <Link key="u" href="/screen-uniformity-test" className={link}>Ekran homojenlik testi</Link>],
+            ['Lekeler veya eşit olmayan alanlar (ekran renk bozulması)', <Link key="u" href="/gray-screen" className={link}>Ekran homojenlik testi</Link>],
             ['Soluk logolar veya hayalet görüntüler', <Link key="bi" href="/screen-burn-in-test" className={link}>Ekran yanma testi</Link>],
             ['Keskinlik, gama ve daha fazlası (tam ekran kontrolü)', <Link key="m" href="/monitor-test" className={link}>Monitör testi</Link>],
           ]}

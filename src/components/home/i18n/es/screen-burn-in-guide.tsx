@@ -78,7 +78,7 @@ export function ScreenBurnInGuideEs() {
         </ul>
         <p className={p}>
           ¿Ves puntos en lugar de formas? Prueba la <Link href="/dead-pixel-test" className={link}>prueba de píxeles muertos</Link>, o la{' '}
-          <Link href="/screen-uniformity-test" className={link}>prueba de uniformidad</Link> para manchas y brillo desigual.
+          <Link href="/gray-screen" className={link}>prueba de uniformidad</Link> para manchas y brillo desigual.
         </p>
       </Section>
     </div>

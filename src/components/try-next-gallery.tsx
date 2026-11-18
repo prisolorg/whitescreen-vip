@@ -22,7 +22,6 @@ const STATIC = 'repeating-linear-gradient(45deg, #8a8a8a 0 1px, #2b2b2b 1px 3px)
 /** CSS backgrounds that hint at what each tool looks like. Tools without one fall back to their icon. */
 const THUMBS: Record<string, string> = {
   'dead-pixel-test': 'radial-gradient(circle at 62% 40%, #fff 0 1.5px, transparent 2.5px), #000',
-  'screen-uniformity-test': 'radial-gradient(circle at 50% 50%, #8a8a8a, #5f5f5f)',
   'monitor-test': BARS,
   'oled-gray-test': '#3f3f3f',
   'oled-burn-in-test': 'repeating-linear-gradient(90deg, #3a3a3a 0 10px, #262626 10px 20px)',

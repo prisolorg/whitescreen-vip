@@ -74,7 +74,7 @@ export function GreenScreenGuideNl() {
         <p className={p}>
           Groen draagt het grootste deel van de helderheid die we zien, dus donkere hoeken of wolkerige plekken vallen erop op. Een donker
           puntje is een dode groene subpixel, terwijl een geel of cyaan puntje betekent dat een rode of blauwe subpixel aan blijft staan. Doe de{' '}
-          <Link href="/screen-uniformity-test" className={link}>scherm uniformiteitstest</Link> of lees de{' '}
+          <Link href="/gray-screen" className={link}>scherm uniformiteitstest</Link> of lees de{' '}
           <Link href="/screen-problems/stuck-pixel" className={link}>gids over vastzittende pixels</Link> voor de volgende stappen. Een zwart
           puntje dat ook op het <Link href="/" className={link}>witte scherm</Link> verschijnt, is een volledig dode pixel.
         </p>

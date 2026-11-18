@@ -59,7 +59,7 @@ export function ScreenColorGuideNl() {
           rows={[
             ['Overal een gele of blauwe zweem', <Link key="y" href="/screen-problems/yellow-tint-on-screen" className={link}>Gids over een gele zweem</Link>],
             ['Stappen of banden in de verlopen', <Link key="b" href="/screen-problems/color-banding" className={link}>Gids over kleurbanding</Link>],
-            ['Vlekken of ongelijke plekken (verkleuring van het scherm)', <Link key="u" href="/screen-uniformity-test" className={link}>Scherm uniformiteitstest</Link>],
+            ['Vlekken of ongelijke plekken (verkleuring van het scherm)', <Link key="u" href="/gray-screen" className={link}>Scherm uniformiteitstest</Link>],
             ['Vervaagde logo’s of spookbeelden', <Link key="bi" href="/screen-burn-in-test" className={link}>Scherm inbrand test</Link>],
             ['Scherpte, gamma en meer (volledige controle)', <Link key="m" href="/monitor-test" className={link}>Monitortest</Link>],
           ]}

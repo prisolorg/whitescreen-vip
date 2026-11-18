@@ -369,7 +369,7 @@ export const ptbr: LanguageGuides = {
         {
           question: 'Como testar um monitor novo?',
           answer:
-            'Rode os padrões do teste de monitor em tela cheia na resolução nativa e depois o [teste de dead pixel](/dead-pixel-test) e o [teste de uniformidade](/screen-uniformity-test). O melhor momento é enquanto você ainda pode devolver o monitor.',
+            'Rode os padrões do teste de monitor em tela cheia na resolução nativa e depois o [teste de dead pixel](/dead-pixel-test) e o [teste de uniformidade](/gray-screen). O melhor momento é enquanto você ainda pode devolver o monitor.',
         },
         {
           question: 'Um teste de monitor consegue calibrar minha tela?',
@@ -465,7 +465,7 @@ export const ptbr: LanguageGuides = {
         {
           question: 'O teste de cinza OLED funciona em telas LCD?',
           answer:
-            'Sim, mas os LCDs mostram brilho e vazamento da luz de fundo no cinza escuro. Para eles, o [teste de uniformidade](/screen-uniformity-test) é mais adequado.',
+            'Sim, mas os LCDs mostram brilho e vazamento da luz de fundo no cinza escuro. Para eles, o [teste de uniformidade](/gray-screen) é mais adequado.',
         },
         {
           question: 'Que brilho devo usar?',

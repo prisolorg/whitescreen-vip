@@ -62,7 +62,7 @@ export function ScreenColorGuideFr() {
           rows={[
             ['Une teinte jaune ou bleue partout', <Link key="y" href="/screen-problems/yellow-tint-on-screen" className={link}>Guide de la teinte jaune</Link>],
             ['Des paliers ou bandes dans les rampes', <Link key="b" href="/screen-problems/color-banding" className={link}>Guide du banding</Link>],
-            ['Des taches ou zones inégales (décoloration de l’écran)', <Link key="u" href="/screen-uniformity-test" className={link}>Test d’uniformité d’écran</Link>],
+            ['Des taches ou zones inégales (décoloration de l’écran)', <Link key="u" href="/gray-screen" className={link}>Test d’uniformité d’écran</Link>],
             ['Des logos pâles ou images fantômes', <Link key="bi" href="/screen-burn-in-test" className={link}>Test de marquage d’écran</Link>],
             ['Netteté, gamma et plus (vérification complète)', <Link key="m" href="/monitor-test" className={link}>Mire de test pour moniteur</Link>],
           ]}

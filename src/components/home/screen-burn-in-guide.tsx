@@ -78,7 +78,7 @@ export function ScreenBurnInGuide() {
         </ul>
         <p className={p}>
           Seeing spots instead of shapes? Try the <Link href="/dead-pixel-test" className={link}>dead pixel test</Link>, or the{' '}
-          <Link href="/screen-uniformity-test" className={link}>screen uniformity test</Link> for patches and uneven brightness.
+          <Link href="/gray-screen" className={link}>grey screen</Link> for patches and uneven brightness.
         </p>
       </Section>
     </div>

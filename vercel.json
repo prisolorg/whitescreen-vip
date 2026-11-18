@@ -111,6 +111,46 @@
       "permanent": true
     },
     {
+      "source": "/es/prueba-de-uniformidad/",
+      "destination": "/es/pantalla-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/teste-de-uniformidade/",
+      "destination": "/pt-br/tela-cinza/",
+      "permanent": true
+    },
+    {
+      "source": "/de/bildschirm-homogenitaetstest/",
+      "destination": "/de/grauer-bildschirm/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/test-d-uniformite-d-ecran/",
+      "destination": "/fr/ecran-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/it/test-uniformita-schermo/",
+      "destination": "/it/schermo-grigio/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/scherm-uniformiteitstest/",
+      "destination": "/nl/grijs-scherm/",
+      "permanent": true
+    },
+    {
+      "source": "/id/uji-keseragaman-layar/",
+      "destination": "/id/layar-abu-abu/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/ekran-homojenlik-testi/",
+      "destination": "/tr/gri-ekran/",
+      "permanent": true
+    },
+    {
       "source": "/white-screen/",
       "destination": "/",
       "permanent": true
@@ -966,6 +1006,51 @@
       "permanent": true
     },
     {
+      "source": "/screen-uniformity-test/",
+      "destination": "/gray-screen/",
+      "permanent": true
+    },
+    {
+      "source": "/es/screen-uniformity-test/",
+      "destination": "/es/prueba-de-uniformidad/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/screen-uniformity-test/",
+      "destination": "/pt-br/teste-de-uniformidade/",
+      "permanent": true
+    },
+    {
+      "source": "/de/screen-uniformity-test/",
+      "destination": "/de/bildschirm-homogenitaetstest/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/screen-uniformity-test/",
+      "destination": "/fr/test-d-uniformite-d-ecran/",
+      "permanent": true
+    },
+    {
+      "source": "/it/screen-uniformity-test/",
+      "destination": "/it/test-uniformita-schermo/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/screen-uniformity-test/",
+      "destination": "/nl/scherm-uniformiteitstest/",
+      "permanent": true
+    },
+    {
+      "source": "/id/screen-uniformity-test/",
+      "destination": "/id/uji-keseragaman-layar/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/screen-uniformity-test/",
+      "destination": "/tr/ekran-homojenlik-testi/",
+      "permanent": true
+    },
+    {
       "source": "/es/tools/",
       "destination": "/es/herramientas/",
       "permanent": true
@@ -1108,11 +1193,6 @@
     {
       "source": "/es/dead-pixel-test/",
       "destination": "/es/prueba-de-pixeles-muertos/",
-      "permanent": true
-    },
-    {
-      "source": "/es/screen-uniformity-test/",
-      "destination": "/es/prueba-de-uniformidad/",
       "permanent": true
     },
     {
@@ -1716,11 +1796,6 @@
       "permanent": true
     },
     {
-      "source": "/pt-br/screen-uniformity-test/",
-      "destination": "/pt-br/teste-de-uniformidade/",
-      "permanent": true
-    },
-    {
       "source": "/pt-br/monitor-test/",
       "destination": "/pt-br/teste-de-monitor/",
       "permanent": true
@@ -2321,11 +2396,6 @@
       "permanent": true
     },
     {
-      "source": "/de/screen-uniformity-test/",
-      "destination": "/de/bildschirm-homogenitaetstest/",
-      "permanent": true
-    },
-    {
       "source": "/de/monitor-test/",
       "destination": "/de/monitortest/",
       "permanent": true
@@ -2908,11 +2978,6 @@
     {
       "source": "/fr/dead-pixel-test/",
       "destination": "/fr/test-de-pixels-morts/",
-      "permanent": true
-    },
-    {
-      "source": "/fr/screen-uniformity-test/",
-      "destination": "/fr/test-d-uniformite-d-ecran/",
       "permanent": true
     },
     {
@@ -3501,11 +3566,6 @@
       "permanent": true
     },
     {
-      "source": "/it/screen-uniformity-test/",
-      "destination": "/it/test-uniformita-schermo/",
-      "permanent": true
-    },
-    {
       "source": "/it/monitor-test/",
       "destination": "/it/test-calibrazione-monitor/",
       "permanent": true
@@ -4078,11 +4138,6 @@
     {
       "source": "/nl/dead-pixel-test/",
       "destination": "/nl/dode-pixel-test/",
-      "permanent": true
-    },
-    {
-      "source": "/nl/screen-uniformity-test/",
-      "destination": "/nl/scherm-uniformiteitstest/",
       "permanent": true
     },
     {
@@ -4663,11 +4718,6 @@
     {
       "source": "/id/dead-pixel-test/",
       "destination": "/id/tes-piksel-mati/",
-      "permanent": true
-    },
-    {
-      "source": "/id/screen-uniformity-test/",
-      "destination": "/id/uji-keseragaman-layar/",
       "permanent": true
     },
     {
@@ -5273,11 +5323,6 @@
     {
       "source": "/tr/dead-pixel-test/",
       "destination": "/tr/olu-piksel-testi/",
-      "permanent": true
-    },
-    {
-      "source": "/tr/screen-uniformity-test/",
-      "destination": "/tr/ekran-homojenlik-testi/",
       "permanent": true
     },
     {

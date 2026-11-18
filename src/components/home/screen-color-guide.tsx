@@ -65,7 +65,7 @@ export function ScreenColorGuide() {
           rows={[
             ['Yellow or blue tint everywhere', <Link key="y" href="/screen-problems/yellow-tint-on-screen" className={link}>Yellow tint guide</Link>],
             ['Steps or bands in the ramps', <Link key="b" href="/screen-problems/color-banding" className={link}>Color banding guide</Link>],
-            ['Patches or uneven areas (screen discoloration)', <Link key="u" href="/screen-uniformity-test" className={link}>Screen uniformity test</Link>],
+            ['Patches or uneven areas (screen discoloration)', <Link key="u" href="/gray-screen" className={link}>Grey screen</Link>],
             ['Faded logos or ghost images', <Link key="bi" href="/screen-burn-in-test" className={link}>Screen burn-in test</Link>],
             ['Sharpness, gamma and more (full display check)', <Link key="m" href="/monitor-test" className={link}>Screen test</Link>],
           ]}

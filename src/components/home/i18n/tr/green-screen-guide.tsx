@@ -70,7 +70,7 @@ export function GreenScreenGuideTr() {
         <p className={p}>
           Gördüğümüz parlaklığın çoğunu yeşil taşır; bu yüzden koyu köşeler veya bulutlu lekeler onun üzerinde göze çarpar. Koyu bir nokta ölü bir
           yeşil alt pikseldir; sarı veya camgöbeği bir nokta ise kırmızı ya da mavi bir alt pikselin açık kaldığı anlamına gelir. Sonraki adımlar
-          için <Link href="/screen-uniformity-test" className={link}>homojenlik testini</Link> yapın veya{' '}
+          için <Link href="/gray-screen" className={link}>homojenlik testini</Link> yapın veya{' '}
           <Link href="/screen-problems/stuck-pixel" className={link}>sıkışmış piksel rehberini</Link> okuyun.{' '}
           <Link href="/" className={link}>Beyaz ekranda</Link> da görünen siyah bir nokta tamamen ölü bir pikseldir.
         </p>

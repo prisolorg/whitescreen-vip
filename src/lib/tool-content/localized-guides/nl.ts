@@ -359,7 +359,7 @@ export const nl: LanguageGuides = {
         {
           question: 'Hoe test ik een nieuwe monitor?',
           answer:
-            'Doe de testpatronen van de monitortest op volledig scherm in de native resolutie, en daarna de [dode pixel test](/dead-pixel-test) en de [scherm uniformiteitstest](/screen-uniformity-test). Het beste moment is zolang je de monitor nog kunt terugsturen.',
+            'Doe de testpatronen van de monitortest op volledig scherm in de native resolutie, en daarna de [dode pixel test](/dead-pixel-test) en de [scherm uniformiteitstest](/gray-screen). Het beste moment is zolang je de monitor nog kunt terugsturen.',
         },
         {
           question: 'Kan een monitortest mijn scherm kalibreren?',
@@ -454,7 +454,7 @@ export const nl: LanguageGuides = {
         {
           question: 'Werkt de OLED grijstest op lcd-schermen?',
           answer:
-            'Ja, maar lcd’s tonen op donkergrijs juist gloed en lekkage van de achtergrondverlichting. Daarvoor past de [scherm uniformiteitstest](/screen-uniformity-test) beter.',
+            'Ja, maar lcd’s tonen op donkergrijs juist gloed en lekkage van de achtergrondverlichting. Daarvoor past de [scherm uniformiteitstest](/gray-screen) beter.',
         },
         {
           question: 'Welke helderheid moet ik gebruiken?',

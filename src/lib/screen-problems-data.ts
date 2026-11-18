@@ -153,7 +153,7 @@ export const SCREEN_PROBLEMS: readonly ScreenProblemItem[] = [
     },
     contextualLinks: [
       { label: 'Hot Pixel Troubleshooting Guide', href: '/screen-problems/hot-pixel', description: 'When all three RGB subpixels freeze on pure white simultaneously.' },
-      { label: 'Screen Uniformity Test', href: '/screen-uniformity-test', description: 'Check your display for surrounding panel brightness variations.' },
+      { label: 'Grey Screen', href: '/gray-screen', description: 'Check panel brightness on 5 gray levels, from 5% to 75%.' },
       { label: 'Red Screen Background', href: '/backgrounds/red-background', description: 'Isolate and exercise the red subpixel channel.' },
       { label: 'Dead Pixel Diagnostic Suite', href: '/dead-pixel-test', description: 'Interactive multi-speed color flasher tool.' },
     ],
@@ -343,7 +343,7 @@ export const SCREEN_PROBLEMS: readonly ScreenProblemItem[] = [
     contextualLinks: [
       { label: 'IPS Glow Guide', href: '/screen-problems/ips-glow', description: 'Why IPS corner sheen is normal optical physics.' },
       { label: 'Black Background Canvas', href: '/backgrounds/black-background', description: '0% black canvas for dark room testing.' },
-      { label: 'Screen Uniformity Test', href: '/screen-uniformity-test', description: 'Test luminance consistency across 9 screen zones.' },
+      { label: 'Grey Screen', href: '/gray-screen', description: 'Check brightness consistency on 5 gray levels.' },
     ],
     faqs: [
       {

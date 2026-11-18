@@ -225,9 +225,9 @@ export const GUIDES: readonly GuideArticle[] = [
     intro:
       'No flat-panel display has 100% perfect brightness distribution across its entire surface. However, severe backlight bleed, excessive IPS glow, dark vignetting at corners, or splotchy "dirty screen effect" (DSE) can ruin dark movie scenes and create distracting shadows when browsing websites with light backgrounds. Performing a structured screen uniformity test in a controlled lighting environment helps you pinpoint panel flaws and verify acceptable manufacturing tolerances.',
     primaryTool: {
-      label: 'Open Screen Uniformity Test Tool',
-      path: '/screen-uniformity-test',
-      description: 'Inspect 5% dark gray, 50% neutral gray, black, and white fields with optional alignment grids.',
+      label: 'Open the Grey Screen',
+      path: '/gray-screen',
+      description: 'Step through 5%, 10%, 25%, 50% and 75% gray fields in fullscreen to spot clouding, bleed and dark corners.',
     },
     sections: [
       {

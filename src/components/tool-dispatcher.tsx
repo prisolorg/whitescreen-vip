@@ -6,7 +6,6 @@ import React, { lazy, Suspense } from 'react'
 const ScreenTests = lazy(() => import('@/components/tools/screen-tests').then(m => ({
   default: ({ slug }: { slug: string }) => {
     if (slug === 'dead-pixel-test') return <m.DeadPixelTest />
-    if (slug === 'screen-uniformity-test') return <m.UniformityTest />
     if (slug === 'monitor-test') return <m.MonitorTest />
     if (slug === 'oled-gray-test') return <m.OledGrayTest />
     if (slug === 'oled-burn-in-test') return <m.BurnInTest />
@@ -109,7 +108,7 @@ function ToolLoadingFallback() {
 
 export function renderToolComponent(slug: string): React.ReactNode {
   // Screen tests
-  if (['dead-pixel-test', 'screen-uniformity-test', 'monitor-test', 'oled-gray-test', 'oled-burn-in-test', 'screen-color-test'].includes(slug)) {
+  if (['dead-pixel-test', 'monitor-test', 'oled-gray-test', 'oled-burn-in-test', 'screen-color-test'].includes(slug)) {
     return (
       <Suspense fallback={<ToolLoadingFallback />}>
         <ScreenTests slug={slug} />

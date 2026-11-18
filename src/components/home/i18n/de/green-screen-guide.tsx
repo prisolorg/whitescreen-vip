@@ -70,7 +70,7 @@ export function GreenScreenGuideDe() {
         <p className={p}>
           Grün trägt den größten Teil der Helligkeit, die wir sehen, deshalb fallen dunklere Ecken oder wolkige Flecken darauf auf. Ein dunkler
           Punkt ist ein toter grüner Subpixel, ein gelber oder cyanfarbener Punkt bedeutet, dass ein roter oder blauer Subpixel dauerhaft an ist.
-          Mach den <Link href="/screen-uniformity-test" className={link}>Bildschirm-Homogenitätstest</Link> oder lies den{' '}
+          Mach den <Link href="/gray-screen" className={link}>Bildschirm-Homogenitätstest</Link> oder lies den{' '}
           <Link href="/screen-problems/stuck-pixel" className={link}>Ratgeber zum hängenden Pixel</Link> für die nächsten Schritte. Ein schwarzer
           Punkt, der auch auf dem <Link href="/" className={link}>weißen Bildschirm</Link> erscheint, ist ein komplett toter Pixel.
         </p>

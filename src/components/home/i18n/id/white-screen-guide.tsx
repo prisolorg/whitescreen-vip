@@ -128,7 +128,7 @@ export function WhiteScreenGuideId() {
           head={['Yang Anda lihat', 'Kemungkinan artinya', 'Langkah berikutnya']}
           rows={[
             ['Titik hitam atau gelap', 'Piksel mati', <Link key="d" href="/dead-pixel-test" className={link}>Tes Piksel Mati</Link>],
-            ['Bercak, sudut gelap, atau awan', 'Lampu latar tidak merata', <Link key="u" href="/screen-uniformity-test" className={link}>Uji Keseragaman Layar</Link>],
+            ['Bercak, sudut gelap, atau awan', 'Lampu latar tidak merata', <Link key="u" href="/gray-screen" className={link}>Uji Keseragaman Layar</Link>],
             ['Putih tampak kuning, biru, atau pink', 'Pengaturan warna atau semburat panel', <Link key="c" href="/screen-color-test" className={link}>Uji Warna Layar Monitor</Link>],
             ['Bentuk samar gambar lama', 'Burn-in atau retensi gambar', <Link key="b" href="/screen-burn-in-test" className={link}>Tes Burn-in Layar</Link>],
             ['Bintik yang bergeser saat diusap', 'Debu atau noda, bukan piksel', 'Bersihkan layar lalu cek lagi'],

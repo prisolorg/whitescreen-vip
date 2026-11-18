@@ -65,7 +65,7 @@ export function MonitorTestGuideTr() {
             ['Ölü veya sıkışmış pikseller (LCD testi)', <Link key="dp" href="/dead-pixel-test" className={link}>Ölü piksel testi</Link>],
             ['Yenileme hızı (Hz)', <Link key="hz" href="/screen-refresh-rate-test" className={link}>Ekran yenileme hızı testi</Link>],
             ['Tepki süresi ve izler', <Link key="gh" href="/monitor-ghosting-test" className={link}>Monitör gölgelenme testi</Link>],
-            ['Işık sızması ve siyah homojenliği', <Link key="un" href="/screen-uniformity-test" className={link}>Ekran homojenlik testi</Link>],
+            ['Işık sızması ve siyah homojenliği', <Link key="un" href="/gray-screen" className={link}>Ekran homojenlik testi</Link>],
             ['Ekranda kalan hayalet görüntüler', <Link key="bi" href="/screen-burn-in-test" className={link}>Ekran yanma testi</Link>],
             ['Ekran çözünürlüğünüz', <Link key="rs" href="/screen-resolution-test" className={link}>Ekran çözünürlüğüm nedir?</Link>],
           ]}

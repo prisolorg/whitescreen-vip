@@ -70,7 +70,7 @@ export function MonitorTestGuide() {
             ['Dead or stuck pixels (LCD test)', <Link key="dp" href="/dead-pixel-test" className={link}>Dead pixel test</Link>],
             ['Refresh rate (Hz)', <Link key="hz" href="/screen-refresh-rate-test" className={link}>Refresh rate test</Link>],
             ['Response time and trails', <Link key="gh" href="/monitor-ghosting-test" className={link}>Monitor ghosting test</Link>],
-            ['Backlight bleed and black uniformity', <Link key="un" href="/screen-uniformity-test" className={link}>Screen uniformity test</Link>],
+            ['Backlight bleed and black uniformity', <Link key="un" href="/gray-screen" className={link}>Grey screen</Link>],
             ['Ghost images left on screen', <Link key="bi" href="/screen-burn-in-test" className={link}>Screen burn-in test</Link>],
             ['Your screen resolution', <Link key="rs" href="/screen-resolution-test" className={link}>What is my screen resolution?</Link>],
           ]}

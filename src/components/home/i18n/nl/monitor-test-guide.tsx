@@ -66,7 +66,7 @@ export function MonitorTestGuideNl() {
             ['Dode of vastzittende pixels (lcd-test)', <Link key="dp" href="/dead-pixel-test" className={link}>Dode pixel test</Link>],
             ['Verversingssnelheid (Hz)', <Link key="hz" href="/screen-refresh-rate-test" className={link}>Verversingssnelheid test</Link>],
             ['Reactietijd en sporen', <Link key="gh" href="/monitor-ghosting-test" className={link}>Monitor ghosting test</Link>],
-            ['Backlight bleed en uniformiteit van zwart', <Link key="un" href="/screen-uniformity-test" className={link}>Scherm uniformiteitstest</Link>],
+            ['Backlight bleed en uniformiteit van zwart', <Link key="un" href="/gray-screen" className={link}>Scherm uniformiteitstest</Link>],
             ['Spookbeelden die op het scherm blijven', <Link key="bi" href="/screen-burn-in-test" className={link}>Scherm inbrand test</Link>],
             ['Je schermresolutie', <Link key="rs" href="/screen-resolution-test" className={link}>Wat is mijn schermresolutie?</Link>],
           ]}

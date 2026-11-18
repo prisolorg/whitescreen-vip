@@ -140,7 +140,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
       { label: 'Beige Background', href: '/backgrounds/beige-background', description: 'Gentler warm neutral for long reading sessions.' },
       { label: 'Black Background', href: '/backgrounds/black-background', description: 'Opposite true 0% black screen for OLED panels.' },
       { label: 'Gradient Background', href: '/backgrounds/gradient-background', description: 'Smooth colorful linear gradients for creative wallpaper.' },
-      { label: 'Screen Uniformity Test', href: '/screen-uniformity-test', description: 'Inspect panel backlight distribution and edge vignetting.' },
+      { label: 'Grey Screen', href: '/gray-screen', description: 'Inspect backlight spread and dark corners on 5 gray levels.' },
     ],
     authoritativeLink: {
       title: 'W3C Web Content Accessibility Guidelines (WCAG 2.1) Contrast Minimums',
@@ -166,7 +166,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
       { name: 'White Screen Tool', path: '/', description: 'Fullscreen white tool with brightness controls and timers.' },
       { name: 'Zoom Lighting', path: '/zoom-lighting', description: 'Adjustable color temperature softbox fill light.' },
       { name: 'Dead Pixel Test', path: '/dead-pixel-test', description: 'Cycle through primary colors to locate defective subpixels.' },
-      { name: 'Screen Uniformity Test', path: '/screen-uniformity-test', description: 'Evaluate backlight variance across multi-zone panels.' },
+      { name: 'Grey Screen', path: '/gray-screen', description: 'Check backlight evenness on 5 gray levels.' },
     ],
   },
 
@@ -419,7 +419,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     relatedTools: [
       { name: 'Screen Color Test', path: '/screen-color-test', description: 'Inspect full-spectrum color transitions.' },
       { name: 'Monitor Test', path: '/monitor-test', description: 'Test contrast ratios and motion clarity.' },
-      { name: 'Screen Uniformity Test', path: '/screen-uniformity-test', description: 'Examine luminance consistency across the panel.' },
+      { name: 'Grey Screen', path: '/gray-screen', description: 'Check brightness consistency across the panel.' },
     ],
   },
 

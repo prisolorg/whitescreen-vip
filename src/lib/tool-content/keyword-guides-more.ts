@@ -11,7 +11,18 @@ import { ScreenResolutionGuide } from '@/components/home/screen-resolution-guide
 import { ScreenColorGuide } from '@/components/home/screen-color-guide'
 import { FrameRateGuide } from '@/components/home/frame-rate-guide'
 import { OledGrayGuide } from '@/components/home/oled-gray-guide'
+import { OledBurnInGuide } from '@/components/home/oled-burn-in-guide'
+import { WhiteNoiseGuide } from '@/components/home/white-noise-guide'
+import { BrownNoiseGuide } from '@/components/home/brown-noise-guide'
+import { PinkNoiseGuide } from '@/components/home/pink-noise-guide'
+import { MatrixScreenGuide } from '@/components/home/matrix-screen-guide'
+import { MotivationalQuotesGuide } from '@/components/home/motivational-quotes-guide'
+import { FakeTeamsMeetingGuide } from '@/components/home/fake-teams-meeting-guide'
+import { FakeAndroidUpdateGuide } from '@/components/home/fake-android-update-guide'
+import { FakeWindowsXpUpdateGuide } from '@/components/home/fake-windows-xp-update-guide'
+import { FakeChromebookUpdateGuide } from '@/components/home/fake-chromebook-update-guide'
 import { HackedScreenGuide } from '@/components/home/hacked-screen-guide'
+import { HackerTyperGuide } from '@/components/home/hacker-typer-guide'
 import { NoSignalGuide } from '@/components/home/no-signal-guide'
 import { ContrastCheckerGuide } from '@/components/home/contrast-checker-guide'
 
@@ -19,6 +30,206 @@ type Faq = { question: string; answer: string }
 
 /** More keyword-led tool guides (merged into TOOL_KEYWORD_GUIDES). */
 export const MORE_KEYWORD_GUIDES: Record<string, { Guide: ComponentType; faqs: Faq[] }> = {
+  'fake-teams-meeting': {
+    Guide: FakeTeamsMeetingGuide,
+    faqs: [
+      {
+        question: 'Does the fake Teams meeting connect to a real call?',
+        answer:
+          'No. It is a picture of a call drawn in your browser. Nobody can see or hear you, and nothing connects to Teams or your account.',
+      },
+      {
+        question: 'Is my camera recorded or uploaded?',
+        answer:
+          'No. Enable Camera Preview shows your camera only on your own screen, inside your tile. Nothing is recorded or sent anywhere.',
+      },
+      {
+        question: 'Can I change the meeting name?',
+        answer:
+          'Yes. Open More and type a Meeting Title; it appears at the top of the fake Teams window.',
+      },
+    ],
+  },
+  'fake-android-update': {
+    Guide: FakeAndroidUpdateGuide,
+    faqs: [
+      {
+        question: 'Will the fake Android update change my phone?',
+        answer:
+          'No. It is a web page in fullscreen. Nothing is downloaded or installed, and swiping or pressing back takes you straight out.',
+      },
+      {
+        question: 'Does the fake update ever finish?',
+        answer:
+          'No. The percentage climbs at random and starts again after 100%, so it can run as long as the prank needs.',
+      },
+      {
+        question: 'Does it work on an iPhone?',
+        answer:
+          'Yes, it opens in any phone browser. The screen is styled like an Android update, so it is most convincing on an Android phone.',
+      },
+    ],
+  },
+  'fake-windows-xp-update': {
+    Guide: FakeWindowsXpUpdateGuide,
+    faqs: [
+      {
+        question: 'Is the fake Windows XP update screen safe?',
+        answer:
+          'Yes. It is a web page shown in fullscreen. Nothing is installed or changed, and pressing Esc ends it.',
+      },
+      {
+        question: 'Can I show a blue screen of death too?',
+        answer:
+          'Yes. Press Trigger BSOD Prank to switch to a blue error screen, and Restore Update to go back.',
+      },
+      {
+        question: 'How do I make the update slower?',
+        answer:
+          'Open More and set Update Speed to 1. At 10 it races through the updates.',
+      },
+    ],
+  },
+  'fake-chrome-os-update': {
+    Guide: FakeChromebookUpdateGuide,
+    faqs: [
+      {
+        question: 'Can I use the fake Chromebook update screen on a school Chromebook?',
+        answer:
+          'It runs in the browser like any website and changes nothing, but follow your school’s rules and keep it for harmless fun.',
+      },
+      {
+        question: 'Is this a Chrome OS simulator or emulator?',
+        answer:
+          'No. It only shows a fake update screen. It does not run Chrome OS or any apps.',
+      },
+      {
+        question: 'How do I exit the fake update?',
+        answer:
+          'Press Esc. The fake Chromebook update closes and the page comes back.',
+      },
+    ],
+  },
+  'white-noise-generator': {
+    Guide: WhiteNoiseGuide,
+    faqs: [
+      {
+        question: 'Is this white noise free?',
+        answer:
+          'Yes. It is free with no sign-up, no download and no ads in the sound, and it plays for as long as you like.',
+      },
+      {
+        question: 'Can I play white noise all night?',
+        answer:
+          'Yes. Leave the sleep timer Off and keep the tab open with your device plugged in. Choose the Dark visual so the screen gives off almost no light.',
+      },
+      {
+        question: 'Does white noise work on my phone?',
+        answer:
+          'Yes. It runs in the browser on Android and iPhone. Press Start Noise; if you hear nothing, check that the phone is not on silent.',
+      },
+    ],
+  },
+  'brown-noise-generator': {
+    Guide: BrownNoiseGuide,
+    faqs: [
+      {
+        question: 'Is this brown noise free with no ads?',
+        answer:
+          'Yes. It is free with no sign-up, and no ads interrupt the sound. It plays until you stop it or the sleep timer ends.',
+      },
+      {
+        question: 'Can I set brown noise for 30 minutes?',
+        answer:
+          'Yes. Choose 30 in the sleep timer (or 15, 60 or 90 minutes). The sound fades out gently at the end.',
+      },
+      {
+        question: 'Is brown noise better than white noise for sleep?',
+        answer:
+          'Many people find brown noise easier to sleep to because it is deeper and has no hiss. Try both and keep the one you find most relaxing.',
+      },
+    ],
+  },
+  'pink-noise-generator': {
+    Guide: PinkNoiseGuide,
+    faqs: [
+      {
+        question: 'What does pink noise sound like?',
+        answer:
+          'Like steady rain, wind through trees or ocean waves: softer and deeper than the hiss of white noise.',
+      },
+      {
+        question: 'Can I play pink noise for 10 hours?',
+        answer:
+          'Yes. Leave the sleep timer Off and it keeps playing until you stop it. Keep the device plugged in for long sessions.',
+      },
+      {
+        question: 'Is pink noise good for sleep?',
+        answer:
+          'Many people sleep better with it because it masks sudden noises gently, and some studies link it to deeper sleep. Keep the volume low.',
+      },
+    ],
+  },
+  'matrix-screensaver': {
+    Guide: MatrixScreenGuide,
+    faqs: [
+      {
+        question: 'Can I use this as my computer’s screen saver?',
+        answer:
+          'It runs in the browser, so it does not replace the screen saver in Windows or macOS settings. Open it in fullscreen whenever you want the Matrix screen.',
+      },
+      {
+        question: 'Can I change the Matrix screen color?',
+        answer:
+          'Yes. Choose Green, Blue, Red or Gold under the screen. Open More for characters, speed, density and character size.',
+      },
+      {
+        question: 'How do I exit fullscreen?',
+        answer:
+          'Press Esc, or double-click the screen.',
+      },
+    ],
+  },
+  'motivational-quote-screensaver': {
+    Guide: MotivationalQuotesGuide,
+    faqs: [
+      {
+        question: 'How often do the quotes change?',
+        answer:
+          'Every 12 seconds by default. Open More and set Seconds per quote anywhere from 5 to 60.',
+      },
+      {
+        question: 'Can I download a quote as a wallpaper?',
+        answer:
+          'There is no download, but you can pause on a quote in fullscreen and take a screenshot to use as a phone wallpaper or lock screen.',
+      },
+      {
+        question: 'Can I show the time as well?',
+        answer:
+          'Yes. Turn on Show Clock in More and the time appears under each quote.',
+      },
+    ],
+  },
+  'oled-burn-in-test': {
+    Guide: OledBurnInGuide,
+    faqs: [
+      {
+        question: 'How long does OLED burn-in take?',
+        answer:
+          'Usually thousands of hours of the same static image at high brightness. Normal, varied use rarely causes it within the first few years; a fixed logo or taskbar shown for many hours a day can do it sooner.',
+      },
+      {
+        question: 'Can the OLED burn-in test fix burn-in?',
+        answer:
+          'No. It only shows burn-in. Permanent burn-in is worn pixels; your display’s pixel refresh can make it less visible. Temporary image retention fades on its own.',
+      },
+      {
+        question: 'Does QLED have burn-in?',
+        answer:
+          'QLED is an LCD with a backlight, so true burn-in is very rare. A ghost image on a QLED is almost always image retention, which fades.',
+      },
+    ],
+  },
   'ring-light': {
     Guide: RingLightGuide,
     faqs: [
@@ -234,6 +445,31 @@ export const MORE_KEYWORD_GUIDES: Record<string, { Guide: ComponentType; faqs: F
       {
         question: 'What brightness should I use?',
         answer: 'Medium brightness in a dark room. Very high brightness can hide near-black problems, and very low can exaggerate them.',
+      },
+    ],
+  },
+  'hacker-typer': {
+    Guide: HackerTyperGuide,
+    faqs: [
+      {
+        question: 'Does Hacker Typer actually hack anything?',
+        answer:
+          'No. It only shows pre-written text on your own screen. It runs no commands, connects to no network and touches no files.',
+      },
+      {
+        question: 'How do I get Access Granted in Hacker Typer?',
+        answer:
+          'Click the terminal, then press Alt three times in a row. Press Caps Lock three times for Access Denied, and Esc or any typing key to close it.',
+      },
+      {
+        question: 'Does Hacker Typer work on phones?',
+        answer:
+          'Yes. Tap the terminal again and again and more code appears with each tap.',
+      },
+      {
+        question: 'Can I change the color or typing speed?',
+        answer:
+          'Yes. Open More to pick any text color and set Characters per key from 1 to 12.',
       },
     ],
   },

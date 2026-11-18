@@ -86,7 +86,7 @@ export function ScreenBurnInGuideNl() {
         </ul>
         <p className={p}>
           Zie je puntjes in plaats van vormen? Probeer de <Link href="/dead-pixel-test" className={link}>dode pixel test</Link>, of de{' '}
-          <Link href="/screen-uniformity-test" className={link}>scherm uniformiteitstest</Link> voor vlekken en ongelijke helderheid.
+          <Link href="/gray-screen" className={link}>scherm uniformiteitstest</Link> voor vlekken en ongelijke helderheid.
         </p>
       </Section>
     </div>

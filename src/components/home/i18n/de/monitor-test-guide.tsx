@@ -65,7 +65,7 @@ export function MonitorTestGuideDe() {
             ['Tote oder hängende Pixel (LCD-Test)', <Link key="dp" href="/dead-pixel-test" className={link}>Pixelfehlertest</Link>],
             ['Bildwiederholrate (Hz)', <Link key="hz" href="/screen-refresh-rate-test" className={link}>Bildwiederholrate-Test</Link>],
             ['Reaktionszeit und Schlieren', <Link key="gh" href="/monitor-ghosting-test" className={link}>Monitor-Ghosting-Test</Link>],
-            ['Backlight Bleeding und Schwarz-Gleichmäßigkeit', <Link key="un" href="/screen-uniformity-test" className={link}>Bildschirm-Homogenitätstest</Link>],
+            ['Backlight Bleeding und Schwarz-Gleichmäßigkeit', <Link key="un" href="/gray-screen" className={link}>Bildschirm-Homogenitätstest</Link>],
             ['Geisterbilder, die auf dem Bildschirm bleiben', <Link key="bi" href="/screen-burn-in-test" className={link}>Bildschirm-Einbrenn-Test</Link>],
             ['Deine Bildschirmauflösung', <Link key="rs" href="/screen-resolution-test" className={link}>Bildschirm-Auflösungstest</Link>],
           ]}

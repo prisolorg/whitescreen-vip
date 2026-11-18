@@ -61,7 +61,7 @@ export function ScreenColorGuideIt() {
           rows={[
             ['Dominante gialla o blu ovunque', <Link key="y" href="/screen-problems/yellow-tint-on-screen" className={link}>Guida alla dominante gialla</Link>],
             ['Gradini o bande nelle rampe', <Link key="b" href="/screen-problems/color-banding" className={link}>Guida al banding dei colori</Link>],
-            ['Macchie o zone non uniformi (scolorimento dello schermo)', <Link key="u" href="/screen-uniformity-test" className={link}>Test uniformità schermo</Link>],
+            ['Macchie o zone non uniformi (scolorimento dello schermo)', <Link key="u" href="/gray-screen" className={link}>Test uniformità schermo</Link>],
             ['Loghi sbiaditi o immagini fantasma', <Link key="bi" href="/screen-burn-in-test" className={link}>Test burn-in schermo</Link>],
             ['Nitidezza, gamma e altro (controllo completo)', <Link key="m" href="/monitor-test" className={link}>Test calibrazione monitor</Link>],
           ]}

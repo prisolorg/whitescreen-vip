@@ -256,4 +256,16 @@ export const tr: readonly string[] = [
   "Telefon",
   "Genişlik (px)",
   "Yükseklik (px)",
+  // Rating card after using a tool (thumbs, reasons)
+  "İşe yaradı",
+  "Pek değil",
+  "Harika! Kaç yıldız?",
+  "Ne ters gitti?",
+  "Teşekkürler, düzeltmemize yardımcı oluyor.",
+  "Tam ekran çalışmadı",
+  "Ekranımda düzgün görünmedi",
+  "Kullanımı zor",
+  "İhtiyacım olan bir seçenek yok",
+  "Başka bir şey",
+  "Gri seviyesi",
 ]

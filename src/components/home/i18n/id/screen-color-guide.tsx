@@ -61,7 +61,7 @@ export function ScreenColorGuideId() {
           rows={[
             ['Semburat kuning atau biru di mana-mana', <Link key="y" href="/screen-problems/yellow-tint-on-screen" className={link}>Panduan semburat kuning</Link>],
             ['Tangga atau pita pada gradasi', <Link key="b" href="/screen-problems/color-banding" className={link}>Panduan color banding</Link>],
-            ['Bercak atau area tidak rata (perubahan warna layar)', <Link key="u" href="/screen-uniformity-test" className={link}>Uji Keseragaman Layar</Link>],
+            ['Bercak atau area tidak rata (perubahan warna layar)', <Link key="u" href="/gray-screen" className={link}>Uji Keseragaman Layar</Link>],
             ['Logo pudar atau gambar bayangan', <Link key="bi" href="/screen-burn-in-test" className={link}>Tes Burn-in Layar</Link>],
             ['Ketajaman, gamma, dan lainnya (cek layar lengkap)', <Link key="m" href="/monitor-test" className={link}>Uji Monitor Lengkap</Link>],
           ]}
