@@ -13,7 +13,7 @@ export const colorPagesEn: Record<string, ColorPageContent> = {
     intro:
       'Turn your display into a clean, bright white screen in one click. Use it as a light source, to test for dead pixels, or to clean your monitor — or switch to any other color.',
     description:
-      'A clean fullscreen white screen for lighting, cleaning your monitor, tracing and spotting dead pixels.',
+      'A bright white screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests.',
     uses: [
       { title: 'Video calls and lighting', description: 'Use a bright white screen as a soft fill light for webcam calls, selfies, or product photos.' },
       { title: 'Dead pixel testing', description: 'Dark, dead pixels stand out clearly as black dots on a solid white background.' },

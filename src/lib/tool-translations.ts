@@ -305,7 +305,7 @@ export const CATEGORY_TRANSLATIONS: Record<LanguageCode, Record<ToolCategoryId, 
 
 export const TOOL_TRANSLATIONS: Record<LanguageCode, Record<string, ToolText>> = {
   en: {
-    'white-screen': { name: 'White Screen', description: 'A clean fullscreen white screen for lighting, cleaning your monitor, tracing and spotting dead pixels.' },
+    'white-screen': { name: 'White Screen', description: 'A bright white screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests.' },
     'black-screen': { name: 'Black Screen', description: 'A pure fullscreen black screen for finding stuck pixels, checking backlight bleed and dimming a display.' },
     'red-screen': { name: 'Red Screen', description: 'A solid fullscreen red screen for testing red subpixels, night-friendly light and color backdrops.' },
     'green-screen': { name: 'Green Screen', description: 'A bright fullscreen green screen for chroma key backdrops, green subpixel checks and uniformity tests.' },

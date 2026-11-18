@@ -84,7 +84,7 @@ export function SiteFooter() {
           </p>
           <Link href="/" className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400">
             <span aria-hidden="true" className="size-4 rounded bg-white ring-1 ring-black/15" />
-            {t('ctaOpenWhiteScreen', 'Open the free White Screen')} →
+            {t('ctaOpenWhiteScreen', 'Open a bright White Screen in full screen')} →
           </Link>
         </div>
 

@@ -72,7 +72,7 @@ export const TOOLS: readonly Tool[] = [
     name: 'White Screen',
     category: 'screen-tests',
     description:
-      'A clean fullscreen white screen for lighting, cleaning your monitor, tracing and spotting dead pixels.',
+      'A bright white screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests.',
     icon: Square,
     keywords: [...colorKeywords('white'), 'blank screen', 'light source', 'lightbox'],
     related: ['black-screen', 'gray-screen', 'pink-screen', 'red-screen'],

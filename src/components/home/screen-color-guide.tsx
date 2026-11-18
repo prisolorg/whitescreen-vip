@@ -37,7 +37,7 @@ export function ScreenColorGuide() {
           <li>Look straight on, then from the side: on some panels, the display color shifts at an angle.</li>
         </ol>
         <p className={p}>
-          Need one solid color screen instead? Open the <Link href="/" className={link}>white screen</Link>,{' '}
+          Need one solid color screen instead? Open a bright <Link href="/" className={link}>white screen</Link> online,{' '}
           <Link href="/red-screen" className={link}>red screen</Link> or any page in{' '}
           <Link href="/color-screens" className={link}>color screens</Link>.
         </p>

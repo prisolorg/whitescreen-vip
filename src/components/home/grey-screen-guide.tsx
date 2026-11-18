@@ -48,7 +48,7 @@ export function GreyScreenGuide() {
         />
         <p className={p}>
           Want it darker still? Lower Brightness on the 5% level for an almost black gray, or open the{' '}
-          <Link href="/black-screen" className={link}>black screen</Link>. For lighter, try the <Link href="/" className={link}>white screen</Link>.
+          <Link href="/black-screen" className={link}>black screen</Link>. For bright light, open the <Link href="/" className={link}>white screen</Link> in full screen.
         </p>
       </Section>
 
