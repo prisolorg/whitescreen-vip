@@ -36,7 +36,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     breadcrumb: "Breadcrumb",
     hackedGlyph: "HACKED",
     homeSubtitle: 'Open a fullscreen white screen, switch colors, and download white screen images for free.',
-    homeMetaTitle: 'White Screen - Open Full Screen For Bright Display Online (Free)',
+    homeMetaTitle: 'White Screen | Bright Full Screen Light | whitescreen.vip',
     homeMetaDesc: 'Open a bright white screen in full screen with 1 click. Use it for Zoom lighting, video calls, photography, monitor cleaning and dead pixel tests. Free.',
     colorMetaTitle: '{name} – Open Fullscreen in 1 Click (Free)',
     toolMetaTitle: '{name} – Free Online, No Sign-Up',

@@ -46,7 +46,7 @@ export const HOMEPAGE_FAQS = [
 
 export function HomeSections() {
   const howToUseSteps = [
-    { step: 1, title: 'Go Fullscreen', description: 'Double-tap the screen, press F, or tap the fullscreen icon on a phone.' },
+    { step: 1, title: 'Go Full Screen', description: 'Double-tap the screen or press F to open the white screen in full screen. On a phone, tap the fullscreen icon.' },
     { step: 2, title: 'Set Brightness and Warmth', description: 'Use the Brightness slider and pick Cool, Neutral or Warm.' },
     { step: 3, title: 'Keep It On', description: 'Turn on Keep screen awake so the display does not sleep.' },
     { step: 4, title: 'Exit', description: 'Press Esc or double-tap again.' },
@@ -121,14 +121,14 @@ export function HomeSections() {
       {/* Keyword-led sections: bright, blank / pure, light, background images, white screen test. */}
       <WhiteScreenGuide />
 
-      {/* 4. Screen Problems and How to Fix Them */}
+      {/* 4. White Screen Not Working? Quick Fixes */}
       <section aria-labelledby="problems-heading" className="mx-auto max-w-5xl px-3 sm:px-6">
         <div className="mb-6">
           <h2
             id="problems-heading"
             className="text-xl sm:text-2xl font-bold tracking-tight text-foreground"
           >
-            White Screen Problems and How to Fix Them
+            White Screen Not Working? Quick Fixes
           </h2>
         </div>
 

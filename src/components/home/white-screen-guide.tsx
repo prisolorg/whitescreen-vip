@@ -22,7 +22,7 @@ export function WhiteScreenGuide() {
           <li>Keep the Brightness slider under the screen at 100% and choose Neutral or Cool.</li>
           <li>Turn your device brightness all the way up (table below).</li>
           <li>Switch off anything that tints or dims white: Night Light, Night Shift, True Tone, eye-comfort and battery-saver modes.</li>
-          <li>Double-tap the screen to go fullscreen so no browser bars dim the edges.</li>
+          <li>Double-tap the screen to go full screen so no browser bars dim the edges.</li>
         </ul>
 
         <Table
