@@ -24,6 +24,16 @@ export const ASSET_REDIRECTS: Record<string, string> = {
   '/images/white-screen-logo.png': '/icon-512.png',
 }
 
+/**
+ * Language folders from the previous WordPress site that this site does not have (Search Console still
+ * crawls them and reports 404s). Every URL under each folder gets a real 301 (vercel.json / _redirects only,
+ * since Astro redirect pages cannot match wildcards). Portuguese goes to Brazilian Portuguese; the rest to English.
+ */
+export const OLD_LOCALE_REDIRECTS: Record<string, string> = {
+  pt: '/pt-br/',
+  ...Object.fromEntries(['ar', 'ms', 'pl', 'ru', 'uk', 'ko', 'ja', 'sv', 'zh', 'vi', 'hi', 'th'].map((lang) => [lang, '/'])),
+}
+
 export const LEGACY_REDIRECTS: Record<string, string> = {
   '/contact-us/': '/contact/',
   '/about-us/': '/about/',
