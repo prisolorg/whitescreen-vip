@@ -5,8 +5,8 @@
  */
 export const TOOL_META: Record<string, [title: string, description: string]> = {
   'white-screen': [
-    'White Screen Online – Bright Full White Screen Light (Free)',
-    'Open a bright white screen online in 1 click. Fullscreen, adjustable brightness and warm or cool tone. Use it as a light, for tracing or cleaning. Free.',
+    'White Screen - Open Full Screen For Bright Display Online (Free)',
+    'Open a bright white screen in full screen with 1 click. Use it for Zoom lighting, video calls, photography, monitor cleaning and dead pixel tests. Free.',
   ],
   'black-screen': [
     'Black Screen – Go Fullscreen Black Instantly (Free, 4K)',
