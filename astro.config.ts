@@ -14,7 +14,8 @@ const redirects = Object.entries(LEGACY_REDIRECTS)
 // Page redirects plus old image URLs; only the 301 rule files get the image ones.
 const ruleRedirects = [...redirects, ...Object.entries(ASSET_REDIRECTS)]
 // Old WordPress language folders: the folder itself and everything under it.
-const localeRules = Object.entries(OLD_LOCALE_REDIRECTS).flatMap(([lang, to]) => [[`/${lang}`, to], [`/${lang}/:path*`, to]])
+// With trailingSlash on, Vercel only matches folder URLs against sources that end in a slash.
+const localeRules = Object.entries(OLD_LOCALE_REDIRECTS).flatMap(([lang, to]) => [[`/${lang}/`, to], [`/${lang}/:path*/`, to], [`/${lang}/:path*`, to]])
 
 export default defineConfig({
   site: 'https://whitescreen.vip',
@@ -36,7 +37,7 @@ export default defineConfig({
           if (adsenseClient) {
             await writeFile(path.join(out, 'ads.txt'), `google.com, ${adsenseClient.replace(/^ca-/, '')}, DIRECT, f08c47fec0942fa0\n`)
           }
-          await writeFile(path.join(out, '_redirects'), [...ruleRedirects, ...localeRules.map(([from, to]) => [from.replace(':path*', '*'), to])].map(([from, to]) => `${from} ${to} 301`).join('\n') + '\n')
+          await writeFile(path.join(out, '_redirects'), [...ruleRedirects, ...Object.entries(OLD_LOCALE_REDIRECTS).flatMap(([lang, to]) => [[`/${lang}`, to], [`/${lang}/*`, to]])].map(([from, to]) => `${from} ${to} 301`).join('\n') + '\n')
           // Vercel reads vercel.json from the project root before building, so this file is committed:
           // when the redirects change, a local build updates it.
           await writeFile(

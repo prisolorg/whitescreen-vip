@@ -6406,7 +6406,12 @@
       "permanent": true
     },
     {
-      "source": "/pt",
+      "source": "/pt/",
+      "destination": "/pt-br/",
+      "permanent": true
+    },
+    {
+      "source": "/pt/:path*/",
       "destination": "/pt-br/",
       "permanent": true
     },
@@ -6416,7 +6421,12 @@
       "permanent": true
     },
     {
-      "source": "/ar",
+      "source": "/ar/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ar/:path*/",
       "destination": "/",
       "permanent": true
     },
@@ -6426,7 +6436,12 @@
       "permanent": true
     },
     {
-      "source": "/ms",
+      "source": "/ms/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ms/:path*/",
       "destination": "/",
       "permanent": true
     },
@@ -6436,7 +6451,12 @@
       "permanent": true
     },
     {
-      "source": "/pl",
+      "source": "/pl/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pl/:path*/",
       "destination": "/",
       "permanent": true
     },
@@ -6446,7 +6466,12 @@
       "permanent": true
     },
     {
-      "source": "/ru",
+      "source": "/ru/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ru/:path*/",
       "destination": "/",
       "permanent": true
     },
@@ -6456,7 +6481,12 @@
       "permanent": true
     },
     {
-      "source": "/uk",
+      "source": "/uk/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/uk/:path*/",
       "destination": "/",
       "permanent": true
     },
@@ -6466,7 +6496,12 @@
       "permanent": true
     },
     {
-      "source": "/ko",
+      "source": "/ko/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ko/:path*/",
       "destination": "/",
       "permanent": true
     },
@@ -6476,7 +6511,12 @@
       "permanent": true
     },
     {
-      "source": "/ja",
+      "source": "/ja/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/:path*/",
       "destination": "/",
       "permanent": true
     },
@@ -6486,7 +6526,12 @@
       "permanent": true
     },
     {
-      "source": "/sv",
+      "source": "/sv/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/sv/:path*/",
       "destination": "/",
       "permanent": true
     },
@@ -6496,7 +6541,12 @@
       "permanent": true
     },
     {
-      "source": "/zh",
+      "source": "/zh/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/zh/:path*/",
       "destination": "/",
       "permanent": true
     },
@@ -6506,7 +6556,12 @@
       "permanent": true
     },
     {
-      "source": "/vi",
+      "source": "/vi/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/vi/:path*/",
       "destination": "/",
       "permanent": true
     },
@@ -6516,7 +6571,12 @@
       "permanent": true
     },
     {
-      "source": "/hi",
+      "source": "/hi/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/hi/:path*/",
       "destination": "/",
       "permanent": true
     },
@@ -6526,7 +6586,12 @@
       "permanent": true
     },
     {
-      "source": "/th",
+      "source": "/th/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/th/:path*/",
       "destination": "/",
       "permanent": true
     },
