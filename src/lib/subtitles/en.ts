@@ -87,7 +87,7 @@ export const BACKGROUND_SUBTITLE_EN: Record<string, string> = {
   'yellow-background': 'Download a bright yellow background for slides, phones or desktops.',
   'blue-background': 'Download a clean blue background as a PNG in 4K or phone size.',
   'green-screen-background': 'Show this green screen fullscreen as a chroma key, or download it.',
-  'virtual-office': 'Download a virtual office background for your next video call.',
+  'virtual-office': 'Download a free office background for Zoom, Teams or Meet.',
   'graph-paper': 'Download a graph paper grid as a PNG, or copy it as CSS.',
   'pink-background': 'Download a pink background for your phone, desktop or stories.',
   'light-pink-background': 'Download a soft light pink background in any size you need.',

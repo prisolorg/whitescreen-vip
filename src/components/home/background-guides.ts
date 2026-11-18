@@ -7,6 +7,15 @@ import { RedBackgroundGuide } from '@/components/home/red-background-guide'
 import { BlueBackgroundGuide } from '@/components/home/blue-background-guide'
 import { YellowBackgroundGuide } from '@/components/home/yellow-background-guide'
 import { PinkBackgroundGuide } from '@/components/home/pink-background-guide'
+import { PurpleBackgroundGuide } from '@/components/home/purple-background-guide'
+import { GoldBackgroundGuide } from '@/components/home/gold-background-guide'
+import { PastelBackgroundGuide } from '@/components/home/pastel-background-guide'
+import { VirtualOfficeBackgroundGuide } from '@/components/home/virtual-office-background-guide'
+import { NeonBackgroundGuide } from '@/components/home/neon-background-guide'
+import { AestheticBackgroundGuide } from '@/components/home/aesthetic-background-guide'
+import { BeigeBackgroundGuide } from '@/components/home/beige-background-guide'
+import { GreenScreenBackgroundGuide } from '@/components/home/green-screen-background-guide'
+import { DarkBackgroundGuide } from '@/components/home/dark-background-guide'
 
 /**
  * English keyword-led guides for background pages. When a background has one, it replaces the templated
@@ -22,4 +31,13 @@ export const BACKGROUND_KEYWORD_GUIDES: Record<string, ComponentType> = {
   'blue-background': BlueBackgroundGuide,
   'yellow-background': YellowBackgroundGuide,
   'pink-background': PinkBackgroundGuide,
+  'purple-background': PurpleBackgroundGuide,
+  'gold-background': GoldBackgroundGuide,
+  'pastel-background': PastelBackgroundGuide,
+  'virtual-office': VirtualOfficeBackgroundGuide,
+  'neon-background': NeonBackgroundGuide,
+  'aesthetic-background': AestheticBackgroundGuide,
+  'beige-background': BeigeBackgroundGuide,
+  'green-screen-background': GreenScreenBackgroundGuide,
+  'dark-background': DarkBackgroundGuide,
 }
