@@ -1,0 +1,359 @@
+@import "tailwindcss";
+
+/* Dark mode follows the .dark class on <html> (set by the theme toggle), not only the OS setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+}
+
+:root {
+  color-scheme: light;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.14 0.01 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.14 0.01 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.14 0.01 260);
+  --primary: oklch(0.52 0.22 260);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.96 0.005 260);
+  --secondary-foreground: oklch(0.16 0.01 260);
+  --muted: oklch(0.96 0.005 260);
+  --muted-foreground: oklch(0.38 0.02 260);
+  --accent: oklch(0.95 0.01 260);
+  --accent-foreground: oklch(0.14 0.01 260);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.88 0.008 260);
+  --input: oklch(0.88 0.008 260);
+  --ring: oklch(0.52 0.22 260);
+  --placeholder: oklch(0.44 0.02 260);
+  --radius: 0.75rem;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.17 0.01 260);
+  --foreground: oklch(0.96 0.005 260);
+  --card: oklch(0.21 0.012 260);
+  --card-foreground: oklch(0.96 0.005 260);
+  --popover: oklch(0.21 0.012 260);
+  --popover-foreground: oklch(0.96 0.005 260);
+  --primary: oklch(0.6 0.19 260);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.25 0.012 260);
+  --secondary-foreground: oklch(0.96 0.005 260);
+  --muted: oklch(0.25 0.012 260);
+  --muted-foreground: oklch(0.74 0.015 260);
+  --accent: oklch(0.28 0.014 260);
+  --accent-foreground: oklch(0.96 0.005 260);
+  --destructive: oklch(0.66 0.2 25);
+  --border: oklch(0.33 0.012 260);
+  --input: oklch(0.33 0.012 260);
+  --ring: oklch(0.7 0.16 260);
+  --placeholder: oklch(0.68 0.015 260);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow-x: hidden;
+    max-width: 100vw;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--placeholder);
+    opacity: 1;
+  }
+}
+
+/* RTL layout support for Arabic */
+[dir="rtl"] {
+  direction: rtl;
+}
+
+/* Below-the-fold content optimization */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 400px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Flip clock: the old top half folds down, then the new bottom half folds into place. */
+@keyframes flip-fold-top {
+  from { transform: rotateX(0deg); }
+  to { transform: rotateX(-90deg); }
+}
+@keyframes flip-fold-bottom {
+  from { transform: rotateX(90deg); }
+  to { transform: rotateX(0deg); }
+}
+.flip-fold-top {
+  transform-origin: 50% 100%;
+  animation: flip-fold-top 260ms ease-in forwards;
+  backface-visibility: hidden;
+}
+.flip-fold-bottom {
+  transform-origin: 50% 0%;
+  animation: flip-fold-bottom 260ms ease-out 260ms both;
+  backface-visibility: hidden;
+}
+@keyframes quote-fade {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.quote-fade {
+  animation: quote-fade 700ms ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flip-fold-top,
+  .flip-fold-bottom,
+  .quote-fade {
+    animation: none;
+  }
+  .flip-fold-top {
+    display: none;
+  }
+}
+
+/* Hacked screen: jittery RGB-split glitch on the headline, and a slow blink for warnings. */
+@keyframes hack-glitch {
+  0%, 86%, 100% { transform: translate(0); text-shadow: 2px 0 rgba(0, 255, 255, 0.7), -2px 0 rgba(255, 0, 64, 0.7); }
+  88% { transform: translate(-3px, 1px) skewX(-6deg); text-shadow: -5px 0 rgba(0, 255, 255, 0.8), 5px 0 rgba(255, 0, 64, 0.8); }
+  90% { transform: translate(4px, -2px); clip-path: inset(10% 0 45% 0); }
+  92% { transform: translate(-2px, 2px); clip-path: inset(55% 0 5% 0); }
+  94% { transform: translate(0); clip-path: none; }
+}
+.hack-glitch {
+  animation: hack-glitch 2.4s steps(1, end) infinite;
+}
+@keyframes hack-blink {
+  50% { opacity: 0.25; }
+}
+.hack-blink {
+  animation: hack-blink 1s steps(1, end) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hack-glitch,
+  .hack-blink {
+    animation: none;
+  }
+}
+
+/* Visitors with an ad blocker: no empty ad spaces, and the tool takes the rail's column too.
+   html.ad-blocked is set before first paint from the last visit, then confirmed by a quick check (Base.astro). */
+html.ad-blocked [data-ad-unit] {
+  display: none !important;
+}
+html.ad-blocked [data-ad-grid] {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+/* Layout B trial: the White Screen page is a little wider (screen +10%), so its header matches those edges. */
+@media (min-width: 1280px) {
+  body:has([data-wide-page]) .site-header-inner {
+    max-width: 1316px;
+  }
+}
+
+/*
+ * In-page fullscreen (iPhone Safari has no element Fullscreen API): the band's clip-path would clip the
+ * fixed, full-screen stage and trap it under the header, so the band drops it while a stage is fullscreen.
+ */
+.studio-band:has([role='region'].fixed) {
+  clip-path: none;
+  box-shadow: none;
+}
+
+/* Live thumbnails: small animated previews of each tool in the tool pages' related-tools gallery.
+   Sizes use container units (cqw) so every scene scales with its tile. */
+.lt { container-type: inline-size; position: relative; overflow: hidden; line-height: 1; }
+.lt-c { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3cqw; }
+.lt-tick { display: inline-block; height: 1em; overflow: hidden; vertical-align: top; }
+.lt-tick > span { display: block; }
+.lt-tick > span > span { display: block; height: 1em; }
+@keyframes lt-spin { to { transform: rotate(360deg); } }
+@keyframes lt-blink { 50% { opacity: 0; } }
+@keyframes lt-fill { from { width: 4%; } to { width: 100%; } }
+@keyframes lt-x { from { transform: translateX(-12cqw); } to { transform: translateX(104cqw); } }
+@keyframes lt-dvd-x { to { transform: translateX(74cqw); } }
+@keyframes lt-dvd-y { to { transform: translateY(43cqw); } }
+@keyframes lt-hue { to { filter: hue-rotate(360deg); } }
+@keyframes lt-fall { from { transform: translateY(-100%); } to { transform: translateY(60cqw); } }
+@keyframes lt-ripple { from { transform: scale(0.2); opacity: 1; } to { transform: scale(2.6); opacity: 0; } }
+@keyframes lt-eq { 0%, 100% { transform: scaleY(0.2); } 50% { transform: scaleY(1); } }
+@keyframes lt-pulse { 0%, 100% { opacity: 0.55; transform: scale(0.94); } 50% { opacity: 1; transform: scale(1.04); } }
+@keyframes lt-dot { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+@keyframes lt-digits { to { transform: translateY(-10em); } }
+@keyframes lt-noise { 0% { background-position: 0 0; } 25% { background-position: 3px 5px; } 50% { background-position: -4px 2px; } 75% { background-position: 2px -3px; } }
+@keyframes lt-grad { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes lt-fade { 0%, 100% { opacity: 0; } 20%, 80% { opacity: 1; } }
+@keyframes lt-type { 0% { width: 0; } 55%, 100% { width: var(--w); } }
+@keyframes lt-slide { from { transform: translateX(-110%); } to { transform: translateX(330%); } }
+@keyframes lt-zoom { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.8); } }
+@keyframes lt-speak { 0%, 22% { box-shadow: inset 0 0 0 0.8cqw #22c55e; } 25%, 100% { box-shadow: none; } }
+@keyframes lt-glitch { 0%, 100% { transform: translateY(-10cqw); } 50% { transform: translateY(60cqw); } }
+@keyframes lt-rgbw { 0%, 100% { background: #f00; } 25% { background: #0f0; } 50% { background: #00f; } 75% { background: #fff; } }
+@keyframes lt-pixel { 0%, 100% { background: #000; } 20% { background: #fff; } 40% { background: #f00; } 60% { background: #0f0; } 80% { background: #00f; } }
+@keyframes lt-gray { 0%, 100% { background: #1f1f1f; } 25% { background: #4d4d4d; } 50% { background: #808080; } 75% { background: #b3b3b3; } }
+@keyframes lt-swing { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(180deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .lt, .lt * { animation: none !important; }
+}
+
+/* Tool pages: a slightly shorter header (56px instead of 64px), so the related tools under the tool come up higher. */
+body:has([data-compact-header]) .site-header-inner {
+  height: 3.5rem;
+}
+
+/* Touch screens: every button, menu and link in a control bar is at least 44×44px (comfortable tap target). */
+@media (pointer: coarse) {
+  :is([data-tight], [data-controls]) :is(button, select, a[href]):not([data-popover] *) {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+  }
+}
+/* Tool control bars stay on one row: ToolStage raises data-tight step by step, only as far as the row needs.
+   ("Start test" on screen tests always keeps its label.)
+   1 Fullscreen as an icon · 2 icon buttons drop their text · 3 smaller gaps · 4 phones: no Fullscreen button (the stage
+   has its own icon) · 5 option groups scroll sideways inside the row. */
+:is([data-tight='1'], [data-tight='2'], [data-tight='3']) .tb-fs:not(.tb-start) .tb-fs-label:not([data-popover] *) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+:is([data-tight='1'], [data-tight='2'], [data-tight='3']) .tb-fs:not(.tb-start):not([data-popover] *) {
+  padding-inline: 0.75rem;
+}
+:is([data-tight='2'], [data-tight='3'], [data-tight='4'], [data-tight='5']) button:has(> svg):not(.tb-fs):not([data-popover] *) {
+  font-size: 0;
+  gap: 0;
+  padding-inline: 0.75rem;
+}
+:is([data-tight='3'], [data-tight='4'], [data-tight='5']) {
+  column-gap: 0.5rem;
+  padding-inline: 0.625rem;
+}
+:is([data-tight='4'], [data-tight='5']) .tb-fs:not(.tb-start):not([data-popover] *) {
+  display: none;
+}
+[data-tight='5'] {
+  flex-wrap: nowrap;
+}
+[data-tight='5'] fieldset:not([data-popover] *) {
+  min-width: 0;
+  flex: 1 1 0;
+}
+[data-tight='5'] fieldset > div:not([data-popover] *) {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+[data-tight='5'] fieldset > div:not([data-popover] *)::-webkit-scrollbar {
+  display: none;
+}
+[data-tight='5'] fieldset > div > *:not([data-popover] *) {
+  flex-shrink: 0;
+}
+/* Colour pickers in a tight row keep the swatch and drop the hex code. */
+[data-tight='5'] .tb-hex:not([data-popover] *) {
+  display: none;
+}
+/* Labelled colour fields in a tight phone row keep their box (named on hover and to screen readers), not the visible label. */
+[data-tight='5'] .tb-field-label:not([data-popover] *) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* Custom option groups and sliders in a tight phone row: one line that scrolls sideways, sliders may get shorter. */
+[data-tight='5'] .flex-wrap:not([data-popover] *) {
+  flex-wrap: nowrap;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+[data-tight='5'] .flex-wrap > *:not([data-popover] *) {
+  flex-shrink: 0;
+}
+[data-tight='5'] [class*='min-w-[']:not([data-popover] *) {
+  min-width: 6rem;
+}
+/* Sliders in a tight phone row keep a usable track: the visible label and value go (still read to screen readers). */
+:is([data-tight='4'], [data-tight='5']) .tb-slider:not([data-popover] *) {
+  min-width: 7rem;
+  gap: 0;
+}
+:is([data-tight='4'], [data-tight='5']) :is(.tb-slider-label, .tb-slider-out):not([data-popover] *) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* Readings written as text in the row ("Your display: 60 FPS") leave the tightest phone row; the fullscreen test panel still shows them. */
+[data-tight='5'] p:not([data-popover] *) {
+  display: none;
+}
+
+/* Rating card after using a tool: a short fade-up (none with reduced motion). */
+@keyframes rating-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.rating-pop {
+  animation: rating-pop 0.3s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rating-pop {
+    animation: none;
+  }
+}
