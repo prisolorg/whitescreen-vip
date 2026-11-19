@@ -2,6 +2,7 @@ import React from 'react'
 import { WhiteScreenCta } from '@/components/white-screen-cta'
 import { RichText, plainText } from '@/components/rich-text'
 import Link from 'next/link'
+import { CardLink, CardTitle } from '@/components/card-link'
 import {
   ChevronRight,
   AlertTriangle,
@@ -279,19 +280,19 @@ export function ScreenProblemDetailPage({ slug }: { slug: string }) {
           <h2 className="text-base sm:text-lg font-bold text-foreground">{text.relatedGuides}</h2>
           <div className="grid gap-2.5 sm:grid-cols-2">
             {item.contextualLinks.map((cl, i) => (
-              <Link
+              <CardLink
                 key={i}
                 href={cl.href}
                 className="group flex flex-col justify-between rounded-xl border border-border p-3.5 hover:border-primary/50 hover:bg-accent transition-all"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors">
-                    {cl.label}
+                    <CardTitle href={cl.href}>{cl.label}</CardTitle>
                   </span>
                   <ArrowRight className="size-3.5 text-muted-foreground group-hover:text-primary transition-transform group-hover:translate-x-0.5" />
                 </div>
                 <p className="mt-1 text-xs text-muted-foreground">{cl.description}</p>
-              </Link>
+              </CardLink>
             ))}
           </div>
         </section>

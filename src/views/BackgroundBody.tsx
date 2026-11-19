@@ -4,6 +4,7 @@ import { STUDIO_BACKGROUND_PAGES } from '@/lib/studio-layout'
 import { WhiteScreenCta } from '@/components/white-screen-cta'
 import { RichText, plainText } from '@/components/rich-text'
 import Link from 'next/link'
+import { CardLink, CardTitle } from '@/components/card-link'
 import { ArrowRight, ExternalLink, HelpCircle, Eye, Palette, Lightbulb, ShieldCheck, Monitor } from 'lucide-react'
 import { getBackground, getBackgrounds } from '@/lib/article-i18n'
 import { backgroundText } from '@/lib/article-i18n/background-text'
@@ -179,19 +180,19 @@ export function BackgroundBody({ slug }: { slug: string }) {
           <h2 className="text-base sm:text-lg font-bold text-foreground">{text.relatedGuides}</h2>
           <div className="grid gap-2.5 sm:grid-cols-2">
             {item.contextualLinks.map((cl, i) => (
-              <Link
+              <CardLink
                 key={i}
                 href={cl.href}
                 className="group flex flex-col justify-between rounded-xl border border-border p-3.5 hover:border-primary/50 hover:bg-accent transition-all"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors">
-                    {cl.label}
+                    <CardTitle href={cl.href}>{cl.label}</CardTitle>
                   </span>
                   <ArrowRight className="size-3.5 text-muted-foreground group-hover:text-primary transition-transform group-hover:translate-x-0.5" />
                 </div>
                 <p className="mt-1 text-xs text-muted-foreground">{cl.description}</p>
-              </Link>
+              </CardLink>
             ))}
           </div>
         </section>
@@ -224,19 +225,19 @@ export function BackgroundBody({ slug }: { slug: string }) {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {item.relatedTools.map((t, i) => (
-                <Link
+                <CardLink
                   key={i}
                   href={t.path}
                   className="group rounded-xl border border-border p-3.5 hover:border-primary/50 hover:bg-accent transition-all flex items-center justify-between"
                 >
                   <div>
                     <h3 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors">
-                      {t.name}
+                      <CardTitle href={t.path}>{t.name}</CardTitle>
                     </h3>
                     <p className="text-xs text-muted-foreground mt-0.5">{t.description}</p>
                   </div>
                   <ArrowRight className="size-4 text-muted-foreground group-hover:text-primary shrink-0 ml-2" />
-                </Link>
+                </CardLink>
               ))}
             </div>
           </section>

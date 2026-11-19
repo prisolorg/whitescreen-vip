@@ -75,8 +75,8 @@ export function BlueScreenGuide() {
       <Section wide id="test-heading" title="Blue Screen Test: Blue Light Glasses and Subpixels">
         <p className={p}>
           Want a quick blue light test for your glasses? Look at this page at full brightness with and without them. Strongly tinted
-          lenses make the blue look noticeably darker; clear lenses that block little blue make almost no difference. Try the same with the{' '}
-          <Link href="/" className={link}>white screen</Link> to see how much the lenses tint everything. It&apos;s a quick visual check, not a lab measurement.
+          lenses make the blue look noticeably darker; clear lenses that block little blue make almost no difference. Try the same with a{' '}
+          <Link href="/" className={link}>pure white display</Link> to see how much the lenses tint everything. It&apos;s a quick visual check, not a lab measurement.
         </p>
         <p className={p}>
           Pure blue also lights only the blue subpixels. A black dot is a dead blue subpixel, while a magenta or cyan dot means a red or green

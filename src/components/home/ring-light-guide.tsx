@@ -55,8 +55,8 @@ export function RingLightGuide() {
           ]}
         />
         <p className={p}>
-          Need flat light instead of a ring? Try <Link href="/zoom-lighting" className={link}>Zoom lighting</Link> or a bright{' '}
-          <Link href="/" className={link}>white screen</Link> in full screen.
+          Need flat light instead of a ring? Try <Link href="/zoom-lighting" className={link}>Zoom lighting</Link> or a{' '}
+          <Link href="/" className={link}>full-screen white background</Link>.
         </p>
       </Section>
     </div>

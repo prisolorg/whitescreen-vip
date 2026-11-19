@@ -42,7 +42,7 @@ export default defineConfig({
           // when the redirects change, a local build updates it.
           await writeFile(
             path.join(rootDir, 'vercel.json'),
-            JSON.stringify({ framework: 'astro', installCommand: 'npm ci', buildCommand: 'npm run build', outputDirectory: 'dist', trailingSlash: true, redirects: [...ruleRedirects, ...localeRules].map(([source, destination]) => ({ source, destination, permanent: true })) }, null, 2),
+            JSON.stringify({ framework: 'astro', installCommand: 'npm ci', buildCommand: 'npm run build', outputDirectory: 'dist', trailingSlash: true, git: { deploymentEnabled: { 'astro-migration': false } }, redirects: [...ruleRedirects, ...localeRules].map(([source, destination]) => ({ source, destination, permanent: true })) }, null, 2),
           )
         },
       },

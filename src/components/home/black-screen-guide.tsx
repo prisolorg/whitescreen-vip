@@ -110,7 +110,7 @@ export function BlackScreenGuide() {
       {/* Supporting: display checks (no search volume in this set, kept short) */}
       <Section wide id="check-heading" title="Black Screen Test: Bleed, Glow and Stuck Pixels">
         <p className={p}>
-          In a dark room, a full black screen makes a few common faults easy to spot. For dead pixels and dust, check the <Link href="/" className={link}>white screen</Link> too:
+          In a dark room, a full black screen makes a few common faults easy to spot. For dead pixels and dust, check a <Link href="/" className={link}>plain full-screen white</Link> too:
         </p>
         <Table
           caption="Display problems a black screen reveals"

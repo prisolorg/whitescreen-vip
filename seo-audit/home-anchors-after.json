@@ -1,0 +1,2978 @@
+[
+ {
+  "page": "/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/light-and-sound/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/light-and-sound/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/light-and-sound/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/light-and-sound/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/frame-rate-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/frame-rate-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/frame-rate-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/dvd-screensaver/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/dvd-screensaver/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/dvd-screensaver/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/red-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/red-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/red-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/red-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/countdown-timer/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/countdown-timer/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/countdown-timer/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/ring-light/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/ring-light/",
+  "ctx": "main",
+  "anchor": "full-screen white background",
+  "bucket": "partial"
+ },
+ {
+  "page": "/ring-light/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/ring-light/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-radar-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-radar-screen/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-radar-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-blue-screen-of-death/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-blue-screen-of-death/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-blue-screen-of-death/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-chrome-os-update/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-chrome-os-update/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-chrome-os-update/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/pomodoro-timer/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/pomodoro-timer/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/pomodoro-timer/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/hacked-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/hacked-screen/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/hacked-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/visual-effects/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/visual-effects/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/visual-effects/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/visual-effects/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/yellow-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/yellow-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/yellow-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/yellow-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/contact/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/contact/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/tools/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/tools/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/tools/",
+  "ctx": "main",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/tools/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/black-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/black-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/black-screen/",
+  "ctx": "main",
+  "anchor": "plain full-screen white",
+  "bucket": "partial"
+ },
+ {
+  "page": "/black-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/black-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-refresh-rate-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-refresh-rate-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-refresh-rate-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/contrast-checker/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/contrast-checker/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/contrast-checker/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/disclaimer/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/disclaimer/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/purple-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/purple-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/purple-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/privacy-policy/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/privacy-policy/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-windows-11-update/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-windows-11-update/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-windows-11-update/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/motivational-quote-screensaver/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/motivational-quote-screensaver/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/motivational-quote-screensaver/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/dead-pixel-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/dead-pixel-test/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/dead-pixel-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/dead-pixel-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/",
+  "ctx": "main",
+  "anchor": "Open Full White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/",
+  "ctx": "main",
+  "anchor": "Open Full White Reference",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/screen-burn-in/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/screen-burn-in/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/screen-burn-in/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-problems/screen-burn-in/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/ghosting/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/ghosting/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/ghosting/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-problems/ghosting/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/screen-flickering/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/screen-flickering/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/screen-flickering/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-problems/screen-flickering/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "main",
+  "anchor": "Open Full White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "main",
+  "anchor": "White Screen Tool",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/backlight-bleed/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/backlight-bleed/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/backlight-bleed/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-problems/backlight-bleed/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/color-banding/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/color-banding/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/color-banding/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-problems/color-banding/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/stuck-pixel/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/stuck-pixel/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/stuck-pixel/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-problems/stuck-pixel/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/screen-tearing/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/screen-tearing/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/screen-tearing/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-problems/screen-tearing/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/hot-pixel/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/hot-pixel/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/hot-pixel/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-problems/hot-pixel/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/ips-glow/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/ips-glow/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/ips-glow/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-problems/ips-glow/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "main",
+  "anchor": "Open Full White Reference",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "main",
+  "anchor": "White Screen Reference Tool",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/no-signal-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/no-signal-screen/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/no-signal-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-slack-huddle/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-slack-huddle/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-slack-huddle/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/orange-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/orange-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/orange-screen/",
+  "ctx": "main",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/orange-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/terms/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/terms/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/hacker-typer/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/hacker-typer/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/hacker-typer/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/pink-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/pink-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/pink-screen/",
+  "ctx": "main",
+  "anchor": "this bright white light tool",
+  "bucket": "partial"
+ },
+ {
+  "page": "/pink-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/blue-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/blue-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/blue-screen/",
+  "ctx": "main",
+  "anchor": "pure white display",
+  "bucket": "partial"
+ },
+ {
+  "page": "/blue-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/broken-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/broken-screen/",
+  "ctx": "main",
+  "anchor": "White screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/broken-screen/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/broken-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/about/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/about/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-resolution-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-resolution-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-resolution-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-windows-xp-update/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-windows-xp-update/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-windows-xp-update/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-windows-xp-boot/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-windows-xp-boot/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-windows-xp-boot/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/feedback/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/feedback/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-tests/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-tests/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-tests/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-tests/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/sage-green/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/sage-green/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/backgrounds/sage-green/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/dark-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/dark-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/pink-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/pink-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/orange-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/orange-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/cyberpunk-neon/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/cyberpunk-neon/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/green-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/green-background/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/backgrounds/green-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/red-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/red-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/light-pink-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/light-pink-background/",
+  "ctx": "main",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/light-pink-background/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/backgrounds/light-pink-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/virtual-office/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/virtual-office/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/neon-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/neon-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/navy-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/navy-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/gold-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/gold-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/white-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/white-background/",
+  "ctx": "main",
+  "anchor": "White screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/white-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/black-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/black-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/true-black/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/true-black/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/pastel-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/pastel-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/chroma-green/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/chroma-green/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/gradient-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/gradient-background/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/backgrounds/gradient-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/solid-blue/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/solid-blue/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/blue-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/blue-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/pure-blue/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/pure-blue/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/yellow-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/yellow-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/purple-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/purple-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/aesthetic-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/aesthetic-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/pure-white/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/pure-white/",
+  "ctx": "main",
+  "anchor": "White screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/pure-white/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/beige-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/beige-background/",
+  "ctx": "main",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/beige-background/",
+  "ctx": "main",
+  "anchor": "pure white light",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/beige-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/graph-paper/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/graph-paper/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/graph-paper-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/graph-paper-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/green-screen-background/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/backgrounds/green-screen-background/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/monitor-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/monitor-test/",
+  "ctx": "main",
+  "anchor": "plain white test screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/monitor-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/monitor-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/gradient-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/gradient-screen/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/gradient-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/oled-burn-in-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/oled-burn-in-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/oled-burn-in-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/online-timers/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/online-timers/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/online-timers/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/online-timers/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "main",
+  "anchor": "Open White Screen for Inspection",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "main",
+  "anchor": "Try it in full screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/screen-uniformity-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/screen-uniformity-test/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/screen-uniformity-test/",
+  "ctx": "main",
+  "anchor": "Plain white screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/screen-uniformity-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/screen-uniformity-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/oled-screen-burn-in-test-and-prevention/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/oled-screen-burn-in-test-and-prevention/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/oled-screen-burn-in-test-and-prevention/",
+  "ctx": "main",
+  "anchor": "Plain white screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/oled-screen-burn-in-test-and-prevention/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/oled-screen-burn-in-test-and-prevention/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/check-ips-glow-and-backlight-bleed/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/check-ips-glow-and-backlight-bleed/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/check-ips-glow-and-backlight-bleed/",
+  "ctx": "main",
+  "anchor": "Plain white screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/check-ips-glow-and-backlight-bleed/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/check-ips-glow-and-backlight-bleed/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/common-monitor-display-problems-diagnostics/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/common-monitor-display-problems-diagnostics/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/common-monitor-display-problems-diagnostics/",
+  "ctx": "main",
+  "anchor": "Plain white screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/common-monitor-display-problems-diagnostics/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/common-monitor-display-problems-diagnostics/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/spot-stuck-pixels-vs-dead-pixels/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/spot-stuck-pixels-vs-dead-pixels/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/spot-stuck-pixels-vs-dead-pixels/",
+  "ctx": "main",
+  "anchor": "Plain white screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/spot-stuck-pixels-vs-dead-pixels/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/spot-stuck-pixels-vs-dead-pixels/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/dead-pixel-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/dead-pixel-test/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/dead-pixel-test/",
+  "ctx": "main",
+  "anchor": "Plain white screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/dead-pixel-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/dead-pixel-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/oled-burn-in-prevention/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/oled-burn-in-prevention/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/oled-burn-in-prevention/",
+  "ctx": "main",
+  "anchor": "Plain white screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/oled-burn-in-prevention/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/oled-burn-in-prevention/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/monitor-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/monitor-test/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/monitor-test/",
+  "ctx": "main",
+  "anchor": "Plain white screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/monitor-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/monitor-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "main",
+  "anchor": "Open the White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "main",
+  "anchor": "Try it in full screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/test-monitor-colors-and-uniformity/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/test-monitor-colors-and-uniformity/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/test-monitor-colors-and-uniformity/",
+  "ctx": "main",
+  "anchor": "Plain white screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/test-monitor-colors-and-uniformity/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/test-monitor-colors-and-uniformity/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "main",
+  "anchor": "Open the White Screen Tool",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "main",
+  "anchor": "Try it in full screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "main",
+  "anchor": "Open White Screen Lightbox",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "main",
+  "anchor": "Try it in full screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "main",
+  "anchor": "Open the White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "main",
+  "anchor": "Try it in full screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/white-screen-for-video-calls-and-zoom/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/white-screen-for-video-calls-and-zoom/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/white-screen-for-video-calls-and-zoom/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/white-screen-for-video-calls-and-zoom/",
+  "ctx": "main",
+  "anchor": "Plain white screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/white-screen-for-video-calls-and-zoom/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/white-screen-for-video-calls-and-zoom/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/screen-color-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/screen-color-test/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/screen-color-test/",
+  "ctx": "main",
+  "anchor": "Plain white screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/screen-color-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/screen-color-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "main",
+  "anchor": "Open White Screen for Inspection",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "main",
+  "anchor": "Try it in full screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "main",
+  "anchor": "Open the White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "main",
+  "anchor": "Try it in full screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/how-to-test-monitor-dead-pixels/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/guides/how-to-test-monitor-dead-pixels/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/how-to-test-monitor-dead-pixels/",
+  "ctx": "main",
+  "anchor": "Plain white screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/how-to-test-monitor-dead-pixels/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/guides/how-to-test-monitor-dead-pixels/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/green-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/green-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/green-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/green-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/stopwatch/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/stopwatch/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/stopwatch/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-google-meet/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-google-meet/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-google-meet/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/zoom-lighting/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/zoom-lighting/",
+  "ctx": "main",
+  "anchor": "the brightest white your screen can show",
+  "bucket": "partial"
+ },
+ {
+  "page": "/zoom-lighting/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/zoom-lighting/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/magenta-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/magenta-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/magenta-screen/",
+  "ctx": "main",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/magenta-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/glossary/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/glossary/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/glossary/refresh-rate/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/glossary/refresh-rate/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/refresh-rate/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/glossary/refresh-rate/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/glossary/chroma-key/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/glossary/chroma-key/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/chroma-key/",
+  "ctx": "main",
+  "anchor": "Soft white fill light",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/chroma-key/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/glossary/chroma-key/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/glossary/hdr/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/glossary/hdr/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/hdr/",
+  "ctx": "main",
+  "anchor": "Full-brightness white display",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/hdr/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/glossary/hdr/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/glossary/oled-vs-lcd/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/glossary/oled-vs-lcd/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/oled-vs-lcd/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/glossary/oled-vs-lcd/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/glossary/resolution/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/glossary/resolution/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/resolution/",
+  "ctx": "main",
+  "anchor": "White Screen Image Generator",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/resolution/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/glossary/resolution/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/matrix-screensaver/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/matrix-screensaver/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/matrix-screensaver/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/visual-noise/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/visual-noise/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/visual-noise/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-burn-in-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-burn-in-test/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-burn-in-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-burn-in-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/oled-gray-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/oled-gray-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/oled-gray-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/monitor-ghosting-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/monitor-ghosting-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/monitor-ghosting-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-mac-update/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-mac-update/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-mac-update/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-zoom-meeting/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-zoom-meeting/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-zoom-meeting/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/prank-screens/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/prank-screens/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/prank-screens/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/prank-screens/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/touch-screen-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/touch-screen-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/touch-screen-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-android-update/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-android-update/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-android-update/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-windows-10-update/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-windows-10-update/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-windows-10-update/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-teams-meeting/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-teams-meeting/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-teams-meeting/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-color-test/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screen-color-test/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-color-test/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screen-color-test/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/gray-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/gray-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/gray-screen/",
+  "ctx": "main",
+  "anchor": "full-screen white light",
+  "bucket": "partial"
+ },
+ {
+  "page": "/gray-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screensavers/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/screensavers/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screensavers/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/screensavers/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-ubuntu-update/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/fake-ubuntu-update/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/fake-ubuntu-update/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/color-cycle/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/color-cycle/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/color-cycle/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/brown-noise-generator/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/brown-noise-generator/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/brown-noise-generator/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/cyan-screen/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/cyan-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/cyan-screen/",
+  "ctx": "main",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/cyan-screen/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/color-screens/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/color-screens/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/color-screens/",
+  "ctx": "main",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/color-screens/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/author-whitson-rao/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/author-whitson-rao/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/pink-noise-generator/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/pink-noise-generator/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/pink-noise-generator/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/white-noise-generator/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/white-noise-generator/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/white-noise-generator/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/flip-clock-screensaver/",
+  "ctx": "header",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ },
+ {
+  "page": "/flip-clock-screensaver/",
+  "ctx": "main>aside",
+  "anchor": "Open the tool",
+  "bucket": "generic"
+ },
+ {
+  "page": "/flip-clock-screensaver/",
+  "ctx": "footer",
+  "anchor": "WhiteScreen.vip",
+  "bucket": "branded"
+ }
+]

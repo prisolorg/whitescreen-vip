@@ -2,6 +2,7 @@ import React from 'react'
 import { WhiteScreenCta } from '@/components/white-screen-cta'
 import { RichText, plainText } from '@/components/rich-text'
 import Link from 'next/link'
+import { CardLink, CardTitle } from '@/components/card-link'
 import {
   ChevronRight,
   BookOpen,
@@ -102,21 +103,21 @@ export function GlossaryDetailPage({ slug }: { slug: string }) {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {item.relatedTools.map((tool) => (
-                <Link
+                <CardLink
                   key={tool.path}
                   href={tool.path}
                   className="flex items-start justify-between rounded-xl border border-border/80 bg-background p-3.5 hover:border-primary/50 transition-colors group"
                 >
                   <div>
                     <span className="font-bold text-sm text-foreground group-hover:text-primary transition-colors flex items-center gap-1.5">
-                      <span>{tool.name}</span>
+                      <CardTitle href={tool.path}>{tool.name}</CardTitle>
                       <ExternalLink className="size-3 text-muted-foreground" />
                     </span>
                     <span className="text-xs text-muted-foreground block mt-1 leading-relaxed">
                       {tool.description}
                     </span>
                   </div>
-                </Link>
+                </CardLink>
               ))}
             </div>
           </section>

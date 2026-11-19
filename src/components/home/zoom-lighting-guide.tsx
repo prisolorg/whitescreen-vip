@@ -46,8 +46,8 @@ export function ZoomLightingGuide() {
       <Section wide id="ring-heading" title="Zoom Lighting or a Ring Light?">
         <p className={p}>
           Zoom lighting fills your face with flat, even light. For the round catchlight in your eyes that creators love, try the{' '}
-          <Link href="/ring-light" className={link}>ring light online</Link>. For a plain bright light, open the{' '}
-          <Link href="/" className={link}>white screen</Link> in full screen.
+          <Link href="/ring-light" className={link}>ring light online</Link>. For a plain bright light, open{' '}
+          <Link href="/" className={link}>the brightest white your screen can show</Link>.
         </p>
       </Section>
     </div>

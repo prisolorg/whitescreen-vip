@@ -1,0 +1,3860 @@
+[
+ {
+  "page": "/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/light-and-sound/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/light-and-sound/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/light-and-sound/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/light-and-sound/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/light-and-sound/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/frame-rate-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/frame-rate-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/frame-rate-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/frame-rate-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/dvd-screensaver/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/dvd-screensaver/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/dvd-screensaver/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/dvd-screensaver/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/red-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/red-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/red-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/red-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/red-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/countdown-timer/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/countdown-timer/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/countdown-timer/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/countdown-timer/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/ring-light/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/ring-light/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/ring-light/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/ring-light/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/ring-light/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-radar-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-radar-screen/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-radar-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-radar-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-blue-screen-of-death/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-blue-screen-of-death/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-blue-screen-of-death/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-blue-screen-of-death/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-chrome-os-update/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-chrome-os-update/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-chrome-os-update/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-chrome-os-update/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/pomodoro-timer/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/pomodoro-timer/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/pomodoro-timer/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/pomodoro-timer/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/hacked-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/hacked-screen/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/hacked-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/hacked-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/visual-effects/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/visual-effects/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/visual-effects/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/visual-effects/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/visual-effects/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/yellow-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/yellow-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/yellow-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/yellow-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/yellow-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/contact/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/contact/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/contact/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/tools/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/tools/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/tools/",
+  "ctx": "main",
+  "anchor": "White ScreenA bright white screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests.",
+  "bucket": "partial"
+ },
+ {
+  "page": "/tools/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/tools/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/black-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/black-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/black-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/black-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/black-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/black-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-refresh-rate-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-refresh-rate-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-refresh-rate-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-refresh-rate-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/contrast-checker/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/contrast-checker/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/contrast-checker/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/contrast-checker/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/disclaimer/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/disclaimer/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/disclaimer/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/purple-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/purple-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/purple-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/purple-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/privacy-policy/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/privacy-policy/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/privacy-policy/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-windows-11-update/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-windows-11-update/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-windows-11-update/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-windows-11-update/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/motivational-quote-screensaver/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/motivational-quote-screensaver/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/motivational-quote-screensaver/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/motivational-quote-screensaver/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/dead-pixel-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/dead-pixel-test/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/dead-pixel-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/dead-pixel-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/dead-pixel-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/",
+  "ctx": "main",
+  "anchor": "Open Full White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/",
+  "ctx": "main",
+  "anchor": "Open Full White Reference",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/screen-burn-in/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/screen-burn-in/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/screen-burn-in/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/screen-burn-in/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/screen-burn-in/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/ghosting/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/ghosting/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/ghosting/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/ghosting/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/ghosting/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/screen-flickering/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/screen-flickering/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/screen-flickering/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/screen-flickering/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/screen-flickering/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "main",
+  "anchor": "Open Full White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "main",
+  "anchor": "White Screen ToolNeutralize residual electrostatic charges.",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/image-retention/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/backlight-bleed/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/backlight-bleed/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/backlight-bleed/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/backlight-bleed/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/backlight-bleed/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/color-banding/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/color-banding/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/color-banding/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/color-banding/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/color-banding/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/stuck-pixel/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/stuck-pixel/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/stuck-pixel/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/stuck-pixel/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/stuck-pixel/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/screen-tearing/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/screen-tearing/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/screen-tearing/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/screen-tearing/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/screen-tearing/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/hot-pixel/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/hot-pixel/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/hot-pixel/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/hot-pixel/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/hot-pixel/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/ips-glow/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/ips-glow/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/ips-glow/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/ips-glow/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/ips-glow/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "main",
+  "anchor": "Open Full White Reference",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "main",
+  "anchor": "White Screen Reference ToolInspect 6500K reference white in fullscreen.",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-problems/yellow-tint-on-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/no-signal-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/no-signal-screen/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/no-signal-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/no-signal-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-slack-huddle/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-slack-huddle/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-slack-huddle/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-slack-huddle/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/orange-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/orange-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/orange-screen/",
+  "ctx": "main",
+  "anchor": "White Screen#FFFFFF",
+  "bucket": "partial"
+ },
+ {
+  "page": "/orange-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/orange-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/terms/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/terms/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/terms/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/hacker-typer/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/hacker-typer/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/hacker-typer/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/hacker-typer/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/pink-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/pink-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/pink-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/pink-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/pink-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/blue-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/blue-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/blue-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/blue-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/blue-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/broken-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/broken-screen/",
+  "ctx": "main",
+  "anchor": "White screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/broken-screen/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/broken-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/broken-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/about/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/about/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/about/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-resolution-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-resolution-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-resolution-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-resolution-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-windows-xp-update/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-windows-xp-update/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-windows-xp-update/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-windows-xp-update/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-windows-xp-boot/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-windows-xp-boot/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-windows-xp-boot/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-windows-xp-boot/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/feedback/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/feedback/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/feedback/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-tests/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-tests/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-tests/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-tests/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-tests/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/sage-green/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/sage-green/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/sage-green/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/sage-green/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/dark-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/dark-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/dark-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/pink-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/pink-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/pink-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/orange-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/orange-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/orange-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/cyberpunk-neon/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/cyberpunk-neon/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/cyberpunk-neon/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/green-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/green-background/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/green-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/green-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/red-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/red-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/red-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/light-pink-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/light-pink-background/",
+  "ctx": "main",
+  "anchor": "White ScreenBright white light for calls and tracing.",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/light-pink-background/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/light-pink-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/light-pink-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/virtual-office/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/virtual-office/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/virtual-office/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/neon-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/neon-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/neon-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/navy-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/navy-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/navy-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/gold-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/gold-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/gold-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/white-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/white-background/",
+  "ctx": "main",
+  "anchor": "White screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/white-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/white-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/black-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/black-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/black-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/true-black/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/true-black/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/true-black/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/pastel-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/pastel-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/pastel-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/chroma-green/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/chroma-green/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/chroma-green/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/gradient-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/gradient-background/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/gradient-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/gradient-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/solid-blue/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/solid-blue/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/solid-blue/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/blue-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/blue-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/blue-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/pure-blue/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/pure-blue/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/pure-blue/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/yellow-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/yellow-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/yellow-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/purple-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/purple-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/purple-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/aesthetic-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/aesthetic-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/aesthetic-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/pure-white/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/pure-white/",
+  "ctx": "main",
+  "anchor": "White screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/pure-white/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/pure-white/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/beige-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/beige-background/",
+  "ctx": "main",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/beige-background/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/beige-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/beige-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/graph-paper/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/graph-paper/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/graph-paper/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/graph-paper-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/graph-paper-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/graph-paper-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/backgrounds/green-screen-background/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/green-screen-background/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/backgrounds/green-screen-background/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/monitor-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/monitor-test/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/monitor-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/monitor-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/monitor-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/gradient-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/gradient-screen/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/gradient-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/gradient-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/oled-burn-in-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/oled-burn-in-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/oled-burn-in-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/oled-burn-in-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/online-timers/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/online-timers/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/online-timers/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/online-timers/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/online-timers/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "main",
+  "anchor": "Open White Screen for Inspection",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "main",
+  "anchor": "Open White Screen for Inspection",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/clean-laptop-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/screen-uniformity-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/screen-uniformity-test/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/screen-uniformity-test/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/screen-uniformity-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/screen-uniformity-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/screen-uniformity-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/oled-screen-burn-in-test-and-prevention/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/oled-screen-burn-in-test-and-prevention/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/oled-screen-burn-in-test-and-prevention/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/oled-screen-burn-in-test-and-prevention/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/oled-screen-burn-in-test-and-prevention/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/oled-screen-burn-in-test-and-prevention/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/check-ips-glow-and-backlight-bleed/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/check-ips-glow-and-backlight-bleed/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/check-ips-glow-and-backlight-bleed/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/check-ips-glow-and-backlight-bleed/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/check-ips-glow-and-backlight-bleed/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/check-ips-glow-and-backlight-bleed/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/common-monitor-display-problems-diagnostics/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/common-monitor-display-problems-diagnostics/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/common-monitor-display-problems-diagnostics/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/common-monitor-display-problems-diagnostics/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/common-monitor-display-problems-diagnostics/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/common-monitor-display-problems-diagnostics/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/spot-stuck-pixels-vs-dead-pixels/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/spot-stuck-pixels-vs-dead-pixels/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/spot-stuck-pixels-vs-dead-pixels/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/spot-stuck-pixels-vs-dead-pixels/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/spot-stuck-pixels-vs-dead-pixels/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/spot-stuck-pixels-vs-dead-pixels/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/dead-pixel-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/dead-pixel-test/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/dead-pixel-test/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/dead-pixel-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/dead-pixel-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/dead-pixel-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/oled-burn-in-prevention/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/oled-burn-in-prevention/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/oled-burn-in-prevention/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/oled-burn-in-prevention/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/oled-burn-in-prevention/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/oled-burn-in-prevention/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/monitor-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/monitor-test/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/monitor-test/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/monitor-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/monitor-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/monitor-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "main",
+  "anchor": "Open the White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "main",
+  "anchor": "Open the White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/max-brightness/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/test-monitor-colors-and-uniformity/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/test-monitor-colors-and-uniformity/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/test-monitor-colors-and-uniformity/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/test-monitor-colors-and-uniformity/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/test-monitor-colors-and-uniformity/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/test-monitor-colors-and-uniformity/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "main",
+  "anchor": "Open the White Screen Tool",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "main",
+  "anchor": "Open the White Screen Tool",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/best-monitor-settings-for-eye-strain/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "main",
+  "anchor": "Open White Screen Lightbox",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "main",
+  "anchor": "Open White Screen Lightbox",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "main",
+  "anchor": "Open the White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "main",
+  "anchor": "Open the White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/browser-fullscreen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/white-screen-for-video-calls-and-zoom/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/white-screen-for-video-calls-and-zoom/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/white-screen-for-video-calls-and-zoom/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/white-screen-for-video-calls-and-zoom/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/white-screen-for-video-calls-and-zoom/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/white-screen-for-video-calls-and-zoom/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/white-screen-for-video-calls-and-zoom/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/screen-color-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/screen-color-test/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/screen-color-test/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/screen-color-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/screen-color-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/screen-color-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "main",
+  "anchor": "Open White Screen for Inspection",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "main",
+  "anchor": "Open White Screen for Inspection",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "main",
+  "anchor": "Open the White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "main",
+  "anchor": "Open the White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/multi-monitor-setup/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/how-to-test-monitor-dead-pixels/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/how-to-test-monitor-dead-pixels/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/how-to-test-monitor-dead-pixels/",
+  "ctx": "main",
+  "anchor": "White Screen \u2192",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/how-to-test-monitor-dead-pixels/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/guides/how-to-test-monitor-dead-pixels/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/guides/how-to-test-monitor-dead-pixels/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/green-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/green-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/green-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/green-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/green-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/stopwatch/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/stopwatch/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/stopwatch/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/stopwatch/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-google-meet/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-google-meet/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-google-meet/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-google-meet/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/zoom-lighting/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/zoom-lighting/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/zoom-lighting/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/zoom-lighting/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/zoom-lighting/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/magenta-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/magenta-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/magenta-screen/",
+  "ctx": "main",
+  "anchor": "White Screen#FFFFFF",
+  "bucket": "partial"
+ },
+ {
+  "page": "/magenta-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/magenta-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/refresh-rate/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/refresh-rate/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/refresh-rate/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/refresh-rate/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/refresh-rate/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/chroma-key/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/chroma-key/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/chroma-key/",
+  "ctx": "main",
+  "anchor": "White ScreenNeutral daylight white screen to act as a soft fill light reflector for webcam video.",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/chroma-key/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/chroma-key/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/chroma-key/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/hdr/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/hdr/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/hdr/",
+  "ctx": "main",
+  "anchor": "White ScreenTest peak white luminance and adjust color temperatures from 3000K to 9300K.",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/hdr/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/hdr/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/hdr/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/oled-vs-lcd/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/oled-vs-lcd/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/oled-vs-lcd/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/oled-vs-lcd/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/oled-vs-lcd/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/resolution/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/resolution/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/resolution/",
+  "ctx": "main",
+  "anchor": "White Screen Image GeneratorGenerate and download solid color test backgrounds in exact 1080p, 1440p, 4K, or 8K resolution.",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/resolution/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/glossary/resolution/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/glossary/resolution/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/matrix-screensaver/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/matrix-screensaver/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/matrix-screensaver/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/matrix-screensaver/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/visual-noise/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/visual-noise/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/visual-noise/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/visual-noise/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-burn-in-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-burn-in-test/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-burn-in-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-burn-in-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-burn-in-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/oled-gray-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/oled-gray-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/oled-gray-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/oled-gray-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/monitor-ghosting-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/monitor-ghosting-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/monitor-ghosting-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/monitor-ghosting-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-mac-update/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-mac-update/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-mac-update/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-mac-update/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-zoom-meeting/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-zoom-meeting/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-zoom-meeting/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-zoom-meeting/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/prank-screens/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/prank-screens/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/prank-screens/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/prank-screens/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/prank-screens/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/touch-screen-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/touch-screen-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/touch-screen-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/touch-screen-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-android-update/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-android-update/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-android-update/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-android-update/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-windows-10-update/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-windows-10-update/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-windows-10-update/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-windows-10-update/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-teams-meeting/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-teams-meeting/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-teams-meeting/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-teams-meeting/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-color-test/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-color-test/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-color-test/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screen-color-test/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screen-color-test/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/gray-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/gray-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/gray-screen/",
+  "ctx": "main",
+  "anchor": "white screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/gray-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/gray-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screensavers/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screensavers/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screensavers/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/screensavers/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/screensavers/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-ubuntu-update/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-ubuntu-update/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/fake-ubuntu-update/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/fake-ubuntu-update/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/color-cycle/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/color-cycle/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/color-cycle/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/color-cycle/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/brown-noise-generator/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/brown-noise-generator/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/brown-noise-generator/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/brown-noise-generator/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/cyan-screen/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/cyan-screen/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/cyan-screen/",
+  "ctx": "main",
+  "anchor": "White Screen#FFFFFF",
+  "bucket": "partial"
+ },
+ {
+  "page": "/cyan-screen/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/cyan-screen/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/color-screens/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/color-screens/",
+  "ctx": "main>nav",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/color-screens/",
+  "ctx": "main",
+  "anchor": "White ScreenA bright white screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests.",
+  "bucket": "partial"
+ },
+ {
+  "page": "/color-screens/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/color-screens/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/author-whitson-rao/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/author-whitson-rao/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/author-whitson-rao/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/pink-noise-generator/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/pink-noise-generator/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/pink-noise-generator/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/pink-noise-generator/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/white-noise-generator/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/white-noise-generator/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/white-noise-generator/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/white-noise-generator/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ },
+ {
+  "page": "/flip-clock-screensaver/",
+  "ctx": "header",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/flip-clock-screensaver/",
+  "ctx": "main>aside",
+  "anchor": "Need a bright white screen?Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.White Screen",
+  "bucket": "partial"
+ },
+ {
+  "page": "/flip-clock-screensaver/",
+  "ctx": "footer",
+  "anchor": "White Screen",
+  "bucket": "exact"
+ },
+ {
+  "page": "/flip-clock-screensaver/",
+  "ctx": "footer",
+  "anchor": "Open a bright White Screen in full screen \u2192",
+  "bucket": "partial"
+ }
+]

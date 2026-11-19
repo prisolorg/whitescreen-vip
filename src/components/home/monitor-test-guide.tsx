@@ -14,7 +14,7 @@ export function MonitorTestGuide() {
       <Section wide id="patterns-heading" title="Screen Test Patterns and What Each Checks">
         <p className={p}>
           This screen test and display test has seven fullscreen patterns, and each test image checks something different. For one
-          plain field to spot dust and dead pixels, open the <Link href="/" className={link}>white screen</Link>:
+          plain field to spot dust and dead pixels, open the <Link href="/" className={link}>plain white test screen</Link>:
         </p>
         <Table
           caption="Screen test patterns"

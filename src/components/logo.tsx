@@ -6,7 +6,7 @@ export function Logo() {
     <Link
       href="/"
       className="flex items-center gap-2 sm:gap-2.5 rounded-md font-semibold tracking-tight text-foreground transition-opacity hover:opacity-90 shrink-0 text-sm sm:text-base"
-      aria-label="White Screen home"
+      aria-label="WhiteScreen.vip home"
     >
       <span
         aria-hidden="true"
@@ -14,7 +14,7 @@ export function Logo() {
       >
         <Monitor className="size-4" />
       </span>
-      <span>White Screen</span>
+      <span>WhiteScreen.vip</span>
     </Link>
   )
 }

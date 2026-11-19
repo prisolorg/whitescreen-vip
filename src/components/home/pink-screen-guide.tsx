@@ -14,7 +14,7 @@ export function PinkScreenGuide() {
       <Section wide id="light-heading" title="Pink Screen Light for Selfies, Photos and TikTok">
         <p className={p}>
           A pink screen is an easy, flattering pink light: it softens skin and adds a warm glow without a pink LED or any extra gear. Double-tap the
-          preview for fullscreen and turn on Keep screen awake. For neutral, true-to-life light, open the bright <Link href="/" className={link}>white screen</Link> in full screen instead.
+          preview for fullscreen and turn on Keep screen awake. For neutral, true-to-life light, use <Link href="/" className={link}>this bright white light tool</Link> instead.
         </p>
         <Table
           caption="Ways to use the pink screen as a light"

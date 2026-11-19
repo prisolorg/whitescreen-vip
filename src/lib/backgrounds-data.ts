@@ -919,7 +919,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
     ],
     relatedTools: [
       { name: 'Monitor Test', path: '/monitor-test/', description: 'Geometry and sharpness tests.' },
-      { name: 'White Screen', path: '/', description: 'Plain fullscreen white for light-box tracing.' },
+      { name: 'Plain white screen tool', path: '/', description: 'Plain fullscreen white for light-box tracing.' },
     ],
   },
 
@@ -1496,7 +1496,7 @@ export const BACKGROUND_ITEMS: readonly BackgroundItem[] = [
       {
         question: 'Is beige better for my eyes than white?',
         answer:
-          'Many people find a warm, slightly darker background more comfortable for long reading, but brightness and room lighting matter more than the exact color. Compare this background with the [white screen](/) at the same brightness to see which suits you.',
+          'Many people find a warm, slightly darker background more comfortable for long reading, but brightness and room lighting matter more than the exact color. Compare this background with a [pure white light](/) at the same brightness to see which suits you.',
       },
     ],
     relatedTools: [

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { CardLink, CardTitle } from '@/components/card-link'
 import { ArrowUpRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { toolPath, type Tool } from '@/lib/tools'
@@ -35,7 +36,7 @@ export function ToolCard({ tool, headingLevel = 'h3' }: { tool: Tool; headingLev
   const localized = getLocalizedTool(tool, language)
 
   return (
-    <Link
+    <CardLink
       href={toolPath(tool.slug)}
       className="group flex h-full flex-col gap-3 rounded-xl border bg-card p-4 transition-all hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
     >
@@ -47,10 +48,10 @@ export function ToolCard({ tool, headingLevel = 'h3' }: { tool: Tool; headingLev
         />
       </div>
       <div>
-        <Heading className="font-medium">{localized.name}</Heading>
+        <Heading className="font-medium"><CardTitle href={toolPath(tool.slug)}>{localized.name}</CardTitle></Heading>
         <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{localized.description}</p>
       </div>
-    </Link>
+    </CardLink>
   )
 }
 

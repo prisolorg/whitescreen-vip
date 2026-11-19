@@ -89,7 +89,7 @@ export const UI_TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     toggleTheme: "Switch between light and dark mode",
     ctaWhiteScreenTitle: 'Need a bright white screen?',
     ctaWhiteScreenText: 'Open the White Screen online in full screen for Zoom lighting, monitor cleaning, tracing and dead pixel tests. Free.',
-    ctaOpenWhiteScreen: 'Open a bright White Screen in full screen',
+    ctaOpenWhiteScreen: 'Open the tool',
     guideUpdated: 'Updated',
     guideImportant: 'Important:',
     guideFeatured: 'Featured tool',

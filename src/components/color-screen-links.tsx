@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { CardLink, CardTitle } from '@/components/card-link'
 import { ArrowRight } from 'lucide-react'
 import { Section } from '@/components/section'
 import { SCREEN_COLORS } from '@/lib/screen-colors'
@@ -29,7 +30,7 @@ export function ColorScreenLinks({ currentId }: ColorScreenLinksProps) {
 
           return (
             <li key={color.id}>
-              <Link
+              <CardLink
                 href={color.path}
                 className="group flex items-center gap-4 rounded-xl border bg-card p-3 transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2"
               >
@@ -39,14 +40,14 @@ export function ColorScreenLinks({ currentId }: ColorScreenLinksProps) {
                   aria-hidden="true"
                 />
                 <span className="flex flex-1 flex-col">
-                  <span className="font-medium text-foreground">{localizedName}</span>
+                  <span className="font-medium text-foreground"><CardTitle href={color.path}>{localizedName}</CardTitle></span>
                   <span className="font-mono text-xs text-muted-foreground">{color.hex}</span>
                 </span>
                 <ArrowRight
                   className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5"
                   aria-hidden="true"
                 />
-              </Link>
+              </CardLink>
             </li>
           )
         })}

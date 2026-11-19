@@ -339,7 +339,7 @@ export const GLOSSARY_ITEMS: readonly GlossaryItem[] = [
     ],
     relatedTools: [
       {
-        name: 'White Screen',
+        name: 'Full-brightness white display',
         path: '/',
         description: 'Test peak white luminance and adjust color temperatures from 3000K to 9300K.',
       },
@@ -571,7 +571,7 @@ export const GLOSSARY_ITEMS: readonly GlossaryItem[] = [
         description: 'Softbox forward fill lighting to eliminate facial shadows and balance video call cameras.',
       },
       {
-        name: 'White Screen',
+        name: 'Soft white fill light',
         path: '/',
         description: 'Neutral daylight white screen to act as a soft fill light reflector for webcam video.',
       },

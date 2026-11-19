@@ -288,10 +288,15 @@ export function GuideDetailPage({ slug }: { slug: string }) {
               {t('guideReadyText', 'Run free browser tests, check for dead pixels, or open any of the 12 color screens.')}
             </p>
             <div className="mt-3 flex flex-wrap gap-2 text-xs font-medium">
-              <Link href="/" className="text-primary hover:underline">
-                {t('homeTitle', 'White Screen')} →
-              </Link>
-              <span className="text-muted-foreground">·</span>
+              {/* Skip this home link when the button beside it already goes home (no duplicate in one block). */}
+              {guide.primaryTool.path !== '/' && (
+                <>
+                  <Link href="/" className="text-primary hover:underline">
+                    {language === 'en' ? 'Plain white screen' : t('homeTitle', 'White Screen')} →
+                  </Link>
+                  <span className="text-muted-foreground">·</span>
+                </>
+              )}
               <Link href="/black-screen" className="text-primary hover:underline">
                 Black Screen →
               </Link>
@@ -309,7 +314,7 @@ export function GuideDetailPage({ slug }: { slug: string }) {
             href={guide.primaryTool.path}
             className="mt-4 sm:mt-0 inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 shrink-0"
           >
-            <span>{guide.primaryTool.label}</span>
+            <span>{guide.primaryTool.path === '/' && language === 'en' ? 'Try it in full screen' : guide.primaryTool.label}</span>
             <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
         </section>
