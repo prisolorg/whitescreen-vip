@@ -2,7 +2,6 @@ import type { ComponentType } from 'react'
 import { Section } from '@/components/section'
 import { InlineAd } from '@/components/tool-ads'
 import { usesStudioLayout } from '@/lib/studio-layout'
-import { ColorScreenLinks } from '@/components/color-screen-links'
 import { JsonLd } from '@/components/json-ld'
 import type { ScreenColor } from '@/lib/screen-colors'
 import { getColorPageContent } from '@/lib/color-pages'
@@ -131,7 +130,6 @@ export function ColorPageBody({ color }: { color: ScreenColor }) {
         </Section>
       )}
       {glance?.sources && <ToolSources sources={glance.sources} />}
-      {!KeywordGuide && <ColorScreenLinks currentId={color.id} />}
     </>
   )
 }

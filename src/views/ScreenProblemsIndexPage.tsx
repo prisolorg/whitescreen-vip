@@ -55,7 +55,7 @@ export function ScreenProblemsIndexPage({ text, items }: ProblemIndexProps) {
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-xs text-muted-foreground">
           <Link href="/" className="hover:text-foreground transition-colors">
-            {t('homeTitle', 'White Screen')}
+            {t('home', 'Home')}
           </Link>
           <ChevronRight className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
           <span className="font-medium text-foreground">{t('screenProblems', 'Screen Problems')}</span>

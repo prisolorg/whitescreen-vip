@@ -268,7 +268,7 @@ export function BackgroundDetailPage({ item, more, categories, text }: Backgroun
         {!studio && (
         <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
           <Link href="/" className="hover:text-foreground transition-colors">
-            {t('homeTitle', 'White Screen')}
+            {t('home', 'Home')}
           </Link>
           <ChevronRight className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
           <Link href="/backgrounds" className="hover:text-foreground transition-colors">

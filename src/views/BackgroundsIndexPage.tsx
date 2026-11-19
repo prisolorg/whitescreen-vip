@@ -131,7 +131,7 @@ export function BackgroundsIndexPage({ items, categories, categoryMeta, text }: 
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="mb-2 flex items-center gap-1.5 text-xs text-muted-foreground flex-wrap">
           <Link href="/" className="hover:text-foreground transition-colors">
-            {t('homeTitle', 'White Screen')}
+            {t('home', 'Home')}
           </Link>
           <ChevronRight className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
           {activeCategory === 'all' ? (

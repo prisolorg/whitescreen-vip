@@ -20,8 +20,8 @@
  {
   "page": "/light-and-sound/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/light-and-sound/",
@@ -236,8 +236,8 @@
  {
   "page": "/visual-effects/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/visual-effects/",
@@ -296,8 +296,8 @@
  {
   "page": "/tools/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/tools/",
@@ -488,8 +488,8 @@
  {
   "page": "/screen-problems/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screen-problems/",
@@ -518,8 +518,8 @@
  {
   "page": "/screen-problems/screen-burn-in/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screen-problems/screen-burn-in/",
@@ -542,8 +542,8 @@
  {
   "page": "/screen-problems/ghosting/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screen-problems/ghosting/",
@@ -566,8 +566,8 @@
  {
   "page": "/screen-problems/screen-flickering/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screen-problems/screen-flickering/",
@@ -590,8 +590,8 @@
  {
   "page": "/screen-problems/image-retention/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screen-problems/image-retention/",
@@ -632,8 +632,8 @@
  {
   "page": "/screen-problems/backlight-bleed/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screen-problems/backlight-bleed/",
@@ -656,8 +656,8 @@
  {
   "page": "/screen-problems/color-banding/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screen-problems/color-banding/",
@@ -680,8 +680,8 @@
  {
   "page": "/screen-problems/stuck-pixel/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screen-problems/stuck-pixel/",
@@ -704,8 +704,8 @@
  {
   "page": "/screen-problems/screen-tearing/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screen-problems/screen-tearing/",
@@ -728,8 +728,8 @@
  {
   "page": "/screen-problems/hot-pixel/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screen-problems/hot-pixel/",
@@ -752,8 +752,8 @@
  {
   "page": "/screen-problems/ips-glow/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screen-problems/ips-glow/",
@@ -776,8 +776,8 @@
  {
   "page": "/screen-problems/yellow-tint-on-screen/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screen-problems/yellow-tint-on-screen/",
@@ -854,12 +854,6 @@
  {
   "page": "/orange-screen/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
- },
- {
-  "page": "/orange-screen/",
-  "ctx": "main",
   "anchor": "White Screen",
   "bucket": "exact"
  },
@@ -1058,8 +1052,8 @@
  {
   "page": "/screen-tests/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screen-tests/",
@@ -1082,8 +1076,8 @@
  {
   "page": "/backgrounds/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/backgrounds/",
@@ -1562,8 +1556,8 @@
  {
   "page": "/online-timers/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/online-timers/",
@@ -1586,8 +1580,8 @@
  {
   "page": "/guides/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/",
@@ -1610,8 +1604,8 @@
  {
   "page": "/guides/clean-laptop-screen/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/clean-laptop-screen/",
@@ -1652,8 +1646,8 @@
  {
   "page": "/guides/screen-uniformity-test/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/screen-uniformity-test/",
@@ -1682,8 +1676,8 @@
  {
   "page": "/guides/oled-screen-burn-in-test-and-prevention/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/oled-screen-burn-in-test-and-prevention/",
@@ -1712,8 +1706,8 @@
  {
   "page": "/guides/check-ips-glow-and-backlight-bleed/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/check-ips-glow-and-backlight-bleed/",
@@ -1742,8 +1736,8 @@
  {
   "page": "/guides/common-monitor-display-problems-diagnostics/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/common-monitor-display-problems-diagnostics/",
@@ -1772,8 +1766,8 @@
  {
   "page": "/guides/spot-stuck-pixels-vs-dead-pixels/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/spot-stuck-pixels-vs-dead-pixels/",
@@ -1802,8 +1796,8 @@
  {
   "page": "/guides/dead-pixel-test/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/dead-pixel-test/",
@@ -1832,8 +1826,8 @@
  {
   "page": "/guides/oled-burn-in-prevention/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/oled-burn-in-prevention/",
@@ -1862,8 +1856,8 @@
  {
   "page": "/guides/monitor-test/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/monitor-test/",
@@ -1892,8 +1886,8 @@
  {
   "page": "/guides/max-brightness/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/max-brightness/",
@@ -1934,8 +1928,8 @@
  {
   "page": "/guides/test-monitor-colors-and-uniformity/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/test-monitor-colors-and-uniformity/",
@@ -1964,8 +1958,8 @@
  {
   "page": "/guides/best-monitor-settings-for-eye-strain/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/best-monitor-settings-for-eye-strain/",
@@ -2000,8 +1994,8 @@
  {
   "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/fullscreen-white-screen-for-drawing-and-tracing/",
@@ -2036,8 +2030,8 @@
  {
   "page": "/guides/browser-fullscreen/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/browser-fullscreen/",
@@ -2072,8 +2066,8 @@
  {
   "page": "/guides/white-screen-for-video-calls-and-zoom/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/white-screen-for-video-calls-and-zoom/",
@@ -2108,8 +2102,8 @@
  {
   "page": "/guides/screen-color-test/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/screen-color-test/",
@@ -2138,8 +2132,8 @@
  {
   "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/how-to-use-white-screen-for-monitor-cleaning/",
@@ -2180,8 +2174,8 @@
  {
   "page": "/guides/multi-monitor-setup/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/multi-monitor-setup/",
@@ -2222,8 +2216,8 @@
  {
   "page": "/guides/how-to-test-monitor-dead-pixels/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/guides/how-to-test-monitor-dead-pixels/",
@@ -2341,12 +2335,6 @@
  },
  {
   "page": "/magenta-screen/",
-  "ctx": "main",
-  "anchor": "White Screen",
-  "bucket": "exact"
- },
- {
-  "page": "/magenta-screen/",
   "ctx": "footer",
   "anchor": "WhiteScreen.vip",
   "bucket": "branded"
@@ -2360,8 +2348,8 @@
  {
   "page": "/glossary/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/glossary/",
@@ -2378,8 +2366,8 @@
  {
   "page": "/glossary/refresh-rate/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/glossary/refresh-rate/",
@@ -2402,8 +2390,8 @@
  {
   "page": "/glossary/chroma-key/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/glossary/chroma-key/",
@@ -2432,8 +2420,8 @@
  {
   "page": "/glossary/hdr/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/glossary/hdr/",
@@ -2462,8 +2450,8 @@
  {
   "page": "/glossary/oled-vs-lcd/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/glossary/oled-vs-lcd/",
@@ -2486,8 +2474,8 @@
  {
   "page": "/glossary/resolution/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/glossary/resolution/",
@@ -2648,8 +2636,8 @@
  {
   "page": "/prank-screens/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/prank-screens/",
@@ -2792,8 +2780,8 @@
  {
   "page": "/screensavers/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/screensavers/",
@@ -2875,12 +2863,6 @@
  },
  {
   "page": "/cyan-screen/",
-  "ctx": "main",
-  "anchor": "White Screen",
-  "bucket": "exact"
- },
- {
-  "page": "/cyan-screen/",
   "ctx": "footer",
   "anchor": "WhiteScreen.vip",
   "bucket": "branded"
@@ -2894,8 +2876,8 @@
  {
   "page": "/color-screens/",
   "ctx": "main>nav",
-  "anchor": "White Screen",
-  "bucket": "exact"
+  "anchor": "Home",
+  "bucket": "generic"
  },
  {
   "page": "/color-screens/",

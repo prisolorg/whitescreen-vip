@@ -266,9 +266,9 @@ const SECTION_NAMES: Record<string, string> = {
   '/author-whitson-rao': 'Whitson Rao',
 }
 
-/** White Screen → section → page, for sections, articles and static pages. Undefined elsewhere. */
+/** Home → section → page, for sections, articles and static pages. Undefined elsewhere. */
 function breadcrumbTrail(path: string, title: string, language: LanguageCode): { name: string; path: string }[] | undefined {
-  const home = { name: translationsFor(language).homeTitle || 'White Screen', path: '/' }
+  const home = { name: translationsFor(language).home || 'Home', path: '/' }
   const hub = getHub(path)
   // Hub pages render their own visible breadcrumb (with its markup), so none is added here.
   if (hub) return undefined
